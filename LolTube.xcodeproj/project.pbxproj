@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D56D899FCC74DAF83E2042D /* libPods-LolTubeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 492EE9566EC348369DBEEC9F /* libPods-LolTubeTests.a */; };
 		7A9D5BBC0758A52E249273DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D58813D182CC79E4EFC74 /* Main.storyboard */; };
 		D2912024C3464678820F0B0F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE8E8822B6E415281465DA6 /* libPods.a */; };
 		DC1044AB19B2FA6B007A86E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1044AA19B2FA6B007A86E6 /* Foundation.framework */; };
@@ -34,6 +35,8 @@
 
 /* Begin PBXFileReference section */
 		371FAF4E87134393B85D8C11 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		492EE9566EC348369DBEEC9F /* libPods-LolTubeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LolTubeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		78D44C9CFB5B45D686716807 /* Pods-LolTubeTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LolTubeTests.xcconfig"; path = "Pods/Pods-LolTubeTests.xcconfig"; sourceTree = "<group>"; };
 		7A9D5D9CECBBC94FD446D8A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LolTube/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		8AE8E8822B6E415281465DA6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC1044A719B2FA6B007A86E6 /* LolTube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LolTube.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +75,7 @@
 				DC1044CA19B2FA6B007A86E6 /* XCTest.framework in Frameworks */,
 				DC1044CC19B2FA6B007A86E6 /* UIKit.framework in Frameworks */,
 				DC1044CB19B2FA6B007A86E6 /* Foundation.framework in Frameworks */,
+				0D56D899FCC74DAF83E2042D /* libPods-LolTubeTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +105,7 @@
 				DC1044A919B2FA6B007A86E6 /* Frameworks */,
 				DC1044A819B2FA6B007A86E6 /* Products */,
 				371FAF4E87134393B85D8C11 /* Pods.xcconfig */,
+				78D44C9CFB5B45D686716807 /* Pods-LolTubeTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -121,6 +126,7 @@
 				DC1044AE19B2FA6B007A86E6 /* UIKit.framework */,
 				DC1044C919B2FA6B007A86E6 /* XCTest.framework */,
 				8AE8E8822B6E415281465DA6 /* libPods.a */,
+				492EE9566EC348369DBEEC9F /* libPods-LolTubeTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -192,9 +198,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC1044DC19B2FA6B007A86E6 /* Build configuration list for PBXNativeTarget "LolTubeTests" */;
 			buildPhases = (
+				A5B97F07C1064FC099D71CAE /* Check Pods Manifest.lock */,
 				DC1044C419B2FA6B007A86E6 /* Sources */,
 				DC1044C519B2FA6B007A86E6 /* Frameworks */,
 				DC1044C619B2FA6B007A86E6 /* Resources */,
+				1E4CA3BCEF174D56ACCA742F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -265,6 +273,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1E4CA3BCEF174D56ACCA742F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-LolTubeTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		73C338F7AD4440E0A5DF77D0 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -293,6 +316,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A5B97F07C1064FC099D71CAE /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -429,6 +467,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LolTube/LolTube-Prefix.pch";
 				INFOPLIST_FILE = "LolTube/LolTube-Info.plist";
@@ -445,6 +487,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LolTube/LolTube-Prefix.pch";
 				INFOPLIST_FILE = "LolTube/LolTube-Info.plist";
@@ -456,6 +502,7 @@
 		};
 		DC1044DD19B2FA6B007A86E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78D44C9CFB5B45D686716807 /* Pods-LolTubeTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LolTube.app/LolTube";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -478,6 +525,7 @@
 		};
 		DC1044DE19B2FA6B007A86E6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78D44C9CFB5B45D686716807 /* Pods-LolTubeTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LolTube.app/LolTube";
 				FRAMEWORK_SEARCH_PATHS = (
