@@ -33,3 +33,7 @@
 @implementation RSThumbnails
 
 @end
+
+@implementation RSThumbnail
+
+@end
