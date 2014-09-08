@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0D56D899FCC74DAF83E2042D /* libPods-LolTubeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 492EE9566EC348369DBEEC9F /* libPods-LolTubeTests.a */; };
 		7A9D526589D6379D67DF2E3A /* RSThumbnails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D579DEBD8CEEC71AB737A /* RSThumbnails.m */; };
+		7A9D53046E0D3AE83354D84E /* RSVideoDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5D0FC66A92A7E22AAF65 /* RSVideoDetailViewModel.m */; };
 		7A9D53AE2A3FDB6C7B8D9697 /* Video_unformatter_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D55798B41038805DB2D14 /* Video_unformatter_data.json */; };
 		7A9D549A0D28CD4D3CEFFDA6 /* RSYoutubeServiceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D59B793756C1854CA7C28 /* RSYoutubeServiceSpec.m */; };
 		7A9D55F6E873A617BE46DE8C /* RSVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5A0D3ED28B62DA5B95AC /* RSVideoModel.m */; };
@@ -58,6 +59,7 @@
 		492EE9566EC348369DBEEC9F /* libPods-LolTubeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LolTubeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78D44C9CFB5B45D686716807 /* Pods-LolTubeTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LolTubeTests.xcconfig"; path = "Pods/Pods-LolTubeTests.xcconfig"; sourceTree = "<group>"; };
 		7A9D515B04B281818CFFBBCE /* RSSearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSearchModel.m; sourceTree = "<group>"; };
+		7A9D51D53257ADAE528224DD /* RSVideoDetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailViewModel.h; sourceTree = "<group>"; };
 		7A9D52C373F26DFF52D2BE86 /* CLG_vs_DIG_Video_Deital.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = CLG_vs_DIG_Video_Deital.json; sourceTree = "<group>"; };
 		7A9D53B85CDC6EFBEF69CB30 /* RSSearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSearchModel.h; sourceTree = "<group>"; };
 		7A9D55798B41038805DB2D14 /* Video_unformatter_data.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Video_unformatter_data.json; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 		7A9D5C04C421A5D2491B8658 /* RSYoutubeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSYoutubeService.h; sourceTree = "<group>"; };
 		7A9D5C089DAEDD8088444FF1 /* RSYoutubeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSYoutubeService.m; sourceTree = "<group>"; };
 		7A9D5C2CC4F117793092B6BF /* RSVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoModel.h; sourceTree = "<group>"; };
+		7A9D5D0FC66A92A7E22AAF65 /* RSVideoDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailViewModel.m; sourceTree = "<group>"; };
 		7A9D5DDC35472535F6055FF4 /* RSChannelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSChannelModel.m; sourceTree = "<group>"; };
 		7A9D5E0933CDDBBBDBCD4594 /* RSStringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSStringUtil.h; sourceTree = "<group>"; };
 		7A9D5E8BA4B47C87DD729968 /* RSVideoListCollectionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoListCollectionViewModel.m; sourceTree = "<group>"; };
@@ -206,6 +209,8 @@
 			children = (
 				7A9D5E8BA4B47C87DD729968 /* RSVideoListCollectionViewModel.m */,
 				7A9D58A91E727A44241D4B26 /* RSVideoListCollectionViewModel.h */,
+				7A9D5D0FC66A92A7E22AAF65 /* RSVideoDetailViewModel.m */,
+				7A9D51D53257ADAE528224DD /* RSVideoDetailViewModel.h */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -564,6 +569,7 @@
 				7A9D5A751ECA82C6C63C83F7 /* UIImageView+RSAsyncLoading.m in Sources */,
 				7A9D57F1BEA45BC6BC31AD65 /* RSVideoDetailViewController.m in Sources */,
 				7A9D526589D6379D67DF2E3A /* RSThumbnails.m in Sources */,
+				7A9D53046E0D3AE83354D84E /* RSVideoDetailViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
