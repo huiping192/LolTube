@@ -1,0 +1,146 @@
+{
+    "kind": "youtube#searchListResponse",
+    "etag": "\"gMjDJfS6nsym0T-NKCXALC_u_rM/LaRLuHtvsMpsDnD9EGPTrtjJ4qU\"",
+    "nextPageToken": "CAUQAA",
+    "pageInfo": {
+        "totalResults": 42,
+        "resultsPerPage": 5
+    },
+    "items": [
+        {
+            "kind": "youtube#searchResult",
+            "etag": "\"gMjDJfS6nsym0T-NKCXALC_u_rM/7EC_fmM0uYB9HdtoQJOBjaaGnXY\"",
+            "id": {
+                "kind": "youtube#video",
+                "videoId": "1sXgHT7_e-A"
+            },
+            "snippet": {
+                "publishedAt": "2010-08-31T23:04:26.000Z",
+                "channelId": "UCz3cM4qLljXcQ8oWjMPgKZA",
+                "title": "Battle Map",
+                "description": "Battle Map turns your iPod or iPhone into a pen & paper RPG virtual tabletop! You can create your own maps as simply as dragging your finger. Battle Map will...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/1sXgHT7_e-A/default.jpg"
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/1sXgHT7_e-A/mqdefault.jpg"
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/1sXgHT7_e-A/hqdefault.jpg"
+                    }
+                },
+                "channelTitle": "rwenderlich",
+                "liveBroadcastContent": "none"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "\"gMjDJfS6nsym0T-NKCXALC_u_rM/nrF9JMy1gbAPjjDVHgRrHNkrrFU\"",
+            "id": {
+                "kind": "youtube#video",
+                "videoId": "hxdcZXwRH1A"
+            },
+            "snippet": {
+                "publishedAt": "2013-08-25T21:38:03.000Z",
+                "channelId": "UCz3cM4qLljXcQ8oWjMPgKZA",
+                "title": "iOS Games by Tutorials",
+                "description": "Learn how to make five complete games for iOS with Apple's brand new 2D game framework: Sprite Kit! Coming soon to raywenderlich.com.",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/hxdcZXwRH1A/default.jpg"
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/hxdcZXwRH1A/mqdefault.jpg"
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/hxdcZXwRH1A/hqdefault.jpg"
+                    }
+                },
+                "channelTitle": "rwenderlich",
+                "liveBroadcastContent": "none"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "\"gMjDJfS6nsym0T-NKCXALC_u_rM/Bt7VYl-Ncm58JHlBCAWPUJhXEyg\"",
+            "id": {
+                "kind": "youtube#video",
+                "videoId": "rfSxDIYRs1E"
+            },
+            "snippet": {
+                "publishedAt": "2012-06-07T20:36:32.000Z",
+                "channelId": "UCz3cM4qLljXcQ8oWjMPgKZA",
+                "title": "Battle Map 2 - iPhone/iPad RPG Map Making App Trailer",
+                "description": "Create and explore your own pen & paper RPG maps on your iPhone or iPad - as simply as dragging your finger! For more info, check out www.razeware.com.",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/rfSxDIYRs1E/default.jpg"
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/rfSxDIYRs1E/mqdefault.jpg"
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/rfSxDIYRs1E/hqdefault.jpg"
+                    }
+                },
+                "channelTitle": "rwenderlich",
+                "liveBroadcastContent": "none"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "\"gMjDJfS6nsym0T-NKCXALC_u_rM/3bYz6K0dqejNN2UryllxklXS2IM\"",
+            "id": {
+                "kind": "youtube#video",
+                "videoId": "ZYJ4-yRyNeA"
+            },
+            "snippet": {
+                "publishedAt": "2013-04-08T16:21:24.000Z",
+                "channelId": "UCz3cM4qLljXcQ8oWjMPgKZA",
+                "title": "iOS Game Starter Kits",
+                "description": "Learn how to make a side scroller, platformer game, and beat 'em up game in this starter kit collection from raywenderlich.com!",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/ZYJ4-yRyNeA/default.jpg"
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/ZYJ4-yRyNeA/mqdefault.jpg"
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/ZYJ4-yRyNeA/hqdefault.jpg"
+                    }
+                },
+                "channelTitle": "rwenderlich",
+                "liveBroadcastContent": "none"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "\"gMjDJfS6nsym0T-NKCXALC_u_rM/2PkxPSfzuU_Ch_s6B3d6VVj2yhM\"",
+            "id": {
+                "kind": "youtube#video",
+                "videoId": "ECWn22zKRBA"
+            },
+            "snippet": {
+                "publishedAt": "2012-07-17T19:05:55.000Z",
+                "channelId": "UCz3cM4qLljXcQ8oWjMPgKZA",
+                "title": "Electronics for iPhone Developers Tutorial: Control a LED from your iPhone!",
+                "description": "Part of a free tutorial by Dani Arnaout at raywenderlich.com. Visit the site for full details!",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/ECWn22zKRBA/default.jpg"
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/ECWn22zKRBA/mqdefault.jpg"
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/ECWn22zKRBA/hqdefault.jpg"
+                    }
+                },
+                "channelTitle": "rwenderlich",
+                "liveBroadcastContent": "none"
+            }
+        }
+    ]
+}

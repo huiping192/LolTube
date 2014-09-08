@@ -8,7 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		0D56D899FCC74DAF83E2042D /* libPods-LolTubeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 492EE9566EC348369DBEEC9F /* libPods-LolTubeTests.a */; };
-		7A9D5BBC0758A52E249273DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D58813D182CC79E4EFC74 /* Main.storyboard */; };
+		7A9D549A0D28CD4D3CEFFDA6 /* RSYoutubeServiceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D59B793756C1854CA7C28 /* RSYoutubeServiceSpec.m */; };
+		7A9D55F6E873A617BE46DE8C /* RSVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5A0D3ED28B62DA5B95AC /* RSVideoModel.m */; };
+		7A9D5634A5DEAE65CC9D46FF /* RSStringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5B7BE899A291E20B351C /* RSStringUtil.m */; };
+		7A9D5798B8B427BE4FE71303 /* RSVideoListCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5E8BA4B47C87DD729968 /* RSVideoListCollectionViewModel.m */; };
+		7A9D57F1BEA45BC6BC31AD65 /* RSVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D573075EAA12896D59A57 /* RSVideoDetailViewController.m */; };
+		7A9D5854FD09B52840A1B3D9 /* RSSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D515B04B281818CFFBBCE /* RSSearchModel.m */; };
+		7A9D588F5B7F3309F41F5AA4 /* RayWenderlichChannel.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5AF46BFEA231319F7D33 /* RayWenderlichChannel.json */; };
+		7A9D59A657D1A99CBF2A4BEE /* NSDateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5B1F49499207E023211F /* NSDateSpec.m */; };
+		7A9D5A751ECA82C6C63C83F7 /* UIImageView+RSAsyncLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5812D77DD26E87BAD105 /* UIImageView+RSAsyncLoading.m */; };
+		7A9D5C20AC3EAD887249EB04 /* NSDate+RSFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D57868192765BB8591D47 /* NSDate+RSFormatter.m */; };
+		7A9D5D53C4D3636F1491713E /* RSYoutubeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5C089DAEDD8088444FF1 /* RSYoutubeService.m */; };
+		7A9D5D9EAAAA5C7FC154FD0B /* RSStringUtilSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D56BDCEC53E90D4B324CD /* RSStringUtilSpec.m */; };
+		7A9D5E91022E54BA028FDBA9 /* Channel_unformatter_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5749A02980374685100A /* Channel_unformatter_data.json */; };
+		7A9D5EB60C1024B77DC9A0DB /* RSChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5DDC35472535F6055FF4 /* RSChannelModel.m */; };
 		D2912024C3464678820F0B0F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE8E8822B6E415281465DA6 /* libPods.a */; };
 		DC1044AB19B2FA6B007A86E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1044AA19B2FA6B007A86E6 /* Foundation.framework */; };
 		DC1044AD19B2FA6B007A86E6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1044AC19B2FA6B007A86E6 /* CoreGraphics.framework */; };
@@ -21,6 +34,10 @@
 		DC1044CB19B2FA6B007A86E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1044AA19B2FA6B007A86E6 /* Foundation.framework */; };
 		DC1044CC19B2FA6B007A86E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1044AE19B2FA6B007A86E6 /* UIKit.framework */; };
 		DC1044D419B2FA6B007A86E6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC1044D219B2FA6B007A86E6 /* InfoPlist.strings */; };
+		DCEBA51419BCB2AF007C3FC7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCEBA51619BCB2AF007C3FC7 /* Localizable.strings */; };
+		DCEBA51A19BCB304007C3FC7 /* RSVideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCEBA51819BCB304007C3FC7 /* RSVideoListViewController.m */; };
+		DCEBA51D19BCB350007C3FC7 /* RSVideoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DCEBA51B19BCB350007C3FC7 /* RSVideoCollectionViewCell.m */; };
+		DCEBA51F19BCB3BA007C3FC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCEBA51E19BCB3BA007C3FC7 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +54,29 @@
 		371FAF4E87134393B85D8C11 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		492EE9566EC348369DBEEC9F /* libPods-LolTubeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LolTubeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78D44C9CFB5B45D686716807 /* Pods-LolTubeTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LolTubeTests.xcconfig"; path = "Pods/Pods-LolTubeTests.xcconfig"; sourceTree = "<group>"; };
-		7A9D5D9CECBBC94FD446D8A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LolTube/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		7A9D515B04B281818CFFBBCE /* RSSearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSearchModel.m; sourceTree = "<group>"; };
+		7A9D53B85CDC6EFBEF69CB30 /* RSSearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSearchModel.h; sourceTree = "<group>"; };
+		7A9D55867E9F573269326BFA /* NSDate+RSFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+RSFormatter.h"; sourceTree = "<group>"; };
+		7A9D55E899861CE03C8F74C6 /* UIImageView+RSAsyncLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+RSAsyncLoading.h"; sourceTree = "<group>"; };
+		7A9D56BDCEC53E90D4B324CD /* RSStringUtilSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSStringUtilSpec.m; sourceTree = "<group>"; };
+		7A9D573075EAA12896D59A57 /* RSVideoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailViewController.m; sourceTree = "<group>"; };
+		7A9D5749A02980374685100A /* Channel_unformatter_data.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Channel_unformatter_data.json; sourceTree = "<group>"; };
+		7A9D57868192765BB8591D47 /* NSDate+RSFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+RSFormatter.m"; sourceTree = "<group>"; };
+		7A9D5812D77DD26E87BAD105 /* UIImageView+RSAsyncLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+RSAsyncLoading.m"; sourceTree = "<group>"; };
+		7A9D58A91E727A44241D4B26 /* RSVideoListCollectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoListCollectionViewModel.h; sourceTree = "<group>"; };
+		7A9D59B793756C1854CA7C28 /* RSYoutubeServiceSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSYoutubeServiceSpec.m; sourceTree = "<group>"; };
+		7A9D5A0D3ED28B62DA5B95AC /* RSVideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoModel.m; sourceTree = "<group>"; };
+		7A9D5A860870F855225F2509 /* RSChannelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSChannelModel.h; sourceTree = "<group>"; };
+		7A9D5AF46BFEA231319F7D33 /* RayWenderlichChannel.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = RayWenderlichChannel.json; sourceTree = "<group>"; };
+		7A9D5B1F49499207E023211F /* NSDateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateSpec.m; sourceTree = "<group>"; };
+		7A9D5B7BE899A291E20B351C /* RSStringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSStringUtil.m; sourceTree = "<group>"; };
+		7A9D5C04C421A5D2491B8658 /* RSYoutubeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSYoutubeService.h; sourceTree = "<group>"; };
+		7A9D5C089DAEDD8088444FF1 /* RSYoutubeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSYoutubeService.m; sourceTree = "<group>"; };
+		7A9D5C2CC4F117793092B6BF /* RSVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoModel.h; sourceTree = "<group>"; };
+		7A9D5DDC35472535F6055FF4 /* RSChannelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSChannelModel.m; sourceTree = "<group>"; };
+		7A9D5E0933CDDBBBDBCD4594 /* RSStringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSStringUtil.h; sourceTree = "<group>"; };
+		7A9D5E8BA4B47C87DD729968 /* RSVideoListCollectionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoListCollectionViewModel.m; sourceTree = "<group>"; };
+		7A9D5FCBA9DCDC569C7C2F1E /* RSVideoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailViewController.h; sourceTree = "<group>"; };
 		8AE8E8822B6E415281465DA6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC1044A719B2FA6B007A86E6 /* LolTube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LolTube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC1044AA19B2FA6B007A86E6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -54,6 +93,24 @@
 		DC1044C919B2FA6B007A86E6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		DC1044D119B2FA6B007A86E6 /* LolTubeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LolTubeTests-Info.plist"; sourceTree = "<group>"; };
 		DC1044D319B2FA6B007A86E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DCEBA50C19BCAD8C007C3FC7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DCEBA50D19BCAD8C007C3FC7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DCEBA51519BCB2AF007C3FC7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DCEBA51719BCB2B3007C3FC7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DCEBA51819BCB304007C3FC7 /* RSVideoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoListViewController.m; sourceTree = "<group>"; };
+		DCEBA51919BCB304007C3FC7 /* RSVideoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoListViewController.h; sourceTree = "<group>"; };
+		DCEBA51B19BCB350007C3FC7 /* RSVideoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSVideoCollectionViewCell.m; path = View/RSVideoCollectionViewCell.m; sourceTree = "<group>"; };
+		DCEBA51C19BCB350007C3FC7 /* RSVideoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSVideoCollectionViewCell.h; path = View/RSVideoCollectionViewCell.h; sourceTree = "<group>"; };
+		DCEBA51E19BCB3BA007C3FC7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		DCF9877C19BDB6D600E9BCBE /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DCF9877D19BDB6D600E9BCBE /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DCF9877E19BDB6D600E9BCBE /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DCF9878219BDBB2B00E9BCBE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		DCF9878319BDBB2B00E9BCBE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		DCF9878419BDBB2B00E9BCBE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		DCF9878519BDBEFD00E9BCBE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		DCF9878619BDBEFD00E9BCBE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		DCF9878719BDBEFD00E9BCBE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,17 +139,142 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A9D51026767D0DDE8AC6533 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				7A9D5B7BE899A291E20B351C /* RSStringUtil.m */,
+				7A9D5E0933CDDBBBDBCD4594 /* RSStringUtil.h */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		7A9D53C0DDC793E5C0CEA66A /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				7A9D56BDCEC53E90D4B324CD /* RSStringUtilSpec.m */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		7A9D54892715F0492B88A143 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				7A9D5B1F49499207E023211F /* NSDateSpec.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		7A9D54F6BB6E002474601B73 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				7A9D59B793756C1854CA7C28 /* RSYoutubeServiceSpec.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		7A9D572D3772432EF31F861E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				7A9D5AF46BFEA231319F7D33 /* RayWenderlichChannel.json */,
+				7A9D5749A02980374685100A /* Channel_unformatter_data.json */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		7A9D575BA2B9127AB9F13AC4 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				7A9D57868192765BB8591D47 /* NSDate+RSFormatter.m */,
+				7A9D55867E9F573269326BFA /* NSDate+RSFormatter.h */,
+				7A9D5812D77DD26E87BAD105 /* UIImageView+RSAsyncLoading.m */,
+				7A9D55E899861CE03C8F74C6 /* UIImageView+RSAsyncLoading.h */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		7A9D580EE02C6EAE1E5686DD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7A9D5E8BA4B47C87DD729968 /* RSVideoListCollectionViewModel.m */,
+				7A9D58A91E727A44241D4B26 /* RSVideoListCollectionViewModel.h */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7A9D59BD8886AE67DA2D7CF6 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				7A9D5C089DAEDD8088444FF1 /* RSYoutubeService.m */,
+				7A9D5C04C421A5D2491B8658 /* RSYoutubeService.h */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		7A9D5C2B81A9792F2335757A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DCEBA51B19BCB350007C3FC7 /* RSVideoCollectionViewCell.m */,
+				DCEBA51C19BCB350007C3FC7 /* RSVideoCollectionViewCell.h */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		7A9D5CA6D2991170E6DCF605 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				DCEBA51819BCB304007C3FC7 /* RSVideoListViewController.m */,
+				DCEBA51919BCB304007C3FC7 /* RSVideoListViewController.h */,
+				7A9D5C2B81A9792F2335757A /* View */,
+				7A9D580EE02C6EAE1E5686DD /* ViewModel */,
+				7A9D573075EAA12896D59A57 /* RSVideoDetailViewController.m */,
+				7A9D5FCBA9DCDC569C7C2F1E /* RSVideoDetailViewController.h */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		7A9D5D6734C81C9E42BD5E74 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7A9D54892715F0492B88A143 /* Category */,
+				7A9D53C0DDC793E5C0CEA66A /* Util */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		7A9D5D6A5556C56CFBE04C95 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7A9D5DDC35472535F6055FF4 /* RSChannelModel.m */,
+				7A9D5A860870F855225F2509 /* RSChannelModel.h */,
+				7A9D5A0D3ED28B62DA5B95AC /* RSVideoModel.m */,
+				7A9D5C2CC4F117793092B6BF /* RSVideoModel.h */,
+				7A9D515B04B281818CFFBBCE /* RSSearchModel.m */,
+				7A9D53B85CDC6EFBEF69CB30 /* RSSearchModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7A9D5E819280DF093ABDC934 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7A9D575BA2B9127AB9F13AC4 /* Category */,
+				7A9D51026767D0DDE8AC6533 /* Util */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		7A9D5F1A2A485D297787BBF1 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				7A9D572D3772432EF31F861E /* Service */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		7A9D5F425AB97F89FB258289 /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
-				7A9D58813D182CC79E4EFC74 /* Main.storyboard */,
+				DCEBA51E19BCB3BA007C3FC7 /* Main.storyboard */,
 			);
 			path = StoryBoard;
 			sourceTree = "<group>";
@@ -140,6 +322,9 @@
 				DC1044B119B2FA6B007A86E6 /* Supporting Files */,
 				7A9D5CA6D2991170E6DCF605 /* ViewController */,
 				7A9D5F425AB97F89FB258289 /* StoryBoard */,
+				7A9D59BD8886AE67DA2D7CF6 /* Service */,
+				7A9D5D6A5556C56CFBE04C95 /* Model */,
+				7A9D5E819280DF093ABDC934 /* Common */,
 			);
 			path = LolTube;
 			sourceTree = "<group>";
@@ -151,6 +336,7 @@
 				DC1044B319B2FA6B007A86E6 /* InfoPlist.strings */,
 				DC1044B619B2FA6B007A86E6 /* main.m */,
 				DC1044B819B2FA6B007A86E6 /* LolTube-Prefix.pch */,
+				DCEBA51619BCB2AF007C3FC7 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -159,6 +345,9 @@
 			isa = PBXGroup;
 			children = (
 				DC1044D019B2FA6B007A86E6 /* Supporting Files */,
+				7A9D54F6BB6E002474601B73 /* Service */,
+				7A9D5F1A2A485D297787BBF1 /* Resource */,
+				7A9D5D6734C81C9E42BD5E74 /* Common */,
 			);
 			path = LolTubeTests;
 			sourceTree = "<group>";
@@ -239,6 +428,11 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
+				"zh-Hans-CN",
+				ko,
+				"zh-Hant",
+				"zh-Hans",
 			);
 			mainGroup = DC10449E19B2FA6B007A86E6;
 			productRefGroup = DC1044A819B2FA6B007A86E6 /* Products */;
@@ -258,7 +452,8 @@
 			files = (
 				DC1044C319B2FA6B007A86E6 /* Images.xcassets in Resources */,
 				DC1044B519B2FA6B007A86E6 /* InfoPlist.strings in Resources */,
-				7A9D5BBC0758A52E249273DF /* Main.storyboard in Resources */,
+				DCEBA51419BCB2AF007C3FC7 /* Localizable.strings in Resources */,
+				DCEBA51F19BCB3BA007C3FC7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +462,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC1044D419B2FA6B007A86E6 /* InfoPlist.strings in Resources */,
+				7A9D588F5B7F3309F41F5AA4 /* RayWenderlichChannel.json in Resources */,
+				7A9D5E91022E54BA028FDBA9 /* Channel_unformatter_data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +539,17 @@
 			files = (
 				DC1044B719B2FA6B007A86E6 /* main.m in Sources */,
 				DC1044BB19B2FA6B007A86E6 /* RSAppDelegate.m in Sources */,
+				7A9D5D53C4D3636F1491713E /* RSYoutubeService.m in Sources */,
+				DCEBA51D19BCB350007C3FC7 /* RSVideoCollectionViewCell.m in Sources */,
+				7A9D5EB60C1024B77DC9A0DB /* RSChannelModel.m in Sources */,
+				7A9D55F6E873A617BE46DE8C /* RSVideoModel.m in Sources */,
+				7A9D5854FD09B52840A1B3D9 /* RSSearchModel.m in Sources */,
+				7A9D5798B8B427BE4FE71303 /* RSVideoListCollectionViewModel.m in Sources */,
+				7A9D5C20AC3EAD887249EB04 /* NSDate+RSFormatter.m in Sources */,
+				7A9D5634A5DEAE65CC9D46FF /* RSStringUtil.m in Sources */,
+				DCEBA51A19BCB304007C3FC7 /* RSVideoListViewController.m in Sources */,
+				7A9D5A751ECA82C6C63C83F7 /* UIImageView+RSAsyncLoading.m in Sources */,
+				7A9D57F1BEA45BC6BC31AD65 /* RSVideoDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +557,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A9D549A0D28CD4D3CEFFDA6 /* RSYoutubeServiceSpec.m in Sources */,
+				7A9D5D9EAAAA5C7FC154FD0B /* RSStringUtilSpec.m in Sources */,
+				7A9D59A657D1A99CBF2A4BEE /* NSDateSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,18 +574,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		7A9D58813D182CC79E4EFC74 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7A9D5D9CECBBC94FD446D8A6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DC1044B319B2FA6B007A86E6 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				DC1044B419B2FA6B007A86E6 /* en */,
+				DCEBA50C19BCAD8C007C3FC7 /* ja */,
+				DCF9877C19BDB6D600E9BCBE /* ko */,
+				DCF9878219BDBB2B00E9BCBE /* zh-Hans */,
+				DCF9878519BDBEFD00E9BCBE /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -383,8 +590,24 @@
 			isa = PBXVariantGroup;
 			children = (
 				DC1044D319B2FA6B007A86E6 /* en */,
+				DCEBA50D19BCAD8C007C3FC7 /* ja */,
+				DCF9877E19BDB6D600E9BCBE /* ko */,
+				DCF9878419BDBB2B00E9BCBE /* zh-Hans */,
+				DCF9878719BDBEFD00E9BCBE /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DCEBA51619BCB2AF007C3FC7 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DCEBA51519BCB2AF007C3FC7 /* en */,
+				DCEBA51719BCB2B3007C3FC7 /* ja */,
+				DCF9877D19BDB6D600E9BCBE /* ko */,
+				DCF9878319BDBB2B00E9BCBE /* zh-Hans */,
+				DCF9878619BDBEFD00E9BCBE /* zh-Hant */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -1,0 +1,9 @@
+{
+    "kind": "youtube#searchListResponse",
+    "etag": "\"gMjDJfS6nsym0T-NKCXALC_u_rM/LaRLuHtvsMpsDnD9EGPTrtjJ4qU\"",
+    "nextPageToken": "CAUQAA",
+    "pageInfo": {
+        "totalResults": 42,
+        "resultsPerPage": 5
+    }
+}

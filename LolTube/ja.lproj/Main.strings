@@ -1,0 +1,12 @@
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "3yj-eT-joF"; */
+"3yj-eT-joF.text" = "Label";
+
+/* Class = "IBUINavigationItem"; title = "LolTube"; ObjectID = "HyJ-GY-dxl"; */
+"HyJ-GY-dxl.title" = "LolTube";
+
+/* Class = "IBUIBarButtonItem"; title = "Channel"; ObjectID = "cQj-8A-JDz"; */
+"cQj-8A-JDz.title" = "Channel";
+
+/* Class = "IBUINavigationItem"; title = "Video Detail"; ObjectID = "dD8-lQ-t1o"; */
+"dD8-lQ-t1o.title" = "Video Detail";
