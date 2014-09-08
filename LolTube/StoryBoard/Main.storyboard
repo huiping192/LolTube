@@ -143,6 +143,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="LolTube" id="HyJ-GY-dxl">
                         <barButtonItem key="leftBarButtonItem" title="Channel" id="cQj-8A-JDz"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="58r-NQ-kV0"/>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="gFX-Wz-P7l" id="Ulc-Dd-Ddv"/>
@@ -180,14 +181,27 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     </imageView>
+                                                    <imageView appearanceType="aqua" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="XcS-Mn-sqv">
+                                                        <rect key="frame" x="135" y="65" width="50" height="50"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="TDN-hQ-aXt"/>
+                                                            <constraint firstAttribute="height" constant="50" id="iTQ-O0-iD3"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="9rm-v8-DoY" appends="YES" id="ABj-q3-2Dp"/>
+                                                        </connections>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="qtb-Ym-NxJ" firstAttribute="leading" secondItem="RZl-Ce-Rfa" secondAttribute="leading" id="Dl6-4f-8tB"/>
+                                                    <constraint firstItem="qtb-Ym-NxJ" firstAttribute="centerY" secondItem="XcS-Mn-sqv" secondAttribute="centerY" id="EMl-xZ-V3h"/>
                                                     <constraint firstAttribute="width" secondItem="RZl-Ce-Rfa" secondAttribute="height" multiplier="16:9" id="Hfr-4V-ydU"/>
                                                     <constraint firstAttribute="bottom" secondItem="qtb-Ym-NxJ" secondAttribute="bottom" id="J7n-2u-YHB"/>
                                                     <constraint firstAttribute="trailing" secondItem="qtb-Ym-NxJ" secondAttribute="trailing" id="QtP-bC-kpW"/>
                                                     <constraint firstItem="qtb-Ym-NxJ" firstAttribute="top" secondItem="RZl-Ce-Rfa" secondAttribute="top" id="Zf7-YO-NJR"/>
+                                                    <constraint firstItem="qtb-Ym-NxJ" firstAttribute="centerX" secondItem="XcS-Mn-sqv" secondAttribute="centerX" id="sZg-5K-7NX"/>
                                                 </constraints>
                                             </view>
                                             <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="S6f-7T-vGn" userLabel="video title label">
@@ -201,7 +215,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ugf-cO-vF3" userLabel="space view">
-                                                <rect key="frame" x="10" y="212" width="310" height="1"/>
+                                                <rect key="frame" x="10" y="217" width="310" height="1"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -209,22 +223,22 @@
                                                 </constraints>
                                             </view>
                                             <textView appearanceType="aqua" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obJ-MP-rVv" userLabel="description text view">
-                                                <rect key="frame" x="5" y="248" width="310" height="256"/>
+                                                <rect key="frame" x="5" y="258" width="310" height="246"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <dataDetectorType key="dataDetectorTypes" link="YES" address="YES"/>
                                             </textView>
                                             <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDX-KK-epG" userLabel="postedAt label">
-                                                <rect key="frame" x="10" y="218" width="125" height="25"/>
+                                                <rect key="frame" x="10" y="223" width="125" height="25"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" placeholder="YES" id="H33-B9-xti"/>
                                                     <constraint firstAttribute="width" constant="125" placeholder="YES" id="sWt-uF-NuM"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -238,12 +252,12 @@
                                             <constraint firstAttribute="trailing" secondItem="S6f-7T-vGn" secondAttribute="trailing" constant="10" id="B5v-mU-mVm"/>
                                             <constraint firstAttribute="height" constant="504" placeholder="YES" id="EgS-gy-7fn"/>
                                             <constraint firstAttribute="trailing" secondItem="Ugf-cO-vF3" secondAttribute="trailing" id="P5F-OG-ghs"/>
-                                            <constraint firstItem="Ugf-cO-vF3" firstAttribute="top" secondItem="S6f-7T-vGn" secondAttribute="bottom" constant="5" id="RSI-zn-S9j"/>
+                                            <constraint firstItem="Ugf-cO-vF3" firstAttribute="top" secondItem="S6f-7T-vGn" secondAttribute="bottom" constant="10" id="RSI-zn-S9j"/>
                                             <constraint firstItem="xDX-KK-epG" firstAttribute="top" secondItem="Ugf-cO-vF3" secondAttribute="bottom" constant="5" id="SgS-ya-fPE"/>
                                             <constraint firstItem="S6f-7T-vGn" firstAttribute="top" secondItem="RZl-Ce-Rfa" secondAttribute="bottom" constant="10" id="abp-Zq-jsP"/>
                                             <constraint firstItem="RZl-Ce-Rfa" firstAttribute="top" secondItem="oWy-xB-tvV" secondAttribute="top" id="fU6-bX-JTD"/>
                                             <constraint firstItem="RZl-Ce-Rfa" firstAttribute="leading" secondItem="oWy-xB-tvV" secondAttribute="leading" id="hid-hA-z0b"/>
-                                            <constraint firstItem="obJ-MP-rVv" firstAttribute="top" secondItem="xDX-KK-epG" secondAttribute="bottom" constant="5" id="j5m-Dd-MkM"/>
+                                            <constraint firstItem="obJ-MP-rVv" firstAttribute="top" secondItem="xDX-KK-epG" secondAttribute="bottom" constant="10" id="j5m-Dd-MkM"/>
                                             <constraint firstItem="obJ-MP-rVv" firstAttribute="leading" secondItem="oWy-xB-tvV" secondAttribute="leading" constant="5" id="lQV-8O-Iry"/>
                                             <constraint firstItem="Ugf-cO-vF3" firstAttribute="leading" secondItem="oWy-xB-tvV" secondAttribute="leading" constant="10" id="nFs-yf-uDd"/>
                                             <constraint firstItem="xDX-KK-epG" firstAttribute="leading" secondItem="oWy-xB-tvV" secondAttribute="leading" constant="10" id="xdK-Fm-CyX"/>
@@ -252,7 +266,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="oWy-xB-tvV" firstAttribute="top" secondItem="OH3-US-o8o" secondAttribute="top" id="6be-bL-dMR"/>
-                                    <constraint firstAttribute="bottom" secondItem="oWy-xB-tvV" secondAttribute="bottom" constant="20" id="S6V-Ni-tMw"/>
+                                    <constraint firstAttribute="bottom" secondItem="oWy-xB-tvV" secondAttribute="bottom" id="S6V-Ni-tMw"/>
                                     <constraint firstAttribute="trailing" secondItem="oWy-xB-tvV" secondAttribute="trailing" id="ZLI-KL-YYE"/>
                                     <constraint firstItem="oWy-xB-tvV" firstAttribute="leading" secondItem="OH3-US-o8o" secondAttribute="leading" id="ozx-wa-BUF"/>
                                     <constraint firstItem="oWy-xB-tvV" firstAttribute="width" secondItem="OH3-US-o8o" secondAttribute="width" id="wOi-69-0B8"/>
@@ -268,15 +282,17 @@
                                     <constraint firstAttribute="height" constant="44" id="uEx-Me-TSV"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="Done" style="plain" id="Mqn-mi-c2z">
+                                    <barButtonItem style="plain" systemItem="stop" id="Mqn-mi-c2z">
                                         <connections>
                                             <action selector="closeButtonTapped:" destination="99o-UL-MFg" id="fwF-Xg-d8w"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem width="243" style="plain" systemItem="fixedSpace" id="vLg-AX-ahG"/>
+                                    <barButtonItem systemItem="action" id="qGM-W7-ZLJ"/>
                                 </items>
                             </toolbar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="OH3-US-o8o" secondAttribute="trailing" id="Kpt-8u-ALJ"/>
                             <constraint firstItem="nCu-z6-xdW" firstAttribute="leading" secondItem="Rdt-ex-REP" secondAttribute="leading" id="Ne7-h0-tne"/>
@@ -297,12 +313,18 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ZU-lW-yL7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="9rm-v8-DoY">
+                    <connections>
+                        <action selector="playImageTapped:" destination="99o-UL-MFg" id="Fds-eT-lOr"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1006" y="-382"/>
         </scene>
     </scenes>
     <resources>
         <image name="DefaultThumbnail" width="960" height="540"/>
+        <image name="play" width="124" height="124"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
