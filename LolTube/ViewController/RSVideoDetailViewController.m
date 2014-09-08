@@ -76,7 +76,19 @@
     self.thumbnailImageView.hidden = NO;
 
     [self.videoPlayerViewController.moviePlayer prepareToPlay];
+}
 
+- (IBAction)shareButtonTapped:(id)sender {
+    NSMutableArray *sharingItems = [NSMutableArray new];
+
+    [sharingItems addObject:self.videoDetailViewModel.shareTitle];
+    [sharingItems addObject:self.thumbnailImageView.image];
+    [sharingItems addObject:[NSURL URLWithString:self.videoDetailViewModel.shareUrlString]];
+
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
+    [self presentViewController:activityController animated:YES completion:^{
+        //TODO: success alert
+    }];
 }
 
 #pragma mark -  UIScrollViewDelegate

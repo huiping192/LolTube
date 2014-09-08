@@ -15,6 +15,9 @@
 
 @property(nonatomic, copy) NSString *mediumThumbnailUrl;
 
+@property(nonatomic, copy) NSString *shareTitle;
+@property(nonatomic, copy) NSString *shareUrlString;
+
 - (instancetype)initWithVideoId:(NSString *)videoId;
 
 - (void)updateWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure;

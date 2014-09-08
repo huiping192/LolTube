@@ -44,6 +44,8 @@
         self.title = videoItem.snippet.title;
         self.postedTime = [self p_postedTimeWithPublishedAt:videoItem.snippet.publishedAt];
 
+        self.shareTitle = [NSString stringWithFormat:@"%@ #LolTube",self.title];
+        self.shareUrlString = [NSString stringWithFormat:@"https://www.youtube.com/watch?v=%@",self.videoId];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (success) {
                 success();

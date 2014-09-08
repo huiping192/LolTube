@@ -166,7 +166,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView appearanceType="aqua" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OH3-US-o8o">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <view appearanceType="aqua" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oWy-xB-tvV">
@@ -204,18 +204,18 @@
                                                     <constraint firstItem="qtb-Ym-NxJ" firstAttribute="centerX" secondItem="XcS-Mn-sqv" secondAttribute="centerX" id="sZg-5K-7NX"/>
                                                 </constraints>
                                             </view>
-                                            <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="S6f-7T-vGn" userLabel="video title label">
-                                                <rect key="frame" x="10" y="190" width="300" height="17"/>
+                                            <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="S6f-7T-vGn" userLabel="video title label">
+                                                <rect key="frame" x="10" y="195" width="300" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" placeholder="YES" id="mfQ-R6-haT"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ugf-cO-vF3" userLabel="space view">
-                                                <rect key="frame" x="10" y="217" width="310" height="1"/>
+                                                <rect key="frame" x="10" y="227" width="310" height="1"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -223,16 +223,15 @@
                                                 </constraints>
                                             </view>
                                             <textView appearanceType="aqua" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obJ-MP-rVv" userLabel="description text view">
-                                                <rect key="frame" x="5" y="258" width="310" height="246"/>
+                                                <rect key="frame" x="5" y="268" width="310" height="236"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <dataDetectorType key="dataDetectorTypes" link="YES" address="YES"/>
                                             </textView>
-                                            <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDX-KK-epG" userLabel="postedAt label">
-                                                <rect key="frame" x="10" y="223" width="125" height="25"/>
+                                            <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDX-KK-epG" userLabel="postedAt label">
+                                                <rect key="frame" x="10" y="233" width="125" height="25"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" placeholder="YES" id="H33-B9-xti"/>
@@ -252,9 +251,9 @@
                                             <constraint firstAttribute="trailing" secondItem="S6f-7T-vGn" secondAttribute="trailing" constant="10" id="B5v-mU-mVm"/>
                                             <constraint firstAttribute="height" constant="504" placeholder="YES" id="EgS-gy-7fn"/>
                                             <constraint firstAttribute="trailing" secondItem="Ugf-cO-vF3" secondAttribute="trailing" id="P5F-OG-ghs"/>
-                                            <constraint firstItem="Ugf-cO-vF3" firstAttribute="top" secondItem="S6f-7T-vGn" secondAttribute="bottom" constant="10" id="RSI-zn-S9j"/>
+                                            <constraint firstItem="Ugf-cO-vF3" firstAttribute="top" secondItem="S6f-7T-vGn" secondAttribute="bottom" constant="15" id="RSI-zn-S9j"/>
                                             <constraint firstItem="xDX-KK-epG" firstAttribute="top" secondItem="Ugf-cO-vF3" secondAttribute="bottom" constant="5" id="SgS-ya-fPE"/>
-                                            <constraint firstItem="S6f-7T-vGn" firstAttribute="top" secondItem="RZl-Ce-Rfa" secondAttribute="bottom" constant="10" id="abp-Zq-jsP"/>
+                                            <constraint firstItem="S6f-7T-vGn" firstAttribute="top" secondItem="RZl-Ce-Rfa" secondAttribute="bottom" constant="15" id="abp-Zq-jsP"/>
                                             <constraint firstItem="RZl-Ce-Rfa" firstAttribute="top" secondItem="oWy-xB-tvV" secondAttribute="top" id="fU6-bX-JTD"/>
                                             <constraint firstItem="RZl-Ce-Rfa" firstAttribute="leading" secondItem="oWy-xB-tvV" secondAttribute="leading" id="hid-hA-z0b"/>
                                             <constraint firstItem="obJ-MP-rVv" firstAttribute="top" secondItem="xDX-KK-epG" secondAttribute="bottom" constant="10" id="j5m-Dd-MkM"/>
@@ -266,7 +265,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="oWy-xB-tvV" firstAttribute="top" secondItem="OH3-US-o8o" secondAttribute="top" id="6be-bL-dMR"/>
-                                    <constraint firstAttribute="bottom" secondItem="oWy-xB-tvV" secondAttribute="bottom" id="S6V-Ni-tMw"/>
+                                    <constraint firstAttribute="bottom" secondItem="oWy-xB-tvV" secondAttribute="bottom" constant="64" id="S6V-Ni-tMw"/>
                                     <constraint firstAttribute="trailing" secondItem="oWy-xB-tvV" secondAttribute="trailing" id="ZLI-KL-YYE"/>
                                     <constraint firstItem="oWy-xB-tvV" firstAttribute="leading" secondItem="OH3-US-o8o" secondAttribute="leading" id="ozx-wa-BUF"/>
                                     <constraint firstItem="oWy-xB-tvV" firstAttribute="width" secondItem="OH3-US-o8o" secondAttribute="width" id="wOi-69-0B8"/>
@@ -287,8 +286,12 @@
                                             <action selector="closeButtonTapped:" destination="99o-UL-MFg" id="fwF-Xg-d8w"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="243" style="plain" systemItem="fixedSpace" id="vLg-AX-ahG"/>
-                                    <barButtonItem systemItem="action" id="qGM-W7-ZLJ"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ibj-Pp-vTZ"/>
+                                    <barButtonItem systemItem="action" id="qGM-W7-ZLJ">
+                                        <connections>
+                                            <action selector="shareButtonTapped:" destination="99o-UL-MFg" id="fvm-fW-WFR"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -297,7 +300,7 @@
                             <constraint firstAttribute="trailing" secondItem="OH3-US-o8o" secondAttribute="trailing" id="Kpt-8u-ALJ"/>
                             <constraint firstItem="nCu-z6-xdW" firstAttribute="leading" secondItem="Rdt-ex-REP" secondAttribute="leading" id="Ne7-h0-tne"/>
                             <constraint firstItem="OH3-US-o8o" firstAttribute="leading" secondItem="Rdt-ex-REP" secondAttribute="leading" id="XXf-e2-WqP"/>
-                            <constraint firstItem="nCu-z6-xdW" firstAttribute="top" secondItem="OH3-US-o8o" secondAttribute="bottom" id="gGw-Nw-FK5"/>
+                            <constraint firstItem="nCu-z6-xdW" firstAttribute="top" secondItem="OH3-US-o8o" secondAttribute="bottom" constant="-44" id="gGw-Nw-FK5"/>
                             <constraint firstItem="OH3-US-o8o" firstAttribute="top" secondItem="YIZ-ol-8vE" secondAttribute="bottom" constant="-20" id="qIE-MQ-8T8"/>
                             <constraint firstItem="FIg-ZS-c01" firstAttribute="top" secondItem="nCu-z6-xdW" secondAttribute="bottom" id="qSa-JO-ALj"/>
                             <constraint firstAttribute="trailing" secondItem="nCu-z6-xdW" secondAttribute="trailing" id="uZm-kh-W95"/>
@@ -313,7 +316,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ZU-lW-yL7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="9rm-v8-DoY">
+                <tapGestureRecognizer id="9rm-v8-DoY" userLabel="close button Tap Gesture Recognizer">
                     <connections>
                         <action selector="playImageTapped:" destination="99o-UL-MFg" id="Fds-eT-lOr"/>
                     </connections>
