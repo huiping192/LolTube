@@ -4,9 +4,18 @@
 //
 
 #import "RSVideoModel.h"
+#import "RSSearchModel.h"
 
 
 @implementation RSVideoModel {
 
 }
+@end
+
+@implementation RSVideoSnippet
+
+@end
+
+@implementation RSVideoItem
+
 @end

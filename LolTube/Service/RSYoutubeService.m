@@ -6,10 +6,14 @@
 #import "RSYoutubeService.h"
 #import "RSSearchModel.h"
 #import "AFNetworking/AFNetworking.h"
+#import "RSVideoModel.h"
 
-
-static NSString *const kYoutubeSearchUrlString = @"https://www.googleapis.com/youtube/v3/search";
 static NSString *const kYoutubeApiKey = @"AIzaSyBb1ZDTeUmzba4Kk4wsYtmi70tr7UBo3HA";
+
+// api url
+static NSString *const kYoutubeSearchUrlString = @"https://www.googleapis.com/youtube/v3/search";
+static NSString *const kYoutubeVideoUrlString = @"https://www.googleapis.com/youtube/v3/videos";
+
 
 @implementation RSYoutubeService {
 
@@ -19,19 +23,48 @@ static NSString *const kYoutubeApiKey = @"AIzaSyBb1ZDTeUmzba4Kk4wsYtmi70tr7UBo3H
         return;
     }
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"key":kYoutubeApiKey,@"part" : @"snippet", @"channelId" : channelId, @"type":@"video",@"maxResults":@(50),@"order":@"date"};
+    NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"channelId" : channelId, @"type" : @"video", @"maxResults" : @(50), @"order" : @"date"};
 
     [manager GET:kYoutubeSearchUrlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         JSONModelError *error = nil;
         RSSearchModel *searchModel = [[RSSearchModel alloc] initWithDictionary:responseObject error:&error];
         if (error) {
-            if(failure){
+            if (failure) {
                 failure(error);
             }
             return;
         }
         if (success) {
             success(searchModel);
+        }
+    }    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+
+- (void)videoWithVideoId:(NSString *)videoId success:(void (^)(RSVideoModel *))success failure:(void (^)(NSError *))failure {
+    if (!videoId || [videoId isEqualToString:@""]) {
+        return;
+    }
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"id" : videoId,
+            @"fields" : @"items(fileDetails%2Cplayer%2CprocessingDetails%2CprojectDetails%2CrecordingDetails%2Csnippet%2Cstatistics%2Cstatus)"
+    };
+
+    [manager GET:kYoutubeVideoUrlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        JSONModelError *error = nil;
+        RSVideoModel *videoModel = [[RSVideoModel alloc] initWithDictionary:responseObject error:&error];
+        if (error) {
+            if (failure) {
+                failure(error);
+            }
+            return;
+        }
+        if (success) {
+            success(videoModel);
         }
     }    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if (failure) {

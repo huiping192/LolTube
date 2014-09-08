@@ -1,0 +1,32 @@
+{
+    "items": [
+        {
+            "snippet": {
+                "publishedAt": "2014-08-30T00:09:00.000Z",
+                "channelId": "UCvqRdlKsE5Q8mf8YXbdIJLw",
+                "title": "CLG vs DIG - 2014 NA LCS Playoffs 5th Place G3",
+                "description": "For game stats, go to the CLG vs DIG match page:\nhttp://www.lolesports.com/na-lcs/2014/na-regional-2014/matches/round-3/counter-logic-gaming-vs-team-dignitas\n\nCounter Logic Gaming – CLG | http://bit.ly/lolesportsCLG\nShin \"Seraph\" Woo-Yeong -- Top Lane\nMarcel “dexter” Feldkamp – Jungler\nAustin “Link” Shin – Mid Lane\nYiliang “Doublelift” Peng – AD Carry\nZaqueri “Aphromoo” Black -- Support\n\nTeam Dignitas – DIG | http://bit.ly/lolesportsDIG\nDarshan \"Zion Spartan\" Upadhyaya – Top Lane\nAlberto “Crumbzz” Rengifo -- Jungler\nDanny \"Shiphtur\" Le – Mid Lane\nMichael “Imaqtpie” Santana – AD Carry\nAlan “KiWiKiD” Nguyen – Support\n\nFor more LCS coverage including the latest schedule, results, stats, and analysis, GO TO:\nhttp://lolesports.com\n\nJoin the conversation on Twitter, TWEET #LCS:\nhttp://www.twitter.com/lolesports\n\nLike us on FACEBOOK for important updates and more #LCSBIGPLAYS:\nhttp://www.facebook.com/lolesports\n\nFind us on INSTAGRAM:\nhttp://www.instagram.com/lolesports\n\nCheck out our photos on FLICKR:\nhttp://bit.ly/lolesportsFlickr",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/b-BBlJm8bHI/default.jpg",
+                        "width": 120,
+                        "height": 90
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/b-BBlJm8bHI/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/b-BBlJm8bHI/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                    }
+                },
+                "channelTitle": "LoL Esports",
+                "categoryId": "20",
+                "liveBroadcastContent": "none"
+            }
+        }
+    ]
+}

@@ -4,5 +4,33 @@
 //
 
 
-@interface RSVideoModel : NSObject
+#import <JSONModel/JSONModel.h>
+
+@protocol RSVideoItem;
+
+@class RSVideoSnippet;
+@class RSThumbnails;
+
+@interface RSVideoModel : JSONModel
+
+@property (nonatomic, strong)  NSArray<RSVideoItem> *items;
+
+@end
+
+
+@interface RSVideoItem:JSONModel
+
+@property (nonatomic, strong)  RSVideoSnippet *snippet;
+
+@end
+
+@interface RSVideoSnippet :JSONModel
+
+@property (nonatomic, copy) NSString *publishedAt;
+@property (nonatomic, copy) NSString *channelId;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *description;
+@property (nonatomic, copy) RSThumbnails *thumbnails;
+@property (nonatomic, copy) NSString *channelTitle;
+
 @end
