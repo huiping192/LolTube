@@ -1,6 +1,7 @@
 platform :ios, '7.0'
 pod 'AFNetworking', '~> 2.0'
 pod 'JSONModel', '~> 1.0.1'
+pod 'XCDYouTubeKit','~> 2.0.2'
 
 target :LolTubeTests do
     pod 'OCMock', '~> 3.1.1'

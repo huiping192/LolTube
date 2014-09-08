@@ -1,23 +1,23 @@
 PODS:
-  - AFNetworking (2.3.1):
+  - AFNetworking (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
     - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.3.1):
+  - AFNetworking/NSURLConnection (2.4.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.3.1):
+  - AFNetworking/NSURLSession (2.4.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.3.1)
-  - AFNetworking/Security (2.3.1)
-  - AFNetworking/Serialization (2.3.1)
-  - AFNetworking/UIKit (2.3.1):
+  - AFNetworking/Reachability (2.4.1)
+  - AFNetworking/Security (2.4.1)
+  - AFNetworking/Serialization (2.4.1)
+  - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - JSONModel (1.0.1)
@@ -26,6 +26,7 @@ PODS:
   - OHHTTPStubs (3.1.5):
     - OHHTTPStubs/Core
   - OHHTTPStubs/Core (3.1.5)
+  - XCDYouTubeKit (2.0.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
@@ -33,12 +34,14 @@ DEPENDENCIES:
   - Kiwi (~> 2.3.0)
   - OCMock (~> 3.1.1)
   - OHHTTPStubs (~> 3.1.5)
+  - XCDYouTubeKit (~> 2.0.2)
 
 SPEC CHECKSUMS:
-  AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
+  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   JSONModel: 634100aaacbd89811bc8a03da209356e5989c569
   Kiwi: 54bece5b35564d9b8e03c608d926f1a22fcfc589
   OCMock: f6cb8c162ab9d5620dddf411282c7b2c0ee78854
   OHHTTPStubs: c1e362552b71b81e1deb7a80f44c51585b946c43
+  XCDYouTubeKit: 65d5f5b9fe4e731327ab61ecc253b8e70e5d5a4d
 
 COCOAPODS: 0.33.1
