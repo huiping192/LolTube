@@ -25,7 +25,9 @@ static NSString *const kYoutubeVideoUrlString = @"https://www.googleapis.com/you
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"channelId" : channelId, @"type" : @"video", @"maxResults" : @(50), @"order" : @"date"};
 
-    [manager GET:kYoutubeSearchUrlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    // fields value (,% などのchatがlibに変換されるため、NSStringでそのまま設定する
+    NSString *urlString = [NSString stringWithFormat:@"%@?%@=%@", kYoutubeSearchUrlString, @"fields", @"items(id%2Csnippet)%2CpageInfo"];
+    [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         JSONModelError *error = nil;
         RSSearchModel *searchModel = [[RSSearchModel alloc] initWithDictionary:responseObject error:&error];
         if (error) {
@@ -44,17 +46,16 @@ static NSString *const kYoutubeVideoUrlString = @"https://www.googleapis.com/you
     }];
 }
 
-
 - (void)videoWithVideoId:(NSString *)videoId success:(void (^)(RSVideoModel *))success failure:(void (^)(NSError *))failure {
     if (!videoId || [videoId isEqualToString:@""]) {
         return;
     }
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"id" : videoId,
-            @"fields" : @"items(fileDetails%2Cplayer%2CprocessingDetails%2CprojectDetails%2CrecordingDetails%2Csnippet%2Cstatistics%2Cstatus)"
-    };
+    NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"id" : videoId};
 
-    [manager GET:kYoutubeVideoUrlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSString *urlString = [NSString stringWithFormat:@"%@?%@=%@", kYoutubeVideoUrlString, @"fields", @"items(fileDetails%2Cplayer%2CprocessingDetails%2CprojectDetails%2CrecordingDetails%2Csnippet%2Cstatistics%2Cstatus)"];
+
+    [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         JSONModelError *error = nil;
         RSVideoModel *videoModel = [[RSVideoModel alloc] initWithDictionary:responseObject error:&error];
         if (error) {

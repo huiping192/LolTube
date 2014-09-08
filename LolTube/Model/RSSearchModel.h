@@ -16,9 +16,6 @@
 
 @interface RSSearchModel : JSONModel
 
-@property(nonatomic, copy) NSString *kind;
-@property(nonatomic, copy) NSString *etag;
-@property(nonatomic, copy) NSString *nextPageToken;
 @property(nonatomic, strong) RSPageInfo *pageInfo;
 
 @property(nonatomic, strong) NSArray <RSItem> *items;
@@ -35,8 +32,6 @@
 
 @interface RSItem : JSONModel
 
-@property(nonatomic, assign) int kind;
-@property(nonatomic, assign) int etag;
 @property(nonatomic, strong) RSId *id;
 @property(nonatomic, strong) RSSnippet *snippet;
 

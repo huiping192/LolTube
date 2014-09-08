@@ -1,15 +1,10 @@
 {
-    "kind": "youtube#searchListResponse",
-    "etag": "\"gMjDJfS6nsym0T-NKCXALC_u_rM/LaRLuHtvsMpsDnD9EGPTrtjJ4qU\"",
-    "nextPageToken": "CAUQAA",
     "pageInfo": {
-        "totalResults": 42,
+        "totalResults": 41,
         "resultsPerPage": 5
     },
     "items": [
         {
-            "kind": "youtube#searchResult",
-            "etag": "\"gMjDJfS6nsym0T-NKCXALC_u_rM/7EC_fmM0uYB9HdtoQJOBjaaGnXY\"",
             "id": {
                 "kind": "youtube#video",
                 "videoId": "1sXgHT7_e-A"
@@ -35,8 +30,6 @@
             }
         },
         {
-            "kind": "youtube#searchResult",
-            "etag": "\"gMjDJfS6nsym0T-NKCXALC_u_rM/nrF9JMy1gbAPjjDVHgRrHNkrrFU\"",
             "id": {
                 "kind": "youtube#video",
                 "videoId": "hxdcZXwRH1A"
@@ -62,8 +55,6 @@
             }
         },
         {
-            "kind": "youtube#searchResult",
-            "etag": "\"gMjDJfS6nsym0T-NKCXALC_u_rM/Bt7VYl-Ncm58JHlBCAWPUJhXEyg\"",
             "id": {
                 "kind": "youtube#video",
                 "videoId": "rfSxDIYRs1E"
@@ -89,35 +80,6 @@
             }
         },
         {
-            "kind": "youtube#searchResult",
-            "etag": "\"gMjDJfS6nsym0T-NKCXALC_u_rM/3bYz6K0dqejNN2UryllxklXS2IM\"",
-            "id": {
-                "kind": "youtube#video",
-                "videoId": "ZYJ4-yRyNeA"
-            },
-            "snippet": {
-                "publishedAt": "2013-04-08T16:21:24.000Z",
-                "channelId": "UCz3cM4qLljXcQ8oWjMPgKZA",
-                "title": "iOS Game Starter Kits",
-                "description": "Learn how to make a side scroller, platformer game, and beat 'em up game in this starter kit collection from raywenderlich.com!",
-                "thumbnails": {
-                    "default": {
-                        "url": "https://i.ytimg.com/vi/ZYJ4-yRyNeA/default.jpg"
-                    },
-                    "medium": {
-                        "url": "https://i.ytimg.com/vi/ZYJ4-yRyNeA/mqdefault.jpg"
-                    },
-                    "high": {
-                        "url": "https://i.ytimg.com/vi/ZYJ4-yRyNeA/hqdefault.jpg"
-                    }
-                },
-                "channelTitle": "rwenderlich",
-                "liveBroadcastContent": "none"
-            }
-        },
-        {
-            "kind": "youtube#searchResult",
-            "etag": "\"gMjDJfS6nsym0T-NKCXALC_u_rM/2PkxPSfzuU_Ch_s6B3d6VVj2yhM\"",
             "id": {
                 "kind": "youtube#video",
                 "videoId": "ECWn22zKRBA"
@@ -136,6 +98,31 @@
                     },
                     "high": {
                         "url": "https://i.ytimg.com/vi/ECWn22zKRBA/hqdefault.jpg"
+                    }
+                },
+                "channelTitle": "rwenderlich",
+                "liveBroadcastContent": "none"
+            }
+        },
+        {
+            "id": {
+                "kind": "youtube#video",
+                "videoId": "9jt6OenH6Z8"
+            },
+            "snippet": {
+                "publishedAt": "2007-10-31T04:56:32.000Z",
+                "channelId": "UCz3cM4qLljXcQ8oWjMPgKZA",
+                "title": "Mahna Mahna Live!",
+                "description": "Twin sisters dress up like Muppets and sing Mahna Mahna live!",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/9jt6OenH6Z8/default.jpg"
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/9jt6OenH6Z8/mqdefault.jpg"
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/9jt6OenH6Z8/hqdefault.jpg"
                     }
                 },
                 "channelTitle": "rwenderlich",
