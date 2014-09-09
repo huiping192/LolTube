@@ -17,6 +17,7 @@
 @property(nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property(nonatomic, weak) IBOutlet UILabel *postedAtLabel;
 @property(nonatomic, weak) IBOutlet UITextView *descriptionTextView;
+@property(nonatomic, weak) IBOutlet UIView *spaceView;
 
 @property(nonatomic, strong) RSVideoDetailViewModel *videoDetailViewModel;
 
@@ -45,19 +46,25 @@
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
 
+    [self configureLoadingView];
+    [self.loadingView showAnimated:YES];
+
+    self.spaceView.layer.borderColor = [UIColor colorWithWhite:0.9f
+                                                         alpha:1.0f].CGColor;
+    self.spaceView.layer.borderWidth = 0.25;
+    self.spaceView.hidden = YES;
+
     [[NSNotificationCenter defaultCenter]
             addObserver:self
                selector:@selector(preferredContentSizeChanged:)
                    name:UIContentSizeCategoryDidChangeNotification
                  object:nil];
 
-    [self configureLoadingView];
-    [self.loadingView showAnimated:YES];
-
     self.videoDetailViewModel = [[RSVideoDetailViewModel alloc] initWithVideoId:self.videoId];
     __weak typeof(self) weakSelf = self;
     [self.videoDetailViewModel updateWithSuccess:^{
         [weakSelf.loadingView hide];
+        self.spaceView.hidden = NO;
 
         [self.thumbnailImageView asynLoadingImageWithUrlString:weakSelf.videoDetailViewModel.mediumThumbnailUrl];
         weakSelf.titleLabel.text = weakSelf.videoDetailViewModel.title;
@@ -76,7 +83,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.videoPlayerViewController.moviePlayer stop];
 }
 
 - (void)dealloc {

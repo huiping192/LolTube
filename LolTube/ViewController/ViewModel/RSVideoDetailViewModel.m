@@ -61,7 +61,8 @@
 - (NSString *)p_postedTimeWithPublishedAt:(NSString *)publishedAt {
     NSDate *publishedDate = [NSDate dateFromISO8601String:publishedAt];
     NSDateFormatter *form = [[NSDateFormatter alloc] init];
-    [form setDateFormat:@"yyyy/MM/dd"];
+    [form setDateFormat:@"yyyy/MM/dd HH:mm"];
+    form.locale = [NSLocale currentLocale];
 
     return [NSString stringWithFormat:NSLocalizedString(@"VideoDetailPostedAtFormatter", nil) , [form stringFromDate:publishedDate]];
 }
