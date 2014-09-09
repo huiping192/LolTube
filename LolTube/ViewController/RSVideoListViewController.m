@@ -8,6 +8,8 @@
 #import "RSVideoListCollectionViewModel.h"
 #import "UIImageView+RSAsyncLoading.h"
 #import "RSVideoDetailViewController.h"
+#import "AMTumblrHud.h"
+#import "UIViewController+RSLoading.h"
 
 static NSString *const kVideoCellId = @"videoCell";
 
@@ -58,13 +60,18 @@ static NSString *const kVideoCellId = @"videoCell";
         self.navigationItem.title = self.channelTitle;
     }
 
+    [self configureLoadingView];
+    [self.loadingView showAnimated:YES];
+
     __weak typeof(self) weakSelf = self;
     [self.collectionViewModel updateWithSuccess:^{
+        [weakSelf.loadingView hide];
         [weakSelf.collectionView reloadData];
     }                                   failure:^(NSError *error) {
-
+        [weakSelf.loadingView hide];
     }];
 }
+
 
 - (void)preferredContentSizeChanged:(id)preferredContentSizeChanged {
     [self.collectionView reloadData];

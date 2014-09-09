@@ -6,6 +6,8 @@
 #import "RSVideoDetailViewController.h"
 #import "RSVideoDetailViewModel.h"
 #import "UIImageView+RSAsyncLoading.h"
+#import "UIViewController+RSLoading.h"
+#import "AMTumblrHud.h"
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 
 @interface RSVideoDetailViewController () <UIScrollViewDelegate>
@@ -49,16 +51,22 @@
                    name:UIContentSizeCategoryDidChangeNotification
                  object:nil];
 
-    self.videoDetailViewModel = [[RSVideoDetailViewModel alloc] initWithVideoId:self.videoId];
+    [self configureLoadingView];
+    [self.loadingView showAnimated:YES];
 
+    self.videoDetailViewModel = [[RSVideoDetailViewModel alloc] initWithVideoId:self.videoId];
+    __weak typeof(self) weakSelf = self;
     [self.videoDetailViewModel updateWithSuccess:^{
-        [self.thumbnailImageView asynLoadingImageWithUrlString:self.videoDetailViewModel.mediumThumbnailUrl];
-        self.titleLabel.text = self.videoDetailViewModel.title;
-        self.postedAtLabel.text = self.videoDetailViewModel.postedTime;
-        self.descriptionTextView.text = self.videoDetailViewModel.description;
+        [weakSelf.loadingView hide];
+
+        [self.thumbnailImageView asynLoadingImageWithUrlString:weakSelf.videoDetailViewModel.mediumThumbnailUrl];
+        weakSelf.titleLabel.text = weakSelf.videoDetailViewModel.title;
+        weakSelf.postedAtLabel.text = weakSelf.videoDetailViewModel.postedTime;
+        weakSelf.descriptionTextView.text = weakSelf.videoDetailViewModel.description;
 
     }                                    failure:^(NSError *error) {
         NSLog(@"error:%@", error);
+        [weakSelf.loadingView hide];
     }];
 }
 
