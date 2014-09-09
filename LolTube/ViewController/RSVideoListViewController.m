@@ -48,6 +48,12 @@ static NSString *const kVideoCellId = @"videoCell";
     // enable inter active pop gesture
     self.navigationController.interactivePopGestureRecognizer.delegate = (id <UIGestureRecognizerDelegate>) self;
 
+    [[NSNotificationCenter defaultCenter]
+            addObserver:self
+               selector:@selector(preferredContentSizeChanged:)
+                   name:UIContentSizeCategoryDidChangeNotification
+                 object:nil];
+
     if (self.channelTitle) {
         self.navigationItem.title = self.channelTitle;
     }
@@ -60,10 +66,16 @@ static NSString *const kVideoCellId = @"videoCell";
     }];
 }
 
+- (void)preferredContentSizeChanged:(id)preferredContentSizeChanged {
+    [self.collectionView reloadData];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
-
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -104,9 +116,15 @@ static NSString *const kVideoCellId = @"videoCell";
     RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) indexPath.row];
 
     [cell.thumbnailImageView asynLoadingImageWithUrlString:item.mediumThumbnailUrl];
+
     cell.titleLabel.text = item.title;
+    cell.titleLabel.font =  [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+
     cell.postedTimeLabel.text = item.postedTime;
+    cell.postedTimeLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+
     cell.channelLabel.text = item.channelTitle;
+
 
     cell.channelTitleView.tag = indexPath.row;
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(channelTitleViewTapped:)];

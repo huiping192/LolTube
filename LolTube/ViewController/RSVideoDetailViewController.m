@@ -43,6 +43,12 @@
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
 
+    [[NSNotificationCenter defaultCenter]
+            addObserver:self
+               selector:@selector(preferredContentSizeChanged:)
+                   name:UIContentSizeCategoryDidChangeNotification
+                 object:nil];
+
     self.videoDetailViewModel = [[RSVideoDetailViewModel alloc] initWithVideoId:self.videoId];
 
     [self.videoDetailViewModel updateWithSuccess:^{
@@ -65,6 +71,10 @@
     [self.videoPlayerViewController.moviePlayer stop];
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (IBAction)playImageTapped:(id)sender {
     self.videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:self.videoId];
     [self.videoPlayerViewController presentInView:self.videoPlayerView];
@@ -84,6 +94,12 @@
     [self presentViewController:activityController animated:YES completion:^{
         //TODO: success alert
     }];
+}
+
+- (void)preferredContentSizeChanged:(NSNotification *)notification {
+    self.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+    self.postedAtLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    self.descriptionTextView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
 }
 
 #pragma mark -  UIScrollViewDelegate
