@@ -124,7 +124,7 @@
                                             <outlet property="postedTimeLabel" destination="cMd-Q3-eP8" id="cmO-tB-riz"/>
                                             <outlet property="thumbnailImageView" destination="Mwu-hu-GrN" id="wM7-dK-9bM"/>
                                             <outlet property="titleLabel" destination="QZf-SY-7CT" id="gZ7-BA-LCR"/>
-                                            <segue destination="99o-UL-MFg" kind="modal" identifier="videoDetail" id="XCj-fU-gfg"/>
+                                            <segue destination="99o-UL-MFg" kind="push" identifier="videoDetail" id="XCj-fU-gfg"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -274,39 +274,22 @@
                                     <outlet property="delegate" destination="99o-UL-MFg" id="g9u-nE-Fq8"/>
                                 </connections>
                             </scrollView>
-                            <toolbar appearanceType="aqua" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nCu-z6-xdW">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="uEx-Me-TSV"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="stop" id="Mqn-mi-c2z">
-                                        <connections>
-                                            <action selector="closeButtonTapped:" destination="99o-UL-MFg" id="fwF-Xg-d8w"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ibj-Pp-vTZ"/>
-                                    <barButtonItem systemItem="action" id="qGM-W7-ZLJ">
-                                        <connections>
-                                            <action selector="shareButtonTapped:" destination="99o-UL-MFg" id="fvm-fW-WFR"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="OH3-US-o8o" secondAttribute="trailing" id="Kpt-8u-ALJ"/>
-                            <constraint firstItem="nCu-z6-xdW" firstAttribute="leading" secondItem="Rdt-ex-REP" secondAttribute="leading" id="Ne7-h0-tne"/>
                             <constraint firstItem="OH3-US-o8o" firstAttribute="leading" secondItem="Rdt-ex-REP" secondAttribute="leading" id="XXf-e2-WqP"/>
-                            <constraint firstItem="nCu-z6-xdW" firstAttribute="top" secondItem="OH3-US-o8o" secondAttribute="bottom" constant="-44" id="gGw-Nw-FK5"/>
-                            <constraint firstItem="OH3-US-o8o" firstAttribute="top" secondItem="YIZ-ol-8vE" secondAttribute="bottom" constant="-20" id="qIE-MQ-8T8"/>
-                            <constraint firstItem="FIg-ZS-c01" firstAttribute="top" secondItem="nCu-z6-xdW" secondAttribute="bottom" id="qSa-JO-ALj"/>
-                            <constraint firstAttribute="trailing" secondItem="nCu-z6-xdW" secondAttribute="trailing" id="uZm-kh-W95"/>
+                            <constraint firstItem="FIg-ZS-c01" firstAttribute="top" secondItem="OH3-US-o8o" secondAttribute="bottom" id="uOH-Mr-Dwd"/>
+                            <constraint firstItem="OH3-US-o8o" firstAttribute="top" secondItem="Rdt-ex-REP" secondAttribute="top" id="wPE-YW-TXI"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Video Detail" id="dD8-lQ-t1o"/>
+                    <navigationItem key="navigationItem" title="Video Detail" id="dD8-lQ-t1o">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="2Nx-Ov-MUF">
+                            <connections>
+                                <action selector="shareButtonTapped:" destination="99o-UL-MFg" id="M7S-wW-RyV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="descriptionTextView" destination="obJ-MP-rVv" id="iQk-Ae-ad0"/>
                         <outlet property="postedAtLabel" destination="xDX-KK-epG" id="MwN-1u-EBu"/>

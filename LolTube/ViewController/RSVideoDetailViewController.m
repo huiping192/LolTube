@@ -65,11 +65,6 @@
     [self.videoPlayerViewController.moviePlayer stop];
 }
 
-
-- (IBAction)closeButtonTapped:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (IBAction)playImageTapped:(id)sender {
     self.videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:self.videoId];
     [self.videoPlayerViewController presentInView:self.videoPlayerView];
