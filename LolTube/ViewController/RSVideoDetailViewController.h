@@ -8,5 +8,9 @@
 
 @interface RSVideoDetailViewController : UIViewController
 
+@property(nonatomic, weak) IBOutlet UIImageView *thumbnailImageView;
+@property(nonatomic, weak) IBOutlet UIImageView *playImageView;
+@property(nonatomic, strong)  UIImage *thumbnailImage;
+
 @property (nonatomic, copy) NSString *videoId;
 @end

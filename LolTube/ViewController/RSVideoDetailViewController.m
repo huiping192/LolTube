@@ -13,7 +13,6 @@
 @interface RSVideoDetailViewController () <UIScrollViewDelegate>
 
 @property(nonatomic, weak) IBOutlet UIView *videoPlayerView;
-@property(nonatomic, weak) IBOutlet UIImageView *thumbnailImageView;
 @property(nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property(nonatomic, weak) IBOutlet UILabel *postedAtLabel;
 @property(nonatomic, weak) IBOutlet UITextView *descriptionTextView;
@@ -53,6 +52,9 @@
                                                          alpha:1.0f].CGColor;
     self.spaceView.layer.borderWidth = 0.25;
     self.spaceView.hidden = YES;
+
+    self.thumbnailImageView.image = self.thumbnailImage;
+    self.thumbnailImage = nil;
 
     [[NSNotificationCenter defaultCenter]
             addObserver:self

@@ -10,10 +10,11 @@
 #import "RSVideoDetailViewController.h"
 #import "AMTumblrHud.h"
 #import "UIViewController+RSLoading.h"
+#import "RSVideoDetailAnimator.h"
 
 static NSString *const kVideoCellId = @"videoCell";
 
-@interface RSVideoListViewController () <UICollectionViewDataSource>
+@interface RSVideoListViewController () <UICollectionViewDataSource, UINavigationControllerDelegate>
 
 @property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
 
@@ -46,6 +47,8 @@ static NSString *const kVideoCellId = @"videoCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.navigationController.delegate = self;
 
     // enable inter active pop gesture
     self.navigationController.interactivePopGestureRecognizer.delegate = (id <UIGestureRecognizerDelegate>) self;
@@ -94,9 +97,28 @@ static NSString *const kVideoCellId = @"videoCell";
         RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) indexPath.row];
 
         videoDetailViewController.videoId = item.videoId;
+
+        RSVideoCollectionViewCell *cell =(RSVideoCollectionViewCell *) sender;
+        videoDetailViewController.thumbnailImage =  cell.thumbnailImageView.image;
     }
 }
 
+- (UICollectionViewCell *)selectedCell {
+    return [self.collectionView cellForItemAtIndexPath:self.collectionView.indexPathsForSelectedItems[0]];
+}
+
+- (UICollectionViewCell *)cellWithVideoId:(NSString *)videoId {
+    for (UICollectionViewCell *cell in self.collectionView.visibleCells) {
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+        RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) indexPath.row];
+
+        if ([item.videoId isEqualToString:videoId]) {
+            return cell;
+        }
+    }
+
+    return nil;
+}
 
 /**
 * when channel title view tapped, push the new video list view controller
@@ -125,7 +147,7 @@ static NSString *const kVideoCellId = @"videoCell";
     [cell.thumbnailImageView asynLoadingImageWithUrlString:item.mediumThumbnailUrl];
 
     cell.titleLabel.text = item.title;
-    cell.titleLabel.font =  [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+    cell.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
 
     cell.postedTimeLabel.text = item.postedTime;
     cell.postedTimeLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
@@ -141,5 +163,16 @@ static NSString *const kVideoCellId = @"videoCell";
 
     return cell;
 }
+
+#pragma mark - UINavigationControllerDelegate
+
+- (id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
+    if (([fromVC isKindOfClass:[RSVideoListViewController class]] && [toVC isKindOfClass:[RSVideoDetailViewController class]]) || ([fromVC isKindOfClass:[RSVideoDetailViewController class]] && [toVC isKindOfClass:[RSVideoListViewController class]])) {
+        return [[RSVideoDetailAnimator alloc] initWithOperation:operation];
+    }
+
+    return nil;
+}
+
 
 @end

@@ -177,7 +177,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultThumbnail" translatesAutoresizingMaskIntoConstraints="NO" id="qtb-Ym-NxJ" userLabel="thunbnail image view">
+                                                    <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qtb-Ym-NxJ" userLabel="thunbnail image view">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     </imageView>
@@ -292,6 +292,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="descriptionTextView" destination="obJ-MP-rVv" id="iQk-Ae-ad0"/>
+                        <outlet property="playImageView" destination="XcS-Mn-sqv" id="ckD-T2-Okr"/>
                         <outlet property="postedAtLabel" destination="xDX-KK-epG" id="MwN-1u-EBu"/>
                         <outlet property="spaceView" destination="Ugf-cO-vF3" id="wfw-SB-Rqg"/>
                         <outlet property="thumbnailImageView" destination="qtb-Ym-NxJ" id="ml0-Dc-70F"/>
