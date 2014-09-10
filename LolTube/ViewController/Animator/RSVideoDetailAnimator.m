@@ -64,7 +64,7 @@ static NSTimeInterval kAnimationDuration = 0.5;
             videoDetailViewController.thumbnailImageView.hidden = NO;
             [tempImageView removeFromSuperview];
 
-            videoDetailViewController.playImageView.transform = CGAffineTransformMakeScale(0.1, 0.1);
+            videoDetailViewController.playImageView.transform = CGAffineTransformMakeScale(0.3, 0.3);
             [UIView animateWithDuration:0.2 * kAnimationDuration animations:^{
                  videoDetailViewController.playImageView.transform = CGAffineTransformIdentity;
             }                completion:^(BOOL finished) {

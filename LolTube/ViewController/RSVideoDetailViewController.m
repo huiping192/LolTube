@@ -37,18 +37,13 @@
     return self;
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setNeedsStatusBarAppearanceUpdate];
 
     [self configureLoadingView];
     [self.loadingView showAnimated:YES];
 
-    self.spaceView.layer.borderColor = [UIColor colorWithWhite:0.9f
+    self.spaceView.layer.borderColor = [UIColor colorWithWhite:0.7f
                                                          alpha:1.0f].CGColor;
     self.spaceView.layer.borderWidth = 0.25;
     self.spaceView.hidden = YES;
@@ -83,12 +78,11 @@
     [super viewWillAppear:animated];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+    [self.videoPlayerViewController.moviePlayer stop];
 }
 
 - (IBAction)playImageTapped:(id)sender {

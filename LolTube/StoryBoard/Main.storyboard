@@ -153,7 +153,7 @@
             </objects>
             <point key="canvasLocation" x="515" y="-382"/>
         </scene>
-        <!--Video Detail View Controller - Video Details-->
+        <!--Video Detail View Controller-->
         <scene sceneID="Cyw-kU-DVb">
             <objects>
                 <viewController id="99o-UL-MFg" customClass="RSVideoDetailViewController" sceneMemberID="viewController">
@@ -205,24 +205,24 @@
                                                 </constraints>
                                             </view>
                                             <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="S6f-7T-vGn" userLabel="video title label">
-                                                <rect key="frame" x="10" y="200" width="300" height="17"/>
+                                                <rect key="frame" x="10" y="190" width="300" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" placeholder="YES" id="mfQ-R6-haT"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ugf-cO-vF3" userLabel="space view">
-                                                <rect key="frame" x="10" y="227" width="310" height="1"/>
+                                                <rect key="frame" x="10" y="217" width="310" height="1"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="7cv-Zb-YC5"/>
                                                 </constraints>
                                             </view>
                                             <textView appearanceType="aqua" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obJ-MP-rVv" userLabel="description text view">
-                                                <rect key="frame" x="5" y="273" width="310" height="231"/>
+                                                <rect key="frame" x="5" y="263" width="310" height="241"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -231,7 +231,7 @@
                                                 <dataDetectorType key="dataDetectorTypes" link="YES" address="YES"/>
                                             </textView>
                                             <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDX-KK-epG" userLabel="postedAt label">
-                                                <rect key="frame" x="10" y="233" width="125" height="25"/>
+                                                <rect key="frame" x="10" y="223" width="125" height="25"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" placeholder="YES" id="H33-B9-xti"/>
@@ -253,7 +253,7 @@
                                             <constraint firstAttribute="trailing" secondItem="Ugf-cO-vF3" secondAttribute="trailing" id="P5F-OG-ghs"/>
                                             <constraint firstItem="Ugf-cO-vF3" firstAttribute="top" secondItem="S6f-7T-vGn" secondAttribute="bottom" constant="10" id="RSI-zn-S9j"/>
                                             <constraint firstItem="xDX-KK-epG" firstAttribute="top" secondItem="Ugf-cO-vF3" secondAttribute="bottom" constant="5" id="SgS-ya-fPE"/>
-                                            <constraint firstItem="S6f-7T-vGn" firstAttribute="top" secondItem="RZl-Ce-Rfa" secondAttribute="bottom" constant="20" id="abp-Zq-jsP"/>
+                                            <constraint firstItem="S6f-7T-vGn" firstAttribute="top" secondItem="RZl-Ce-Rfa" secondAttribute="bottom" constant="10" id="abp-Zq-jsP"/>
                                             <constraint firstItem="RZl-Ce-Rfa" firstAttribute="top" secondItem="oWy-xB-tvV" secondAttribute="top" id="fU6-bX-JTD"/>
                                             <constraint firstItem="RZl-Ce-Rfa" firstAttribute="leading" secondItem="oWy-xB-tvV" secondAttribute="leading" id="hid-hA-z0b"/>
                                             <constraint firstItem="obJ-MP-rVv" firstAttribute="top" secondItem="xDX-KK-epG" secondAttribute="bottom" constant="15" id="j5m-Dd-MkM"/>
@@ -283,7 +283,7 @@
                             <constraint firstItem="OH3-US-o8o" firstAttribute="top" secondItem="Rdt-ex-REP" secondAttribute="top" id="wPE-YW-TXI"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Video Details" id="dD8-lQ-t1o">
+                    <navigationItem key="navigationItem" id="dD8-lQ-t1o">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="2Nx-Ov-MUF">
                             <connections>
                                 <action selector="shareButtonTapped:" destination="99o-UL-MFg" id="M7S-wW-RyV"/>

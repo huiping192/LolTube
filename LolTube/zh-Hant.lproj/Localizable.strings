@@ -10,4 +10,4 @@
 
 "VideoPostedTimeStringMinutesFormatter" = "%d分鐘前";
 "VideoPostedTimeStringHoursFormatter" = "%d小時前";
-"VideoDetailPostedAtFormatter" = "%@ 發表";
+"VideoDetailPostedAtFormatter" = "%@ 發布";
