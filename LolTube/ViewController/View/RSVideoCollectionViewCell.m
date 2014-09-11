@@ -49,6 +49,8 @@ static CGFloat const kBottomShadowSizeRatio = 0.5f;
     _channelTitleView.layer.borderWidth = kChannelTitleViewBorderWidth;
     _channelTitleView.layer.cornerRadius = kChannelTitleViewCornerRadius;
 
+    _channelLabel.textColor = [self tintColor];
+
     if (!self.topShadowLayer) {
         CALayer *topShadowLayer = [self p_createShadowLayerWithTopColor:[UIColor colorWithWhite:0 alpha:.5] bottomColor:[UIColor colorWithWhite:0 alpha:.0]];
         topShadowLayer.frame = CGRectMake(0, 0, self.frame.size.width, kTopShadowSizeRatio * _titleLabel.frame.size.height + _titleLabel.frame.origin.y);
