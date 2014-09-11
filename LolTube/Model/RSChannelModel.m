@@ -4,9 +4,22 @@
 //
 
 #import "RSChannelModel.h"
+#import "RSThumbnails.h"
 
 
 @implementation RSChannelModel {
+
+}
+@end
+
+
+@implementation RSChannelItem {
+
+}
+@end
+
+
+@implementation RSChannelSnippet {
 
 }
 @end

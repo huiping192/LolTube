@@ -144,7 +144,7 @@
                     <navigationItem key="navigationItem" title="LolTube" id="HyJ-GY-dxl">
                         <barButtonItem key="leftBarButtonItem" title="Channel" id="cQj-8A-JDz">
                             <connections>
-                                <segue destination="EdA-Mm-ky0" kind="modal" id="KZ4-Px-nV2"/>
+                                <segue destination="EdA-Mm-ky0" kind="modal" identifier="channelList" id="KZ4-Px-nV2"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="58r-NQ-kV0"/>
@@ -202,6 +202,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="34" id="Ki6-BX-NNg"/>
+                                                        <constraint firstAttribute="width" constant="34" id="l1t-Jz-zcP"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZD-9V-gEE">
@@ -218,15 +219,15 @@
                                             <constraints>
                                                 <constraint firstItem="nl5-jr-m5j" firstAttribute="top" secondItem="kZ8-eX-hb3" secondAttribute="top" constant="3" id="3yj-n0-KXo"/>
                                                 <constraint firstItem="dZD-9V-gEE" firstAttribute="top" secondItem="kZ8-eX-hb3" secondAttribute="top" id="8kw-v6-Yqd"/>
-                                                <constraint firstAttribute="centerX" secondItem="nl5-jr-m5j" secondAttribute="centerX" constant="123" id="Hf4-qh-e8e"/>
                                                 <constraint firstItem="nl5-jr-m5j" firstAttribute="leading" secondItem="kZ8-eX-hb3" secondAttribute="leading" constant="20" id="OAD-wa-VI1"/>
                                                 <constraint firstAttribute="bottom" secondItem="dZD-9V-gEE" secondAttribute="bottom" id="U3g-zU-w1Z"/>
                                                 <constraint firstItem="dZD-9V-gEE" firstAttribute="leading" secondItem="nl5-jr-m5j" secondAttribute="trailing" constant="23" id="jDu-Kn-MFo"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="thumbnailImage" destination="nl5-jr-m5j" id="sDi-RI-hEx"/>
+                                            <outlet property="thumbnailImageView" destination="nl5-jr-m5j" id="sDi-RI-hEx"/>
                                             <outlet property="titleLabel" destination="dZD-9V-gEE" id="zcl-PU-tFa"/>
+                                            <segue destination="yEd-kX-Rbt" kind="unwind" identifier="selectChannel" unwindAction="channelSelected:" id="q4P-rU-0JZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -261,6 +262,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FXm-e8-dWu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="yEd-kX-Rbt" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1006" y="302"/>
         </scene>

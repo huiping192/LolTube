@@ -8,6 +8,6 @@
 
 @interface RSChannelTableViewCell : UITableViewCell
 
-@property (nonatomic, weak) IBOutlet UIImageView *thumbnailImage;
+@property (nonatomic, weak) IBOutlet UIImageView *thumbnailImageView;
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @end

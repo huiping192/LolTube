@@ -11,6 +11,7 @@
 #import "AMTumblrHud.h"
 #import "UIViewController+RSLoading.h"
 #import "RSVideoDetailAnimator.h"
+#import "RSChannelListViewController.h"
 
 static NSString *const kVideoCellId = @"videoCell";
 
@@ -59,6 +60,10 @@ static NSString *const kVideoCellId = @"videoCell";
                    name:UIContentSizeCategoryDidChangeNotification
                  object:nil];
 
+    [self p_loadData];
+}
+
+- (void)p_loadData {
     if (self.channelTitle) {
         self.navigationItem.title = self.channelTitle;
     }
@@ -74,7 +79,6 @@ static NSString *const kVideoCellId = @"videoCell";
         [weakSelf.loadingView hide];
     }];
 }
-
 
 - (void)preferredContentSizeChanged:(id)preferredContentSizeChanged {
     [self.collectionView reloadData];
@@ -98,8 +102,13 @@ static NSString *const kVideoCellId = @"videoCell";
 
         videoDetailViewController.videoId = item.videoId;
 
-        RSVideoCollectionViewCell *cell =(RSVideoCollectionViewCell *) sender;
-        videoDetailViewController.thumbnailImage =  cell.thumbnailImageView.image;
+        RSVideoCollectionViewCell *cell = (RSVideoCollectionViewCell *) sender;
+        videoDetailViewController.thumbnailImage = cell.thumbnailImageView.image;
+
+    } else if ([segue.identifier isEqualToString:@"channelList"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        RSChannelListViewController *channelListViewController = (RSChannelListViewController *) navigationController.topViewController;
+        channelListViewController.currentChannelId = self.channelId;
     }
 }
 
@@ -132,6 +141,11 @@ static NSString *const kVideoCellId = @"videoCell";
     videoListViewController.channelTitle = item.channelTitle;
 
     [self.navigationController pushViewController:videoListViewController animated:YES];
+}
+
+- (IBAction)channelSelected:(UIStoryboardSegue *)segue {
+
+    [self p_loadData];
 }
 
 #pragma mark - UICollectionViewDelegate
