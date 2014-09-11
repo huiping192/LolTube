@@ -16,65 +16,43 @@
 
 @interface RSSearchModel : JSONModel
 
-@property (nonatomic, copy)  NSString *kind;
-@property (nonatomic, copy)  NSString *etag;
-@property (nonatomic, copy)  NSString *nextPageToken;
-@property (nonatomic, strong)  RSPageInfo *pageInfo;
+@property(nonatomic, strong) RSPageInfo *pageInfo;
 
-@property (nonatomic, strong)  NSArray<RSItem> *items;
+@property(nonatomic, strong) NSArray <RSItem> *items;
 
 @end
 
-@interface RSPageInfo:JSONModel
+@interface RSPageInfo : JSONModel
 
-@property (nonatomic, assign)  int totalResults;
-@property (nonatomic, assign)  int resultsPerPage;
+@property(nonatomic, assign) int totalResults;
+@property(nonatomic, assign) int resultsPerPage;
 
 @end
 
 
-@interface RSItem:JSONModel
+@interface RSItem : JSONModel
 
-@property (nonatomic, assign)  int kind;
-@property (nonatomic, assign)  int etag;
-@property (nonatomic, strong)  RSId *id;
-@property (nonatomic, strong)  RSSnippet *snippet;
+@property(nonatomic, strong) RSId *id;
+@property(nonatomic, strong) RSSnippet *snippet;
 
 @end
 
-@interface RSId :JSONModel
+@interface RSSnippet : JSONModel
 
-@property (nonatomic, copy) NSString *kind;
-@property (nonatomic, copy) NSString *videoId;
-
-@end
-
-
-@interface RSSnippet :JSONModel
-
-@property (nonatomic, copy) NSString *publishedAt;
-@property (nonatomic, copy) NSString *channelId;
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *description;
-@property (nonatomic, copy) RSThumbnails *thumbnails;
-@property (nonatomic, copy) NSString *channelTitle;
-@property (nonatomic, copy) NSString *liveBroadcastContent;
-
-@end
-
-@interface RSThumbnails :JSONModel
-
-//@property (nonatomic, copy) NSString *default;
-@property (nonatomic, copy) RSThumbnail *medium;
-@property (nonatomic, copy) RSThumbnail *high;
-
+@property(nonatomic, copy) NSString *publishedAt;
+@property(nonatomic, copy) NSString *channelId;
+@property(nonatomic, copy) NSString *title;
+@property(nonatomic, copy) NSString *description;
+@property(nonatomic, copy) RSThumbnails *thumbnails;
+@property(nonatomic, copy) NSString *channelTitle;
+@property(nonatomic, copy) NSString *liveBroadcastContent;
 
 @end
 
 
-@interface RSThumbnail :JSONModel
+@interface RSId : JSONModel
 
-@property (nonatomic, copy) NSString *url;
-
+@property(nonatomic, copy) NSString *kind;
+@property(nonatomic, copy) NSString *videoId;
 
 @end

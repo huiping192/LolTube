@@ -7,6 +7,7 @@
 #import "RSYoutubeService.h"
 #import "RSSearchModel.h"
 #import "NSDate+RSFormatter.h"
+#import "RSThumbnails.h"
 
 @interface RSVideoListCollectionViewModel ()
 

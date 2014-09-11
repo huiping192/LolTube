@@ -4,9 +4,114 @@
 //
 
 #import "RSVideoDetailViewController.h"
+#import "RSVideoDetailViewModel.h"
+#import "UIImageView+RSAsyncLoading.h"
+#import "UIViewController+RSLoading.h"
+#import "AMTumblrHud.h"
+#import <XCDYouTubeKit/XCDYouTubeKit.h>
 
+@interface RSVideoDetailViewController () <UIScrollViewDelegate>
+
+@property(nonatomic, weak) IBOutlet UIView *videoPlayerView;
+@property(nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property(nonatomic, weak) IBOutlet UILabel *postedAtLabel;
+@property(nonatomic, weak) IBOutlet UITextView *descriptionTextView;
+@property(nonatomic, weak) IBOutlet UIView *spaceView;
+
+@property(nonatomic, strong) RSVideoDetailViewModel *videoDetailViewModel;
+
+@property(nonatomic, strong) XCDYouTubeVideoPlayerViewController *videoPlayerViewController;
+
+@end
 
 @implementation RSVideoDetailViewController {
 
 }
+
+
+- (id)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self) {
+    }
+
+    return self;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    [self configureLoadingView];
+    [self.loadingView showAnimated:YES];
+
+    self.spaceView.layer.borderColor = [UIColor colorWithWhite:0.7f
+                                                         alpha:1.0f].CGColor;
+    self.spaceView.layer.borderWidth = 0.25;
+    self.spaceView.hidden = YES;
+
+    self.thumbnailImageView.image = self.thumbnailImage;
+    self.thumbnailImage = nil;
+
+    [[NSNotificationCenter defaultCenter]
+            addObserver:self
+               selector:@selector(preferredContentSizeChanged:)
+                   name:UIContentSizeCategoryDidChangeNotification
+                 object:nil];
+
+    self.videoDetailViewModel = [[RSVideoDetailViewModel alloc] initWithVideoId:self.videoId];
+    __weak typeof(self) weakSelf = self;
+    [self.videoDetailViewModel updateWithSuccess:^{
+        [weakSelf.loadingView hide];
+        self.spaceView.hidden = NO;
+
+        [self.thumbnailImageView asynLoadingImageWithUrlString:weakSelf.videoDetailViewModel.mediumThumbnailUrl];
+        weakSelf.titleLabel.text = weakSelf.videoDetailViewModel.title;
+        weakSelf.postedAtLabel.text = weakSelf.videoDetailViewModel.postedTime;
+        weakSelf.descriptionTextView.text = weakSelf.videoDetailViewModel.description;
+
+    }                                    failure:^(NSError *error) {
+        NSLog(@"error:%@", error);
+        [weakSelf.loadingView hide];
+    }];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+    [self.videoPlayerViewController.moviePlayer stop];
+}
+
+- (IBAction)playImageTapped:(id)sender {
+    self.videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:self.videoId];
+    [self.videoPlayerViewController presentInView:self.videoPlayerView];
+    self.thumbnailImageView.hidden = NO;
+
+    [self.videoPlayerViewController.moviePlayer prepareToPlay];
+}
+
+- (IBAction)shareButtonTapped:(id)sender {
+    NSMutableArray *sharingItems = [NSMutableArray new];
+
+    [sharingItems addObject:self.videoDetailViewModel.shareTitle];
+    [sharingItems addObject:self.thumbnailImageView.image];
+    [sharingItems addObject:[NSURL URLWithString:self.videoDetailViewModel.shareUrlString]];
+
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
+    [self presentViewController:activityController animated:YES completion:^{
+        //TODO: success alert
+    }];
+}
+
+- (void)preferredContentSizeChanged:(NSNotification *)notification {
+    self.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+    self.postedAtLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    self.descriptionTextView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+}
+
+#pragma mark -  UIScrollViewDelegate
+
 @end

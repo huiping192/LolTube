@@ -9,4 +9,7 @@
 @property (nonatomic, copy) NSString *channelId;
 @property (nonatomic, copy) NSString *channelTitle;
 
+- (UICollectionViewCell *)selectedCell;
+
+- (UICollectionViewCell *)cellWithVideoId:(NSString *)videoId;
 @end

@@ -10,3 +10,4 @@
 
 "VideoPostedTimeStringMinutesFormatter" = "%d分钟前";
 "VideoPostedTimeStringHoursFormatter" = "%d小时前";
+"VideoDetailPostedAtFormatter" = "%@ 发布";
