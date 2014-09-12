@@ -37,13 +37,20 @@
     [self.service channelWithChannelIds:_data success:^(RSChannelModel *channelModel) {
         NSMutableArray *items = [[NSMutableArray alloc] init];
 
+        RSChannelTableViewCellVo *allChannelsCellVo = [[RSChannelTableViewCellVo alloc] init];
+
+        //cellVo.channelId = item.id;
+        allChannelsCellVo.title = @"All Channels";
+        allChannelsCellVo.mediumThumbnailUrl =@"https://yt3.ggpht.com/-ZqOgMm5CVK0/AAAAAAAAAAI/AAAAAAAAAAA/RweX1_sFr1A/s240-c-k-no/photo.jpg\"";
+
+        [items addObject:allChannelsCellVo];
+
         for (RSChannelItem *item in channelModel.items) {
             RSChannelTableViewCellVo *cellVo = [[RSChannelTableViewCellVo alloc] init];
 
             cellVo.channelId = item.id;
             cellVo.title = item.snippet.title;
             cellVo.mediumThumbnailUrl = item.snippet.thumbnails.medium.url;
-
 
             [items addObject:cellVo];
         }
