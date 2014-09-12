@@ -9,6 +9,7 @@
 #import "UIViewController+RSLoading.h"
 #import "AMTumblrHud.h"
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface RSVideoDetailViewController () <UIScrollViewDelegate>
 
@@ -51,11 +52,7 @@
     self.thumbnailImageView.image = self.thumbnailImage;
     self.thumbnailImage = nil;
 
-    [[NSNotificationCenter defaultCenter]
-            addObserver:self
-               selector:@selector(preferredContentSizeChanged:)
-                   name:UIContentSizeCategoryDidChangeNotification
-                 object:nil];
+     [self p_addNotifications];
 
     self.videoDetailViewModel = [[RSVideoDetailViewModel alloc] initWithVideoId:self.videoId];
     __weak typeof(self) weakSelf = self;
@@ -72,6 +69,37 @@
         NSLog(@"error:%@", error);
         [weakSelf.loadingView hide];
     }];
+
+    [self p_playVideo];
+}
+
+-(void)p_addNotifications{
+    [[NSNotificationCenter defaultCenter]
+            addObserver:self
+               selector:@selector(preferredContentSizeChanged:)
+                   name:UIContentSizeCategoryDidChangeNotification
+                 object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(p_moviePreloadDidFinish:)
+                                                 name:MPMoviePlayerLoadStateDidChangeNotification
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(p_moviePlayBackDidFinish:)
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification
+                                               object:nil];
+}
+
+- (void)p_moviePlayBackDidFinish:(id)DidFinish {
+
+}
+
+- (void)p_moviePreloadDidFinish:(id)p_moviePreloadDidFinish {
+    // TODO: fun animation
+    [UIView animateWithDuration:0.25 animations:^{
+        self.thumbnailImageView.alpha = 0.0;
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -85,10 +113,12 @@
     [self.videoPlayerViewController.moviePlayer stop];
 }
 
-- (IBAction)playImageTapped:(id)sender {
+- (void)p_playVideo {
     self.videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:self.videoId];
+    // prevent mute switch from switching off audio from movie player
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+
     [self.videoPlayerViewController presentInView:self.videoPlayerView];
-    self.thumbnailImageView.hidden = NO;
 
     [self.videoPlayerViewController.moviePlayer prepareToPlay];
 }

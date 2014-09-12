@@ -294,27 +294,14 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     </imageView>
-                                                    <imageView appearanceType="aqua" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="XcS-Mn-sqv">
-                                                        <rect key="frame" x="130" y="60" width="60" height="60"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="60" id="TDN-hQ-aXt"/>
-                                                            <constraint firstAttribute="height" constant="60" id="iTQ-O0-iD3"/>
-                                                        </constraints>
-                                                        <connections>
-                                                            <outletCollection property="gestureRecognizers" destination="9rm-v8-DoY" appends="YES" id="ABj-q3-2Dp"/>
-                                                        </connections>
-                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="qtb-Ym-NxJ" firstAttribute="leading" secondItem="RZl-Ce-Rfa" secondAttribute="leading" id="Dl6-4f-8tB"/>
-                                                    <constraint firstItem="qtb-Ym-NxJ" firstAttribute="centerY" secondItem="XcS-Mn-sqv" secondAttribute="centerY" id="EMl-xZ-V3h"/>
                                                     <constraint firstAttribute="width" secondItem="RZl-Ce-Rfa" secondAttribute="height" multiplier="16:9" id="Hfr-4V-ydU"/>
                                                     <constraint firstAttribute="bottom" secondItem="qtb-Ym-NxJ" secondAttribute="bottom" id="J7n-2u-YHB"/>
                                                     <constraint firstAttribute="trailing" secondItem="qtb-Ym-NxJ" secondAttribute="trailing" id="QtP-bC-kpW"/>
                                                     <constraint firstItem="qtb-Ym-NxJ" firstAttribute="top" secondItem="RZl-Ce-Rfa" secondAttribute="top" id="Zf7-YO-NJR"/>
-                                                    <constraint firstItem="qtb-Ym-NxJ" firstAttribute="centerX" secondItem="XcS-Mn-sqv" secondAttribute="centerX" id="sZg-5K-7NX"/>
                                                 </constraints>
                                             </view>
                                             <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="S6f-7T-vGn" userLabel="video title label">
@@ -405,7 +392,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="descriptionTextView" destination="obJ-MP-rVv" id="iQk-Ae-ad0"/>
-                        <outlet property="playImageView" destination="XcS-Mn-sqv" id="ckD-T2-Okr"/>
                         <outlet property="postedAtLabel" destination="xDX-KK-epG" id="MwN-1u-EBu"/>
                         <outlet property="spaceView" destination="Ugf-cO-vF3" id="wfw-SB-Rqg"/>
                         <outlet property="thumbnailImageView" destination="qtb-Ym-NxJ" id="ml0-Dc-70F"/>
@@ -425,7 +411,6 @@
     </scenes>
     <resources>
         <image name="DefaultThumbnail" width="960" height="540"/>
-        <image name="play" width="124" height="124"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
