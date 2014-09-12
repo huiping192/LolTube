@@ -144,6 +144,7 @@ static NSString *const kVideoCellId = @"videoCell";
     RSVideoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kVideoCellId forIndexPath:indexPath];
     RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) indexPath.row];
 
+    [cell.thumbnailImageView setImage:[UIImage imageNamed:@"DefaultThumbnail"]];
     [cell.thumbnailImageView asynLoadingImageWithUrlString:item.mediumThumbnailUrl];
 
     cell.titleLabel.text = item.title;
