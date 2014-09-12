@@ -4,24 +4,13 @@
 //
 
 #import "UIImageView+RSAsyncLoading.h"
-
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation UIImageView (RSAsyncLoading)
 
 - (void)asynLoadingImageWithUrlString:(NSString *)urlString {
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
-        UIImage *image = [UIImage imageWithData:imageData];
-
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            if (image) {
-                [UIView transitionWithView:weakSelf duration:0.25 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-                    weakSelf.image = image;
-                }               completion:nil];
-            }
-        });
-    });
+    [self sd_setImageWithURL:[NSURL URLWithString:urlString]
+                   placeholderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
 }
 
 @end
