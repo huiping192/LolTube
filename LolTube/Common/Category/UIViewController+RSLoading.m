@@ -6,6 +6,7 @@
 #import <objc/runtime.h>
 #import "UIViewController+RSLoading.h"
 #import "AMTumblrHud.h"
+#import "RSAppDelegate.h"
 
 static void const *kViewControllerLoadingViewKey = @"kViewControllerLoadingViewKey";
 
@@ -15,7 +16,10 @@ static void const *kViewControllerLoadingViewKey = @"kViewControllerLoadingViewK
 -(void)configureLoadingView {
     AMTumblrHud *tumblrHUD = [[AMTumblrHud alloc] init];
     tumblrHUD.translatesAutoresizingMaskIntoConstraints = NO;
-    tumblrHUD.hudColor = [UIColor colorWithRed:90.0f/255.0f green:200.0f/255.0f blue:250.0f/255.0f alpha:1.0];
+    //tumblrHUD.hudColor = [UIColor colorWithRed:90.0f/255.0f green:200.0f/255.0f blue:250.0f/255.0f alpha:1.0];
+
+    RSAppDelegate *appDelegate =  (RSAppDelegate *)[[UIApplication sharedApplication] delegate];
+    tumblrHUD.hudColor = [appDelegate.window tintColor];
     [self.view addSubview:tumblrHUD];
 
     NSLayoutConstraint *centerY = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:tumblrHUD attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0];
