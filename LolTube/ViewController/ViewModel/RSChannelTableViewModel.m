@@ -26,7 +26,7 @@
     if (self) {
         self.service = [[RSYoutubeService alloc] init];
 
-        self.data = @[ @"UC2t5bjwHdUX4vM2g8TRDq5g",@"UCKDkGnyeib7mcU7LdD3x0jQ", @"UCvqRdlKsE5Q8mf8YXbdIJLw"];
+        self.data = @[ @"UC2t5bjwHdUX4vM2g8TRDq5g",@"UCKDkGnyeib7mcU7LdD3x0jQ", @"UCvqRdlKsE5Q8mf8YXbdIJLw",@"UC_ZIX-h-BIZZnim6YJSjYDA",@"UCRFvOeB8L5bXeIUVFlHuItA",@"UCa7ycmkvToNPa1hpmLfvkyA",@"UCGgbmTgF-sUJGd5B5N6VSFw",@"UClh5azhOaKzdlThQFgoq-tw",@"UC0RalGf69iYVBFteHInyJJg"];
 
     }
 

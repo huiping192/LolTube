@@ -144,6 +144,7 @@ static NSString *const kVideoCellId = @"videoCell";
 }
 
 - (IBAction)channelSelected:(UIStoryboardSegue *)segue {
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
 
     [self p_loadData];
 }
