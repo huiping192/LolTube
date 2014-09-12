@@ -54,7 +54,7 @@ static NSTimeInterval kAnimationDuration = 0.5;
         videoDetailViewController.thumbnailImageView.hidden = YES;
 
         toView.alpha = 0.0;
-        [UIView animateWithDuration:0.8*kAnimationDuration delay:0.0 usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:kAnimationDuration delay:0.0 usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             CGRect thumbnailFrame = [videoDetailViewController.thumbnailImageView convertRect:videoDetailViewController.thumbnailImageView.frame toView:toView];
 
             tempImageView.frame = thumbnailFrame;
@@ -64,13 +64,8 @@ static NSTimeInterval kAnimationDuration = 0.5;
             videoDetailViewController.thumbnailImageView.hidden = NO;
             [tempImageView removeFromSuperview];
 
-            videoDetailViewController.playImageView.transform = CGAffineTransformMakeScale(0.3, 0.3);
-            [UIView animateWithDuration:0.2 * kAnimationDuration animations:^{
-                 videoDetailViewController.playImageView.transform = CGAffineTransformIdentity;
-            }                completion:^(BOOL finished) {
-                fromView.alpha = 1.0;
-                [transitionContext completeTransition:YES];
-            }];
+            fromView.alpha = 1.0;
+            [transitionContext completeTransition:YES];
         }];
 
 

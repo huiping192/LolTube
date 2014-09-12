@@ -15,11 +15,11 @@
         UIImage *image = [UIImage imageWithData:imageData];
 
         dispatch_sync(dispatch_get_main_queue(), ^{
-
-            [UIView transitionWithView:weakSelf duration:0.25 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-                weakSelf.image = image;
-            } completion:nil];
-
+            if (image) {
+                [UIView transitionWithView:weakSelf duration:0.25 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+                    weakSelf.image = image;
+                }               completion:nil];
+            }
         });
     });
 }
