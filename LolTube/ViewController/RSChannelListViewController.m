@@ -17,6 +17,7 @@
 
 @property(nonatomic, strong) RSChannelTableViewModel *tableViewModel;
 
+@property(nonatomic, assign) BOOL tableViewFirstShownFlag;
 @end
 
 @implementation RSChannelListViewController {
@@ -28,13 +29,24 @@
 
     self.tableViewModel = [[RSChannelTableViewModel alloc] init];
 
+    self.tableView.alpha = 0;
+
     [self configureLoadingView];
     [self.loadingView showAnimated:YES];
 
     __weak typeof(self) weakSelf = self;
+    self.tableViewFirstShownFlag = YES;
     [self.tableViewModel updateWithSuccess:^{
         [weakSelf.loadingView hide];
         [weakSelf.tableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.25 animations:^{
+                self.tableViewFirstShownFlag = NO;
+                self.tableView.alpha = 1.0;
+            }];
+        });
+
+
     }                              failure:^(NSError *error) {
         [weakSelf.loadingView hide];
         NSLog(@"error:%@", error);
@@ -89,6 +101,19 @@
 
     return cell;
 }
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    //only first time show animation
+    if (self.tableViewFirstShownFlag) {
+        cell.transform = CGAffineTransformMakeTranslation(cell.frame.size.width, 0);
+        [UIView animateWithDuration:0.5 delay:0.03 * indexPath.row usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            cell.transform = CGAffineTransformIdentity;
+        }                completion:nil];
+    }
+}
+
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
