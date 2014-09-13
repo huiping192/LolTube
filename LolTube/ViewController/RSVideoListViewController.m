@@ -19,6 +19,7 @@ static NSString *const kVideoCellId = @"videoCell";
 @interface RSVideoListViewController () <UICollectionViewDataSource, UINavigationControllerDelegate>
 
 @property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property(nonatomic, weak) UIRefreshControl *refreshControl;
 
 @property(nonatomic, strong) RSVideoListCollectionViewModel *collectionViewModel;
 
@@ -56,42 +57,65 @@ static NSString *const kVideoCellId = @"videoCell";
     [super viewDidLoad];
 
     self.navigationController.delegate = self;
-
     // enable inter active pop gesture
     self.navigationController.interactivePopGestureRecognizer.delegate = (id <UIGestureRecognizerDelegate>) self;
 
+    [self p_configureViews];
+
+    [self p_configureNotifications];
+
+    [self p_loadDataWithAnimated:YES];
+}
+
+- (void)p_configureViews {
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl = refreshControl;
+    [refreshControl addTarget:self action:@selector(p_refresh) forControlEvents:UIControlEventValueChanged];
+    self.collectionView.alwaysBounceVertical = YES;
+    [self.collectionView addSubview:refreshControl];
+}
+
+- (void)p_configureNotifications {
     [[NSNotificationCenter defaultCenter]
             addObserver:self
                selector:@selector(preferredContentSizeChanged:)
                    name:UIContentSizeCategoryDidChangeNotification
                  object:nil];
-
-    [self p_loadData];
 }
 
-- (void)p_loadData {
+- (void)p_refresh {
+    [self p_loadDataWithAnimated:NO];
+    [self.refreshControl endRefreshing];
+}
+
+- (void)p_loadDataWithAnimated:(BOOL)animated {
     if (self.title) {
         self.navigationItem.title = self.title;
     }
 
-    [self configureLoadingView];
-    [self.loadingView showAnimated:YES];
-
-    self.collectionViewFirstShownFlag = YES;
-    self.collectionView.alpha = 0.0;
+    if(animated){
+        [self configureLoadingView];
+        [self.loadingView showAnimated:YES];
+        self.collectionViewFirstShownFlag = YES;
+        self.collectionView.alpha = 0.0;
+    }
 
     __weak typeof(self) weakSelf = self;
     [self.collectionViewModel updateWithSuccess:^{
-        [weakSelf.loadingView hide];
         [weakSelf.collectionView reloadData];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:0.25 animations:^{
-                self.collectionViewFirstShownFlag = NO;
-                self.collectionView.alpha = 1.0;
-            }];
-        });
+        if(animated) {
+            [weakSelf.loadingView hide];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIView animateWithDuration:0.25 animations:^{
+                    self.collectionViewFirstShownFlag = NO;
+                    self.collectionView.alpha = 1.0;
+                }];
+            });
+        }
     }                                   failure:^(NSError *error) {
-        [weakSelf.loadingView hide];
+        if(animated) {
+            [weakSelf.loadingView hide];
+        }
     }];
 }
 
@@ -159,11 +183,11 @@ static NSString *const kVideoCellId = @"videoCell";
 }
 
 - (IBAction)channelSelected:(UIStoryboardSegue *)segue {
-    if([self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]){
+    if ([self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]) {
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
     }
 
-    [self p_loadData];
+    [self p_loadDataWithAnimated:YES];
 }
 
 #pragma mark - UICollectionViewDelegate
