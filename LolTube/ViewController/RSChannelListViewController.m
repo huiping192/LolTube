@@ -28,6 +28,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [[NSNotificationCenter defaultCenter]
+            addObserver:self
+               selector:@selector(preferredContentSizeChanged:)
+                   name:UIContentSizeCategoryDidChangeNotification
+                 object:nil];
+
     self.tableViewModel = [[RSChannelTableViewModel alloc] init];
 
     [self p_loadData];
@@ -55,6 +61,10 @@
         [weakSelf.loadingView hide];
         NSLog(@"error:%@", error);
     }];
+}
+
+- (void)preferredContentSizeChanged:(id)preferredContentSizeChanged {
+    [self.tableView reloadData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -92,6 +102,8 @@
         cell.searchImageView.image = [[UIImage imageNamed:@"search"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         cell.searchLabel.text = NSLocalizedString(@"SearchChannels", @"Explore More Channels");
         cell.searchLabel.textColor = self.view.tintColor;
+        cell.searchLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+
         return cell;
     }
 
@@ -99,6 +111,8 @@
 
     RSChannelTableViewCellVo *item = self.tableViewModel.items[(NSUInteger) indexPath.row];
     cell.titleLabel.text = item.title;
+    cell.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+
     [cell.thumbnailImageView asynLoadingImageWithUrlString:item.mediumThumbnailUrl];
 
     if ([item.channelId isEqualToString:self.currentChannelId]) {
@@ -126,11 +140,11 @@
 
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
+    return indexPath.row != 0 && indexPath.row != self.tableViewModel.items.count;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return indexPath.row != 0;
+    return indexPath.row != 0 && indexPath.row != self.tableViewModel.items.count;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
