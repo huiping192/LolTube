@@ -10,6 +10,7 @@
 #import "UIViewController+RSLoading.h"
 #import "AMTumblrHud.h"
 #import "RSVideoListViewController.h"
+#import "RSSearchTableViewCell.h"
 
 @interface RSChannelListViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -32,7 +33,7 @@
     [self p_loadData];
 }
 
--(void)p_loadData{
+- (void)p_loadData {
     self.tableView.alpha = 0;
 
     [self configureLoadingView];
@@ -82,10 +83,18 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return [self.tableViewModel.items count];
+    return [self.tableViewModel.items count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == self.tableViewModel.items.count) {
+        RSSearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchCell" forIndexPath:indexPath];
+        cell.searchImageView.image = [[UIImage imageNamed:@"search"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        cell.searchLabel.text = NSLocalizedString(@"SearchChannels", @"Explore More Channels");
+        cell.searchLabel.textColor = self.view.tintColor;
+        return cell;
+    }
+
     RSChannelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"channelCell" forIndexPath:indexPath];
 
     RSChannelTableViewCellVo *item = self.tableViewModel.items[(NSUInteger) indexPath.row];

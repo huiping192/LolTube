@@ -230,6 +230,46 @@
                                             <segue destination="yEd-kX-Rbt" kind="unwind" identifier="selectChannel" unwindAction="channelSelected:" id="q4P-rU-0JZ"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell appearanceType="aqua" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="searchCell" id="oCx-Al-gWa" customClass="RSSearchTableViewCell">
+                                        <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oCx-Al-gWa" id="QPX-eG-HDQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explore More Channels" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DG9-PH-7Gm">
+                                                    <rect key="frame" x="93" y="11" width="134" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" placeholder="YES" id="aDT-hm-TA8"/>
+                                                        <constraint firstAttribute="width" constant="134" placeholder="YES" id="gCG-he-yqs"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="Rjx-n9-pg0">
+                                                    <rect key="frame" x="71" y="16" width="12" height="12"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="12" id="RCD-Ow-Ssr"/>
+                                                        <constraint firstAttribute="width" constant="12" id="m80-p9-yT4"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="DG9-PH-7Gm" secondAttribute="centerY" id="9Ki-b3-hLu"/>
+                                                <constraint firstAttribute="centerX" secondItem="DG9-PH-7Gm" secondAttribute="centerX" id="M51-oO-Fay"/>
+                                                <constraint firstItem="DG9-PH-7Gm" firstAttribute="leading" secondItem="Rjx-n9-pg0" secondAttribute="trailing" constant="10" id="OjV-jT-sXG"/>
+                                                <constraint firstAttribute="centerY" secondItem="Rjx-n9-pg0" secondAttribute="centerY" constant="-0.5" id="bYG-cM-2ZC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="searchImageView" destination="Rjx-n9-pg0" id="NWP-bo-QpD"/>
+                                            <outlet property="searchLabel" destination="DG9-PH-7Gm" id="uhp-r6-Yqg"/>
+                                            <segue destination="QB0-Ee-eOc" kind="push" id="3DX-bV-so5"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="DD7-6f-iXm" id="fno-YP-QtY"/>
@@ -246,7 +286,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="channel" id="uwz-9a-JU9">
-                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="56k-7z-KWS">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="56k-7z-KWS">
                             <connections>
                                 <action selector="closeButtonTapped:" destination="DD7-6f-iXm" id="p5N-jX-arx"/>
                             </connections>
@@ -265,6 +305,25 @@
                 <exit id="yEd-kX-Rbt" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1006" y="302"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="GFf-HA-L9Z">
+            <objects>
+                <viewController id="QB0-Ee-eOc" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2m3-85-HZ6"/>
+                        <viewControllerLayoutGuide type="bottom" id="0aG-5y-njA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0k3-zz-FGA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="n6R-MV-bRF"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sf9-rd-N8l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1494" y="308"/>
         </scene>
         <!--Video Detail View Controller-->
         <scene sceneID="Cyw-kU-DVb">
@@ -411,6 +470,7 @@
     </scenes>
     <resources>
         <image name="DefaultThumbnail" width="960" height="540"/>
+        <image name="search" width="12" height="13"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
