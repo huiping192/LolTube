@@ -24,6 +24,7 @@
 		7A9D5A751ECA82C6C63C83F7 /* UIImageView+RSAsyncLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5812D77DD26E87BAD105 /* UIImageView+RSAsyncLoading.m */; };
 		7A9D5AB8B2CE3F6EC087BFFA /* RSChannelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D543F7440097C8C2149E1 /* RSChannelTableViewCell.m */; };
 		7A9D5C20AC3EAD887249EB04 /* NSDate+RSFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D57868192765BB8591D47 /* NSDate+RSFormatter.m */; };
+		7A9D5C639F1A613376BC21EC /* RSChannelService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D518DC4BF259949301CF7 /* RSChannelService.m */; };
 		7A9D5CA59D5C226F88C846BA /* CLG_vs_DIG_Video_Deital.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D52C373F26DFF52D2BE86 /* CLG_vs_DIG_Video_Deital.json */; };
 		7A9D5CD47D8FEE20AF37FF99 /* RSChannelTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5C49F23F451033B06810 /* RSChannelTableViewModel.m */; };
 		7A9D5D53C4D3636F1491713E /* RSYoutubeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5C089DAEDD8088444FF1 /* RSYoutubeService.m */; };
@@ -67,6 +68,7 @@
 		7A9D50AC20BC5C721036FA5A /* RSChannelTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSChannelTableViewModel.h; sourceTree = "<group>"; };
 		7A9D51490E5161855397D994 /* UIViewController+RSLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RSLoading.h"; sourceTree = "<group>"; };
 		7A9D515B04B281818CFFBBCE /* RSSearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSearchModel.m; sourceTree = "<group>"; };
+		7A9D518DC4BF259949301CF7 /* RSChannelService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSChannelService.m; sourceTree = "<group>"; };
 		7A9D51D53257ADAE528224DD /* RSVideoDetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailViewModel.h; sourceTree = "<group>"; };
 		7A9D52C373F26DFF52D2BE86 /* CLG_vs_DIG_Video_Deital.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = CLG_vs_DIG_Video_Deital.json; sourceTree = "<group>"; };
 		7A9D53B85CDC6EFBEF69CB30 /* RSSearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSearchModel.h; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 		7A9D59B793756C1854CA7C28 /* RSYoutubeServiceSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSYoutubeServiceSpec.m; sourceTree = "<group>"; };
 		7A9D5A0D3ED28B62DA5B95AC /* RSVideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoModel.m; sourceTree = "<group>"; };
 		7A9D5A860870F855225F2509 /* RSChannelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSChannelModel.h; sourceTree = "<group>"; };
+		7A9D5AB115FA7BE1F3B692E8 /* RSChannelService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSChannelService.h; sourceTree = "<group>"; };
 		7A9D5AF46BFEA231319F7D33 /* RayWenderlichChannel.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = RayWenderlichChannel.json; sourceTree = "<group>"; };
 		7A9D5B1F49499207E023211F /* NSDateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateSpec.m; sourceTree = "<group>"; };
 		7A9D5B7BE899A291E20B351C /* RSStringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSStringUtil.m; sourceTree = "<group>"; };
@@ -251,6 +254,8 @@
 			children = (
 				7A9D5C089DAEDD8088444FF1 /* RSYoutubeService.m */,
 				7A9D5C04C421A5D2491B8658 /* RSYoutubeService.h */,
+				7A9D518DC4BF259949301CF7 /* RSChannelService.m */,
+				7A9D5AB115FA7BE1F3B692E8 /* RSChannelService.h */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -630,6 +635,7 @@
 				7A9D57EAA5AEB366EA6A23F7 /* RSChannelListViewController.m in Sources */,
 				7A9D5AB8B2CE3F6EC087BFFA /* RSChannelTableViewCell.m in Sources */,
 				7A9D5CD47D8FEE20AF37FF99 /* RSChannelTableViewModel.m in Sources */,
+				7A9D5C639F1A613376BC21EC /* RSChannelService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -91,11 +91,9 @@
 
     if ([item.channelId isEqualToString:self.currentChannelId]) {
         cell.titleLabel.textColor = [self.view tintColor];
-
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.titleLabel.textColor = [UIColor blackColor];
-
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
 
