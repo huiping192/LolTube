@@ -7,12 +7,14 @@
 #import "RSSearchModel.h"
 #import "AFNetworking/AFNetworking.h"
 #import "RSVideoModel.h"
+#import "RSChannelModel.h"
 
 static NSString *const kYoutubeApiKey = @"AIzaSyBb1ZDTeUmzba4Kk4wsYtmi70tr7UBo3HA";
 
 // api url
 static NSString *const kYoutubeSearchUrlString = @"https://www.googleapis.com/youtube/v3/search";
 static NSString *const kYoutubeVideoUrlString = @"https://www.googleapis.com/youtube/v3/videos";
+static NSString *const kYoutubChannelUrlString = @"https://www.googleapis.com/youtube/v3/channels";
 
 
 @implementation RSYoutubeService {
@@ -73,5 +75,37 @@ static NSString *const kYoutubeVideoUrlString = @"https://www.googleapis.com/you
         }
     }];
 }
+
+
+- (void)channelWithChannelIds:(NSArray *)channelIds success:(void (^)(RSChannelModel *))success failure:(void (^)(NSError *))failure {
+    if (!channelIds || channelIds.count == 0) {
+        return;
+    }
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+
+    NSString *channelIdsString = [channelIds componentsJoinedByString:@","];
+    NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"id" : channelIdsString};
+
+    NSString *urlString = [NSString stringWithFormat:@"%@?%@=%@", kYoutubChannelUrlString, @"fields", @"items(auditDetails,brandingSettings,contentDetails,contentOwnerDetails,id,snippet,statistics,status,topicDetails)"];
+
+    [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        JSONModelError *error = nil;
+        RSChannelModel *channelModel = [[RSChannelModel alloc] initWithDictionary:responseObject error:&error];
+        if (error) {
+            if (failure) {
+                failure(error);
+            }
+            return;
+        }
+        if (success) {
+            success(channelModel);
+        }
+    }    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
 
 @end

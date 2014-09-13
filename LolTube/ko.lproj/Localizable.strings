@@ -11,3 +11,4 @@
 "VideoPostedTimeStringMinutesFormatter" = "%d분전";
 "VideoPostedTimeStringHoursFormatter" = "%d시간전";
 "VideoDetailPostedAtFormatter" = "%@ 게시";
+"SearchChannels" = "관련 채널을 모아서";

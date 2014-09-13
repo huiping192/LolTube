@@ -26,6 +26,9 @@ PODS:
   - OHHTTPStubs (3.1.5):
     - OHHTTPStubs/Core
   - OHHTTPStubs/Core (3.1.5)
+  - SDWebImage (3.7.1):
+    - SDWebImage/Core
+  - SDWebImage/Core (3.7.1)
   - XCDYouTubeKit (2.0.2)
 
 DEPENDENCIES:
@@ -34,6 +37,7 @@ DEPENDENCIES:
   - Kiwi (~> 2.3.0)
   - OCMock (~> 3.1.1)
   - OHHTTPStubs (~> 3.1.5)
+  - SDWebImage (~> 3.7.0)
   - XCDYouTubeKit (~> 2.0.2)
 
 SPEC CHECKSUMS:
@@ -42,6 +46,7 @@ SPEC CHECKSUMS:
   Kiwi: 54bece5b35564d9b8e03c608d926f1a22fcfc589
   OCMock: f6cb8c162ab9d5620dddf411282c7b2c0ee78854
   OHHTTPStubs: c1e362552b71b81e1deb7a80f44c51585b946c43
+  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
   XCDYouTubeKit: 65d5f5b9fe4e731327ab61ecc253b8e70e5d5a4d
 
 COCOAPODS: 0.33.1
