@@ -21,6 +21,8 @@ static NSString *const kVideoCellId = @"videoCell";
 
 @property(nonatomic, strong) RSVideoListCollectionViewModel *collectionViewModel;
 
+@property(nonatomic, assign) BOOL collectionViewFirstShownFlag;
+
 @end
 
 @implementation RSVideoListViewController {
@@ -71,10 +73,19 @@ static NSString *const kVideoCellId = @"videoCell";
     [self configureLoadingView];
     [self.loadingView showAnimated:YES];
 
+    self.collectionViewFirstShownFlag = YES;
+    self.collectionView.alpha = 0.0;
+
     __weak typeof(self) weakSelf = self;
     [self.collectionViewModel updateWithSuccess:^{
         [weakSelf.loadingView hide];
         [weakSelf.collectionView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.25 animations:^{
+                self.collectionViewFirstShownFlag = NO;
+                self.collectionView.alpha = 1.0;
+            }];
+        });
     }                                   failure:^(NSError *error) {
         [weakSelf.loadingView hide];
     }];
@@ -176,6 +187,13 @@ static NSString *const kVideoCellId = @"videoCell";
     [cell.channelTitleView addGestureRecognizer:tapGestureRecognizer];
 
     cell.channelTitleView.hidden = [item.channelId isEqualToString:self.channelId];
+
+    if(self.collectionViewFirstShownFlag){
+        cell.transform = CGAffineTransformMakeTranslation(0, collectionView.frame.size.height);
+        [UIView animateWithDuration:0.5 delay:0.03 * indexPath.row usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            cell.transform = CGAffineTransformIdentity;
+        } completion:nil];
+    }
 
     return cell;
 }
