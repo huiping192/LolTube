@@ -9,6 +9,7 @@
 - (NSArray *)channelIds;
 
 - (void)saveChannelId:(NSString *)channelId;
+- (void)deleteChannelId:(NSString *)channelId;
 - (void)saveChannelIds:(NSArray *)channelIds;
 
 - (void)moveChannelId:(NSString *)channelId toIndex:(NSUInteger)index;

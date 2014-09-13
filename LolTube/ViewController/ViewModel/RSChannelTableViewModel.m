@@ -35,7 +35,7 @@
 }
 
 - (void)updateWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure {
-    self.channelIds =  [self.channelService channelIds];
+    self.channelIds = [self.channelService channelIds];
 
     [self.youtubeService channelWithChannelIds:_channelIds success:^(RSChannelModel *channelModel) {
         NSMutableArray *items = [[NSMutableArray alloc] init];
@@ -58,7 +58,7 @@
             [items addObject:cellVo];
         }
 
-        _items = (NSArray <RSChannelCollectionViewCellVo> *) items.copy;
+        _items = (NSArray <RSChannelTableViewCellVo> *) items.copy;
 
         dispatch_async(dispatch_get_main_queue(), ^{
             if (success) {
@@ -70,6 +70,28 @@
             failure(error);
         }
     }];
+}
+
+- (void)deleteChannelWithIndexPath:(NSIndexPath *)indexPath {
+    RSChannelTableViewCellVo *cellVo = self.items[(NSUInteger) indexPath.row];
+    [self.channelService deleteChannelId:cellVo.channelId];
+    NSMutableArray *mutableItems = self.items.mutableCopy;
+    [mutableItems removeObjectAtIndex:(NSUInteger) indexPath.row];
+
+    _items = (id) mutableItems;
+}
+
+-(void)moveChannelWithIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)toIndexPath{
+    RSChannelTableViewCellVo *cellVo = self.items[(NSUInteger) indexPath.row];
+
+    [self.channelService moveChannelId:cellVo.channelId toIndex:(NSUInteger) (toIndexPath.row - 1)];
+
+    NSMutableArray *mutableItems = self.items.mutableCopy;
+
+    [mutableItems removeObjectAtIndex:(NSUInteger) indexPath.row];
+    [mutableItems insertObject:cellVo atIndex:(NSUInteger) toIndexPath.row];
+
+    _items = (id) mutableItems;
 }
 
 @end

@@ -29,6 +29,10 @@
 
     self.tableViewModel = [[RSChannelTableViewModel alloc] init];
 
+    [self p_loadData];
+}
+
+-(void)p_loadData{
     self.tableView.alpha = 0;
 
     [self configureLoadingView];
@@ -39,14 +43,13 @@
     [self.tableViewModel updateWithSuccess:^{
         [weakSelf.loadingView hide];
         [weakSelf.tableView reloadData];
+
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.25 animations:^{
                 self.tableViewFirstShownFlag = NO;
                 self.tableView.alpha = 1.0;
             }];
         });
-
-
     }                              failure:^(NSError *error) {
         [weakSelf.loadingView hide];
         NSLog(@"error:%@", error);
@@ -124,14 +127,13 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView beginUpdates];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //TODO: delete selected data
-        //[self.data removeObjectAtIndex:indexPath.row];
+        [self.tableViewModel deleteChannelWithIndexPath:indexPath];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     [tableView endUpdates];
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-    //TODO: change data sort
+    [self.tableViewModel moveChannelWithIndexPath:sourceIndexPath toIndexPath:toIndexPath];
 }
 @end

@@ -6,13 +6,17 @@
 #import <Foundation/Foundation.h>
 
 
-@protocol RSChannelCollectionViewCellVo;
+@protocol RSChannelTableViewCellVo;
 
 @interface RSChannelTableViewModel : NSObject
 
-@property(nonatomic, strong, readonly) NSArray <RSChannelCollectionViewCellVo> *items;
+@property(nonatomic, strong, readonly) NSArray <RSChannelTableViewCellVo> *items;
 
 - (void)updateWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure;
+
+- (void)deleteChannelWithIndexPath:(NSIndexPath *)indexPath;
+
+- (void)moveChannelWithIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)toIndexPath;
 @end
 
 

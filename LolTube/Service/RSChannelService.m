@@ -29,6 +29,16 @@ static NSString *const kChannelIdsKey = @"channleIds";
 
 }
 
+- (void)deleteChannelId:(NSString *)channelId {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSArray *channelIds = [userDefaults arrayForKey:kChannelIdsKey];
+    NSMutableArray *mutableChannelIds = channelIds.mutableCopy;
+
+    [mutableChannelIds removeObjectAtIndex:[mutableChannelIds indexOfObject:channelId]];
+    [userDefaults setObject:mutableChannelIds forKey:kChannelIdsKey];
+    [userDefaults synchronize];
+}
+
 - (void)saveChannelIds:(NSArray *)channelIds {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSArray *savedChannelIds = [userDefaults arrayForKey:kChannelIdsKey];
