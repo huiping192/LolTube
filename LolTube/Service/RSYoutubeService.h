@@ -12,6 +12,8 @@
 
 - (void)videoListWithChannelId:(NSString *)channelId success:(void (^)(RSSearchModel *))success failure:(void (^)(NSError *))failure;
 
+- (void)videoListWithChannelIds:(NSArray *)channelIds success:(void (^)(RSSearchModel *))success failure:(void (^)(NSError *))failure;
+
 - (void)videoWithVideoId:(NSString *)videoId success:(void (^)(RSVideoModel *))success failure:(void (^)(NSError *))failure;
 
 - (void)channelWithChannelIds:(NSArray *)channelIds success:(void (^)(RSChannelModel *))success failure:(void (^)(NSError *))failure;

@@ -11,6 +11,7 @@
 #import "AMTumblrHud.h"
 #import "RSVideoListViewController.h"
 #import "RSSearchTableViewCell.h"
+#import "RSChannelService.h"
 
 @interface RSChannelListViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -69,14 +70,24 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [super prepareForSegue:segue sender:sender];
+    RSChannelTableViewCellVo *item = self.tableViewModel.items[(NSUInteger) self.tableView.indexPathForSelectedRow.row];
 
-    if ([segue.identifier isEqualToString:@"selectChannel"]) {
+    if ([segue.identifier isEqualToString:@"showChannel"]) {
+        if ([item.channelId isEqualToString:@"All Channels"]) {
+            RSVideoListViewController *videoListViewController = (RSVideoListViewController *) segue.destinationViewController;
 
-        RSVideoListViewController *videoListViewController = (RSVideoListViewController *) segue.destinationViewController;
-        RSChannelTableViewCellVo *item = self.tableViewModel.items[(NSUInteger) self.tableView.indexPathForSelectedRow.row];
+            RSChannelService *channelService = [[RSChannelService alloc] init];
+            videoListViewController.channelIds = channelService.channelIds;
+            videoListViewController.title = @"LolTube";
+            videoListViewController.needShowChannelTitleView = YES;
+        } else {
+            RSVideoListViewController *videoListViewController = (RSVideoListViewController *) segue.destinationViewController;
 
-        videoListViewController.channelId = item.channelId;
-        videoListViewController.channelTitle = item.title;
+            videoListViewController.channelIds = @[item.channelId];
+            videoListViewController.title = item.title;
+            videoListViewController.needShowChannelTitleView = NO;
+        }
+
     }
 }
 
@@ -112,16 +123,19 @@
     RSChannelTableViewCellVo *item = self.tableViewModel.items[(NSUInteger) indexPath.row];
     cell.titleLabel.text = item.title;
     cell.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-
     [cell.thumbnailImageView asynLoadingImageWithUrlString:item.mediumThumbnailUrl];
 
-    if ([item.channelId isEqualToString:self.currentChannelId]) {
+    if (self.currentChannelIds.count > 1 && [item.channelId isEqualToString:@"All Channels"]) { // all channel
+        cell.titleLabel.textColor = [self.view tintColor];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else if (self.currentChannelIds.count == 1 && [item.channelId isEqualToString:self.currentChannelIds[0]]) {
         cell.titleLabel.textColor = [self.view tintColor];
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.titleLabel.textColor = [UIColor blackColor];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
+
 
     return cell;
 }

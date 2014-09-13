@@ -227,7 +227,7 @@
                                         <connections>
                                             <outlet property="thumbnailImageView" destination="nl5-jr-m5j" id="sDi-RI-hEx"/>
                                             <outlet property="titleLabel" destination="dZD-9V-gEE" id="zcl-PU-tFa"/>
-                                            <segue destination="yEd-kX-Rbt" kind="unwind" identifier="selectChannel" unwindAction="channelSelected:" id="q4P-rU-0JZ"/>
+                                            <segue destination="yEd-kX-Rbt" kind="unwind" identifier="showChannel" unwindAction="channelSelected:" id="q4P-rU-0JZ"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell appearanceType="aqua" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="searchCell" id="oCx-Al-gWa" customClass="RSSearchTableViewCell">

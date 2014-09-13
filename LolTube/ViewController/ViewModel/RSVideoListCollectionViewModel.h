@@ -10,11 +10,9 @@
 
 @interface RSVideoListCollectionViewModel : NSObject
 
-@property(nonatomic, copy) NSString *channelId;
-
 @property(nonatomic, strong, readonly) NSArray <RSVideoCollectionViewCellVo> *items;
 
-- (instancetype)initWithChannelId:(NSString *)channelId;
+- (instancetype)initWithChannelIds:(NSArray *)channelIds;
 
 - (void)updateWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure;
 @end

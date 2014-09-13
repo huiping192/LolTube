@@ -12,6 +12,7 @@
 #import "UIViewController+RSLoading.h"
 #import "RSVideoDetailAnimator.h"
 #import "RSChannelListViewController.h"
+#import "RSChannelService.h"
 
 static NSString *const kVideoCellId = @"videoCell";
 
@@ -35,16 +36,19 @@ static NSString *const kVideoCellId = @"videoCell";
 - (id)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
-        // TODO: when do not have channelId, search all exist channel
-        _collectionViewModel = [[RSVideoListCollectionViewModel alloc] initWithChannelId:@"UCvqRdlKsE5Q8mf8YXbdIJLw"];
+        RSChannelService *channelService = [[RSChannelService alloc] init];
+        _channelIds = [channelService channelIds];
+        _collectionViewModel = [[RSVideoListCollectionViewModel alloc] initWithChannelIds:_channelIds];
+
+        _needShowChannelTitleView = YES;
     }
 
     return self;
 }
 
-- (void)setChannelId:(NSString *)channelId {
-    _channelId = channelId;
-    _collectionViewModel = [[RSVideoListCollectionViewModel alloc] initWithChannelId:_channelId];
+- (void)setChannelIds:(NSArray *)channelIds {
+    _channelIds = channelIds;
+    _collectionViewModel = [[RSVideoListCollectionViewModel alloc] initWithChannelIds:channelIds];
 }
 
 
@@ -66,8 +70,8 @@ static NSString *const kVideoCellId = @"videoCell";
 }
 
 - (void)p_loadData {
-    if (self.channelTitle) {
-        self.navigationItem.title = self.channelTitle;
+    if (self.title) {
+        self.navigationItem.title = self.title;
     }
 
     [self configureLoadingView];
@@ -119,7 +123,7 @@ static NSString *const kVideoCellId = @"videoCell";
     } else if ([segue.identifier isEqualToString:@"channelList"]) {
         UINavigationController *navigationController = segue.destinationViewController;
         RSChannelListViewController *channelListViewController = (RSChannelListViewController *) navigationController.topViewController;
-        channelListViewController.currentChannelId = self.channelId;
+        channelListViewController.currentChannelIds = self.channelIds;
     }
 }
 
@@ -148,14 +152,16 @@ static NSString *const kVideoCellId = @"videoCell";
     RSVideoListViewController *videoListViewController = [storyboard instantiateViewControllerWithIdentifier:@"videoList"];
 
     RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) tapGestureRecognizer.view.tag];
-    videoListViewController.channelId = item.channelId;
-    videoListViewController.channelTitle = item.channelTitle;
+    videoListViewController.channelIds = @[item.channelId];
+    videoListViewController.title = item.channelTitle;
 
     [self.navigationController pushViewController:videoListViewController animated:YES];
 }
 
 - (IBAction)channelSelected:(UIStoryboardSegue *)segue {
-    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+    if([self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]){
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+    }
 
     [self p_loadData];
 }
@@ -186,13 +192,13 @@ static NSString *const kVideoCellId = @"videoCell";
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(channelTitleViewTapped:)];
     [cell.channelTitleView addGestureRecognizer:tapGestureRecognizer];
 
-    cell.channelTitleView.hidden = [item.channelId isEqualToString:self.channelId];
+    cell.channelTitleView.hidden = !self.needShowChannelTitleView;
 
-    if(self.collectionViewFirstShownFlag){
+    if (self.collectionViewFirstShownFlag) {
         cell.transform = CGAffineTransformMakeTranslation(0, collectionView.frame.size.height);
         [UIView animateWithDuration:0.5 delay:0.03 * indexPath.row usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             cell.transform = CGAffineTransformIdentity;
-        } completion:nil];
+        }                completion:nil];
     }
 
     return cell;

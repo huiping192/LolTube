@@ -12,6 +12,7 @@
 @interface RSVideoListCollectionViewModel ()
 
 @property(nonatomic, strong) RSYoutubeService *service;
+@property(nonatomic, copy) NSArray *channelIds;
 
 @end
 
@@ -20,9 +21,13 @@
 }
 
 - (instancetype)initWithChannelId:(NSString *)channelId {
+    return [self initWithChannelIds:@[channelId]];
+}
+
+- (instancetype)initWithChannelIds:(NSArray *)channelIds {
     self = [super init];
     if (self) {
-        self.channelId = channelId;
+        self.channelIds = channelIds;
         self.service = [[RSYoutubeService alloc] init];
     }
 
@@ -30,8 +35,7 @@
 }
 
 - (void)updateWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure {
-
-    [self.service videoListWithChannelId:_channelId success:^(RSSearchModel *searchModel) {
+    [self.service videoListWithChannelIds:_channelIds success:^(RSSearchModel *searchModel) {
         NSMutableArray *items = [[NSMutableArray alloc] init];
 
         for (RSItem *item in searchModel.items) {
