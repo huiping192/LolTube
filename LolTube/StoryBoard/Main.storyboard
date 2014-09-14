@@ -130,6 +130,7 @@
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="34D-TA-1gh" id="E2D-Xx-jEE"/>
+                                    <outlet property="delegate" destination="34D-TA-1gh" id="Dr3-zf-geJ"/>
                                 </connections>
                             </collectionView>
                         </subviews>

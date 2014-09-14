@@ -14,6 +14,8 @@
 @property(nonatomic, strong) RSYoutubeService *service;
 @property(nonatomic, copy) NSArray *channelIds;
 
+@property(nonatomic, copy) NSArray *nextPageTokens;
+
 @end
 
 @implementation RSVideoListCollectionViewModel {
@@ -27,17 +29,22 @@
 - (instancetype)initWithChannelIds:(NSArray *)channelIds {
     self = [super init];
     if (self) {
-        self.channelIds = channelIds;
-        self.service = [[RSYoutubeService alloc] init];
+       _channelIds = channelIds;
+        _service = [[RSYoutubeService alloc] init];
+        _nextPageTokens = nil;
     }
 
     return self;
 }
 
 - (void)updateWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure {
-    [self.service videoListWithChannelIds:_channelIds success:^(RSSearchModel *searchModel) {
+    [self.service videoListWithChannelIds:_channelIds nextPageTokens:self.nextPageTokens success:^(RSSearchModel *searchModel) {
         NSMutableArray *items = [[NSMutableArray alloc] init];
+        if(self.items){
+            items = self.items.mutableCopy;
+        }
 
+        self.nextPageTokens = [searchModel.nextPageToken componentsSeparatedByString:@","];
         for (RSItem *item in searchModel.items) {
             RSVideoCollectionViewCellVo *cellVo = [[RSVideoCollectionViewCellVo alloc] init];
 

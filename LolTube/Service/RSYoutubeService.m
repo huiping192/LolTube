@@ -21,15 +21,18 @@ static NSString *const kYoutubeChannelUrlString = @"https://www.googleapis.com/y
 @implementation RSYoutubeService {
 
 }
-- (void)videoListWithChannelId:(NSString *)channelId success:(void (^)(RSSearchModel *))success failure:(void (^)(NSError *))failure {
+- (void)videoListWithChannelId:(NSString *)channelId nextPageToken:(NSString *)nextPageToken success:(void (^)(RSSearchModel *))success failure:(void (^)(NSError *))failure {
     if (!channelId || [channelId isEqualToString:@""]) {
         return;
     }
+    if (!nextPageToken) {
+        nextPageToken = @"";
+    }
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"channelId" : channelId, @"type" : @"video", @"maxResults" : @(10), @"order" : @"date"};
+    NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"channelId" : channelId, @"type" : @"video", @"maxResults" : @(10), @"order" : @"date", @"pageToken" : nextPageToken};
 
     // fields value (,% などのchatがlibに変換されるため、NSStringでそのまま設定する
-    NSString *urlString = [NSString stringWithFormat:@"%@?%@=%@", kYoutubeSearchUrlString, @"fields", @"items(id%2Csnippet)%2CpageInfo"];
+    NSString *urlString = [NSString stringWithFormat:@"%@?%@=%@", kYoutubeSearchUrlString, @"fields", @"items(id%2Csnippet)%2CpageInfo%2CnextPageToken"];
     [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         JSONModelError *error = nil;
         RSSearchModel *searchModel = [[RSSearchModel alloc] initWithDictionary:responseObject error:&error];
@@ -49,19 +52,29 @@ static NSString *const kYoutubeChannelUrlString = @"https://www.googleapis.com/y
     }];
 }
 
-- (void)videoListWithChannelIds:(NSArray *)channelIds success:(void (^)(RSSearchModel *))success failure:(void (^)(NSError *))failure {
+- (void)videoListWithChannelIds:(NSArray *)channelIds nextPageTokens:(NSArray *)nextPageTokens success:(void (^)(RSSearchModel *))success failure:(void (^)(NSError *))failure {
     if (channelIds.count == 1) {
-        [self videoListWithChannelId:channelIds[0] success:success failure:failure];
+        NSString *nextPageToken = @"";
+        if (nextPageTokens && nextPageTokens.count > 0) {
+            nextPageToken = nextPageTokens[0];
+        }
+        [self videoListWithChannelId:channelIds[0] nextPageToken:nextPageToken success:success failure:failure];
         return;
     }
 
     NSMutableArray *mutableOperations = [NSMutableArray array];
+    NSMutableArray *pageTokens = [NSMutableArray array];
     for (NSString *channelId in channelIds) {
 
-        NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"channelId" : channelId, @"type" : @"video", @"maxResults" : @(5), @"order" : @"date"};
+        NSString *nextPageToken = @"";
+        if (nextPageTokens) {
+            nextPageToken = nextPageTokens[[channelIds indexOfObject:channelId]];
+        }
+
+        NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"channelId" : channelId, @"type" : @"video", @"maxResults" : @(5), @"order" : @"date", @"pageToken" : nextPageToken};
 
         // fields value (,% などのchatがlibに変換されるため、NSStringでそのまま設定する
-        NSString *urlString = [NSString stringWithFormat:@"%@?%@=%@", kYoutubeSearchUrlString, @"fields", @"items(id%2Csnippet)%2CpageInfo"];
+        NSString *urlString = [NSString stringWithFormat:@"%@?%@=%@", kYoutubeSearchUrlString, @"fields", @"items(id%2Csnippet)%2CpageInfo%2CnextPageToken"];
 
         NSURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:[[NSURL URLWithString:urlString] absoluteString] parameters:parameters error:nil];
 
@@ -78,11 +91,12 @@ static NSString *const kYoutubeChannelUrlString = @"https://www.googleapis.com/y
         RSSearchModel *searchModel = [[RSSearchModel alloc] initWithString:operation.responseString error:&error];
 
         [items addObjectsFromArray:searchModel.items];
+        [pageTokens addObject:searchModel.nextPageToken];
 
     }                                                        completionBlock:^(NSArray *operations) {
         if (success) {
             RSSearchModel *searchModel = [[RSSearchModel alloc] init];
-
+            searchModel.nextPageToken = [pageTokens componentsJoinedByString:@","];
             searchModel.items = (NSArray <RSItem> *) [self p_sortChannelItems:items];
 
             success(searchModel);

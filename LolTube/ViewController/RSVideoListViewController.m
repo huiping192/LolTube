@@ -16,7 +16,7 @@
 
 static NSString *const kVideoCellId = @"videoCell";
 
-@interface RSVideoListViewController () <UICollectionViewDataSource, UINavigationControllerDelegate>
+@interface RSVideoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UINavigationControllerDelegate>
 
 @property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property(nonatomic, weak) UIRefreshControl *refreshControl;
@@ -93,7 +93,7 @@ static NSString *const kVideoCellId = @"videoCell";
         self.navigationItem.title = self.title;
     }
 
-    if(animated){
+    if (animated) {
         [self configureLoadingView];
         [self.loadingView showAnimated:YES];
         self.collectionViewFirstShownFlag = YES;
@@ -103,7 +103,7 @@ static NSString *const kVideoCellId = @"videoCell";
     __weak typeof(self) weakSelf = self;
     [self.collectionViewModel updateWithSuccess:^{
         [weakSelf.collectionView reloadData];
-        if(animated) {
+        if (animated) {
             [weakSelf.loadingView hide];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [UIView animateWithDuration:0.25 animations:^{
@@ -113,7 +113,7 @@ static NSString *const kVideoCellId = @"videoCell";
             });
         }
     }                                   failure:^(NSError *error) {
-        if(animated) {
+        if (animated) {
             [weakSelf.loadingView hide];
         }
     }];
@@ -183,14 +183,14 @@ static NSString *const kVideoCellId = @"videoCell";
 }
 
 - (IBAction)channelSelected:(UIStoryboardSegue *)segue {
-    if ([self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]) {
+    if ([self.collectionView numberOfItemsInSection:0] != 0) {
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
     }
 
     [self p_loadDataWithAnimated:YES];
 }
 
-#pragma mark - UICollectionViewDelegate
+#pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.collectionViewModel.items.count;
@@ -227,6 +227,16 @@ static NSString *const kVideoCellId = @"videoCell";
 
     return cell;
 }
+
+#pragma mark - scrollView delegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.contentOffset.y == roundf(scrollView.contentSize.height - scrollView.frame.size.height)) {
+        // load more videos
+        [self p_loadDataWithAnimated:NO];
+    }
+}
+
 
 #pragma mark - UINavigationControllerDelegate
 

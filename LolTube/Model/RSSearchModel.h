@@ -15,6 +15,7 @@
 @class RSThumbnail;
 
 @interface RSSearchModel : JSONModel
+@property(nonatomic, copy) NSString *nextPageToken;
 
 @property(nonatomic, strong) RSPageInfo *pageInfo;
 
