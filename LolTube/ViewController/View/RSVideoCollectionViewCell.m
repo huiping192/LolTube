@@ -53,18 +53,18 @@ static CGFloat const kBottomShadowSizeRatio = 0.5f;
 
     if (!self.topShadowLayer) {
         CALayer *topShadowLayer = [self p_createShadowLayerWithTopColor:[UIColor colorWithWhite:0 alpha:.5] bottomColor:[UIColor colorWithWhite:0 alpha:.0]];
-        topShadowLayer.frame = CGRectMake(0, 0, self.frame.size.width, kTopShadowSizeRatio * _titleLabel.frame.size.height + _titleLabel.frame.origin.y);
         [self.contentView.layer insertSublayer:topShadowLayer below:_titleLabel.layer];
         self.topShadowLayer = topShadowLayer;
     }
+    self.topShadowLayer.frame = CGRectMake(0, 0, self.frame.size.width, kTopShadowSizeRatio * _titleLabel.frame.size.height + _titleLabel.frame.origin.y);
 
     if (!self.bottomShadowLayer) {
         CALayer *bottomShadowLayer = [self p_createShadowLayerWithTopColor:[UIColor colorWithWhite:0 alpha:.0] bottomColor:[UIColor colorWithWhite:0 alpha:.8]];
-        bottomShadowLayer.frame = CGRectMake(0, _channelTitleView.frame.origin.y - kBottomShadowSizeRatio * _channelTitleView.frame.size.height, self.frame.size.width, self.frame.size.height - _channelTitleView.frame.origin.y + kBottomShadowSizeRatio * _channelTitleView.frame.size.height);
         [self.contentView.layer insertSublayer:bottomShadowLayer below:_channelLabel.layer];
         [self.contentView.layer insertSublayer:bottomShadowLayer below:_postedTimeLabel.layer];
         self.bottomShadowLayer = bottomShadowLayer;
     }
+    self.bottomShadowLayer.frame = CGRectMake(0, _channelTitleView.frame.origin.y - kBottomShadowSizeRatio * _channelTitleView.frame.size.height, self.frame.size.width, self.frame.size.height - _channelTitleView.frame.origin.y + kBottomShadowSizeRatio * _channelTitleView.frame.size.height);
 
 }
 

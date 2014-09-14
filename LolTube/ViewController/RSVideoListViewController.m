@@ -9,12 +9,13 @@
 #import "RSVideoDetailViewController.h"
 #import "AMTumblrHud.h"
 #import "UIViewController+RSLoading.h"
-#import "RSVideoDetailAnimator.h"
 #import "RSChannelListViewController.h"
 #import "RSChannelService.h"
 #import "UIImageView+Loading.h"
 
 static NSString *const kVideoCellId = @"videoCell";
+static CGFloat const kCellMinWidth = 250.0f;
+static CGFloat const kCellRatio =  180.0f / 320.0f;
 
 @interface RSVideoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -220,7 +221,7 @@ static NSString *const kVideoCellId = @"videoCell";
 
     if (self.collectionViewFirstShownFlag) {
         cell.transform = CGAffineTransformMakeTranslation(0, collectionView.frame.size.height);
-        [UIView animateWithDuration:0.5 delay:0.03 * indexPath.row usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:0.4 delay:0.03 * indexPath.row usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             cell.transform = CGAffineTransformIdentity;
         }                completion:nil];
     }
@@ -235,6 +236,20 @@ static NSString *const kVideoCellId = @"videoCell";
         // load more videos
         [self p_loadDataWithAnimated:NO];
     }
+}
+
+#pragma mark - orientation
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+
+    CGFloat collectionWidth = self.collectionView.frame.size.width;
+    int cellCount = (int) (collectionWidth / kCellMinWidth);
+    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
+
+    CGFloat cellWidth = (self.collectionView.frame.size.width - flowLayout.sectionInset.left * (cellCount + 1)) / cellCount;
+
+    flowLayout.itemSize = CGSizeMake(cellWidth, cellWidth * kCellRatio);
 }
 
 @end

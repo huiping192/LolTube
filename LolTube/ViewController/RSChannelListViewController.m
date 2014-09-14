@@ -70,9 +70,10 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [super prepareForSegue:segue sender:sender];
-    RSChannelTableViewCellVo *item = self.tableViewModel.items[(NSUInteger) self.tableView.indexPathForSelectedRow.row];
 
     if ([segue.identifier isEqualToString:@"showChannel"]) {
+        RSChannelTableViewCellVo *item = self.tableViewModel.items[(NSUInteger) self.tableView.indexPathForSelectedRow.row];
+
         if ([item.channelId isEqualToString:@"All Channels"]) {
             RSVideoListViewController *videoListViewController = (RSVideoListViewController *) segue.destinationViewController;
 
@@ -97,6 +98,7 @@
 }
 
 - (IBAction)editButtonTapped:(id)sender {
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:self.tableView.isEditing ? UIBarButtonSystemItemEdit : UIBarButtonSystemItemCancel target:self action:@selector(editButtonTapped:)];
     [self.tableView setEditing:!self.tableView.isEditing animated:YES];
 }
 
@@ -138,6 +140,10 @@
 
 
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 55.0f;
 }
 
 #pragma mark - UITableViewDelegate
