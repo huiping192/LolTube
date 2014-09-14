@@ -6,13 +6,13 @@
 #import "RSVideoListViewController.h"
 #import "RSVideoCollectionViewCell.h"
 #import "RSVideoListCollectionViewModel.h"
-#import "UIImageView+RSAsyncLoading.h"
 #import "RSVideoDetailViewController.h"
 #import "AMTumblrHud.h"
 #import "UIViewController+RSLoading.h"
 #import "RSVideoDetailAnimator.h"
 #import "RSChannelListViewController.h"
 #import "RSChannelService.h"
+#import "UIImageView+Loading.h"
 
 static NSString *const kVideoCellId = @"videoCell";
 
@@ -201,7 +201,7 @@ static NSString *const kVideoCellId = @"videoCell";
     RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) indexPath.row];
 
     [cell.thumbnailImageView setImage:[UIImage imageNamed:@"DefaultThumbnail"]];
-    [cell.thumbnailImageView asynLoadingImageWithUrlString:item.mediumThumbnailUrl];
+    [cell.thumbnailImageView asynLoadingImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
 
     cell.titleLabel.text = item.title;
     cell.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];

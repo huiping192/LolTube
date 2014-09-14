@@ -41,6 +41,7 @@
 
         self.description = videoItem.snippet.description;
         self.mediumThumbnailUrl = videoItem.snippet.thumbnails.medium.url;
+        self.highThumbnailUrl =[NSString stringWithFormat:@"http://i.ytimg.com/vi/%@/maxresdefault.jpg", self.videoId];
         self.title = videoItem.snippet.title;
         self.postedTime = [self p_postedTimeWithPublishedAt:videoItem.snippet.publishedAt];
 

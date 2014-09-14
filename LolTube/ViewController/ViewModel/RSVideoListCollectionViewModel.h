@@ -25,6 +25,7 @@
 @property(nonatomic, copy) NSString *channelTitle;
 @property(nonatomic, copy) NSString *postedTime;
 
-@property(nonatomic, copy) NSString *mediumThumbnailUrl;
+@property(nonatomic, copy) NSString *highThumbnailUrl;
+@property(nonatomic, copy) NSString *defaultThumbnailUrl;
 
 @end

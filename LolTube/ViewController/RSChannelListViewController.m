@@ -6,12 +6,12 @@
 #import "RSChannelListViewController.h"
 #import "RSChannelTableViewCell.h"
 #import "RSChannelTableViewModel.h"
-#import "UIImageView+RSAsyncLoading.h"
 #import "UIViewController+RSLoading.h"
 #import "AMTumblrHud.h"
 #import "RSVideoListViewController.h"
 #import "RSSearchTableViewCell.h"
 #import "RSChannelService.h"
+#import "UIImageView+Loading.h"
 
 @interface RSChannelListViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -123,7 +123,7 @@
     RSChannelTableViewCellVo *item = self.tableViewModel.items[(NSUInteger) indexPath.row];
     cell.titleLabel.text = item.title;
     cell.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    [cell.thumbnailImageView asynLoadingImageWithUrlString:item.mediumThumbnailUrl];
+    [cell.thumbnailImageView asynLoadingImageWithUrlString:item.mediumThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
 
     if (self.currentChannelIds.count > 1 && [item.channelId isEqualToString:@"All Channels"]) { // all channel
         cell.titleLabel.textColor = [self.view tintColor];

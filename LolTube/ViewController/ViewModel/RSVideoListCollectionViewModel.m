@@ -45,7 +45,8 @@
             cellVo.channelId = item.snippet.channelId;
             cellVo.channelTitle = item.snippet.channelTitle;
             cellVo.title = item.snippet.title;
-            cellVo.mediumThumbnailUrl = item.snippet.thumbnails.medium.url;
+            cellVo.highThumbnailUrl = [NSString stringWithFormat:@"http://i.ytimg.com/vi/%@/maxresdefault.jpg", cellVo.videoId];
+            cellVo.defaultThumbnailUrl = item.snippet.thumbnails.medium.url;
 
             cellVo.postedTime = [self p_postedTimeWithPublishedAt:item.snippet.publishedAt];
 
@@ -59,7 +60,7 @@
                 success();
             }
         });
-    }                            failure:^(NSError *error) {
+    }                             failure:^(NSError *error) {
         if (failure) {
             failure(error);
         }

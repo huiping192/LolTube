@@ -5,9 +5,9 @@
 
 #import "RSVideoDetailViewController.h"
 #import "RSVideoDetailViewModel.h"
-#import "UIImageView+RSAsyncLoading.h"
 #import "UIViewController+RSLoading.h"
 #import "AMTumblrHud.h"
+#import "UIImageView+Loading.h"
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 #import <AVFoundation/AVFoundation.h>
 
@@ -60,7 +60,7 @@
         [weakSelf.loadingView hide];
         self.spaceView.hidden = NO;
 
-        [self.thumbnailImageView asynLoadingImageWithUrlString:weakSelf.videoDetailViewModel.mediumThumbnailUrl];
+        [self.thumbnailImageView asynLoadingImageWithUrlString:weakSelf.videoDetailViewModel.highThumbnailUrl secondImageUrlString:weakSelf.videoDetailViewModel.mediumThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
         weakSelf.titleLabel.text = weakSelf.videoDetailViewModel.title;
         weakSelf.postedAtLabel.text = weakSelf.videoDetailViewModel.postedTime;
         weakSelf.descriptionTextView.text = weakSelf.videoDetailViewModel.description;
