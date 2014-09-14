@@ -7,7 +7,6 @@
 @interface RSVideoListViewController : UIViewController
 
 @property (nonatomic, copy) NSArray *channelIds;
-
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, assign) BOOL needShowChannelTitleView;
 

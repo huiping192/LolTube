@@ -16,7 +16,7 @@
 
 static NSString *const kVideoCellId = @"videoCell";
 
-@interface RSVideoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UINavigationControllerDelegate>
+@interface RSVideoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property(nonatomic, weak) UIRefreshControl *refreshControl;
@@ -56,7 +56,6 @@ static NSString *const kVideoCellId = @"videoCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.navigationController.delegate = self;
     // enable inter active pop gesture
     self.navigationController.interactivePopGestureRecognizer.delegate = (id <UIGestureRecognizerDelegate>) self;
 
@@ -178,6 +177,7 @@ static NSString *const kVideoCellId = @"videoCell";
     RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) tapGestureRecognizer.view.tag];
     videoListViewController.channelIds = @[item.channelId];
     videoListViewController.title = item.channelTitle;
+    videoListViewController.needShowChannelTitleView = NO;
 
     [self.navigationController pushViewController:videoListViewController animated:YES];
 }
@@ -236,17 +236,5 @@ static NSString *const kVideoCellId = @"videoCell";
         [self p_loadDataWithAnimated:NO];
     }
 }
-
-
-#pragma mark - UINavigationControllerDelegate
-
-- (id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
-    if (([fromVC isKindOfClass:[RSVideoListViewController class]] && [toVC isKindOfClass:[RSVideoDetailViewController class]]) || ([fromVC isKindOfClass:[RSVideoDetailViewController class]] && [toVC isKindOfClass:[RSVideoListViewController class]])) {
-        return [[RSVideoDetailAnimator alloc] initWithOperation:operation];
-    }
-
-    return nil;
-}
-
 
 @end
