@@ -15,7 +15,7 @@
 
 static NSString *const kVideoCellId = @"videoCell";
 static CGFloat const kCellMinWidth = 250.0f;
-static CGFloat const kCellRatio =  180.0f / 320.0f;
+static CGFloat const kCellRatio = 180.0f / 320.0f;
 
 @interface RSVideoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -234,7 +234,13 @@ static CGFloat const kCellRatio =  180.0f / 320.0f;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (scrollView.contentOffset.y == roundf(scrollView.contentSize.height - scrollView.frame.size.height)) {
         // load more videos
-        [self p_loadDataWithAnimated:NO];
+        __weak typeof(self) weakSelf = self;
+        [self.collectionViewModel updateNextPageDataWithSuccess:^{
+            [weakSelf.collectionView reloadData];
+
+        }                                               failure:^(NSError *error) {
+            NSLog(@"error:%@",error);
+        }];
     }
 }
 

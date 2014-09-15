@@ -15,6 +15,8 @@
 - (instancetype)initWithChannelIds:(NSArray *)channelIds;
 
 - (void)updateWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure;
+
+- (void)updateNextPageDataWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure;
 @end
 
 @interface RSVideoCollectionViewCellVo : NSObject

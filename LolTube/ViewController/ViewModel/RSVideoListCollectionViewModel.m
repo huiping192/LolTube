@@ -29,7 +29,7 @@
 - (instancetype)initWithChannelIds:(NSArray *)channelIds {
     self = [super init];
     if (self) {
-       _channelIds = channelIds;
+        _channelIds = channelIds;
         _service = [[RSYoutubeService alloc] init];
         _nextPageTokens = nil;
     }
@@ -38,9 +38,18 @@
 }
 
 - (void)updateWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure {
-    [self.service videoListWithChannelIds:_channelIds nextPageTokens:self.nextPageTokens success:^(RSSearchModel *searchModel) {
+    _items = nil;
+    [self p_updateWithPageTokens:nil success:success failure:failure];
+}
+
+- (void)updateNextPageDataWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure {
+    [self p_updateWithPageTokens:self.nextPageTokens success:success failure:failure];
+}
+
+- (void)p_updateWithPageTokens:(NSArray *)pageTokens success:(void (^)())success failure:(void (^)(NSError *))failure {
+    [self.service videoListWithChannelIds:_channelIds nextPageTokens:pageTokens success:^(RSSearchModel *searchModel) {
         NSMutableArray *items = [[NSMutableArray alloc] init];
-        if(self.items){
+        if (self.items) {
             items = self.items.mutableCopy;
         }
 
