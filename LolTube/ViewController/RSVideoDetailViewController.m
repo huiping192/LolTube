@@ -10,6 +10,7 @@
 #import "UIImageView+Loading.h"
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import <Google-AdMob-Ads-SDK/GADBannerView.h>
 
 static NSString *const kAdMobId = @"ca-app-pub-5016636882444405/7747858172";
 
@@ -20,6 +21,7 @@ static NSString *const kAdMobId = @"ca-app-pub-5016636882444405/7747858172";
 @property(nonatomic, weak) IBOutlet UILabel *postedAtLabel;
 @property(nonatomic, weak) IBOutlet UITextView *descriptionTextView;
 @property(nonatomic, weak) IBOutlet UIView *spaceView;
+@property(nonatomic, weak) IBOutlet UIView *bannerView;
 
 @property(nonatomic, strong) RSVideoDetailViewModel *videoDetailViewModel;
 
@@ -60,6 +62,8 @@ static NSString *const kAdMobId = @"ca-app-pub-5016636882444405/7747858172";
 
     self.thumbnailImageView.image = self.thumbnailImage;
     self.thumbnailImage = nil;
+
+    [self p_configureAdView];
 }
 
 - (void)p_loadData {
@@ -80,6 +84,29 @@ static NSString *const kAdMobId = @"ca-app-pub-5016636882444405/7747858172";
         NSLog(@"error:%@", error);
         [weakSelf.loadingView hide];
     }];
+}
+
+- (void)p_configureAdView {
+    GADBannerView *adBannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+    adBannerView.adUnitID = kAdMobId;
+    adBannerView.rootViewController = self;
+    adBannerView.translatesAutoresizingMaskIntoConstraints = NO;
+
+    [self.bannerView addSubview:adBannerView];
+    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(adBannerView);
+    NSArray *xConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[adBannerView]|"
+                                                                    options:0
+                                                                    metrics:nil
+                                                                      views:viewsDictionary];
+    [self.view addConstraints:xConstraints];
+
+    NSArray *yConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[adBannerView]|"
+                                                                    options:0
+                                                                    metrics:nil
+                                                                      views:viewsDictionary];
+    [self.view addConstraints:yConstraints];
+
+    [adBannerView loadRequest:[GADRequest request]];
 }
 
 - (void)p_addNotifications {

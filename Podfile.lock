@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - Google-AdMob-Ads-SDK (6.8.0)
   - JSONModel (1.0.1)
   - Kiwi (2.3.0)
   - OCMock (3.1.1)
@@ -33,6 +34,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - Google-AdMob-Ads-SDK
   - JSONModel (~> 1.0.1)
   - Kiwi (~> 2.3.0)
   - OCMock (~> 3.1.1)
@@ -42,6 +44,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  Google-AdMob-Ads-SDK: ec4a2941cc0aabaf06bf4a709216d3e94ad7b46b
   JSONModel: 634100aaacbd89811bc8a03da209356e5989c569
   Kiwi: 54bece5b35564d9b8e03c608d926f1a22fcfc589
   OCMock: f6cb8c162ab9d5620dddf411282c7b2c0ee78854
