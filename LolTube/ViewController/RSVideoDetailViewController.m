@@ -11,6 +11,8 @@
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 #import <AVFoundation/AVFoundation.h>
 
+static NSString *const kAdMobId = @"ca-app-pub-5016636882444405/7747858172";
+
 @interface RSVideoDetailViewController () <UIScrollViewDelegate>
 
 @property(nonatomic, weak) IBOutlet UIView *videoPlayerView;
@@ -41,8 +43,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self p_configureViews];
+
+    [self p_addNotifications];
+
+    [self p_loadData];
+}
+
+- (void)p_configureViews {
     [self configureLoadingView];
-    [self.loadingView showAnimated:YES];
 
     self.spaceView.layer.borderColor = [UIColor colorWithWhite:0.7f
                                                          alpha:1.0f].CGColor;
@@ -51,10 +60,12 @@
 
     self.thumbnailImageView.image = self.thumbnailImage;
     self.thumbnailImage = nil;
+}
 
-     [self p_addNotifications];
-
+- (void)p_loadData {
     self.videoDetailViewModel = [[RSVideoDetailViewModel alloc] initWithVideoId:self.videoId];
+    [self.loadingView showAnimated:YES];
+
     __weak typeof(self) weakSelf = self;
     [self.videoDetailViewModel updateWithSuccess:^{
         [weakSelf.loadingView hide];
@@ -63,17 +74,15 @@
         [self.thumbnailImageView asynLoadingImageWithUrlString:weakSelf.videoDetailViewModel.highThumbnailUrl secondImageUrlString:weakSelf.videoDetailViewModel.mediumThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
         weakSelf.titleLabel.text = weakSelf.videoDetailViewModel.title;
         weakSelf.postedAtLabel.text = weakSelf.videoDetailViewModel.postedTime;
-        weakSelf.descriptionTextView.text = weakSelf.videoDetailViewModel.description;
+        weakSelf.descriptionTextView.text = weakSelf.videoDetailViewModel.videoDescription;
 
     }                                    failure:^(NSError *error) {
         NSLog(@"error:%@", error);
         [weakSelf.loadingView hide];
     }];
-
-    [self p_playVideo];
 }
 
--(void)p_addNotifications{
+- (void)p_addNotifications {
     [[NSNotificationCenter defaultCenter]
             addObserver:self
                selector:@selector(preferredContentSizeChanged:)
@@ -104,6 +113,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+
+    [self p_playVideo];
 }
 
 

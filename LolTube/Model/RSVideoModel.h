@@ -29,7 +29,7 @@
 @property (nonatomic, copy) NSString *publishedAt;
 @property (nonatomic, copy) NSString *channelId;
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *description;
+@property (nonatomic, copy) NSString *videoDescription;
 @property (nonatomic, copy) RSThumbnails *thumbnails;
 @property (nonatomic, copy) NSString *channelTitle;
 

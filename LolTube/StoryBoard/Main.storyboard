@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="14A343f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Vel-Ji-Muw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vel-Ji-Muw">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -18,9 +19,9 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d7T-NV-Frd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="85" y="-382"/>
+            <point key="canvasLocation" x="159.375" y="-403.52112676056333"/>
         </scene>
-        <!--Video List View Controller - LolTube-->
+        <!--LolTube-->
         <scene sceneID="DIL-yt-Bn6">
             <objects>
                 <viewController storyboardIdentifier="videoList" useStoryboardIdentifierAsRestorationIdentifier="YES" id="34D-TA-1gh" customClass="RSVideoListViewController" sceneMemberID="viewController">
@@ -29,12 +30,11 @@
                         <viewControllerLayoutGuide type="bottom" id="e6h-9h-GKa"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xlo-aj-2bD">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <collectionView appearanceType="aqua" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gFX-Wz-P7l">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gFX-Wz-P7l">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="lNb-EA-39c">
                                     <size key="itemSize" width="310" height="175"/>
@@ -43,20 +43,18 @@
                                     <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell appearanceType="aqua" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="videoCell" id="mMy-xI-Zyt" customClass="RSVideoCollectionViewCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="videoCell" id="mMy-xI-Zyt" customClass="RSVideoCollectionViewCell">
                                         <rect key="frame" x="5" y="69" width="310" height="175"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="310" height="175"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultThumbnail" translatesAutoresizingMaskIntoConstraints="NO" id="Mwu-hu-GrN" userLabel="thumbnail image view">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultThumbnail" translatesAutoresizingMaskIntoConstraints="NO" id="Mwu-hu-GrN" userLabel="thumbnail image view">
                                                     <rect key="frame" x="0.0" y="0.0" width="310" height="175"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
-                                                <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="QZf-SY-7CT" userLabel="title label">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="QZf-SY-7CT" userLabel="title label">
                                                     <rect key="frame" x="10" y="10" width="290" height="38"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="38" placeholder="YES" id="geA-Ql-Q2F"/>
                                                         <constraint firstAttribute="width" constant="290" placeholder="YES" id="vWo-u6-jch"/>
@@ -65,9 +63,8 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMd-Q3-eP8" userLabel="posted time label">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMd-Q3-eP8" userLabel="posted time label">
                                                     <rect key="frame" x="231" y="144" width="69" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="69" placeholder="YES" id="0yJ-fu-4X9"/>
                                                         <constraint firstAttribute="height" constant="21" placeholder="YES" id="DFQ-qt-iyI"/>
@@ -76,13 +73,11 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view appearanceType="aqua" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbJ-ZH-TZQ" userLabel="channel titile view">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbJ-ZH-TZQ" userLabel="channel titile view">
                                                     <rect key="frame" x="10" y="137" width="52" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yj-eT-joF">
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yj-eT-joF">
                                                             <rect key="frame" x="5" y="5" width="42" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" placeholder="YES" id="6k6-BO-0vJ"/>
                                                                 <constraint firstAttribute="width" constant="42" placeholder="YES" id="j0m-N0-Juk"/>
@@ -125,7 +120,7 @@
                                             <outlet property="postedTimeLabel" destination="cMd-Q3-eP8" id="cmO-tB-riz"/>
                                             <outlet property="thumbnailImageView" destination="Mwu-hu-GrN" id="wM7-dK-9bM"/>
                                             <outlet property="titleLabel" destination="QZf-SY-7CT" id="gZ7-BA-LCR"/>
-                                            <segue destination="99o-UL-MFg" kind="push" identifier="videoDetail" id="XCj-fU-gfg"/>
+                                            <segue destination="99o-UL-MFg" kind="show" identifier="videoDetail" id="XCj-fU-gfg"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -146,7 +141,7 @@
                     <navigationItem key="navigationItem" title="LolTube" id="HyJ-GY-dxl">
                         <barButtonItem key="leftBarButtonItem" title="Channel" id="cQj-8A-JDz">
                             <connections>
-                                <segue destination="EdA-Mm-ky0" kind="modal" identifier="channelList" id="KZ4-Px-nV2"/>
+                                <segue destination="EdA-Mm-ky0" kind="presentation" identifier="channelList" id="KZ4-Px-nV2"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="58r-NQ-kV0"/>
@@ -157,7 +152,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZFP-iD-wv0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="515" y="-382"/>
+            <point key="canvasLocation" x="965.625" y="-403.52112676056333"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ROr-ej-ttT">
@@ -173,9 +168,9 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OzJ-Cd-ana" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="515" y="308"/>
+            <point key="canvasLocation" x="965.625" y="325.35211267605632"/>
         </scene>
-        <!--Channel List View Controller - channel-->
+        <!--channel-->
         <scene sceneID="hwQ-MK-aRj">
             <objects>
                 <viewController id="DD7-6f-iXm" customClass="RSChannelListViewController" sceneMemberID="viewController">
@@ -184,32 +179,29 @@
                         <viewControllerLayoutGuide type="bottom" id="Rrs-Eq-59U"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6QS-jX-iBI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView appearanceType="aqua" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nLu-C0-RLG">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nLu-C0-RLG">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell appearanceType="aqua" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="channelCell" id="0fn-rb-6la" customClass="RSChannelTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="channelCell" id="0fn-rb-6la" customClass="RSChannelTableViewCell">
                                         <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0fn-rb-6la" id="kZ8-eX-hb3">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nl5-jr-m5j">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nl5-jr-m5j">
                                                     <rect key="frame" x="20" y="3" width="34" height="34"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="34" id="Ki6-BX-NNg"/>
                                                         <constraint firstAttribute="width" constant="34" id="l1t-Jz-zcP"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZD-9V-gEE">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZD-9V-gEE">
                                                     <rect key="frame" x="77" y="0.0" width="74" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="74" placeholder="YES" id="GBv-59-rZx"/>
                                                     </constraints>
@@ -232,16 +224,15 @@
                                             <segue destination="yEd-kX-Rbt" kind="unwind" identifier="showChannel" unwindAction="channelSelected:" id="q4P-rU-0JZ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell appearanceType="aqua" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="searchCell" id="oCx-Al-gWa" customClass="RSSearchTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="searchCell" id="oCx-Al-gWa" customClass="RSSearchTableViewCell">
                                         <rect key="frame" x="0.0" y="130" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oCx-Al-gWa" id="QPX-eG-HDQ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explore More Channels" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DG9-PH-7Gm">
-                                                    <rect key="frame" x="93" y="11" width="134" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explore More Channels" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DG9-PH-7Gm">
+                                                    <rect key="frame" x="233" y="11" width="134" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" placeholder="YES" id="aDT-hm-TA8"/>
                                                         <constraint firstAttribute="width" constant="134" placeholder="YES" id="gCG-he-yqs"/>
@@ -250,9 +241,8 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="Rjx-n9-pg0">
-                                                    <rect key="frame" x="71" y="16" width="12" height="12"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="Rjx-n9-pg0">
+                                                    <rect key="frame" x="211" y="16" width="12" height="12"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="12" id="RCD-Ow-Ssr"/>
                                                         <constraint firstAttribute="width" constant="12" id="m80-p9-yT4"/>
@@ -269,7 +259,7 @@
                                         <connections>
                                             <outlet property="searchImageView" destination="Rjx-n9-pg0" id="NWP-bo-QpD"/>
                                             <outlet property="searchLabel" destination="DG9-PH-7Gm" id="uhp-r6-Yqg"/>
-                                            <segue destination="QB0-Ee-eOc" kind="push" id="9xV-qx-UHK"/>
+                                            <segue destination="QB0-Ee-eOc" kind="show" id="9xV-qx-UHK"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -306,7 +296,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FXm-e8-dWu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="yEd-kX-Rbt" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1006" y="302"/>
+            <point key="canvasLocation" x="1886.25" y="319.01408450704224"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="GFf-HA-L9Z">
@@ -317,7 +307,7 @@
                         <viewControllerLayoutGuide type="bottom" id="0aG-5y-njA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0k3-zz-FGA">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -325,7 +315,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sf9-rd-N8l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1494" y="308"/>
+            <point key="canvasLocation" x="2801.25" y="325.35211267605632"/>
         </scene>
         <!--Video Detail View Controller-->
         <scene sceneID="Cyw-kU-DVb">
@@ -336,24 +326,20 @@
                         <viewControllerLayoutGuide type="bottom" id="FIg-ZS-c01"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Rdt-ex-REP">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView appearanceType="aqua" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OH3-US-o8o">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OH3-US-o8o">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <view appearanceType="aqua" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oWy-xB-tvV">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oWy-xB-tvV">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="504"/>
                                         <subviews>
-                                            <view appearanceType="aqua" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZl-Ce-Rfa" userLabel="video contain view">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZl-Ce-Rfa" userLabel="video contain view">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="338"/>
                                                 <subviews>
-                                                    <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qtb-Ym-NxJ" userLabel="thunbnail image view">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qtb-Ym-NxJ" userLabel="thunbnail image view">
+                                                        <rect key="frame" x="0.0" y="0.0" width="600" height="338"/>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -365,9 +351,8 @@
                                                     <constraint firstItem="qtb-Ym-NxJ" firstAttribute="top" secondItem="RZl-Ce-Rfa" secondAttribute="top" id="Zf7-YO-NJR"/>
                                                 </constraints>
                                             </view>
-                                            <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="S6f-7T-vGn" userLabel="video title label">
-                                                <rect key="frame" x="10" y="190" width="300" height="17"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="S6f-7T-vGn" userLabel="video title label">
+                                                <rect key="frame" x="10" y="348" width="580" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" placeholder="YES" id="mfQ-R6-haT"/>
                                                 </constraints>
@@ -375,25 +360,22 @@
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ugf-cO-vF3" userLabel="space view">
-                                                <rect key="frame" x="10" y="217" width="310" height="1"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ugf-cO-vF3" userLabel="space view">
+                                                <rect key="frame" x="10" y="375" width="590" height="1"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="7cv-Zb-YC5"/>
                                                 </constraints>
                                             </view>
-                                            <textView appearanceType="aqua" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obJ-MP-rVv" userLabel="description text view">
-                                                <rect key="frame" x="5" y="263" width="310" height="241"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obJ-MP-rVv" userLabel="description text view">
+                                                <rect key="frame" x="5" y="421" width="590" height="83"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <dataDetectorType key="dataDetectorTypes" link="YES" address="YES"/>
                                             </textView>
-                                            <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDX-KK-epG" userLabel="postedAt label">
-                                                <rect key="frame" x="10" y="223" width="125" height="25"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDX-KK-epG" userLabel="postedAt label">
+                                                <rect key="frame" x="10" y="381" width="125" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" placeholder="YES" id="H33-B9-xti"/>
                                                     <constraint firstAttribute="width" constant="125" placeholder="YES" id="sWt-uF-NuM"/>
@@ -438,9 +420,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="FIg-ZS-c01" firstAttribute="top" secondItem="OH3-US-o8o" secondAttribute="bottom" id="3Du-pI-aTN"/>
                             <constraint firstAttribute="trailing" secondItem="OH3-US-o8o" secondAttribute="trailing" id="Kpt-8u-ALJ"/>
                             <constraint firstItem="OH3-US-o8o" firstAttribute="leading" secondItem="Rdt-ex-REP" secondAttribute="leading" id="XXf-e2-WqP"/>
-                            <constraint firstItem="FIg-ZS-c01" firstAttribute="top" secondItem="OH3-US-o8o" secondAttribute="bottom" id="uOH-Mr-Dwd"/>
                             <constraint firstItem="OH3-US-o8o" firstAttribute="top" secondItem="Rdt-ex-REP" secondAttribute="top" id="wPE-YW-TXI"/>
                         </constraints>
                     </view>
@@ -467,16 +449,11 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1006" y="-382"/>
+            <point key="canvasLocation" x="1886.25" y="-403.52112676056333"/>
         </scene>
     </scenes>
     <resources>
         <image name="DefaultThumbnail" width="960" height="540"/>
         <image name="search" width="12" height="13"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

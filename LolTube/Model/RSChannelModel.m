@@ -22,4 +22,11 @@
 @implementation RSChannelSnippet {
 
 }
+
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+            @"description" : @"channelDescription"
+    }];
+}
+
 @end
