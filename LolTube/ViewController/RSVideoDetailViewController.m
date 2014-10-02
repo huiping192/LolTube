@@ -50,6 +50,8 @@ static NSString *const kAdMobId = @"ca-app-pub-5016636882444405/7747858172";
     [self p_addNotifications];
 
     [self p_loadData];
+
+    [self p_playVideo];
 }
 
 - (void)p_configureViews {
@@ -128,7 +130,7 @@ static NSString *const kAdMobId = @"ca-app-pub-5016636882444405/7747858172";
 }
 
 - (void)p_moviePlayBackDidFinish:(id)DidFinish {
-
+     self.videoPlayerViewController.moviePlayer.currentPlaybackTime = 1.0;
 }
 
 - (void)p_moviePreloadDidFinish:(id)p_moviePreloadDidFinish {
@@ -137,13 +139,6 @@ static NSString *const kAdMobId = @"ca-app-pub-5016636882444405/7747858172";
         self.thumbnailImageView.alpha = 0.0;
     }];
 }
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
-    [self p_playVideo];
-}
-
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -181,5 +176,14 @@ static NSString *const kAdMobId = @"ca-app-pub-5016636882444405/7747858172";
 }
 
 #pragma mark -  UIScrollViewDelegate
+
+#pragma mark - orientation
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+
+    [self.videoPlayerViewController.moviePlayer setFullscreen:toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight animated:YES];
+}
+
 
 @end
