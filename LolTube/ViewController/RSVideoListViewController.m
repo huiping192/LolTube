@@ -26,6 +26,8 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 
 @property(nonatomic, assign) BOOL collectionViewFirstShownFlag;
 
+@property(nonatomic, assign) BOOL loading;
+
 @end
 
 @implementation RSVideoListViewController {
@@ -232,15 +234,25 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 #pragma mark - scrollView delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (scrollView.contentOffset.y == roundf(scrollView.contentSize.height - scrollView.frame.size.height)) {
+    if (scrollView.contentOffset.y >= roundf(scrollView.contentSize.height - scrollView.frame.size.height) * 0.8) {
         // load more videos
-        __weak typeof(self) weakSelf = self;
-        [self.collectionViewModel updateNextPageDataWithSuccess:^{
-            [weakSelf.collectionView reloadData];
 
-        }                                               failure:^(NSError *error) {
-            NSLog(@"error:%@",error);
-        }];
+        @synchronized(self) {
+            if(self.loading){
+               return;
+            }
+            self.loading = YES;
+            __weak typeof(self) weakSelf = self;
+            [self.collectionViewModel updateNextPageDataWithSuccess:^{
+                [weakSelf.collectionView reloadData];
+                self.loading = NO;
+
+            }                                               failure:^(NSError *error) {
+                NSLog(@"error:%@",error);
+                self.loading = NO;
+            }];
+        }
+
     }
 }
 
