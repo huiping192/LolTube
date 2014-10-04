@@ -12,11 +12,13 @@
 
 @property(nonatomic, strong, readonly) NSArray <RSVideoCollectionViewCellVo> *items;
 
+@property(nonatomic, copy) NSString *searchText;
+
 - (instancetype)initWithChannelIds:(NSArray *)channelIds;
 
 - (void)updateWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure;
 
-- (void)updateNextPageDataWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure;
+- (void)updateNextPageDataWithSuccess:(void (^)(BOOL hasNewData))success failure:(void (^)(NSError *))failure;
 @end
 
 @interface RSVideoCollectionViewCellVo : NSObject
@@ -26,6 +28,7 @@
 @property(nonatomic, copy) NSString *title;
 @property(nonatomic, copy) NSString *channelTitle;
 @property(nonatomic, copy) NSString *postedTime;
+@property(nonatomic, copy) NSString *publishedAt;
 
 @property(nonatomic, copy) NSString *highThumbnailUrl;
 @property(nonatomic, copy) NSString *defaultThumbnailUrl;

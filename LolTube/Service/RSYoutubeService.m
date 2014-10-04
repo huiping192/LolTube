@@ -21,15 +21,19 @@ static NSString *const kYoutubeChannelUrlString = @"https://www.googleapis.com/y
 @implementation RSYoutubeService {
 
 }
-- (void)videoListWithChannelId:(NSString *)channelId nextPageToken:(NSString *)nextPageToken success:(void (^)(RSSearchModel *))success failure:(void (^)(NSError *))failure {
+- (void)videoListWithChannelId:(NSString *)channelId searchText:(NSString *)searchText nextPageToken:(NSString *)nextPageToken success:(void (^)(RSSearchModel *))success failure:(void (^)(NSError *))failure {
     if (!channelId || [channelId isEqualToString:@""]) {
         return;
     }
     if (!nextPageToken) {
         nextPageToken = @"";
     }
+
+    if (!searchText) {
+        searchText = @"";
+    }
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"channelId" : channelId, @"type" : @"video", @"maxResults" : @(10), @"order" : @"date", @"pageToken" : nextPageToken};
+    NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"channelId" : channelId, @"type" : @"video", @"maxResults" : @(10), @"order" : @"date", @"pageToken" : nextPageToken, @"q" : searchText};
 
     // fields value (,% などのchatがlibに変換されるため、NSStringでそのまま設定する
     NSString *urlString = [NSString stringWithFormat:@"%@?%@=%@", kYoutubeSearchUrlString, @"fields", @"items(id%2Csnippet)%2CpageInfo%2CnextPageToken"];
@@ -52,26 +56,32 @@ static NSString *const kYoutubeChannelUrlString = @"https://www.googleapis.com/y
     }];
 }
 
-- (void)videoListWithChannelIds:(NSArray *)channelIds nextPageTokens:(NSArray *)nextPageTokens success:(void (^)(RSSearchModel *))success failure:(void (^)(NSError *))failure {
+- (void)videoListWithChannelIds:(NSArray *)channelIds searchText:(NSString *)searchText nextPageTokens:(NSArray *)nextPageTokens success:(void (^)(NSArray *))success failure:(void (^)(NSError *))failure {
     if (channelIds.count == 1) {
         NSString *nextPageToken = @"";
         if (nextPageTokens && nextPageTokens.count > 0) {
             nextPageToken = nextPageTokens[0];
         }
-        [self videoListWithChannelId:channelIds[0] nextPageToken:nextPageToken success:success failure:failure];
+        [self videoListWithChannelId:channelIds[0] searchText:searchText nextPageToken:nextPageToken success:^(RSSearchModel *searchModel){
+           if(success){
+               success(@[searchModel]);
+           }
+        } failure:failure];
         return;
     }
 
     NSMutableArray *mutableOperations = [NSMutableArray array];
-    NSMutableArray *pageTokens = [NSMutableArray array];
     for (NSString *channelId in channelIds) {
 
         NSString *nextPageToken = @"";
         if (nextPageTokens) {
             nextPageToken = nextPageTokens[[channelIds indexOfObject:channelId]];
         }
+        if (!searchText) {
+            searchText = @"";
+        }
 
-        NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"channelId" : channelId, @"type" : @"video", @"maxResults" : @(5), @"order" : @"date", @"pageToken" : nextPageToken};
+        NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"channelId" : channelId, @"type" : @"video", @"maxResults" : @(5), @"order" : @"date", @"pageToken" : nextPageToken, @"q" : searchText};
 
         // fields value (,% などのchatがlibに変換されるため、NSStringでそのまま設定する
         NSString *urlString = [NSString stringWithFormat:@"%@?%@=%@", kYoutubeSearchUrlString, @"fields", @"items(id%2Csnippet)%2CpageInfo%2CnextPageToken"];
@@ -83,35 +93,30 @@ static NSString *const kYoutubeChannelUrlString = @"https://www.googleapis.com/y
         [mutableOperations addObject:operation];
     }
 
-    __block NSMutableArray *items = [[NSMutableArray alloc] init];
+    __block NSMutableArray *searchModelList = [[NSMutableArray alloc] init];
 
+    __block NSError *error = nil;
     NSArray *operations = [AFURLConnectionOperation batchOfRequestOperations:mutableOperations progressBlock:^(NSUInteger numberOfFinishedOperations, NSUInteger totalNumberOfOperations) {
         AFHTTPRequestOperation *operation = mutableOperations[numberOfFinishedOperations - 1];
-        NSError *error = nil;
-        RSSearchModel *searchModel = [[RSSearchModel alloc] initWithString:operation.responseString error:&error];
+        JSONModelError *jsonModelError = nil;
 
-        [items addObjectsFromArray:searchModel.items];
-        [pageTokens addObject:searchModel.nextPageToken];
+        RSSearchModel *searchModel = [[RSSearchModel alloc] initWithString:operation.responseString error:&jsonModelError];
 
+        if(jsonModelError){
+            error = jsonModelError;
+            return;
+        }
+
+        if(searchModel){
+            [searchModelList addObject:searchModel];
+        }
     }                                                        completionBlock:^(NSArray *operations) {
         if (success) {
-            RSSearchModel *searchModel = [[RSSearchModel alloc] init];
-            searchModel.nextPageToken = [pageTokens componentsJoinedByString:@","];
-            searchModel.items = (NSArray <RSItem> *) [self p_sortChannelItems:items];
-
-            success(searchModel);
+            success(searchModelList);
         }
     }];
 
     [[NSOperationQueue mainQueue] addOperations:operations waitUntilFinished:NO];
-}
-
-- (NSArray *)p_sortChannelItems:(NSArray *)items {
-    NSMutableArray *mutableItems = items.mutableCopy;
-    [mutableItems sortUsingComparator:^NSComparisonResult(RSItem *item1, RSItem *item2) {
-        return [[NSDate dateFromISO8601String:item2.snippet.publishedAt] compare:[NSDate dateFromISO8601String:item1.snippet.publishedAt]];
-    }];
-    return mutableItems;
 }
 
 - (void)videoWithVideoId:(NSString *)videoId success:(void (^)(RSVideoModel *))success failure:(void (^)(NSError *))failure {

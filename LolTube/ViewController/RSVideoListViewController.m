@@ -17,10 +17,11 @@ static NSString *const kVideoCellId = @"videoCell";
 static CGFloat const kCellMinWidth = 250.0f;
 static CGFloat const kCellRatio = 180.0f / 320.0f;
 
-@interface RSVideoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface RSVideoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
 
 @property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property(nonatomic, weak) UIRefreshControl *refreshControl;
+@property(nonatomic, weak) UISearchBar *searchBar;
 
 @property(nonatomic, strong) RSVideoListCollectionViewModel *collectionViewModel;
 
@@ -68,6 +69,14 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 
     [self p_loadDataWithAnimated:YES];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    // hide search bar when first time show scroll view
+    [self.collectionView setContentOffset:CGPointMake(self.collectionView.contentOffset.x, self.collectionView.contentOffset.y + 44) animated:NO];
+}
+
 
 - (void)p_configureViews {
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
@@ -193,6 +202,12 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
     [self p_loadDataWithAnimated:YES];
 }
 
+
+- (IBAction)searchButtonTapped {
+    [self.collectionView setContentOffset:CGPointMake(0, -self.collectionView.contentInset.top) animated:YES];
+    [self.searchBar becomeFirstResponder];
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -231,28 +246,59 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
     return cell;
 }
 
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    UICollectionReusableView *searchCollectionReusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"searchCollectionReusableView" forIndexPath:indexPath];
+
+    if(searchCollectionReusableView.subviews.count == 0){
+        UISearchBar *searchBar = [[UISearchBar alloc] init];
+        searchBar.delegate = self;
+        searchBar.placeholder = NSLocalizedString(@"SearchVideos", @"Search Videos");
+        searchBar.text = self.collectionViewModel.searchText;
+        searchBar.translatesAutoresizingMaskIntoConstraints = NO;
+
+        [searchCollectionReusableView addSubview:searchBar];
+        NSArray *hConstraints =
+                [NSLayoutConstraint constraintsWithVisualFormat:@"|[searchBar]|"
+                                                        options:0 metrics:nil views:NSDictionaryOfVariableBindings(searchBar)];
+        NSArray *VConstraints =
+                [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[searchBar]|"
+                                                        options:0 metrics:nil views:NSDictionaryOfVariableBindings(searchBar)];
+
+        [searchCollectionReusableView addConstraints:hConstraints];
+        [searchCollectionReusableView addConstraints:VConstraints];
+
+        self.searchBar = searchBar;
+    }
+
+    return searchCollectionReusableView;
+}
+
+
 #pragma mark - scrollView delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (scrollView.contentOffset.y >= roundf(scrollView.contentSize.height - scrollView.frame.size.height) * 0.8) {
-        // load more videos
+    [self.searchBar resignFirstResponder];
+    [self.searchBar setShowsCancelButton:NO animated:YES];
 
-        @synchronized(self) {
-            if(self.loading){
-               return;
+    if (scrollView.contentOffset.y == roundf(scrollView.contentSize.height - scrollView.frame.size.height)) {
+        // load more videos
+        @synchronized (self) {
+            if (self.loading) {
+                return;
             }
             self.loading = YES;
             __weak typeof(self) weakSelf = self;
-            [self.collectionViewModel updateNextPageDataWithSuccess:^{
-                [weakSelf.collectionView reloadData];
+            [self.collectionViewModel updateNextPageDataWithSuccess:^(BOOL hasNewData){
+                if(hasNewData){
+                    [weakSelf.collectionView reloadData];
+                }
                 self.loading = NO;
 
             }                                               failure:^(NSError *error) {
-                NSLog(@"error:%@",error);
+                NSLog(@"error:%@", error);
                 self.loading = NO;
             }];
         }
-
     }
 }
 
@@ -269,5 +315,30 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 
     flowLayout.itemSize = CGSizeMake(cellWidth, cellWidth * kCellRatio);
 }
+
+#pragma mark - search bar
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:YES animated:YES];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+
+    [self.collectionViewModel setSearchText:searchBar.text];
+    [self p_loadDataWithAnimated:YES];
+}
+
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];
+
+    if (self.collectionViewModel.searchText) {
+        [self.collectionViewModel setSearchText:nil];
+        [self p_loadDataWithAnimated:YES];
+    }
+}
+
 
 @end

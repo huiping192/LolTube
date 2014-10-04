@@ -12,3 +12,4 @@
 "VideoPostedTimeStringHoursFormatter" = "%d小時前";
 "VideoDetailPostedAtFormatter" = "%@ 發布";
 "SearchChannels" = "瀏覽更多的頻道";
+"SearchVideos" = "搜索視頻";

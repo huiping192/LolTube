@@ -10,9 +10,9 @@
 
 @interface RSYoutubeService : NSObject
 
-- (void)videoListWithChannelId:(NSString *)channelId nextPageToken:(NSString *)nextPageToken success:(void (^)(RSSearchModel *))success failure:(void (^)(NSError *))failure;
+- (void)videoListWithChannelId:(NSString *)channelId searchText:(NSString *)searchText nextPageToken:(NSString *)nextPageToken success:(void (^)(RSSearchModel *))success failure:(void (^)(NSError *))failure;
 
-- (void)videoListWithChannelIds:(NSArray *)channelIds nextPageTokens:(NSArray *)nextPageTokens success:(void (^)(RSSearchModel *))success failure:(void (^)(NSError *))failure;
+- (void)videoListWithChannelIds:(NSArray *)channelIds searchText:(NSString *)searchText nextPageTokens:(NSArray *)nextPageTokens success:(void (^)(NSArray *))success failure:(void (^)(NSError *))failure;
 
 - (void)videoWithVideoId:(NSString *)videoId success:(void (^)(RSVideoModel *))success failure:(void (^)(NSError *))failure;
 
