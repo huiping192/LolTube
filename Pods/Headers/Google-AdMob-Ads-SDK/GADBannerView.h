@@ -1,1 +1,1 @@
-../../Google-AdMob-Ads-SDK/GoogleAdMobAdsSdkiOS-6.8.0/GADBannerView.h
+../../Google-AdMob-Ads-SDK/GoogleMobileAdsSdkiOS-6.12.0/GADBannerView.h
