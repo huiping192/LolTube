@@ -8,27 +8,35 @@
 #import "AFNetworking/AFNetworking.h"
 #import "RSVideoModel.h"
 #import "RSChannelModel.h"
+#import "NSDate+RSFormatter.h"
 
 static NSString *const kYoutubeApiKey = @"AIzaSyBb1ZDTeUmzba4Kk4wsYtmi70tr7UBo3HA";
 
 // api url
 static NSString *const kYoutubeSearchUrlString = @"https://www.googleapis.com/youtube/v3/search";
 static NSString *const kYoutubeVideoUrlString = @"https://www.googleapis.com/youtube/v3/videos";
-static NSString *const kYoutubChannelUrlString = @"https://www.googleapis.com/youtube/v3/channels";
+static NSString *const kYoutubeChannelUrlString = @"https://www.googleapis.com/youtube/v3/channels";
 
 
 @implementation RSYoutubeService {
 
 }
-- (void)videoListWithChannelId:(NSString *)channelId success:(void (^)(RSSearchModel *))success failure:(void (^)(NSError *))failure {
+- (void)videoListWithChannelId:(NSString *)channelId searchText:(NSString *)searchText nextPageToken:(NSString *)nextPageToken success:(void (^)(RSSearchModel *))success failure:(void (^)(NSError *))failure {
     if (!channelId || [channelId isEqualToString:@""]) {
         return;
     }
+    if (!nextPageToken) {
+        nextPageToken = @"";
+    }
+
+    if (!searchText) {
+        searchText = @"";
+    }
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"channelId" : channelId, @"type" : @"video", @"maxResults" : @(50), @"order" : @"date"};
+    NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"channelId" : channelId, @"type" : @"video", @"maxResults" : @(10), @"order" : @"date", @"pageToken" : nextPageToken, @"q" : searchText};
 
     // fields value (,% などのchatがlibに変換されるため、NSStringでそのまま設定する
-    NSString *urlString = [NSString stringWithFormat:@"%@?%@=%@", kYoutubeSearchUrlString, @"fields", @"items(id%2Csnippet)%2CpageInfo"];
+    NSString *urlString = [NSString stringWithFormat:@"%@?%@=%@", kYoutubeSearchUrlString, @"fields", @"items(id%2Csnippet)%2CpageInfo%2CnextPageToken"];
     [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         JSONModelError *error = nil;
         RSSearchModel *searchModel = [[RSSearchModel alloc] initWithDictionary:responseObject error:&error];
@@ -46,6 +54,69 @@ static NSString *const kYoutubChannelUrlString = @"https://www.googleapis.com/yo
             failure(error);
         }
     }];
+}
+
+- (void)videoListWithChannelIds:(NSArray *)channelIds searchText:(NSString *)searchText nextPageTokens:(NSArray *)nextPageTokens success:(void (^)(NSArray *))success failure:(void (^)(NSError *))failure {
+    if (channelIds.count == 1) {
+        NSString *nextPageToken = @"";
+        if (nextPageTokens && nextPageTokens.count > 0) {
+            nextPageToken = nextPageTokens[0];
+        }
+        [self videoListWithChannelId:channelIds[0] searchText:searchText nextPageToken:nextPageToken success:^(RSSearchModel *searchModel){
+           if(success){
+               success(@[searchModel]);
+           }
+        } failure:failure];
+        return;
+    }
+
+    NSMutableArray *mutableOperations = [NSMutableArray array];
+    for (NSString *channelId in channelIds) {
+
+        NSString *nextPageToken = @"";
+        if (nextPageTokens) {
+            nextPageToken = nextPageTokens[[channelIds indexOfObject:channelId]];
+        }
+        if (!searchText) {
+            searchText = @"";
+        }
+
+        NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"channelId" : channelId, @"type" : @"video", @"maxResults" : @(5), @"order" : @"date", @"pageToken" : nextPageToken, @"q" : searchText};
+
+        // fields value (,% などのchatがlibに変換されるため、NSStringでそのまま設定する
+        NSString *urlString = [NSString stringWithFormat:@"%@?%@=%@", kYoutubeSearchUrlString, @"fields", @"items(id%2Csnippet)%2CpageInfo%2CnextPageToken"];
+
+        NSURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:[[NSURL URLWithString:urlString] absoluteString] parameters:parameters error:nil];
+
+        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+
+        [mutableOperations addObject:operation];
+    }
+
+    __block NSMutableArray *searchModelList = [[NSMutableArray alloc] init];
+
+    __block NSError *error = nil;
+    NSArray *operations = [AFURLConnectionOperation batchOfRequestOperations:mutableOperations progressBlock:^(NSUInteger numberOfFinishedOperations, NSUInteger totalNumberOfOperations) {
+        AFHTTPRequestOperation *operation = mutableOperations[numberOfFinishedOperations - 1];
+        JSONModelError *jsonModelError = nil;
+
+        RSSearchModel *searchModel = [[RSSearchModel alloc] initWithString:operation.responseString error:&jsonModelError];
+
+        if(jsonModelError){
+            error = jsonModelError;
+            return;
+        }
+
+        if(searchModel){
+            [searchModelList addObject:searchModel];
+        }
+    }                                                        completionBlock:^(NSArray *operations) {
+        if (success) {
+            success(searchModelList);
+        }
+    }];
+
+    [[NSOperationQueue mainQueue] addOperations:operations waitUntilFinished:NO];
 }
 
 - (void)videoWithVideoId:(NSString *)videoId success:(void (^)(RSVideoModel *))success failure:(void (^)(NSError *))failure {
@@ -86,7 +157,7 @@ static NSString *const kYoutubChannelUrlString = @"https://www.googleapis.com/yo
     NSString *channelIdsString = [channelIds componentsJoinedByString:@","];
     NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"id" : channelIdsString};
 
-    NSString *urlString = [NSString stringWithFormat:@"%@?%@=%@", kYoutubChannelUrlString, @"fields", @"items(auditDetails,brandingSettings,contentDetails,contentOwnerDetails,id,snippet,statistics,status,topicDetails)"];
+    NSString *urlString = [NSString stringWithFormat:@"%@?%@=%@", kYoutubeChannelUrlString, @"fields", @"items(auditDetails,brandingSettings,contentDetails,contentOwnerDetails,id,snippet,statistics,status,topicDetails)"];
 
     [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         JSONModelError *error = nil;

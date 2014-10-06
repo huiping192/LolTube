@@ -4,7 +4,6 @@
 //
 
 #import "RSVideoModel.h"
-#import "RSSearchModel.h"
 
 
 @implementation RSVideoModel {
@@ -13,6 +12,12 @@
 @end
 
 @implementation RSVideoSnippet
+
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+            @"description" : @"videoDescription"
+    }];
+}
 
 @end
 

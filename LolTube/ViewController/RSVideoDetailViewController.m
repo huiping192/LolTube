@@ -5,11 +5,14 @@
 
 #import "RSVideoDetailViewController.h"
 #import "RSVideoDetailViewModel.h"
-#import "UIImageView+RSAsyncLoading.h"
 #import "UIViewController+RSLoading.h"
 #import "AMTumblrHud.h"
+#import "UIImageView+Loading.h"
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import <Google-AdMob-Ads-SDK/GADBannerView.h>
+
+static NSString *const kAdMobId = @"ca-app-pub-5016636882444405/7747858172";
 
 @interface RSVideoDetailViewController () <UIScrollViewDelegate>
 
@@ -18,6 +21,7 @@
 @property(nonatomic, weak) IBOutlet UILabel *postedAtLabel;
 @property(nonatomic, weak) IBOutlet UITextView *descriptionTextView;
 @property(nonatomic, weak) IBOutlet UIView *spaceView;
+@property(nonatomic, weak) IBOutlet UIView *bannerView;
 
 @property(nonatomic, strong) RSVideoDetailViewModel *videoDetailViewModel;
 
@@ -41,8 +45,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self p_configureViews];
+
+    [self p_addNotifications];
+
+    [self p_loadData];
+
+    [self p_playVideo];
+}
+
+- (void)p_configureViews {
     [self configureLoadingView];
-    [self.loadingView showAnimated:YES];
 
     self.spaceView.layer.borderColor = [UIColor colorWithWhite:0.7f
                                                          alpha:1.0f].CGColor;
@@ -52,28 +65,53 @@
     self.thumbnailImageView.image = self.thumbnailImage;
     self.thumbnailImage = nil;
 
-     [self p_addNotifications];
+    [self p_configureAdView];
+}
 
+- (void)p_loadData {
     self.videoDetailViewModel = [[RSVideoDetailViewModel alloc] initWithVideoId:self.videoId];
+    [self.loadingView showAnimated:YES];
+
     __weak typeof(self) weakSelf = self;
     [self.videoDetailViewModel updateWithSuccess:^{
         [weakSelf.loadingView hide];
         self.spaceView.hidden = NO;
 
-        [self.thumbnailImageView asynLoadingImageWithUrlString:weakSelf.videoDetailViewModel.mediumThumbnailUrl];
+        [self.thumbnailImageView asynLoadingImageWithUrlString:weakSelf.videoDetailViewModel.highThumbnailUrl secondImageUrlString:weakSelf.videoDetailViewModel.mediumThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
         weakSelf.titleLabel.text = weakSelf.videoDetailViewModel.title;
         weakSelf.postedAtLabel.text = weakSelf.videoDetailViewModel.postedTime;
-        weakSelf.descriptionTextView.text = weakSelf.videoDetailViewModel.description;
+        weakSelf.descriptionTextView.text = weakSelf.videoDetailViewModel.videoDescription;
 
     }                                    failure:^(NSError *error) {
         NSLog(@"error:%@", error);
         [weakSelf.loadingView hide];
     }];
-
-    [self p_playVideo];
 }
 
--(void)p_addNotifications{
+- (void)p_configureAdView {
+    GADBannerView *adBannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+    adBannerView.adUnitID = kAdMobId;
+    adBannerView.rootViewController = self;
+    adBannerView.translatesAutoresizingMaskIntoConstraints = NO;
+
+    [self.bannerView addSubview:adBannerView];
+    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(adBannerView);
+    NSArray *xConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[adBannerView]|"
+                                                                    options:0
+                                                                    metrics:nil
+                                                                      views:viewsDictionary];
+    [self.view addConstraints:xConstraints];
+
+    NSArray *yConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[adBannerView]|"
+                                                                    options:0
+                                                                    metrics:nil
+                                                                      views:viewsDictionary];
+    [self.view addConstraints:yConstraints];
+
+    [adBannerView loadRequest:[GADRequest request]];
+}
+
+- (void)p_addNotifications {
     [[NSNotificationCenter defaultCenter]
             addObserver:self
                selector:@selector(preferredContentSizeChanged:)
@@ -92,7 +130,7 @@
 }
 
 - (void)p_moviePlayBackDidFinish:(id)DidFinish {
-
+     self.videoPlayerViewController.moviePlayer.currentPlaybackTime = 1.0;
 }
 
 - (void)p_moviePreloadDidFinish:(id)p_moviePreloadDidFinish {
@@ -101,11 +139,6 @@
         self.thumbnailImageView.alpha = 0.0;
     }];
 }
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -143,5 +176,14 @@
 }
 
 #pragma mark -  UIScrollViewDelegate
+
+#pragma mark - orientation
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+
+    [self.videoPlayerViewController.moviePlayer setFullscreen:toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight animated:YES];
+}
+
 
 @end

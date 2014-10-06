@@ -15,6 +15,7 @@
 @class RSThumbnail;
 
 @interface RSSearchModel : JSONModel
+@property(nonatomic, copy) NSString<Optional> *nextPageToken;
 
 @property(nonatomic, strong) RSPageInfo *pageInfo;
 
@@ -42,7 +43,7 @@
 @property(nonatomic, copy) NSString *publishedAt;
 @property(nonatomic, copy) NSString *channelId;
 @property(nonatomic, copy) NSString *title;
-@property(nonatomic, copy) NSString *description;
+@property(nonatomic, copy) NSString *videoDescription;
 @property(nonatomic, copy) RSThumbnails *thumbnails;
 @property(nonatomic, copy) NSString *channelTitle;
 @property(nonatomic, copy) NSString *liveBroadcastContent;

@@ -11,9 +11,10 @@
 @property(nonatomic, copy) NSString *videoId;
 @property(nonatomic, copy) NSString *title;
 @property(nonatomic, copy) NSString *postedTime;
-@property(nonatomic, copy) NSString *description;
+@property(nonatomic, copy) NSString *videoDescription;
 
 @property(nonatomic, copy) NSString *mediumThumbnailUrl;
+@property(nonatomic, copy) NSString *highThumbnailUrl;
 
 @property(nonatomic, copy) NSString *shareTitle;
 @property(nonatomic, copy) NSString *shareUrlString;

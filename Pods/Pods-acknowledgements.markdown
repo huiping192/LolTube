@@ -24,6 +24,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
+## Google-AdMob-Ads-SDK
+
+Copyright 2009 - 2012 Google, Inc. All rights reserved.
+
+
 ## JSONModel
 
 JSONModel

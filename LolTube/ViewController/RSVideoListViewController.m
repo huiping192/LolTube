@@ -6,20 +6,28 @@
 #import "RSVideoListViewController.h"
 #import "RSVideoCollectionViewCell.h"
 #import "RSVideoListCollectionViewModel.h"
-#import "UIImageView+RSAsyncLoading.h"
 #import "RSVideoDetailViewController.h"
 #import "AMTumblrHud.h"
 #import "UIViewController+RSLoading.h"
-#import "RSVideoDetailAnimator.h"
 #import "RSChannelListViewController.h"
+#import "RSChannelService.h"
+#import "UIImageView+Loading.h"
 
 static NSString *const kVideoCellId = @"videoCell";
+static CGFloat const kCellMinWidth = 250.0f;
+static CGFloat const kCellRatio = 180.0f / 320.0f;
 
-@interface RSVideoListViewController () <UICollectionViewDataSource, UINavigationControllerDelegate>
+@interface RSVideoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
 
 @property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property(nonatomic, weak) UIRefreshControl *refreshControl;
+@property(nonatomic, weak) UISearchBar *searchBar;
 
 @property(nonatomic, strong) RSVideoListCollectionViewModel *collectionViewModel;
+
+@property(nonatomic, assign) BOOL collectionViewFirstShownFlag;
+
+@property(nonatomic, assign) BOOL loading;
 
 @end
 
@@ -33,50 +41,92 @@ static NSString *const kVideoCellId = @"videoCell";
 - (id)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
-        // TODO: when do not have channelId, search all exist channel
-        _collectionViewModel = [[RSVideoListCollectionViewModel alloc] initWithChannelId:@"UCvqRdlKsE5Q8mf8YXbdIJLw"];
+        RSChannelService *channelService = [[RSChannelService alloc] init];
+        _channelIds = [channelService channelIds];
+        _collectionViewModel = [[RSVideoListCollectionViewModel alloc] initWithChannelIds:_channelIds];
+
+        _needShowChannelTitleView = YES;
     }
 
     return self;
 }
 
-- (void)setChannelId:(NSString *)channelId {
-    _channelId = channelId;
-    _collectionViewModel = [[RSVideoListCollectionViewModel alloc] initWithChannelId:_channelId];
+- (void)setChannelIds:(NSArray *)channelIds {
+    _channelIds = channelIds;
+    _collectionViewModel = [[RSVideoListCollectionViewModel alloc] initWithChannelIds:channelIds];
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.navigationController.delegate = self;
-
     // enable inter active pop gesture
     self.navigationController.interactivePopGestureRecognizer.delegate = (id <UIGestureRecognizerDelegate>) self;
 
+    [self p_configureViews];
+
+    [self p_configureNotifications];
+
+    [self p_loadDataWithAnimated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    // hide search bar when first time show scroll view
+    [self.collectionView setContentOffset:CGPointMake(self.collectionView.contentOffset.x, self.collectionView.contentOffset.y + 44) animated:NO];
+}
+
+
+- (void)p_configureViews {
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl = refreshControl;
+    [refreshControl addTarget:self action:@selector(p_refresh) forControlEvents:UIControlEventValueChanged];
+    self.collectionView.alwaysBounceVertical = YES;
+    [self.collectionView addSubview:refreshControl];
+}
+
+- (void)p_configureNotifications {
     [[NSNotificationCenter defaultCenter]
             addObserver:self
                selector:@selector(preferredContentSizeChanged:)
                    name:UIContentSizeCategoryDidChangeNotification
                  object:nil];
-
-    [self p_loadData];
 }
 
-- (void)p_loadData {
-    if (self.channelTitle) {
-        self.navigationItem.title = self.channelTitle;
+- (void)p_refresh {
+    [self p_loadDataWithAnimated:NO];
+    [self.refreshControl endRefreshing];
+}
+
+- (void)p_loadDataWithAnimated:(BOOL)animated {
+    if (self.title) {
+        self.navigationItem.title = self.title;
     }
 
-    [self configureLoadingView];
-    [self.loadingView showAnimated:YES];
+    if (animated) {
+        [self configureLoadingView];
+        [self.loadingView showAnimated:YES];
+        self.collectionViewFirstShownFlag = YES;
+        self.collectionView.alpha = 0.0;
+    }
 
     __weak typeof(self) weakSelf = self;
     [self.collectionViewModel updateWithSuccess:^{
-        [weakSelf.loadingView hide];
         [weakSelf.collectionView reloadData];
+        if (animated) {
+            [weakSelf.loadingView hide];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIView animateWithDuration:0.25 animations:^{
+                    self.collectionViewFirstShownFlag = NO;
+                    self.collectionView.alpha = 1.0;
+                }];
+            });
+        }
     }                                   failure:^(NSError *error) {
-        [weakSelf.loadingView hide];
+        if (animated) {
+            [weakSelf.loadingView hide];
+        }
     }];
 }
 
@@ -108,7 +158,7 @@ static NSString *const kVideoCellId = @"videoCell";
     } else if ([segue.identifier isEqualToString:@"channelList"]) {
         UINavigationController *navigationController = segue.destinationViewController;
         RSChannelListViewController *channelListViewController = (RSChannelListViewController *) navigationController.topViewController;
-        channelListViewController.currentChannelId = self.channelId;
+        channelListViewController.currentChannelIds = self.channelIds;
     }
 }
 
@@ -137,19 +187,28 @@ static NSString *const kVideoCellId = @"videoCell";
     RSVideoListViewController *videoListViewController = [storyboard instantiateViewControllerWithIdentifier:@"videoList"];
 
     RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) tapGestureRecognizer.view.tag];
-    videoListViewController.channelId = item.channelId;
-    videoListViewController.channelTitle = item.channelTitle;
+    videoListViewController.channelIds = @[item.channelId];
+    videoListViewController.title = item.channelTitle;
+    videoListViewController.needShowChannelTitleView = NO;
 
     [self.navigationController pushViewController:videoListViewController animated:YES];
 }
 
 - (IBAction)channelSelected:(UIStoryboardSegue *)segue {
-    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+    if ([self.collectionView numberOfItemsInSection:0] != 0) {
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+    }
 
-    [self p_loadData];
+    [self p_loadDataWithAnimated:YES];
 }
 
-#pragma mark - UICollectionViewDelegate
+
+- (IBAction)searchButtonTapped {
+    [self.collectionView setContentOffset:CGPointMake(0, -self.collectionView.contentInset.top) animated:YES];
+    [self.searchBar becomeFirstResponder];
+}
+
+#pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.collectionViewModel.items.count;
@@ -160,7 +219,7 @@ static NSString *const kVideoCellId = @"videoCell";
     RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) indexPath.row];
 
     [cell.thumbnailImageView setImage:[UIImage imageNamed:@"DefaultThumbnail"]];
-    [cell.thumbnailImageView asynLoadingImageWithUrlString:item.mediumThumbnailUrl];
+    [cell.thumbnailImageView asynLoadingImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
 
     cell.titleLabel.text = item.title;
     cell.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
@@ -175,19 +234,110 @@ static NSString *const kVideoCellId = @"videoCell";
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(channelTitleViewTapped:)];
     [cell.channelTitleView addGestureRecognizer:tapGestureRecognizer];
 
-    cell.channelTitleView.hidden = [item.channelId isEqualToString:self.channelId];
+    cell.channelTitleView.hidden = !self.needShowChannelTitleView;
+
+    if (self.collectionViewFirstShownFlag) {
+        cell.transform = CGAffineTransformMakeTranslation(0, collectionView.frame.size.height);
+        [UIView animateWithDuration:0.4 delay:0.03 * indexPath.row usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            cell.transform = CGAffineTransformIdentity;
+        }                completion:nil];
+    }
 
     return cell;
 }
 
-#pragma mark - UINavigationControllerDelegate
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    UICollectionReusableView *searchCollectionReusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"searchCollectionReusableView" forIndexPath:indexPath];
 
-- (id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
-    if (([fromVC isKindOfClass:[RSVideoListViewController class]] && [toVC isKindOfClass:[RSVideoDetailViewController class]]) || ([fromVC isKindOfClass:[RSVideoDetailViewController class]] && [toVC isKindOfClass:[RSVideoListViewController class]])) {
-        return [[RSVideoDetailAnimator alloc] initWithOperation:operation];
+    if(searchCollectionReusableView.subviews.count == 0){
+        UISearchBar *searchBar = [[UISearchBar alloc] init];
+        searchBar.delegate = self;
+        searchBar.placeholder = NSLocalizedString(@"SearchVideos", @"Search Videos");
+        searchBar.text = self.collectionViewModel.searchText;
+        searchBar.translatesAutoresizingMaskIntoConstraints = NO;
+
+        [searchCollectionReusableView addSubview:searchBar];
+        NSArray *hConstraints =
+                [NSLayoutConstraint constraintsWithVisualFormat:@"|[searchBar]|"
+                                                        options:0 metrics:nil views:NSDictionaryOfVariableBindings(searchBar)];
+        NSArray *VConstraints =
+                [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[searchBar]|"
+                                                        options:0 metrics:nil views:NSDictionaryOfVariableBindings(searchBar)];
+
+        [searchCollectionReusableView addConstraints:hConstraints];
+        [searchCollectionReusableView addConstraints:VConstraints];
+
+        self.searchBar = searchBar;
     }
 
-    return nil;
+    return searchCollectionReusableView;
+}
+
+
+#pragma mark - scrollView delegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.searchBar resignFirstResponder];
+    [self.searchBar setShowsCancelButton:NO animated:YES];
+
+    if (scrollView.contentOffset.y == roundf(scrollView.contentSize.height - scrollView.frame.size.height)) {
+        // load more videos
+        @synchronized (self) {
+            if (self.loading) {
+                return;
+            }
+            self.loading = YES;
+            __weak typeof(self) weakSelf = self;
+            [self.collectionViewModel updateNextPageDataWithSuccess:^(BOOL hasNewData){
+                if(hasNewData){
+                    [weakSelf.collectionView reloadData];
+                }
+                self.loading = NO;
+
+            }                                               failure:^(NSError *error) {
+                NSLog(@"error:%@", error);
+                self.loading = NO;
+            }];
+        }
+    }
+}
+
+#pragma mark - orientation
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+
+    CGFloat collectionWidth = self.collectionView.frame.size.width;
+    int cellCount = (int) (collectionWidth / kCellMinWidth);
+    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
+
+    CGFloat cellWidth = (self.collectionView.frame.size.width - flowLayout.sectionInset.left * (cellCount + 1)) / cellCount;
+
+    flowLayout.itemSize = CGSizeMake(cellWidth, cellWidth * kCellRatio);
+}
+
+#pragma mark - search bar
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:YES animated:YES];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+
+    [self.collectionViewModel setSearchText:searchBar.text];
+    [self p_loadDataWithAnimated:YES];
+}
+
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];
+
+    if (self.collectionViewModel.searchText) {
+        [self.collectionViewModel setSearchText:nil];
+        [self p_loadDataWithAnimated:YES];
+    }
 }
 
 

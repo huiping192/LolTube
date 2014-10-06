@@ -8,6 +8,6 @@
 
 @interface RSChannelListViewController : UIViewController
 
-@property (nonatomic, copy) NSString *currentChannelId;
+@property (nonatomic, copy) NSArray *currentChannelIds;
 
 @end

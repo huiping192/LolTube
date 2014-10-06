@@ -27,4 +27,9 @@
 
 @implementation RSSnippet
 
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+            @"description" : @"videoDescription"
+    }];
+}
 @end

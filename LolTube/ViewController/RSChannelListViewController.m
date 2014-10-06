@@ -6,11 +6,12 @@
 #import "RSChannelListViewController.h"
 #import "RSChannelTableViewCell.h"
 #import "RSChannelTableViewModel.h"
-#import "UIImageView+RSAsyncLoading.h"
 #import "UIViewController+RSLoading.h"
 #import "AMTumblrHud.h"
 #import "RSVideoListViewController.h"
 #import "RSSearchTableViewCell.h"
+#import "RSChannelService.h"
+#import "UIImageView+Loading.h"
 
 @interface RSChannelListViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -70,13 +71,24 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [super prepareForSegue:segue sender:sender];
 
-    if ([segue.identifier isEqualToString:@"selectChannel"]) {
-
-        RSVideoListViewController *videoListViewController = (RSVideoListViewController *) segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"showChannel"]) {
         RSChannelTableViewCellVo *item = self.tableViewModel.items[(NSUInteger) self.tableView.indexPathForSelectedRow.row];
 
-        videoListViewController.channelId = item.channelId;
-        videoListViewController.channelTitle = item.title;
+        if ([item.channelId isEqualToString:@"All Channels"]) {
+            RSVideoListViewController *videoListViewController = (RSVideoListViewController *) segue.destinationViewController;
+
+            RSChannelService *channelService = [[RSChannelService alloc] init];
+            videoListViewController.channelIds = channelService.channelIds;
+            videoListViewController.title = @"LolTube";
+            videoListViewController.needShowChannelTitleView = YES;
+        } else {
+            RSVideoListViewController *videoListViewController = (RSVideoListViewController *) segue.destinationViewController;
+
+            videoListViewController.channelIds = @[item.channelId];
+            videoListViewController.title = item.title;
+            videoListViewController.needShowChannelTitleView = NO;
+        }
+
     }
 }
 
@@ -86,6 +98,7 @@
 }
 
 - (IBAction)editButtonTapped:(id)sender {
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:self.tableView.isEditing ? UIBarButtonSystemItemEdit : UIBarButtonSystemItemCancel target:self action:@selector(editButtonTapped:)];
     [self.tableView setEditing:!self.tableView.isEditing animated:YES];
 }
 
@@ -112,10 +125,12 @@
     RSChannelTableViewCellVo *item = self.tableViewModel.items[(NSUInteger) indexPath.row];
     cell.titleLabel.text = item.title;
     cell.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    [cell.thumbnailImageView asynLoadingImageWithUrlString:item.mediumThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
 
-    [cell.thumbnailImageView asynLoadingImageWithUrlString:item.mediumThumbnailUrl];
-
-    if ([item.channelId isEqualToString:self.currentChannelId]) {
+    if (self.currentChannelIds.count > 1 && [item.channelId isEqualToString:@"All Channels"]) { // all channel
+        cell.titleLabel.textColor = [self.view tintColor];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else if (self.currentChannelIds.count == 1 && [item.channelId isEqualToString:self.currentChannelIds[0]]) {
         cell.titleLabel.textColor = [self.view tintColor];
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
@@ -123,7 +138,12 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
 
+
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 55.0f;
 }
 
 #pragma mark - UITableViewDelegate
@@ -132,7 +152,7 @@
     //only first time show animation
     if (self.tableViewFirstShownFlag) {
         cell.transform = CGAffineTransformMakeTranslation(cell.frame.size.width, 0);
-        [UIView animateWithDuration:0.5 delay:0.03 * indexPath.row usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:0.4 delay:0.03 * indexPath.row usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             cell.transform = CGAffineTransformIdentity;
         }                completion:nil];
     }
