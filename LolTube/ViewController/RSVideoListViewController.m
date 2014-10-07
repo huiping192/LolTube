@@ -17,9 +17,8 @@ static NSString *const kVideoCellId = @"videoCell";
 static CGFloat const kCellMinWidth = 250.0f;
 static CGFloat const kCellRatio = 180.0f / 320.0f;
 
-@interface RSVideoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
+@interface RSVideoListViewController () <UICollectionViewDataSource, UISearchBarDelegate, UICollectionViewDelegateFlowLayout>
 
-@property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property(nonatomic, weak) UIRefreshControl *refreshControl;
 @property(nonatomic, weak) UISearchBar *searchBar;
 
@@ -75,15 +74,19 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 
     // hide search bar when first time show scroll view
     [self.collectionView setContentOffset:CGPointMake(self.collectionView.contentOffset.x, self.collectionView.contentOffset.y + 44) animated:NO];
-}
 
+    // when return from other view recalculate collection view layout
+    [self.collectionView.collectionViewLayout invalidateLayout];
+}
 
 - (void)p_configureViews {
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl = refreshControl;
     [refreshControl addTarget:self action:@selector(p_refresh) forControlEvents:UIControlEventValueChanged];
-    self.collectionView.alwaysBounceVertical = YES;
+
     [self.collectionView addSubview:refreshControl];
+
+    self.collectionView.alwaysBounceVertical = YES;
 }
 
 - (void)p_configureNotifications {
@@ -166,16 +169,12 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
     return [self.collectionView cellForItemAtIndexPath:self.collectionView.indexPathsForSelectedItems[0]];
 }
 
-- (UICollectionViewCell *)cellWithVideoId:(NSString *)videoId {
-    for (UICollectionViewCell *cell in self.collectionView.visibleCells) {
-        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
-        RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) indexPath.row];
-
-        if ([item.videoId isEqualToString:videoId]) {
-            return cell;
+- (NSIndexPath *)indexPathWithVideoId:(NSString *)videoId {
+    for (RSVideoCollectionViewCellVo *cellVo in self.collectionViewModel.items) {
+        if ([cellVo.videoId isEqualToString:videoId]) {
+            return [NSIndexPath indexPathForItem:[self.collectionViewModel.items indexOfObject:cellVo] inSection:0];
         }
     }
-
     return nil;
 }
 
@@ -249,7 +248,7 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *searchCollectionReusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"searchCollectionReusableView" forIndexPath:indexPath];
 
-    if(searchCollectionReusableView.subviews.count == 0){
+    if (searchCollectionReusableView.subviews.count == 0) {
         UISearchBar *searchBar = [[UISearchBar alloc] init];
         searchBar.delegate = self;
         searchBar.placeholder = NSLocalizedString(@"SearchVideos", @"Search Videos");
@@ -288,8 +287,8 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
             }
             self.loading = YES;
             __weak typeof(self) weakSelf = self;
-            [self.collectionViewModel updateNextPageDataWithSuccess:^(BOOL hasNewData){
-                if(hasNewData){
+            [self.collectionViewModel updateNextPageDataWithSuccess:^(BOOL hasNewData) {
+                if (hasNewData) {
                     [weakSelf.collectionView reloadData];
                 }
                 self.loading = NO;
@@ -307,13 +306,7 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
 
-    CGFloat collectionWidth = self.collectionView.frame.size.width;
-    int cellCount = (int) (collectionWidth / kCellMinWidth);
-    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
-
-    CGFloat cellWidth = (self.collectionView.frame.size.width - flowLayout.sectionInset.left * (cellCount + 1)) / cellCount;
-
-    flowLayout.itemSize = CGSizeMake(cellWidth, cellWidth * kCellRatio);
+    [self.collectionView.collectionViewLayout invalidateLayout];
 }
 
 #pragma mark - search bar
@@ -340,5 +333,28 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
     }
 }
 
+#pragma mark - UICollectionViewDelegateFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat collectionWidth = self.view.frame.size.width;
+    int cellCount = (int) (collectionWidth / kCellMinWidth);
+    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *) collectionViewLayout;
+
+    CGFloat cellWidth = (collectionWidth - flowLayout.sectionInset.left * (cellCount + 1)) / cellCount;
+
+    return CGSizeMake(cellWidth, cellWidth * kCellRatio);
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(5, 5, 5, 5);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 5;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 5;
+}
 
 @end

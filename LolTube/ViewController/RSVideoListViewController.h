@@ -6,10 +6,14 @@
 
 @interface RSVideoListViewController : UIViewController
 
-@property (nonatomic, copy) NSArray *channelIds;
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, assign) BOOL needShowChannelTitleView;
+@property(nonatomic, copy) NSArray *channelIds;
+@property(nonatomic, copy) NSString *title;
+@property(nonatomic, assign) BOOL needShowChannelTitleView;
+
+@property(nonatomic, weak) IBOutlet UICollectionView *collectionView;
 
 - (UICollectionViewCell *)selectedCell;
-- (UICollectionViewCell *)cellWithVideoId:(NSString *)videoId;
+
+- (NSIndexPath *)indexPathWithVideoId:(NSString *)videoId;
+
 @end

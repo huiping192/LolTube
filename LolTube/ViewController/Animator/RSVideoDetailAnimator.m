@@ -61,11 +61,16 @@ static NSTimeInterval kAnimationDuration = 0.5;
             toView.alpha = 1.0;
             fromView.alpha = 0.0;
         }                completion:^(BOOL finished) {
-            videoDetailViewController.thumbnailImageView.hidden = NO;
-            [tempImageView removeFromSuperview];
 
-            fromView.alpha = 1.0;
-            [transitionContext completeTransition:YES];
+            [UIView transitionWithView:tempImageView duration:0.25 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+                tempImageView.alpha = 0.0;
+            }               completion:^(BOOL finished) {
+                videoDetailViewController.thumbnailImageView.hidden = NO;
+                [tempImageView removeFromSuperview];
+
+                fromView.alpha = 1.0;
+                [transitionContext completeTransition:YES];
+            }];
         }];
 
 
@@ -73,49 +78,62 @@ static NSTimeInterval kAnimationDuration = 0.5;
         RSVideoListViewController *videoListViewController = (RSVideoListViewController *) toViewController;
         RSVideoDetailViewController *videoDetailViewController = (RSVideoDetailViewController *) fromViewController;
 
-        CGRect thumbnailFrame = [videoDetailViewController.thumbnailImageView convertRect:videoDetailViewController.thumbnailImageView.bounds toView:toView];
+        UICollectionView *collectionView = videoListViewController.collectionView;
+        [collectionView.collectionViewLayout invalidateLayout];
+        [toView layoutIfNeeded];
 
-        UIImageView *tempImageView = [[UIImageView alloc] initWithFrame:thumbnailFrame];
-        tempImageView.image = videoDetailViewController.thumbnailImageView.image;
-        [containView addSubview:tempImageView];
+        NSIndexPath *indexPath = [videoListViewController indexPathWithVideoId:videoDetailViewController.videoId];
+        RSVideoCollectionViewCell *selectedCell = (RSVideoCollectionViewCell *) [collectionView cellForItemAtIndexPath:indexPath];
+        [collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:NO];
 
-        toView.alpha = 0.0;
+        CGRect selectedCellFrame = [selectedCell convertRect:selectedCell.bounds toView:fromView];
+        if (!selectedCell) {
+            UICollectionViewLayoutAttributes *pose = [collectionView.collectionViewLayout layoutAttributesForItemAtIndexPath:indexPath];
+            selectedCellFrame = [collectionView convertRect:pose.frame toView:nil];
+        }
 
-        RSVideoCollectionViewCell *selectedCell = (RSVideoCollectionViewCell *) [videoListViewController cellWithVideoId:videoDetailViewController.videoId];
-        [UIView animateWithDuration:0.8 * kAnimationDuration delay:0.0 usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            CGRect frame = [selectedCell convertRect:selectedCell.bounds toView:fromView];
+        [UIView animateWithDuration:0.25 animations:^{
+            CGRect thumbnailFrame = [videoDetailViewController.thumbnailImageView convertRect:videoDetailViewController.thumbnailImageView.bounds toView:toView];
 
-            tempImageView.frame = frame;
-            toView.alpha = 1.0;
-            fromView.alpha = 0.0;
-        }                completion:^(BOOL finished) {
+            UIImageView *tempImageView = [[UIImageView alloc] initWithFrame:thumbnailFrame];
+            tempImageView.image = videoDetailViewController.thumbnailImageView.image;
+            [containView addSubview:tempImageView];
 
-            [tempImageView removeFromSuperview];
+            toView.alpha = 0.0;
 
-            selectedCell.titleLabel.transform = CGAffineTransformMakeTranslation(0.0, -10);
-            selectedCell.titleLabel.alpha = 0.4;
+            [UIView animateWithDuration:0.8 * kAnimationDuration delay:0.0 usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
 
-            selectedCell.channelTitleView.transform = CGAffineTransformMakeTranslation(0.0, 10);
-            selectedCell.channelTitleView.alpha = 0.4;
-
-            selectedCell.postedTimeLabel.transform = CGAffineTransformMakeTranslation(0.0, 10);
-            selectedCell.postedTimeLabel.alpha = 0.4;
-
-            [UIView animateWithDuration:0.2 * kAnimationDuration animations:^{
-                selectedCell.titleLabel.alpha = 1.0;
-                selectedCell.titleLabel.transform = CGAffineTransformIdentity;
-
-                selectedCell.channelTitleView.alpha = 1.0;
-                selectedCell.channelTitleView.transform = CGAffineTransformIdentity;
-
-                selectedCell.postedTimeLabel.alpha = 1.0;
-                selectedCell.postedTimeLabel.transform = CGAffineTransformIdentity;
+                tempImageView.frame = selectedCellFrame;
+                toView.alpha = 1.0;
+                fromView.alpha = 0.0;
             }                completion:^(BOOL finished) {
-                fromView.alpha = 1.0;
-                [transitionContext completeTransition:YES];
+
+                [tempImageView removeFromSuperview];
+
+                selectedCell.titleLabel.transform = CGAffineTransformMakeTranslation(0.0, -10);
+                selectedCell.titleLabel.alpha = 0.4;
+
+                selectedCell.channelTitleView.transform = CGAffineTransformMakeTranslation(0.0, 10);
+                selectedCell.channelTitleView.alpha = 0.4;
+
+                selectedCell.postedTimeLabel.transform = CGAffineTransformMakeTranslation(0.0, 10);
+                selectedCell.postedTimeLabel.alpha = 0.4;
+
+                [UIView animateWithDuration:0.2 * kAnimationDuration animations:^{
+                    selectedCell.titleLabel.alpha = 1.0;
+                    selectedCell.titleLabel.transform = CGAffineTransformIdentity;
+
+                    selectedCell.channelTitleView.alpha = 1.0;
+                    selectedCell.channelTitleView.transform = CGAffineTransformIdentity;
+
+                    selectedCell.postedTimeLabel.alpha = 1.0;
+                    selectedCell.postedTimeLabel.transform = CGAffineTransformIdentity;
+                }                completion:^(BOOL finished) {
+                    fromView.alpha = 1.0;
+                    [transitionContext completeTransition:YES];
+                }];
             }];
         }];
-
     }
 
 }
