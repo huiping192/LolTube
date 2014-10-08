@@ -123,6 +123,8 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
                 [UIView animateWithDuration:0.25 animations:^{
                     self.collectionViewFirstShownFlag = NO;
                     self.collectionView.alpha = 1.0;
+                }                completion:^(BOOL finished) {
+                    [self.collectionView flashScrollIndicators];
                 }];
             });
         }
