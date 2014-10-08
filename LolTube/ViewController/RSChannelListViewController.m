@@ -51,17 +51,36 @@
     [self.tableViewModel updateWithSuccess:^{
         [weakSelf.loadingView hide];
         [weakSelf.tableView reloadData];
-
+        NSIndexPath *currentSelectedIndexPath = [self p_currentSelectedIndexPath];
+        if (currentSelectedIndexPath) {
+            [self.tableView scrollToRowAtIndexPath:currentSelectedIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+        }
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.25 animations:^{
                 self.tableViewFirstShownFlag = NO;
                 self.tableView.alpha = 1.0;
+            }                completion:^(BOOL finished) {
+                [self.tableView flashScrollIndicators];
             }];
         });
     }                              failure:^(NSError *error) {
         [weakSelf.loadingView hide];
         NSLog(@"error:%@", error);
     }];
+}
+
+- (NSIndexPath *)p_currentSelectedIndexPath {
+    if (self.currentChannelIds.count > 1) { // all channel
+        return [NSIndexPath indexPathForRow:0 inSection:0];
+    }
+    if (self.currentChannelIds.count == 1) {
+        for (RSChannelTableViewCellVo *item in self.tableViewModel.items) {
+            if ([item.channelId isEqualToString:self.currentChannelIds[0]]) {
+                return [NSIndexPath indexPathForRow:[self.tableViewModel.items indexOfObject:item] inSection:0];
+            }
+        }
+    }
+    return nil;
 }
 
 - (void)preferredContentSizeChanged:(id)preferredContentSizeChanged {
