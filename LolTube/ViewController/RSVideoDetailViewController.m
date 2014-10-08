@@ -8,6 +8,7 @@
 #import "UIViewController+RSLoading.h"
 #import "AMTumblrHud.h"
 #import "UIImageView+Loading.h"
+#import "Reachability.h"
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <Google-AdMob-Ads-SDK/GADBannerView.h>
@@ -148,6 +149,13 @@ static NSString *const kAdMobId = @"ca-app-pub-5016636882444405/7747858172";
 
 - (void)p_playVideo {
     self.videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:self.videoId];
+
+    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
+    if (networkStatus != ReachableViaWiFi) {
+        self.videoPlayerViewController.preferredVideoQualities = @[@(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240)];
+    }
+
     // prevent mute switch from switching off audio from movie player
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 
