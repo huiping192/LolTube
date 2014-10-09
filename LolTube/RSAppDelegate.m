@@ -9,12 +9,14 @@
 #import "RSAppDelegate.h"
 #import "RSChannelService.h"
 #import "RSVideoListViewController.h"
+#import "RSVideoService.h"
 
 @implementation RSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     [self p_savePersetting];
+    [self p_configureVideoService];
 
     return YES;
 }
@@ -39,6 +41,10 @@
     }
 }
 
+- (void)p_configureVideoService {
+    RSVideoService *videoService = [RSVideoService sharedInstance];
+    [videoService configure];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -60,6 +66,8 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    RSVideoService *videoService = [RSVideoService sharedInstance];
+    [videoService save];
 }
 
 @end

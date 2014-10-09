@@ -9,6 +9,7 @@
 #import "AMTumblrHud.h"
 #import "UIImageView+Loading.h"
 #import "Reachability.h"
+#import "RSVideoService.h"
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <Google-AdMob-Ads-SDK/GADBannerView.h>
@@ -131,10 +132,12 @@ static NSString *const kAdMobId = @"ca-app-pub-5016636882444405/7747858172";
 }
 
 - (void)p_moviePlayBackDidFinish:(id)DidFinish {
-     self.videoPlayerViewController.moviePlayer.currentPlaybackTime = 1.0;
+    self.videoPlayerViewController.moviePlayer.currentPlaybackTime = 1.0;
 }
 
 - (void)p_moviePreloadDidFinish:(id)p_moviePreloadDidFinish {
+    [[RSVideoService sharedInstance] savePlayFinishedVideoId:self.videoId];
+
     // TODO: fun animation
     [UIView animateWithDuration:0.25 animations:^{
         self.thumbnailImageView.alpha = 0.0;
