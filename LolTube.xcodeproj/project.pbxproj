@@ -517,6 +517,11 @@
 				TargetAttributes = {
 					DC1044A619B2FA6B007A86E6 = {
 						DevelopmentTeam = Q2N4A2LNJ8;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					DC1044C719B2FA6B007A86E6 = {
 						TestTargetID = DC1044A619B2FA6B007A86E6;
