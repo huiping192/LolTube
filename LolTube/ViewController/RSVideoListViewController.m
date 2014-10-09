@@ -180,6 +180,19 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
     return nil;
 }
 
+- (void)fetchNewDataWithCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
+    __weak typeof(self) weakSelf = self;
+    [self.collectionViewModel updateWithSuccess:^{
+        [weakSelf.collectionView reloadData];
+        NSLog(@"fetch success");
+        completionHandler(UIBackgroundFetchResultNewData);
+    }                                   failure:^(NSError *error) {
+        NSLog(@"fetch failure");
+        completionHandler(UIBackgroundFetchResultFailed);
+    }];
+}
+
+
 /**
 * when channel title view tapped, push the new video list view controller
 */

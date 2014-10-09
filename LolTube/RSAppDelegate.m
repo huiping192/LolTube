@@ -8,6 +8,7 @@
 
 #import "RSAppDelegate.h"
 #import "RSChannelService.h"
+#import "RSVideoListViewController.h"
 
 @implementation RSAppDelegate
 
@@ -23,10 +24,21 @@
 
     RSChannelService *channelService = [[RSChannelService alloc] init];
     if (!channelService.channelIds) {
-        NSArray *channelIds = @[@"UC2t5bjwHdUX4vM2g8TRDq5g", @"UCKDkGnyeib7mcU7LdD3x0jQ", @"UCvqRdlKsE5Q8mf8YXbdIJLw",@"UCUf53DHwoQw4SvETXZQ2Tmg",@"UCGeHk-_K6Lee4CcVN2SKI2A",@"UCN078UFNwPgwWlU_V5WCTNw",@"UC_ZIX-h-BIZZnim6YJSjYDA", @"UCRFvOeB8L5bXeIUVFlHuItA", @"UCa7ycmkvToNPa1hpmLfvkyA", @"UCGgbmTgF-sUJGd5B5N6VSFw", @"UClh5azhOaKzdlThQFgoq-tw", @"UC0RalGf69iYVBFteHInyJJg"];
+        NSArray *channelIds = @[@"UC2t5bjwHdUX4vM2g8TRDq5g", @"UCKDkGnyeib7mcU7LdD3x0jQ", @"UCvqRdlKsE5Q8mf8YXbdIJLw", @"UCUf53DHwoQw4SvETXZQ2Tmg", @"UCGeHk-_K6Lee4CcVN2SKI2A", @"UCN078UFNwPgwWlU_V5WCTNw", @"UC_ZIX-h-BIZZnim6YJSjYDA", @"UCRFvOeB8L5bXeIUVFlHuItA", @"UCa7ycmkvToNPa1hpmLfvkyA", @"UCGgbmTgF-sUJGd5B5N6VSFw", @"UClh5azhOaKzdlThQFgoq-tw", @"UC0RalGf69iYVBFteHInyJJg"];
         [channelService saveChannelIds:channelIds];
     }
 }
+
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
+    UIViewController *rootViewController = self.window.rootViewController;
+    if ([rootViewController isKindOfClass:[UINavigationController class]]) {
+        UIViewController *navigationTopViewController = ((UINavigationController *) rootViewController).topViewController;
+        if ([navigationTopViewController isKindOfClass:[RSVideoListViewController class]]) {
+            [((RSVideoListViewController *) navigationTopViewController) fetchNewDataWithCompletionHandler:completionHandler];
+        }
+    }
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

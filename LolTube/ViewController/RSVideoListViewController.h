@@ -16,4 +16,6 @@
 
 - (NSIndexPath *)indexPathWithVideoId:(NSString *)videoId;
 
+// background fetch
+-(void)fetchNewDataWithCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler;
 @end
