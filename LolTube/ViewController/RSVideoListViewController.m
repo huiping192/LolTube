@@ -12,6 +12,7 @@
 #import "RSChannelListViewController.h"
 #import "RSChannelService.h"
 #import "UIImageView+Loading.h"
+#import "RSVideoService.h"
 
 static NSString *const kVideoCellId = @"videoCell";
 static CGFloat const kCellMinWidth = 250.0f;
@@ -159,7 +160,8 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 
         RSVideoCollectionViewCell *cell = (RSVideoCollectionViewCell *) sender;
         videoDetailViewController.thumbnailImage = cell.thumbnailImageView.image;
-
+        // change video image to played video image
+        [cell.thumbnailImageView asynLoadingTonalImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl];
     } else if ([segue.identifier isEqualToString:@"channelList"]) {
         UINavigationController *navigationController = segue.destinationViewController;
         RSChannelListViewController *channelListViewController = (RSChannelListViewController *) navigationController.topViewController;
@@ -233,7 +235,11 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
     RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) indexPath.row];
 
     [cell.thumbnailImageView setImage:[UIImage imageNamed:@"DefaultThumbnail"]];
-    [cell.thumbnailImageView asynLoadingImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
+    if ([[RSVideoService sharedInstance] isPlayFinishedWithVideoId:item.videoId]) {
+        [cell.thumbnailImageView asynLoadingTonalImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl];
+    } else {
+        [cell.thumbnailImageView asynLoadingImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
+    }
 
     cell.titleLabel.text = item.title;
     cell.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
