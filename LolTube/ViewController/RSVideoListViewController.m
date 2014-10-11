@@ -300,7 +300,7 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
     [self.searchBar resignFirstResponder];
     [self.searchBar setShowsCancelButton:NO animated:YES];
 
-    if (scrollView.contentOffset.y == roundf(scrollView.contentSize.height - scrollView.frame.size.height)) {
+    if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height) {
         // load more videos
         @synchronized (self) {
             if (self.loading) {
