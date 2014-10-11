@@ -13,7 +13,6 @@
 #import "RSChannelService.h"
 #import "UIImageView+Loading.h"
 #import "RSVideoService.h"
-#import "UIImage+RSImageEffect.h"
 
 static NSString *const kVideoCellId = @"videoCell";
 static CGFloat const kCellMinWidth = 250.0f;
@@ -161,12 +160,8 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 
         RSVideoCollectionViewCell *cell = (RSVideoCollectionViewCell *) sender;
         videoDetailViewController.thumbnailImage = cell.thumbnailImageView.image;
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            UIImage *tonalImage = [cell.thumbnailImageView.image blackAndWhiteImage];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [cell.thumbnailImageView setImage:tonalImage];
-            });
-        });
+        // change video image to played video image
+        [cell.thumbnailImageView asynLoadingTonalImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl];
     } else if ([segue.identifier isEqualToString:@"channelList"]) {
         UINavigationController *navigationController = segue.destinationViewController;
         RSChannelListViewController *channelListViewController = (RSChannelListViewController *) navigationController.topViewController;
