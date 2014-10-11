@@ -145,9 +145,11 @@ static NSString *const kAdMobId = @"ca-app-pub-5016636882444405/7747858172";
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[RSVideoService sharedInstance] updateLastPlaybackTimeWithVideoId:self.videoId lastPlaybackTime:self.videoPlayerViewController.moviePlayer.currentPlaybackTime];
 
     [self.videoPlayerViewController.moviePlayer stop];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)p_playVideo {
@@ -164,6 +166,7 @@ static NSString *const kAdMobId = @"ca-app-pub-5016636882444405/7747858172";
 
     [self.videoPlayerViewController presentInView:self.videoPlayerView];
 
+    [self.videoPlayerViewController.moviePlayer setInitialPlaybackTime:[[RSVideoService sharedInstance] lastPlaybackTimeWithVideoId:self.videoId]];
     [self.videoPlayerViewController.moviePlayer prepareToPlay];
 }
 

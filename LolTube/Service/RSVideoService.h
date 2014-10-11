@@ -12,9 +12,13 @@
 
 - (void)configure;
 
--(BOOL)isPlayFinishedWithVideoId:(NSString *)videoId;
+- (BOOL)isPlayFinishedWithVideoId:(NSString *)videoId;
 
--(void)savePlayFinishedVideoId:(NSString *)videoId;
+- (void)savePlayFinishedVideoId:(NSString *)videoId;
+
+- (void)updateLastPlaybackTimeWithVideoId:(NSString *)videoId lastPlaybackTime:(NSTimeInterval)lastPlaybackTime;
+
+- (NSTimeInterval)lastPlaybackTimeWithVideoId:(NSString *)videoId;
 
 - (void)save;
 @end
