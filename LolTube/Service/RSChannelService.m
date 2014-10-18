@@ -21,7 +21,7 @@ static NSString *const kChannelIdsKey = @"channleIds";
 }
 
 - (void)saveDefaultChannelIds {
-    NSArray *channelIds = @[@"UC2t5bjwHdUX4vM2g8TRDq5g", @"UCKDkGnyeib7mcU7LdD3x0jQ", @"UCvqRdlKsE5Q8mf8YXbdIJLw", @"UCUf53DHwoQw4SvETXZQ2Tmg", @"UCGeHk-_K6Lee4CcVN2SKI2A", @"UCN078UFNwPgwWlU_V5WCTNw", @"UC_ZIX-h-BIZZnim6YJSjYDA", @"UCRFvOeB8L5bXeIUVFlHuItA", @"UCa7ycmkvToNPa1hpmLfvkyA", @"UCGgbmTgF-sUJGd5B5N6VSFw", @"UClh5azhOaKzdlThQFgoq-tw", @"UC0RalGf69iYVBFteHInyJJg"];
+    NSArray *channelIds = @[@"UC2t5bjwHdUX4vM2g8TRDq5g", @"UCKDkGnyeib7mcU7LdD3x0jQ", @"UCvqRdlKsE5Q8mf8YXbdIJLw", @"UCUf53DHwoQw4SvETXZQ2Tmg", @"UC_ZIX-h-BIZZnim6YJSjYDA", @"UCGgbmTgF-sUJGd5B5N6VSFw", @"UClh5azhOaKzdlThQFgoq-tw", @"UC0RalGf69iYVBFteHInyJJg"];
     [self saveChannelIds:channelIds];
 }
 
