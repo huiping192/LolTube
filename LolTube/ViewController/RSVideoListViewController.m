@@ -27,7 +27,7 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 
 @property(nonatomic, assign) BOOL collectionViewFirstShownFlag;
 
-@property(nonatomic, assign) BOOL loading;
+@property(atomic, assign) BOOL loading;
 
 @end
 
@@ -297,28 +297,28 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 #pragma mark - scrollView delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self.searchBar resignFirstResponder];
-    [self.searchBar setShowsCancelButton:NO animated:YES];
+    if ([self.searchBar isFirstResponder]) {
+        [self.searchBar resignFirstResponder];
+        [self.searchBar setShowsCancelButton:NO animated:YES];
+    }
 
     if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height) {
         // load more videos
-        @synchronized (self) {
-            if (self.loading) {
-                return;
-            }
-            self.loading = YES;
-            __weak typeof(self) weakSelf = self;
-            [self.collectionViewModel updateNextPageDataWithSuccess:^(BOOL hasNewData) {
-                if (hasNewData) {
-                    [weakSelf.collectionView reloadData];
-                }
-                self.loading = NO;
-
-            }                                               failure:^(NSError *error) {
-                NSLog(@"error:%@", error);
-                self.loading = NO;
-            }];
+        if (self.loading) {
+            return;
         }
+        self.loading = YES;
+        __weak typeof(self) weakSelf = self;
+        [self.collectionViewModel updateNextPageDataWithSuccess:^(BOOL hasNewData) {
+            if (hasNewData) {
+                [weakSelf.collectionView reloadData];
+            }
+            self.loading = NO;
+
+        }                                               failure:^(NSError *error) {
+            NSLog(@"error:%@", error);
+            self.loading = NO;
+        }];
     }
 }
 
