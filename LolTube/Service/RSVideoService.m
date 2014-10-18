@@ -48,10 +48,14 @@ static RSVideoService *sharedInstance = nil;
         return;
     }
     (self.videoList)[videoId] = @(0);
+
+    [self save];
 }
 
 - (void)updateLastPlaybackTimeWithVideoId:(NSString *)videoId lastPlaybackTime:(NSTimeInterval)lastPlaybackTime {
     (self.videoList)[videoId] = @(lastPlaybackTime);
+
+    [self save];
 }
 
 - (NSTimeInterval)lastPlaybackTimeWithVideoId:(NSString *)videoId {
