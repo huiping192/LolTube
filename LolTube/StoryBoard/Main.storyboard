@@ -319,11 +319,30 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="n6R-MV-bRF"/>
+                    <navigationItem key="navigationItem" id="n6R-MV-bRF">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="zD7-wl-qvg">
+                            <rect key="frame" x="18" y="5.5" width="564" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="NJp-E6-W2S">
+                                    <rect key="frame" x="0.0" y="0.0" width="564" height="33"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="NJp-E6-W2S" secondAttribute="bottom" id="Cvz-V8-Ulf"/>
+                                <constraint firstAttribute="trailing" secondItem="NJp-E6-W2S" secondAttribute="trailing" id="KdQ-Ce-HAm"/>
+                                <constraint firstItem="NJp-E6-W2S" firstAttribute="leading" secondItem="zD7-wl-qvg" secondAttribute="leading" id="Kxg-I6-wCB"/>
+                                <constraint firstItem="NJp-E6-W2S" firstAttribute="top" secondItem="zD7-wl-qvg" secondAttribute="top" id="MwT-vo-yGc"/>
+                            </constraints>
+                        </view>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sf9-rd-N8l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2801.25" y="325.35211267605632"/>
+            <point key="canvasLocation" x="2842" y="325"/>
         </scene>
         <!--Video Detail View Controller-->
         <scene sceneID="Cyw-kU-DVb">
