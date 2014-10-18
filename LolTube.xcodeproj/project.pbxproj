@@ -50,6 +50,7 @@
 		DC1044D419B2FA6B007A86E6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC1044D219B2FA6B007A86E6 /* InfoPlist.strings */; };
 		DC64F4C719E5524900F860B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DC64F4C519E5524900F860B4 /* Reachability.m */; };
 		DC64F4C919E5582F00F860B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC64F4C819E5582F00F860B4 /* SystemConfiguration.framework */; };
+		DCCE230119F252D20027C390 /* LaunchImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCCE230019F252D20027C390 /* LaunchImage.xib */; };
 		DCEBA51419BCB2AF007C3FC7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCEBA51619BCB2AF007C3FC7 /* Localizable.strings */; };
 		DCEBA51A19BCB304007C3FC7 /* RSVideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCEBA51819BCB304007C3FC7 /* RSVideoListViewController.m */; };
 		DCEBA51D19BCB350007C3FC7 /* RSVideoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DCEBA51B19BCB350007C3FC7 /* RSVideoCollectionViewCell.m */; };
@@ -139,6 +140,7 @@
 		DC64F4C519E5524900F860B4 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		DC64F4C619E5524900F860B4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		DC64F4C819E5582F00F860B4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		DCCE230019F252D20027C390 /* LaunchImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchImage.xib; sourceTree = "<group>"; };
 		DCEBA50C19BCAD8C007C3FC7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DCEBA50D19BCAD8C007C3FC7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DCEBA51519BCB2AF007C3FC7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 		7A9D5F425AB97F89FB258289 /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
+				DCCE230019F252D20027C390 /* LaunchImage.xib */,
 				DCEBA51E19BCB3BA007C3FC7 /* Main.storyboard */,
 			);
 			path = StoryBoard;
@@ -571,6 +574,7 @@
 				DC1044B519B2FA6B007A86E6 /* InfoPlist.strings in Resources */,
 				DCEBA51419BCB2AF007C3FC7 /* Localizable.strings in Resources */,
 				DCEBA51F19BCB3BA007C3FC7 /* Main.storyboard in Resources */,
+				DCCE230119F252D20027C390 /* LaunchImage.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
