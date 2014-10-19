@@ -302,22 +302,33 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
         [self.searchBar setShowsCancelButton:NO animated:YES];
     }
 
-    if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height) {
+    if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) * 0.9) {
         // load more videos
         if (self.loading) {
             return;
         }
+        NSInteger count = [self.collectionView numberOfItemsInSection:0];
+        if (count == 0) {
+            return;
+        }
         self.loading = YES;
+
         __weak typeof(self) weakSelf = self;
         [self.collectionViewModel updateNextPageDataWithSuccess:^(BOOL hasNewData) {
             if (hasNewData) {
-                [weakSelf.collectionView reloadData];
+                [weakSelf.collectionView performBatchUpdates:^{
+                    NSMutableArray *insertIndexPaths = [[NSMutableArray alloc] init];
+                    for (NSInteger i = count; i < weakSelf.collectionViewModel.items.count; ++i) {
+                        [insertIndexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
+                    }
+                    [weakSelf.collectionView insertItemsAtIndexPaths:insertIndexPaths];
+                }                                 completion:nil];
             }
-            self.loading = NO;
+            weakSelf.loading = NO;
 
         }                                               failure:^(NSError *error) {
             NSLog(@"error:%@", error);
-            self.loading = NO;
+            weakSelf.loading = NO;
         }];
     }
 }
