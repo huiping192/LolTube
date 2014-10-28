@@ -50,8 +50,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="310" height="175"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultThumbnail" translatesAutoresizingMaskIntoConstraints="NO" id="Mwu-hu-GrN" userLabel="thumbnail image view">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mwu-hu-GrN" userLabel="thumbnail image view">
                                                     <rect key="frame" x="0.0" y="0.0" width="310" height="175"/>
+                                                    <color key="backgroundColor" red="0.78308475379999998" green="0.78308475379999998" blue="0.78308475379999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZf-SY-7CT" userLabel="title label">
                                                     <rect key="frame" x="10" y="10" width="290" height="38"/>
@@ -322,7 +323,7 @@
                     <navigationItem key="navigationItem" id="n6R-MV-bRF">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="zD7-wl-qvg">
-                            <rect key="frame" x="18" y="6" width="564" height="33"/>
+                            <rect key="frame" x="18" y="5.5" width="564" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="NJp-E6-W2S">
@@ -365,7 +366,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZl-Ce-Rfa" userLabel="video contain view">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="338"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qtb-Ym-NxJ" userLabel="thunbnail image view">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qtb-Ym-NxJ" userLabel="thunbnail image view">
                                                         <rect key="frame" x="0.0" y="0.0" width="600" height="338"/>
                                                     </imageView>
                                                 </subviews>
@@ -491,7 +492,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="DefaultThumbnail" width="320" height="180"/>
         <image name="search" width="12" height="13"/>
     </resources>
 </document>

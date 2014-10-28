@@ -234,11 +234,11 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
     RSVideoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kVideoCellId forIndexPath:indexPath];
     RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) indexPath.row];
 
-    [cell.thumbnailImageView setImage:[UIImage imageNamed:@"DefaultThumbnail"]];
+    [cell.thumbnailImageView setImage:nil];
     if ([[RSVideoService sharedInstance] isPlayFinishedWithVideoId:item.videoId]) {
-        [cell.thumbnailImageView asynLoadingTonalImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
+        [cell.thumbnailImageView asynLoadingTonalImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl placeHolderImage:nil];
     } else {
-        [cell.thumbnailImageView asynLoadingImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
+        [cell.thumbnailImageView asynLoadingImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl placeHolderImage:nil];
     }
 
     cell.titleLabel.text = item.title;
@@ -265,6 +265,14 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 
     return cell;
 }
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+        cell.transform = CGAffineTransformMakeScale(0.9, 0.9);
+    [UIView animateWithDuration:0.2 animations:^{
+      cell.transform = CGAffineTransformIdentity;
+    }];
+}
+
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *searchCollectionReusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"searchCollectionReusableView" forIndexPath:indexPath];

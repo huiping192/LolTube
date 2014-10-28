@@ -11,13 +11,33 @@
 @implementation UIImageView (Loading)
 - (void)asynLoadingImageWithUrlString:(NSString *)urlString secondImageUrlString:(NSString *)secondImageUrlString placeHolderImage:(UIImage *)placeHolderImage {
     __weak typeof(self) weakSelf = self;
-    [UIView transitionWithView:self duration:0.25 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-        [weakSelf sd_setImageWithURL:[NSURL URLWithString:urlString] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            if (!image) {
-                [weakSelf sd_setImageWithURL:[NSURL URLWithString:secondImageUrlString] placeholderImage:placeHolderImage];
-            }
-        }];
-    }               completion:nil];
+
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    [manager downloadImageWithURL:[NSURL URLWithString:urlString] options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+        if (!image) {
+            [manager downloadImageWithURL:[NSURL URLWithString:secondImageUrlString] options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                if (!image) {
+                    [weakSelf p_setImage:[UIImage imageNamed:@"DefaultThumbnail"]];
+                    return;
+                }
+                [weakSelf p_setImage:image];
+            }];
+            return;
+        }
+
+        [weakSelf p_setImage:image];
+    }];
+}
+
+- (void)p_setImage:(UIImage *)image {
+    self.alpha = 0.0;
+    [UIView transitionWithView:self
+                      duration:0.25
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        [self setImage:image];
+                        self.alpha = 1.0;
+                    } completion:NULL];
 }
 
 - (void)asynLoadingImageWithUrlString:(NSString *)urlString placeHolderImage:(UIImage *)placeHolderImage {
@@ -26,21 +46,34 @@
 
 - (void)asynLoadingTonalImageWithUrlString:(NSString *)urlString secondImageUrlString:(NSString *)secondImageUrlString placeHolderImage:(UIImage *)placeHolderImage {
     __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]]];
+
+
+
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    [manager downloadImageWithURL:[NSURL URLWithString:urlString] options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
         if (!image) {
-            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:secondImageUrlString]]];
-            if (!image) {
-                image = placeHolderImage;
-            }
+            [manager downloadImageWithURL:[NSURL URLWithString:secondImageUrlString] options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                if (!image) {
+                    [weakSelf p_setImage:[UIImage imageNamed:@"DefaultThumbnail"]];
+                    return;
+                }
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    UIImage *blackAndWhiteImage = [image blackAndWhiteImage];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [weakSelf p_setImage:blackAndWhiteImage];
+                    });
+                });
+            }];
+            return;
         }
-        UIImage *tonalImage = [image blackAndWhiteImage];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [UIView transitionWithView:weakSelf duration:0.2 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-                [weakSelf setImage:tonalImage];
-            }               completion:nil];
+
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            UIImage *blackAndWhiteImage = [image blackAndWhiteImage];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf p_setImage:blackAndWhiteImage];
+            });
         });
-    });
+    }];
 }
 
 @end
