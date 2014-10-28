@@ -44,7 +44,7 @@
 
         allChannelsCellVo.channelId = @"All Channels";
         allChannelsCellVo.title = @"All Channels";
-        allChannelsCellVo.mediumThumbnailUrl = @"https://yt3.ggpht.com/-ZqOgMm5CVK0/AAAAAAAAAAI/AAAAAAAAAAA/RweX1_sFr1A/s240-c-k-no/photo.jpg\"";
+        allChannelsCellVo.mediumThumbnailUrl = @"https://yt3.ggpht.com/-ZqOgMm5CVK0/AAAAAAAAAAI/AAAAAAAAAAA/RweX1_sFr1A/s240-c-k-no/photo.jpg";
 
         [items addObject:allChannelsCellVo];
 
