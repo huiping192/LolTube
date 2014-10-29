@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0D56D899FCC74DAF83E2042D /* libPods-LolTubeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 492EE9566EC348369DBEEC9F /* libPods-LolTubeTests.a */; };
+		7A9D502564EF5651A21D735F /* RSTodayVideoTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5A57F12E827DA02DC5C6 /* RSTodayVideoTableViewModel.m */; };
 		7A9D517888BCFE3270DE9EB1 /* UIImageView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D51D455D1D7CB93CE543C /* UIImageView+Loading.m */; };
 		7A9D526589D6379D67DF2E3A /* RSThumbnails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D579DEBD8CEEC71AB737A /* RSThumbnails.m */; };
 		7A9D53046E0D3AE83354D84E /* RSVideoDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5D0FC66A92A7E22AAF65 /* RSVideoDetailViewModel.m */; };
@@ -37,7 +38,20 @@
 		7A9D5E91022E54BA028FDBA9 /* Channel_unformatter_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5749A02980374685100A /* Channel_unformatter_data.json */; };
 		7A9D5EB60C1024B77DC9A0DB /* RSChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5DDC35472535F6055FF4 /* RSChannelModel.m */; };
 		7A9D5F14B85FDCEF4668D937 /* RSVideoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5E1CAC258986C7A0B45D /* RSVideoService.m */; };
+		7D3B56BEC73C460A8FD88FC8 /* libPods-VideoWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 258B97C7D8C343E59B7679D4 /* libPods-VideoWidget.a */; };
 		D2912024C3464678820F0B0F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE8E8822B6E415281465DA6 /* libPods.a */; };
+		DC0F691C1A03DFD70061EB95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC1044C219B2FA6B007A86E6 /* Images.xcassets */; };
+		DC0F691D1A051A540061EB95 /* RSYoutubeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5C089DAEDD8088444FF1 /* RSYoutubeService.m */; };
+		DC0F691E1A051A600061EB95 /* RSChannelService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D518DC4BF259949301CF7 /* RSChannelService.m */; };
+		DC0F691F1A051A6C0061EB95 /* NSDate+RSFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D57868192765BB8591D47 /* NSDate+RSFormatter.m */; };
+		DC0F69201A051A740061EB95 /* UIImageView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D51D455D1D7CB93CE543C /* UIImageView+Loading.m */; };
+		DC0F69211A051A850061EB95 /* RSSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D515B04B281818CFFBBCE /* RSSearchModel.m */; };
+		DC0F69221A051A910061EB95 /* RSThumbnails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D579DEBD8CEEC71AB737A /* RSThumbnails.m */; };
+		DC0F69231A051C4F0061EB95 /* RSChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5DDC35472535F6055FF4 /* RSChannelModel.m */; };
+		DC0F69241A051C5D0061EB95 /* RSVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5A0D3ED28B62DA5B95AC /* RSVideoModel.m */; };
+		DC0F69251A051C6D0061EB95 /* RSStringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5B7BE899A291E20B351C /* RSStringUtil.m */; };
+		DC0F69261A051DBB0061EB95 /* UIImage+RSImageEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D58472CEC4CF30FB62297 /* UIImage+RSImageEffect.m */; };
+		DC0F69271A0528810061EB95 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCEBA51619BCB2AF007C3FC7 /* Localizable.strings */; };
 		DC1044AB19B2FA6B007A86E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1044AA19B2FA6B007A86E6 /* Foundation.framework */; };
 		DC1044AD19B2FA6B007A86E6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1044AC19B2FA6B007A86E6 /* CoreGraphics.framework */; };
 		DC1044AF19B2FA6B007A86E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1044AE19B2FA6B007A86E6 /* UIKit.framework */; };
@@ -49,6 +63,10 @@
 		DC1044CB19B2FA6B007A86E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1044AA19B2FA6B007A86E6 /* Foundation.framework */; };
 		DC1044CC19B2FA6B007A86E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1044AE19B2FA6B007A86E6 /* UIKit.framework */; };
 		DC1044D419B2FA6B007A86E6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC1044D219B2FA6B007A86E6 /* InfoPlist.strings */; };
+		DC5708F51A00DBF500DB8821 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5708F41A00DBF500DB8821 /* NotificationCenter.framework */; };
+		DC5708FB1A00DBF500DB8821 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5708FA1A00DBF500DB8821 /* TodayViewController.m */; };
+		DC5708FD1A00DBF500DB8821 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5708FC1A00DBF500DB8821 /* MainInterface.storyboard */; };
+		DC5709001A00DBF500DB8821 /* VideoWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DC5708F31A00DBF500DB8821 /* VideoWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DC64F4C719E5524900F860B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DC64F4C519E5524900F860B4 /* Reachability.m */; };
 		DC64F4C919E5582F00F860B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC64F4C819E5582F00F860B4 /* SystemConfiguration.framework */; };
 		DCCE230119F252D20027C390 /* LaunchImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCCE230019F252D20027C390 /* LaunchImage.xib */; };
@@ -67,9 +85,38 @@
 			remoteGlobalIDString = DC1044A619B2FA6B007A86E6;
 			remoteInfo = LolTube;
 		};
+		DC5708FE1A00DBF500DB8821 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC10449F19B2FA6B007A86E6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC5708F21A00DBF500DB8821;
+			remoteInfo = VideoWidget;
+		};
+		DC5709011A00DBF500DB8821 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC10449F19B2FA6B007A86E6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC5708F21A00DBF500DB8821;
+			remoteInfo = VideoWidget;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		DC5709061A00DBF500DB8821 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				DC5709001A00DBF500DB8821 /* VideoWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		258B97C7D8C343E59B7679D4 /* libPods-VideoWidget.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VideoWidget.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		371FAF4E87134393B85D8C11 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		492EE9566EC348369DBEEC9F /* libPods-LolTubeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LolTubeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78D44C9CFB5B45D686716807 /* Pods-LolTubeTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LolTubeTests.xcconfig"; path = "Pods/Pods-LolTubeTests.xcconfig"; sourceTree = "<group>"; };
@@ -101,9 +148,11 @@
 		7A9D579DEBD8CEEC71AB737A /* RSThumbnails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSThumbnails.m; sourceTree = "<group>"; };
 		7A9D58472CEC4CF30FB62297 /* UIImage+RSImageEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RSImageEffect.m"; sourceTree = "<group>"; };
 		7A9D58A91E727A44241D4B26 /* RSVideoListCollectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoListCollectionViewModel.h; sourceTree = "<group>"; };
+		7A9D5904CA4C863FB30FC721 /* RSTodayVideoTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTodayVideoTableViewModel.h; sourceTree = "<group>"; };
 		7A9D5945F2653C03C46B1A5B /* RSThumbnails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSThumbnails.h; sourceTree = "<group>"; };
 		7A9D59B793756C1854CA7C28 /* RSYoutubeServiceSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSYoutubeServiceSpec.m; sourceTree = "<group>"; };
 		7A9D5A0D3ED28B62DA5B95AC /* RSVideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoModel.m; sourceTree = "<group>"; };
+		7A9D5A57F12E827DA02DC5C6 /* RSTodayVideoTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTodayVideoTableViewModel.m; sourceTree = "<group>"; };
 		7A9D5A860870F855225F2509 /* RSChannelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSChannelModel.h; sourceTree = "<group>"; };
 		7A9D5AB115FA7BE1F3B692E8 /* RSChannelService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSChannelService.h; sourceTree = "<group>"; };
 		7A9D5AF46BFEA231319F7D33 /* RayWenderlichChannel.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = RayWenderlichChannel.json; sourceTree = "<group>"; };
@@ -125,6 +174,7 @@
 		7A9D5EA2E87290F585584765 /* RSSearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSearchTableViewCell.h; sourceTree = "<group>"; };
 		7A9D5FCBA9DCDC569C7C2F1E /* RSVideoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailViewController.h; sourceTree = "<group>"; };
 		8AE8E8822B6E415281465DA6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		97AB2DFA1BA34AEB926EF0EC /* Pods-VideoWidget.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoWidget.xcconfig"; path = "Pods/Pods-VideoWidget.xcconfig"; sourceTree = "<group>"; };
 		DC1044A719B2FA6B007A86E6 /* LolTube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LolTube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC1044AA19B2FA6B007A86E6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DC1044AC19B2FA6B007A86E6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -140,6 +190,12 @@
 		DC1044C919B2FA6B007A86E6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		DC1044D119B2FA6B007A86E6 /* LolTubeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LolTubeTests-Info.plist"; sourceTree = "<group>"; };
 		DC1044D319B2FA6B007A86E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DC5708F31A00DBF500DB8821 /* VideoWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = VideoWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC5708F41A00DBF500DB8821 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		DC5708F81A00DBF500DB8821 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC5708F91A00DBF500DB8821 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		DC5708FA1A00DBF500DB8821 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		DC5708FC1A00DBF500DB8821 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		DC64F4C519E5524900F860B4 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		DC64F4C619E5524900F860B4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		DC64F4C819E5582F00F860B4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -187,6 +243,15 @@
 				DC1044CC19B2FA6B007A86E6 /* UIKit.framework in Frameworks */,
 				DC1044CB19B2FA6B007A86E6 /* Foundation.framework in Frameworks */,
 				0D56D899FCC74DAF83E2042D /* libPods-LolTubeTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC5708F01A00DBF500DB8821 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC5708F51A00DBF500DB8821 /* NotificationCenter.framework in Frameworks */,
+				7D3B56BEC73C460A8FD88FC8 /* libPods-VideoWidget.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,10 +458,12 @@
 			children = (
 				DC1044B019B2FA6B007A86E6 /* LolTube */,
 				DC1044CF19B2FA6B007A86E6 /* LolTubeTests */,
+				DC5708F61A00DBF500DB8821 /* VideoWidget */,
 				DC1044A919B2FA6B007A86E6 /* Frameworks */,
 				DC1044A819B2FA6B007A86E6 /* Products */,
 				371FAF4E87134393B85D8C11 /* Pods.xcconfig */,
 				78D44C9CFB5B45D686716807 /* Pods-LolTubeTests.xcconfig */,
+				97AB2DFA1BA34AEB926EF0EC /* Pods-VideoWidget.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -405,6 +472,7 @@
 			children = (
 				DC1044A719B2FA6B007A86E6 /* LolTube.app */,
 				DC1044C819B2FA6B007A86E6 /* LolTubeTests.xctest */,
+				DC5708F31A00DBF500DB8821 /* VideoWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -419,6 +487,8 @@
 				DC1044C919B2FA6B007A86E6 /* XCTest.framework */,
 				8AE8E8822B6E415281465DA6 /* libPods.a */,
 				492EE9566EC348369DBEEC9F /* libPods-LolTubeTests.a */,
+				DC5708F41A00DBF500DB8821 /* NotificationCenter.framework */,
+				258B97C7D8C343E59B7679D4 /* libPods-VideoWidget.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -472,6 +542,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		DC5708F61A00DBF500DB8821 /* VideoWidget */ = {
+			isa = PBXGroup;
+			children = (
+				DC5708F91A00DBF500DB8821 /* TodayViewController.h */,
+				DC5708FA1A00DBF500DB8821 /* TodayViewController.m */,
+				DC5708FC1A00DBF500DB8821 /* MainInterface.storyboard */,
+				DC5708F71A00DBF500DB8821 /* Supporting Files */,
+				7A9D5A57F12E827DA02DC5C6 /* RSTodayVideoTableViewModel.m */,
+				7A9D5904CA4C863FB30FC721 /* RSTodayVideoTableViewModel.h */,
+			);
+			path = VideoWidget;
+			sourceTree = "<group>";
+		};
+		DC5708F71A00DBF500DB8821 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DC5708F81A00DBF500DB8821 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		DCF9878819BF0EEC00E9BCBE /* AMTumblrHud */ = {
 			isa = PBXGroup;
 			children = (
@@ -493,10 +584,13 @@
 				DC1044A419B2FA6B007A86E6 /* Frameworks */,
 				DC1044A519B2FA6B007A86E6 /* Resources */,
 				8C8C1AB0675149FBA3D65059 /* Copy Pods Resources */,
+				DC5709061A00DBF500DB8821 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				DC5708FF1A00DBF500DB8821 /* PBXTargetDependency */,
+				DC5709021A00DBF500DB8821 /* PBXTargetDependency */,
 			);
 			name = LolTube;
 			productName = LolTube;
@@ -523,6 +617,25 @@
 			productReference = DC1044C819B2FA6B007A86E6 /* LolTubeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		DC5708F21A00DBF500DB8821 /* VideoWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC5709051A00DBF500DB8821 /* Build configuration list for PBXNativeTarget "VideoWidget" */;
+			buildPhases = (
+				2F1AB611F1E348F88CCFAC27 /* Check Pods Manifest.lock */,
+				DC5708EF1A00DBF500DB8821 /* Sources */,
+				DC5708F01A00DBF500DB8821 /* Frameworks */,
+				DC5708F11A00DBF500DB8821 /* Resources */,
+				2AC97878B2FD49C6A2F94C6D /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VideoWidget;
+			productName = VideoWidget;
+			productReference = DC5708F31A00DBF500DB8821 /* VideoWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -543,6 +656,10 @@
 					};
 					DC1044C719B2FA6B007A86E6 = {
 						TestTargetID = DC1044A619B2FA6B007A86E6;
+					};
+					DC5708F21A00DBF500DB8821 = {
+						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = Q2N4A2LNJ8;
 					};
 				};
 			};
@@ -566,6 +683,7 @@
 			targets = (
 				DC1044A619B2FA6B007A86E6 /* LolTube */,
 				DC1044C719B2FA6B007A86E6 /* LolTubeTests */,
+				DC5708F21A00DBF500DB8821 /* VideoWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -595,6 +713,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DC5708F11A00DBF500DB8821 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC5708FD1A00DBF500DB8821 /* MainInterface.storyboard in Resources */,
+				DC0F69271A0528810061EB95 /* Localizable.strings in Resources */,
+				DC0F691C1A03DFD70061EB95 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -611,6 +739,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-LolTubeTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2AC97878B2FD49C6A2F94C6D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-VideoWidget-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2F1AB611F1E348F88CCFAC27 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		73C338F7AD4440E0A5DF77D0 /* Check Pods Manifest.lock */ = {
@@ -706,6 +864,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DC5708EF1A00DBF500DB8821 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC0F691E1A051A600061EB95 /* RSChannelService.m in Sources */,
+				DC0F69201A051A740061EB95 /* UIImageView+Loading.m in Sources */,
+				DC0F69231A051C4F0061EB95 /* RSChannelModel.m in Sources */,
+				DC0F69261A051DBB0061EB95 /* UIImage+RSImageEffect.m in Sources */,
+				DC5708FB1A00DBF500DB8821 /* TodayViewController.m in Sources */,
+				DC0F69251A051C6D0061EB95 /* RSStringUtil.m in Sources */,
+				7A9D502564EF5651A21D735F /* RSTodayVideoTableViewModel.m in Sources */,
+				DC0F69211A051A850061EB95 /* RSSearchModel.m in Sources */,
+				DC0F69241A051C5D0061EB95 /* RSVideoModel.m in Sources */,
+				DC0F69221A051A910061EB95 /* RSThumbnails.m in Sources */,
+				DC0F691F1A051A6C0061EB95 /* NSDate+RSFormatter.m in Sources */,
+				DC0F691D1A051A540061EB95 /* RSYoutubeService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -713,6 +890,16 @@
 			isa = PBXTargetDependency;
 			target = DC1044A619B2FA6B007A86E6 /* LolTube */;
 			targetProxy = DC1044CD19B2FA6B007A86E6 /* PBXContainerItemProxy */;
+		};
+		DC5708FF1A00DBF500DB8821 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC5708F21A00DBF500DB8821 /* VideoWidget */;
+			targetProxy = DC5708FE1A00DBF500DB8821 /* PBXContainerItemProxy */;
+		};
+		DC5709021A00DBF500DB8821 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC5708F21A00DBF500DB8821 /* VideoWidget */;
+			targetProxy = DC5709011A00DBF500DB8821 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -912,6 +1099,46 @@
 			};
 			name = Release;
 		};
+		DC5709031A00DBF500DB8821 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97AB2DFA1BA34AEB926EF0EC /* Pods-VideoWidget.xcconfig */;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = VideoWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DC5709041A00DBF500DB8821 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97AB2DFA1BA34AEB926EF0EC /* Pods-VideoWidget.xcconfig */;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = VideoWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -938,6 +1165,15 @@
 			buildConfigurations = (
 				DC1044DD19B2FA6B007A86E6 /* Debug */,
 				DC1044DE19B2FA6B007A86E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC5709051A00DBF500DB8821 /* Build configuration list for PBXNativeTarget "VideoWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC5709031A00DBF500DB8821 /* Debug */,
+				DC5709041A00DBF500DB8821 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

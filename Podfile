@@ -10,3 +10,9 @@ target :LolTubeTests do
     pod 'Kiwi', '~> 2.3.0'
     pod 'OHHTTPStubs', '~>3.1.5'
 end
+
+target :VideoWidget do
+  pod 'AFNetworking', '~> 2.0'
+  pod 'SDWebImage','~> 3.7.0'
+  pod 'JSONModel', '~> 1.0.1'
+end

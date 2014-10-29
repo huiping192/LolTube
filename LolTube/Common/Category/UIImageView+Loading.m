@@ -41,12 +41,14 @@
 }
 
 - (void)asynLoadingImageWithUrlString:(NSString *)urlString placeHolderImage:(UIImage *)placeHolderImage {
+    if (!urlString) {
+        return;
+    }
     [self sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:placeHolderImage];
 }
 
 - (void)asynLoadingTonalImageWithUrlString:(NSString *)urlString secondImageUrlString:(NSString *)secondImageUrlString placeHolderImage:(UIImage *)placeHolderImage {
     __weak typeof(self) weakSelf = self;
-
 
 
     SDWebImageManager *manager = [SDWebImageManager sharedManager];

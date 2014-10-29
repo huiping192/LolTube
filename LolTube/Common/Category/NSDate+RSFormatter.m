@@ -21,4 +21,17 @@
     return [formatter dateFromString:iso8601String];
 }
 
++(NSString *)todayRFC3339DateTime{
+    NSDate *now = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond) fromDate:now];
+    [components setHour:0];
+    [components setMinute:0];
+    [components setSecond:0];
+    NSDate *morningStart = [calendar dateFromComponents:components];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+    return [formatter stringFromDate:morningStart];
+}
+
 @end

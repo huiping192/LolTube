@@ -323,7 +323,7 @@
                     <navigationItem key="navigationItem" id="n6R-MV-bRF">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="zD7-wl-qvg">
-                            <rect key="frame" x="18" y="5.5" width="564" height="33"/>
+                            <rect key="frame" x="18" y="6" width="564" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="NJp-E6-W2S">
@@ -348,7 +348,7 @@
         <!--Video Detail View Controller-->
         <scene sceneID="Cyw-kU-DVb">
             <objects>
-                <viewController id="99o-UL-MFg" customClass="RSVideoDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="videoDetail" id="99o-UL-MFg" customClass="RSVideoDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YIZ-ol-8vE"/>
                         <viewControllerLayoutGuide type="bottom" id="FIg-ZS-c01"/>

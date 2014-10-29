@@ -170,6 +170,9 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 }
 
 - (UICollectionViewCell *)selectedCell {
+    if(self.collectionView.indexPathsForSelectedItems.count == 0){
+        return nil;
+    }
     return [self.collectionView cellForItemAtIndexPath:self.collectionView.indexPathsForSelectedItems[0]];
 }
 

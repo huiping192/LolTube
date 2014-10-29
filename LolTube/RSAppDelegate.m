@@ -7,9 +7,9 @@
 //
 
 #import "RSAppDelegate.h"
-#import "RSChannelService.h"
 #import "RSVideoListViewController.h"
 #import "RSVideoService.h"
+#import "RSVideoDetailViewController.h"
 
 @implementation RSAppDelegate
 
@@ -38,6 +38,23 @@
 - (void)p_configureVideoService {
     RSVideoService *videoService = [RSVideoService sharedInstance];
     [videoService configure];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    NSString *videoId = url.host;
+
+    if(videoId){
+        RSVideoDetailViewController *videoDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"videoDetail"];
+        videoDetailViewController.videoId = videoId;
+        UIViewController *rootViewController = application.keyWindow.rootViewController;
+        if ([rootViewController isKindOfClass:[UINavigationController class]]) {
+            UINavigationController *navigationController = (UINavigationController *) rootViewController;
+            [navigationController popToRootViewControllerAnimated:NO];
+            [navigationController pushViewController:videoDetailViewController animated:YES];
+        }
+    }
+
+    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

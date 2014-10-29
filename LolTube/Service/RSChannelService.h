@@ -3,6 +3,7 @@
 // Copyright (c) 2014 Huiping Guo. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 
 @interface RSChannelService : NSObject
 

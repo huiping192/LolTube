@@ -8,6 +8,7 @@
 #import "AFNetworking/AFNetworking.h"
 #import "RSVideoModel.h"
 #import "RSChannelModel.h"
+#import "NSDate+RSFormatter.h"
 
 static NSString *const kYoutubeApiKey = @"AIzaSyBb1ZDTeUmzba4Kk4wsYtmi70tr7UBo3HA";
 
@@ -207,6 +208,57 @@ static NSString *const kYoutubeChannelUrlString = @"https://www.googleapis.com/y
             failure(error);
         }
     }];
+}
+
+- (void)todayVideoListWithChannelIds:(NSArray *)channelIds success:(void (^)(NSArray *))success failure:(void (^)(NSError *))failure {
+    NSMutableArray *mutableOperations = [NSMutableArray array];
+    for (NSString *channelId in channelIds) {
+
+        NSString *todayDateTimeString = [NSDate todayRFC3339DateTime];
+        NSLog(@"data:%@",todayDateTimeString);
+        NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"channelId" : channelId, @"type" : @"video", @"maxResults" : @(50), @"order" : @"date",@"publishedAfter":todayDateTimeString};
+
+        // fields value (,% などのchatがlibに変換されるため、NSStringでそのまま設定する
+        NSString *urlString = [NSString stringWithFormat:@"%@?%@=%@", kYoutubeSearchUrlString, @"fields", @"items(id%2Csnippet)%2CpageInfo%2CnextPageToken"];
+
+        NSURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:[[NSURL URLWithString:urlString] absoluteString] parameters:parameters error:nil];
+
+        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+
+        [mutableOperations addObject:operation];
+    }
+
+    __block NSMutableArray *searchModelList = [[NSMutableArray alloc] init];
+
+    __block NSError *error = nil;
+    NSArray *operations = [AFURLConnectionOperation batchOfRequestOperations:mutableOperations progressBlock:^(NSUInteger numberOfFinishedOperations, NSUInteger totalNumberOfOperations) {
+        AFHTTPRequestOperation *operation = mutableOperations[numberOfFinishedOperations - 1];
+        JSONModelError *jsonModelError = nil;
+
+        RSSearchModel *searchModel = [[RSSearchModel alloc] initWithString:operation.responseString error:&jsonModelError];
+
+        if (jsonModelError) {
+            error = jsonModelError;
+            return;
+        }
+
+        if (searchModel) {
+            [searchModelList addObject:searchModel];
+        }
+    }                                                        completionBlock:^(NSArray *operations) {
+
+        if (error) {
+            if (failure) {
+                failure(error);
+            }
+            return;
+        }
+        if (success) {
+            success(searchModelList);
+        }
+    }];
+
+    [[NSOperationQueue mainQueue] addOperations:operations waitUntilFinished:NO];
 }
 
 
