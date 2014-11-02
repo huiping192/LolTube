@@ -269,14 +269,6 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
     return cell;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-        cell.transform = CGAffineTransformMakeScale(0.9, 0.9);
-    [UIView animateWithDuration:0.2 animations:^{
-      cell.transform = CGAffineTransformIdentity;
-    }];
-}
-
-
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *searchCollectionReusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"searchCollectionReusableView" forIndexPath:indexPath];
 

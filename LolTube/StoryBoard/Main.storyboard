@@ -9,7 +9,7 @@
         <!--Navigation Controller-->
         <scene sceneID="bdk-ac-AjJ">
             <objects>
-                <navigationController definesPresentationContext="YES" hidesBarsOnSwipe="YES" id="Vel-Ji-Muw" customClass="RSNavigationController" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="Vel-Ji-Muw" customClass="RSNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Itv-Pc-8BA">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
