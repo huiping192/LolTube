@@ -13,4 +13,4 @@
 "VideoDetailPostedAtFormatter" = "%@ 发布";
 "SearchChannels" = "浏览更多的频道";
 "SearchVideos" = "搜索视频";
-"VideoWidgetNoVideos" = "no videos";
+"VideoWidgetNoVideos" = "今天还没有视频发布.";

@@ -233,44 +233,6 @@
                                             <segue destination="yEd-kX-Rbt" kind="unwind" identifier="showChannel" unwindAction="channelSelected:" id="q4P-rU-0JZ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="searchCell" id="oCx-Al-gWa" customClass="RSSearchTableViewCell">
-                                        <rect key="frame" x="0.0" y="130" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oCx-Al-gWa" id="QPX-eG-HDQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explore More Channels" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DG9-PH-7Gm">
-                                                    <rect key="frame" x="233" y="11" width="134" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" placeholder="YES" id="aDT-hm-TA8"/>
-                                                        <constraint firstAttribute="width" constant="134" placeholder="YES" id="gCG-he-yqs"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="Rjx-n9-pg0">
-                                                    <rect key="frame" x="211" y="16" width="12" height="12"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="12" id="RCD-Ow-Ssr"/>
-                                                        <constraint firstAttribute="width" constant="12" id="m80-p9-yT4"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="centerY" secondItem="DG9-PH-7Gm" secondAttribute="centerY" id="9Ki-b3-hLu"/>
-                                                <constraint firstAttribute="centerX" secondItem="DG9-PH-7Gm" secondAttribute="centerX" id="M51-oO-Fay"/>
-                                                <constraint firstItem="DG9-PH-7Gm" firstAttribute="leading" secondItem="Rjx-n9-pg0" secondAttribute="trailing" constant="10" id="OjV-jT-sXG"/>
-                                                <constraint firstAttribute="centerY" secondItem="Rjx-n9-pg0" secondAttribute="centerY" constant="-0.5" id="bYG-cM-2ZC"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="searchImageView" destination="Rjx-n9-pg0" id="NWP-bo-QpD"/>
-                                            <outlet property="searchLabel" destination="DG9-PH-7Gm" id="uhp-r6-Yqg"/>
-                                            <segue destination="pGX-8V-dwu" kind="presentation" id="4nK-L8-lG6"/>
-                                        </connections>
-                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="DD7-6f-iXm" id="fno-YP-QtY"/>
@@ -574,7 +536,4 @@
             <point key="canvasLocation" x="1886" y="-404"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="search" width="12" height="13"/>
-    </resources>
 </document>

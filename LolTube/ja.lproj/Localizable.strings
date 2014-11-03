@@ -13,4 +13,4 @@
 "VideoDetailPostedAtFormatter" = "%@ 掲載";
 "SearchChannels" = "もっとチャンネルをチェック";
 "SearchVideos" = "動画を検索";
-"VideoWidgetNoVideos" = "no videos";
+"VideoWidgetNoVideos" = "今日の動画がありません。";

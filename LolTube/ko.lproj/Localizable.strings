@@ -13,4 +13,4 @@
 "VideoDetailPostedAtFormatter" = "%@ 게시";
 "SearchChannels" = "관련 채널을 모아서";
 "SearchVideos" = "동영상 검색";
-"VideoWidgetNoVideos" = "no videos";
+"VideoWidgetNoVideos" = "또한 현재 출시 된 어떤 비디오 가 없습니다.";

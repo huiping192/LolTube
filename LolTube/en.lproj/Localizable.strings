@@ -13,4 +13,4 @@
 "VideoDetailPostedAtFormatter" = "%@ posted";
 "SearchChannels" = "Explore More Channels";
 "SearchVideos" = "Search Videos";
-"VideoWidgetNoVideos" = "no videos";
+"VideoWidgetNoVideos" = "No videos today.";
