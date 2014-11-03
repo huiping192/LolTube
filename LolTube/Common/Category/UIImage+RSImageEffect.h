@@ -3,6 +3,7 @@
 // Copyright (c) 2014 Huiping Guo. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 
 @interface UIImage (RSImageEffect)
 - (UIImage *)blackAndWhiteImage;

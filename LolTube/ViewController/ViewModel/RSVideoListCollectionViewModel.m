@@ -57,26 +57,23 @@
         success(NO);
     }
     [self p_updateWithChannelIds:channelIds pageTokens:nextPageTokens searchText:self.searchText success:^{
-        if(success){
-           success(YES);
+        if (success) {
+            success(YES);
         }
-    } failure:failure];
+    }                    failure:failure];
 }
 
 - (void)p_updateWithChannelIds:(NSArray *)channelIds pageTokens:(NSArray *)pageTokens searchText:(NSString *)searchText success:(void (^)())success failure:(void (^)(NSError *))failure {
     [self.service videoListWithChannelIds:channelIds searchText:searchText nextPageTokens:pageTokens success:^(NSArray *searchModelList) {
         self.searchModelList = searchModelList;
-        NSMutableArray *items = [[NSMutableArray alloc] init];
-        if (self.items) {
-            items = self.items.mutableCopy;
-        }
+        NSMutableArray *newItems = [[NSMutableArray alloc] init];
 
         for (RSSearchModel *searchModel in searchModelList) {
             for (RSItem *item in searchModel.items) {
                 RSVideoCollectionViewCellVo *cellVo = [[RSVideoCollectionViewCellVo alloc] init];
                 cellVo.videoId = item.id.videoId;
 
-                if ([items containsObject:cellVo]) {
+                if ([newItems containsObject:cellVo]) {
                     continue;
                 }
                 cellVo.channelId = item.snippet.channelId;
@@ -88,11 +85,18 @@
                 cellVo.postedTime = [self p_postedTimeWithPublishedAt:item.snippet.publishedAt];
                 cellVo.publishedAt = item.snippet.publishedAt;
 
-                [items addObject:cellVo];
+                [newItems addObject:cellVo];
             }
         }
 
-        _items = (NSArray <RSVideoCollectionViewCellVo> *) [self p_sortChannelItems:items];
+        NSArray *sortedNewItems = [self p_sortChannelItems:newItems];
+        NSMutableArray *items = [[NSMutableArray alloc] init];
+        if (self.items) {
+            items = self.items.mutableCopy;
+        }
+        [items addObjectsFromArray:sortedNewItems];
+
+        _items = (NSArray <RSVideoCollectionViewCellVo> *) items;
 
         dispatch_async(dispatch_get_main_queue(), ^{
             if (success) {

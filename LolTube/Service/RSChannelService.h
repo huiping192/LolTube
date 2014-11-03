@@ -3,6 +3,9 @@
 // Copyright (c) 2014 Huiping Guo. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
+static NSString *const kSharedUserDefaultsSuitName = @"group.com.huiping192.LolTube.channels";
 
 @interface RSChannelService : NSObject
 

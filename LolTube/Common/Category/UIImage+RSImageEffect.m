@@ -5,7 +5,6 @@
 
 #import "UIImage+RSImageEffect.h"
 
-
 @implementation UIImage (RSImageEffect)
 
 - (UIImage *)blackAndWhiteImage{

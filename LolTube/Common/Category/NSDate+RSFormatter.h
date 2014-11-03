@@ -11,4 +11,6 @@
 * convert ISO8601 date string to NSDate
 */
 + (NSDate *)dateFromISO8601String:(NSString *)iso8601String;
+
++ (NSString *)todayRFC3339DateTime;
 @end

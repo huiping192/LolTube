@@ -4,12 +4,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface UIImageView (Loading)
 -(void)asynLoadingImageWithUrlString:(NSString *)urlString secondImageUrlString:(NSString *)secondImageUrlString placeHolderImage:(UIImage *)placeHolderImage;
 
 - (void)asynLoadingImageWithUrlString:(NSString *)urlString placeHolderImage:(UIImage *)placeHolderImage;
 
-- (void)asynLoadingTonalImageWithUrlString:(NSString *)urlString secondImageUrlString:(NSString *)secondImageUrlString;
+- (void)asynLoadingTonalImageWithUrlString:(NSString *)urlString secondImageUrlString:(NSString *)secondImageUrlString placeHolderImage:(UIImage *)placeHolderImage;
 
 @end

@@ -10,15 +10,25 @@ static NSString *const kChannelIdsKey = @"channleIds";
 @implementation RSChannelService {
 
 }
+
 - (NSArray *)channelIds {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:kSharedUserDefaultsSuitName];
+    NSArray *channelIds = [userDefaults arrayForKey:kChannelIdsKey];
+    if (!channelIds) {
+        [self saveDefaultChannelIds];
+    }
     return [userDefaults arrayForKey:kChannelIdsKey];
 }
 
+- (void)saveDefaultChannelIds {
+    NSArray *channelIds = @[@"UC2t5bjwHdUX4vM2g8TRDq5g", @"UCvqRdlKsE5Q8mf8YXbdIJLw", @"UClh5azhOaKzdlThQFgoq-tw", @"UC0RalGf69iYVBFteHInyJJg", @"UCUf53DHwoQw4SvETXZQ2Tmg", @"UCPOm2V7Ccdlkm2J1TqNptEw", @"UCrZT1akje889ZcVXDf9QkGg", @"UCGgbmTgF-sUJGd5B5N6VSFw", @"UC0t-xbEmmcJBQ6-fTZV2FNA", @"UC_ZIX-h-BIZZnim6YJSjYDA"];
+    [self saveChannelIds:channelIds];
+}
+
 - (void)saveChannelId:(NSString *)channelId {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:kSharedUserDefaultsSuitName];
     NSArray *channelIds = [userDefaults arrayForKey:kChannelIdsKey];
-    if(!channelIds){
+    if (!channelIds) {
         channelIds = [[NSArray alloc] init];
     }
     NSMutableArray *mutableChannelIds = channelIds.mutableCopy;
@@ -30,7 +40,7 @@ static NSString *const kChannelIdsKey = @"channleIds";
 }
 
 - (void)deleteChannelId:(NSString *)channelId {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:kSharedUserDefaultsSuitName];
     NSArray *channelIds = [userDefaults arrayForKey:kChannelIdsKey];
     NSMutableArray *mutableChannelIds = channelIds.mutableCopy;
 
@@ -40,9 +50,9 @@ static NSString *const kChannelIdsKey = @"channleIds";
 }
 
 - (void)saveChannelIds:(NSArray *)channelIds {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:kSharedUserDefaultsSuitName];
     NSArray *savedChannelIds = [userDefaults arrayForKey:kChannelIdsKey];
-    if(!savedChannelIds){
+    if (!savedChannelIds) {
         savedChannelIds = [[NSArray alloc] init];
     }
     NSMutableArray *mutableChannelIds = savedChannelIds.mutableCopy;
@@ -54,7 +64,7 @@ static NSString *const kChannelIdsKey = @"channleIds";
 
 
 - (void)moveChannelId:(NSString *)channelId toIndex:(NSUInteger)index {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:kSharedUserDefaultsSuitName];
     NSArray *channelIds = [userDefaults arrayForKey:kChannelIdsKey];
     NSMutableArray *mutableChannelIds = channelIds.mutableCopy;
 

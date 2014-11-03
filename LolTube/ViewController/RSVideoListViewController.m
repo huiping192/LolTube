@@ -27,7 +27,7 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 
 @property(nonatomic, assign) BOOL collectionViewFirstShownFlag;
 
-@property(nonatomic, assign) BOOL loading;
+@property(atomic, assign) BOOL loading;
 
 @end
 
@@ -161,7 +161,7 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
         RSVideoCollectionViewCell *cell = (RSVideoCollectionViewCell *) sender;
         videoDetailViewController.thumbnailImage = cell.thumbnailImageView.image;
         // change video image to played video image
-        [cell.thumbnailImageView asynLoadingTonalImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl];
+        [cell.thumbnailImageView asynLoadingTonalImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
     } else if ([segue.identifier isEqualToString:@"channelList"]) {
         UINavigationController *navigationController = segue.destinationViewController;
         RSChannelListViewController *channelListViewController = (RSChannelListViewController *) navigationController.topViewController;
@@ -170,6 +170,9 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 }
 
 - (UICollectionViewCell *)selectedCell {
+    if(self.collectionView.indexPathsForSelectedItems.count == 0){
+        return nil;
+    }
     return [self.collectionView cellForItemAtIndexPath:self.collectionView.indexPathsForSelectedItems[0]];
 }
 
@@ -234,11 +237,11 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
     RSVideoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kVideoCellId forIndexPath:indexPath];
     RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) indexPath.row];
 
-    [cell.thumbnailImageView setImage:[UIImage imageNamed:@"DefaultThumbnail"]];
+    [cell.thumbnailImageView setImage:nil];
     if ([[RSVideoService sharedInstance] isPlayFinishedWithVideoId:item.videoId]) {
-        [cell.thumbnailImageView asynLoadingTonalImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl];
+        [cell.thumbnailImageView asynLoadingTonalImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl placeHolderImage:nil];
     } else {
-        [cell.thumbnailImageView asynLoadingImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
+        [cell.thumbnailImageView asynLoadingImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl placeHolderImage:nil];
     }
 
     cell.titleLabel.text = item.title;
@@ -297,28 +300,39 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 #pragma mark - scrollView delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self.searchBar resignFirstResponder];
-    [self.searchBar setShowsCancelButton:NO animated:YES];
+    if ([self.searchBar isFirstResponder]) {
+        [self.searchBar resignFirstResponder];
+        [self.searchBar setShowsCancelButton:NO animated:YES];
+    }
 
-    if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height) {
+    if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) * 0.9) {
         // load more videos
-        @synchronized (self) {
-            if (self.loading) {
-                return;
-            }
-            self.loading = YES;
-            __weak typeof(self) weakSelf = self;
-            [self.collectionViewModel updateNextPageDataWithSuccess:^(BOOL hasNewData) {
-                if (hasNewData) {
-                    [weakSelf.collectionView reloadData];
-                }
-                self.loading = NO;
-
-            }                                               failure:^(NSError *error) {
-                NSLog(@"error:%@", error);
-                self.loading = NO;
-            }];
+        if (self.loading) {
+            return;
         }
+        NSInteger count = [self.collectionView numberOfItemsInSection:0];
+        if (count == 0) {
+            return;
+        }
+        self.loading = YES;
+
+        __weak typeof(self) weakSelf = self;
+        [self.collectionViewModel updateNextPageDataWithSuccess:^(BOOL hasNewData) {
+            if (hasNewData) {
+                [weakSelf.collectionView performBatchUpdates:^{
+                    NSMutableArray *insertIndexPaths = [[NSMutableArray alloc] init];
+                    for (NSInteger i = count; i < weakSelf.collectionViewModel.items.count; ++i) {
+                        [insertIndexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
+                    }
+                    [weakSelf.collectionView insertItemsAtIndexPaths:insertIndexPaths];
+                }                                 completion:nil];
+            }
+            weakSelf.loading = NO;
+
+        }                                               failure:^(NSError *error) {
+            NSLog(@"error:%@", error);
+            weakSelf.loading = NO;
+        }];
     }
 }
 

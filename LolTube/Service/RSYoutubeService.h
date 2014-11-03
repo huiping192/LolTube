@@ -3,6 +3,7 @@
 // Copyright (c) 2014 Huiping Guo. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 
 @class RSSearchModel;
 @class RSVideoModel;
@@ -17,4 +18,9 @@
 - (void)videoWithVideoId:(NSString *)videoId success:(void (^)(RSVideoModel *))success failure:(void (^)(NSError *))failure;
 
 - (void)channelWithChannelIds:(NSArray *)channelIds success:(void (^)(RSChannelModel *))success failure:(void (^)(NSError *))failure;
+
+- (void)channelWithSearchText:(NSString *)searchText nextPageToken:(NSString *)nextPageToken success:(void (^)(RSSearchModel *))success failure:(void (^)(NSError *))failure;
+
+- (void)todayVideoListWithChannelIds:(NSArray *)channelIds success:(void (^)(NSArray *))success failure:(void (^)(NSError *))failure;
+
 @end
