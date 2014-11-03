@@ -12,7 +12,7 @@ static NSString *const kChannelIdsKey = @"channleIds";
 }
 
 - (NSArray *)channelIds {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:kSharedUserDefaultsSuitName];
     NSArray *channelIds = [userDefaults arrayForKey:kChannelIdsKey];
     if (!channelIds) {
         [self saveDefaultChannelIds];
@@ -26,7 +26,7 @@ static NSString *const kChannelIdsKey = @"channleIds";
 }
 
 - (void)saveChannelId:(NSString *)channelId {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:kSharedUserDefaultsSuitName];
     NSArray *channelIds = [userDefaults arrayForKey:kChannelIdsKey];
     if (!channelIds) {
         channelIds = [[NSArray alloc] init];
@@ -40,7 +40,7 @@ static NSString *const kChannelIdsKey = @"channleIds";
 }
 
 - (void)deleteChannelId:(NSString *)channelId {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:kSharedUserDefaultsSuitName];
     NSArray *channelIds = [userDefaults arrayForKey:kChannelIdsKey];
     NSMutableArray *mutableChannelIds = channelIds.mutableCopy;
 
@@ -50,7 +50,7 @@ static NSString *const kChannelIdsKey = @"channleIds";
 }
 
 - (void)saveChannelIds:(NSArray *)channelIds {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:kSharedUserDefaultsSuitName];
     NSArray *savedChannelIds = [userDefaults arrayForKey:kChannelIdsKey];
     if (!savedChannelIds) {
         savedChannelIds = [[NSArray alloc] init];
@@ -64,7 +64,7 @@ static NSString *const kChannelIdsKey = @"channleIds";
 
 
 - (void)moveChannelId:(NSString *)channelId toIndex:(NSUInteger)index {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:kSharedUserDefaultsSuitName];
     NSArray *channelIds = [userDefaults arrayForKey:kChannelIdsKey];
     NSMutableArray *mutableChannelIds = channelIds.mutableCopy;
 

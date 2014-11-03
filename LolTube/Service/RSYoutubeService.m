@@ -211,12 +211,16 @@ static NSString *const kYoutubeChannelUrlString = @"https://www.googleapis.com/y
 }
 
 - (void)todayVideoListWithChannelIds:(NSArray *)channelIds success:(void (^)(NSArray *))success failure:(void (^)(NSError *))failure {
+    if (!channelIds || channelIds.count == 0) {
+        success(nil);
+        return;
+    }
     NSMutableArray *mutableOperations = [NSMutableArray array];
     for (NSString *channelId in channelIds) {
 
         NSString *todayDateTimeString = [NSDate todayRFC3339DateTime];
-        NSLog(@"data:%@",todayDateTimeString);
-        NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"channelId" : channelId, @"type" : @"video", @"maxResults" : @(50), @"order" : @"date",@"publishedAfter":todayDateTimeString};
+        NSLog(@"data:%@", todayDateTimeString);
+        NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"channelId" : channelId, @"type" : @"video", @"maxResults" : @(5), @"order" : @"date", @"publishedAfter" : todayDateTimeString};
 
         // fields value (,% などのchatがlibに変換されるため、NSStringでそのまま設定する
         NSString *urlString = [NSString stringWithFormat:@"%@?%@=%@", kYoutubeSearchUrlString, @"fields", @"items(id%2Csnippet)%2CpageInfo%2CnextPageToken"];

@@ -14,17 +14,18 @@
 
 - (instancetype)initWithChannelIds:(NSArray *)channelIds;
 
-- (void)updateWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure;
+- (void)updateCacheDataWithSuccess:(void (^)(BOOL hasCacheData))success;
+
+- (void)updateWithSuccess:(void (^)(BOOL hasNewData))success failure:(void (^)(NSError *))failure;
 
 @end
 
 
-@interface RSVideoListTableViewCellVo : NSObject
+@interface RSVideoListTableViewCellVo : NSObject<NSCoding>
 
 @property(nonatomic, copy) NSString *videoId;
 @property(nonatomic, copy) NSString *title;
 
-@property(nonatomic, copy) NSString *highThumbnailUrl;
 @property(nonatomic, copy) NSString *defaultThumbnailUrl;
 
 @end

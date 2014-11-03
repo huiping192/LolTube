@@ -175,6 +175,8 @@
 		7A9D5FCBA9DCDC569C7C2F1E /* RSVideoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailViewController.h; sourceTree = "<group>"; };
 		8AE8E8822B6E415281465DA6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		97AB2DFA1BA34AEB926EF0EC /* Pods-VideoWidget.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoWidget.xcconfig"; path = "Pods/Pods-VideoWidget.xcconfig"; sourceTree = "<group>"; };
+		DC0F69281A075CD90061EB95 /* LolTube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LolTube.entitlements; sourceTree = "<group>"; };
+		DC0F69291A075CE80061EB95 /* VideoWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = VideoWidget.entitlements; sourceTree = "<group>"; };
 		DC1044A719B2FA6B007A86E6 /* LolTube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LolTube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC1044AA19B2FA6B007A86E6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DC1044AC19B2FA6B007A86E6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -496,6 +498,7 @@
 		DC1044B019B2FA6B007A86E6 /* LolTube */ = {
 			isa = PBXGroup;
 			children = (
+				DC0F69281A075CD90061EB95 /* LolTube.entitlements */,
 				DC1044B919B2FA6B007A86E6 /* RSAppDelegate.h */,
 				DC1044BA19B2FA6B007A86E6 /* RSAppDelegate.m */,
 				DC1044C219B2FA6B007A86E6 /* Images.xcassets */,
@@ -545,6 +548,7 @@
 		DC5708F61A00DBF500DB8821 /* VideoWidget */ = {
 			isa = PBXGroup;
 			children = (
+				DC0F69291A075CE80061EB95 /* VideoWidget.entitlements */,
 				DC5708F91A00DBF500DB8821 /* TodayViewController.h */,
 				DC5708FA1A00DBF500DB8821 /* TodayViewController.m */,
 				DC5708FC1A00DBF500DB8821 /* MainInterface.storyboard */,
@@ -649,6 +653,9 @@
 					DC1044A619B2FA6B007A86E6 = {
 						DevelopmentTeam = Q2N4A2LNJ8;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
@@ -660,6 +667,11 @@
 					DC5708F21A00DBF500DB8821 = {
 						CreatedOnToolsVersion = 6.0.1;
 						DevelopmentTeam = Q2N4A2LNJ8;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1019,6 +1031,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = LolTube/LolTube.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1041,6 +1054,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = LolTube/LolTube.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1104,6 +1118,7 @@
 			baseConfigurationReference = 97AB2DFA1BA34AEB926EF0EC /* Pods-VideoWidget.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = VideoWidget/VideoWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1126,6 +1141,7 @@
 			baseConfigurationReference = 97AB2DFA1BA34AEB926EF0EC /* Pods-VideoWidget.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = VideoWidget/VideoWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

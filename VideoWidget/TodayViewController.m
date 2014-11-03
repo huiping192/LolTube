@@ -22,18 +22,28 @@
 
 @implementation TodayViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)awakeFromNib {
+    [super awakeFromNib];
+
     RSChannelService *channelService = [[RSChannelService alloc] init];
     self.tableViewModel = [[RSTodayVideoTableViewModel alloc] initWithChannelIds:[channelService channelIds]];
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.tableViewModel updateWithSuccess:^{
-        [self.tableView reloadData];
-        [self setPreferredContentSize:self.tableView.contentSize];
-    }                              failure:^(NSError *error) {
+
+    //load cache data
+    __weak typeof(self) weakSelf = self;
+    [self.tableViewModel updateCacheDataWithSuccess:^(BOOL hasCacheData) {
+        if (hasCacheData) {
+            [weakSelf.tableView reloadData];
+            [weakSelf setPreferredContentSize:weakSelf.tableView.contentSize];
+        }
     }];
 }
 
@@ -49,16 +59,14 @@
     // If an error is encountered, use NCUpdateResultFailed
     // If there's no update required, use NCUpdateResultNoData
     // If there's an update, use NCUpdateResultNewData
-
-    [self.tableViewModel updateWithSuccess:^{
-        [self.tableView reloadData];
-        [self setPreferredContentSize:self.tableView.contentSize];
-        completionHandler(NCUpdateResultNewData);
+    __weak typeof(self) weakSelf = self;
+    [self.tableViewModel updateWithSuccess:^(BOOL hasNewData) {
+        [weakSelf.tableView reloadData];
+        [weakSelf setPreferredContentSize:weakSelf.tableView.contentSize];
+        completionHandler(hasNewData ? NCUpdateResultNewData : NCUpdateResultNoData);
     }                              failure:^(NSError *error) {
         completionHandler(NCUpdateResultFailed);
     }];
-
-
 }
 
 - (UIEdgeInsets)widgetMarginInsetsForProposedMarginInsets:(UIEdgeInsets)defaultMarginInsets {
@@ -78,6 +86,7 @@
 
     RSVideoListTableViewCellVo *cellVo = (RSVideoListTableViewCellVo *) self.tableViewModel.items[(NSUInteger) indexPath.row];
     [cell.imageView asynLoadingImageWithUrlString:cellVo.defaultThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
+
     cell.textLabel.text = cellVo.title;
     return cell;
 }
@@ -86,9 +95,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 
     RSVideoListTableViewCellVo *cellVo = (RSVideoListTableViewCellVo *) self.tableViewModel.items[(NSUInteger) indexPath.row];
-    if(cellVo.videoId){
+    if (cellVo.videoId) {
         [self.extensionContext openURL:[NSURL URLWithString:[NSString stringWithFormat:@"loltube://%@", cellVo.videoId]] completionHandler:nil];
-    } else{
+    } else {
         [self.extensionContext openURL:[NSURL URLWithString:@"loltube://"] completionHandler:nil];
     }
 }
