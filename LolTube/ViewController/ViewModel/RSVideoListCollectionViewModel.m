@@ -94,7 +94,12 @@
         if (self.items) {
             items = self.items.mutableCopy;
         }
-        [items addObjectsFromArray:sortedNewItems];
+
+        for (RSVideoCollectionViewCellVo *cellVo in sortedNewItems) {
+            if (![items containsObject:cellVo]) {
+                [items addObject:cellVo];
+            }
+        }
 
         _items = (NSArray <RSVideoCollectionViewCellVo> *) items;
 
