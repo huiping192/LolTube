@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vel-Ji-Muw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vel-Ji-Muw">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -50,7 +50,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="310" height="175"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mwu-hu-GrN" userLabel="thumbnail image view">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mwu-hu-GrN" userLabel="thumbnail image view">
                                                     <rect key="frame" x="0.0" y="0.0" width="310" height="175"/>
                                                     <color key="backgroundColor" red="0.78308475379999998" green="0.78308475379999998" blue="0.78308475379999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
@@ -192,7 +192,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nLu-C0-RLG">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="channelCell" id="0fn-rb-6la" customClass="RSChannelTableViewCell">
@@ -243,7 +243,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="nLu-C0-RLG" secondAttribute="trailing" id="Zyk-gF-0ts"/>
-                            <constraint firstItem="Rrs-Eq-59U" firstAttribute="top" secondItem="nLu-C0-RLG" secondAttribute="bottom" constant="20" id="cBW-gk-b1p"/>
+                            <constraint firstItem="Rrs-Eq-59U" firstAttribute="top" secondItem="nLu-C0-RLG" secondAttribute="bottom" id="cBW-gk-b1p"/>
                             <constraint firstItem="nLu-C0-RLG" firstAttribute="leading" secondItem="6QS-jX-iBI" secondAttribute="leading" id="dcC-x3-Dff"/>
                             <constraint firstItem="nLu-C0-RLG" firstAttribute="top" secondItem="6QS-jX-iBI" secondAttribute="top" id="xHl-Q2-RCJ"/>
                         </constraints>
@@ -350,7 +350,7 @@
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="AcG-HA-FMT"/>
                         <view key="titleView" contentMode="scaleToFill" id="zD7-wl-qvg">
-                            <rect key="frame" x="64" y="6" width="508" height="33"/>
+                            <rect key="frame" x="64" y="5.5" width="508" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="NJp-E6-W2S">
@@ -403,7 +403,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OH3-US-o8o">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oWy-xB-tvV">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="504"/>
@@ -411,7 +411,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZl-Ce-Rfa" userLabel="video contain view">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="338"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qtb-Ym-NxJ" userLabel="thunbnail image view">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qtb-Ym-NxJ" userLabel="thunbnail image view">
                                                         <rect key="frame" x="0.0" y="0.0" width="600" height="338"/>
                                                     </imageView>
                                                 </subviews>
@@ -490,22 +490,12 @@
                                     <outlet property="delegate" destination="99o-UL-MFg" id="g9u-nE-Fq8"/>
                                 </connections>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uV7-fT-n8f">
-                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="0y0-dz-cyV"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="uV7-fT-n8f" firstAttribute="leading" secondItem="Rdt-ex-REP" secondAttribute="leading" id="6VX-Xa-nMq"/>
-                            <constraint firstAttribute="trailing" secondItem="uV7-fT-n8f" secondAttribute="trailing" id="Dcs-Dd-CpZ"/>
                             <constraint firstAttribute="trailing" secondItem="OH3-US-o8o" secondAttribute="trailing" id="Kpt-8u-ALJ"/>
-                            <constraint firstItem="uV7-fT-n8f" firstAttribute="top" secondItem="OH3-US-o8o" secondAttribute="bottom" id="ROb-fE-vgB"/>
+                            <constraint firstItem="FIg-ZS-c01" firstAttribute="top" secondItem="OH3-US-o8o" secondAttribute="bottom" id="P1X-hO-w2K"/>
                             <constraint firstItem="OH3-US-o8o" firstAttribute="leading" secondItem="Rdt-ex-REP" secondAttribute="leading" id="XXf-e2-WqP"/>
-                            <constraint firstItem="FIg-ZS-c01" firstAttribute="top" secondItem="uV7-fT-n8f" secondAttribute="bottom" id="aQy-W7-0FE"/>
                             <constraint firstItem="OH3-US-o8o" firstAttribute="top" secondItem="Rdt-ex-REP" secondAttribute="top" id="wPE-YW-TXI"/>
                         </constraints>
                     </view>
@@ -517,7 +507,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bannerView" destination="uV7-fT-n8f" id="ofL-o5-vfO"/>
                         <outlet property="descriptionTextView" destination="obJ-MP-rVv" id="iQk-Ae-ad0"/>
                         <outlet property="postedAtLabel" destination="xDX-KK-epG" id="MwN-1u-EBu"/>
                         <outlet property="spaceView" destination="Ugf-cO-vF3" id="wfw-SB-Rqg"/>
