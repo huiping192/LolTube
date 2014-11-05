@@ -14,3 +14,4 @@
 "SearchChannels" = "Explore More Channels";
 "SearchVideos" = "Search Videos";
 "VideoWidgetNoVideos" = "No video published yet.";
+"VideoWidgetMoreVideos" = "Check %d more videos on LolTube";

@@ -14,3 +14,4 @@
 "SearchChannels" = "もっとチャンネルをチェック";
 "SearchVideos" = "動画を検索";
 "VideoWidgetNoVideos" = "今日の動画がありません。";
+"VideoWidgetMoreVideos" = "LolTubeでもう%dつの動画をチェック";

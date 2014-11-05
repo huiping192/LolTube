@@ -14,3 +14,4 @@
 "SearchChannels" = "浏览更多的频道";
 "SearchVideos" = "搜索视频";
 "VideoWidgetNoVideos" = "今天还没有视频发布.";
+"VideoWidgetMoreVideos" = "在LolTube上浏览%d个更多视频";

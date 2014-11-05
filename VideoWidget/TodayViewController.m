@@ -15,6 +15,8 @@
 static const NSInteger kMaxCellNumber = 5;
 static NSString *const kCellId = @"videoCell";
 
+static const CGFloat kCellHeight = 60.0f;
+
 // scheme
 static NSString *const kLolTubeSchemeHost = @"loltube://";
 static NSString *const kLolTubeSchemeVideoPath = @"";
@@ -49,8 +51,7 @@ static NSString *const kLolTubeSchemeVideoPath = @"";
     __weak typeof(self) weakSelf = self;
     [self.tableViewModel updateCacheDataWithSuccess:^(BOOL hasCacheData) {
         if (hasCacheData) {
-            [weakSelf.tableView reloadData];
-            [weakSelf setPreferredContentSize:weakSelf.tableView.contentSize];
+            [weakSelf p_reloadData];
         }
     }];
 }
@@ -64,14 +65,38 @@ static NSString *const kLolTubeSchemeVideoPath = @"";
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {
     __weak typeof(self) weakSelf = self;
     [self.tableViewModel updateWithSuccess:^(BOOL hasNewData) {
-        [weakSelf.tableView reloadData];
-        [weakSelf setPreferredContentSize:weakSelf.tableView.contentSize];
+        [weakSelf p_reloadData];
         completionHandler(hasNewData ? NCUpdateResultNewData : NCUpdateResultNoData);
     }                              failure:^(NSError *error) {
         completionHandler(NCUpdateResultFailed);
     }];
 }
 
+- (void)p_reloadData {
+    [self.tableView reloadData];
+    self.tableView.tableFooterView = [self p_tableViewFootView];
+    [self setPreferredContentSize:self.tableView.contentSize];
+}
+
+-(UIView *)p_tableViewFootView{
+    if (self.tableViewModel.items.count <= kMaxCellNumber) {
+        return nil;
+    }
+    UILabel *moreInformationLabel = [[UILabel alloc] init];
+    moreInformationLabel.frame = CGRectMake(18, 0, self.tableView.frame.size.width, kCellHeight);
+    moreInformationLabel.textColor = [UIColor whiteColor];
+    moreInformationLabel.font = [UIFont systemFontOfSize:16];
+    moreInformationLabel.text = [NSString stringWithFormat:NSLocalizedString(@"VideoWidgetMoreVideos", @"Check %d more videos on LolTube"), self.tableViewModel.items.count - kMaxCellNumber];
+
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moreInformationLabelTapped)];
+    [moreInformationLabel addGestureRecognizer:tapGestureRecognizer];
+    [moreInformationLabel setUserInteractionEnabled:YES];
+    return  moreInformationLabel;
+}
+
+-(void)moreInformationLabelTapped{
+    [self.extensionContext openURL:[NSURL URLWithString:kLolTubeSchemeHost] completionHandler:nil];
+}
 - (UIEdgeInsets)widgetMarginInsetsForProposedMarginInsets:(UIEdgeInsets)defaultMarginInsets {
     return UIEdgeInsetsZero;
 }
@@ -81,7 +106,7 @@ static NSString *const kLolTubeSchemeVideoPath = @"";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60;
+    return kCellHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
