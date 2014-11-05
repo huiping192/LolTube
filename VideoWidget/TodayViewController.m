@@ -12,6 +12,14 @@
 #import "UIImageView+Loading.h"
 #import <NotificationCenter/NotificationCenter.h>
 
+static const NSInteger kMaxCellNumber = 5;
+static NSString *const kCellId = @"videoCell";
+
+// scheme
+static NSString *const kLolTubeSchemeHost = @"loltube://";
+static NSString *const kLolTubeSchemeVideoPath = @"";
+
+
 @interface TodayViewController () <NCWidgetProviding, UITableViewDataSource, UITableViewDelegate>
 
 @property(nonatomic, weak) IBOutlet UITableView *tableView;
@@ -54,11 +62,6 @@
 }
 
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {
-    // Perform any setup necessary in order to update the view.
-
-    // If an error is encountered, use NCUpdateResultFailed
-    // If there's no update required, use NCUpdateResultNoData
-    // If there's an update, use NCUpdateResultNewData
     __weak typeof(self) weakSelf = self;
     [self.tableViewModel updateWithSuccess:^(BOOL hasNewData) {
         [weakSelf.tableView reloadData];
@@ -74,7 +77,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.tableViewModel.items.count;
+    return self.tableViewModel.items.count > kMaxCellNumber ? kMaxCellNumber : self.tableViewModel.items.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -82,12 +85,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"videoCell" forIndexPath:indexPath];
-
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellId forIndexPath:indexPath];
     RSVideoListTableViewCellVo *cellVo = (RSVideoListTableViewCellVo *) self.tableViewModel.items[(NSUInteger) indexPath.row];
-    [cell.imageView asynLoadingImageWithUrlString:cellVo.defaultThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
 
+    [cell.imageView asynLoadingImageWithUrlString:cellVo.defaultThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
     cell.textLabel.text = cellVo.title;
+
     return cell;
 }
 
@@ -95,11 +98,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 
     RSVideoListTableViewCellVo *cellVo = (RSVideoListTableViewCellVo *) self.tableViewModel.items[(NSUInteger) indexPath.row];
-    if (cellVo.videoId) {
-        [self.extensionContext openURL:[NSURL URLWithString:[NSString stringWithFormat:@"loltube://%@", cellVo.videoId]] completionHandler:nil];
-    } else {
-        [self.extensionContext openURL:[NSURL URLWithString:@"loltube://"] completionHandler:nil];
-    }
+
+    NSString *urlString = cellVo.videoId ? [NSString stringWithFormat:@"%@%@%@", kLolTubeSchemeHost, kLolTubeSchemeVideoPath, cellVo.videoId] : kLolTubeSchemeHost;
+    [self.extensionContext openURL:[NSURL URLWithString:urlString] completionHandler:nil];
+
 }
 
 @end

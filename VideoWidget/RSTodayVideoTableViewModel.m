@@ -8,6 +8,7 @@
 #import "RSSearchModel.h"
 #import "RSThumbnails.h"
 #import "RSChannelService.h"
+#import "NSDate+RSFormatter.h"
 
 static NSString *const kVideoWidgetCacheKey = @"videoWidgetCache";
 
@@ -54,33 +55,8 @@ static NSString *const kVideoWidgetCacheKey = @"videoWidgetCache";
 
 - (void)updateWithSuccess:(void (^)(BOOL hasNewData))success failure:(void (^)(NSError *))failure {
     [self.service todayVideoListWithChannelIds:self.channelIds success:^(NSArray *searchModelList) {
-        NSMutableArray *items = [[NSMutableArray alloc] init];
-
-        for (RSSearchModel *searchModel in searchModelList) {
-            for (RSItem *item in searchModel.items) {
-                RSVideoListTableViewCellVo *cellVo = [[RSVideoListTableViewCellVo alloc] init];
-                cellVo.videoId = item.id.videoId;
-                cellVo.title = item.snippet.title;
-                cellVo.defaultThumbnailUrl = item.snippet.thumbnails.medium.url;
-
-                [items addObject:cellVo];
-            }
-        }
-
-        if (items.count == 0) {
-            RSVideoListTableViewCellVo *cellVo = [[RSVideoListTableViewCellVo alloc] init];
-            cellVo.title = NSLocalizedString(@"VideoWidgetNoVideos", @"no videos");
-            [items addObject:cellVo];
-        }
-
-        NSArray *newItems = items;
-        if (newItems.count > 5) {
-            newItems = [newItems objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 5)]];
-        }
-        BOOL hasNewData = YES;
-        if (_items.count == newItems.count) {
-            hasNewData = NO;
-        }
+        NSArray *newItems = [self p_itemsWithSearchModelList:searchModelList];
+        BOOL hasNewData = _items.count != newItems.count;
         _items = (NSArray <RSVideoListTableViewCellVo> *) newItems;
         [self p_saveVideoCache:newItems];
 
@@ -96,6 +72,38 @@ static NSString *const kVideoWidgetCacheKey = @"videoWidgetCache";
     }];
 }
 
+- (NSArray *)p_itemsWithSearchModelList:(NSArray *)searchModelList {
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+
+    for (RSSearchModel *searchModel in searchModelList) {
+        for (RSItem *item in searchModel.items) {
+            RSVideoListTableViewCellVo *cellVo = [[RSVideoListTableViewCellVo alloc] init];
+            cellVo.videoId = item.id.videoId;
+            cellVo.title = item.snippet.title;
+            cellVo.defaultThumbnailUrl = item.snippet.thumbnails.medium.url;
+            cellVo.publishedAt = item.snippet.publishedAt;
+
+            [items addObject:cellVo];
+        }
+    }
+
+    if (items.count == 0) {
+        RSVideoListTableViewCellVo *cellVo = [[RSVideoListTableViewCellVo alloc] init];
+        cellVo.title = NSLocalizedString(@"VideoWidgetNoVideos", @"no videos");
+        [items addObject:cellVo];
+    }
+
+    return [self p_sortChannelItems:items];
+}
+
+
+- (NSArray *)p_sortChannelItems:(NSArray *)items {
+    NSMutableArray *mutableItems = items.mutableCopy;
+    [mutableItems sortUsingComparator:^NSComparisonResult(RSVideoListTableViewCellVo *item1, RSVideoListTableViewCellVo *item2) {
+        return [[NSDate dateFromISO8601String:item2.publishedAt] compare:[NSDate dateFromISO8601String:item1.publishedAt]];
+    }];
+    return mutableItems;
+}
 @end
 
 @implementation RSVideoListTableViewCellVo

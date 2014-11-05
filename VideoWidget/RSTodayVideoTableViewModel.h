@@ -27,5 +27,6 @@
 @property(nonatomic, copy) NSString *title;
 
 @property(nonatomic, copy) NSString *defaultThumbnailUrl;
+@property(nonatomic, copy) NSString *publishedAt;
 
 @end
