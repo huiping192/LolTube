@@ -7,7 +7,6 @@
 #import "RSVideoCollectionViewCell.h"
 #import "RSVideoListCollectionViewModel.h"
 #import "RSVideoDetailViewController.h"
-#import "AMTumblrHud.h"
 #import "UIViewController+RSLoading.h"
 #import "RSChannelListViewController.h"
 #import "RSChannelService.h"
@@ -67,7 +66,7 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 
     [self p_configureNotifications];
 
-    [self p_loadDataWithAnimated:YES];
+    [self p_loadVideosData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -78,66 +77,6 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 
     // when return from other view recalculate collection view layout
     [self.collectionView.collectionViewLayout invalidateLayout];
-}
-
-- (void)p_configureViews {
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl = refreshControl;
-    [refreshControl addTarget:self action:@selector(p_refresh) forControlEvents:UIControlEventValueChanged];
-
-    [self.collectionView addSubview:refreshControl];
-
-    self.collectionView.alwaysBounceVertical = YES;
-}
-
-- (void)p_configureNotifications {
-    [[NSNotificationCenter defaultCenter]
-            addObserver:self
-               selector:@selector(preferredContentSizeChanged:)
-                   name:UIContentSizeCategoryDidChangeNotification
-                 object:nil];
-}
-
-- (void)p_refresh {
-    [self p_loadDataWithAnimated:NO];
-    [self.refreshControl endRefreshing];
-}
-
-- (void)p_loadDataWithAnimated:(BOOL)animated {
-    if (self.title) {
-        self.navigationItem.title = self.title;
-    }
-
-    if (animated) {
-        [self configureLoadingView];
-        [self.loadingView showAnimated:YES];
-        self.collectionViewFirstShownFlag = YES;
-        self.collectionView.alpha = 0.0;
-    }
-
-    __weak typeof(self) weakSelf = self;
-    [self.collectionViewModel updateWithSuccess:^{
-        [weakSelf.collectionView reloadData];
-        if (animated) {
-            [weakSelf.loadingView hide];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [UIView animateWithDuration:0.25 animations:^{
-                    self.collectionViewFirstShownFlag = NO;
-                    self.collectionView.alpha = 1.0;
-                }                completion:^(BOOL finished) {
-                    [self.collectionView flashScrollIndicators];
-                }];
-            });
-        }
-    }                                   failure:^(NSError *error) {
-        if (animated) {
-            [weakSelf.loadingView hide];
-        }
-    }];
-}
-
-- (void)preferredContentSizeChanged:(id)preferredContentSizeChanged {
-    [self.collectionView reloadData];
 }
 
 - (void)dealloc {
@@ -169,8 +108,73 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
     }
 }
 
+- (void)p_configureViews {
+    //configure refresh control
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl = refreshControl;
+    [refreshControl addTarget:self action:@selector(p_refresh) forControlEvents:UIControlEventValueChanged];
+
+    [self.collectionView addSubview:refreshControl];
+}
+
+- (void)p_configureNotifications {
+    // system prefer font size changed notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+}
+
+#pragma mark - data loading
+
+- (void)p_refresh {
+    [self p_refreshData];
+    [self.refreshControl endRefreshing];
+}
+
+- (void)p_refreshData {
+    __weak typeof(self) weakSelf = self;
+    [self.collectionViewModel updateWithSuccess:^{
+        [weakSelf.collectionView reloadData];
+    }                                   failure:^(NSError *error) {
+        //TODO: show error
+    }];
+}
+
+- (void)p_loadVideosData {
+    if (self.title) {
+        self.navigationItem.title = self.title;
+    }
+
+    [self animateLoadingView];
+    self.collectionViewFirstShownFlag = YES;
+    self.collectionView.alpha = 0.0;
+
+    __weak typeof(self) weakSelf = self;
+    [self.collectionViewModel updateWithSuccess:^{
+        [weakSelf.collectionView reloadData];
+        [weakSelf stopAnimateLoadingView];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.25 animations:^{
+                self.collectionViewFirstShownFlag = NO;
+                self.collectionView.alpha = 1.0;
+            }                completion:^(BOOL finished) {
+                [self.collectionView flashScrollIndicators];
+            }];
+        });
+    }                                   failure:^(NSError *error) {
+        //TODO: show error
+        [weakSelf stopAnimateLoadingView];
+    }];
+}
+
+#pragma mark - notification
+
+- (void)preferredContentSizeChanged:(id)preferredContentSizeChanged {
+    [self.collectionView reloadData];
+}
+
+#pragma mark - publish method
+
 - (UICollectionViewCell *)selectedCell {
-    if(self.collectionView.indexPathsForSelectedItems.count == 0){
+    if (self.collectionView.indexPathsForSelectedItems.count == 0) {
         return nil;
     }
     return [self.collectionView cellForItemAtIndexPath:self.collectionView.indexPathsForSelectedItems[0]];
@@ -189,14 +193,11 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
     __weak typeof(self) weakSelf = self;
     [self.collectionViewModel updateWithSuccess:^{
         [weakSelf.collectionView reloadData];
-        NSLog(@"fetch success");
         completionHandler(UIBackgroundFetchResultNewData);
     }                                   failure:^(NSError *error) {
-        NSLog(@"fetch failure");
         completionHandler(UIBackgroundFetchResultFailed);
     }];
 }
-
 
 /**
 * when channel title view tapped, push the new video list view controller
@@ -214,15 +215,17 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 }
 
 - (IBAction)channelSelected:(UIStoryboardSegue *)segue {
+    // scroll to top when new channel selected
     if ([self.collectionView numberOfItemsInSection:0] != 0) {
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
     }
 
-    [self p_loadDataWithAnimated:YES];
+    [self p_loadVideosData];
 }
 
 
 - (IBAction)searchButtonTapped {
+    //TODO: show uisearchdisplaycontroller
     [self.collectionView setContentOffset:CGPointMake(0, -self.collectionView.contentInset.top) animated:YES];
     [self.searchBar becomeFirstResponder];
 }
@@ -251,14 +254,11 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
     cell.postedTimeLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
 
     cell.channelLabel.text = item.channelTitle;
-
-
     cell.channelTitleView.tag = indexPath.row;
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(channelTitleViewTapped:)];
-    [cell.channelTitleView addGestureRecognizer:tapGestureRecognizer];
-
+    [cell.channelTitleView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(channelTitleViewTapped:)]];
     cell.channelTitleView.hidden = !self.needShowChannelTitleView;
 
+    //first time appear animation
     if (self.collectionViewFirstShownFlag) {
         cell.transform = CGAffineTransformMakeTranslation(0, collectionView.frame.size.height);
         [UIView animateWithDuration:0.4 delay:0.03 * indexPath.row usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -272,30 +272,25 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *searchCollectionReusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"searchCollectionReusableView" forIndexPath:indexPath];
 
-    if (searchCollectionReusableView.subviews.count == 0) {
-        UISearchBar *searchBar = [[UISearchBar alloc] init];
-        searchBar.delegate = self;
-        searchBar.placeholder = NSLocalizedString(@"SearchVideos", @"Search Videos");
-        searchBar.text = self.collectionViewModel.searchText;
-        searchBar.translatesAutoresizingMaskIntoConstraints = NO;
-
-        [searchCollectionReusableView addSubview:searchBar];
-        NSArray *hConstraints =
-                [NSLayoutConstraint constraintsWithVisualFormat:@"|[searchBar]|"
-                                                        options:0 metrics:nil views:NSDictionaryOfVariableBindings(searchBar)];
-        NSArray *VConstraints =
-                [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[searchBar]|"
-                                                        options:0 metrics:nil views:NSDictionaryOfVariableBindings(searchBar)];
-
-        [searchCollectionReusableView addConstraints:hConstraints];
-        [searchCollectionReusableView addConstraints:VConstraints];
-
-        self.searchBar = searchBar;
+    // 重複search barを追加しないように判定する
+    if (searchCollectionReusableView.subviews.count != 0) {
+        return searchCollectionReusableView;
     }
+
+    UISearchBar *searchBar = [[UISearchBar alloc] init];
+    searchBar.delegate = self;
+    searchBar.placeholder = NSLocalizedString(@"SearchVideos", @"Search Videos");
+    searchBar.text = self.collectionViewModel.searchText;
+
+    searchBar.translatesAutoresizingMaskIntoConstraints = NO;
+    [searchCollectionReusableView addSubview:searchBar];
+    [searchCollectionReusableView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[searchBar]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(searchBar)]];
+    [searchCollectionReusableView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[searchBar]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(searchBar)]];
+
+    self.searchBar = searchBar;
 
     return searchCollectionReusableView;
 }
-
 
 #pragma mark - scrollView delegate
 
@@ -307,33 +302,40 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 
     if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) * 0.9) {
         // load more videos
-        if (self.loading) {
-            return;
-        }
-        NSInteger count = [self.collectionView numberOfItemsInSection:0];
-        if (count == 0) {
-            return;
-        }
-        self.loading = YES;
+        [self p_loadNextPageVideoData];
+    }
+}
 
-        __weak typeof(self) weakSelf = self;
-        [self.collectionViewModel updateNextPageDataWithSuccess:^(BOOL hasNewData) {
-            if (hasNewData) {
-                [weakSelf.collectionView performBatchUpdates:^{
-                    NSMutableArray *insertIndexPaths = [[NSMutableArray alloc] init];
-                    for (NSInteger i = count; i < weakSelf.collectionViewModel.items.count; ++i) {
-                        [insertIndexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
-                    }
-                    [weakSelf.collectionView insertItemsAtIndexPaths:insertIndexPaths];
-                }                                 completion:nil];
-            }
+- (void)p_loadNextPageVideoData {
+    if (self.loading) {
+        return;
+    }
+    NSInteger count = [self.collectionView numberOfItemsInSection:0];
+    if (count == 0) { //no need to load more data when current data is empty
+        return;
+    }
+    self.loading = YES;
+
+    __weak typeof(self) weakSelf = self;
+    [self.collectionViewModel updateNextPageDataWithSuccess:^(BOOL hasNewData) {
+        if (!hasNewData) {
             weakSelf.loading = NO;
+            return;
+        }
 
-        }                                               failure:^(NSError *error) {
-            NSLog(@"error:%@", error);
+        [weakSelf.collectionView performBatchUpdates:^{
+            NSMutableArray *insertIndexPaths = [[NSMutableArray alloc] init];
+            for (NSInteger i = count; i < weakSelf.collectionViewModel.items.count; ++i) {
+                [insertIndexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
+            }
+            [weakSelf.collectionView insertItemsAtIndexPaths:insertIndexPaths];
+        }                                 completion:^(BOOL finished) {
             weakSelf.loading = NO;
         }];
-    }
+    }                                               failure:^(NSError *error) {
+        //FIXME: show error
+        weakSelf.loading = NO;
+    }];
 }
 
 #pragma mark - orientation
@@ -354,7 +356,7 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
     [searchBar resignFirstResponder];
 
     [self.collectionViewModel setSearchText:searchBar.text];
-    [self p_loadDataWithAnimated:YES];
+    [self p_loadVideosData];
 }
 
 
@@ -364,7 +366,7 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 
     if (self.collectionViewModel.searchText) {
         [self.collectionViewModel setSearchText:nil];
-        [self p_loadDataWithAnimated:YES];
+        [self p_loadVideosData];
     }
 }
 

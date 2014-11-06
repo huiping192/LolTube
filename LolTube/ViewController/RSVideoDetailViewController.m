@@ -53,8 +53,6 @@
 }
 
 - (void)p_configureViews {
-    [self configureLoadingView];
-
     self.spaceView.layer.borderColor = [UIColor colorWithWhite:0.7f
                                                          alpha:1.0f].CGColor;
     self.spaceView.layer.borderWidth = 0.25;
@@ -66,11 +64,11 @@
 
 - (void)p_loadData {
     self.videoDetailViewModel = [[RSVideoDetailViewModel alloc] initWithVideoId:self.videoId];
-    [self.loadingView showAnimated:YES];
+    [self animateLoadingView];
 
     __weak typeof(self) weakSelf = self;
     [self.videoDetailViewModel updateWithSuccess:^{
-        [weakSelf.loadingView hide];
+        [weakSelf stopAnimateLoadingView];
         self.spaceView.hidden = NO;
 
         [self.thumbnailImageView asynLoadingImageWithUrlString:weakSelf.videoDetailViewModel.highThumbnailUrl secondImageUrlString:weakSelf.videoDetailViewModel.mediumThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
@@ -79,8 +77,8 @@
         weakSelf.descriptionTextView.text = weakSelf.videoDetailViewModel.videoDescription;
 
     }                                    failure:^(NSError *error) {
-        NSLog(@"error:%@", error);
-        [weakSelf.loadingView hide];
+        //TODO: show error
+        [weakSelf stopAnimateLoadingView];
     }];
 }
 

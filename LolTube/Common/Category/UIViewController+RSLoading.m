@@ -43,11 +43,28 @@ static void const *kViewControllerLoadingViewKey = @"kViewControllerLoadingViewK
 }
 
 -(AMTumblrHud *)loadingView {
-    return objc_getAssociatedObject(self,kViewControllerLoadingViewKey);
+    AMTumblrHud *loadingView = objc_getAssociatedObject(self,kViewControllerLoadingViewKey);
+    if(!loadingView){
+        [self configureLoadingView];
+        loadingView = objc_getAssociatedObject(self,kViewControllerLoadingViewKey);
+    }
+    return loadingView;
 }
 
 -(void)p_setLoadingView:(AMTumblrHud *)loadingView{
     objc_setAssociatedObject(self, kViewControllerLoadingViewKey, loadingView, OBJC_ASSOCIATION_ASSIGN);
 }
+
+- (void)animateLoadingView {
+    AMTumblrHud *loadingView = [self loadingView];
+    [loadingView showAnimated:YES];
+}
+
+- (void)stopAnimateLoadingView {
+    AMTumblrHud *loadingView = [self loadingView];
+    [loadingView hide];
+    [self p_setLoadingView:nil];
+}
+
 
 @end
