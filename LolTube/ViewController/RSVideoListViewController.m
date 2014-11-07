@@ -130,10 +130,24 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 }
 
 - (void)p_refreshData {
+    NSInteger dataCount = [self.collectionView numberOfItemsInSection:0];
     __weak typeof(self) weakSelf = self;
-    [self.collectionViewModel updateWithSuccess:^{
-        [weakSelf.collectionView reloadData];
-    }                                   failure:^(NSError *error) {
+
+    [self.collectionViewModel refreshWithSuccess:^(BOOL hasNewData) {
+        if (!hasNewData) {
+            return;
+        }
+        NSMutableArray *insertIndexPaths = [[NSMutableArray alloc] init];
+        for (NSInteger i = 0; i < weakSelf.collectionViewModel.items.count - dataCount; ++i) {
+            [insertIndexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
+        }
+        if (insertIndexPaths.count == 0) {
+            return;
+        }
+        [weakSelf.collectionView performBatchUpdates:^{
+            [weakSelf.collectionView insertItemsAtIndexPaths:insertIndexPaths];
+        }                                 completion:nil];
+    }                                    failure:^(NSError *error) {
         //TODO: show error
     }];
 }
@@ -323,11 +337,15 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
             return;
         }
 
+        NSMutableArray *insertIndexPaths = [[NSMutableArray alloc] init];
+        for (NSInteger i = count; i < weakSelf.collectionViewModel.items.count; ++i) {
+            [insertIndexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
+        }
+        if (insertIndexPaths.count == 0) {
+            weakSelf.loading = NO;
+            return;
+        }
         [weakSelf.collectionView performBatchUpdates:^{
-            NSMutableArray *insertIndexPaths = [[NSMutableArray alloc] init];
-            for (NSInteger i = count; i < weakSelf.collectionViewModel.items.count; ++i) {
-                [insertIndexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
-            }
             [weakSelf.collectionView insertItemsAtIndexPaths:insertIndexPaths];
         }                                 completion:^(BOOL finished) {
             weakSelf.loading = NO;

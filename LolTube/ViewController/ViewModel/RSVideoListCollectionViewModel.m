@@ -21,11 +21,6 @@
 @implementation RSVideoListCollectionViewModel {
 
 }
-
-- (instancetype)initWithChannelId:(NSString *)channelId {
-    return [self initWithChannelIds:@[channelId]];
-}
-
 - (instancetype)initWithChannelIds:(NSArray *)channelIds {
     self = [super init];
     if (self) {
@@ -40,6 +35,35 @@
 - (void)updateWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure {
     _items = nil;
     [self p_updateWithChannelIds:_channelIds pageTokens:nil searchText:self.searchText success:success failure:failure];
+}
+
+- (void)refreshWithSuccess:(void (^)(BOOL hasNewData))success failure:(void (^)(NSError *))failure {
+    [self.service videoListWithChannelIds:_channelIds searchText:self.searchText nextPageTokens:nil success:^(NSArray *searchModelList) {
+        NSMutableArray *items = [[NSMutableArray alloc] init];
+        if (self.items) {
+            items = self.items.mutableCopy;
+        }
+
+        NSArray *newItems = [self p_itemsFormSearchModelList:searchModelList desc:NO];
+        for (RSVideoCollectionViewCellVo *cellVo in newItems) {
+            if (![items containsObject:cellVo]) {
+                [items insertObject:cellVo atIndex:0];
+            }
+        }
+
+        BOOL hasNewData = _items.count != items.count;
+        _items = (NSArray <RSVideoCollectionViewCellVo> *) items;
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (success) {
+                success(hasNewData);
+            }
+        });
+    }                             failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
 }
 
 - (void)updateNextPageDataWithSuccess:(void (^)(BOOL hasNewData))success failure:(void (^)(NSError *))failure {
@@ -66,36 +90,14 @@
 - (void)p_updateWithChannelIds:(NSArray *)channelIds pageTokens:(NSArray *)pageTokens searchText:(NSString *)searchText success:(void (^)())success failure:(void (^)(NSError *))failure {
     [self.service videoListWithChannelIds:channelIds searchText:searchText nextPageTokens:pageTokens success:^(NSArray *searchModelList) {
         self.searchModelList = searchModelList;
-        NSMutableArray *newItems = [[NSMutableArray alloc] init];
 
-        for (RSSearchModel *searchModel in searchModelList) {
-            for (RSItem *item in searchModel.items) {
-                RSVideoCollectionViewCellVo *cellVo = [[RSVideoCollectionViewCellVo alloc] init];
-                cellVo.videoId = item.id.videoId;
-
-                if ([newItems containsObject:cellVo]) {
-                    continue;
-                }
-                cellVo.channelId = item.snippet.channelId;
-                cellVo.channelTitle = item.snippet.channelTitle;
-                cellVo.title = item.snippet.title;
-                cellVo.highThumbnailUrl = [NSString stringWithFormat:@"http://i.ytimg.com/vi/%@/maxresdefault.jpg", cellVo.videoId];
-                cellVo.defaultThumbnailUrl = item.snippet.thumbnails.medium.url;
-
-                cellVo.postedTime = [self p_postedTimeWithPublishedAt:item.snippet.publishedAt];
-                cellVo.publishedAt = item.snippet.publishedAt;
-
-                [newItems addObject:cellVo];
-            }
-        }
-
-        NSArray *sortedNewItems = [self p_sortChannelItems:newItems];
         NSMutableArray *items = [[NSMutableArray alloc] init];
         if (self.items) {
             items = self.items.mutableCopy;
         }
 
-        for (RSVideoCollectionViewCellVo *cellVo in sortedNewItems) {
+        NSArray *newItems = [self p_itemsFormSearchModelList:searchModelList desc:YES];
+        for (RSVideoCollectionViewCellVo *cellVo in newItems) {
             if (![items containsObject:cellVo]) {
                 [items addObject:cellVo];
             }
@@ -113,6 +115,33 @@
             failure(error);
         }
     }];
+}
+
+-(NSArray *)p_itemsFormSearchModelList:(NSArray *)searchModelList desc:(BOOL)desc{
+    NSMutableArray *newItems = [[NSMutableArray alloc] init];
+
+    for (RSSearchModel *searchModel in searchModelList) {
+        for (RSItem *item in searchModel.items) {
+            RSVideoCollectionViewCellVo *cellVo = [[RSVideoCollectionViewCellVo alloc] init];
+            cellVo.videoId = item.id.videoId;
+
+            if ([newItems containsObject:cellVo]) {
+                continue;
+            }
+            cellVo.channelId = item.snippet.channelId;
+            cellVo.channelTitle = item.snippet.channelTitle;
+            cellVo.title = item.snippet.title;
+            cellVo.highThumbnailUrl = [NSString stringWithFormat:@"http://i.ytimg.com/vi/%@/maxresdefault.jpg", cellVo.videoId];
+            cellVo.defaultThumbnailUrl = item.snippet.thumbnails.medium.url;
+
+            cellVo.postedTime = [self p_postedTimeWithPublishedAt:item.snippet.publishedAt];
+            cellVo.publishedAt = item.snippet.publishedAt;
+
+            [newItems addObject:cellVo];
+        }
+    }
+
+    return [self p_sortChannelItems:newItems desc:desc];
 }
 
 - (NSString *)p_postedTimeWithPublishedAt:(NSString *)publishedAt {
@@ -136,10 +165,10 @@
 }
 
 
-- (NSArray *)p_sortChannelItems:(NSArray *)items {
+- (NSArray *)p_sortChannelItems:(NSArray *)items desc:(BOOL)desc {
     NSMutableArray *mutableItems = items.mutableCopy;
     [mutableItems sortUsingComparator:^NSComparisonResult(RSVideoCollectionViewCellVo *item1, RSVideoCollectionViewCellVo *item2) {
-        return [[NSDate dateFromISO8601String:item2.publishedAt] compare:[NSDate dateFromISO8601String:item1.publishedAt]];
+        return desc ? [[NSDate dateFromISO8601String:item2.publishedAt] compare:[NSDate dateFromISO8601String:item1.publishedAt]] : [[NSDate dateFromISO8601String:item1.publishedAt] compare:[NSDate dateFromISO8601String:item2.publishedAt]];
     }];
     return mutableItems;
 }

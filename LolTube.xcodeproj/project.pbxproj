@@ -470,8 +470,6 @@
 		DC10449E19B2FA6B007A86E6 = {
 			isa = PBXGroup;
 			children = (
-				DCA44BDC1A0CE8E100A4A758 /* Crashlytics.framework */,
-				DCA44BDD1A0CE8E100A4A758 /* Fabric.framework */,
 				DC1044B019B2FA6B007A86E6 /* LolTube */,
 				DC1044CF19B2FA6B007A86E6 /* LolTubeTests */,
 				DC5708F61A00DBF500DB8821 /* VideoWidget */,
@@ -496,6 +494,8 @@
 		DC1044A919B2FA6B007A86E6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DCA44BDC1A0CE8E100A4A758 /* Crashlytics.framework */,
+				DCA44BDD1A0CE8E100A4A758 /* Fabric.framework */,
 				DC64F4C819E5582F00F860B4 /* SystemConfiguration.framework */,
 				DC1044AA19B2FA6B007A86E6 /* Foundation.framework */,
 				DC1044AC19B2FA6B007A86E6 /* CoreGraphics.framework */,
