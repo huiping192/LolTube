@@ -10,10 +10,13 @@
 #import "RSVideoListViewController.h"
 #import "RSVideoService.h"
 #import "RSVideoDetailViewController.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @implementation RSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Fabric with:@[CrashlyticsKit]];
 
     [self p_savePersetting];
     [self p_configureVideoService];
@@ -43,7 +46,7 @@
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     NSString *videoId = url.host;
 
-    if(videoId){
+    if (videoId) {
         RSVideoDetailViewController *videoDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"videoDetail"];
         videoDetailViewController.videoId = videoId;
         UIViewController *rootViewController = application.keyWindow.rootViewController;

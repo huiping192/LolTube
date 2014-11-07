@@ -70,6 +70,8 @@
 		DC5709001A00DBF500DB8821 /* VideoWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DC5708F31A00DBF500DB8821 /* VideoWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DC64F4C719E5524900F860B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DC64F4C519E5524900F860B4 /* Reachability.m */; };
 		DC64F4C919E5582F00F860B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC64F4C819E5582F00F860B4 /* SystemConfiguration.framework */; };
+		DCA44BDE1A0CE8E100A4A758 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA44BDC1A0CE8E100A4A758 /* Crashlytics.framework */; };
+		DCA44BDF1A0CE8E100A4A758 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA44BDD1A0CE8E100A4A758 /* Fabric.framework */; };
 		DCCE230119F252D20027C390 /* LaunchImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCCE230019F252D20027C390 /* LaunchImage.xib */; };
 		DCEBA51419BCB2AF007C3FC7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCEBA51619BCB2AF007C3FC7 /* Localizable.strings */; };
 		DCEBA51A19BCB304007C3FC7 /* RSVideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCEBA51819BCB304007C3FC7 /* RSVideoListViewController.m */; };
@@ -208,6 +210,8 @@
 		DC64F4C519E5524900F860B4 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		DC64F4C619E5524900F860B4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		DC64F4C819E5582F00F860B4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		DCA44BDC1A0CE8E100A4A758 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		DCA44BDD1A0CE8E100A4A758 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		DCCE230019F252D20027C390 /* LaunchImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchImage.xib; sourceTree = "<group>"; };
 		DCEBA50C19BCAD8C007C3FC7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DCEBA50D19BCAD8C007C3FC7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -235,10 +239,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCA44BDF1A0CE8E100A4A758 /* Fabric.framework in Frameworks */,
 				DC64F4C919E5582F00F860B4 /* SystemConfiguration.framework in Frameworks */,
 				DC1044AD19B2FA6B007A86E6 /* CoreGraphics.framework in Frameworks */,
 				DC1044AF19B2FA6B007A86E6 /* UIKit.framework in Frameworks */,
 				DC1044AB19B2FA6B007A86E6 /* Foundation.framework in Frameworks */,
+				DCA44BDE1A0CE8E100A4A758 /* Crashlytics.framework in Frameworks */,
 				D2912024C3464678820F0B0F /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,6 +470,8 @@
 		DC10449E19B2FA6B007A86E6 = {
 			isa = PBXGroup;
 			children = (
+				DCA44BDC1A0CE8E100A4A758 /* Crashlytics.framework */,
+				DCA44BDD1A0CE8E100A4A758 /* Fabric.framework */,
 				DC1044B019B2FA6B007A86E6 /* LolTube */,
 				DC1044CF19B2FA6B007A86E6 /* LolTubeTests */,
 				DC5708F61A00DBF500DB8821 /* VideoWidget */,
@@ -595,6 +603,7 @@
 				DC1044A519B2FA6B007A86E6 /* Resources */,
 				8C8C1AB0675149FBA3D65059 /* Copy Pods Resources */,
 				DC5709061A00DBF500DB8821 /* Embed App Extensions */,
+				DCA44BDB1A0CE84200A4A758 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -834,6 +843,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		DCA44BDB1A0CE84200A4A758 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run a4fad5e74a1a429b3f4276b1c07cda73f9443302 271a51c801fa2e8d0959e70b2ee5b49c9ef9dd171213e1ca2ba572aa3499a21d";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1057,6 +1079,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LolTube/LolTube-Prefix.pch";
@@ -1080,6 +1103,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LolTube/LolTube-Prefix.pch";
