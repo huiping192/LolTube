@@ -18,6 +18,8 @@
 
 - (void)updateWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure;
 
+- (void)refreshWithSuccess:(void (^)(BOOL hasNewData))success failure:(void (^)(NSError *))failure;
+
 - (void)updateNextPageDataWithSuccess:(void (^)(BOOL hasNewData))success failure:(void (^)(NSError *))failure;
 @end
 

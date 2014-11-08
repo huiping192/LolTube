@@ -7,7 +7,7 @@
 @class AMTumblrHud;
 
 @interface UIViewController (RSLoading)
-- (void)configureLoadingView;
+- (void)animateLoadingView;
 
-- (AMTumblrHud *)loadingView;
+- (void)stopAnimateLoadingView;
 @end

@@ -43,13 +43,12 @@
 - (void)p_loadData {
     self.tableView.alpha = 0;
 
-    [self configureLoadingView];
-    [self.loadingView showAnimated:YES];
+    [self animateLoadingView];
 
     __weak typeof(self) weakSelf = self;
     self.tableViewFirstShownFlag = YES;
     [self.tableViewModel updateWithSuccess:^{
-        [weakSelf.loadingView hide];
+        [weakSelf stopAnimateLoadingView];
         [weakSelf.tableView reloadData];
         NSIndexPath *currentSelectedIndexPath = [self p_currentSelectedIndexPath];
         if (currentSelectedIndexPath) {
@@ -64,7 +63,7 @@
             }];
         });
     }                              failure:^(NSError *error) {
-        [weakSelf.loadingView hide];
+        [weakSelf stopAnimateLoadingView];
         NSLog(@"error:%@", error);
     }];
 }
