@@ -10,6 +10,7 @@
 #import "UIImageView+Loading.h"
 #import "Reachability.h"
 #import "RSVideoService.h"
+#import "UIViewController+RSError.h"
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 #import <AVFoundation/AVFoundation.h>
 
@@ -77,7 +78,8 @@
         weakSelf.descriptionTextView.text = weakSelf.videoDetailViewModel.videoDescription;
 
     }                                    failure:^(NSError *error) {
-        //TODO: show error
+        [self showError:error];
+
         [weakSelf stopAnimateLoadingView];
     }];
 }

@@ -98,8 +98,12 @@ static NSString *const kYoutubeChannelUrlString = @"https://www.googleapis.com/y
     __block NSError *error = nil;
     NSArray *operations = [AFURLConnectionOperation batchOfRequestOperations:mutableOperations progressBlock:^(NSUInteger numberOfFinishedOperations, NSUInteger totalNumberOfOperations) {
         AFHTTPRequestOperation *operation = mutableOperations[numberOfFinishedOperations - 1];
-        JSONModelError *jsonModelError = nil;
+        if (operation.error) {
+            error = operation.error;
+            return;
+        }
 
+        JSONModelError *jsonModelError = nil;
         RSSearchModel *searchModel = [[RSSearchModel alloc] initWithString:operation.responseString error:&jsonModelError];
 
         if (jsonModelError) {
@@ -111,6 +115,13 @@ static NSString *const kYoutubeChannelUrlString = @"https://www.googleapis.com/y
             [searchModelList addObject:searchModel];
         }
     }                                                        completionBlock:^(NSArray *operations) {
+        if (error) {
+            if (failure) {
+                failure(error);
+            }
+            return;
+        }
+
         if (success) {
             success(searchModelList);
         }
