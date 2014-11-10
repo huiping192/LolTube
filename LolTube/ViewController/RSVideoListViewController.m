@@ -20,6 +20,8 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 
 @interface RSVideoListViewController () <UICollectionViewDataSource, UISearchBarDelegate, UICollectionViewDelegateFlowLayout>
 
+@property(nonatomic, weak) IBOutlet UILabel *noVideoFoundLabel;
+
 @property(nonatomic, weak) UIRefreshControl *refreshControl;
 @property(nonatomic, weak) UISearchBar *searchBar;
 
@@ -160,9 +162,12 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
     [self animateLoadingView];
     self.collectionViewFirstShownFlag = YES;
     self.collectionView.alpha = 0.0;
+    [self.noVideoFoundLabel setHidden:YES];
 
     __weak typeof(self) weakSelf = self;
     [self.collectionViewModel updateWithSuccess:^{
+        [weakSelf.noVideoFoundLabel setHidden:weakSelf.collectionViewModel.items.count != 0];
+
         [weakSelf.collectionView reloadData];
         [weakSelf stopAnimateLoadingView];
         dispatch_async(dispatch_get_main_queue(), ^{

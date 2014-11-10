@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vel-Ji-Muw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vel-Ji-Muw">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -134,11 +134,19 @@
                                     <outlet property="delegate" destination="34D-TA-1gh" id="Dr3-zf-geJ"/>
                                 </connections>
                             </collectionView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Videos Found." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dM1-dG-AGN">
+                                <rect key="frame" x="222" y="289" width="156.5" height="23"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerY" secondItem="dM1-dG-AGN" secondAttribute="centerY" id="9wA-iJ-vep"/>
                             <constraint firstItem="e6h-9h-GKa" firstAttribute="top" secondItem="gFX-Wz-P7l" secondAttribute="bottom" id="Tb0-0m-t0K"/>
                             <constraint firstItem="gFX-Wz-P7l" firstAttribute="leading" secondItem="xlo-aj-2bD" secondAttribute="leading" id="Xfr-kk-Iuf"/>
+                            <constraint firstAttribute="centerX" secondItem="dM1-dG-AGN" secondAttribute="centerX" id="ahy-qw-KWE"/>
                             <constraint firstAttribute="trailing" secondItem="gFX-Wz-P7l" secondAttribute="trailing" id="e0m-kC-EIM"/>
                             <constraint firstItem="gFX-Wz-P7l" firstAttribute="top" secondItem="xlo-aj-2bD" secondAttribute="top" id="kIT-ZU-F4o"/>
                         </constraints>
@@ -157,6 +165,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="gFX-Wz-P7l" id="Ulc-Dd-Ddv"/>
+                        <outlet property="noVideoFoundLabel" destination="dM1-dG-AGN" id="xf6-4N-OB5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZFP-iD-wv0" userLabel="First Responder" sceneMemberID="firstResponder"/>
