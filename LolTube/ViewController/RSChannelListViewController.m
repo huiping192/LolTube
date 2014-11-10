@@ -12,6 +12,7 @@
 #import "RSSearchTableViewCell.h"
 #import "RSChannelService.h"
 #import "UIImageView+Loading.h"
+#import "UIViewController+RSError.h"
 
 @interface RSChannelListViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -63,8 +64,8 @@
             }];
         });
     }                              failure:^(NSError *error) {
+        [self showError:error];
         [weakSelf stopAnimateLoadingView];
-        NSLog(@"error:%@", error);
     }];
 }
 

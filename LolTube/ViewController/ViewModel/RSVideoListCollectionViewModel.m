@@ -59,11 +59,7 @@
                 success(hasNewData);
             }
         });
-    }                             failure:^(NSError *error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
+    }                             failure:failure];
 }
 
 - (void)updateNextPageDataWithSuccess:(void (^)(BOOL hasNewData))success failure:(void (^)(NSError *))failure {
@@ -110,14 +106,10 @@
                 success();
             }
         });
-    }                             failure:^(NSError *error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
+    }                             failure:failure];
 }
 
--(NSArray *)p_itemsFormSearchModelList:(NSArray *)searchModelList desc:(BOOL)desc{
+- (NSArray *)p_itemsFormSearchModelList:(NSArray *)searchModelList desc:(BOOL)desc {
     NSMutableArray *newItems = [[NSMutableArray alloc] init];
 
     for (RSSearchModel *searchModel in searchModelList) {

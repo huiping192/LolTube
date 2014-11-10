@@ -12,6 +12,7 @@
 #import "RSChannelService.h"
 #import "UIImageView+Loading.h"
 #import "RSVideoService.h"
+#import "UIViewController+RSError.h"
 
 static NSString *const kVideoCellId = @"videoCell";
 static CGFloat const kCellMinWidth = 250.0f;
@@ -112,7 +113,7 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
     //configure refresh control
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl = refreshControl;
-    [refreshControl addTarget:self action:@selector(p_refresh) forControlEvents:UIControlEventValueChanged];
+    [refreshControl addTarget:self action:@selector(p_refreshData) forControlEvents:UIControlEventValueChanged];
 
     [self.collectionView addSubview:refreshControl];
 }
@@ -123,18 +124,13 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 }
 
 #pragma mark - data loading
-
-- (void)p_refresh {
-    [self p_refreshData];
-    [self.refreshControl endRefreshing];
-}
-
 - (void)p_refreshData {
     NSInteger dataCount = [self.collectionView numberOfItemsInSection:0];
     __weak typeof(self) weakSelf = self;
 
     [self.collectionViewModel refreshWithSuccess:^(BOOL hasNewData) {
         if (!hasNewData) {
+            [self.refreshControl endRefreshing];
             return;
         }
         NSMutableArray *insertIndexPaths = [[NSMutableArray alloc] init];
@@ -142,13 +138,17 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
             [insertIndexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
         }
         if (insertIndexPaths.count == 0) {
+            [self.refreshControl endRefreshing];
             return;
         }
         [weakSelf.collectionView performBatchUpdates:^{
             [weakSelf.collectionView insertItemsAtIndexPaths:insertIndexPaths];
-        }                                 completion:nil];
+        }                                 completion:^(BOOL finished){
+            [self.refreshControl endRefreshing];
+        }];
     }                                    failure:^(NSError *error) {
-        //TODO: show error
+        [self showError:error];
+        [self.refreshControl endRefreshing];
     }];
 }
 
@@ -174,7 +174,10 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
             }];
         });
     }                                   failure:^(NSError *error) {
-        //TODO: show error
+        [self showError:error];
+
+        self.collectionViewFirstShownFlag = NO;
+        self.collectionView.alpha = 1.0;
         [weakSelf stopAnimateLoadingView];
     }];
 }
@@ -351,7 +354,7 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
             weakSelf.loading = NO;
         }];
     }                                               failure:^(NSError *error) {
-        //FIXME: show error
+        [self showError:error];
         weakSelf.loading = NO;
     }];
 }
