@@ -37,3 +37,6 @@
 
 /* Class = "IBUIButton"; normalTitle = "Pro Replays"; ObjectID = "zF0-CL-BXL"; */
 "zF0-CL-BXL.normalTitle" = "Pro Replays";
+
+/* no video label*/
+"dM1-dG-AGN.text" = "没有找到相关动画。";
