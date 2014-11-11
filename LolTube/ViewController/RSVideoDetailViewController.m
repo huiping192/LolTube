@@ -11,8 +11,10 @@
 #import "Reachability.h"
 #import "RSVideoService.h"
 #import "UIViewController+RSError.h"
+#import "GAIDictionaryBuilder.h"
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import <GoogleAnalytics-iOS-SDK/GAI.h>
 
 @interface RSVideoDetailViewController () <UIScrollViewDelegate>
 
@@ -124,6 +126,12 @@
 }
 
 - (void)p_playVideo {
+    id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"video_detail"
+                                                          action:@"video_play"
+                                                           label:self.videoId
+                                                           value:nil] build]];
+
     self.videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:self.videoId];
 
     Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
@@ -151,6 +159,11 @@
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
     [self presentViewController:activityController animated:YES completion:^{
         //TODO: success alert
+        id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"video_detail"
+                                                              action:@"video_share"
+                                                               label:self.videoId
+                                                               value:nil] build]];
     }];
 }
 
