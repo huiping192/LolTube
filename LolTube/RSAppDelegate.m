@@ -12,6 +12,10 @@
 #import "RSVideoDetailViewController.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+#import <GoogleAnalytics-iOS-SDK/GAI.h>
+
+static NSString *const kReleaseTrackingId = @"UA-56633617-1";
+static NSString *const kDevelopmentTrackingId = @"UA-56633617-2";
 
 @implementation RSAppDelegate
 
@@ -25,6 +29,17 @@
 }
 
 - (void)p_savePersetting {
+
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+
+#if DEBUG
+    [GAI sharedInstance].dispatchInterval = 20;
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+    [[GAI sharedInstance] trackerWithTrackingId:kDevelopmentTrackingId];
+#else
+    [[GAI sharedInstance] trackerWithTrackingId:kReleaseTrackingId];
+#endif
+
     [self.window setTintColor:[UIColor colorWithRed:255 / 255.0f green:94 / 255.0f blue:58 / 255.0f alpha:1.0]];
 }
 

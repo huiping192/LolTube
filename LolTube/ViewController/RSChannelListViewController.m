@@ -3,16 +3,17 @@
 // Copyright (c) 2014 Huiping Guo. All rights reserved.
 //
 
+#import <GoogleAnalytics-iOS-SDK/GAI.h>
 #import "RSChannelListViewController.h"
 #import "RSChannelTableViewCell.h"
 #import "RSChannelTableViewModel.h"
 #import "UIViewController+RSLoading.h"
-#import "AMTumblrHud.h"
 #import "RSVideoListViewController.h"
 #import "RSSearchTableViewCell.h"
 #import "RSChannelService.h"
 #import "UIImageView+Loading.h"
 #import "UIViewController+RSError.h"
+#import "GAIDictionaryBuilder.h"
 
 @interface RSChannelListViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -189,6 +190,14 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView beginUpdates];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+
+        RSChannelTableViewCellVo *cellVo = self.tableViewModel.items[(NSUInteger) indexPath.row];
+        id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"channel_list"
+                                                              action:@"channel_delete"
+                                                               label:cellVo.channelId
+                                                               value:nil] build]];
+
         [self.tableViewModel deleteChannelWithIndexPath:indexPath];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }

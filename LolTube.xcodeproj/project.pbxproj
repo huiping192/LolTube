@@ -63,6 +63,9 @@
 		DC1044CB19B2FA6B007A86E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1044AA19B2FA6B007A86E6 /* Foundation.framework */; };
 		DC1044CC19B2FA6B007A86E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1044AE19B2FA6B007A86E6 /* UIKit.framework */; };
 		DC1044D419B2FA6B007A86E6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC1044D219B2FA6B007A86E6 /* InfoPlist.strings */; };
+		DC22FF7E1A1245AB0053FBB9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC22FF7D1A1245AB0053FBB9 /* CoreData.framework */; };
+		DC22FF801A1245C60053FBB9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC22FF7F1A1245C60053FBB9 /* AdSupport.framework */; };
+		DC22FF821A1245D70053FBB9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DC22FF811A1245D70053FBB9 /* libz.dylib */; };
 		DC47690B1A07EAA700DC3D2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC47690D1A07EAA700DC3D2D /* Main.storyboard */; };
 		DC5708F51A00DBF500DB8821 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5708F41A00DBF500DB8821 /* NotificationCenter.framework */; };
 		DC5708FB1A00DBF500DB8821 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5708FA1A00DBF500DB8821 /* TodayViewController.m */; };
@@ -195,6 +198,9 @@
 		DC1044C919B2FA6B007A86E6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		DC1044D119B2FA6B007A86E6 /* LolTubeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LolTubeTests-Info.plist"; sourceTree = "<group>"; };
 		DC1044D319B2FA6B007A86E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DC22FF7D1A1245AB0053FBB9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		DC22FF7F1A1245C60053FBB9 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		DC22FF811A1245D70053FBB9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		DC47690C1A07EAA700DC3D2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DC47690F1A07EAAA00DC3D2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		DC4769111A07EAAF00DC3D2D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
@@ -242,8 +248,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCA44BDF1A0CE8E100A4A758 /* Fabric.framework in Frameworks */,
+				DC22FF821A1245D70053FBB9 /* libz.dylib in Frameworks */,
+				DC22FF801A1245C60053FBB9 /* AdSupport.framework in Frameworks */,
 				DC64F4C919E5582F00F860B4 /* SystemConfiguration.framework in Frameworks */,
+				DC22FF7E1A1245AB0053FBB9 /* CoreData.framework in Frameworks */,
+				DCA44BDF1A0CE8E100A4A758 /* Fabric.framework in Frameworks */,
 				DC1044AD19B2FA6B007A86E6 /* CoreGraphics.framework in Frameworks */,
 				DC1044AF19B2FA6B007A86E6 /* UIKit.framework in Frameworks */,
 				DC1044AB19B2FA6B007A86E6 /* Foundation.framework in Frameworks */,
@@ -498,6 +507,9 @@
 		DC1044A919B2FA6B007A86E6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DC22FF811A1245D70053FBB9 /* libz.dylib */,
+				DC22FF7F1A1245C60053FBB9 /* AdSupport.framework */,
+				DC22FF7D1A1245AB0053FBB9 /* CoreData.framework */,
 				DCA44BDC1A0CE8E100A4A758 /* Crashlytics.framework */,
 				DCA44BDD1A0CE8E100A4A758 /* Fabric.framework */,
 				DC64F4C819E5582F00F860B4 /* SystemConfiguration.framework */,

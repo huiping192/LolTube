@@ -13,6 +13,8 @@
 #import "UIImageView+Loading.h"
 #import "RSVideoService.h"
 #import "UIViewController+RSError.h"
+#import "GAIDictionaryBuilder.h"
+#import <GoogleAnalytics-iOS-SDK/GAI.h>
 
 static NSString *const kVideoCellId = @"videoCell";
 static CGFloat const kCellMinWidth = 250.0f;
@@ -126,6 +128,7 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 }
 
 #pragma mark - data loading
+
 - (void)p_refreshData {
     NSInteger dataCount = [self.collectionView numberOfItemsInSection:0];
     __weak typeof(self) weakSelf = self;
@@ -145,7 +148,7 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
         }
         [weakSelf.collectionView performBatchUpdates:^{
             [weakSelf.collectionView insertItemsAtIndexPaths:insertIndexPaths];
-        }                                 completion:^(BOOL finished){
+        }                                 completion:^(BOOL finished) {
             [self.refreshControl endRefreshing];
         }];
     }                                    failure:^(NSError *error) {
@@ -383,6 +386,12 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 
     [self.collectionViewModel setSearchText:searchBar.text];
     [self p_loadVideosData];
+
+    id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"video_list"
+                                                          action:@"video_search"
+                                                           label:searchBar.text
+                                                           value:nil] build]];
 }
 
 
