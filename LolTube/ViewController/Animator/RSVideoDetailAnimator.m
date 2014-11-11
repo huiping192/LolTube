@@ -49,6 +49,8 @@ static NSTimeInterval kAnimationDuration = 0.5;
         CGRect frame = [selectedCell convertRect:selectedCell.bounds toView:fromView];
         UIImageView *tempImageView = [[UIImageView alloc] initWithFrame:frame];
         tempImageView.image = selectedCell.thumbnailImageView.image;
+        tempImageView.contentMode = UIViewContentModeScaleAspectFill;
+        tempImageView.clipsToBounds = YES;
         [containView addSubview:tempImageView];
 
         videoDetailViewController.thumbnailImageView.hidden = YES;
@@ -97,6 +99,8 @@ static NSTimeInterval kAnimationDuration = 0.5;
 
             UIImageView *tempImageView = [[UIImageView alloc] initWithFrame:thumbnailFrame];
             tempImageView.image = videoDetailViewController.thumbnailImageView.image;
+            tempImageView.contentMode = UIViewContentModeScaleAspectFill;
+            tempImageView.clipsToBounds = YES;
             [containView addSubview:tempImageView];
 
             toView.alpha = 0.0;
