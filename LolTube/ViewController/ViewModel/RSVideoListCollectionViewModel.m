@@ -75,6 +75,7 @@
 
     if (channelIds.count == 0) {
         success(NO);
+        return;
     }
     [self p_updateWithChannelIds:channelIds pageTokens:nextPageTokens searchText:self.searchText success:^{
         if (success) {
