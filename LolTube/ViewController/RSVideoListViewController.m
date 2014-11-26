@@ -17,10 +17,8 @@
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
 
 static NSString *const kVideoCellId = @"videoCell";
-static CGFloat const kCellMinWidth = 280.0f;
-static CGFloat const kCellRatio = 180.0f / 320.0f;
 
-@interface RSVideoListViewController () <UICollectionViewDataSource, UISearchBarDelegate, UICollectionViewDelegateFlowLayout>
+@interface RSVideoListViewController () <UICollectionViewDataSource, UISearchBarDelegate>
 
 @property(nonatomic, weak) IBOutlet UILabel *noVideoFoundLabel;
 
@@ -394,7 +392,6 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
                                                            value:nil] build]];
 }
 
-
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
@@ -403,31 +400,6 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
         [self.collectionViewModel setSearchText:nil];
         [self p_loadVideosData];
     }
-}
-
-#pragma mark - UICollectionViewDelegateFlowLayout
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-   //FIXME: so slow
-    CGFloat collectionWidth = self.view.frame.size.width;
-    int cellCount = (int) (collectionWidth / kCellMinWidth);
-    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *) collectionViewLayout;
-
-    CGFloat cellWidth = (collectionWidth - flowLayout.sectionInset.left * (cellCount + 1)) / cellCount;
-
-    return CGSizeMake(cellWidth, cellWidth * kCellRatio);
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(5, 5, 5, 5);
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 5;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 5;
 }
 
 @end
