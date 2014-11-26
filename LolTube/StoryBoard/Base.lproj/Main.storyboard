@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vel-Ji-Muw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14C68m" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vel-Ji-Muw">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -135,7 +135,7 @@
                                 </connections>
                             </collectionView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Videos Found." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dM1-dG-AGN">
-                                <rect key="frame" x="222" y="289" width="156.5" height="23"/>
+                                <rect key="frame" x="222" y="289" width="157" height="23"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -154,7 +154,9 @@
                     <navigationItem key="navigationItem" title="LolTube" id="HyJ-GY-dxl">
                         <barButtonItem key="leftBarButtonItem" title="Channel" id="cQj-8A-JDz">
                             <connections>
-                                <segue destination="EdA-Mm-ky0" kind="presentation" identifier="channelList" id="KZ4-Px-nV2"/>
+                                <segue destination="EdA-Mm-ky0" kind="popoverPresentation" identifier="channelList" popoverAnchorBarButtonItem="cQj-8A-JDz" id="KZ4-Px-nV2">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="58r-NQ-kV0">
@@ -177,6 +179,7 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="EdA-Mm-ky0" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="f6u-TS-5dI"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="320" height="600"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="e9j-ub-rO1">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -269,6 +272,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <value key="contentSizeForViewInPopover" type="size" width="320" height="600"/>
                     <connections>
                         <outlet property="tableView" destination="nLu-C0-RLG" id="4S4-Jh-8Jk"/>
                     </connections>
@@ -359,7 +363,7 @@
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="AcG-HA-FMT"/>
                         <view key="titleView" contentMode="scaleToFill" id="zD7-wl-qvg">
-                            <rect key="frame" x="64" y="5.5" width="508" height="33"/>
+                            <rect key="frame" x="64" y="6" width="508" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="NJp-E6-W2S">

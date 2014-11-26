@@ -17,7 +17,7 @@
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
 
 static NSString *const kVideoCellId = @"videoCell";
-static CGFloat const kCellMinWidth = 250.0f;
+static CGFloat const kCellMinWidth = 280.0f;
 static CGFloat const kCellRatio = 180.0f / 320.0f;
 
 @interface RSVideoListViewController () <UICollectionViewDataSource, UISearchBarDelegate, UICollectionViewDelegateFlowLayout>
@@ -408,6 +408,7 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+   //FIXME: so slow
     CGFloat collectionWidth = self.view.frame.size.width;
     int cellCount = (int) (collectionWidth / kCellMinWidth);
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *) collectionViewLayout;

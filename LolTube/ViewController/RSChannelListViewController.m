@@ -109,6 +109,7 @@
             videoListViewController.needShowChannelTitleView = NO;
         }
 
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
