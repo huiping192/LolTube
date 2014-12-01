@@ -6,12 +6,12 @@
 #import "RSVideoDetailViewController.h"
 #import "RSVideoDetailViewModel.h"
 #import "UIViewController+RSLoading.h"
-#import "AMTumblrHud.h"
 #import "UIImageView+Loading.h"
 #import "Reachability.h"
 #import "RSVideoService.h"
 #import "UIViewController+RSError.h"
 #import "GAIDictionaryBuilder.h"
+#import "RSEnvironment.h"
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
@@ -53,6 +53,25 @@
     [self p_loadData];
 
     [self p_playVideo];
+}
+
+- (void)p_startActivity {
+    if (![NSUserActivity class]) {
+        return;
+    }
+    NSUserActivity *activity = [[NSUserActivity alloc] initWithActivityType:@"com.huiping192.LolTube.videoDetail"];
+    activity.title = @"VideoDeital";
+    activity.userInfo = @{@"videoId" : self.videoId, @"videoCurrentPlayTime" : @(self.videoPlayerViewController.moviePlayer.currentPlaybackTime), kHandOffVersionKey : kHandOffVersion};
+    activity.webpageURL = [NSURL URLWithString:self.videoDetailViewModel.shareUrlString];
+
+    self.userActivity = activity;
+    [activity becomeCurrent];
+}
+
+- (void)updateUserActivityState:(NSUserActivity *)activity {
+    [super updateUserActivityState:activity];
+    [activity addUserInfoEntriesFromDictionary:@{@"videoId" : self.videoId, @"videoCurrentPlayTime" : @(self.videoPlayerViewController.moviePlayer.currentPlaybackTime), kHandOffVersionKey : kHandOffVersion}];
+    activity.needsSave = YES;
 }
 
 - (void)p_configureViews {
@@ -104,17 +123,21 @@
                                                object:nil];
 }
 
-- (void)p_moviePlayBackDidFinish:(id)DidFinish {
-    self.videoPlayerViewController.moviePlayer.currentPlaybackTime = 1.0;
+- (void)p_moviePlayBackDidFinish:(id)moviePlayerPlaybackDidFinishNotification {
+    self.videoPlayerViewController.moviePlayer.currentPlaybackTime = 3.0;
 }
 
-- (void)p_moviePreloadDidFinish:(id)p_moviePreloadDidFinish {
-    [[RSVideoService sharedInstance] savePlayFinishedVideoId:self.videoId];
+- (void)p_moviePreloadDidFinish:(id)moviePlayerLoadStateDidChangeNotification {
+    if (self.videoPlayerViewController.moviePlayer.loadState == MPMovieLoadStatePlayable) {
+        [[RSVideoService sharedInstance] savePlayFinishedVideoId:self.videoId];
 
-    // TODO: fun animation
-    [UIView animateWithDuration:0.25 animations:^{
-        self.thumbnailImageView.alpha = 0.0;
-    }];
+        [self p_startActivity];
+
+        // TODO: fun animation
+        [UIView animateWithDuration:0.25 animations:^{
+            self.thumbnailImageView.alpha = 0.0;
+        }];
+    }
 }
 
 - (void)dealloc {
@@ -123,6 +146,10 @@
     [self.videoPlayerViewController.moviePlayer stop];
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+    if ([NSUserActivity class]) {
+        [self.userActivity invalidate];
+    }
 }
 
 - (void)p_playVideo {
@@ -145,7 +172,8 @@
 
     [self.videoPlayerViewController presentInView:self.videoPlayerView];
 
-    [self.videoPlayerViewController.moviePlayer setInitialPlaybackTime:[[RSVideoService sharedInstance] lastPlaybackTimeWithVideoId:self.videoId]];
+    NSTimeInterval initialPlaybackTime = self.initialPlaybackTime == 0.0 ? [[RSVideoService sharedInstance] lastPlaybackTimeWithVideoId:self.videoId] : self.initialPlaybackTime;
+    [self.videoPlayerViewController.moviePlayer setInitialPlaybackTime:initialPlaybackTime];
     [self.videoPlayerViewController.moviePlayer prepareToPlay];
 }
 

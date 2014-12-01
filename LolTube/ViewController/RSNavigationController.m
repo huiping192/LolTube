@@ -7,6 +7,7 @@
 #import "RSVideoListViewController.h"
 #import "RSVideoDetailAnimator.h"
 #import "RSVideoDetailViewController.h"
+#import "RSEnvironment.h"
 
 @interface RSNavigationController()<UINavigationControllerDelegate>
 
@@ -36,6 +37,18 @@
     }
 
     return nil;
+}
+
+- (void)restoreUserActivityState:(NSUserActivity *)activity {
+    [super restoreUserActivityState:activity];
+
+    if ([activity.activityType isEqualToString:@"com.huiping192.LolTube.videoDetail"] && [activity.userInfo[kHandOffVersionKey] isEqualToString:kHandOffVersion]) {
+        RSVideoDetailViewController *videoDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"videoDetail"];
+        videoDetailViewController.videoId = activity.userInfo[@"videoId"];
+        videoDetailViewController.initialPlaybackTime = [((NSNumber *)activity.userInfo[@"videoCurrentPlayTime"]) floatValue];
+
+        [self pushViewController:videoDetailViewController animated:YES];
+    }
 }
 
 

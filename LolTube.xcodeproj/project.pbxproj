@@ -28,6 +28,7 @@
 		7A9D588F5B7F3309F41F5AA4 /* RayWenderlichChannel.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5AF46BFEA231319F7D33 /* RayWenderlichChannel.json */; };
 		7A9D59A8FA8D919C39DCC359 /* StringUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D526397DA6DDCCAC2F3B6 /* StringUtilTest.swift */; };
 		7A9D5A766490C3ECF29776DE /* UIViewController+RSError.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5393063A2FA9933C12FF /* UIViewController+RSError.m */; };
+		7A9D5AA116615721C59D3D61 /* RSEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5685F04E20BBB4AB0EDE /* RSEnvironment.m */; };
 		7A9D5AB8B2CE3F6EC087BFFA /* RSChannelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D543F7440097C8C2149E1 /* RSChannelTableViewCell.m */; };
 		7A9D5C20AC3EAD887249EB04 /* NSDate+RSFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D57868192765BB8591D47 /* NSDate+RSFormatter.m */; };
 		7A9D5C639F1A613376BC21EC /* RSChannelService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D518DC4BF259949301CF7 /* RSChannelService.m */; };
@@ -151,6 +152,7 @@
 		7A9D55867E9F573269326BFA /* NSDate+RSFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+RSFormatter.h"; sourceTree = "<group>"; };
 		7A9D5643626977452CC70C69 /* RSVideoListCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoListCollectionViewLayout.h; sourceTree = "<group>"; };
 		7A9D5685C6200426A7318226 /* RSChannelSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSChannelSearchViewController.h; sourceTree = "<group>"; };
+		7A9D5685F04E20BBB4AB0EDE /* RSEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSEnvironment.m; sourceTree = "<group>"; };
 		7A9D56878B6EAD4145C3F188 /* RSVideoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoService.h; sourceTree = "<group>"; };
 		7A9D571016D3664FBDB5479B /* NSDateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateTests.swift; sourceTree = "<group>"; };
 		7A9D573075EAA12896D59A57 /* RSVideoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailViewController.m; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		7A9D5E1CAC258986C7A0B45D /* RSVideoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoService.m; sourceTree = "<group>"; };
 		7A9D5E8BA4B47C87DD729968 /* RSVideoListCollectionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoListCollectionViewModel.m; sourceTree = "<group>"; };
 		7A9D5EA2E87290F585584765 /* RSSearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSearchTableViewCell.h; sourceTree = "<group>"; };
+		7A9D5EB9DC371E29737FC931 /* RSEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSEnvironment.h; sourceTree = "<group>"; };
 		7A9D5FCBA9DCDC569C7C2F1E /* RSVideoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailViewController.h; sourceTree = "<group>"; };
 		8AE8E8822B6E415281465DA6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		97AB2DFA1BA34AEB926EF0EC /* Pods-VideoWidget.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoWidget.xcconfig"; path = "Pods/Pods-VideoWidget.xcconfig"; sourceTree = "<group>"; };
@@ -464,6 +467,8 @@
 			children = (
 				7A9D575BA2B9127AB9F13AC4 /* Category */,
 				7A9D51026767D0DDE8AC6533 /* Util */,
+				7A9D5685F04E20BBB4AB0EDE /* RSEnvironment.m */,
+				7A9D5EB9DC371E29737FC931 /* RSEnvironment.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -916,6 +921,7 @@
 				7A9D56D2DEB3EF67951843BC /* RSChannelSearchViewController.m in Sources */,
 				7A9D5A766490C3ECF29776DE /* UIViewController+RSError.m in Sources */,
 				7A9D51D90FF1DB0116D7B2EA /* RSVideoListCollectionViewLayout.m in Sources */,
+				7A9D5AA116615721C59D3D61 /* RSEnvironment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
