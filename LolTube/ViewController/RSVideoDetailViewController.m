@@ -66,8 +66,9 @@
     }
     NSUserActivity *activity = [[NSUserActivity alloc] initWithActivityType:@"com.huiping192.LolTube.videoDetail"];
     activity.title = @"VideoDeital";
-    activity.userInfo = @{@"videoId" : self.videoId, @"videoCurrentPlayTime" : @(self.videoPlayerViewController.moviePlayer.currentPlaybackTime), kHandOffVersionKey : kHandOffVersion};
-    activity.webpageURL = [NSURL URLWithString:self.videoDetailViewModel.shareUrlString];
+    int videoCurrentPlayTime = (int) self.videoPlayerViewController.moviePlayer.currentPlaybackTime;
+    activity.userInfo = @{@"videoId" : self.videoId, @"videoCurrentPlayTime" : @(videoCurrentPlayTime), kHandOffVersionKey : kHandOffVersion};
+    activity.webpageURL = [NSURL URLWithString:[NSString stringWithFormat:self.videoDetailViewModel.handoffUrlStringFormat, self.videoId, videoCurrentPlayTime]];
 
     self.userActivity = activity;
     [activity becomeCurrent];
@@ -75,7 +76,10 @@
 
 - (void)updateUserActivityState:(NSUserActivity *)activity {
     [super updateUserActivityState:activity];
-    [activity addUserInfoEntriesFromDictionary:@{@"videoId" : self.videoId, @"videoCurrentPlayTime" : @(self.videoPlayerViewController.moviePlayer.currentPlaybackTime), kHandOffVersionKey : kHandOffVersion}];
+    int videoCurrentPlayTime = (int) self.videoPlayerViewController.moviePlayer.currentPlaybackTime;
+    [activity addUserInfoEntriesFromDictionary:@{@"videoId" : self.videoId, @"videoCurrentPlayTime" : @(videoCurrentPlayTime), kHandOffVersionKey : kHandOffVersion}];
+    activity.webpageURL = [NSURL URLWithString:[NSString stringWithFormat:self.videoDetailViewModel.handoffUrlStringFormat, self.videoId, videoCurrentPlayTime]];
+
     activity.needsSave = YES;
 }
 

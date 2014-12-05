@@ -19,6 +19,8 @@
 @property(nonatomic, copy) NSString *shareTitle;
 @property(nonatomic, copy) NSString *shareUrlString;
 
+@property(nonatomic, copy) NSString *handoffUrlStringFormat;
+
 - (instancetype)initWithVideoId:(NSString *)videoId;
 
 - (void)updateWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure;
