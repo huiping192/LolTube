@@ -18,7 +18,7 @@
 
 static NSString *const kVideoCellId = @"videoCell";
 
-@interface RSVideoListViewController () <UICollectionViewDataSource, UISearchBarDelegate>
+@interface RSVideoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
 
 @property(nonatomic, weak) IBOutlet UILabel *noVideoFoundLabel;
 
@@ -30,6 +30,9 @@ static NSString *const kVideoCellId = @"videoCell";
 @property(nonatomic, assign) BOOL collectionViewFirstShownFlag;
 
 @property(atomic, assign) BOOL loading;
+
+@property(nonatomic, strong) NSMutableDictionary *imageLoadingOperationDictionary;
+@property(nonatomic, strong) NSOperationQueue *imageLoadingOperationQueue;
 
 @end
 
@@ -48,6 +51,9 @@ static NSString *const kVideoCellId = @"videoCell";
         _collectionViewModel = [[RSVideoListCollectionViewModel alloc] initWithChannelIds:_channelIds];
 
         _needShowChannelTitleView = YES;
+
+        self.imageLoadingOperationQueue = [[NSOperationQueue alloc] init];
+        self.imageLoadingOperationDictionary = [[NSMutableDictionary alloc] init];
     }
 
     return self;
@@ -82,6 +88,12 @@ static NSString *const kVideoCellId = @"videoCell";
     [self.collectionView.collectionViewLayout invalidateLayout];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+
+    [self.imageLoadingOperationQueue cancelAllOperations];
+}
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -102,8 +114,6 @@ static NSString *const kVideoCellId = @"videoCell";
 
         RSVideoCollectionViewCell *cell = (RSVideoCollectionViewCell *) sender;
         videoDetailViewController.thumbnailImage = cell.thumbnailImageView.image;
-        // change video image to played video image
-        [cell.thumbnailImageView asynLoadingTonalImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
     } else if ([segue.identifier isEqualToString:@"channelList"]) {
         UINavigationController *navigationController = segue.destinationViewController;
         RSChannelListViewController *channelListViewController = (RSChannelListViewController *) navigationController.topViewController;
@@ -262,13 +272,16 @@ static NSString *const kVideoCellId = @"videoCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     RSVideoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kVideoCellId forIndexPath:indexPath];
     RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) indexPath.row];
-
-    [cell.thumbnailImageView setImage:nil];
-    if ([[RSVideoService sharedInstance] isPlayFinishedWithVideoId:item.videoId]) {
-        [cell.thumbnailImageView asynLoadingTonalImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl placeHolderImage:nil];
-    } else {
-        [cell.thumbnailImageView asynLoadingImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl placeHolderImage:nil];
+    if (!item) {
+        return cell;
     }
+    NSOperation *imageOperation = [UIImageView asynLoadingImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl needBlackWhiteEffect:[[RSVideoService sharedInstance] isPlayFinishedWithVideoId:item.videoId] success:^(UIImage *image) {
+        RSVideoCollectionViewCell *collectionViewCell = (RSVideoCollectionViewCell *) [collectionView cellForItemAtIndexPath:indexPath];
+        collectionViewCell.thumbnailImageView.image = image;
+    }];
+
+    [self.imageLoadingOperationQueue addOperation:imageOperation];
+    self.imageLoadingOperationDictionary[item.videoId] = imageOperation;
 
     cell.titleLabel.text = item.title;
     cell.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
@@ -291,6 +304,20 @@ static NSString *const kVideoCellId = @"videoCell";
 
     return cell;
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) indexPath.row];
+    if (item) {
+        return;
+    }
+    NSOperation *operation = self.imageLoadingOperationDictionary[item.videoId];
+    if (operation) {
+        [operation cancel];
+        [self.imageLoadingOperationDictionary removeObjectForKey:item.videoId];
+    }
+
+}
+
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *searchCollectionReusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"searchCollectionReusableView" forIndexPath:indexPath];
