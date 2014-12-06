@@ -6,12 +6,12 @@
 #import "RSVideoDetailViewController.h"
 #import "RSVideoDetailViewModel.h"
 #import "UIViewController+RSLoading.h"
-#import "AMTumblrHud.h"
-#import "UIImageView+Loading.h"
 #import "Reachability.h"
 #import "RSVideoService.h"
 #import "UIViewController+RSError.h"
 #import "GAIDictionaryBuilder.h"
+#import "RSEnvironment.h"
+#import "UIImageView+Loading.h"
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
@@ -28,6 +28,10 @@
 
 @property(nonatomic, strong) XCDYouTubeVideoPlayerViewController *videoPlayerViewController;
 
+
+@property(nonatomic, strong) NSOperation *imageLoadingOperation;
+@property(nonatomic, strong) NSOperationQueue *imageLoadingOperationQueue;
+
 @end
 
 @implementation RSVideoDetailViewController {
@@ -38,6 +42,7 @@
 - (id)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
+        _imageLoadingOperationQueue = [[NSOperationQueue alloc] init];
     }
 
     return self;
@@ -53,6 +58,29 @@
     [self p_loadData];
 
     [self p_playVideo];
+}
+
+- (void)p_startActivity {
+    if (![NSUserActivity class]) {
+        return;
+    }
+    NSUserActivity *activity = [[NSUserActivity alloc] initWithActivityType:@"com.huiping192.LolTube.videoDetail"];
+    activity.title = @"VideoDeital";
+    int videoCurrentPlayTime = (int) self.videoPlayerViewController.moviePlayer.currentPlaybackTime;
+    activity.userInfo = @{@"videoId" : self.videoId, @"videoCurrentPlayTime" : @(videoCurrentPlayTime), kHandOffVersionKey : kHandOffVersion};
+    activity.webpageURL = [NSURL URLWithString:[NSString stringWithFormat:self.videoDetailViewModel.handoffUrlStringFormat, self.videoId, videoCurrentPlayTime]];
+
+    self.userActivity = activity;
+    [activity becomeCurrent];
+}
+
+- (void)updateUserActivityState:(NSUserActivity *)activity {
+    [super updateUserActivityState:activity];
+    int videoCurrentPlayTime = (int) self.videoPlayerViewController.moviePlayer.currentPlaybackTime;
+    [activity addUserInfoEntriesFromDictionary:@{@"videoId" : self.videoId, @"videoCurrentPlayTime" : @(videoCurrentPlayTime), kHandOffVersionKey : kHandOffVersion}];
+    activity.webpageURL = [NSURL URLWithString:[NSString stringWithFormat:self.videoDetailViewModel.handoffUrlStringFormat, self.videoId, videoCurrentPlayTime]];
+
+    activity.needsSave = YES;
 }
 
 - (void)p_configureViews {
@@ -72,15 +100,26 @@
     __weak typeof(self) weakSelf = self;
     [self.videoDetailViewModel updateWithSuccess:^{
         [weakSelf stopAnimateLoadingView];
-        self.spaceView.hidden = NO;
+        weakSelf.spaceView.hidden = NO;
 
-        [self.thumbnailImageView asynLoadingImageWithUrlString:weakSelf.videoDetailViewModel.highThumbnailUrl secondImageUrlString:weakSelf.videoDetailViewModel.mediumThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
+        NSOperation *imageLoadingOperation = [UIImageView asynLoadingImageWithUrlString:weakSelf.videoDetailViewModel.highThumbnailUrl secondImageUrlString:weakSelf.videoDetailViewModel.mediumThumbnailUrl needBlackWhiteEffect:NO success:^(UIImage *image) {
+            if ([weakSelf.imageLoadingOperation isCancelled]) {
+                return;
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                weakSelf.thumbnailImageView.image = image;
+            });
+            weakSelf.imageLoadingOperation = nil;
+        }];
+        [weakSelf.imageLoadingOperationQueue addOperation:imageLoadingOperation];
+        weakSelf.imageLoadingOperation = imageLoadingOperation;
+
         weakSelf.titleLabel.text = weakSelf.videoDetailViewModel.title;
         weakSelf.postedAtLabel.text = weakSelf.videoDetailViewModel.postedTime;
         weakSelf.descriptionTextView.text = weakSelf.videoDetailViewModel.videoDescription;
 
     }                                    failure:^(NSError *error) {
-        [self showError:error];
+        [weakSelf showError:error];
 
         [weakSelf stopAnimateLoadingView];
     }];
@@ -104,17 +143,21 @@
                                                object:nil];
 }
 
-- (void)p_moviePlayBackDidFinish:(id)DidFinish {
-    self.videoPlayerViewController.moviePlayer.currentPlaybackTime = 1.0;
+- (void)p_moviePlayBackDidFinish:(id)moviePlayerPlaybackDidFinishNotification {
+    self.videoPlayerViewController.moviePlayer.currentPlaybackTime = 3.0;
 }
 
-- (void)p_moviePreloadDidFinish:(id)p_moviePreloadDidFinish {
-    [[RSVideoService sharedInstance] savePlayFinishedVideoId:self.videoId];
+- (void)p_moviePreloadDidFinish:(id)moviePlayerLoadStateDidChangeNotification {
+    if (self.videoPlayerViewController.moviePlayer.loadState == MPMovieLoadStatePlayable) {
+        [[RSVideoService sharedInstance] savePlayFinishedVideoId:self.videoId];
 
-    // TODO: fun animation
-    [UIView animateWithDuration:0.25 animations:^{
-        self.thumbnailImageView.alpha = 0.0;
-    }];
+        [self p_startActivity];
+
+        // TODO: fun animation
+        [UIView animateWithDuration:0.25 animations:^{
+            self.thumbnailImageView.alpha = 0.0;
+        }];
+    }
 }
 
 - (void)dealloc {
@@ -123,6 +166,10 @@
     [self.videoPlayerViewController.moviePlayer stop];
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+    if ([NSUserActivity class]) {
+        [self.userActivity invalidate];
+    }
 }
 
 - (void)p_playVideo {
@@ -145,7 +192,8 @@
 
     [self.videoPlayerViewController presentInView:self.videoPlayerView];
 
-    [self.videoPlayerViewController.moviePlayer setInitialPlaybackTime:[[RSVideoService sharedInstance] lastPlaybackTimeWithVideoId:self.videoId]];
+    NSTimeInterval initialPlaybackTime = self.initialPlaybackTime == 0.0 ? [[RSVideoService sharedInstance] lastPlaybackTimeWithVideoId:self.videoId] : self.initialPlaybackTime;
+    [self.videoPlayerViewController.moviePlayer setInitialPlaybackTime:initialPlaybackTime];
     [self.videoPlayerViewController.moviePlayer prepareToPlay];
 }
 

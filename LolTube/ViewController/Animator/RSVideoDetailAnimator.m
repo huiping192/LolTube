@@ -105,7 +105,7 @@ static NSTimeInterval kAnimationDuration = 0.5;
 
             toView.alpha = 0.0;
 
-            [UIView animateWithDuration:0.8 * kAnimationDuration delay:0.0 usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [UIView animateWithDuration:kAnimationDuration delay:0.0 usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
 
                 tempImageView.frame = selectedCellFrame;
                 toView.alpha = 1.0;
@@ -123,7 +123,7 @@ static NSTimeInterval kAnimationDuration = 0.5;
                 selectedCell.postedTimeLabel.transform = CGAffineTransformMakeTranslation(0.0, 10);
                 selectedCell.postedTimeLabel.alpha = 0.4;
 
-                [UIView animateWithDuration:0.2 * kAnimationDuration animations:^{
+                [UIView animateWithDuration:0.25 animations:^{
                     selectedCell.titleLabel.alpha = 1.0;
                     selectedCell.titleLabel.transform = CGAffineTransformIdentity;
 

@@ -47,6 +47,8 @@
 
         self.shareTitle = [NSString stringWithFormat:@"%@ #LolTube",self.title];
         self.shareUrlString = [NSString stringWithFormat:@"https://www.youtube.com/watch?v=%@",self.videoId];
+
+        self.handoffUrlStringFormat =@"https://www.youtube.com/watch?v=%@&t=%ds";
         dispatch_async(dispatch_get_main_queue(), ^{
             if (success) {
                 success();

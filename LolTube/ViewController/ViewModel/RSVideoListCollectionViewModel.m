@@ -38,26 +38,30 @@
 }
 
 - (void)refreshWithSuccess:(void (^)(BOOL hasNewData))success failure:(void (^)(NSError *))failure {
+    __weak typeof(self) weakSelf = self;
     [self.service videoListWithChannelIds:_channelIds searchText:self.searchText nextPageTokens:nil success:^(NSArray *searchModelList) {
-        NSMutableArray *items = [[NSMutableArray alloc] init];
-        if (self.items) {
-            items = self.items.mutableCopy;
-        }
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
-        NSArray *newItems = [self p_itemsFormSearchModelList:searchModelList desc:NO];
-        for (RSVideoCollectionViewCellVo *cellVo in newItems) {
-            if (![items containsObject:cellVo]) {
-                [items insertObject:cellVo atIndex:0];
+            NSMutableArray *items = [[NSMutableArray alloc] init];
+            if (weakSelf.items) {
+                items = weakSelf.items.mutableCopy;
             }
-        }
 
-        BOOL hasNewData = _items.count != items.count;
-        _items = (NSArray <RSVideoCollectionViewCellVo> *) items;
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (success) {
-                success(hasNewData);
+            NSArray *newItems = [weakSelf p_itemsFormSearchModelList:searchModelList desc:NO];
+            for (RSVideoCollectionViewCellVo *cellVo in newItems) {
+                if (![items containsObject:cellVo]) {
+                    [items insertObject:cellVo atIndex:0];
+                }
             }
+
+            BOOL hasNewData = _items.count != items.count;
+            _items = (NSArray <RSVideoCollectionViewCellVo> *) items;
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (success) {
+                    success(hasNewData);
+                }
+            });
         });
     }                             failure:failure];
 }
@@ -85,27 +89,30 @@
 }
 
 - (void)p_updateWithChannelIds:(NSArray *)channelIds pageTokens:(NSArray *)pageTokens searchText:(NSString *)searchText success:(void (^)())success failure:(void (^)(NSError *))failure {
+    __weak typeof(self) weakSelf = self;
     [self.service videoListWithChannelIds:channelIds searchText:searchText nextPageTokens:pageTokens success:^(NSArray *searchModelList) {
-        self.searchModelList = searchModelList;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            weakSelf.searchModelList = searchModelList;
 
-        NSMutableArray *items = [[NSMutableArray alloc] init];
-        if (self.items) {
-            items = self.items.mutableCopy;
-        }
-
-        NSArray *newItems = [self p_itemsFormSearchModelList:searchModelList desc:YES];
-        for (RSVideoCollectionViewCellVo *cellVo in newItems) {
-            if (![items containsObject:cellVo]) {
-                [items addObject:cellVo];
+            NSMutableArray *items = [[NSMutableArray alloc] init];
+            if (weakSelf.items) {
+                items = weakSelf.items.mutableCopy;
             }
-        }
 
-        _items = (NSArray <RSVideoCollectionViewCellVo> *) items;
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (success) {
-                success();
+            NSArray *newItems = [self p_itemsFormSearchModelList:searchModelList desc:YES];
+            for (RSVideoCollectionViewCellVo *cellVo in newItems) {
+                if (![items containsObject:cellVo]) {
+                    [items addObject:cellVo];
+                }
             }
+
+            _items = (NSArray <RSVideoCollectionViewCellVo> *) items;
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (success) {
+                    success();
+                }
+            });
         });
     }                             failure:failure];
 }
