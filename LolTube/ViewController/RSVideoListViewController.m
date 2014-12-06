@@ -14,6 +14,7 @@
 #import "RSVideoService.h"
 #import "UIViewController+RSError.h"
 #import "GAIDictionaryBuilder.h"
+#import "UIImage+RSImageEffect.h"
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
 
 static NSString *const kVideoCellId = @"videoCell";
@@ -114,6 +115,14 @@ static NSString *const kVideoCellId = @"videoCell";
 
         RSVideoCollectionViewCell *cell = (RSVideoCollectionViewCell *) sender;
         videoDetailViewController.thumbnailImage = cell.thumbnailImageView.image;
+
+        // change iamge to blackwhite when video tapped
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            UIImage *blackAndWhiteImage = [cell.thumbnailImageView.image blackAndWhiteImage];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.thumbnailImageView.image = blackAndWhiteImage;
+            });
+        });
     } else if ([segue.identifier isEqualToString:@"channelList"]) {
         UINavigationController *navigationController = segue.destinationViewController;
         RSChannelListViewController *channelListViewController = (RSChannelListViewController *) navigationController.topViewController;
