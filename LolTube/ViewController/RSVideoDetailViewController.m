@@ -6,7 +6,6 @@
 #import "RSVideoDetailViewController.h"
 #import "RSVideoDetailViewModel.h"
 #import "UIViewController+RSLoading.h"
-#import "Reachability.h"
 #import "RSVideoService.h"
 #import "UIViewController+RSError.h"
 #import "GAIDictionaryBuilder.h"
@@ -16,7 +15,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
 
-@interface RSVideoDetailViewController () <UIScrollViewDelegate>
+@interface RSVideoDetailViewController () <UIScrollViewDelegate, UIActionSheetDelegate>
 
 @property(nonatomic, weak) IBOutlet UIView *videoPlayerView;
 @property(nonatomic, weak) IBOutlet UILabel *titleLabel;
@@ -28,9 +27,11 @@
 
 @property(nonatomic, strong) XCDYouTubeVideoPlayerViewController *videoPlayerViewController;
 
-
 @property(nonatomic, strong) NSOperation *imageLoadingOperation;
 @property(nonatomic, strong) NSOperationQueue *imageLoadingOperationQueue;
+
+@property(nonatomic, weak) UIBarButtonItem *videoQualitySwitchButton;
+@property(nonatomic, assign) XCDYouTubeVideoQuality currentVideoQuality;
 
 @end
 
@@ -84,8 +85,12 @@
 }
 
 - (void)p_configureViews {
-    self.spaceView.layer.borderColor = [UIColor colorWithWhite:0.7f
-                                                         alpha:1.0f].CGColor;
+    UIBarButtonItem *videoQualitySwitchButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"VideoQualityHigh", @"High") style:UIBarButtonItemStylePlain target:self action:@selector(switchVideoQualityButtonTapped:)];
+    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareButtonTapped:)];
+    self.navigationItem.rightBarButtonItems = @[shareButton, videoQualitySwitchButton];
+    self.videoQualitySwitchButton = videoQualitySwitchButton;
+
+    self.spaceView.layer.borderColor = [UIColor colorWithWhite:0.7f alpha:1.0f].CGColor;
     self.spaceView.layer.borderWidth = 0.25;
     self.spaceView.hidden = YES;
 
@@ -174,27 +179,11 @@
 
 - (void)p_playVideo {
     id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"video_detail"
-                                                          action:@"video_play"
-                                                           label:self.videoId
-                                                           value:nil] build]];
-
-    self.videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:self.videoId];
-
-    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
-    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
-    if (networkStatus != ReachableViaWiFi) {
-        self.videoPlayerViewController.preferredVideoQualities = @[@(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240)];
-    }
-
-    // prevent mute switch from switching off audio from movie player
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-
-    [self.videoPlayerViewController presentInView:self.videoPlayerView];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"video_detail" action:@"video_play" label:self.videoId value:nil] build]];
 
     NSTimeInterval initialPlaybackTime = self.initialPlaybackTime == 0.0 ? [[RSVideoService sharedInstance] lastPlaybackTimeWithVideoId:self.videoId] : self.initialPlaybackTime;
-    [self.videoPlayerViewController.moviePlayer setInitialPlaybackTime:initialPlaybackTime];
-    [self.videoPlayerViewController.moviePlayer prepareToPlay];
+    [self p_playVideoWithInitialPlaybackTime:initialPlaybackTime videoQualities:@[@(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240)]];
+    self.currentVideoQuality = XCDYouTubeVideoQualityHD720;
 }
 
 - (IBAction)shareButtonTapped:(id)sender {
@@ -214,6 +203,85 @@
                                                                value:nil] build]];
     }];
 }
+
+
+- (IBAction)switchVideoQualityButtonTapped:(id)sender {
+    UIActionSheet *videoQualityActionSheet = [[UIActionSheet alloc] init];
+    videoQualityActionSheet.delegate = self;
+    videoQualityActionSheet.title = NSLocalizedString(@"SwitchVideoQuality", @"Switch Video Quality");
+    [videoQualityActionSheet addButtonWithTitle:NSLocalizedString(@"VideoQualityHigh", @"High")];
+    [videoQualityActionSheet addButtonWithTitle:NSLocalizedString(@"VideoQualityMedium", @"Medium")];
+    [videoQualityActionSheet addButtonWithTitle:NSLocalizedString(@"VideoQualityLow", @"Low")];
+    [videoQualityActionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
+
+    videoQualityActionSheet.cancelButtonIndex = 3;
+
+    switch (_currentVideoQuality) {
+        case XCDYouTubeVideoQualityHD720: {
+            videoQualityActionSheet.destructiveButtonIndex = 0;
+            break;
+        }
+        case XCDYouTubeVideoQualityMedium360: {
+            videoQualityActionSheet.destructiveButtonIndex = 1;
+            break;
+        }
+        case XCDYouTubeVideoQualitySmall240: {
+            videoQualityActionSheet.destructiveButtonIndex = 2;
+            break;
+        }
+    }
+    [videoQualityActionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSTimeInterval initialPlaybackTime = self.videoPlayerViewController.moviePlayer.currentPlaybackTime;
+
+    switch (buttonIndex) {
+        case 0:
+            if (self.currentVideoQuality == XCDYouTubeVideoQualityHD720) {
+                return;
+            }
+            [self p_playVideoWithInitialPlaybackTime:initialPlaybackTime videoQualities:@[@(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240)]];
+            self.videoQualitySwitchButton.title = NSLocalizedString(@"VideoQualityHigh", @"High");
+            self.currentVideoQuality = XCDYouTubeVideoQualityHD720;
+
+            break;
+        case 1:
+            if (self.currentVideoQuality == XCDYouTubeVideoQualityMedium360) {
+                return;
+            }
+            [self p_playVideoWithInitialPlaybackTime:initialPlaybackTime videoQualities:@[@(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240)]];
+            self.videoQualitySwitchButton.title = NSLocalizedString(@"VideoQualityMedium", @"Medium");
+            self.currentVideoQuality = XCDYouTubeVideoQualityMedium360;
+
+            break;
+        case 2:
+            if (self.currentVideoQuality == XCDYouTubeVideoQualitySmall240) {
+                return;
+            }
+            [self p_playVideoWithInitialPlaybackTime:initialPlaybackTime videoQualities:@[@(XCDYouTubeVideoQualitySmall240)]];
+            self.videoQualitySwitchButton.title = NSLocalizedString(@"VideoQualityLow", @"Low");
+            self.currentVideoQuality = XCDYouTubeVideoQualitySmall240;
+
+            break;
+    }
+
+}
+
+- (void)p_playVideoWithInitialPlaybackTime:(NSTimeInterval)initialPlaybackTime videoQualities:(NSArray *)videoQualities {
+    [self.videoPlayerViewController.moviePlayer stop];
+    [self.videoPlayerViewController.moviePlayer.view removeFromSuperview];
+    self.videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:self.videoId];
+
+    self.videoPlayerViewController.preferredVideoQualities = videoQualities;
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+
+    [self.videoPlayerViewController presentInView:self.videoPlayerView];
+    [self.videoPlayerViewController.moviePlayer setInitialPlaybackTime:initialPlaybackTime];
+    [self.videoPlayerViewController.moviePlayer prepareToPlay];
+
+}
+
 
 - (void)preferredContentSizeChanged:(NSNotification *)notification {
     self.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
