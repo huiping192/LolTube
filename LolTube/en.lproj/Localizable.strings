@@ -15,3 +15,8 @@
 "SearchVideos" = "Search Videos";
 "VideoWidgetNoVideos" = "No video published yet.";
 "VideoWidgetMoreVideos" = "Check %d more videos on LolTube";
+"SwitchVideoQuality" = "Switch Video Quality";
+"VideoQualityHigh" = "High";
+"VideoQualityMedium" = "Medium";
+"VideoQualityLow" = "Low";
+"Cancel" = "Cancel";

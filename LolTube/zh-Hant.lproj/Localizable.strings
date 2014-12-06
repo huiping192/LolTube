@@ -15,3 +15,8 @@
 "SearchVideos" = "搜索視頻";
 "VideoWidgetNoVideos" = "今天還沒有視頻發布.";
 "VideoWidgetMoreVideos" = "在LolTube上瀏覽%d個更多視頻";
+"SwitchVideoQuality" = "畫質選擇";
+"VideoQualityHigh" = "高";
+"VideoQualityMedium" = "標準";
+"VideoQualityLow" = "低";
+"Cancel" = "取消";

@@ -15,3 +15,8 @@
 "SearchVideos" = "동영상 검색";
 "VideoWidgetNoVideos" = "또한 현재 출시 된 어떤 비디오 가 없습니다.";
 "VideoWidgetMoreVideos" = "LolTube %d 더 많은 동영상 을 확인";
+"SwitchVideoQuality" = "비디오 품질 을 전환";
+"VideoQualityHigh" = "높은";
+"VideoQualityMedium" = "중";
+"VideoQualityLow" = "낮은";
+"Cancel" = "취소";

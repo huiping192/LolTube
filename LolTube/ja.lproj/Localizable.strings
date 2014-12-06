@@ -15,3 +15,8 @@
 "SearchVideos" = "動画を検索";
 "VideoWidgetNoVideos" = "今日の動画がありません。";
 "VideoWidgetMoreVideos" = "LolTubeでもう%dつの動画をチェック";
+"SwitchVideoQuality" = "画質設定";
+"VideoQualityHigh" = "高";
+"VideoQualityMedium" = "標準";
+"VideoQualityLow" = "低";
+"Cancel" = "キャンセル";
