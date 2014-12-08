@@ -20,4 +20,5 @@
 "VideoQualityMedium" = "Medium";
 "VideoQualityLow" = "Low";
 "Cancel" = "Cancel";
-"VideoViewCounteFormat" = "%@ views";
+"VideoViewCountFormat" = "%@ views";
+"VideoLikeDislikeFormat" = "%@ likes, %@ dislikes";

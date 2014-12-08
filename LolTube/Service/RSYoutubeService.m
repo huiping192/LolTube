@@ -230,7 +230,6 @@ static NSString *const kYoutubeChannelUrlString = @"https://www.googleapis.com/y
     for (NSString *channelId in channelIds) {
 
         NSString *todayDateTimeString = [NSDate todayRFC3339DateTime];
-        NSLog(@"data:%@", todayDateTimeString);
         NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"channelId" : channelId, @"type" : @"video", @"maxResults" : @(5), @"order" : @"date", @"publishedAfter" : todayDateTimeString};
 
         // fields value (,% などのchatがlibに変換されるため、NSStringでそのまま設定する
@@ -276,12 +275,40 @@ static NSString *const kYoutubeChannelUrlString = @"https://www.googleapis.com/y
     [[NSOperationQueue mainQueue] addOperations:operations waitUntilFinished:NO];
 }
 
+-(void)relatedVideoListWithVideoId:(NSString *)videoId success:(void (^)(RSSearchModel *))success failure:(void (^)(NSError *))failure {
+    if (!videoId || [videoId isEqualToString:@""]) {
+        success(nil);
+        return;
+    }
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"snippet", @"relatedToVideoId" : videoId, @"type" : @"video", @"maxResults" : @(20)};
+
+    // fields value (,% などのchatがlibに変換されるため、NSStringでそのまま設定する
+    NSString *urlString = [NSString stringWithFormat:@"%@?%@=%@", kYoutubeSearchUrlString, @"fields", @"items(id%2Csnippet)%2CpageInfo%2CnextPageToken"];
+    [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        JSONModelError *error = nil;
+        RSSearchModel *searchModel = [[RSSearchModel alloc] initWithDictionary:responseObject error:&error];
+        if (error) {
+            if (failure) {
+                failure(error);
+            }
+            return;
+        }
+        if (success) {
+            success(searchModel);
+        }
+    }    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
 
 - (void)videoDetailListWithVideoIds:(NSArray *)videoIds success:(void (^)(RSVideoDetailModel *))success failure:(void (^)(NSError *))failure {
     NSMutableString *videos = [[NSMutableString alloc] init];
     for (NSString *videoId in videoIds) {
-        NSLog(@"%@",videoId);
-
         [videos appendString:[NSString stringWithFormat:@"%@,",videoId]];
     }
 
@@ -292,7 +319,6 @@ static NSString *const kYoutubeChannelUrlString = @"https://www.googleapis.com/y
 
     [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         JSONModelError *error = nil;
-        NSLog(@"%@",responseObject);
         RSVideoDetailModel *videoModel = [[RSVideoDetailModel alloc] initWithDictionary:responseObject error:&error];
         if (error) {
             if (failure) {

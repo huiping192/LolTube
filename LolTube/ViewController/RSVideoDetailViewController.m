@@ -5,33 +5,35 @@
 
 #import "RSVideoDetailViewController.h"
 #import "RSVideoDetailViewModel.h"
-#import "UIViewController+RSLoading.h"
 #import "RSVideoService.h"
 #import "UIViewController+RSError.h"
 #import "GAIDictionaryBuilder.h"
 #import "RSEnvironment.h"
-#import "UIImageView+Loading.h"
+#import "RSVideoDetailSegmentViewController.h"
+#import "RSVideoRelatedVideosViewController.h"
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
 
-@interface RSVideoDetailViewController () <UIScrollViewDelegate, UIActionSheetDelegate>
+static const CGFloat kCompactPadWidth = 768.0f;
+static const CGFloat kRelatedVideosViewWidthRegularWidth = 320.0f;
+static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
+
+@interface RSVideoDetailViewController () <UIActionSheetDelegate>
 
 @property(nonatomic, weak) IBOutlet UIView *videoPlayerView;
-@property(nonatomic, weak) IBOutlet UILabel *titleLabel;
-@property(nonatomic, weak) IBOutlet UILabel *postedAtLabel;
-@property(nonatomic, weak) IBOutlet UITextView *descriptionTextView;
-@property(nonatomic, weak) IBOutlet UIView *spaceView;
 
 @property(nonatomic, strong) RSVideoDetailViewModel *videoDetailViewModel;
 
 @property(nonatomic, strong) XCDYouTubeVideoPlayerViewController *videoPlayerViewController;
 
-@property(nonatomic, strong) NSOperation *imageLoadingOperation;
-@property(nonatomic, strong) NSOperationQueue *imageLoadingOperationQueue;
-
 @property(nonatomic, weak) UIBarButtonItem *videoQualitySwitchButton;
 @property(nonatomic, assign) XCDYouTubeVideoQuality currentVideoQuality;
+
+@property(nonatomic, strong) RSVideoDetailSegmentViewController *videoDetailSegmentViewController;
+@property(nonatomic, strong) RSVideoRelatedVideosViewController *relatedVideosViewController;
+
+@property(nonatomic, weak) IBOutlet NSLayoutConstraint *relatedVideosViewWidthConstraint;
 
 @end
 
@@ -39,27 +41,77 @@
 
 }
 
-
-- (id)initWithCoder:(NSCoder *)coder {
-    self = [super initWithCoder:coder];
-    if (self) {
-        _imageLoadingOperationQueue = [[NSOperationQueue alloc] init];
-    }
-
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     [self p_configureViews];
-
     [self p_addNotifications];
-
     [self p_loadData];
-
-    [self p_playVideo];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    [self p_overrideChildViewControllerTraitCollectionWithSize:self.view.frame.size withTransitionCoordinator:nil];
+}
+
+- (void)p_overrideChildViewControllerTraitCollectionWithSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator{
+    if (self.traitCollection.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        UITraitCollection *traitCollection = [UITraitCollection traitCollectionWithHorizontalSizeClass:size.width <= kCompactPadWidth ? UIUserInterfaceSizeClassCompact : UIUserInterfaceSizeClassRegular];
+        [self setOverrideTraitCollection:traitCollection forChildViewController:self.relatedVideosViewController];
+        [self setOverrideTraitCollection:traitCollection forChildViewController:self.videoDetailSegmentViewController];
+                                                                            \
+        if(coordinator){
+            [coordinator animateAlongsideTransition:^(id <UIViewControllerTransitionCoordinatorContext>context){
+                self.relatedVideosViewWidthConstraint.constant = [traitCollection containsTraitsInCollection:[UITraitCollection traitCollectionWithHorizontalSizeClass:UIUserInterfaceSizeClassRegular]] ? kRelatedVideosViewWidthRegularWidth : kRelatedVideosViewWidthCompactWidth;
+                [self.view layoutIfNeeded];
+            } completion:nil];
+        } else{
+            self.relatedVideosViewWidthConstraint.constant = [traitCollection containsTraitsInCollection:[UITraitCollection traitCollectionWithHorizontalSizeClass:UIUserInterfaceSizeClassRegular]] ? kRelatedVideosViewWidthRegularWidth : kRelatedVideosViewWidthCompactWidth;
+            [self.view layoutIfNeeded];
+        }
+    }
+}
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (![self.videoPlayerViewController.moviePlayer isFullscreen]) {
+        [self p_playVideo];
+    }
+}
+
+
+- (void)p_loadData {
+    self.videoDetailViewModel = [[RSVideoDetailViewModel alloc] initWithVideoId:self.videoId];
+
+    __weak typeof(self) weakSelf = self;
+    [self.videoDetailViewModel updateWithSuccess:^{
+
+    }                                    failure:^(NSError *error) {
+        [weakSelf showError:error];
+    }];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    [super prepareForSegue:segue sender:sender];
+    if ([segue.identifier isEqualToString:@"videoDetailSegmentEmbed"]) {
+        RSVideoDetailSegmentViewController *videoDetailSegmentViewController = segue.destinationViewController;
+        videoDetailSegmentViewController.videoId = self.videoId;
+        self.videoDetailSegmentViewController = videoDetailSegmentViewController;
+    } else if ([segue.identifier isEqualToString:@"relatedVideosEmbed"]) {
+        RSVideoRelatedVideosViewController *relatedVideosViewController = segue.destinationViewController;
+        relatedVideosViewController.videoId = self.videoId;
+        self.relatedVideosViewController = relatedVideosViewController;
+    }
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    [self p_overrideChildViewControllerTraitCollectionWithSize:size withTransitionCoordinator:coordinator];
+}
+
 
 - (void)p_startActivity {
     if (![NSUserActivity class]) {
@@ -90,53 +142,11 @@
     self.navigationItem.rightBarButtonItems = @[shareButton, videoQualitySwitchButton];
     self.videoQualitySwitchButton = videoQualitySwitchButton;
 
-    self.spaceView.layer.borderColor = [UIColor colorWithWhite:0.7f alpha:1.0f].CGColor;
-    self.spaceView.layer.borderWidth = 0.25;
-    self.spaceView.hidden = YES;
-
     self.thumbnailImageView.image = self.thumbnailImage;
     self.thumbnailImage = nil;
 }
 
-- (void)p_loadData {
-    self.videoDetailViewModel = [[RSVideoDetailViewModel alloc] initWithVideoId:self.videoId];
-    [self animateLoadingView];
-
-    __weak typeof(self) weakSelf = self;
-    [self.videoDetailViewModel updateWithSuccess:^{
-        [weakSelf stopAnimateLoadingView];
-        weakSelf.spaceView.hidden = NO;
-
-        NSOperation *imageLoadingOperation = [UIImageView asynLoadingImageWithUrlString:weakSelf.videoDetailViewModel.highThumbnailUrl secondImageUrlString:weakSelf.videoDetailViewModel.mediumThumbnailUrl needBlackWhiteEffect:NO success:^(UIImage *image) {
-            if ([weakSelf.imageLoadingOperation isCancelled]) {
-                return;
-            }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                weakSelf.thumbnailImageView.image = image;
-            });
-            weakSelf.imageLoadingOperation = nil;
-        }];
-        [weakSelf.imageLoadingOperationQueue addOperation:imageLoadingOperation];
-        weakSelf.imageLoadingOperation = imageLoadingOperation;
-
-        weakSelf.titleLabel.text = weakSelf.videoDetailViewModel.title;
-        weakSelf.postedAtLabel.text = weakSelf.videoDetailViewModel.postedTime;
-        weakSelf.descriptionTextView.text = weakSelf.videoDetailViewModel.videoDescription;
-
-    }                                    failure:^(NSError *error) {
-        [weakSelf showError:error];
-
-        [weakSelf stopAnimateLoadingView];
-    }];
-}
-
 - (void)p_addNotifications {
-    [[NSNotificationCenter defaultCenter]
-            addObserver:self
-               selector:@selector(preferredContentSizeChanged:)
-                   name:UIContentSizeCategoryDidChangeNotification
-                 object:nil];
-
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(p_moviePreloadDidFinish:)
                                                  name:MPMoviePlayerLoadStateDidChangeNotification
@@ -196,11 +206,7 @@
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
     [self presentViewController:activityController animated:YES completion:^{
         //TODO: success alert
-        id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"video_detail"
-                                                              action:@"video_share"
-                                                               label:self.videoId
-                                                               value:nil] build]];
+        [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"video_detail" action:@"video_share" label:self.videoId value:nil] build]];
     }];
 }
 
@@ -282,13 +288,6 @@
 
 }
 
-
-- (void)preferredContentSizeChanged:(NSNotification *)notification {
-    self.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
-    self.postedAtLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-    self.descriptionTextView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
-}
-
 #pragma mark -  UIScrollViewDelegate
 
 #pragma mark - orientation
@@ -296,7 +295,9 @@
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 
-    [self.videoPlayerViewController.moviePlayer setFullscreen:toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight animated:YES];
+    if (self.traitCollection.horizontalSizeClass != UIUserInterfaceSizeClassRegular) {
+        [self.videoPlayerViewController.moviePlayer setFullscreen:toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight animated:YES];
+    }
 }
 
 

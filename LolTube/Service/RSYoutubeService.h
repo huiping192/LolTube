@@ -25,4 +25,6 @@
 - (void)todayVideoListWithChannelIds:(NSArray *)channelIds success:(void (^)(NSArray *))success failure:(void (^)(NSError *))failure;
 
 - (void)videoDetailListWithVideoIds:(NSArray *)videoIds success:(void (^)(RSVideoDetailModel *))success failure:(void (^)(NSError *))failure;
+
+- (void)relatedVideoListWithVideoId:(NSString *)videoId success:(void (^)(RSSearchModel *))success failure:(void (^)(NSError *))failure;
 @end

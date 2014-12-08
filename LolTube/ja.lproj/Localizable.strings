@@ -20,4 +20,5 @@
 "VideoQualityMedium" = "標準";
 "VideoQualityLow" = "低";
 "Cancel" = "キャンセル";
-"VideoViewCounteFormat" = "再生回数 %@ 回";
+"VideoViewCountFormat" = "再生回数%@回";
+"VideoLikeDislikeFormat" = "高評価%@件,低評価%@件";
