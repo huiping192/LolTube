@@ -21,7 +21,7 @@ static NSString *const kChannelIdsKey = @"channleIds";
 }
 
 - (void)saveDefaultChannelIds {
-    NSArray *channelIds = @[@"UC2t5bjwHdUX4vM2g8TRDq5g", @"UCvqRdlKsE5Q8mf8YXbdIJLw", @"UClh5azhOaKzdlThQFgoq-tw", @"UC0RalGf69iYVBFteHInyJJg", @"UCUf53DHwoQw4SvETXZQ2Tmg", @"UCPOm2V7Ccdlkm2J1TqNptEw", @"UCrZT1akje889ZcVXDf9QkGg", @"UCGgbmTgF-sUJGd5B5N6VSFw", @"UC0t-xbEmmcJBQ6-fTZV2FNA", @"UC_ZIX-h-BIZZnim6YJSjYDA"];
+    NSArray *channelIds = @[@"UC2t5bjwHdUX4vM2g8TRDq5g", @"UCvqRdlKsE5Q8mf8YXbdIJLw", @"UClh5azhOaKzdlThQFgoq-tw", @"UC0RalGf69iYVBFteHInyJJg", @"UCUf53DHwoQw4SvETXZQ2Tmg", @"UCPOm2V7Ccdlkm2J1TqNptEw", @"UCrZT1akje889ZcVXDf9QkGg", @"UCGgbmTgF-sUJGd5B5N6VSFw", @"UC0t-xbEmmcJBQ6-fTZV2FNA",@"UCN078UFNwPgwWlU_V5WCTNw",@"UCc_7XbnN1bTFMhquCKt3ngA",@"UC6Y5ISL5xuPuV2--cEKbt6A",@"UCK4LHLRdoHlYL6unEAuTyqA",@"UCVEbcFWM43PS-d5vaSKUMng",@"UCGeHk-_K6Lee4CcVN2SKI2A",@"UCKDkGnyeib7mcU7LdD3x0jQ",@"UCBJLvzKYBCQJc1buauA3msw",@"UCdOWyp25T0HDtjpnV2LpIyw",@"UChBb5BEX36y-DXK7uISYbzg",@"UCQvdvLBve3JLBTkISSHOpEA",@"UC9YLd0REiXxLqQQH_CpJKZQ",@"UC0NwzCHb8Fg89eTB5eYX17Q",@"UCARZJejxRnmQ0m_tU7MgRiA",@"UCrrSA2uXHnFom2HQgNmUivw",@"UCCANEvHoWMJGpMNkxpM3KLg",@"UCuSrv3qgQA7SSi6R9bWag5A",@"UCtHosYGpdBx-X7uEkhJX7yg",@"UCudNGAQXzpE1sMfoqPs67mQ",@"UCYX9IB_lU43EenSWKDlheUg",];
     [self saveChannelIds:channelIds];
 }
 
