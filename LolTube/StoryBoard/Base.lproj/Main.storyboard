@@ -64,8 +64,8 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMd-Q3-eP8" userLabel="posted time label">
-                                                    <rect key="frame" x="231" y="144" width="69" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:22" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMd-Q3-eP8" userLabel="posted time label">
+                                                    <rect key="frame" x="231" y="149" width="69" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="69" placeholder="YES" id="0yJ-fu-4X9"/>
                                                         <constraint firstAttribute="height" constant="21" placeholder="YES" id="DFQ-qt-iyI"/>
@@ -97,12 +97,19 @@
                                                         <constraint firstItem="3yj-eT-joF" firstAttribute="leading" secondItem="gbJ-ZH-TZQ" secondAttribute="leading" constant="5" id="sHr-LC-rfR"/>
                                                     </constraints>
                                                 </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDb-IS-giW">
+                                                    <rect key="frame" x="271" y="133" width="29" height="14"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="gbJ-ZH-TZQ" secondAttribute="bottom" constant="7" id="1cn-o7-o1U"/>
+                                            <constraint firstAttribute="trailing" secondItem="kDb-IS-giW" secondAttribute="trailing" constant="10" id="2G7-fh-Djo"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QZf-SY-7CT" secondAttribute="trailing" id="66z-LJ-mfa"/>
                                             <constraint firstAttribute="trailing" secondItem="Mwu-hu-GrN" secondAttribute="trailing" id="6uu-T0-Ecr"/>
                                             <constraint firstItem="Mwu-hu-GrN" firstAttribute="top" secondItem="mMy-xI-Zyt" secondAttribute="top" id="Idk-94-dT5"/>
@@ -110,17 +117,19 @@
                                             <constraint firstItem="QZf-SY-7CT" firstAttribute="leading" secondItem="mMy-xI-Zyt" secondAttribute="leading" constant="10" id="MUQ-Gc-I5o"/>
                                             <constraint firstItem="Mwu-hu-GrN" firstAttribute="leading" secondItem="mMy-xI-Zyt" secondAttribute="leading" id="S41-rI-uQl"/>
                                             <constraint firstItem="gbJ-ZH-TZQ" firstAttribute="leading" secondItem="mMy-xI-Zyt" secondAttribute="leading" constant="10" id="Zrh-8B-VDc"/>
+                                            <constraint firstItem="cMd-Q3-eP8" firstAttribute="top" secondItem="kDb-IS-giW" secondAttribute="bottom" constant="2" id="aQC-WP-luc"/>
                                             <constraint firstAttribute="trailing" secondItem="cMd-Q3-eP8" secondAttribute="trailing" constant="10" id="g2s-TG-izs"/>
                                             <constraint firstAttribute="bottom" secondItem="Mwu-hu-GrN" secondAttribute="bottom" id="iVy-jd-jiW"/>
-                                            <constraint firstAttribute="bottom" secondItem="cMd-Q3-eP8" secondAttribute="bottom" constant="10" id="mtB-Gd-RsI"/>
+                                            <constraint firstAttribute="bottom" secondItem="cMd-Q3-eP8" secondAttribute="bottom" constant="5" id="mtB-Gd-RsI"/>
                                         </constraints>
                                         <size key="customSize" width="310" height="175"/>
                                         <connections>
                                             <outlet property="channelLabel" destination="3yj-eT-joF" id="hhr-jU-3Lk"/>
                                             <outlet property="channelTitleView" destination="gbJ-ZH-TZQ" id="CnX-dm-tUv"/>
-                                            <outlet property="postedTimeLabel" destination="cMd-Q3-eP8" id="cmO-tB-riz"/>
+                                            <outlet property="durationLabel" destination="kDb-IS-giW" id="zRm-d7-XvM"/>
                                             <outlet property="thumbnailImageView" destination="Mwu-hu-GrN" id="wM7-dK-9bM"/>
                                             <outlet property="titleLabel" destination="QZf-SY-7CT" id="gZ7-BA-LCR"/>
+                                            <outlet property="viewCountLabel" destination="cMd-Q3-eP8" id="J6X-Pe-TAs"/>
                                             <segue destination="99o-UL-MFg" kind="show" identifier="videoDetail" id="XCj-fU-gfg"/>
                                         </connections>
                                     </collectionViewCell>

@@ -12,5 +12,7 @@
 */
 + (NSDate *)dateFromISO8601String:(NSString *)iso8601String;
 
++ (NSDate *)dateFromISO8601TimeString:(NSString *)iso8601String;
+
 + (NSString *)todayRFC3339DateTime;
 @end

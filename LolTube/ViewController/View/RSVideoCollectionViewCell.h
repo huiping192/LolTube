@@ -7,7 +7,8 @@
 @interface RSVideoCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, weak) IBOutlet UIImageView *thumbnailImageView;
-@property (nonatomic, weak) IBOutlet UILabel *postedTimeLabel;
+@property (nonatomic, weak) IBOutlet UILabel *durationLabel;
+@property (nonatomic, weak) IBOutlet UILabel *viewCountLabel;
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 
 @property (nonatomic, weak) IBOutlet UIView *channelTitleView;

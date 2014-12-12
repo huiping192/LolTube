@@ -20,3 +20,4 @@
 "VideoQualityMedium" = "標準";
 "VideoQualityLow" = "低";
 "Cancel" = "キャンセル";
+"VideoViewCounteFormat" = "再生回数 %@ 回";

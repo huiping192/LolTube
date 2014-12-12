@@ -54,8 +54,12 @@ static CGFloat const kBottomShadowSizeRatio = 0.5f;
     _channelTitleView.layer.borderColor = [self.tintColor CGColor];
     _channelTitleView.layer.borderWidth = kChannelTitleViewBorderWidth;
     _channelTitleView.layer.cornerRadius = kChannelTitleViewCornerRadius;
-
     _channelLabel.textColor = [self tintColor];
+
+    [_durationLabel setShadowColor:[UIColor blackColor]];
+    [_durationLabel setShadowOffset:CGSizeMake(1, 1)];
+    [_viewCountLabel setShadowColor:[UIColor blackColor]];
+    [_viewCountLabel setShadowOffset:CGSizeMake(1, 1)];
 
     if (!self.topShadowLayer) {
         CALayer *topShadowLayer = [self p_createShadowLayerWithTopColor:[UIColor colorWithWhite:0 alpha:.5] bottomColor:[UIColor colorWithWhite:0 alpha:.0]];
@@ -67,7 +71,7 @@ static CGFloat const kBottomShadowSizeRatio = 0.5f;
     if (!self.bottomShadowLayer) {
         CALayer *bottomShadowLayer = [self p_createShadowLayerWithTopColor:[UIColor colorWithWhite:0 alpha:.0] bottomColor:[UIColor colorWithWhite:0 alpha:.8]];
         [self.contentView.layer insertSublayer:bottomShadowLayer below:_channelLabel.layer];
-        [self.contentView.layer insertSublayer:bottomShadowLayer below:_postedTimeLabel.layer];
+        [self.contentView.layer insertSublayer:bottomShadowLayer below:_viewCountLabel.layer];
         self.bottomShadowLayer = bottomShadowLayer;
     }
     self.bottomShadowLayer.frame = CGRectMake(0, _channelTitleView.frame.origin.y - kBottomShadowSizeRatio * _channelTitleView.frame.size.height, self.frame.size.width, self.frame.size.height - _channelTitleView.frame.origin.y + kBottomShadowSizeRatio * _channelTitleView.frame.size.height);
