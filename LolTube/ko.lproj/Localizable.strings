@@ -20,3 +20,4 @@
 "VideoQualityMedium" = "중";
 "VideoQualityLow" = "낮은";
 "Cancel" = "취소";
+"VideoViewCounteFormat" = "%@ views";

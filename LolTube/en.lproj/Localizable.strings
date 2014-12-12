@@ -20,3 +20,4 @@
 "VideoQualityMedium" = "Medium";
 "VideoQualityLow" = "Low";
 "Cancel" = "Cancel";
+"VideoViewCounteFormat" = "%@ views";

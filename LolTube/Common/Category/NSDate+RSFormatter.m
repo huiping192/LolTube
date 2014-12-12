@@ -21,6 +21,19 @@
     return [formatter dateFromString:iso8601String];
 }
 
+
++ (NSDate *)dateFromISO8601TimeString:(NSString *)iso8601String {
+    if([RSStringUtil isEmptyString:iso8601String]){
+        return nil;
+    }
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"mMsS"];
+    NSLocale *posix = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    [formatter setLocale:posix];
+
+    return [formatter dateFromString:iso8601String];
+}
+
 +(NSString *)todayRFC3339DateTime{
     NSDate *now = [NSDate date];
     NSCalendar *calendar = [NSCalendar currentCalendar];

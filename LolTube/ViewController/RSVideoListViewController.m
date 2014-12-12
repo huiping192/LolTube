@@ -293,8 +293,19 @@ static NSString *const kVideoCellId = @"videoCell";
     cell.titleLabel.text = item.title;
     cell.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
 
-    cell.postedTimeLabel.text = item.postedTime;
-    cell.postedTimeLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    if(item.duration){
+        cell.durationLabel.text = item.duration;
+        cell.viewCountLabel.text = item.viewCount;
+    }else{
+        [self.collectionViewModel updateVideoDetailWithCellVo:item success:^{
+            cell.durationLabel.text = item.duration;
+            cell.viewCountLabel.text = item.viewCount;
+
+        } failure:nil];
+    }
+
+    cell.durationLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    cell.viewCountLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
 
     cell.channelLabel.text = item.channelTitle;
     cell.channelTitleView.tag = indexPath.row;

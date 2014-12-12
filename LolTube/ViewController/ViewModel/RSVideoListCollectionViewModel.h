@@ -8,6 +8,8 @@
 
 @protocol RSVideoCollectionViewCellVo;
 
+@class RSVideoCollectionViewCellVo;
+
 @interface RSVideoListCollectionViewModel : NSObject
 
 @property(nonatomic, strong, readonly) NSArray <RSVideoCollectionViewCellVo> *items;
@@ -21,6 +23,9 @@
 - (void)refreshWithSuccess:(void (^)(BOOL hasNewData))success failure:(void (^)(NSError *))failure;
 
 - (void)updateNextPageDataWithSuccess:(void (^)(BOOL hasNewData))success failure:(void (^)(NSError *))failure;
+
+- (void)updateVideoDetailWithCellVo:(RSVideoCollectionViewCellVo *)cellVo success:(void (^)())success failure:(void (^)(NSError *))failure;
+
 @end
 
 @interface RSVideoCollectionViewCellVo : NSObject
@@ -31,6 +36,8 @@
 @property(nonatomic, copy) NSString *channelTitle;
 @property(nonatomic, copy) NSString *postedTime;
 @property(nonatomic, copy) NSString *publishedAt;
+@property(nonatomic, copy) NSString *duration;
+@property(nonatomic, copy) NSString *viewCount;
 
 @property(nonatomic, copy) NSString *highThumbnailUrl;
 @property(nonatomic, copy) NSString *defaultThumbnailUrl;

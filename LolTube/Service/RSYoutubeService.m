@@ -277,4 +277,37 @@ static NSString *const kYoutubeChannelUrlString = @"https://www.googleapis.com/y
 }
 
 
+- (void)videoDetailListWithVideoIds:(NSArray *)videoIds success:(void (^)(RSVideoDetailModel *))success failure:(void (^)(NSError *))failure {
+    NSMutableString *videos = [[NSMutableString alloc] init];
+    for (NSString *videoId in videoIds) {
+        NSLog(@"%@",videoId);
+
+        [videos appendString:[NSString stringWithFormat:@"%@,",videoId]];
+    }
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *parameters = @{@"key" : kYoutubeApiKey, @"part" : @"contentDetails,statistics", @"id" : videos};
+
+    NSString *urlString = [NSString stringWithFormat:@"%@", kYoutubeVideoUrlString];
+
+    [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        JSONModelError *error = nil;
+        NSLog(@"%@",responseObject);
+        RSVideoDetailModel *videoModel = [[RSVideoDetailModel alloc] initWithDictionary:responseObject error:&error];
+        if (error) {
+            if (failure) {
+                failure(error);
+            }
+            return;
+        }
+        if (success) {
+            success(videoModel);
+        }
+    }    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
 @end

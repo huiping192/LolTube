@@ -120,8 +120,8 @@ static NSTimeInterval kAnimationDuration = 0.5;
                 selectedCell.channelTitleView.transform = CGAffineTransformMakeTranslation(0.0, 10);
                 selectedCell.channelTitleView.alpha = 0.4;
 
-                selectedCell.postedTimeLabel.transform = CGAffineTransformMakeTranslation(0.0, 10);
-                selectedCell.postedTimeLabel.alpha = 0.4;
+                selectedCell.durationLabel.transform = CGAffineTransformMakeTranslation(0.0, 10);
+                selectedCell.durationLabel.alpha = 0.4;
 
                 [UIView animateWithDuration:0.25 animations:^{
                     selectedCell.titleLabel.alpha = 1.0;
@@ -130,8 +130,8 @@ static NSTimeInterval kAnimationDuration = 0.5;
                     selectedCell.channelTitleView.alpha = 1.0;
                     selectedCell.channelTitleView.transform = CGAffineTransformIdentity;
 
-                    selectedCell.postedTimeLabel.alpha = 1.0;
-                    selectedCell.postedTimeLabel.transform = CGAffineTransformIdentity;
+                    selectedCell.durationLabel.alpha = 1.0;
+                    selectedCell.durationLabel.transform = CGAffineTransformIdentity;
                 }                completion:^(BOOL finished) {
                     fromView.alpha = 1.0;
                     [transitionContext completeTransition:YES];

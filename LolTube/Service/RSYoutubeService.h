@@ -4,6 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RSVideoDetailModel.h"
 
 @class RSSearchModel;
 @class RSVideoModel;
@@ -23,4 +24,5 @@
 
 - (void)todayVideoListWithChannelIds:(NSArray *)channelIds success:(void (^)(NSArray *))success failure:(void (^)(NSError *))failure;
 
+- (void)videoDetailListWithVideoIds:(NSArray *)videoIds success:(void (^)(RSVideoDetailModel *))success failure:(void (^)(NSError *))failure;
 @end
