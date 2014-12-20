@@ -140,7 +140,7 @@ static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
 }
 
 - (void)p_configureViews {
-    UIBarButtonItem *videoQualitySwitchButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"VideoQualityHigh", @"High") style:UIBarButtonItemStylePlain target:self action:@selector(switchVideoQualityButtonTapped:)];
+    UIBarButtonItem *videoQualitySwitchButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"VideoQualityMedium", @"Medium") style:UIBarButtonItemStylePlain target:self action:@selector(switchVideoQualityButtonTapped:)];
     UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareButtonTapped:)];
     shareButton.enabled = NO;
     self.navigationItem.rightBarButtonItems = @[shareButton, videoQualitySwitchButton];
@@ -194,8 +194,8 @@ static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"video_detail" action:@"video_play" label:self.videoId value:nil] build]];
 
     NSTimeInterval initialPlaybackTime = self.initialPlaybackTime == 0.0 ? [[RSVideoService sharedInstance] lastPlaybackTimeWithVideoId:self.videoId] : self.initialPlaybackTime;
-    [self p_playVideoWithInitialPlaybackTime:initialPlaybackTime videoQualities:@[@(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240)]];
-    self.currentVideoQuality = XCDYouTubeVideoQualityHD720;
+    [self p_playVideoWithInitialPlaybackTime:initialPlaybackTime videoQualities:@[@(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240)]];
+    self.currentVideoQuality = XCDYouTubeVideoQualityMedium360;
 }
 
 - (IBAction)shareButtonTapped:(id)sender {
