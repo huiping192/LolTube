@@ -5,7 +5,6 @@
 
 #import "RSVideoService.h"
 
-static NSString *const kPlayFinishedVideoIds = @"playFinishedVideoIds";
 static NSTimeInterval const kDiffPlaybackTime = 5.0;
 
 @interface RSVideoService ()
@@ -32,9 +31,14 @@ static RSVideoService *sharedInstance = nil;
 
 - (void)configure {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    self.videoList = [[userDefaults dictionaryForKey:kPlayFinishedVideoIds] mutableCopy];
+    self.videoList = [[userDefaults dictionaryForKey:kPlayFinishedVideoIdsKey] mutableCopy];
     if (!self.videoList) {
-        self.videoList = [[NSMutableDictionary alloc] init];
+        NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
+        self.videoList = [[cloudStore dictionaryForKey:kPlayFinishedVideoIdsKey] mutableCopy];
+
+        if(!self.videoList){
+            self.videoList = [[NSMutableDictionary alloc] init];
+        }
     }
 }
 
@@ -63,11 +67,24 @@ static RSVideoService *sharedInstance = nil;
     return lastPlaybackTimeNumber.floatValue - kDiffPlaybackTime > 0 ? lastPlaybackTimeNumber.floatValue - kDiffPlaybackTime : lastPlaybackTimeNumber.floatValue;
 }
 
+- (void)overrideVideoDataWithVideoDictionary:(NSDictionary *)videoDictionary {
+    self.videoList = [videoDictionary mutableCopy];
+    if (!self.videoList) {
+        self.videoList = [[NSMutableDictionary alloc] init];
+    }
+    [self save];
+}
+
+
 - (void)save {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
-    [userDefaults setObject:self.videoList forKey:kPlayFinishedVideoIds];
+    [userDefaults setObject:self.videoList forKey:kPlayFinishedVideoIdsKey];
     [userDefaults synchronize];
+
+    NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
+    [cloudStore setObject:self.videoList forKey:kPlayFinishedVideoIdsKey];
+    [cloudStore synchronize];
 }
 
 @end

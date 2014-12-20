@@ -103,6 +103,10 @@ static NSArray <RSChannelTableViewCellVo> *itemsCache;
     itemsCache = (id) mutableItems;
 }
 
++ (void)clearCache {
+    itemsCache = nil;
+}
+
 @end
 
 @implementation RSChannelTableViewCellVo
