@@ -123,6 +123,9 @@ static NSTimeInterval kAnimationDuration = 0.5;
                 selectedCell.durationLabel.transform = CGAffineTransformMakeTranslation(0.0, 10);
                 selectedCell.durationLabel.alpha = 0.4;
 
+                selectedCell.viewCountLabel.transform = CGAffineTransformMakeTranslation(0.0, 10);
+                selectedCell.viewCountLabel.alpha = 0.4;
+
                 [UIView animateWithDuration:0.25 animations:^{
                     selectedCell.titleLabel.alpha = 1.0;
                     selectedCell.titleLabel.transform = CGAffineTransformIdentity;
@@ -132,6 +135,9 @@ static NSTimeInterval kAnimationDuration = 0.5;
 
                     selectedCell.durationLabel.alpha = 1.0;
                     selectedCell.durationLabel.transform = CGAffineTransformIdentity;
+
+                    selectedCell.viewCountLabel.alpha = 1.0;
+                    selectedCell.viewCountLabel.transform = CGAffineTransformIdentity;
                 }                completion:^(BOOL finished) {
                     fromView.alpha = 1.0;
                     [transitionContext completeTransition:YES];

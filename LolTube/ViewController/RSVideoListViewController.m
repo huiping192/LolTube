@@ -113,7 +113,6 @@ static NSString *const kVideoCellId = @"videoCell";
         videoDetailViewController.videoId = item.videoId;
 
         RSVideoCollectionViewCell *cell = (RSVideoCollectionViewCell *) sender;
-        videoDetailViewController.thumbnailImage = cell.thumbnailImageView.image;
 
         // change iamge to blackwhite when video tapped
         NSOperation *imageOperation = [UIImageView asynLoadingImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl needBlackWhiteEffect:YES success:^(UIImage *image) {
