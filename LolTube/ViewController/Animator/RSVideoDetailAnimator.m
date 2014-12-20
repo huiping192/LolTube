@@ -54,11 +54,11 @@ static NSTimeInterval kAnimationDuration = 0.5;
         [containView addSubview:tempImageView];
 
         videoDetailViewController.thumbnailImageView.hidden = YES;
+        [videoDetailViewController.view layoutIfNeeded];
 
         toView.alpha = 0.0;
         [UIView animateWithDuration:kAnimationDuration delay:0.0 usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             CGRect thumbnailFrame = [videoDetailViewController.thumbnailImageView convertRect:videoDetailViewController.thumbnailImageView.frame toView:toView];
-
             tempImageView.frame = thumbnailFrame;
             toView.alpha = 1.0;
             fromView.alpha = 0.0;

@@ -293,15 +293,15 @@ static NSString *const kVideoCellId = @"videoCell";
     cell.titleLabel.text = item.title;
     cell.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
 
-    if(item.duration){
+    if (item.duration) {
         cell.durationLabel.text = item.duration;
         cell.viewCountLabel.text = item.viewCount;
-    }else{
+    } else {
         [self.collectionViewModel updateVideoDetailWithCellVo:item success:^{
             cell.durationLabel.text = item.duration;
             cell.viewCountLabel.text = item.viewCount;
 
-        } failure:nil];
+        }                                             failure:nil];
     }
 
     cell.durationLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
@@ -368,7 +368,7 @@ static NSString *const kVideoCellId = @"videoCell";
         [self.searchBar setShowsCancelButton:NO animated:YES];
     }
 
-    if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) * 0.9) {
+    if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) * 0.8) {
         // load more videos
         [self p_loadNextPageVideoData];
     }

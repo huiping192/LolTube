@@ -131,7 +131,7 @@
             [formatter setNumberStyle:NSNumberFormatterDecimalStyle]; // this line is important!
             NSString *formatted = [formatter stringFromNumber:@(detailItem.statistics.viewCount.intValue)];
 
-            cellVo.viewCount = [NSString stringWithFormat:NSLocalizedString(@"VideoViewCounteFormat", @"%@ views"), formatted];
+            cellVo.viewCount = [NSString stringWithFormat:NSLocalizedString(@"VideoViewCountFormat", @"%@ views"), formatted];
 
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (success) {
