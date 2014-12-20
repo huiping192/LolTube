@@ -10,6 +10,8 @@
 #import "RSVideoListViewController.h"
 #import "RSVideoService.h"
 #import "RSVideoDetailViewController.h"
+#import "RSChannelService.h"
+#import "RSChannelTableViewModel.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
@@ -24,6 +26,7 @@ static NSString *const kDevelopmentTrackingId = @"UA-56633617-2";
 
     [self p_savePersetting];
     [self p_configureVideoService];
+    [self p_configureCloud];
 
     return YES;
 }
@@ -103,4 +106,38 @@ static NSString *const kDevelopmentTrackingId = @"UA-56633617-2";
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+- (void)p_configureCloud {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(storeDidChange:) name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification object:[NSUbiquitousKeyValueStore defaultStore]];
+
+    [[NSUbiquitousKeyValueStore defaultStore] synchronize];
+}
+
+- (void)storeDidChange:(NSNotification *)notification {
+    NSDictionary *userInfo = [notification userInfo];
+    NSNumber *reason = userInfo[NSUbiquitousKeyValueStoreChangeReasonKey];
+
+    if (reason) {
+        NSInteger reasonValue = [reason integerValue];
+        NSLog(@"storeChanged with reason %d", reasonValue);
+
+        if ((reasonValue == NSUbiquitousKeyValueStoreServerChange) || (reasonValue == NSUbiquitousKeyValueStoreInitialSyncChange)) {
+            NSArray *keys = userInfo[NSUbiquitousKeyValueStoreChangedKeysKey];
+            NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
+
+            for (NSString *key in keys) {
+                if([key isEqualToString:kPlayFinishedVideoIdsKey]){
+                    [[RSVideoService sharedInstance] overrideVideoDataWithVideoDictionary:[store dictionaryForKey:key]];
+                } else if([key isEqualToString:kChannelIdsKey]){
+                    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:kSharedUserDefaultsSuitName];
+                    [userDefaults setObject:[store objectForKey:key] forKey:key];
+                    [userDefaults synchronize];
+                    [RSChannelTableViewModel clearCache];
+                }
+
+            }
+
+        }
+    }
+}
 @end

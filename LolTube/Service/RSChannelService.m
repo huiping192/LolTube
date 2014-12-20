@@ -5,7 +5,6 @@
 
 #import "RSChannelService.h"
 
-static NSString *const kChannelIdsKey = @"channleIds";
 
 static NSString *const kAppVersionKey = @"appVersion";
 
@@ -18,7 +17,13 @@ static NSString *const kAppVersionKey = @"appVersion";
     NSArray *channelIds = [userDefaults arrayForKey:kChannelIdsKey];
     NSString *appVersion = [self p_appVersion];
     if (!channelIds || !appVersion) {
-        [self saveDefaultChannelIds];
+        NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
+        channelIds = [cloudStore arrayForKey:kChannelIdsKey];
+        if(channelIds){
+            [self saveChannelIds:channelIds];
+        } else{
+            [self saveDefaultChannelIds];
+        }
         [self p_saveAppVersion];
     }
     return [userDefaults arrayForKey:kChannelIdsKey];
@@ -29,6 +34,10 @@ static NSString *const kAppVersionKey = @"appVersion";
     NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:kSharedUserDefaultsSuitName];
     [userDefaults setObject:channelIds forKey:kChannelIdsKey];
     [userDefaults synchronize];
+
+    NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
+    [cloudStore setObject:channelIds forKey:kChannelIdsKey];
+    [cloudStore synchronize];
 }
 
 -(NSString *)p_appVersion{
@@ -55,6 +64,9 @@ static NSString *const kAppVersionKey = @"appVersion";
     [userDefaults setObject:mutableChannelIds forKey:kChannelIdsKey];
     [userDefaults synchronize];
 
+    NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
+    [cloudStore setObject:mutableChannelIds forKey:kChannelIdsKey];
+    [cloudStore synchronize];
 }
 
 - (void)deleteChannelId:(NSString *)channelId {
@@ -65,6 +77,10 @@ static NSString *const kAppVersionKey = @"appVersion";
     [mutableChannelIds removeObjectAtIndex:[mutableChannelIds indexOfObject:channelId]];
     [userDefaults setObject:mutableChannelIds forKey:kChannelIdsKey];
     [userDefaults synchronize];
+
+    NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
+    [cloudStore setObject:mutableChannelIds forKey:kChannelIdsKey];
+    [cloudStore synchronize];
 }
 
 - (void)saveChannelIds:(NSArray *)channelIds {
@@ -78,6 +94,10 @@ static NSString *const kAppVersionKey = @"appVersion";
 
     [userDefaults setObject:mutableChannelIds forKey:kChannelIdsKey];
     [userDefaults synchronize];
+
+    NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
+    [cloudStore setObject:mutableChannelIds forKey:kChannelIdsKey];
+    [cloudStore synchronize];
 }
 
 
@@ -91,6 +111,10 @@ static NSString *const kAppVersionKey = @"appVersion";
 
     [userDefaults setObject:mutableChannelIds forKey:kChannelIdsKey];
     [userDefaults synchronize];
+
+    NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
+    [cloudStore setObject:mutableChannelIds forKey:kChannelIdsKey];
+    [cloudStore synchronize];
 }
 
 

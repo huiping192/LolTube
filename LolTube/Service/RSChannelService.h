@@ -5,6 +5,8 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString *const kChannelIdsKey = @"channleIds";
+
 static NSString *const kSharedUserDefaultsSuitName = @"group.com.huiping192.LolTube.channels";
 
 @interface RSChannelService : NSObject
