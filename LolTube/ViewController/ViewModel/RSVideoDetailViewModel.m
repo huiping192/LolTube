@@ -26,6 +26,9 @@
     if (self) {
         self.videoId = videoId;
         self.service = [[RSYoutubeService alloc] init];
+
+        self.shareUrlString = [NSString stringWithFormat:@"https://www.youtube.com/watch?v=%@", self.videoId];
+        self.handoffUrlStringFormat = @"https://www.youtube.com/watch?v=%@&t=%ds";
     }
 
     return self;
@@ -41,9 +44,8 @@
         RSVideoItem *videoItem = videoModel.items[0];
 
         self.shareTitle = [NSString stringWithFormat:@"%@ #LolTube", videoItem.snippet.title];
-        self.shareUrlString = [NSString stringWithFormat:@"https://www.youtube.com/watch?v=%@", self.videoId];
+        self.thumbnailImageUrl = videoItem.snippet.thumbnails.medium.url;
 
-        self.handoffUrlStringFormat = @"https://www.youtube.com/watch?v=%@&t=%ds";
         dispatch_async(dispatch_get_main_queue(), ^{
             if (success) {
                 success();

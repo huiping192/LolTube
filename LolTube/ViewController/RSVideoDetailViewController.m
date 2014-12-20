@@ -11,6 +11,7 @@
 #import "RSEnvironment.h"
 #import "RSVideoDetailSegmentViewController.h"
 #import "RSVideoRelatedVideosViewController.h"
+#import "UIImageView+Loading.h"
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
@@ -28,6 +29,7 @@ static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
 @property(nonatomic, strong) XCDYouTubeVideoPlayerViewController *videoPlayerViewController;
 
 @property(nonatomic, weak) UIBarButtonItem *videoQualitySwitchButton;
+@property(nonatomic, weak) UIBarButtonItem *shareButton;
 @property(nonatomic, assign) XCDYouTubeVideoQuality currentVideoQuality;
 
 @property(nonatomic, strong) RSVideoDetailSegmentViewController *videoDetailSegmentViewController;
@@ -55,18 +57,18 @@ static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
     [self p_overrideChildViewControllerTraitCollectionWithSize:self.view.frame.size withTransitionCoordinator:nil];
 }
 
-- (void)p_overrideChildViewControllerTraitCollectionWithSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator{
+- (void)p_overrideChildViewControllerTraitCollectionWithSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
     if (self.traitCollection.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         UITraitCollection *traitCollection = [UITraitCollection traitCollectionWithHorizontalSizeClass:size.width <= kCompactPadWidth ? UIUserInterfaceSizeClassCompact : UIUserInterfaceSizeClassRegular];
         [self setOverrideTraitCollection:traitCollection forChildViewController:self.relatedVideosViewController];
         [self setOverrideTraitCollection:traitCollection forChildViewController:self.videoDetailSegmentViewController];
-                                                                            \
-        if(coordinator){
-            [coordinator animateAlongsideTransition:^(id <UIViewControllerTransitionCoordinatorContext>context){
+
+        if (coordinator) {
+            [coordinator animateAlongsideTransition:^(id <UIViewControllerTransitionCoordinatorContext> context) {
                 self.relatedVideosViewWidthConstraint.constant = [traitCollection containsTraitsInCollection:[UITraitCollection traitCollectionWithHorizontalSizeClass:UIUserInterfaceSizeClassRegular]] ? kRelatedVideosViewWidthRegularWidth : kRelatedVideosViewWidthCompactWidth;
                 [self.view layoutIfNeeded];
-            } completion:nil];
-        } else{
+            }                            completion:nil];
+        } else {
             self.relatedVideosViewWidthConstraint.constant = [traitCollection containsTraitsInCollection:[UITraitCollection traitCollectionWithHorizontalSizeClass:UIUserInterfaceSizeClassRegular]] ? kRelatedVideosViewWidthRegularWidth : kRelatedVideosViewWidthCompactWidth;
             [self.view layoutIfNeeded];
         }
@@ -87,7 +89,8 @@ static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
 
     __weak typeof(self) weakSelf = self;
     [self.videoDetailViewModel updateWithSuccess:^{
-
+        [weakSelf.thumbnailImageView asynLoadingImageWithUrlString:self.videoDetailViewModel.thumbnailImageUrl placeHolderImage:nil];
+        weakSelf.shareButton.enabled = YES;
     }                                    failure:^(NSError *error) {
         [weakSelf showError:error];
     }];
@@ -139,11 +142,10 @@ static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
 - (void)p_configureViews {
     UIBarButtonItem *videoQualitySwitchButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"VideoQualityHigh", @"High") style:UIBarButtonItemStylePlain target:self action:@selector(switchVideoQualityButtonTapped:)];
     UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareButtonTapped:)];
+    shareButton.enabled = NO;
     self.navigationItem.rightBarButtonItems = @[shareButton, videoQualitySwitchButton];
     self.videoQualitySwitchButton = videoQualitySwitchButton;
-
-    self.thumbnailImageView.image = self.thumbnailImage;
-    self.thumbnailImage = nil;
+    self.shareButton = shareButton;
 }
 
 - (void)p_addNotifications {
@@ -197,13 +199,17 @@ static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
 }
 
 - (IBAction)shareButtonTapped:(id)sender {
-    NSMutableArray *sharingItems = [NSMutableArray new];
-
-    [sharingItems addObject:self.videoDetailViewModel.shareTitle];
-    [sharingItems addObject:self.thumbnailImageView.image];
-    [sharingItems addObject:[NSURL URLWithString:self.videoDetailViewModel.shareUrlString]];
-
-    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    if (self.videoDetailViewModel.shareTitle) {
+        [items addObject:self.videoDetailViewModel.shareTitle];
+    }
+    if (self.thumbnailImageView.image) {
+        [items addObject:self.thumbnailImageView.image];
+    }
+    if (self.videoDetailViewModel.shareUrlString) {
+        [items addObject:[NSURL URLWithString:self.videoDetailViewModel.shareUrlString]];
+    }
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
     [self presentViewController:activityController animated:YES completion:^{
         //TODO: success alert
         [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"video_detail" action:@"video_share" label:self.videoId value:nil] build]];
