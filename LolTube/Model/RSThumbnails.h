@@ -11,9 +11,7 @@
 @interface RSThumbnails : JSONModel
 
 //@property (nonatomic, copy) NSString *default;
-@property(nonatomic, copy) RSThumbnail *medium;
-@property(nonatomic, copy) RSThumbnail *high;
-
+@property(nonatomic, strong) RSThumbnail *medium;
 
 @end
 

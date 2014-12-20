@@ -5,8 +5,6 @@
 
 #import <JSONModel/JSONModel.h>
 
-@class RSPageInfo;
-
 @protocol RSItem;
 @class RSId;
 
@@ -17,19 +15,9 @@
 @interface RSSearchModel : JSONModel
 @property(nonatomic, copy) NSString<Optional> *nextPageToken;
 
-@property(nonatomic, strong) RSPageInfo *pageInfo;
-
 @property(nonatomic, strong) NSArray <RSItem> *items;
 
 @end
-
-@interface RSPageInfo : JSONModel
-
-@property(nonatomic, assign) int totalResults;
-@property(nonatomic, assign) int resultsPerPage;
-
-@end
-
 
 @interface RSItem : JSONModel
 
@@ -43,10 +31,8 @@
 @property(nonatomic, copy) NSString *publishedAt;
 @property(nonatomic, copy) NSString *channelId;
 @property(nonatomic, copy) NSString *title;
-@property(nonatomic, copy) NSString *videoDescription;
-@property(nonatomic, copy) RSThumbnails *thumbnails;
+@property(nonatomic, strong) RSThumbnails *thumbnails;
 @property(nonatomic, copy) NSString *channelTitle;
-@property(nonatomic, copy) NSString *liveBroadcastContent;
 
 @end
 
