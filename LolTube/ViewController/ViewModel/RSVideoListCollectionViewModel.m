@@ -213,7 +213,6 @@
             cellVo.highThumbnailUrl = [NSString stringWithFormat:@"http://i.ytimg.com/vi/%@/maxresdefault.jpg", cellVo.videoId];
             cellVo.defaultThumbnailUrl = item.snippet.thumbnails.medium.url;
 
-            cellVo.postedTime = [self p_postedTimeWithPublishedAt:item.snippet.publishedAt];
             cellVo.publishedAt = item.snippet.publishedAt;
 
             [newItems addObject:cellVo];
@@ -222,27 +221,6 @@
 
     return [self p_sortChannelItems:newItems desc:desc];
 }
-
-- (NSString *)p_postedTimeWithPublishedAt:(NSString *)publishedAt {
-    NSString *publishedDateString = nil;
-
-    NSDate *publishedDate = [NSDate dateFromISO8601String:publishedAt];
-    NSTimeInterval timeDifference = [[NSDate date] timeIntervalSinceDate:publishedDate];
-    int timeDifferenceInHours = (int) (timeDifference / 3600);
-    int timeDifferenceInMinutes = (int) ((timeDifference - timeDifferenceInHours) / 60);
-    if (timeDifferenceInHours == 0) {
-        publishedDateString = [NSString stringWithFormat:NSLocalizedString(@"VideoPostedTimeStringMinutesFormatter", nil), timeDifferenceInMinutes];
-    } else if (timeDifferenceInHours < 24) {
-        publishedDateString = [NSString stringWithFormat:NSLocalizedString(@"VideoPostedTimeStringHoursFormatter", nil), timeDifferenceInHours];
-    } else {
-        NSDateFormatter *form = [[NSDateFormatter alloc] init];
-        [form setDateFormat:@"EEEE,MMM d"];
-        publishedDateString = [form stringFromDate:publishedDate];
-    }
-
-    return publishedDateString;
-}
-
 
 - (NSArray *)p_sortChannelItems:(NSArray *)items desc:(BOOL)desc {
     NSMutableArray *mutableItems = items.mutableCopy;

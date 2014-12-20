@@ -34,7 +34,6 @@
 @property(nonatomic, copy) NSString *channelId;
 @property(nonatomic, copy) NSString *title;
 @property(nonatomic, copy) NSString *channelTitle;
-@property(nonatomic, copy) NSString *postedTime;
 @property(nonatomic, copy) NSString *publishedAt;
 @property(nonatomic, copy) NSString *duration;
 @property(nonatomic, copy) NSString *viewCount;

@@ -35,6 +35,5 @@
 @property (nonatomic, copy) NSString *viewCount;
 @property (nonatomic, copy) NSString *likeCount;
 @property (nonatomic, copy) NSString *dislikeCount;
-@property (nonatomic, copy) NSString *favoriteCount;
 
 @end

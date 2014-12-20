@@ -30,7 +30,5 @@
 @property (nonatomic, copy) NSString *channelId;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *videoDescription;
-@property (nonatomic, copy) RSThumbnails *thumbnails;
-@property (nonatomic, copy) NSString *channelTitle;
 
 @end
