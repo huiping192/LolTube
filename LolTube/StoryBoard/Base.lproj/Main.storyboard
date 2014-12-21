@@ -558,7 +558,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5DH-ab-Ytd">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="153"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="121"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V7U-rX-9yh">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="504"/>
@@ -573,7 +573,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3x-Ro-GAz" userLabel="rates label ">
-                                                <rect key="frame" x="10" y="25" width="125" height="25"/>
+                                                <rect key="frame" x="10" y="23" width="125" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="125" placeholder="YES" id="Hnx-sb-udU"/>
                                                     <constraint firstAttribute="height" constant="25" placeholder="YES" id="ojB-K5-ukB"/>
@@ -583,7 +583,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xj-eM-Yph" userLabel="postedAt label">
-                                                <rect key="frame" x="10" y="53" width="125" height="25"/>
+                                                <rect key="frame" x="10" y="51" width="125" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="125" placeholder="YES" id="7nQ-8B-r13"/>
                                                     <constraint firstAttribute="height" constant="25" placeholder="YES" id="8Oj-cZ-wuq"/>
@@ -593,7 +593,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ojh-RU-zKR" userLabel="view count label">
-                                                <rect key="frame" x="507" y="53" width="80" height="25"/>
+                                                <rect key="frame" x="507" y="51" width="80" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" placeholder="YES" id="l3X-OT-lN2"/>
                                                     <constraint firstAttribute="height" constant="25" placeholder="YES" id="zcX-EC-q1C"/>
@@ -603,7 +603,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oQ-3a-REw" userLabel="description text view">
-                                                <rect key="frame" x="5" y="83" width="590" height="421"/>
+                                                <rect key="frame" x="5" y="81" width="590" height="423"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
@@ -616,16 +616,16 @@
                                             <constraint firstAttribute="bottom" secondItem="7oQ-3a-REw" secondAttribute="bottom" id="2fv-dn-HgS"/>
                                             <constraint firstAttribute="trailing" secondItem="WsN-XH-Ocw" secondAttribute="trailing" constant="10" id="3dV-kx-UWb"/>
                                             <constraint firstItem="7oQ-3a-REw" firstAttribute="leading" secondItem="V7U-rX-9yh" secondAttribute="leading" constant="5" id="4jj-UP-kx3"/>
+                                            <constraint firstItem="WsN-XH-Ocw" firstAttribute="top" secondItem="V7U-rX-9yh" secondAttribute="top" constant="3" id="52Y-FS-0UE"/>
                                             <constraint firstItem="WsN-XH-Ocw" firstAttribute="leading" secondItem="V7U-rX-9yh" secondAttribute="leading" constant="10" id="5oh-on-Mh7"/>
                                             <constraint firstItem="7oQ-3a-REw" firstAttribute="top" secondItem="9xj-eM-Yph" secondAttribute="bottom" constant="5" id="GaD-Tu-NhO"/>
                                             <constraint firstItem="Ojh-RU-zKR" firstAttribute="centerY" secondItem="9xj-eM-Yph" secondAttribute="centerY" id="Gdu-7A-wGb"/>
-                                            <constraint firstItem="T3x-Ro-GAz" firstAttribute="top" secondItem="WsN-XH-Ocw" secondAttribute="bottom" constant="5" id="I0s-Ke-8a8"/>
+                                            <constraint firstItem="T3x-Ro-GAz" firstAttribute="top" secondItem="WsN-XH-Ocw" secondAttribute="bottom" constant="3" id="I0s-Ke-8a8"/>
                                             <constraint firstAttribute="height" constant="504" placeholder="YES" id="URE-Gp-TJa"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="Ojh-RU-zKR" secondAttribute="trailing" constant="5" id="WdI-vo-akU"/>
                                             <constraint firstItem="T3x-Ro-GAz" firstAttribute="leading" secondItem="V7U-rX-9yh" secondAttribute="leading" constant="10" id="d2G-5L-GJI"/>
                                             <constraint firstItem="9xj-eM-Yph" firstAttribute="leading" secondItem="T3x-Ro-GAz" secondAttribute="leading" id="f7u-JS-aC3"/>
                                             <constraint firstAttribute="trailing" secondItem="7oQ-3a-REw" secondAttribute="trailing" constant="5" id="fYY-Yv-uug"/>
-                                            <constraint firstItem="WsN-XH-Ocw" firstAttribute="top" secondItem="V7U-rX-9yh" secondAttribute="top" constant="3" id="m2R-XI-e6p"/>
                                             <constraint firstItem="9xj-eM-Yph" firstAttribute="top" secondItem="T3x-Ro-GAz" secondAttribute="bottom" constant="3" id="xFc-ZT-SPe"/>
                                         </constraints>
                                     </view>
@@ -638,12 +638,18 @@
                                     <constraint firstItem="V7U-rX-9yh" firstAttribute="width" secondItem="5DH-ab-Ytd" secondAttribute="width" id="rzF-tI-ceS"/>
                                 </constraints>
                             </scrollView>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="qPM-Bj-Z7Z">
+                                <rect key="frame" x="0.0" y="121" width="480" height="32"/>
+                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="k6L-ei-upB" firstAttribute="top" secondItem="5DH-ab-Ytd" secondAttribute="bottom" id="2Jb-DX-Ffa"/>
+                            <constraint firstItem="qPM-Bj-Z7Z" firstAttribute="top" secondItem="5DH-ab-Ytd" secondAttribute="bottom" id="1O0-jb-wJB"/>
+                            <constraint firstAttribute="trailing" secondItem="qPM-Bj-Z7Z" secondAttribute="trailing" id="6K8-GX-BIj"/>
                             <constraint firstItem="5DH-ab-Ytd" firstAttribute="leading" secondItem="R1L-z9-qbz" secondAttribute="leading" id="EMU-K6-URy"/>
+                            <constraint firstItem="qPM-Bj-Z7Z" firstAttribute="leading" secondItem="R1L-z9-qbz" secondAttribute="leading" id="WlH-6e-RUd"/>
                             <constraint firstItem="5DH-ab-Ytd" firstAttribute="top" secondItem="dmY-sR-VST" secondAttribute="bottom" id="b9j-Fi-u1e"/>
+                            <constraint firstItem="k6L-ei-upB" firstAttribute="top" secondItem="qPM-Bj-Z7Z" secondAttribute="bottom" id="gZs-Cg-Qbi"/>
                             <constraint firstAttribute="trailing" secondItem="5DH-ab-Ytd" secondAttribute="trailing" id="ru0-HY-zvN"/>
                         </constraints>
                     </view>

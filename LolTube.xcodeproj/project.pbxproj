@@ -76,6 +76,7 @@
 		DC22FF7E1A1245AB0053FBB9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC22FF7D1A1245AB0053FBB9 /* CoreData.framework */; };
 		DC22FF801A1245C60053FBB9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC22FF7F1A1245C60053FBB9 /* AdSupport.framework */; };
 		DC22FF821A1245D70053FBB9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DC22FF811A1245D70053FBB9 /* libz.dylib */; };
+		DC25223E1A468C290060CC45 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC25223D1A468C290060CC45 /* iAd.framework */; };
 		DC47690B1A07EAA700DC3D2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC47690D1A07EAA700DC3D2D /* Main.storyboard */; };
 		DC5708F51A00DBF500DB8821 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5708F41A00DBF500DB8821 /* NotificationCenter.framework */; };
 		DC5708FB1A00DBF500DB8821 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5708FA1A00DBF500DB8821 /* TodayViewController.m */; };
@@ -231,6 +232,7 @@
 		DC22FF7D1A1245AB0053FBB9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		DC22FF7F1A1245C60053FBB9 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		DC22FF811A1245D70053FBB9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		DC25223D1A468C290060CC45 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		DC47690C1A07EAA700DC3D2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DC47690F1A07EAAA00DC3D2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		DC4769111A07EAAF00DC3D2D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC25223E1A468C290060CC45 /* iAd.framework in Frameworks */,
 				DC22FF821A1245D70053FBB9 /* libz.dylib in Frameworks */,
 				DC22FF801A1245C60053FBB9 /* AdSupport.framework in Frameworks */,
 				DC64F4C919E5582F00F860B4 /* SystemConfiguration.framework in Frameworks */,
@@ -555,6 +558,7 @@
 		DC1044A919B2FA6B007A86E6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DC25223D1A468C290060CC45 /* iAd.framework */,
 				DC22FF811A1245D70053FBB9 /* libz.dylib */,
 				DC22FF7F1A1245C60053FBB9 /* AdSupport.framework */,
 				DC22FF7D1A1245AB0053FBB9 /* CoreData.framework */,
