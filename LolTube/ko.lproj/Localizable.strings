@@ -8,8 +8,6 @@
 
 
 
-"VideoPostedTimeStringMinutesFormatter" = "%d분전";
-"VideoPostedTimeStringHoursFormatter" = "%d시간전";
 "VideoDetailPostedAtFormatter" = "%@ 게시";
 "SearchChannels" = "관련 채널을 모아서";
 "SearchVideos" = "동영상 검색";
@@ -20,5 +18,5 @@
 "VideoQualityMedium" = "중";
 "VideoQualityLow" = "낮은";
 "Cancel" = "취소";
-"VideoViewCountFormat" = "%@ views";
-"VideoLikeDislikeFormat" = "%@ likes,%@ dislikes";
+"VideoViewCountFormat" = "%@시계";
+"VideoLikeDislikeFormat" = "%@사랑,%@맘에 안 들어";

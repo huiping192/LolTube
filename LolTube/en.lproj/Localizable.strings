@@ -7,9 +7,6 @@
 */
 
 
-
-"VideoPostedTimeStringMinutesFormatter" = "%d minutes ago";
-"VideoPostedTimeStringHoursFormatter" = "%d hours ago";
 "VideoDetailPostedAtFormatter" = "%@ posted";
 "SearchChannels" = "Explore More Channels";
 "SearchVideos" = "Search Videos";

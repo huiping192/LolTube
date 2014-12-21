@@ -8,8 +8,6 @@
 
 
 
-"VideoPostedTimeStringMinutesFormatter" = "%d分鐘前";
-"VideoPostedTimeStringHoursFormatter" = "%d小時前";
 "VideoDetailPostedAtFormatter" = "%@ 發布";
 "SearchChannels" = "瀏覽更多的頻道";
 "SearchVideos" = "搜索視頻";
@@ -21,4 +19,4 @@
 "VideoQualityLow" = "低";
 "Cancel" = "取消";
 "VideoViewCountFormat" = "%@次觀看";
-"VideoLikeDislikeFormat" = "%@人喜歡,%@不喜歡";
+"VideoLikeDislikeFormat" = "%@人喜歡,%@人不喜歡";

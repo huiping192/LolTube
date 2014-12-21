@@ -8,8 +8,6 @@
 
 
 
-"VideoPostedTimeStringMinutesFormatter" = "%d分钟前";
-"VideoPostedTimeStringHoursFormatter" = "%d小时前";
 "VideoDetailPostedAtFormatter" = "%@ 发布";
 "SearchChannels" = "浏览更多的频道";
 "SearchVideos" = "搜索视频";
@@ -21,4 +19,4 @@
 "VideoQualityLow" = "低";
 "Cancel" = "取消";
 "VideoViewCountFormat" = "%@次观看";
-"VideoLikeDislikeFormat" = "%@人喜欢,%@不喜欢";
+"VideoLikeDislikeFormat" = "%@人喜欢,%@人不喜欢";
