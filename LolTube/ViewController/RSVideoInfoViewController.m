@@ -15,7 +15,6 @@
 @property(nonatomic, weak) IBOutlet UILabel *rateLabel;
 @property(nonatomic, weak) IBOutlet UILabel *viewCountLabel;
 @property(nonatomic, weak) IBOutlet UITextView *descriptionTextView;
-@property(nonatomic, weak) IBOutlet UIView *spaceView;
 
 @property(nonatomic, strong) RSVideoInfoViewModel *viewModel;
 @end
@@ -37,7 +36,6 @@
 
 
 - (void)p_configureViews {
-    self.spaceView.hidden = YES;
 }
 
 - (void)p_loadData {
@@ -47,7 +45,6 @@
     __weak typeof(self) weakSelf = self;
     [self.viewModel updateWithSuccess:^{
         [weakSelf stopAnimateLoadingView];
-        weakSelf.spaceView.hidden = NO;
 
         weakSelf.titleLabel.text = weakSelf.viewModel.title;
         weakSelf.postedAtLabel.text = weakSelf.viewModel.postedTime;
