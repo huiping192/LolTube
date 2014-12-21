@@ -445,6 +445,9 @@
                             </containerView>
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVX-7I-z3w" userLabel="video detail segment Container View">
                                 <rect key="frame" x="0.0" y="402" width="600" height="198"/>
+                                <variation key="widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="335" width="480" height="265"/>
+                                </variation>
                                 <connections>
                                     <segue destination="hWB-Ak-hFl" kind="embed" identifier="videoDetailSegmentEmbed" id="L2z-4L-CYz"/>
                                 </connections>
@@ -454,6 +457,9 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qtb-Ym-NxJ" userLabel="thunbnail image view">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="338"/>
+                                        <variation key="widthClass=regular" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="480" height="271"/>
+                                        </variation>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -470,7 +476,8 @@
                                         <exclude reference="BO0-Zx-yeB"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=regular">
+                                <variation key="widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="64" width="480" height="271"/>
                                     <mask key="constraints">
                                         <include reference="BO0-Zx-yeB"/>
                                         <exclude reference="QtP-bC-kpW"/>
@@ -651,7 +658,21 @@
                             <constraint firstItem="5DH-ab-Ytd" firstAttribute="top" secondItem="dmY-sR-VST" secondAttribute="bottom" id="b9j-Fi-u1e"/>
                             <constraint firstItem="k6L-ei-upB" firstAttribute="top" secondItem="qPM-Bj-Z7Z" secondAttribute="bottom" id="gZs-Cg-Qbi"/>
                             <constraint firstAttribute="trailing" secondItem="5DH-ab-Ytd" secondAttribute="trailing" id="ru0-HY-zvN"/>
+                            <constraint firstItem="k6L-ei-upB" firstAttribute="top" secondItem="5DH-ab-Ytd" secondAttribute="bottom" id="xax-Cr-lNH"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="xax-Cr-lNH"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=regular">
+                            <mask key="subviews">
+                                <exclude reference="qPM-Bj-Z7Z"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="xax-Cr-lNH"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="descriptionTextView" destination="7oQ-3a-REw" id="P2y-kk-5hc"/>
@@ -751,6 +772,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="0jH-3V-GZG">
+                                <rect key="frame" x="0.0" y="-50" width="320" height="50"/>
+                            </adBannerView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vSa-dD-iSE">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -855,10 +879,37 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="vSa-dD-iSE" firstAttribute="top" secondItem="hrC-Oa-Drv" secondAttribute="top" id="4t5-96-GI1"/>
+                            <constraint firstItem="0jH-3V-GZG" firstAttribute="top" secondItem="sIv-4X-zc3" secondAttribute="bottom" id="6UB-GG-8G9"/>
+                            <constraint firstAttribute="trailing" secondItem="0jH-3V-GZG" secondAttribute="trailing" id="D7B-FV-xTr"/>
                             <constraint firstItem="vSa-dD-iSE" firstAttribute="leading" secondItem="hrC-Oa-Drv" secondAttribute="leading" id="DqF-sf-hzq"/>
+                            <constraint firstItem="0jH-3V-GZG" firstAttribute="leading" secondItem="hrC-Oa-Drv" secondAttribute="leading" id="JZv-lw-ffX"/>
+                            <constraint firstItem="vSa-dD-iSE" firstAttribute="top" secondItem="0jH-3V-GZG" secondAttribute="bottom" id="cAb-EU-U2a"/>
                             <constraint firstAttribute="trailing" secondItem="vSa-dD-iSE" secondAttribute="trailing" id="f9K-56-OPU"/>
                             <constraint firstItem="53m-KV-ggM" firstAttribute="top" secondItem="vSa-dD-iSE" secondAttribute="bottom" id="roo-oW-cyD"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="0jH-3V-GZG"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="cAb-EU-U2a"/>
+                                <exclude reference="6UB-GG-8G9"/>
+                                <exclude reference="D7B-FV-xTr"/>
+                                <exclude reference="JZv-lw-ffX"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="0jH-3V-GZG"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="4t5-96-GI1"/>
+                                <include reference="cAb-EU-U2a"/>
+                                <include reference="6UB-GG-8G9"/>
+                                <include reference="D7B-FV-xTr"/>
+                                <include reference="JZv-lw-ffX"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="vSa-dD-iSE" id="qVx-fe-sfz"/>
