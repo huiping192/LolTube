@@ -119,8 +119,6 @@ static NSString *const kDevelopmentTrackingId = @"UA-56633617-2";
 
     if (reason) {
         NSInteger reasonValue = [reason integerValue];
-        NSLog(@"storeChanged with reason %d", reasonValue);
-
         if ((reasonValue == NSUbiquitousKeyValueStoreServerChange) || (reasonValue == NSUbiquitousKeyValueStoreInitialSyncChange)) {
             NSArray *keys = userInfo[NSUbiquitousKeyValueStoreChangedKeysKey];
             NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];

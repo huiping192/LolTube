@@ -86,7 +86,9 @@ static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 
-    [self.videoPlayerViewController.moviePlayer pause];
+    if (![self.videoPlayerViewController.moviePlayer isFullscreen]) {
+        [self.videoPlayerViewController.moviePlayer pause];
+    }
 }
 
 

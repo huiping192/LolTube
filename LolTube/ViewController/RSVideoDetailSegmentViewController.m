@@ -37,8 +37,8 @@
 
     if ([currentTraitCollection containsTraitsInCollection:[UITraitCollection traitCollectionWithHorizontalSizeClass:UIUserInterfaceSizeClassRegular]]) {
         if (self.videoSegmentedControl.selectedSegmentIndex == 1) {
+            [self.videoSegmentedControl setSelectedSegmentIndex:0];
             [self swapFromViewController:self.relatedVideosViewController toViewController:self.infoViewController];
-            self.videoSegmentedControl.selectedSegmentIndex = 0;
         }
 
     }

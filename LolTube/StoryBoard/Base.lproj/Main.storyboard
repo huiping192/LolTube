@@ -789,7 +789,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="402" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lkJ-VH-C4j" userLabel="thumbnail view">
@@ -798,8 +798,7 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9w5-ZS-k3E" userLabel="thumbnail image view">
                                                             <rect key="frame" x="0.0" y="0.0" width="120" height="68"/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTg-Vq-Qwj" userLabel="duration label">
-                                                            <rect key="frame" x="91" y="54" width="29" height="14"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTg-Vq-Qwj" userLabel="duration label">
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -808,35 +807,32 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="2pq-tc-wTE"/>
-                                                        <constraint firstAttribute="width" secondItem="lkJ-VH-C4j" secondAttribute="height" multiplier="16:9" id="PpN-SS-PkI"/>
                                                         <constraint firstAttribute="bottom" secondItem="9w5-ZS-k3E" secondAttribute="bottom" id="cfg-U9-tya"/>
                                                         <constraint firstAttribute="bottom" secondItem="mTg-Vq-Qwj" secondAttribute="bottom" id="dDA-wI-njk"/>
+                                                        <constraint firstAttribute="height" constant="68" id="f6o-yx-U8d"/>
                                                         <constraint firstItem="9w5-ZS-k3E" firstAttribute="top" secondItem="lkJ-VH-C4j" secondAttribute="top" id="fvG-OL-QJ9"/>
                                                         <constraint firstItem="9w5-ZS-k3E" firstAttribute="leading" secondItem="lkJ-VH-C4j" secondAttribute="leading" id="jqQ-h1-9ww"/>
                                                         <constraint firstAttribute="trailing" secondItem="mTg-Vq-Qwj" secondAttribute="trailing" id="nBA-bG-5TH"/>
                                                         <constraint firstAttribute="trailing" secondItem="9w5-ZS-k3E" secondAttribute="trailing" id="vW1-pB-k42"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uP-22-FR9" userLabel="title label">
-                                                    <rect key="frame" x="138" y="6" width="31" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uP-22-FR9" userLabel="title label">
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIR-l7-epo" userLabel="channel title label">
-                                                    <rect key="frame" x="138" y="21" width="29" height="14"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIR-l7-epo" userLabel="channel title label">
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zod-Hx-78x" userLabel="viewcount label">
-                                                    <rect key="frame" x="138" y="35" width="29" height="14"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zod-Hx-78x" userLabel="viewcount label">
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rIA-Jd-Q84" userLabel="space View">
-                                                    <rect key="frame" x="8" y="79" width="386" height="1"/>
+                                                    <rect key="frame" x="8" y="79" width="224" height="1"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="e7C-ki-yBd"/>
@@ -861,6 +857,7 @@
                                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="3uP-22-FR9" secondAttribute="trailing" constant="5" id="u8j-zp-aOm"/>
                                             <constraint firstItem="3uP-22-FR9" firstAttribute="leading" secondItem="UIR-l7-epo" secondAttribute="leading" id="ysH-4q-5pE"/>
                                         </constraints>
+                                        <size key="customSize" width="240" height="80"/>
                                         <connections>
                                             <outlet property="channelLabel" destination="UIR-l7-epo" id="RLa-Ak-Xqj"/>
                                             <outlet property="durationLabel" destination="mTg-Vq-Qwj" id="pFV-ub-PII"/>
@@ -878,6 +875,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="53m-KV-ggM" firstAttribute="top" secondItem="vSa-dD-iSE" secondAttribute="bottom" id="2PU-GZ-GCE"/>
                             <constraint firstItem="vSa-dD-iSE" firstAttribute="top" secondItem="hrC-Oa-Drv" secondAttribute="top" id="4t5-96-GI1"/>
                             <constraint firstItem="0jH-3V-GZG" firstAttribute="top" secondItem="sIv-4X-zc3" secondAttribute="bottom" id="6UB-GG-8G9"/>
                             <constraint firstAttribute="trailing" secondItem="0jH-3V-GZG" secondAttribute="trailing" id="D7B-FV-xTr"/>
@@ -885,17 +883,16 @@
                             <constraint firstItem="0jH-3V-GZG" firstAttribute="leading" secondItem="hrC-Oa-Drv" secondAttribute="leading" id="JZv-lw-ffX"/>
                             <constraint firstItem="vSa-dD-iSE" firstAttribute="top" secondItem="0jH-3V-GZG" secondAttribute="bottom" id="cAb-EU-U2a"/>
                             <constraint firstAttribute="trailing" secondItem="vSa-dD-iSE" secondAttribute="trailing" id="f9K-56-OPU"/>
-                            <constraint firstItem="53m-KV-ggM" firstAttribute="top" secondItem="vSa-dD-iSE" secondAttribute="bottom" id="roo-oW-cyD"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="0jH-3V-GZG"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="cAb-EU-U2a"/>
                                 <exclude reference="6UB-GG-8G9"/>
                                 <exclude reference="D7B-FV-xTr"/>
                                 <exclude reference="JZv-lw-ffX"/>
+                                <exclude reference="cAb-EU-U2a"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
@@ -903,11 +900,11 @@
                                 <include reference="0jH-3V-GZG"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="4t5-96-GI1"/>
-                                <include reference="cAb-EU-U2a"/>
                                 <include reference="6UB-GG-8G9"/>
                                 <include reference="D7B-FV-xTr"/>
                                 <include reference="JZv-lw-ffX"/>
+                                <exclude reference="4t5-96-GI1"/>
+                                <include reference="cAb-EU-U2a"/>
                             </mask>
                         </variation>
                     </view>

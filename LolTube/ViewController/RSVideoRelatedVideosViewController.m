@@ -127,7 +127,6 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGSize itemSize = ((UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout).itemSize;
-    NSLog(@"siez:%f,%f",self.collectionView.frame.size.width, itemSize.height);
     return CGSizeMake(self.collectionView.frame.size.width, itemSize.height);
 }
 @end
