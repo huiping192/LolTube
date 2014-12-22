@@ -230,7 +230,7 @@
                                                         <constraint firstAttribute="width" constant="34" id="l1t-Jz-zcP"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZD-9V-gEE">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZD-9V-gEE">
                                                     <rect key="frame" x="77" y="0.0" width="74" height="43"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="74" placeholder="YES" id="GBv-59-rZx"/>
@@ -245,6 +245,7 @@
                                                 <constraint firstAttribute="centerY" secondItem="nl5-jr-m5j" secondAttribute="centerY" constant="1.5" id="Ggl-UH-8Ge"/>
                                                 <constraint firstItem="nl5-jr-m5j" firstAttribute="leading" secondItem="kZ8-eX-hb3" secondAttribute="leading" constant="20" id="OAD-wa-VI1"/>
                                                 <constraint firstAttribute="bottom" secondItem="dZD-9V-gEE" secondAttribute="bottom" id="U3g-zU-w1Z"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="dZD-9V-gEE" secondAttribute="trailing" id="iQ0-kc-ttY"/>
                                                 <constraint firstItem="dZD-9V-gEE" firstAttribute="leading" secondItem="nl5-jr-m5j" secondAttribute="trailing" constant="23" id="jDu-Kn-MFo"/>
                                             </constraints>
                                         </tableViewCellContentView>
