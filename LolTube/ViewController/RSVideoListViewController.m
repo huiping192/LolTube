@@ -323,6 +323,9 @@ static NSString *const kVideoCellId = @"videoCell";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.row >= self.collectionViewModel.items.count){
+       return;
+    }
     RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) indexPath.row];
     if (item) {
         return;
