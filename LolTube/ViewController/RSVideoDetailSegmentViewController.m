@@ -77,11 +77,11 @@
 - (void)swapFromViewController:(UIViewController *)fromViewController toViewController:(UIViewController *)toViewController {
     [fromViewController willMoveToParentViewController:nil];
     [self addChildViewController:toViewController];
-    [self transitionFromViewController:fromViewController toViewController:toViewController duration:0.0f options:UIViewAnimationOptionTransitionNone animations:nil completion:^(BOOL finished) {
-        [self addConstraintsForViewController:toViewController];
-        [fromViewController removeFromParentViewController];
-        [toViewController didMoveToParentViewController:self];
-    }];
+
+    [fromViewController.view removeFromSuperview];
+    [self addConstraintsForViewController:toViewController];
+    [fromViewController removeFromParentViewController];
+    [toViewController didMoveToParentViewController:self];
 }
 
 - (void)addConstraintsForViewController:(UIViewController *)viewController {
