@@ -32,11 +32,17 @@ static CGFloat const kBottomShadowSizeRatio = 0.5f;
     self = [super initWithCoder:coder];
     if (self) {
         self.layer.cornerRadius = kCellCornerRadius;
-
-        [self p_addParallaxMotionEffects];
+        self.layer.borderColor = [UIColor grayColor].CGColor;
+        self.layer.borderWidth = 0.5;
     }
 
     return self;
+}
+
+- (void)prepareForReuse {
+    [super prepareForReuse];
+
+    self.thumbnailImageView.image = nil;
 }
 
 - (void)layoutSubviews {
@@ -48,8 +54,12 @@ static CGFloat const kBottomShadowSizeRatio = 0.5f;
     _channelTitleView.layer.borderColor = [self.tintColor CGColor];
     _channelTitleView.layer.borderWidth = kChannelTitleViewBorderWidth;
     _channelTitleView.layer.cornerRadius = kChannelTitleViewCornerRadius;
-
     _channelLabel.textColor = [self tintColor];
+
+    [_durationLabel setShadowColor:[UIColor blackColor]];
+    [_durationLabel setShadowOffset:CGSizeMake(1, 1)];
+    [_viewCountLabel setShadowColor:[UIColor blackColor]];
+    [_viewCountLabel setShadowOffset:CGSizeMake(1, 1)];
 
     if (!self.topShadowLayer) {
         CALayer *topShadowLayer = [self p_createShadowLayerWithTopColor:[UIColor colorWithWhite:0 alpha:.5] bottomColor:[UIColor colorWithWhite:0 alpha:.0]];
@@ -61,11 +71,10 @@ static CGFloat const kBottomShadowSizeRatio = 0.5f;
     if (!self.bottomShadowLayer) {
         CALayer *bottomShadowLayer = [self p_createShadowLayerWithTopColor:[UIColor colorWithWhite:0 alpha:.0] bottomColor:[UIColor colorWithWhite:0 alpha:.8]];
         [self.contentView.layer insertSublayer:bottomShadowLayer below:_channelLabel.layer];
-        [self.contentView.layer insertSublayer:bottomShadowLayer below:_postedTimeLabel.layer];
+        [self.contentView.layer insertSublayer:bottomShadowLayer below:_viewCountLabel.layer];
         self.bottomShadowLayer = bottomShadowLayer;
     }
     self.bottomShadowLayer.frame = CGRectMake(0, _channelTitleView.frame.origin.y - kBottomShadowSizeRatio * _channelTitleView.frame.size.height, self.frame.size.width, self.frame.size.height - _channelTitleView.frame.origin.y + kBottomShadowSizeRatio * _channelTitleView.frame.size.height);
-
 }
 
 - (CALayer *)p_createShadowLayerWithTopColor:(UIColor *)topColor bottomColor:(UIColor *)bottomColor {
@@ -78,20 +87,6 @@ static CGFloat const kBottomShadowSizeRatio = 0.5f;
     maskLayer.locations = @[@0.0, @1.0f];
 
     return maskLayer;
-}
-
-- (void)p_addParallaxMotionEffects {
-    UIInterpolatingMotionEffect *interpolationHorizontal = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"layer.transform.rotation.y" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-    interpolationHorizontal.minimumRelativeValue = @(-M_PI_4 / 2);
-    interpolationHorizontal.maximumRelativeValue = @(M_PI_4 / 2);
-
-
-    UIInterpolatingMotionEffect *interpolationVertical = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"layer.transform.rotation.x" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-    interpolationVertical.minimumRelativeValue = @(M_PI_4 / 2);
-    interpolationVertical.maximumRelativeValue = @(-M_PI_4 / 2);
-
-    [self addMotionEffect:interpolationHorizontal];
-    [self addMotionEffect:interpolationVertical];
 }
 
 @end

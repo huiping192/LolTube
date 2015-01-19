@@ -17,10 +17,8 @@
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
 
 static NSString *const kVideoCellId = @"videoCell";
-static CGFloat const kCellMinWidth = 250.0f;
-static CGFloat const kCellRatio = 180.0f / 320.0f;
 
-@interface RSVideoListViewController () <UICollectionViewDataSource, UISearchBarDelegate, UICollectionViewDelegateFlowLayout>
+@interface RSVideoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
 
 @property(nonatomic, weak) IBOutlet UILabel *noVideoFoundLabel;
 
@@ -32,6 +30,9 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 @property(nonatomic, assign) BOOL collectionViewFirstShownFlag;
 
 @property(atomic, assign) BOOL loading;
+
+@property(nonatomic, strong) NSMutableDictionary *imageLoadingOperationDictionary;
+@property(nonatomic, strong) NSOperationQueue *imageLoadingOperationQueue;
 
 @end
 
@@ -50,6 +51,9 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
         _collectionViewModel = [[RSVideoListCollectionViewModel alloc] initWithChannelIds:_channelIds];
 
         _needShowChannelTitleView = YES;
+
+        self.imageLoadingOperationQueue = [[NSOperationQueue alloc] init];
+        self.imageLoadingOperationDictionary = [[NSMutableDictionary alloc] init];
     }
 
     return self;
@@ -84,6 +88,12 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
     [self.collectionView.collectionViewLayout invalidateLayout];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+
+    [self.imageLoadingOperationQueue cancelAllOperations];
+}
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -103,9 +113,13 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
         videoDetailViewController.videoId = item.videoId;
 
         RSVideoCollectionViewCell *cell = (RSVideoCollectionViewCell *) sender;
-        videoDetailViewController.thumbnailImage = cell.thumbnailImageView.image;
-        // change video image to played video image
-        [cell.thumbnailImageView asynLoadingTonalImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
+
+        // change iamge to blackwhite when video tapped
+        NSOperation *imageOperation = [UIImageView asynLoadingImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl needBlackWhiteEffect:YES success:^(UIImage *image) {
+            cell.thumbnailImageView.image = image;
+        }];
+        [self.imageLoadingOperationQueue addOperation:imageOperation];
+
     } else if ([segue.identifier isEqualToString:@"channelList"]) {
         UINavigationController *navigationController = segue.destinationViewController;
         RSChannelListViewController *channelListViewController = (RSChannelListViewController *) navigationController.topViewController;
@@ -264,19 +278,33 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     RSVideoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kVideoCellId forIndexPath:indexPath];
     RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) indexPath.row];
-
-    [cell.thumbnailImageView setImage:nil];
-    if ([[RSVideoService sharedInstance] isPlayFinishedWithVideoId:item.videoId]) {
-        [cell.thumbnailImageView asynLoadingTonalImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl placeHolderImage:nil];
-    } else {
-        [cell.thumbnailImageView asynLoadingImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl placeHolderImage:nil];
+    if (!item) {
+        return cell;
     }
+    NSOperation *imageOperation = [UIImageView asynLoadingImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl needBlackWhiteEffect:[[RSVideoService sharedInstance] isPlayFinishedWithVideoId:item.videoId] success:^(UIImage *image) {
+        RSVideoCollectionViewCell *collectionViewCell = (RSVideoCollectionViewCell *) [collectionView cellForItemAtIndexPath:indexPath];
+        collectionViewCell.thumbnailImageView.image = image;
+    }];
+
+    [self.imageLoadingOperationQueue addOperation:imageOperation];
+    self.imageLoadingOperationDictionary[item.videoId] = imageOperation;
 
     cell.titleLabel.text = item.title;
     cell.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
 
-    cell.postedTimeLabel.text = item.postedTime;
-    cell.postedTimeLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    if (item.duration) {
+        cell.durationLabel.text = item.duration;
+        cell.viewCountLabel.text = item.viewCount;
+    } else {
+        [self.collectionViewModel updateVideoDetailWithCellVo:item success:^{
+            cell.durationLabel.text = item.duration;
+            cell.viewCountLabel.text = item.viewCount;
+
+        }                                             failure:nil];
+    }
+
+    cell.durationLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    cell.viewCountLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
 
     cell.channelLabel.text = item.channelTitle;
     cell.channelTitleView.tag = indexPath.row;
@@ -293,6 +321,23 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
 
     return cell;
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.row >= self.collectionViewModel.items.count){
+       return;
+    }
+    RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) indexPath.row];
+    if (item) {
+        return;
+    }
+    NSOperation *operation = self.imageLoadingOperationDictionary[item.videoId];
+    if (operation) {
+        [operation cancel];
+        [self.imageLoadingOperationDictionary removeObjectForKey:item.videoId];
+    }
+
+}
+
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *searchCollectionReusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"searchCollectionReusableView" forIndexPath:indexPath];
@@ -325,7 +370,7 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
         [self.searchBar setShowsCancelButton:NO animated:YES];
     }
 
-    if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) * 0.9) {
+    if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) * 0.8) {
         // load more videos
         [self p_loadNextPageVideoData];
     }
@@ -394,7 +439,6 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
                                                            value:nil] build]];
 }
 
-
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
@@ -403,30 +447,6 @@ static CGFloat const kCellRatio = 180.0f / 320.0f;
         [self.collectionViewModel setSearchText:nil];
         [self p_loadVideosData];
     }
-}
-
-#pragma mark - UICollectionViewDelegateFlowLayout
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat collectionWidth = self.view.frame.size.width;
-    int cellCount = (int) (collectionWidth / kCellMinWidth);
-    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *) collectionViewLayout;
-
-    CGFloat cellWidth = (collectionWidth - flowLayout.sectionInset.left * (cellCount + 1)) / cellCount;
-
-    return CGSizeMake(cellWidth, cellWidth * kCellRatio);
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(5, 5, 5, 5);
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 5;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 5;
 }
 
 @end

@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString *const kPlayFinishedVideoIdsKey = @"playFinishedVideoIds";
 
 @interface RSVideoService : NSObject
 
@@ -19,6 +20,8 @@
 - (void)updateLastPlaybackTimeWithVideoId:(NSString *)videoId lastPlaybackTime:(NSTimeInterval)lastPlaybackTime;
 
 - (NSTimeInterval)lastPlaybackTimeWithVideoId:(NSString *)videoId;
+
+-(void)overrideVideoDataWithVideoDictionary:(NSDictionary *)videoDictionary;
 
 - (void)save;
 @end

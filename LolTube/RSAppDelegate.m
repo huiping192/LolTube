@@ -10,6 +10,8 @@
 #import "RSVideoListViewController.h"
 #import "RSVideoService.h"
 #import "RSVideoDetailViewController.h"
+#import "RSChannelService.h"
+#import "RSChannelTableViewModel.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
@@ -24,6 +26,7 @@ static NSString *const kDevelopmentTrackingId = @"UA-56633617-2";
 
     [self p_savePersetting];
     [self p_configureVideoService];
+    [self p_configureCloud];
 
     return YES;
 }
@@ -75,6 +78,12 @@ static NSString *const kDevelopmentTrackingId = @"UA-56633617-2";
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
+    [application.keyWindow.rootViewController restoreUserActivityState:userActivity];
+    return YES;
+}
+
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -97,4 +106,36 @@ static NSString *const kDevelopmentTrackingId = @"UA-56633617-2";
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+- (void)p_configureCloud {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(storeDidChange:) name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification object:[NSUbiquitousKeyValueStore defaultStore]];
+
+    [[NSUbiquitousKeyValueStore defaultStore] synchronize];
+}
+
+- (void)storeDidChange:(NSNotification *)notification {
+    NSDictionary *userInfo = [notification userInfo];
+    NSNumber *reason = userInfo[NSUbiquitousKeyValueStoreChangeReasonKey];
+
+    if (reason) {
+        NSInteger reasonValue = [reason integerValue];
+        if ((reasonValue == NSUbiquitousKeyValueStoreServerChange) || (reasonValue == NSUbiquitousKeyValueStoreInitialSyncChange)) {
+            NSArray *keys = userInfo[NSUbiquitousKeyValueStoreChangedKeysKey];
+            NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
+
+            for (NSString *key in keys) {
+                if([key isEqualToString:kPlayFinishedVideoIdsKey]){
+                    [[RSVideoService sharedInstance] overrideVideoDataWithVideoDictionary:[store dictionaryForKey:key]];
+                } else if([key isEqualToString:kChannelIdsKey]){
+                    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:kSharedUserDefaultsSuitName];
+                    [userDefaults setObject:[store objectForKey:key] forKey:key];
+                    [userDefaults synchronize];
+                    [RSChannelTableViewModel clearCache];
+                }
+
+            }
+
+        }
+    }
+}
 @end

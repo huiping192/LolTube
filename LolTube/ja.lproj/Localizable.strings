@@ -8,10 +8,15 @@
 
 
 
-"VideoPostedTimeStringMinutesFormatter" = "%d分前";
-"VideoPostedTimeStringHoursFormatter" = "%d時間前";
 "VideoDetailPostedAtFormatter" = "%@ 掲載";
 "SearchChannels" = "もっとチャンネルをチェック";
 "SearchVideos" = "動画を検索";
 "VideoWidgetNoVideos" = "今日の動画がありません。";
 "VideoWidgetMoreVideos" = "LolTubeでもう%dつの動画をチェック";
+"SwitchVideoQuality" = "画質設定";
+"VideoQualityHigh" = "高";
+"VideoQualityMedium" = "標準";
+"VideoQualityLow" = "低";
+"Cancel" = "キャンセル";
+"VideoViewCountFormat" = "再生回数%@回";
+"VideoLikeDislikeFormat" = "高評価%@件,低評価%@件";

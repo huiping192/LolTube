@@ -8,6 +8,7 @@
 #import "RSVideoModel.h"
 #import "RSThumbnails.h"
 #import "NSDate+RSFormatter.h"
+#import "RSSearchModel.h"
 
 
 @interface RSVideoDetailViewModel ()
@@ -25,6 +26,9 @@
     if (self) {
         self.videoId = videoId;
         self.service = [[RSYoutubeService alloc] init];
+
+        self.shareUrlString = [NSString stringWithFormat:@"https://www.youtube.com/watch?v=%@", self.videoId];
+        self.handoffUrlStringFormat = @"https://www.youtube.com/watch?v=%@&t=%ds";
     }
 
     return self;
@@ -39,14 +43,9 @@
 
         RSVideoItem *videoItem = videoModel.items[0];
 
-        self.videoDescription = videoItem.snippet.videoDescription;
-        self.mediumThumbnailUrl = videoItem.snippet.thumbnails.medium.url;
-        self.highThumbnailUrl =[NSString stringWithFormat:@"http://i.ytimg.com/vi/%@/maxresdefault.jpg", self.videoId];
-        self.title = videoItem.snippet.title;
-        self.postedTime = [self p_postedTimeWithPublishedAt:videoItem.snippet.publishedAt];
+        self.shareTitle = [NSString stringWithFormat:@"%@ #LolTube", videoItem.snippet.title];
+        self.thumbnailImageUrl = videoItem.snippet.thumbnails.medium.url;
 
-        self.shareTitle = [NSString stringWithFormat:@"%@ #LolTube",self.title];
-        self.shareUrlString = [NSString stringWithFormat:@"https://www.youtube.com/watch?v=%@",self.videoId];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (success) {
                 success();
@@ -57,15 +56,6 @@
             failure(error);
         }
     }];
-}
-
-- (NSString *)p_postedTimeWithPublishedAt:(NSString *)publishedAt {
-    NSDate *publishedDate = [NSDate dateFromISO8601String:publishedAt];
-    NSDateFormatter *form = [[NSDateFormatter alloc] init];
-    [form setDateFormat:@"yyyy/MM/dd HH:mm"];
-    form.locale = [NSLocale currentLocale];
-
-    return [NSString stringWithFormat:NSLocalizedString(@"VideoDetailPostedAtFormatter", nil) , [form stringFromDate:publishedDate]];
 }
 
 @end

@@ -54,11 +54,11 @@ static NSTimeInterval kAnimationDuration = 0.5;
         [containView addSubview:tempImageView];
 
         videoDetailViewController.thumbnailImageView.hidden = YES;
+        [videoDetailViewController.view layoutIfNeeded];
 
         toView.alpha = 0.0;
         [UIView animateWithDuration:kAnimationDuration delay:0.0 usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             CGRect thumbnailFrame = [videoDetailViewController.thumbnailImageView convertRect:videoDetailViewController.thumbnailImageView.frame toView:toView];
-
             tempImageView.frame = thumbnailFrame;
             toView.alpha = 1.0;
             fromView.alpha = 0.0;
@@ -105,7 +105,7 @@ static NSTimeInterval kAnimationDuration = 0.5;
 
             toView.alpha = 0.0;
 
-            [UIView animateWithDuration:0.8 * kAnimationDuration delay:0.0 usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [UIView animateWithDuration:kAnimationDuration delay:0.0 usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
 
                 tempImageView.frame = selectedCellFrame;
                 toView.alpha = 1.0;
@@ -120,18 +120,24 @@ static NSTimeInterval kAnimationDuration = 0.5;
                 selectedCell.channelTitleView.transform = CGAffineTransformMakeTranslation(0.0, 10);
                 selectedCell.channelTitleView.alpha = 0.4;
 
-                selectedCell.postedTimeLabel.transform = CGAffineTransformMakeTranslation(0.0, 10);
-                selectedCell.postedTimeLabel.alpha = 0.4;
+                selectedCell.durationLabel.transform = CGAffineTransformMakeTranslation(0.0, 10);
+                selectedCell.durationLabel.alpha = 0.4;
 
-                [UIView animateWithDuration:0.2 * kAnimationDuration animations:^{
+                selectedCell.viewCountLabel.transform = CGAffineTransformMakeTranslation(0.0, 10);
+                selectedCell.viewCountLabel.alpha = 0.4;
+
+                [UIView animateWithDuration:0.25 animations:^{
                     selectedCell.titleLabel.alpha = 1.0;
                     selectedCell.titleLabel.transform = CGAffineTransformIdentity;
 
                     selectedCell.channelTitleView.alpha = 1.0;
                     selectedCell.channelTitleView.transform = CGAffineTransformIdentity;
 
-                    selectedCell.postedTimeLabel.alpha = 1.0;
-                    selectedCell.postedTimeLabel.transform = CGAffineTransformIdentity;
+                    selectedCell.durationLabel.alpha = 1.0;
+                    selectedCell.durationLabel.transform = CGAffineTransformIdentity;
+
+                    selectedCell.viewCountLabel.alpha = 1.0;
+                    selectedCell.viewCountLabel.transform = CGAffineTransformIdentity;
                 }                completion:^(BOOL finished) {
                     fromView.alpha = 1.0;
                     [transitionContext completeTransition:YES];

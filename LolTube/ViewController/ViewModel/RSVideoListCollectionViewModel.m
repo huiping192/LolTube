@@ -8,6 +8,7 @@
 #import "RSSearchModel.h"
 #import "NSDate+RSFormatter.h"
 #import "RSThumbnails.h"
+#import "NSString+Util.h"
 
 @interface RSVideoListCollectionViewModel ()
 
@@ -38,26 +39,30 @@
 }
 
 - (void)refreshWithSuccess:(void (^)(BOOL hasNewData))success failure:(void (^)(NSError *))failure {
+    __weak typeof(self) weakSelf = self;
     [self.service videoListWithChannelIds:_channelIds searchText:self.searchText nextPageTokens:nil success:^(NSArray *searchModelList) {
-        NSMutableArray *items = [[NSMutableArray alloc] init];
-        if (self.items) {
-            items = self.items.mutableCopy;
-        }
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
-        NSArray *newItems = [self p_itemsFormSearchModelList:searchModelList desc:NO];
-        for (RSVideoCollectionViewCellVo *cellVo in newItems) {
-            if (![items containsObject:cellVo]) {
-                [items insertObject:cellVo atIndex:0];
+            NSMutableArray *items = [[NSMutableArray alloc] init];
+            if (weakSelf.items) {
+                items = weakSelf.items.mutableCopy;
             }
-        }
 
-        BOOL hasNewData = _items.count != items.count;
-        _items = (NSArray <RSVideoCollectionViewCellVo> *) items;
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (success) {
-                success(hasNewData);
+            NSArray *newItems = [weakSelf p_itemsFormSearchModelList:searchModelList desc:NO];
+            for (RSVideoCollectionViewCellVo *cellVo in newItems) {
+                if (![items containsObject:cellVo]) {
+                    [items insertObject:cellVo atIndex:0];
+                }
             }
+
+            BOOL hasNewData = _items.count != items.count;
+            _items = (NSArray <RSVideoCollectionViewCellVo> *) items;
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (success) {
+                    success(hasNewData);
+                }
+            });
         });
     }                             failure:failure];
 }
@@ -75,6 +80,7 @@
 
     if (channelIds.count == 0) {
         success(NO);
+        return;
     }
     [self p_updateWithChannelIds:channelIds pageTokens:nextPageTokens searchText:self.searchText success:^{
         if (success) {
@@ -84,31 +90,112 @@
 }
 
 - (void)p_updateWithChannelIds:(NSArray *)channelIds pageTokens:(NSArray *)pageTokens searchText:(NSString *)searchText success:(void (^)())success failure:(void (^)(NSError *))failure {
+    __weak typeof(self) weakSelf = self;
     [self.service videoListWithChannelIds:channelIds searchText:searchText nextPageTokens:pageTokens success:^(NSArray *searchModelList) {
-        self.searchModelList = searchModelList;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            weakSelf.searchModelList = searchModelList;
 
-        NSMutableArray *items = [[NSMutableArray alloc] init];
-        if (self.items) {
-            items = self.items.mutableCopy;
-        }
-
-        NSArray *newItems = [self p_itemsFormSearchModelList:searchModelList desc:YES];
-        for (RSVideoCollectionViewCellVo *cellVo in newItems) {
-            if (![items containsObject:cellVo]) {
-                [items addObject:cellVo];
+            NSMutableArray *items = [[NSMutableArray alloc] init];
+            if (weakSelf.items) {
+                items = weakSelf.items.mutableCopy;
             }
-        }
 
-        _items = (NSArray <RSVideoCollectionViewCellVo> *) items;
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (success) {
-                success();
+            NSArray *newItems = [self p_itemsFormSearchModelList:searchModelList desc:YES];
+            for (RSVideoCollectionViewCellVo *cellVo in newItems) {
+                if (![items containsObject:cellVo]) {
+                    [items addObject:cellVo];
+                }
             }
+
+            _items = (NSArray <RSVideoCollectionViewCellVo> *) items;
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (success) {
+                    success();
+                }
+            });
         });
     }                             failure:failure];
 }
 
+- (void)updateVideoDetailWithCellVo:(RSVideoCollectionViewCellVo *)cellVo  success:(void (^)())success failure:(void (^)(NSError *))failure {
+    [self.service videoDetailListWithVideoIds:@[cellVo.videoId] success:^(RSVideoDetailModel *videoDetailModel) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            if(videoDetailModel.items.count != 1){
+                return;
+            }
+            RSVideoDetailItem *detailItem = videoDetailModel.items[0];
+            cellVo.duration = [self p_convertVideoDuration:detailItem.contentDetails.duration];
+
+            NSNumberFormatter *formatter = [NSNumberFormatter new];
+            [formatter setNumberStyle:NSNumberFormatterDecimalStyle]; // this line is important!
+            NSString *formatted = [formatter stringFromNumber:@(detailItem.statistics.viewCount.intValue)];
+
+            cellVo.viewCount = [NSString stringWithFormat:NSLocalizedString(@"VideoViewCountFormat", @"%@ views"), formatted];
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (success) {
+                    success();
+                }
+            });
+        });
+    }                                 failure:failure];
+}
+
+-(NSString *)p_convertVideoDuration:(NSString *)duration{
+    NSString *hour = nil;
+    NSString *minute = nil;
+    NSString *second = nil;
+
+    NSArray *durationSpilt = [duration componentsSeparatedByString:@"PT"];
+    if (durationSpilt.count != 2) {
+        return nil;
+    }
+    NSString *hms = durationSpilt[1];
+    NSString *ms = durationSpilt[1];
+    NSString *s = durationSpilt[1];
+
+    if ([hms indexOf:@"H"] >= 0) {
+        NSArray *hourSpilt = [hms componentsSeparatedByString:@"H"];
+        if (hourSpilt.count == 2) {
+            hour = hourSpilt[0];
+            ms = hourSpilt[1];
+        }
+    }
+
+    if ([ms indexOf:@"M"] >= 0) {
+        NSArray *minuteSpilt = [ms componentsSeparatedByString:@"M"];
+        if (minuteSpilt.count == 2) {
+            minute = minuteSpilt[0];
+            s = minuteSpilt[1];
+        }
+    }
+
+    if ([s indexOf:@"S"] >= 0) {
+        NSArray *secondSpilt = [s componentsSeparatedByString:@"S"];
+        if (secondSpilt.count > 1) {
+            second = secondSpilt[0];
+        }
+    }
+
+    int mInt = minute.intValue;
+    if (mInt < 10) {
+        minute = [NSString stringWithFormat:@"0%d", mInt];
+    }
+    int sInt = second.intValue;
+    if (sInt < 10) {
+        second = [NSString stringWithFormat:@"0%d", sInt];
+    }
+
+    minute = minute ? minute : @"00";
+    second = second ? second : @"00";
+
+    if (hour) {
+        return [NSString stringWithFormat:@"%@:%@:%@", hour, minute, second];
+    } else {
+        return [NSString stringWithFormat:@"%@:%@", minute, second];
+    }
+}
 - (NSArray *)p_itemsFormSearchModelList:(NSArray *)searchModelList desc:(BOOL)desc {
     NSMutableArray *newItems = [[NSMutableArray alloc] init];
 
@@ -126,7 +213,6 @@
             cellVo.highThumbnailUrl = [NSString stringWithFormat:@"http://i.ytimg.com/vi/%@/maxresdefault.jpg", cellVo.videoId];
             cellVo.defaultThumbnailUrl = item.snippet.thumbnails.medium.url;
 
-            cellVo.postedTime = [self p_postedTimeWithPublishedAt:item.snippet.publishedAt];
             cellVo.publishedAt = item.snippet.publishedAt;
 
             [newItems addObject:cellVo];
@@ -135,27 +221,6 @@
 
     return [self p_sortChannelItems:newItems desc:desc];
 }
-
-- (NSString *)p_postedTimeWithPublishedAt:(NSString *)publishedAt {
-    NSString *publishedDateString = nil;
-
-    NSDate *publishedDate = [NSDate dateFromISO8601String:publishedAt];
-    NSTimeInterval timeDifference = [[NSDate date] timeIntervalSinceDate:publishedDate];
-    int timeDifferenceInHours = (int) (timeDifference / 3600);
-    int timeDifferenceInMinutes = (int) ((timeDifference - timeDifferenceInHours) / 60);
-    if (timeDifferenceInHours == 0) {
-        publishedDateString = [NSString stringWithFormat:NSLocalizedString(@"VideoPostedTimeStringMinutesFormatter", nil), timeDifferenceInMinutes];
-    } else if (timeDifferenceInHours < 24) {
-        publishedDateString = [NSString stringWithFormat:NSLocalizedString(@"VideoPostedTimeStringHoursFormatter", nil), timeDifferenceInHours];
-    } else {
-        NSDateFormatter *form = [[NSDateFormatter alloc] init];
-        [form setDateFormat:@"EEEE,MMM d"];
-        publishedDateString = [form stringFromDate:publishedDate];
-    }
-
-    return publishedDateString;
-}
-
 
 - (NSArray *)p_sortChannelItems:(NSArray *)items desc:(BOOL)desc {
     NSMutableArray *mutableItems = items.mutableCopy;

@@ -11,10 +11,6 @@
 }
 @end
 
-@implementation RSPageInfo
-
-@end
-
 @implementation RSItem
 
 @end

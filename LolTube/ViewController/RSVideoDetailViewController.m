@@ -5,28 +5,37 @@
 
 #import "RSVideoDetailViewController.h"
 #import "RSVideoDetailViewModel.h"
-#import "UIViewController+RSLoading.h"
-#import "AMTumblrHud.h"
-#import "UIImageView+Loading.h"
-#import "Reachability.h"
 #import "RSVideoService.h"
 #import "UIViewController+RSError.h"
 #import "GAIDictionaryBuilder.h"
+#import "RSEnvironment.h"
+#import "RSVideoDetailSegmentViewController.h"
+#import "RSVideoRelatedVideosViewController.h"
+#import "UIImageView+Loading.h"
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
 
-@interface RSVideoDetailViewController () <UIScrollViewDelegate>
+static const CGFloat kCompactPadWidth = 768.0f;
+static const CGFloat kRelatedVideosViewWidthRegularWidth = 320.0f;
+static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
+
+@interface RSVideoDetailViewController () <UIActionSheetDelegate>
 
 @property(nonatomic, weak) IBOutlet UIView *videoPlayerView;
-@property(nonatomic, weak) IBOutlet UILabel *titleLabel;
-@property(nonatomic, weak) IBOutlet UILabel *postedAtLabel;
-@property(nonatomic, weak) IBOutlet UITextView *descriptionTextView;
-@property(nonatomic, weak) IBOutlet UIView *spaceView;
 
 @property(nonatomic, strong) RSVideoDetailViewModel *videoDetailViewModel;
 
 @property(nonatomic, strong) XCDYouTubeVideoPlayerViewController *videoPlayerViewController;
+
+@property(nonatomic, weak) UIBarButtonItem *videoQualitySwitchButton;
+@property(nonatomic, weak) UIBarButtonItem *shareButton;
+@property(nonatomic, assign) XCDYouTubeVideoQuality currentVideoQuality;
+
+@property(nonatomic, strong) RSVideoDetailSegmentViewController *videoDetailSegmentViewController;
+@property(nonatomic, strong) RSVideoRelatedVideosViewController *relatedVideosViewController;
+
+@property(nonatomic, weak) IBOutlet NSLayoutConstraint *relatedVideosViewWidthConstraint;
 
 @end
 
@@ -34,65 +43,120 @@
 
 }
 
-
-- (id)initWithCoder:(NSCoder *)coder {
-    self = [super initWithCoder:coder];
-    if (self) {
-    }
-
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     [self p_configureViews];
-
     [self p_addNotifications];
-
     [self p_loadData];
-
-    [self p_playVideo];
 }
 
-- (void)p_configureViews {
-    self.spaceView.layer.borderColor = [UIColor colorWithWhite:0.7f
-                                                         alpha:1.0f].CGColor;
-    self.spaceView.layer.borderWidth = 0.25;
-    self.spaceView.hidden = YES;
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 
-    self.thumbnailImageView.image = self.thumbnailImage;
-    self.thumbnailImage = nil;
+    [self p_overrideChildViewControllerTraitCollectionWithSize:self.view.frame.size withTransitionCoordinator:nil];
 }
+
+- (void)p_overrideChildViewControllerTraitCollectionWithSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
+    if (self.traitCollection.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        UITraitCollection *traitCollection = [UITraitCollection traitCollectionWithHorizontalSizeClass:size.width <= kCompactPadWidth ? UIUserInterfaceSizeClassCompact : UIUserInterfaceSizeClassRegular];
+        [self setOverrideTraitCollection:traitCollection forChildViewController:self.relatedVideosViewController];
+        [self setOverrideTraitCollection:traitCollection forChildViewController:self.videoDetailSegmentViewController];
+
+        if (coordinator) {
+            [coordinator animateAlongsideTransition:^(id <UIViewControllerTransitionCoordinatorContext> context) {
+                self.relatedVideosViewWidthConstraint.constant = [traitCollection containsTraitsInCollection:[UITraitCollection traitCollectionWithHorizontalSizeClass:UIUserInterfaceSizeClassRegular]] ? kRelatedVideosViewWidthRegularWidth : kRelatedVideosViewWidthCompactWidth;
+                [self.view layoutIfNeeded];
+            }                            completion:nil];
+        } else {
+            self.relatedVideosViewWidthConstraint.constant = [traitCollection containsTraitsInCollection:[UITraitCollection traitCollectionWithHorizontalSizeClass:UIUserInterfaceSizeClassRegular]] ? kRelatedVideosViewWidthRegularWidth : kRelatedVideosViewWidthCompactWidth;
+            [self.view layoutIfNeeded];
+        }
+    }
+}
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (![self.videoPlayerViewController.moviePlayer isFullscreen]) {
+        [self p_playVideo];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+
+    if (![self.videoPlayerViewController.moviePlayer isFullscreen]) {
+        [self.videoPlayerViewController.moviePlayer pause];
+    }
+}
+
 
 - (void)p_loadData {
     self.videoDetailViewModel = [[RSVideoDetailViewModel alloc] initWithVideoId:self.videoId];
-    [self animateLoadingView];
 
     __weak typeof(self) weakSelf = self;
     [self.videoDetailViewModel updateWithSuccess:^{
-        [weakSelf stopAnimateLoadingView];
-        self.spaceView.hidden = NO;
-
-        [self.thumbnailImageView asynLoadingImageWithUrlString:weakSelf.videoDetailViewModel.highThumbnailUrl secondImageUrlString:weakSelf.videoDetailViewModel.mediumThumbnailUrl placeHolderImage:[UIImage imageNamed:@"DefaultThumbnail"]];
-        weakSelf.titleLabel.text = weakSelf.videoDetailViewModel.title;
-        weakSelf.postedAtLabel.text = weakSelf.videoDetailViewModel.postedTime;
-        weakSelf.descriptionTextView.text = weakSelf.videoDetailViewModel.videoDescription;
-
+        [weakSelf.thumbnailImageView asynLoadingImageWithUrlString:self.videoDetailViewModel.thumbnailImageUrl placeHolderImage:nil];
+        weakSelf.shareButton.enabled = YES;
     }                                    failure:^(NSError *error) {
-        [self showError:error];
-
-        [weakSelf stopAnimateLoadingView];
+        [weakSelf showError:error];
     }];
 }
 
-- (void)p_addNotifications {
-    [[NSNotificationCenter defaultCenter]
-            addObserver:self
-               selector:@selector(preferredContentSizeChanged:)
-                   name:UIContentSizeCategoryDidChangeNotification
-                 object:nil];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    [super prepareForSegue:segue sender:sender];
+    if ([segue.identifier isEqualToString:@"videoDetailSegmentEmbed"]) {
+        RSVideoDetailSegmentViewController *videoDetailSegmentViewController = segue.destinationViewController;
+        videoDetailSegmentViewController.videoId = self.videoId;
+        self.videoDetailSegmentViewController = videoDetailSegmentViewController;
+    } else if ([segue.identifier isEqualToString:@"relatedVideosEmbed"]) {
+        RSVideoRelatedVideosViewController *relatedVideosViewController = segue.destinationViewController;
+        relatedVideosViewController.videoId = self.videoId;
+        self.relatedVideosViewController = relatedVideosViewController;
+    }
+}
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    [self p_overrideChildViewControllerTraitCollectionWithSize:size withTransitionCoordinator:coordinator];
+}
+
+
+- (void)p_startActivity {
+    if (![NSUserActivity class]) {
+        return;
+    }
+    NSUserActivity *activity = [[NSUserActivity alloc] initWithActivityType:@"com.huiping192.LolTube.videoDetail"];
+    activity.title = @"VideoDeital";
+    int videoCurrentPlayTime = (int) self.videoPlayerViewController.moviePlayer.currentPlaybackTime;
+    activity.userInfo = @{@"videoId" : self.videoId, @"videoCurrentPlayTime" : @(videoCurrentPlayTime), kHandOffVersionKey : kHandOffVersion};
+    activity.webpageURL = [NSURL URLWithString:[NSString stringWithFormat:self.videoDetailViewModel.handoffUrlStringFormat, self.videoId, videoCurrentPlayTime]];
+
+    self.userActivity = activity;
+    [activity becomeCurrent];
+}
+
+- (void)updateUserActivityState:(NSUserActivity *)activity {
+    [super updateUserActivityState:activity];
+    int videoCurrentPlayTime = (int) self.videoPlayerViewController.moviePlayer.currentPlaybackTime;
+    [activity addUserInfoEntriesFromDictionary:@{@"videoId" : self.videoId, @"videoCurrentPlayTime" : @(videoCurrentPlayTime), kHandOffVersionKey : kHandOffVersion}];
+    activity.webpageURL = [NSURL URLWithString:[NSString stringWithFormat:self.videoDetailViewModel.handoffUrlStringFormat, self.videoId, videoCurrentPlayTime]];
+
+    activity.needsSave = YES;
+}
+
+- (void)p_configureViews {
+    UIBarButtonItem *videoQualitySwitchButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"VideoQualityMedium", @"Medium") style:UIBarButtonItemStylePlain target:self action:@selector(switchVideoQualityButtonTapped:)];
+    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareButtonTapped:)];
+    shareButton.enabled = NO;
+    self.navigationItem.rightBarButtonItems = @[shareButton, videoQualitySwitchButton];
+    self.videoQualitySwitchButton = videoQualitySwitchButton;
+    self.shareButton = shareButton;
+}
+
+- (void)p_addNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(p_moviePreloadDidFinish:)
                                                  name:MPMoviePlayerLoadStateDidChangeNotification
@@ -104,17 +168,21 @@
                                                object:nil];
 }
 
-- (void)p_moviePlayBackDidFinish:(id)DidFinish {
-    self.videoPlayerViewController.moviePlayer.currentPlaybackTime = 1.0;
+- (void)p_moviePlayBackDidFinish:(id)moviePlayerPlaybackDidFinishNotification {
+    self.videoPlayerViewController.moviePlayer.currentPlaybackTime = 3.0;
 }
 
-- (void)p_moviePreloadDidFinish:(id)p_moviePreloadDidFinish {
-    [[RSVideoService sharedInstance] savePlayFinishedVideoId:self.videoId];
+- (void)p_moviePreloadDidFinish:(id)moviePlayerLoadStateDidChangeNotification {
+    if (self.videoPlayerViewController.moviePlayer.loadState == MPMovieLoadStatePlayable) {
+        [[RSVideoService sharedInstance] savePlayFinishedVideoId:self.videoId];
 
-    // TODO: fun animation
-    [UIView animateWithDuration:0.25 animations:^{
-        self.thumbnailImageView.alpha = 0.0;
-    }];
+        [self p_startActivity];
+
+        // TODO: fun animation
+        [UIView animateWithDuration:0.25 animations:^{
+            self.thumbnailImageView.alpha = 0.0;
+        }];
+    }
 }
 
 - (void)dealloc {
@@ -123,54 +191,115 @@
     [self.videoPlayerViewController.moviePlayer stop];
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+    if ([NSUserActivity class]) {
+        [self.userActivity invalidate];
+    }
 }
 
 - (void)p_playVideo {
     id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"video_detail"
-                                                          action:@"video_play"
-                                                           label:self.videoId
-                                                           value:nil] build]];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"video_detail" action:@"video_play" label:self.videoId value:nil] build]];
 
-    self.videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:self.videoId];
-
-    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
-    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
-    if (networkStatus != ReachableViaWiFi) {
-        self.videoPlayerViewController.preferredVideoQualities = @[@(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240)];
-    }
-
-    // prevent mute switch from switching off audio from movie player
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-
-    [self.videoPlayerViewController presentInView:self.videoPlayerView];
-
-    [self.videoPlayerViewController.moviePlayer setInitialPlaybackTime:[[RSVideoService sharedInstance] lastPlaybackTimeWithVideoId:self.videoId]];
-    [self.videoPlayerViewController.moviePlayer prepareToPlay];
+    NSTimeInterval initialPlaybackTime = self.initialPlaybackTime == 0.0 ? [[RSVideoService sharedInstance] lastPlaybackTimeWithVideoId:self.videoId] : self.initialPlaybackTime;
+    [self p_playVideoWithInitialPlaybackTime:initialPlaybackTime videoQualities:@[@(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240)]];
+    self.currentVideoQuality = XCDYouTubeVideoQualityMedium360;
 }
 
 - (IBAction)shareButtonTapped:(id)sender {
-    NSMutableArray *sharingItems = [NSMutableArray new];
-
-    [sharingItems addObject:self.videoDetailViewModel.shareTitle];
-    [sharingItems addObject:self.thumbnailImageView.image];
-    [sharingItems addObject:[NSURL URLWithString:self.videoDetailViewModel.shareUrlString]];
-
-    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    if (self.videoDetailViewModel.shareTitle) {
+        [items addObject:self.videoDetailViewModel.shareTitle];
+    }
+    if (self.thumbnailImageView.image) {
+        [items addObject:self.thumbnailImageView.image];
+    }
+    if (self.videoDetailViewModel.shareUrlString) {
+        [items addObject:[NSURL URLWithString:self.videoDetailViewModel.shareUrlString]];
+    }
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
     [self presentViewController:activityController animated:YES completion:^{
         //TODO: success alert
-        id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"video_detail"
-                                                              action:@"video_share"
-                                                               label:self.videoId
-                                                               value:nil] build]];
+        [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"video_detail" action:@"video_share" label:self.videoId value:nil] build]];
     }];
 }
 
-- (void)preferredContentSizeChanged:(NSNotification *)notification {
-    self.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
-    self.postedAtLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-    self.descriptionTextView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+
+- (IBAction)switchVideoQualityButtonTapped:(id)sender {
+    UIActionSheet *videoQualityActionSheet = [[UIActionSheet alloc] init];
+    videoQualityActionSheet.delegate = self;
+    videoQualityActionSheet.title = NSLocalizedString(@"SwitchVideoQuality", @"Switch Video Quality");
+    [videoQualityActionSheet addButtonWithTitle:NSLocalizedString(@"VideoQualityHigh", @"High")];
+    [videoQualityActionSheet addButtonWithTitle:NSLocalizedString(@"VideoQualityMedium", @"Medium")];
+    [videoQualityActionSheet addButtonWithTitle:NSLocalizedString(@"VideoQualityLow", @"Low")];
+    [videoQualityActionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
+
+    videoQualityActionSheet.cancelButtonIndex = 3;
+
+    switch (_currentVideoQuality) {
+        case XCDYouTubeVideoQualityHD720: {
+            videoQualityActionSheet.destructiveButtonIndex = 0;
+            break;
+        }
+        case XCDYouTubeVideoQualityMedium360: {
+            videoQualityActionSheet.destructiveButtonIndex = 1;
+            break;
+        }
+        case XCDYouTubeVideoQualitySmall240: {
+            videoQualityActionSheet.destructiveButtonIndex = 2;
+            break;
+        }
+    }
+    [videoQualityActionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSTimeInterval initialPlaybackTime = self.videoPlayerViewController.moviePlayer.currentPlaybackTime;
+
+    switch (buttonIndex) {
+        case 0:
+            if (self.currentVideoQuality == XCDYouTubeVideoQualityHD720) {
+                return;
+            }
+            [self p_playVideoWithInitialPlaybackTime:initialPlaybackTime videoQualities:@[@(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240)]];
+            self.videoQualitySwitchButton.title = NSLocalizedString(@"VideoQualityHigh", @"High");
+            self.currentVideoQuality = XCDYouTubeVideoQualityHD720;
+
+            break;
+        case 1:
+            if (self.currentVideoQuality == XCDYouTubeVideoQualityMedium360) {
+                return;
+            }
+            [self p_playVideoWithInitialPlaybackTime:initialPlaybackTime videoQualities:@[@(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240)]];
+            self.videoQualitySwitchButton.title = NSLocalizedString(@"VideoQualityMedium", @"Medium");
+            self.currentVideoQuality = XCDYouTubeVideoQualityMedium360;
+
+            break;
+        case 2:
+            if (self.currentVideoQuality == XCDYouTubeVideoQualitySmall240) {
+                return;
+            }
+            [self p_playVideoWithInitialPlaybackTime:initialPlaybackTime videoQualities:@[@(XCDYouTubeVideoQualitySmall240)]];
+            self.videoQualitySwitchButton.title = NSLocalizedString(@"VideoQualityLow", @"Low");
+            self.currentVideoQuality = XCDYouTubeVideoQualitySmall240;
+
+            break;
+    }
+
+}
+
+- (void)p_playVideoWithInitialPlaybackTime:(NSTimeInterval)initialPlaybackTime videoQualities:(NSArray *)videoQualities {
+    [self.videoPlayerViewController.moviePlayer stop];
+    [self.videoPlayerViewController.moviePlayer.view removeFromSuperview];
+    self.videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:self.videoId];
+
+    self.videoPlayerViewController.preferredVideoQualities = videoQualities;
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+
+    [self.videoPlayerViewController presentInView:self.videoPlayerView];
+    [self.videoPlayerViewController.moviePlayer setInitialPlaybackTime:initialPlaybackTime];
+    [self.videoPlayerViewController.moviePlayer prepareToPlay];
+
 }
 
 #pragma mark -  UIScrollViewDelegate
@@ -180,7 +309,9 @@
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 
-    [self.videoPlayerViewController.moviePlayer setFullscreen:toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight animated:YES];
+    if (self.traitCollection.horizontalSizeClass != UIUserInterfaceSizeClassRegular) {
+        [self.videoPlayerViewController.moviePlayer setFullscreen:toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight animated:YES];
+    }
 }
 
 

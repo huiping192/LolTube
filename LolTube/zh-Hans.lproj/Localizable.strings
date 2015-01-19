@@ -8,10 +8,15 @@
 
 
 
-"VideoPostedTimeStringMinutesFormatter" = "%d分钟前";
-"VideoPostedTimeStringHoursFormatter" = "%d小时前";
 "VideoDetailPostedAtFormatter" = "%@ 发布";
 "SearchChannels" = "浏览更多的频道";
 "SearchVideos" = "搜索视频";
 "VideoWidgetNoVideos" = "今天还没有视频发布.";
 "VideoWidgetMoreVideos" = "在LolTube上浏览%d个更多视频";
+"SwitchVideoQuality" = "画质选择";
+"VideoQualityHigh" = "高";
+"VideoQualityMedium" = "标准";
+"VideoQualityLow" = "低";
+"Cancel" = "取消";
+"VideoViewCountFormat" = "%@次观看";
+"VideoLikeDislikeFormat" = "%@人喜欢,%@人不喜欢";

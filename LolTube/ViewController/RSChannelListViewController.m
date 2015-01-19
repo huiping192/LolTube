@@ -38,6 +38,10 @@
                  object:nil];
 
     self.tableViewModel = [[RSChannelTableViewModel alloc] init];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 
     [self p_loadData];
 }
@@ -109,6 +113,7 @@
             videoListViewController.needShowChannelTitleView = NO;
         }
 
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
