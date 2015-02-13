@@ -314,7 +314,7 @@ static NSString *const kVideoCellId = @"videoCell";
     //first time appear animation
     if (self.collectionViewFirstShownFlag) {
         cell.transform = CGAffineTransformMakeTranslation(0, collectionView.frame.size.height);
-        [UIView animateWithDuration:0.4 delay:0.03 * indexPath.row usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:0.5 delay:0.05 * indexPath.row usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             cell.transform = CGAffineTransformIdentity;
         }                completion:nil];
     }
