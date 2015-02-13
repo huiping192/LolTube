@@ -20,8 +20,6 @@
 @property(nonatomic, weak) IBOutlet UITableView *tableView;
 
 @property(nonatomic, strong) RSChannelTableViewModel *tableViewModel;
-
-@property(nonatomic, assign) BOOL tableViewFirstShownFlag;
 @end
 
 @implementation RSChannelListViewController {
@@ -48,26 +46,18 @@
 
 - (void)p_loadData {
     self.tableView.alpha = 0;
-
     [self animateLoadingView];
 
     __weak typeof(self) weakSelf = self;
-    self.tableViewFirstShownFlag = YES;
     [self.tableViewModel updateWithSuccess:^{
+        self.tableView.alpha = 1.0;
         [weakSelf stopAnimateLoadingView];
         [weakSelf.tableView reloadData];
         NSIndexPath *currentSelectedIndexPath = [self p_currentSelectedIndexPath];
         if (currentSelectedIndexPath) {
             [self.tableView scrollToRowAtIndexPath:currentSelectedIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:0.25 animations:^{
-                self.tableViewFirstShownFlag = NO;
-                self.tableView.alpha = 1.0;
-            }                completion:^(BOOL finished) {
-                [self.tableView flashScrollIndicators];
-            }];
-        });
+        [self.tableView flashScrollIndicators];
     }                              failure:^(NSError *error) {
         [self showError:error];
         [weakSelf stopAnimateLoadingView];
@@ -172,18 +162,6 @@
 }
 
 #pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    //only first time show animation
-    if (self.tableViewFirstShownFlag) {
-        cell.transform = CGAffineTransformMakeTranslation(cell.frame.size.width, 0);
-        [UIView animateWithDuration:0.4 delay:0.03 * indexPath.row usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            cell.transform = CGAffineTransformIdentity;
-        }                completion:nil];
-    }
-}
-
-
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return indexPath.row != 0 && indexPath.row != self.tableViewModel.items.count;
 }
