@@ -14,7 +14,8 @@
 @property(nonatomic, copy) NSString *shareUrlString;
 @property(nonatomic, copy) NSString *handoffUrlStringFormat;
 
-@property(nonatomic, copy) NSString *thumbnailImageUrl;
+@property(nonatomic, copy) NSString *highThumbnailImageUrl;
+@property(nonatomic, copy) NSString *defaultThumbnailImageUrl;
 
 - (instancetype)initWithVideoId:(NSString *)videoId;
 

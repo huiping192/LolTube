@@ -37,6 +37,7 @@ static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
 
 @property(nonatomic, weak) IBOutlet NSLayoutConstraint *relatedVideosViewWidthConstraint;
 
+@property(nonatomic, strong) NSOperationQueue *imageLoadingOperationQueue;
 @end
 
 @implementation RSVideoDetailViewController {
@@ -45,6 +46,8 @@ static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.imageLoadingOperationQueue = [[NSOperationQueue alloc] init];
 
     [self p_configureViews];
     [self p_addNotifications];
@@ -97,7 +100,11 @@ static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
 
     __weak typeof(self) weakSelf = self;
     [self.videoDetailViewModel updateWithSuccess:^{
-        [weakSelf.thumbnailImageView asynLoadingImageWithUrlString:self.videoDetailViewModel.thumbnailImageUrl placeHolderImage:nil];
+        NSOperation *imageOperation = [UIImageView asynLoadingImageWithUrlString:weakSelf.videoDetailViewModel.highThumbnailImageUrl secondImageUrlString:weakSelf.videoDetailViewModel.defaultThumbnailImageUrl needBlackWhiteEffect:NO success:^(UIImage *image) {
+            weakSelf.thumbnailImageView.image = image;
+        }];
+        [weakSelf.imageLoadingOperationQueue addOperation:imageOperation];
+
         weakSelf.shareButton.enabled = YES;
     }                                    failure:^(NSError *error) {
         [weakSelf showError:error];

@@ -35,7 +35,7 @@
 }
 
 - (void)updateWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure {
-
+    __weak typeof(self) weakSelf = self;
     [self.service videoWithVideoId:self.videoId success:^(RSVideoModel *videoModel) {
         if (!videoModel.items || videoModel.items.count == 0) {
             return;
@@ -43,8 +43,9 @@
 
         RSVideoItem *videoItem = videoModel.items[0];
 
-        self.shareTitle = [NSString stringWithFormat:@"%@ #LolTube", videoItem.snippet.title];
-        self.thumbnailImageUrl = videoItem.snippet.thumbnails.medium.url;
+        weakSelf.shareTitle = [NSString stringWithFormat:@"%@ #LolTube", videoItem.snippet.title];
+        weakSelf.highThumbnailImageUrl = [NSString stringWithFormat:@"http://i.ytimg.com/vi/%@/maxresdefault.jpg", weakSelf.videoId];
+        weakSelf.defaultThumbnailImageUrl = videoItem.snippet.thumbnails.medium.url;
 
         dispatch_async(dispatch_get_main_queue(), ^{
             if (success) {
