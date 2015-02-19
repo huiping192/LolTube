@@ -12,9 +12,9 @@
 #import "RSVideoDetailSegmentViewController.h"
 #import "RSVideoRelatedVideosViewController.h"
 #import "UIImageView+Loading.h"
+#import "RSEventTracker.h"
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import <GoogleAnalytics-iOS-SDK/GAI.h>
 
 /** related video width **/
 static const CGFloat kCompactPadWidth = 768.0f;
@@ -179,9 +179,10 @@ static NSString *const kSegueIdRelatedVideos = @"relatedVideosEmbed";
         [items addObject:[NSURL URLWithString:self.videoDetailViewModel.shareUrlString]];
     }
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
+    __weak typeof(self) weakSelf = self;
     [self presentViewController:activityController animated:YES completion:^{
         //TODO: success alert
-        [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"video_detail" action:@"video_share" label:self.videoId value:nil] build]];
+        [RSEventTracker trackVideoDetailShareWithVideoId:weakSelf.videoId];
     }];
 }
 
@@ -205,8 +206,7 @@ static NSString *const kSegueIdRelatedVideos = @"relatedVideosEmbed";
 }
 
 - (void)p_playVideo {
-    id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"video_detail" action:@"video_play" label:self.videoId value:nil] build]];
+    [RSEventTracker trackVideoDetailPlayWithVideoId:self.videoId];
 
     NSTimeInterval initialPlaybackTime = self.initialPlaybackTime == 0.0 ? [[RSVideoService sharedInstance] lastPlaybackTimeWithVideoId:self.videoId] : self.initialPlaybackTime;
     [self p_playVideoWithInitialPlaybackTime:initialPlaybackTime videoQualities:@[@(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240)]];

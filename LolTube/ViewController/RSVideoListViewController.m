@@ -13,8 +13,7 @@
 #import "UIImageView+Loading.h"
 #import "RSVideoService.h"
 #import "UIViewController+RSError.h"
-#import "GAIDictionaryBuilder.h"
-#import <GoogleAnalytics-iOS-SDK/GAI.h>
+#import "RSEventTracker.h"
 
 static NSString *const kVideoCellId = @"videoCell";
 
@@ -432,11 +431,7 @@ static NSString *const kVideoCellId = @"videoCell";
     [self.collectionViewModel setSearchText:searchBar.text];
     [self p_loadVideosData];
 
-    id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"video_list"
-                                                          action:@"video_search"
-                                                           label:searchBar.text
-                                                           value:nil] build]];
+    [RSEventTracker trackVideoListSearchWithSearchText:searchBar.text];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
