@@ -16,9 +16,15 @@
 #import <AVFoundation/AVFoundation.h>
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
 
+/** related video width **/
 static const CGFloat kCompactPadWidth = 768.0f;
 static const CGFloat kRelatedVideosViewWidthRegularWidth = 320.0f;
 static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
+
+/** segue id **/
+static NSString *const kSegueIdVideoDetail = @"videoDetailSegmentEmbed";
+static NSString *const kSegueIdRelatedVideos = @"relatedVideosEmbed";
+
 
 @interface RSVideoDetailViewController () <UIActionSheetDelegate>
 
@@ -60,25 +66,6 @@ static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
     [self p_overrideChildViewControllerTraitCollectionWithSize:self.view.frame.size withTransitionCoordinator:nil];
 }
 
-- (void)p_overrideChildViewControllerTraitCollectionWithSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
-    if (self.traitCollection.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        UITraitCollection *traitCollection = [UITraitCollection traitCollectionWithHorizontalSizeClass:size.width <= kCompactPadWidth ? UIUserInterfaceSizeClassCompact : UIUserInterfaceSizeClassRegular];
-        [self setOverrideTraitCollection:traitCollection forChildViewController:self.relatedVideosViewController];
-        [self setOverrideTraitCollection:traitCollection forChildViewController:self.videoDetailSegmentViewController];
-
-        if (coordinator) {
-            [coordinator animateAlongsideTransition:^(id <UIViewControllerTransitionCoordinatorContext> context) {
-                self.relatedVideosViewWidthConstraint.constant = [traitCollection containsTraitsInCollection:[UITraitCollection traitCollectionWithHorizontalSizeClass:UIUserInterfaceSizeClassRegular]] ? kRelatedVideosViewWidthRegularWidth : kRelatedVideosViewWidthCompactWidth;
-                [self.view layoutIfNeeded];
-            }                            completion:nil];
-        } else {
-            self.relatedVideosViewWidthConstraint.constant = [traitCollection containsTraitsInCollection:[UITraitCollection traitCollectionWithHorizontalSizeClass:UIUserInterfaceSizeClassRegular]] ? kRelatedVideosViewWidthRegularWidth : kRelatedVideosViewWidthCompactWidth;
-            [self.view layoutIfNeeded];
-        }
-    }
-}
-
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     if (![self.videoPlayerViewController.moviePlayer isFullscreen]) {
@@ -94,6 +81,17 @@ static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
     }
 }
 
+- (void)dealloc {
+    [[RSVideoService sharedInstance] updateLastPlaybackTimeWithVideoId:self.videoId lastPlaybackTime:self.videoPlayerViewController.moviePlayer.currentPlaybackTime];
+
+    [self.videoPlayerViewController.moviePlayer stop];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+    if ([NSUserActivity class]) {
+        [self.userActivity invalidate];
+    }
+}
 
 - (void)p_loadData {
     self.videoDetailViewModel = [[RSVideoDetailViewModel alloc] initWithVideoId:self.videoId];
@@ -113,32 +111,26 @@ static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [super prepareForSegue:segue sender:sender];
-    if ([segue.identifier isEqualToString:@"videoDetailSegmentEmbed"]) {
+    if ([segue.identifier isEqualToString:kSegueIdVideoDetail]) {
         RSVideoDetailSegmentViewController *videoDetailSegmentViewController = segue.destinationViewController;
         videoDetailSegmentViewController.videoId = self.videoId;
         self.videoDetailSegmentViewController = videoDetailSegmentViewController;
-    } else if ([segue.identifier isEqualToString:@"relatedVideosEmbed"]) {
+    } else if ([segue.identifier isEqualToString:kSegueIdRelatedVideos]) {
         RSVideoRelatedVideosViewController *relatedVideosViewController = segue.destinationViewController;
         relatedVideosViewController.videoId = self.videoId;
         self.relatedVideosViewController = relatedVideosViewController;
     }
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-
-    [self p_overrideChildViewControllerTraitCollectionWithSize:size withTransitionCoordinator:coordinator];
-}
-
+#pragma mark - user activity
 
 - (void)p_startActivity {
     if (![NSUserActivity class]) {
         return;
     }
-    NSUserActivity *activity = [[NSUserActivity alloc] initWithActivityType:@"com.huiping192.LolTube.videoDetail"];
-    activity.title = @"VideoDeital";
+    NSUserActivity *activity = [[NSUserActivity alloc] initWithActivityType:kUserActivityTypeVideoDetail];
     int videoCurrentPlayTime = (int) self.videoPlayerViewController.moviePlayer.currentPlaybackTime;
-    activity.userInfo = @{@"videoId" : self.videoId, @"videoCurrentPlayTime" : @(videoCurrentPlayTime), kHandOffVersionKey : kHandOffVersion};
+    activity.userInfo = @{kUserActivityVideoDetailUserInfoKeyVideoId : self.videoId, kUserActivityVideoDetailUserInfoKeyVideoCurrentPlayTime : @(videoCurrentPlayTime), kHandOffVersionKey : kHandOffVersion};
     activity.webpageURL = [NSURL URLWithString:[NSString stringWithFormat:self.videoDetailViewModel.handoffUrlStringFormat, self.videoId, videoCurrentPlayTime]];
 
     self.userActivity = activity;
@@ -148,11 +140,13 @@ static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
 - (void)updateUserActivityState:(NSUserActivity *)activity {
     [super updateUserActivityState:activity];
     int videoCurrentPlayTime = (int) self.videoPlayerViewController.moviePlayer.currentPlaybackTime;
-    [activity addUserInfoEntriesFromDictionary:@{@"videoId" : self.videoId, @"videoCurrentPlayTime" : @(videoCurrentPlayTime), kHandOffVersionKey : kHandOffVersion}];
+    [activity addUserInfoEntriesFromDictionary:@{kUserActivityVideoDetailUserInfoKeyVideoCurrentPlayTime : self.videoId, kUserActivityVideoDetailUserInfoKeyVideoCurrentPlayTime : @(videoCurrentPlayTime), kHandOffVersionKey : kHandOffVersion}];
     activity.webpageURL = [NSURL URLWithString:[NSString stringWithFormat:self.videoDetailViewModel.handoffUrlStringFormat, self.videoId, videoCurrentPlayTime]];
 
     activity.needsSave = YES;
 }
+
+#pragma mark - view
 
 - (void)p_configureViews {
     UIBarButtonItem *videoQualitySwitchButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"VideoQualityMedium", @"Medium") style:UIBarButtonItemStylePlain target:self action:@selector(switchVideoQualityButtonTapped:)];
@@ -163,55 +157,15 @@ static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
     self.shareButton = shareButton;
 }
 
+#pragma mark - notification
+
 - (void)p_addNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(p_moviePreloadDidFinish:)
-                                                 name:MPMoviePlayerLoadStateDidChangeNotification
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(p_moviePreloadDidFinish:) name:MPMoviePlayerLoadStateDidChangeNotification object:nil];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(p_moviePlayBackDidFinish:)
-                                                 name:MPMoviePlayerPlaybackDidFinishNotification
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(p_moviePlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
 }
 
-- (void)p_moviePlayBackDidFinish:(id)moviePlayerPlaybackDidFinishNotification {
-    self.videoPlayerViewController.moviePlayer.currentPlaybackTime = 3.0;
-}
-
-- (void)p_moviePreloadDidFinish:(id)moviePlayerLoadStateDidChangeNotification {
-    if (self.videoPlayerViewController.moviePlayer.loadState == MPMovieLoadStatePlayable) {
-        [[RSVideoService sharedInstance] savePlayFinishedVideoId:self.videoId];
-
-        [self p_startActivity];
-
-        // TODO: fun animation
-        [UIView animateWithDuration:0.25 animations:^{
-            self.thumbnailImageView.alpha = 0.0;
-        }];
-    }
-}
-
-- (void)dealloc {
-    [[RSVideoService sharedInstance] updateLastPlaybackTimeWithVideoId:self.videoId lastPlaybackTime:self.videoPlayerViewController.moviePlayer.currentPlaybackTime];
-
-    [self.videoPlayerViewController.moviePlayer stop];
-
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-    if ([NSUserActivity class]) {
-        [self.userActivity invalidate];
-    }
-}
-
-- (void)p_playVideo {
-    id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"video_detail" action:@"video_play" label:self.videoId value:nil] build]];
-
-    NSTimeInterval initialPlaybackTime = self.initialPlaybackTime == 0.0 ? [[RSVideoService sharedInstance] lastPlaybackTimeWithVideoId:self.videoId] : self.initialPlaybackTime;
-    [self p_playVideoWithInitialPlaybackTime:initialPlaybackTime videoQualities:@[@(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240)]];
-    self.currentVideoQuality = XCDYouTubeVideoQualityMedium360;
-}
+#pragma mark - share
 
 - (IBAction)shareButtonTapped:(id)sender {
     NSMutableArray *items = [[NSMutableArray alloc] init];
@@ -231,6 +185,33 @@ static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
     }];
 }
 
+#pragma mark - movie function
+
+- (void)p_moviePlayBackDidFinish:(id)moviePlayerPlaybackDidFinishNotification {
+    self.videoPlayerViewController.moviePlayer.currentPlaybackTime = 3.0;
+}
+
+- (void)p_moviePreloadDidFinish:(id)moviePlayerLoadStateDidChangeNotification {
+    if (self.videoPlayerViewController.moviePlayer.loadState == MPMovieLoadStatePlayable) {
+        [[RSVideoService sharedInstance] savePlayFinishedVideoId:self.videoId];
+
+        [self p_startActivity];
+
+        // TODO: fun animation
+        [UIView animateWithDuration:0.25 animations:^{
+            self.thumbnailImageView.alpha = 0.0;
+        }];
+    }
+}
+
+- (void)p_playVideo {
+    id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"video_detail" action:@"video_play" label:self.videoId value:nil] build]];
+
+    NSTimeInterval initialPlaybackTime = self.initialPlaybackTime == 0.0 ? [[RSVideoService sharedInstance] lastPlaybackTimeWithVideoId:self.videoId] : self.initialPlaybackTime;
+    [self p_playVideoWithInitialPlaybackTime:initialPlaybackTime videoQualities:@[@(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240)]];
+    self.currentVideoQuality = XCDYouTubeVideoQualityMedium360;
+}
 
 - (IBAction)switchVideoQualityButtonTapped:(id)sender {
     UIActionSheet *videoQualityActionSheet = [[UIActionSheet alloc] init];
@@ -308,6 +289,37 @@ static const CGFloat kRelatedVideosViewWidthCompactWidth = 0.0f;
     [self.videoPlayerViewController.moviePlayer prepareToPlay];
 
 }
+
+#pragma mark - size class overwrite
+
+- (void)p_overrideChildViewControllerTraitCollectionWithSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
+    if (self.traitCollection.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        UITraitCollection *traitCollection = [UITraitCollection traitCollectionWithHorizontalSizeClass:size.width <= kCompactPadWidth ? UIUserInterfaceSizeClassCompact : UIUserInterfaceSizeClassRegular];
+        [self setOverrideTraitCollection:traitCollection forChildViewController:self.relatedVideosViewController];
+        [self setOverrideTraitCollection:traitCollection forChildViewController:self.videoDetailSegmentViewController];
+
+        if (coordinator) {
+            __weak typeof(self) weakSelf = self;
+            [coordinator animateAlongsideTransition:^(id <UIViewControllerTransitionCoordinatorContext> context) {
+                [weakSelf p_resizeRelatedVideosViewWidthWithTraitCollection:traitCollection];
+            }                            completion:nil];
+        } else {
+            [self p_resizeRelatedVideosViewWidthWithTraitCollection:traitCollection];
+        }
+    }
+}
+
+- (void)p_resizeRelatedVideosViewWidthWithTraitCollection:(UITraitCollection *)traitCollection {
+    self.relatedVideosViewWidthConstraint.constant = [traitCollection containsTraitsInCollection:[UITraitCollection traitCollectionWithHorizontalSizeClass:UIUserInterfaceSizeClassRegular]] ? kRelatedVideosViewWidthRegularWidth : kRelatedVideosViewWidthCompactWidth;
+    [self.view layoutIfNeeded];
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    [self p_overrideChildViewControllerTraitCollectionWithSize:size withTransitionCoordinator:coordinator];
+}
+
 
 #pragma mark -  UIScrollViewDelegate
 

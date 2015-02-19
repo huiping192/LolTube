@@ -42,10 +42,10 @@
 - (void)restoreUserActivityState:(NSUserActivity *)activity {
     [super restoreUserActivityState:activity];
 
-    if ([activity.activityType isEqualToString:@"com.huiping192.LolTube.videoDetail"] && [activity.userInfo[kHandOffVersionKey] isEqualToString:kHandOffVersion]) {
-        RSVideoDetailViewController *videoDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"videoDetail"];
-        videoDetailViewController.videoId = activity.userInfo[@"videoId"];
-        videoDetailViewController.initialPlaybackTime = [((NSNumber *)activity.userInfo[@"videoCurrentPlayTime"]) floatValue];
+    if ([activity.activityType isEqualToString:kUserActivityTypeVideoDetail] && [activity.userInfo[kHandOffVersionKey] isEqualToString:kHandOffVersion]) {
+        RSVideoDetailViewController *videoDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:kViewControllerIdVideoDetail];
+        videoDetailViewController.videoId = activity.userInfo[kUserActivityVideoDetailUserInfoKeyVideoId];
+        videoDetailViewController.initialPlaybackTime = [((NSNumber *)activity.userInfo[kUserActivityVideoDetailUserInfoKeyVideoCurrentPlayTime]) floatValue];
 
         [self pushViewController:videoDetailViewController animated:YES];
     }
