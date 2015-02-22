@@ -240,7 +240,6 @@
 		DC47690F1A07EAAA00DC3D2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		DC4769111A07EAAF00DC3D2D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		DC4769131A07EAB000DC3D2D /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/Main.strings"; sourceTree = "<group>"; };
-		DC4769151A07EAB200DC3D2D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
 		DC4769171A07EAB300DC3D2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		DC4769191A07EAB500DC3D2D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		DC51B44D1A0D36760034DDD1 /* LolTube-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "LolTube-Bridging-Header.h"; path = "Common/Util/LolTube-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -264,9 +263,6 @@
 		DCEBA51919BCB304007C3FC7 /* RSVideoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoListViewController.h; sourceTree = "<group>"; };
 		DCEBA51B19BCB350007C3FC7 /* RSVideoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSVideoCollectionViewCell.m; path = View/RSVideoCollectionViewCell.m; sourceTree = "<group>"; };
 		DCEBA51C19BCB350007C3FC7 /* RSVideoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSVideoCollectionViewCell.h; path = View/RSVideoCollectionViewCell.h; sourceTree = "<group>"; };
-		DCF9877C19BDB6D600E9BCBE /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		DCF9877D19BDB6D600E9BCBE /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
-		DCF9877E19BDB6D600E9BCBE /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DCF9878219BDBB2B00E9BCBE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		DCF9878319BDBB2B00E9BCBE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		DCF9878419BDBB2B00E9BCBE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -777,7 +773,6 @@
 				Base,
 				ja,
 				"zh-Hans-CN",
-				ko,
 				"zh-Hant",
 				"zh-Hans",
 			);
@@ -1038,7 +1033,6 @@
 			children = (
 				DC1044B419B2FA6B007A86E6 /* en */,
 				DCEBA50C19BCAD8C007C3FC7 /* ja */,
-				DCF9877C19BDB6D600E9BCBE /* ko */,
 				DCF9878219BDBB2B00E9BCBE /* zh-Hans */,
 				DCF9878519BDBEFD00E9BCBE /* zh-Hant */,
 			);
@@ -1050,7 +1044,6 @@
 			children = (
 				DC1044D319B2FA6B007A86E6 /* en */,
 				DCEBA50D19BCAD8C007C3FC7 /* ja */,
-				DCF9877E19BDB6D600E9BCBE /* ko */,
 				DCF9878419BDBB2B00E9BCBE /* zh-Hans */,
 				DCF9878719BDBEFD00E9BCBE /* zh-Hant */,
 			);
@@ -1064,7 +1057,6 @@
 				DC47690F1A07EAAA00DC3D2D /* en */,
 				DC4769111A07EAAF00DC3D2D /* ja */,
 				DC4769131A07EAB000DC3D2D /* zh-Hans-CN */,
-				DC4769151A07EAB200DC3D2D /* ko */,
 				DC4769171A07EAB300DC3D2D /* zh-Hant */,
 				DC4769191A07EAB500DC3D2D /* zh-Hans */,
 			);
@@ -1076,7 +1068,6 @@
 			children = (
 				DCEBA51519BCB2AF007C3FC7 /* en */,
 				DCEBA51719BCB2B3007C3FC7 /* ja */,
-				DCF9877D19BDB6D600E9BCBE /* ko */,
 				DCF9878319BDBB2B00E9BCBE /* zh-Hans */,
 				DCF9878619BDBEFD00E9BCBE /* zh-Hant */,
 			);
@@ -1118,7 +1109,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -1150,7 +1141,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
