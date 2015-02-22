@@ -118,17 +118,27 @@
     }                             failure:failure];
 }
 
-- (void)updateVideoDetailWithCellVo:(RSVideoCollectionViewCellVo *)cellVo  success:(void (^)())success failure:(void (^)(NSError *))failure {
+- (void)updateVideoDetailWithCellVo:(RSVideoCollectionViewCellVo *)cellVo success:(void (^)())success failure:(void (^)(NSError *))failure {
+    // use cache data when already have video detail data
+    if (cellVo.duration && cellVo.viewCount) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (success) {
+                success();
+            }
+        });
+        return;
+    }
+
     [self.service videoDetailListWithVideoIds:@[cellVo.videoId] success:^(RSVideoDetailModel *videoDetailModel) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            if(videoDetailModel.items.count != 1){
+            if (videoDetailModel.items.count != 1) {
                 return;
             }
             RSVideoDetailItem *detailItem = videoDetailModel.items[0];
             cellVo.duration = [self p_convertVideoDuration:detailItem.contentDetails.duration];
 
             NSNumberFormatter *formatter = [NSNumberFormatter new];
-            [formatter setNumberStyle:NSNumberFormatterDecimalStyle]; // this line is important!
+            [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
             NSString *formatted = [formatter stringFromNumber:@(detailItem.statistics.viewCount.intValue)];
 
             cellVo.viewCount = [NSString stringWithFormat:NSLocalizedString(@"VideoViewCountFormat", @"%@ views"), formatted];
@@ -142,7 +152,7 @@
     }                                 failure:failure];
 }
 
--(NSString *)p_convertVideoDuration:(NSString *)duration{
+- (NSString *)p_convertVideoDuration:(NSString *)duration {
     NSString *hour = nil;
     NSString *minute = nil;
     NSString *second = nil;
@@ -196,6 +206,7 @@
         return [NSString stringWithFormat:@"%@:%@", minute, second];
     }
 }
+
 - (NSArray *)p_itemsFormSearchModelList:(NSArray *)searchModelList desc:(BOOL)desc {
     NSMutableArray *newItems = [[NSMutableArray alloc] init];
 

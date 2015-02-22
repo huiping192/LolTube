@@ -14,8 +14,12 @@
 #import "RSVideoService.h"
 #import "UIViewController+RSError.h"
 #import "RSEventTracker.h"
+#import "RSEnvironment.h"
 
 static NSString *const kVideoCellId = @"videoCell";
+
+static NSString *const kSegueIdVideoDetail = @"videoDetail";
+static NSString *const kSegueIdChannelList = @"channelList";
 
 @interface RSVideoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
 
@@ -35,12 +39,9 @@ static NSString *const kVideoCellId = @"videoCell";
 
 @end
 
-@implementation RSVideoListViewController {
+@implementation RSVideoListViewController
 
-}
-
-
-#pragma mark - UICollectionViewDataSource
+#pragma mark - life circle
 
 - (id)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
@@ -57,12 +58,6 @@ static NSString *const kVideoCellId = @"videoCell";
 
     return self;
 }
-
-- (void)setChannelIds:(NSArray *)channelIds {
-    _channelIds = channelIds;
-    _collectionViewModel = [[RSVideoListCollectionViewModel alloc] initWithChannelIds:channelIds];
-}
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -90,6 +85,7 @@ static NSString *const kVideoCellId = @"videoCell";
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 
+    // remove all image fetch operations
     [self.imageLoadingOperationQueue cancelAllOperations];
 }
 
@@ -101,10 +97,19 @@ static NSString *const kVideoCellId = @"videoCell";
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - puiblic method
+
+- (void)setChannelIds:(NSArray *)channelIds {
+    _channelIds = channelIds;
+    _collectionViewModel = [[RSVideoListCollectionViewModel alloc] initWithChannelIds:channelIds];
+}
+
+#pragma mark - segue
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [super prepareForSegue:segue sender:sender];
 
-    if ([segue.identifier isEqualToString:@"videoDetail"]) {
+    if ([segue.identifier isEqualToString:kSegueIdVideoDetail]) {
         RSVideoDetailViewController *videoDetailViewController = segue.destinationViewController;
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:(UICollectionViewCell *) sender];
         RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) indexPath.row];
@@ -113,13 +118,14 @@ static NSString *const kVideoCellId = @"videoCell";
 
         RSVideoCollectionViewCell *cell = (RSVideoCollectionViewCell *) sender;
 
-        // change iamge to blackwhite when video tapped
+        //TODO: change image to black and white when video played
+        // change image to black and white color when video tapped
         NSOperation *imageOperation = [UIImageView asynLoadingImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl needBlackWhiteEffect:YES success:^(UIImage *image) {
             cell.thumbnailImageView.image = image;
         }];
         [self.imageLoadingOperationQueue addOperation:imageOperation];
 
-    } else if ([segue.identifier isEqualToString:@"channelList"]) {
+    } else if ([segue.identifier isEqualToString:kSegueIdChannelList]) {
         UINavigationController *navigationController = segue.destinationViewController;
         RSChannelListViewController *channelListViewController = (RSChannelListViewController *) navigationController.topViewController;
         channelListViewController.currentChannelIds = self.channelIds;
@@ -147,26 +153,24 @@ static NSString *const kVideoCellId = @"videoCell";
     __weak typeof(self) weakSelf = self;
 
     [self.collectionViewModel refreshWithSuccess:^(BOOL hasNewData) {
-        if (!hasNewData) {
-            [self.refreshControl endRefreshing];
+        int newDataCount = weakSelf.collectionViewModel.items.count - dataCount;
+        if (!hasNewData || newDataCount == 0) {
+            [weakSelf.refreshControl endRefreshing];
             return;
         }
         NSMutableArray *insertIndexPaths = [[NSMutableArray alloc] init];
-        for (NSInteger i = 0; i < weakSelf.collectionViewModel.items.count - dataCount; ++i) {
+        for (NSInteger i = 0; i < newDataCount; ++i) {
             [insertIndexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
         }
-        if (insertIndexPaths.count == 0) {
-            [self.refreshControl endRefreshing];
-            return;
-        }
+
         [weakSelf.collectionView performBatchUpdates:^{
             [weakSelf.collectionView insertItemsAtIndexPaths:insertIndexPaths];
         }                                 completion:^(BOOL finished) {
-            [self.refreshControl endRefreshing];
+            [weakSelf.refreshControl endRefreshing];
         }];
     }                                    failure:^(NSError *error) {
-        [self showError:error];
-        [self.refreshControl endRefreshing];
+        [weakSelf showError:error];
+        [weakSelf.refreshControl endRefreshing];
     }];
 }
 
@@ -242,7 +246,7 @@ static NSString *const kVideoCellId = @"videoCell";
 */
 - (IBAction)channelTitleViewTapped:(UITapGestureRecognizer *)tapGestureRecognizer {
     UIStoryboard *storyboard = self.storyboard;
-    RSVideoListViewController *videoListViewController = [storyboard instantiateViewControllerWithIdentifier:@"videoList"];
+    RSVideoListViewController *videoListViewController = [storyboard instantiateViewControllerWithIdentifier:kViewControllerIdVideoList];
 
     RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) tapGestureRecognizer.view.tag];
     videoListViewController.channelIds = @[item.channelId];
@@ -280,35 +284,28 @@ static NSString *const kVideoCellId = @"videoCell";
     if (!item) {
         return cell;
     }
-    NSOperation *imageOperation = [UIImageView asynLoadingImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl needBlackWhiteEffect:[[RSVideoService sharedInstance] isPlayFinishedWithVideoId:item.videoId] success:^(UIImage *image) {
+
+    [self p_loadImageWithItem:item completion:^(UIImage *image) {
         RSVideoCollectionViewCell *collectionViewCell = (RSVideoCollectionViewCell *) [collectionView cellForItemAtIndexPath:indexPath];
         collectionViewCell.thumbnailImageView.image = image;
     }];
 
-    [self.imageLoadingOperationQueue addOperation:imageOperation];
-    self.imageLoadingOperationDictionary[item.videoId] = imageOperation;
-
     cell.titleLabel.text = item.title;
     cell.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
 
-    if (item.duration) {
-        cell.durationLabel.text = item.duration;
-        cell.viewCountLabel.text = item.viewCount;
-    } else {
-        [self.collectionViewModel updateVideoDetailWithCellVo:item success:^{
-            cell.durationLabel.text = item.duration;
-            cell.viewCountLabel.text = item.viewCount;
-
-        }                                             failure:nil];
-    }
-
-    cell.durationLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-    cell.viewCountLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
 
     cell.channelLabel.text = item.channelTitle;
     cell.channelTitleView.tag = indexPath.row;
     [cell.channelTitleView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(channelTitleViewTapped:)]];
     cell.channelTitleView.hidden = !self.needShowChannelTitleView;
+
+    [self.collectionViewModel updateVideoDetailWithCellVo:item success:^{
+        cell.durationLabel.text = item.duration;
+        cell.viewCountLabel.text = item.viewCount;
+
+    }                                             failure:nil];
+    cell.durationLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    cell.viewCountLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
 
     //first time appear animation
     if (self.collectionViewFirstShownFlag) {
@@ -321,20 +318,26 @@ static NSString *const kVideoCellId = @"videoCell";
     return cell;
 }
 
+- (void)p_loadImageWithItem:(RSVideoCollectionViewCellVo *)item completion:(void (^)(UIImage *image))completion {
+    NSOperation *imageOperation = [UIImageView asynLoadingImageWithUrlString:item.highThumbnailUrl secondImageUrlString:item.defaultThumbnailUrl needBlackWhiteEffect:[[RSVideoService sharedInstance] isPlayFinishedWithVideoId:item.videoId] success:completion];
+
+    [self.imageLoadingOperationQueue addOperation:imageOperation];
+    self.imageLoadingOperationDictionary[item.videoId] = imageOperation;
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.row >= self.collectionViewModel.items.count){
-       return;
-    }
-    RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) indexPath.row];
-    if (item) {
+    if (indexPath.row >= self.collectionViewModel.items.count) {
         return;
     }
-    NSOperation *operation = self.imageLoadingOperationDictionary[item.videoId];
-    if (operation) {
-        [operation cancel];
+    RSVideoCollectionViewCellVo *item = self.collectionViewModel.items[(NSUInteger) indexPath.row];
+    if (!item) {
+        return;
+    }
+    NSOperation *imageLoadingOperation = self.imageLoadingOperationDictionary[item.videoId];
+    if (imageLoadingOperation) {
+        [imageLoadingOperation cancel];
         [self.imageLoadingOperationDictionary removeObjectForKey:item.videoId];
     }
-
 }
 
 
@@ -369,37 +372,40 @@ static NSString *const kVideoCellId = @"videoCell";
         [self.searchBar setShowsCancelButton:NO animated:YES];
     }
 
-    if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) * 0.8) {
-        // load more videos
+    // load more videos
+    if ([self p_shouldLoadNextPageData]) {
         [self p_loadNextPageVideoData];
     }
+}
+
+-(BOOL)p_shouldLoadNextPageData{
+    return self.collectionView.contentOffset.y >= (self.collectionView.contentSize.height - self.collectionView.frame.size.height) * 0.8;
 }
 
 - (void)p_loadNextPageVideoData {
     if (self.loading) {
         return;
     }
+    //no need to load more data when current data is empty
     NSInteger count = [self.collectionView numberOfItemsInSection:0];
-    if (count == 0) { //no need to load more data when current data is empty
+    if (count == 0) {
         return;
     }
     self.loading = YES;
 
     __weak typeof(self) weakSelf = self;
     [self.collectionViewModel updateNextPageDataWithSuccess:^(BOOL hasNewData) {
-        if (!hasNewData) {
+        int newDataCount = weakSelf.collectionViewModel.items.count;
+        if (!hasNewData || newDataCount == 0) {
             weakSelf.loading = NO;
             return;
         }
 
         NSMutableArray *insertIndexPaths = [[NSMutableArray alloc] init];
-        for (NSInteger i = count; i < weakSelf.collectionViewModel.items.count; ++i) {
+        for (NSInteger i = count; i < newDataCount; ++i) {
             [insertIndexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
         }
-        if (insertIndexPaths.count == 0) {
-            weakSelf.loading = NO;
-            return;
-        }
+
         [weakSelf.collectionView performBatchUpdates:^{
             [weakSelf.collectionView insertItemsAtIndexPaths:insertIndexPaths];
         }                                 completion:^(BOOL finished) {
@@ -412,9 +418,8 @@ static NSString *const kVideoCellId = @"videoCell";
 }
 
 #pragma mark - orientation
-
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 
     [self.collectionView.collectionViewLayout invalidateLayout];
 }

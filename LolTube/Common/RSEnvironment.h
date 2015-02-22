@@ -15,6 +15,7 @@ static NSString *const kUserActivityVideoDetailUserInfoKeyVideoCurrentPlayTime =
 
 /** view controller id **/
 static NSString *const kViewControllerIdVideoDetail = @"videoDetail";
+static NSString *const kViewControllerIdVideoList = @"videoList";
 
 
 
