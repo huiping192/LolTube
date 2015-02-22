@@ -20,3 +20,5 @@
 "Cancel" = "취소";
 "VideoViewCountFormat" = "%@시계";
 "VideoLikeDislikeFormat" = "%@사랑,%@맘에 안 들어";
+"VideoDetailInfo" = "Info";
+"VideoDietalSuggestions" = "Suggestions";

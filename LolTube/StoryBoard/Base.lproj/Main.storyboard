@@ -706,7 +706,7 @@
                                 </connections>
                             </containerView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MD2-Hq-VNJ">
-                                <rect key="frame" x="200" y="8" width="179" height="29"/>
+                                <rect key="frame" x="0.0" y="8" width="600" height="29"/>
                                 <segments>
                                     <segment title="Info"/>
                                     <segment title="Suggestions"/>
@@ -719,9 +719,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="MD2-Hq-VNJ" firstAttribute="top" secondItem="vtW-4u-j6V" secondAttribute="bottom" constant="8" id="Dvh-Ex-bBA"/>
+                            <constraint firstItem="MD2-Hq-VNJ" firstAttribute="leading" secondItem="wCb-m8-BBc" secondAttribute="leading" id="EWz-0N-PGI"/>
                             <constraint firstItem="lQB-T3-PLF" firstAttribute="top" secondItem="FVm-um-WkE" secondAttribute="bottom" id="HqJ-QG-dGv"/>
                             <constraint firstItem="FVm-um-WkE" firstAttribute="top" secondItem="MD2-Hq-VNJ" secondAttribute="bottom" constant="8" id="LF7-wh-NMQ"/>
-                            <constraint firstAttribute="centerX" secondItem="MD2-Hq-VNJ" secondAttribute="centerX" constant="10.5" id="Q59-YR-bz9"/>
+                            <constraint firstAttribute="trailing" secondItem="MD2-Hq-VNJ" secondAttribute="trailing" id="LWw-g1-hwa"/>
                             <constraint firstItem="lQB-T3-PLF" firstAttribute="leading" secondItem="wCb-m8-BBc" secondAttribute="leading" id="RAx-tC-9Le"/>
                             <constraint firstItem="FVm-um-WkE" firstAttribute="leading" secondItem="wCb-m8-BBc" secondAttribute="leading" id="Srj-31-1AW"/>
                             <constraint firstAttribute="trailing" secondItem="FVm-um-WkE" secondAttribute="trailing" id="XGG-ak-4or"/>
@@ -752,7 +753,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0I3-oL-gXk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2538.75" y="-191"/>
+            <point key="canvasLocation" x="2590" y="-203"/>
         </scene>
         <!--Video Related Videos View Controller-->
         <scene sceneID="3vj-aQ-lac">

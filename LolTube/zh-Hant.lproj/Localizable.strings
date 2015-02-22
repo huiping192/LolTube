@@ -20,3 +20,5 @@
 "Cancel" = "取消";
 "VideoViewCountFormat" = "%@次觀看";
 "VideoLikeDislikeFormat" = "%@人喜歡,%@人不喜歡";
+"VideoDetailInfo" = "詳情";
+"VideoDietalSuggestions" = "推薦視頻";

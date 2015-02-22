@@ -21,6 +21,17 @@
 
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    [self p_configureViews];
+}
+
+- (void)p_configureViews {
+    [self.videoSegmentedControl setTitle:NSLocalizedString(@"VideoDetailInfo", @"Info") forSegmentAtIndex:0];
+    [self.videoSegmentedControl setTitle:NSLocalizedString(@"VideoDietalSuggestions", @"Suggestions") forSegmentAtIndex:1];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [super prepareForSegue:segue sender:sender];
     if ([segue.identifier isEqualToString:@"infoEmbed"]) {

@@ -19,3 +19,5 @@
 "Cancel" = "Cancel";
 "VideoViewCountFormat" = "%@ views";
 "VideoLikeDislikeFormat" = "%@ likes, %@ dislikes";
+"VideoDetailInfo" = "Info";
+"VideoDietalSuggestions" = "Suggestions";

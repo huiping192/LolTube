@@ -20,3 +20,5 @@
 "Cancel" = "キャンセル";
 "VideoViewCountFormat" = "再生回数%@回";
 "VideoLikeDislikeFormat" = "高評価%@件,低評価%@件";
+"VideoDetailInfo" = "詳細";
+"VideoDietalSuggestions" = "おすすめ";
