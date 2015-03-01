@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D72i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vel-Ji-Muw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C106a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vel-Ji-Muw">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -446,6 +446,9 @@
                             </containerView>
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVX-7I-z3w" userLabel="video detail segment Container View">
                                 <rect key="frame" x="0.0" y="402" width="600" height="198"/>
+                                <variation key="widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="349" width="505" height="251"/>
+                                </variation>
                                 <connections>
                                     <segue destination="hWB-Ak-hFl" kind="embed" identifier="videoDetailSegmentEmbed" id="L2z-4L-CYz"/>
                                 </connections>
@@ -455,6 +458,9 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qtb-Ym-NxJ" userLabel="thunbnail image view">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="338"/>
+                                        <variation key="widthClass=regular" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="505" height="285"/>
+                                        </variation>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -471,7 +477,8 @@
                                         <exclude reference="BO0-Zx-yeB"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=regular">
+                                <variation key="widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="64" width="505" height="285"/>
                                     <mask key="constraints">
                                         <include reference="BO0-Zx-yeB"/>
                                         <exclude reference="QtP-bC-kpW"/>
@@ -706,7 +713,7 @@
                                 </connections>
                             </containerView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MD2-Hq-VNJ">
-                                <rect key="frame" x="0.0" y="8" width="600" height="29"/>
+                                <rect key="frame" x="10" y="8" width="580" height="29"/>
                                 <segments>
                                     <segment title="Info"/>
                                     <segment title="Suggestions"/>
@@ -719,10 +726,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="MD2-Hq-VNJ" firstAttribute="top" secondItem="vtW-4u-j6V" secondAttribute="bottom" constant="8" id="Dvh-Ex-bBA"/>
-                            <constraint firstItem="MD2-Hq-VNJ" firstAttribute="leading" secondItem="wCb-m8-BBc" secondAttribute="leading" id="EWz-0N-PGI"/>
+                            <constraint firstItem="MD2-Hq-VNJ" firstAttribute="leading" secondItem="wCb-m8-BBc" secondAttribute="leading" constant="10" id="EWz-0N-PGI"/>
                             <constraint firstItem="lQB-T3-PLF" firstAttribute="top" secondItem="FVm-um-WkE" secondAttribute="bottom" id="HqJ-QG-dGv"/>
                             <constraint firstItem="FVm-um-WkE" firstAttribute="top" secondItem="MD2-Hq-VNJ" secondAttribute="bottom" constant="8" id="LF7-wh-NMQ"/>
-                            <constraint firstAttribute="trailing" secondItem="MD2-Hq-VNJ" secondAttribute="trailing" id="LWw-g1-hwa"/>
+                            <constraint firstAttribute="trailing" secondItem="MD2-Hq-VNJ" secondAttribute="trailing" constant="10" id="LWw-g1-hwa"/>
                             <constraint firstItem="lQB-T3-PLF" firstAttribute="leading" secondItem="wCb-m8-BBc" secondAttribute="leading" id="RAx-tC-9Le"/>
                             <constraint firstItem="FVm-um-WkE" firstAttribute="leading" secondItem="wCb-m8-BBc" secondAttribute="leading" id="Srj-31-1AW"/>
                             <constraint firstAttribute="trailing" secondItem="FVm-um-WkE" secondAttribute="trailing" id="XGG-ak-4or"/>
