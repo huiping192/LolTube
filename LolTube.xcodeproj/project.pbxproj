@@ -37,6 +37,7 @@
 		7A9D5AA116615721C59D3D61 /* RSEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5685F04E20BBB4AB0EDE /* RSEnvironment.m */; };
 		7A9D5AB8B2CE3F6EC087BFFA /* RSChannelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D543F7440097C8C2149E1 /* RSChannelTableViewCell.m */; };
 		7A9D5B5F1262EF3A3C8505E0 /* RSVideoRelatedVideosViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5AB4959A8E8F2D7B2E08 /* RSVideoRelatedVideosViewModel.m */; };
+		7A9D5B8E56CED70E0E13487E /* AdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5777AD438AEA661BC808 /* AdViewController.swift */; };
 		7A9D5BF41C80A5D36EF668FF /* RSVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5581057609E7258B8085 /* RSVideoDetailModel.m */; };
 		7A9D5C20AC3EAD887249EB04 /* NSDate+RSFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D57868192765BB8591D47 /* NSDate+RSFormatter.m */; };
 		7A9D5C639F1A613376BC21EC /* RSChannelService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D518DC4BF259949301CF7 /* RSChannelService.m */; };
@@ -175,6 +176,7 @@
 		7A9D5740A0E19CCD6F21EF3E /* RSVideoRelatedVideosViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoRelatedVideosViewModel.h; sourceTree = "<group>"; };
 		7A9D5749A02980374685100A /* Channel_unformatter_data.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Channel_unformatter_data.json; sourceTree = "<group>"; };
 		7A9D5769720BDD4B9A93CF75 /* RSVideoDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailModel.h; sourceTree = "<group>"; };
+		7A9D5777AD438AEA661BC808 /* AdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdViewController.swift; sourceTree = "<group>"; };
 		7A9D57868192765BB8591D47 /* NSDate+RSFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+RSFormatter.m"; sourceTree = "<group>"; };
 		7A9D579DEBD8CEEC71AB737A /* RSThumbnails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSThumbnails.m; sourceTree = "<group>"; };
 		7A9D58472CEC4CF30FB62297 /* UIImage+RSImageEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RSImageEffect.m"; sourceTree = "<group>"; };
@@ -335,6 +337,14 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		7A9D533182C77DA01B9FD4CB /* Ad */ = {
+			isa = PBXGroup;
+			children = (
+				7A9D5777AD438AEA661BC808 /* AdViewController.swift */,
+			);
+			path = Ad;
+			sourceTree = "<group>";
+		};
 		7A9D53C0DDC793E5C0CEA66A /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -466,6 +476,7 @@
 				7A9D593E3CB4AB6E6E8F1E67 /* RSVideoRelatedVideosViewController.h */,
 				7A9D5F2EC8E06E03C81FE90E /* RSVideoDetailSegmentViewController.m */,
 				7A9D54E823E75C94F2C6F811 /* RSVideoDetailSegmentViewController.h */,
+				7A9D533182C77DA01B9FD4CB /* Ad */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -975,6 +986,7 @@
 				7A9D54DE17DF6A894A2F466B /* RSVideoRelatedVideoCell.m in Sources */,
 				7A9D57819CF13795B8C66429 /* RSVideoDetailSegmentViewController.m in Sources */,
 				7A9D580887DACDC2F061D9A6 /* RSEventTracker.m in Sources */,
+				7A9D5B8E56CED70E0E13487E /* AdViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

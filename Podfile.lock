@@ -20,7 +20,10 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - GoogleAnalytics-iOS-SDK (3.10)
+  - Google-Mobile-Ads-SDK (7.0.0)
+  - GoogleAnalytics-iOS-SDK (3.10):
+    - GoogleAnalytics-iOS-SDK/Core
+  - GoogleAnalytics-iOS-SDK/Core (3.10)
   - HexColors (2.2.1)
   - JSONModel (1.0.1)
   - OCMock (3.1.1)
@@ -36,6 +39,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - Google-Mobile-Ads-SDK
   - GoogleAnalytics-iOS-SDK
   - JSONModel (~> 1.0.1)
   - OCMock (~> 3.1.1)
@@ -46,7 +50,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
-  GoogleAnalytics-iOS-SDK: e5872d2acc120613d954320e206c7e3bc8357d7c
+  Google-Mobile-Ads-SDK: 55632bafa382a0987a4cbdefdfea362e24cbe814
+  GoogleAnalytics-iOS-SDK: f422062075d9ccb1ea8d783fc5ba3829461e9502
   HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153
   JSONModel: 634100aaacbd89811bc8a03da209356e5989c569
   OCMock: f6cb8c162ab9d5620dddf411282c7b2c0ee78854

@@ -6,6 +6,13 @@
 #import "RSEnvironment.h"
 
 
+
+#if DEBUG
+NSString * const kADMobId =  @"ca-app-pub-3940256099942544/2934735716";
+#else
+NSString * const kADMobId =  @"ca-app-pub-5016636882444405/7747858172";
+#endif
+
 @implementation RSEnvironment {
 
 }

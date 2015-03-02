@@ -18,6 +18,7 @@ static NSString *const kViewControllerIdVideoDetail = @"videoDetail";
 static NSString *const kViewControllerIdVideoList = @"videoList";
 
 
+extern NSString * const kADMobId;
 
 @interface RSEnvironment : NSObject
 @end
