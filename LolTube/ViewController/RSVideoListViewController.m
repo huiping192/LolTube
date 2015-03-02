@@ -153,7 +153,7 @@ static NSString *const kSegueIdChannelList = @"channelList";
     __weak typeof(self) weakSelf = self;
 
     [self.collectionViewModel refreshWithSuccess:^(BOOL hasNewData) {
-        int newDataCount = weakSelf.collectionViewModel.items.count - dataCount;
+        NSInteger newDataCount = weakSelf.collectionViewModel.items.count - dataCount;
         if (!hasNewData || newDataCount == 0) {
             [weakSelf.refreshControl endRefreshing];
             return;
@@ -395,7 +395,7 @@ static NSString *const kSegueIdChannelList = @"channelList";
 
     __weak typeof(self) weakSelf = self;
     [self.collectionViewModel updateNextPageDataWithSuccess:^(BOOL hasNewData) {
-        int newDataCount = weakSelf.collectionViewModel.items.count;
+        NSInteger newDataCount = weakSelf.collectionViewModel.items.count;
         if (!hasNewData || newDataCount == 0) {
             weakSelf.loading = NO;
             return;

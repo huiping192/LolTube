@@ -11,6 +11,9 @@
 #import "UIImageView+Loading.h"
 #import "RSVideoDetailViewController.h"
 
+static CGFloat const kCellMinWidth = 280.0;
+static CGFloat const kCellHeight = 90.0;
+
 @interface RSVideoRelatedVideosViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property(nonatomic, strong) RSVideoRelatedVideosViewModel *viewModel;
@@ -126,7 +129,10 @@
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGSize itemSize = ((UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout).itemSize;
-    return CGSizeMake(self.collectionView.frame.size.width, itemSize.height);
+    CGFloat collectionWidth = self.collectionView.frame.size.width;
+    int cellCount = (int) (collectionWidth / kCellMinWidth);
+    CGFloat cellWidth = collectionWidth  / cellCount;
+    return CGSizeMake(cellWidth, kCellHeight);
 }
+
 @end
