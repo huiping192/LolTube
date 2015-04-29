@@ -5,13 +5,14 @@
 
 
 #import <JSONModel/JSONModel.h>
+#import "RSJsonModel.h"
 
 @protocol RSVideoItem;
 
 @class RSVideoSnippet;
 @class RSThumbnails;
 
-@interface RSVideoModel : JSONModel
+@interface RSVideoModel : RSJsonModel
 
 @property (nonatomic, strong)  NSArray<RSVideoItem> *items;
 

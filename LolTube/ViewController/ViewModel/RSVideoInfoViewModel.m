@@ -4,14 +4,14 @@
 //
 
 #import "RSVideoInfoViewModel.h"
-#import "RSYoutubeService.h"
 #import "RSVideoModel.h"
 #import "NSDate+RSFormatter.h"
-
+#import "LolTube-Swift.h"
+#import "RSVideoDetailModel.h"
 
 @interface RSVideoInfoViewModel ()
 
-@property(nonatomic, strong) RSYoutubeService *service;
+@property(nonatomic, strong) YoutubeService *service;
 
 @end
 
@@ -23,7 +23,7 @@
     self = [super init];
     if (self) {
         self.videoId = videoId;
-        self.service = [[RSYoutubeService alloc] init];
+        self.service = [YoutubeService new];
     }
 
     return self;
@@ -32,7 +32,7 @@
 
 - (void)updateWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure {
     __weak typeof(self) weakSelf = self;
-    [self.service videoWithVideoId:self.videoId success:^(RSVideoModel *videoModel) {
+    [self.service video:self.videoId success:^(RSVideoModel *videoModel) {
         if (!videoModel.items || videoModel.items.count == 0) {
             return;
         }
@@ -58,7 +58,7 @@
 
 - (void)updateVideoDetailWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure {
     __weak typeof(self) weakSelf = self;
-    [self.service videoDetailListWithVideoIds:@[self.videoId] success:^(RSVideoDetailModel *videoDetailModel) {
+    [self.service videoDetailList:@[self.videoId] success:^(RSVideoDetailModel *videoDetailModel) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             if(videoDetailModel.items.count != 1){
                 return;

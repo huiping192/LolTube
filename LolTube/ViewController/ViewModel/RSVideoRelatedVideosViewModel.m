@@ -4,15 +4,15 @@
 //
 
 #import "RSVideoRelatedVideosViewModel.h"
-#import "RSYoutubeService.h"
 #import "RSSearchModel.h"
 #import "RSThumbnails.h"
 #import "NSString+Util.h"
-
+#import "LolTube-Swift.h"
+#import "RSVideoDetailModel.h"
 
 @interface RSVideoRelatedVideosViewModel ()
 
-@property(nonatomic, strong) RSYoutubeService *service;
+@property(nonatomic, strong) YoutubeService *service;
 
 @end
 
@@ -23,14 +23,14 @@
     self = [super init];
     if (self) {
         self.videoId = videoId;
-        self.service = [[RSYoutubeService alloc] init];
+        self.service = [YoutubeService new];
     }
 
     return self;
 }
 
 - (void)updateWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure {
-    [self.service relatedVideoListWithVideoId:self.videoId success:^(RSSearchModel *searchModel) {
+    [self.service relatedVideoList:self.videoId success:^(RSSearchModel *searchModel) {
         self.relatedVideoList = [self p_itemsFormSearchModelList:searchModel.items];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (success) {
@@ -63,7 +63,7 @@
     if(!cellVo){
         return;
     }
-    [self.service videoDetailListWithVideoIds:@[cellVo.videoId] success:^(RSVideoDetailModel *videoDetailModel) {
+    [self.service videoDetailList:@[cellVo.videoId] success:^(RSVideoDetailModel *videoDetailModel) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             if(videoDetailModel.items.count != 1){
                 return;

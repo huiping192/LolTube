@@ -4,6 +4,7 @@
 //
 
 #import <JSONModel/JSONModel.h>
+#import "RSJsonModel.h"
 
 @protocol RSItem;
 @class RSId;
@@ -12,7 +13,7 @@
 @class RSThumbnails;
 @class RSThumbnail;
 
-@interface RSSearchModel : JSONModel
+@interface RSSearchModel : RSJsonModel
 @property(nonatomic, copy) NSString<Optional> *nextPageToken;
 
 @property(nonatomic, strong) NSArray <RSItem> *items;
@@ -40,6 +41,7 @@
 @interface RSId : JSONModel
 
 @property(nonatomic, copy) NSString *kind;
-@property(nonatomic, copy) NSString *videoId;
+@property(nonatomic, copy) NSString<Optional> *videoId;
+@property(nonatomic, copy) NSString<Optional> *channelId;
 
 @end

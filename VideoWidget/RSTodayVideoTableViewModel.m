@@ -4,17 +4,17 @@
 //
 
 #import "RSTodayVideoTableViewModel.h"
-#import "RSYoutubeService.h"
 #import "RSSearchModel.h"
 #import "RSThumbnails.h"
 #import "RSChannelService.h"
 #import "NSDate+RSFormatter.h"
+#import "VideoWidget-Swift.h"
 
 static NSString *const kVideoWidgetCacheKey = @"videoWidgetCache";
 
 @interface RSTodayVideoTableViewModel ()
 
-@property(nonatomic, strong) RSYoutubeService *service;
+@property(nonatomic, strong) YoutubeService *service;
 @property(nonatomic, copy) NSArray *channelIds;
 
 @end
@@ -26,7 +26,7 @@ static NSString *const kVideoWidgetCacheKey = @"videoWidgetCache";
     self = [super init];
     if (self) {
         _channelIds = channelIds;
-        _service = [[RSYoutubeService alloc] init];
+        _service = [YoutubeService new];
     }
 
     return self;
@@ -54,7 +54,7 @@ static NSString *const kVideoWidgetCacheKey = @"videoWidgetCache";
 }
 
 - (void)updateWithSuccess:(void (^)(BOOL hasNewData))success failure:(void (^)(NSError *))failure {
-    [self.service todayVideoListWithChannelIds:self.channelIds success:^(NSArray *searchModelList) {
+    [self.service todayVideoList:self.channelIds success:^(NSArray *searchModelList) {
         NSArray *newItems = [self p_itemsWithSearchModelList:searchModelList];
         BOOL hasNewData = _items.count != newItems.count;
         _items = (NSArray <RSVideoListTableViewCellVo> *) newItems;
