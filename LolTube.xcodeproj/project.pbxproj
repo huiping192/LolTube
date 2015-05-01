@@ -7,23 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D56D899FCC74DAF83E2042D /* libPods-LolTubeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 492EE9566EC348369DBEEC9F /* libPods-LolTubeTests.a */; };
+		25C508257CFE98CC8F6E51A0 /* Pods_LolTubeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8753EE0B5BA1B8708AE55A9D /* Pods_LolTubeTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7A9D502564EF5651A21D735F /* RSTodayVideoTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5A57F12E827DA02DC5C6 /* RSTodayVideoTableViewModel.m */; };
 		7A9D50FC5C4ABB67134D1B66 /* RSVideoInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5C6AC1A25AB05EF30958 /* RSVideoInfoViewController.m */; };
+		7A9D510F707B96B6F138CF6A /* FiftyChannel.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5072C6E4D2AEE57845F1 /* FiftyChannel.json */; };
 		7A9D517888BCFE3270DE9EB1 /* UIImageView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D51D455D1D7CB93CE543C /* UIImageView+Loading.m */; };
 		7A9D51D90FF1DB0116D7B2EA /* RSVideoListCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D54D856786E7D6720B9C4 /* RSVideoListCollectionViewLayout.m */; };
 		7A9D526589D6379D67DF2E3A /* RSThumbnails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D579DEBD8CEEC71AB737A /* RSThumbnails.m */; };
+		7A9D52808B8E9130F43D1E1B /* RSJsonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5C6B99CCE570942CED4B /* RSJsonModel.m */; };
 		7A9D52D307C1B55992EEE574 /* RSVideoRelatedVideosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5B210EA84145B420512D /* RSVideoRelatedVideosViewController.m */; };
 		7A9D53046E0D3AE83354D84E /* RSVideoDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5D0FC66A92A7E22AAF65 /* RSVideoDetailViewModel.m */; };
 		7A9D533BD41BF929A8993258 /* NSDateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D571016D3664FBDB5479B /* NSDateTests.swift */; };
-		7A9D53AE2A3FDB6C7B8D9697 /* Video_unformatter_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D55798B41038805DB2D14 /* Video_unformatter_data.json */; };
 		7A9D53DFD3C33E8F18FBF450 /* UIImage+RSImageEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D58472CEC4CF30FB62297 /* UIImage+RSImageEffect.m */; };
 		7A9D5493ABCB526054E6AE8F /* UIViewController+RSLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5545E4F7CAFF362E9CEB /* UIViewController+RSLoading.m */; };
 		7A9D54DE17DF6A894A2F466B /* RSVideoRelatedVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D507B87B3E5BD4ADB1538 /* RSVideoRelatedVideoCell.m */; };
 		7A9D551BB5759AC462416EB1 /* RSVideoInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D54CCEF645E011C9AF65C /* RSVideoInfoViewModel.m */; };
+		7A9D55AE709EF08F3CF26663 /* YoutubeServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D57086D3483D4DAB0CB21 /* YoutubeServiceSpec.swift */; };
 		7A9D55F6E873A617BE46DE8C /* RSVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5A0D3ED28B62DA5B95AC /* RSVideoModel.m */; };
 		7A9D5634A5DEAE65CC9D46FF /* RSStringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5B7BE899A291E20B351C /* RSStringUtil.m */; };
+		7A9D565F9F049CDB43ACCBE9 /* TwoVideosDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5695E285A65D8216CA04 /* TwoVideosDetail.json */; };
 		7A9D56D2DEB3EF67951843BC /* RSChannelSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D51A9E3F136111C017131 /* RSChannelSearchViewController.m */; };
+		7A9D571D6F71F2F391FE6E13 /* YoutubeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D597407BB9DD1397A6220 /* YoutubeService.swift */; };
 		7A9D57819CF13795B8C66429 /* RSVideoDetailSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5F2EC8E06E03C81FE90E /* RSVideoDetailSegmentViewController.m */; };
 		7A9D5798B8B427BE4FE71303 /* RSVideoListCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5E8BA4B47C87DD729968 /* RSVideoListCollectionViewModel.m */; };
 		7A9D57EAA5AEB366EA6A23F7 /* RSChannelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D54A6133286B885319648 /* RSChannelListViewController.m */; };
@@ -31,9 +35,10 @@
 		7A9D580887DACDC2F061D9A6 /* RSEventTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5B6C4E70B83A481B38F5 /* RSEventTracker.m */; };
 		7A9D5854FD09B52840A1B3D9 /* RSSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D515B04B281818CFFBBCE /* RSSearchModel.m */; };
 		7A9D586B28644EC8ACC550FF /* RSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5BBC9AEF1806266D6DC1 /* RSNavigationController.m */; };
-		7A9D588F5B7F3309F41F5AA4 /* RayWenderlichChannel.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5AF46BFEA231319F7D33 /* RayWenderlichChannel.json */; };
+		7A9D588F5B7F3309F41F5AA4 /* LoLProChannelVideoList.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5AF46BFEA231319F7D33 /* LoLProChannelVideoList.json */; };
 		7A9D59A8FA8D919C39DCC359 /* StringUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D526397DA6DDCCAC2F3B6 /* StringUtilTest.swift */; };
 		7A9D5A766490C3ECF29776DE /* UIViewController+RSError.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5393063A2FA9933C12FF /* UIViewController+RSError.m */; };
+		7A9D5A9F46DBB393748C1BB7 /* RSJsonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5C6B99CCE570942CED4B /* RSJsonModel.m */; };
 		7A9D5AA116615721C59D3D61 /* RSEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5685F04E20BBB4AB0EDE /* RSEnvironment.m */; };
 		7A9D5AB8B2CE3F6EC087BFFA /* RSChannelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D543F7440097C8C2149E1 /* RSChannelTableViewCell.m */; };
 		7A9D5B5F1262EF3A3C8505E0 /* RSVideoRelatedVideosViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5AB4959A8E8F2D7B2E08 /* RSVideoRelatedVideosViewModel.m */; };
@@ -42,19 +47,17 @@
 		7A9D5C1783AAD1882C343F6C /* RSRSVideoRelatedVideoImageContainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5DDDC5F69C760AA84DA0 /* RSRSVideoRelatedVideoImageContainView.m */; };
 		7A9D5C20AC3EAD887249EB04 /* NSDate+RSFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D57868192765BB8591D47 /* NSDate+RSFormatter.m */; };
 		7A9D5C639F1A613376BC21EC /* RSChannelService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D518DC4BF259949301CF7 /* RSChannelService.m */; };
-		7A9D5CA59D5C226F88C846BA /* CLG_vs_DIG_Video_Deital.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D52C373F26DFF52D2BE86 /* CLG_vs_DIG_Video_Deital.json */; };
+		7A9D5CA59D5C226F88C846BA /* CLG_vs_DIG_Video.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D52C373F26DFF52D2BE86 /* CLG_vs_DIG_Video.json */; };
+		7A9D5CBD3E03AF5E9EB19420 /* FiftyVideosDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5B9AB3E6776CBA3BA769 /* FiftyVideosDetail.json */; };
 		7A9D5CD47D8FEE20AF37FF99 /* RSChannelTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5C49F23F451033B06810 /* RSChannelTableViewModel.m */; };
 		7A9D5CD811F4E4552A0253F8 /* RSSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5B9085CD590F16BC2FEF /* RSSearchTableViewCell.m */; };
-		7A9D5D53C4D3636F1491713E /* RSYoutubeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5C089DAEDD8088444FF1 /* RSYoutubeService.m */; };
 		7A9D5D78AAEE2467B5DC5C37 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5AD72E31A33F26DC4840 /* NSString+Util.m */; };
 		7A9D5E2CCB1FE97836B05D75 /* RSVideoDetailAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5CF5A4EF6701A13A5688 /* RSVideoDetailAnimator.m */; };
-		7A9D5E91022E54BA028FDBA9 /* Channel_unformatter_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5749A02980374685100A /* Channel_unformatter_data.json */; };
 		7A9D5EB60C1024B77DC9A0DB /* RSChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5DDC35472535F6055FF4 /* RSChannelModel.m */; };
 		7A9D5F14B85FDCEF4668D937 /* RSVideoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5E1CAC258986C7A0B45D /* RSVideoService.m */; };
 		7D3B56BEC73C460A8FD88FC8 /* libPods-VideoWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 258B97C7D8C343E59B7679D4 /* libPods-VideoWidget.a */; };
 		D2912024C3464678820F0B0F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE8E8822B6E415281465DA6 /* libPods.a */; };
 		DC0F691C1A03DFD70061EB95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC1044C219B2FA6B007A86E6 /* Images.xcassets */; };
-		DC0F691D1A051A540061EB95 /* RSYoutubeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5C089DAEDD8088444FF1 /* RSYoutubeService.m */; };
 		DC0F691E1A051A600061EB95 /* RSChannelService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D518DC4BF259949301CF7 /* RSChannelService.m */; };
 		DC0F691F1A051A6C0061EB95 /* NSDate+RSFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D57868192765BB8591D47 /* NSDate+RSFormatter.m */; };
 		DC0F69201A051A740061EB95 /* UIImageView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D51D455D1D7CB93CE543C /* UIImageView+Loading.m */; };
@@ -76,10 +79,12 @@
 		DC1044CB19B2FA6B007A86E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1044AA19B2FA6B007A86E6 /* Foundation.framework */; };
 		DC1044CC19B2FA6B007A86E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1044AE19B2FA6B007A86E6 /* UIKit.framework */; };
 		DC1044D419B2FA6B007A86E6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC1044D219B2FA6B007A86E6 /* InfoPlist.strings */; };
+		DC1C9D441AF214050079AFC4 /* YoutubeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D597407BB9DD1397A6220 /* YoutubeService.swift */; };
 		DC22FF7E1A1245AB0053FBB9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC22FF7D1A1245AB0053FBB9 /* CoreData.framework */; };
 		DC22FF801A1245C60053FBB9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC22FF7F1A1245C60053FBB9 /* AdSupport.framework */; };
 		DC22FF821A1245D70053FBB9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DC22FF811A1245D70053FBB9 /* libz.dylib */; };
 		DC25223E1A468C290060CC45 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC25223D1A468C290060CC45 /* iAd.framework */; };
+		DC37D4EC1AE67CFA00601458 /* LolChannelSearchChannelList.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5A4F7E3337B0F588D6AC /* LolChannelSearchChannelList.json */; };
 		DC47690B1A07EAA700DC3D2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC47690D1A07EAA700DC3D2D /* Main.storyboard */; };
 		DC5708F51A00DBF500DB8821 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5708F41A00DBF500DB8821 /* NotificationCenter.framework */; };
 		DC5708FB1A00DBF500DB8821 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5708FA1A00DBF500DB8821 /* TodayViewController.m */; };
@@ -89,6 +94,7 @@
 		DC64F4C919E5582F00F860B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC64F4C819E5582F00F860B4 /* SystemConfiguration.framework */; };
 		DCA44BDE1A0CE8E100A4A758 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA44BDC1A0CE8E100A4A758 /* Crashlytics.framework */; };
 		DCA44BDF1A0CE8E100A4A758 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA44BDD1A0CE8E100A4A758 /* Fabric.framework */; };
+		DCD316AC1AD84EB700978606 /* TwoChannel.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5D1DA9E665D3274CBB65 /* TwoChannel.json */; };
 		DCD5B71B1A3A00180058AEE7 /* RSVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5581057609E7258B8085 /* RSVideoDetailModel.m */; };
 		DCEBA51419BCB2AF007C3FC7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCEBA51619BCB2AF007C3FC7 /* Localizable.strings */; };
 		DCEBA51A19BCB304007C3FC7 /* RSVideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCEBA51819BCB304007C3FC7 /* RSVideoListViewController.m */; };
@@ -136,10 +142,8 @@
 
 /* Begin PBXFileReference section */
 		258B97C7D8C343E59B7679D4 /* libPods-VideoWidget.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VideoWidget.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		371FAF4E87134393B85D8C11 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		492EE9566EC348369DBEEC9F /* libPods-LolTubeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LolTubeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		78D44C9CFB5B45D686716807 /* Pods-LolTubeTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LolTubeTests.xcconfig"; path = "Pods/Pods-LolTubeTests.xcconfig"; sourceTree = "<group>"; };
 		7A9D50102F7D7771E38FD4D4 /* UIImageView+Loading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Loading.h"; sourceTree = "<group>"; };
+		7A9D5072C6E4D2AEE57845F1 /* FiftyChannel.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = FiftyChannel.json; sourceTree = "<group>"; };
 		7A9D507B87B3E5BD4ADB1538 /* RSVideoRelatedVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoRelatedVideoCell.m; sourceTree = "<group>"; };
 		7A9D50AC20BC5C721036FA5A /* RSChannelTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSChannelTableViewModel.h; sourceTree = "<group>"; };
 		7A9D50D61627344D955161E7 /* UIImage+RSImageEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RSImageEffect.h"; sourceTree = "<group>"; };
@@ -152,7 +156,7 @@
 		7A9D51D455D1D7CB93CE543C /* UIImageView+Loading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Loading.m"; sourceTree = "<group>"; };
 		7A9D51D53257ADAE528224DD /* RSVideoDetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailViewModel.h; sourceTree = "<group>"; };
 		7A9D526397DA6DDCCAC2F3B6 /* StringUtilTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtilTest.swift; sourceTree = "<group>"; };
-		7A9D52C373F26DFF52D2BE86 /* CLG_vs_DIG_Video_Deital.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = CLG_vs_DIG_Video_Deital.json; sourceTree = "<group>"; };
+		7A9D52C373F26DFF52D2BE86 /* CLG_vs_DIG_Video.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = CLG_vs_DIG_Video.json; sourceTree = "<group>"; };
 		7A9D5335364E80C0D66DFADA /* UIViewController+RSError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RSError.h"; sourceTree = "<group>"; };
 		7A9D5393063A2FA9933C12FF /* UIViewController+RSError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RSError.m"; sourceTree = "<group>"; };
 		7A9D53B85CDC6EFBEF69CB30 /* RSSearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSearchModel.h; sourceTree = "<group>"; };
@@ -164,18 +168,19 @@
 		7A9D54E823E75C94F2C6F811 /* RSVideoDetailSegmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailSegmentViewController.h; sourceTree = "<group>"; };
 		7A9D55339657E8AC637463F9 /* RSChannelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSChannelTableViewCell.h; sourceTree = "<group>"; };
 		7A9D5545E4F7CAFF362E9CEB /* UIViewController+RSLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RSLoading.m"; sourceTree = "<group>"; };
-		7A9D55798B41038805DB2D14 /* Video_unformatter_data.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Video_unformatter_data.json; sourceTree = "<group>"; };
 		7A9D5581057609E7258B8085 /* RSVideoDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailModel.m; sourceTree = "<group>"; };
 		7A9D55867E9F573269326BFA /* NSDate+RSFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+RSFormatter.h"; sourceTree = "<group>"; };
+		7A9D5608B2D65F7EE5664EFF /* RSJsonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSJsonModel.h; sourceTree = "<group>"; };
 		7A9D5643626977452CC70C69 /* RSVideoListCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoListCollectionViewLayout.h; sourceTree = "<group>"; };
 		7A9D5685C6200426A7318226 /* RSChannelSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSChannelSearchViewController.h; sourceTree = "<group>"; };
 		7A9D5685F04E20BBB4AB0EDE /* RSEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSEnvironment.m; sourceTree = "<group>"; };
 		7A9D56878B6EAD4145C3F188 /* RSVideoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoService.h; sourceTree = "<group>"; };
+		7A9D5695E285A65D8216CA04 /* TwoVideosDetail.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = TwoVideosDetail.json; sourceTree = "<group>"; };
 		7A9D56A2B1A65EB8DE111D93 /* RSVideoInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoInfoViewController.h; sourceTree = "<group>"; };
+		7A9D57086D3483D4DAB0CB21 /* YoutubeServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeServiceSpec.swift; sourceTree = "<group>"; };
 		7A9D571016D3664FBDB5479B /* NSDateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateTests.swift; sourceTree = "<group>"; };
 		7A9D573075EAA12896D59A57 /* RSVideoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailViewController.m; sourceTree = "<group>"; };
 		7A9D5740A0E19CCD6F21EF3E /* RSVideoRelatedVideosViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoRelatedVideosViewModel.h; sourceTree = "<group>"; };
-		7A9D5749A02980374685100A /* Channel_unformatter_data.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = Channel_unformatter_data.json; sourceTree = "<group>"; };
 		7A9D5769720BDD4B9A93CF75 /* RSVideoDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailModel.h; sourceTree = "<group>"; };
 		7A9D5777AD438AEA661BC808 /* AdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdViewController.swift; sourceTree = "<group>"; };
 		7A9D57868192765BB8591D47 /* NSDate+RSFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+RSFormatter.m"; sourceTree = "<group>"; };
@@ -187,27 +192,30 @@
 		7A9D590838A9BAA06C47605D /* RSEventTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSEventTracker.h; sourceTree = "<group>"; };
 		7A9D593E3CB4AB6E6E8F1E67 /* RSVideoRelatedVideosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoRelatedVideosViewController.h; sourceTree = "<group>"; };
 		7A9D5945F2653C03C46B1A5B /* RSThumbnails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSThumbnails.h; sourceTree = "<group>"; };
+		7A9D597407BB9DD1397A6220 /* YoutubeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeService.swift; sourceTree = "<group>"; };
 		7A9D5A0D3ED28B62DA5B95AC /* RSVideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoModel.m; sourceTree = "<group>"; };
+		7A9D5A4F7E3337B0F588D6AC /* LolChannelSearchChannelList.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = LolChannelSearchChannelList.json; sourceTree = "<group>"; };
 		7A9D5A57F12E827DA02DC5C6 /* RSTodayVideoTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTodayVideoTableViewModel.m; sourceTree = "<group>"; };
 		7A9D5A860870F855225F2509 /* RSChannelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSChannelModel.h; sourceTree = "<group>"; };
 		7A9D5AB115FA7BE1F3B692E8 /* RSChannelService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSChannelService.h; sourceTree = "<group>"; };
 		7A9D5AB4959A8E8F2D7B2E08 /* RSVideoRelatedVideosViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoRelatedVideosViewModel.m; sourceTree = "<group>"; };
 		7A9D5AD72E31A33F26DC4840 /* NSString+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Util.m"; sourceTree = "<group>"; };
-		7A9D5AF46BFEA231319F7D33 /* RayWenderlichChannel.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = RayWenderlichChannel.json; sourceTree = "<group>"; };
+		7A9D5AF46BFEA231319F7D33 /* LoLProChannelVideoList.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = LoLProChannelVideoList.json; sourceTree = "<group>"; };
 		7A9D5B210EA84145B420512D /* RSVideoRelatedVideosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoRelatedVideosViewController.m; sourceTree = "<group>"; };
 		7A9D5B6C4E70B83A481B38F5 /* RSEventTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSEventTracker.m; sourceTree = "<group>"; };
 		7A9D5B7BE899A291E20B351C /* RSStringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSStringUtil.m; sourceTree = "<group>"; };
 		7A9D5B9085CD590F16BC2FEF /* RSSearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSearchTableViewCell.m; sourceTree = "<group>"; };
+		7A9D5B9AB3E6776CBA3BA769 /* FiftyVideosDetail.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = FiftyVideosDetail.json; sourceTree = "<group>"; };
 		7A9D5BBC9AEF1806266D6DC1 /* RSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNavigationController.m; sourceTree = "<group>"; };
 		7A9D5BD5D92DC971E17EEAA1 /* RSVideoDetailAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailAnimator.h; sourceTree = "<group>"; };
-		7A9D5C04C421A5D2491B8658 /* RSYoutubeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSYoutubeService.h; sourceTree = "<group>"; };
-		7A9D5C089DAEDD8088444FF1 /* RSYoutubeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSYoutubeService.m; sourceTree = "<group>"; };
 		7A9D5C2CC4F117793092B6BF /* RSVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoModel.h; sourceTree = "<group>"; };
 		7A9D5C49F23F451033B06810 /* RSChannelTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSChannelTableViewModel.m; sourceTree = "<group>"; };
 		7A9D5C6AC1A25AB05EF30958 /* RSVideoInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoInfoViewController.m; sourceTree = "<group>"; };
+		7A9D5C6B99CCE570942CED4B /* RSJsonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSJsonModel.m; sourceTree = "<group>"; };
 		7A9D5CCB6F3945F176A6EF1E /* RSVideoInfoViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoInfoViewModel.h; sourceTree = "<group>"; };
 		7A9D5CF5A4EF6701A13A5688 /* RSVideoDetailAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailAnimator.m; sourceTree = "<group>"; };
 		7A9D5D0FC66A92A7E22AAF65 /* RSVideoDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailViewModel.m; sourceTree = "<group>"; };
+		7A9D5D1DA9E665D3274CBB65 /* TwoChannel.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = TwoChannel.json; sourceTree = "<group>"; };
 		7A9D5DDC35472535F6055FF4 /* RSChannelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSChannelModel.m; sourceTree = "<group>"; };
 		7A9D5DDDC5F69C760AA84DA0 /* RSRSVideoRelatedVideoImageContainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSRSVideoRelatedVideoImageContainView.m; sourceTree = "<group>"; };
 		7A9D5E0933CDDBBBDBCD4594 /* RSStringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSStringUtil.h; sourceTree = "<group>"; };
@@ -218,8 +226,14 @@
 		7A9D5EB9DC371E29737FC931 /* RSEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSEnvironment.h; sourceTree = "<group>"; };
 		7A9D5F2EC8E06E03C81FE90E /* RSVideoDetailSegmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailSegmentViewController.m; sourceTree = "<group>"; };
 		7A9D5FCBA9DCDC569C7C2F1E /* RSVideoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailViewController.h; sourceTree = "<group>"; };
+		7B97C0A21DC93CB7C90E8CBA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		8193BF955BBF21FDBDE2F533 /* Pods-LolTubeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LolTubeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LolTubeTests/Pods-LolTubeTests.release.xcconfig"; sourceTree = "<group>"; };
+		8753EE0B5BA1B8708AE55A9D /* Pods_LolTubeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LolTubeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AE8E8822B6E415281465DA6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		97AB2DFA1BA34AEB926EF0EC /* Pods-VideoWidget.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoWidget.xcconfig"; path = "Pods/Pods-VideoWidget.xcconfig"; sourceTree = "<group>"; };
+		D19C7C5213AC5C1D0C53FABB /* Pods-VideoWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VideoWidget/Pods-VideoWidget.debug.xcconfig"; sourceTree = "<group>"; };
+		D8442925C8150BEAE8DCEA78 /* Pods-VideoWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-VideoWidget/Pods-VideoWidget.release.xcconfig"; sourceTree = "<group>"; };
+		D8E859BE1395F41E87F829F2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		DBB64CB7BFAAE2450E92F8F6 /* Pods-LolTubeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LolTubeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LolTubeTests/Pods-LolTubeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC0F69281A075CD90061EB95 /* LolTube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LolTube.entitlements; sourceTree = "<group>"; };
 		DC0F69291A075CE80061EB95 /* VideoWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = VideoWidget.entitlements; sourceTree = "<group>"; };
 		DC1044A719B2FA6B007A86E6 /* LolTube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LolTube.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -237,6 +251,7 @@
 		DC1044C919B2FA6B007A86E6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		DC1044D119B2FA6B007A86E6 /* LolTubeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LolTubeTests-Info.plist"; sourceTree = "<group>"; };
 		DC1044D319B2FA6B007A86E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DC1C9D411AF213D00079AFC4 /* VideoWidget-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VideoWidget-Bridging-Header.h"; sourceTree = "<group>"; };
 		DC22FF7D1A1245AB0053FBB9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		DC22FF7F1A1245C60053FBB9 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		DC22FF811A1245D70053FBB9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -304,7 +319,7 @@
 				DC1044CA19B2FA6B007A86E6 /* XCTest.framework in Frameworks */,
 				DC1044CC19B2FA6B007A86E6 /* UIKit.framework in Frameworks */,
 				DC1044CB19B2FA6B007A86E6 /* Foundation.framework in Frameworks */,
-				0D56D899FCC74DAF83E2042D /* libPods-LolTubeTests.a in Frameworks */,
+				25C508257CFE98CC8F6E51A0 /* Pods_LolTubeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +382,7 @@
 		7A9D54F6BB6E002474601B73 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				7A9D57086D3483D4DAB0CB21 /* YoutubeServiceSpec.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -383,10 +399,13 @@
 		7A9D572D3772432EF31F861E /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				7A9D5AF46BFEA231319F7D33 /* RayWenderlichChannel.json */,
-				7A9D5749A02980374685100A /* Channel_unformatter_data.json */,
-				7A9D52C373F26DFF52D2BE86 /* CLG_vs_DIG_Video_Deital.json */,
-				7A9D55798B41038805DB2D14 /* Video_unformatter_data.json */,
+				7A9D5AF46BFEA231319F7D33 /* LoLProChannelVideoList.json */,
+				7A9D52C373F26DFF52D2BE86 /* CLG_vs_DIG_Video.json */,
+				7A9D5D1DA9E665D3274CBB65 /* TwoChannel.json */,
+				7A9D5A4F7E3337B0F588D6AC /* LolChannelSearchChannelList.json */,
+				7A9D5695E285A65D8216CA04 /* TwoVideosDetail.json */,
+				7A9D5072C6E4D2AEE57845F1 /* FiftyChannel.json */,
+				7A9D5B9AB3E6776CBA3BA769 /* FiftyVideosDetail.json */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -430,12 +449,11 @@
 		7A9D59BD8886AE67DA2D7CF6 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				7A9D5C089DAEDD8088444FF1 /* RSYoutubeService.m */,
-				7A9D5C04C421A5D2491B8658 /* RSYoutubeService.h */,
 				7A9D518DC4BF259949301CF7 /* RSChannelService.m */,
 				7A9D5AB115FA7BE1F3B692E8 /* RSChannelService.h */,
 				7A9D5E1CAC258986C7A0B45D /* RSVideoService.m */,
 				7A9D56878B6EAD4145C3F188 /* RSVideoService.h */,
+				7A9D597407BB9DD1397A6220 /* YoutubeService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -517,6 +535,8 @@
 				7A9D5945F2653C03C46B1A5B /* RSThumbnails.h */,
 				7A9D5581057609E7258B8085 /* RSVideoDetailModel.m */,
 				7A9D5769720BDD4B9A93CF75 /* RSVideoDetailModel.h */,
+				7A9D5C6B99CCE570942CED4B /* RSJsonModel.m */,
+				7A9D5608B2D65F7EE5664EFF /* RSJsonModel.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -556,9 +576,7 @@
 				DC5708F61A00DBF500DB8821 /* VideoWidget */,
 				DC1044A919B2FA6B007A86E6 /* Frameworks */,
 				DC1044A819B2FA6B007A86E6 /* Products */,
-				371FAF4E87134393B85D8C11 /* Pods.xcconfig */,
-				78D44C9CFB5B45D686716807 /* Pods-LolTubeTests.xcconfig */,
-				97AB2DFA1BA34AEB926EF0EC /* Pods-VideoWidget.xcconfig */,
+				DE4A07E6F6CB6D8574926563 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -587,9 +605,9 @@
 				DC1044AE19B2FA6B007A86E6 /* UIKit.framework */,
 				DC1044C919B2FA6B007A86E6 /* XCTest.framework */,
 				8AE8E8822B6E415281465DA6 /* libPods.a */,
-				492EE9566EC348369DBEEC9F /* libPods-LolTubeTests.a */,
 				DC5708F41A00DBF500DB8821 /* NotificationCenter.framework */,
 				258B97C7D8C343E59B7679D4 /* libPods-VideoWidget.a */,
+				8753EE0B5BA1B8708AE55A9D /* Pods_LolTubeTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -663,6 +681,7 @@
 		DC5708F71A00DBF500DB8821 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DC1C9D411AF213D00079AFC4 /* VideoWidget-Bridging-Header.h */,
 				DC5708F81A00DBF500DB8821 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -675,6 +694,19 @@
 				DCF9878A19BF0EEC00E9BCBE /* AMTumblrHud.m */,
 			);
 			path = AMTumblrHud;
+			sourceTree = "<group>";
+		};
+		DE4A07E6F6CB6D8574926563 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7B97C0A21DC93CB7C90E8CBA /* Pods.debug.xcconfig */,
+				D8E859BE1395F41E87F829F2 /* Pods.release.xcconfig */,
+				DBB64CB7BFAAE2450E92F8F6 /* Pods-LolTubeTests.debug.xcconfig */,
+				8193BF955BBF21FDBDE2F533 /* Pods-LolTubeTests.release.xcconfig */,
+				D19C7C5213AC5C1D0C53FABB /* Pods-VideoWidget.debug.xcconfig */,
+				D8442925C8150BEAE8DCEA78 /* Pods-VideoWidget.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -712,6 +744,7 @@
 				DC1044C519B2FA6B007A86E6 /* Frameworks */,
 				DC1044C619B2FA6B007A86E6 /* Resources */,
 				1E4CA3BCEF174D56ACCA742F /* Copy Pods Resources */,
+				5976CAB1DDC907B8ADB8F076 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -821,10 +854,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC1044D419B2FA6B007A86E6 /* InfoPlist.strings in Resources */,
-				7A9D588F5B7F3309F41F5AA4 /* RayWenderlichChannel.json in Resources */,
-				7A9D5E91022E54BA028FDBA9 /* Channel_unformatter_data.json in Resources */,
-				7A9D5CA59D5C226F88C846BA /* CLG_vs_DIG_Video_Deital.json in Resources */,
-				7A9D53AE2A3FDB6C7B8D9697 /* Video_unformatter_data.json in Resources */,
+				7A9D588F5B7F3309F41F5AA4 /* LoLProChannelVideoList.json in Resources */,
+				DC37D4EC1AE67CFA00601458 /* LolChannelSearchChannelList.json in Resources */,
+				DCD316AC1AD84EB700978606 /* TwoChannel.json in Resources */,
+				7A9D5CA59D5C226F88C846BA /* CLG_vs_DIG_Video.json in Resources */,
+				7A9D565F9F049CDB43ACCBE9 /* TwoVideosDetail.json in Resources */,
+				7A9D510F707B96B6F138CF6A /* FiftyChannel.json in Resources */,
+				7A9D5CBD3E03AF5E9EB19420 /* FiftyVideosDetail.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -853,7 +889,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-LolTubeTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LolTubeTests/Pods-LolTubeTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2AC97878B2FD49C6A2F94C6D /* Copy Pods Resources */ = {
@@ -868,7 +904,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-VideoWidget-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VideoWidget/Pods-VideoWidget-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2F1AB611F1E348F88CCFAC27 /* Check Pods Manifest.lock */ = {
@@ -884,6 +920,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5976CAB1DDC907B8ADB8F076 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LolTubeTests/Pods-LolTubeTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		73C338F7AD4440E0A5DF77D0 /* Check Pods Manifest.lock */ = {
@@ -913,7 +964,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A5B97F07C1064FC099D71CAE /* Check Pods Manifest.lock */ = {
@@ -953,7 +1004,6 @@
 			files = (
 				DC1044B719B2FA6B007A86E6 /* main.m in Sources */,
 				DC1044BB19B2FA6B007A86E6 /* RSAppDelegate.m in Sources */,
-				7A9D5D53C4D3636F1491713E /* RSYoutubeService.m in Sources */,
 				DCEBA51D19BCB350007C3FC7 /* RSVideoCollectionViewCell.m in Sources */,
 				DC64F4C719E5524900F860B4 /* Reachability.m in Sources */,
 				7A9D5EB60C1024B77DC9A0DB /* RSChannelModel.m in Sources */,
@@ -993,6 +1043,8 @@
 				7A9D580887DACDC2F061D9A6 /* RSEventTracker.m in Sources */,
 				7A9D5B8E56CED70E0E13487E /* AdViewController.swift in Sources */,
 				7A9D5C1783AAD1882C343F6C /* RSRSVideoRelatedVideoImageContainView.m in Sources */,
+				7A9D571D6F71F2F391FE6E13 /* YoutubeService.swift in Sources */,
+				7A9D5A9F46DBB393748C1BB7 /* RSJsonModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1002,6 +1054,7 @@
 			files = (
 				7A9D533BD41BF929A8993258 /* NSDateTests.swift in Sources */,
 				7A9D59A8FA8D919C39DCC359 /* StringUtilTest.swift in Sources */,
+				7A9D55AE709EF08F3CF26663 /* YoutubeServiceSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1021,7 +1074,8 @@
 				DC0F69241A051C5D0061EB95 /* RSVideoModel.m in Sources */,
 				DC0F69221A051A910061EB95 /* RSThumbnails.m in Sources */,
 				DC0F691F1A051A6C0061EB95 /* NSDate+RSFormatter.m in Sources */,
-				DC0F691D1A051A540061EB95 /* RSYoutubeService.m in Sources */,
+				DC1C9D441AF214050079AFC4 /* YoutubeService.swift in Sources */,
+				7A9D52808B8E9130F43D1E1B /* RSJsonModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1167,7 +1221,7 @@
 		};
 		DC1044DA19B2FA6B007A86E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 371FAF4E87134393B85D8C11 /* Pods.xcconfig */;
+			baseConfigurationReference = 7B97C0A21DC93CB7C90E8CBA /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1196,7 +1250,7 @@
 		};
 		DC1044DB19B2FA6B007A86E6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 371FAF4E87134393B85D8C11 /* Pods.xcconfig */;
+			baseConfigurationReference = D8E859BE1395F41E87F829F2 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1224,7 +1278,7 @@
 		};
 		DC1044DD19B2FA6B007A86E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 78D44C9CFB5B45D686716807 /* Pods-LolTubeTests.xcconfig */;
+			baseConfigurationReference = DBB64CB7BFAAE2450E92F8F6 /* Pods-LolTubeTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LolTube.app/LolTube";
 				CLANG_ENABLE_MODULES = YES;
@@ -1251,7 +1305,7 @@
 		};
 		DC1044DE19B2FA6B007A86E6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 78D44C9CFB5B45D686716807 /* Pods-LolTubeTests.xcconfig */;
+			baseConfigurationReference = 8193BF955BBF21FDBDE2F533 /* Pods-LolTubeTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LolTube.app/LolTube";
 				CLANG_ENABLE_MODULES = YES;
@@ -1273,8 +1327,9 @@
 		};
 		DC5709031A00DBF500DB8821 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97AB2DFA1BA34AEB926EF0EC /* Pods-VideoWidget.xcconfig */;
+			baseConfigurationReference = D19C7C5213AC5C1D0C53FABB /* Pods-VideoWidget.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = VideoWidget/VideoWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1291,13 +1346,16 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "VideoWidget/VideoWidget-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		DC5709041A00DBF500DB8821 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97AB2DFA1BA34AEB926EF0EC /* Pods-VideoWidget.xcconfig */;
+			baseConfigurationReference = D8442925C8150BEAE8DCEA78 /* Pods-VideoWidget.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = VideoWidget/VideoWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1310,6 +1368,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "VideoWidget/VideoWidget-Bridging-Header.h";
 			};
 			name = Release;
 		};

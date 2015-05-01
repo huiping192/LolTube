@@ -4,17 +4,17 @@
 //
 
 #import "RSChannelTableViewModel.h"
-#import "RSYoutubeService.h"
 #import "RSChannelModel.h"
 #import "RSThumbnails.h"
 #import "RSChannelService.h"
+#import "LolTube-Swift.h"
 
 @protocol RSChannelCollectionViewCellVo;
 
 static NSArray <RSChannelTableViewCellVo> *itemsCache;
 
 @interface RSChannelTableViewModel ()
-@property(nonatomic, strong) RSYoutubeService *youtubeService;
+@property(nonatomic, strong) YoutubeService *youtubeService;
 
 @property(nonatomic, strong) RSChannelService *channelService;
 
@@ -29,7 +29,7 @@ static NSArray <RSChannelTableViewCellVo> *itemsCache;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.youtubeService = [[RSYoutubeService alloc] init];
+        self.youtubeService = [YoutubeService new];
         self.channelService = [[RSChannelService alloc] init];
     }
 
@@ -44,7 +44,7 @@ static NSArray <RSChannelTableViewCellVo> *itemsCache;
     }
     self.channelIds = [self.channelService channelIds];
 
-    [self.youtubeService channelWithChannelIds:_channelIds success:^(RSChannelModel *channelModel) {
+    [self.youtubeService channel:_channelIds success:^(RSChannelModel *channelModel) {
         NSMutableArray *items = [[NSMutableArray alloc] init];
 
         RSChannelTableViewCellVo *allChannelsCellVo = [[RSChannelTableViewCellVo alloc] init];
@@ -58,7 +58,7 @@ static NSArray <RSChannelTableViewCellVo> *itemsCache;
         for (RSChannelItem *item in channelModel.items) {
             RSChannelTableViewCellVo *cellVo = [[RSChannelTableViewCellVo alloc] init];
 
-            cellVo.channelId = item.id;
+            cellVo.channelId = item.channelId;
             cellVo.title = item.snippet.title;
             cellVo.mediumThumbnailUrl = item.snippet.thumbnails.medium.url;
 

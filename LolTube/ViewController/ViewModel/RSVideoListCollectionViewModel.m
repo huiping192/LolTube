@@ -4,15 +4,16 @@
 //
 
 #import "RSVideoListCollectionViewModel.h"
-#import "RSYoutubeService.h"
 #import "RSSearchModel.h"
 #import "NSDate+RSFormatter.h"
 #import "RSThumbnails.h"
 #import "NSString+Util.h"
+#import "LolTube-Swift.h"
+#import "RSVideoDetailModel.h"
 
 @interface RSVideoListCollectionViewModel ()
 
-@property(nonatomic, strong) RSYoutubeService *service;
+@property(nonatomic, strong) YoutubeService *service;
 @property(nonatomic, copy) NSArray *channelIds;
 
 @property(nonatomic, copy) NSArray *searchModelList;
@@ -26,7 +27,7 @@
     self = [super init];
     if (self) {
         _channelIds = channelIds;
-        _service = [[RSYoutubeService alloc] init];
+        _service = [YoutubeService new];
         _searchModelList = nil;
     }
 
@@ -40,7 +41,7 @@
 
 - (void)refreshWithSuccess:(void (^)(BOOL hasNewData))success failure:(void (^)(NSError *))failure {
     __weak typeof(self) weakSelf = self;
-    [self.service videoListWithChannelIds:_channelIds searchText:self.searchText nextPageTokens:nil success:^(NSArray *searchModelList) {
+    [self.service videoList:_channelIds searchText:self.searchText nextPageTokenList:nil success:^(NSArray *searchModelList) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
             NSMutableArray *items = [[NSMutableArray alloc] init];
@@ -64,7 +65,7 @@
                 }
             });
         });
-    }                             failure:failure];
+    }               failure:failure];
 }
 
 - (void)updateNextPageDataWithSuccess:(void (^)(BOOL hasNewData))success failure:(void (^)(NSError *))failure {
@@ -91,7 +92,7 @@
 
 - (void)p_updateWithChannelIds:(NSArray *)channelIds pageTokens:(NSArray *)pageTokens searchText:(NSString *)searchText success:(void (^)())success failure:(void (^)(NSError *))failure {
     __weak typeof(self) weakSelf = self;
-    [self.service videoListWithChannelIds:channelIds searchText:searchText nextPageTokens:pageTokens success:^(NSArray *searchModelList) {
+    [self.service videoList:channelIds searchText:searchText nextPageTokenList:pageTokens success:^(NSArray *searchModelList) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             weakSelf.searchModelList = searchModelList;
 
@@ -115,7 +116,7 @@
                 }
             });
         });
-    }                             failure:failure];
+    }               failure:failure];
 }
 
 - (void)updateVideoDetailWithCellVo:(RSVideoCollectionViewCellVo *)cellVo success:(void (^)())success failure:(void (^)(NSError *))failure {
@@ -129,7 +130,7 @@
         return;
     }
 
-    [self.service videoDetailListWithVideoIds:@[cellVo.videoId] success:^(RSVideoDetailModel *videoDetailModel) {
+    [self.service videoDetailList:@[cellVo.videoId] success:^(RSVideoDetailModel *videoDetailModel) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             if (videoDetailModel.items.count != 1) {
                 return;
@@ -149,7 +150,7 @@
                 }
             });
         });
-    }                                 failure:failure];
+    }                     failure:failure];
 }
 
 - (NSString *)p_convertVideoDuration:(NSString *)duration {

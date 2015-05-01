@@ -4,7 +4,6 @@
 //
 
 #import "RSChannelModel.h"
-#import "RSThumbnails.h"
 
 
 @implementation RSChannelModel {
@@ -16,6 +15,12 @@
 @implementation RSChannelItem {
 
 }
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+            @"id" : @"channelId",
+    }];
+}
+
 @end
 
 

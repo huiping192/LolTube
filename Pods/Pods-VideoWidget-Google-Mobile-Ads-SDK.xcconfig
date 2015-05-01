@@ -1,2 +1,0 @@
-PODS_VIDEOWIDGET_GOOGLE_MOBILE_ADS_SDK_FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/Google-Mobile-Ads-SDK/GoogleMobileAdsSdkiOS-7.0.0"
-PODS_VIDEOWIDGET_GOOGLE_MOBILE_ADS_SDK_OTHER_LDFLAGS = -framework AVFoundation -framework AudioToolbox -framework CoreGraphics -framework CoreTelephony -framework EventKit -framework EventKitUI -framework GoogleMobileAds -framework MessageUI -framework StoreKit -framework SystemConfiguration -weak_framework AdSupport

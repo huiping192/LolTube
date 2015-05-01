@@ -5,6 +5,7 @@
 
 
 #import <JSONModel/JSONModel.h>
+#import "RSJsonModel.h"
 
 @class RSChannelSnippet;
 @class RSThumbnails;
@@ -12,7 +13,7 @@
 
 @protocol RSChannelItem;
 
-@interface RSChannelModel : JSONModel
+@interface RSChannelModel : RSJsonModel
 @property (nonatomic, strong)  NSArray<RSChannelItem> *items;
 
 @end
@@ -20,7 +21,7 @@
 
 @interface RSChannelItem:JSONModel
 
-@property (nonatomic, copy) NSString *id;
+@property (nonatomic, copy) NSString *channelId;
 
 @property (nonatomic, strong)  RSChannelSnippet *snippet;
 

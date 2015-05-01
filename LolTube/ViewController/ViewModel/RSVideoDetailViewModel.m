@@ -4,16 +4,16 @@
 //
 
 #import "RSVideoDetailViewModel.h"
-#import "RSYoutubeService.h"
 #import "RSVideoModel.h"
 #import "RSThumbnails.h"
 #import "NSDate+RSFormatter.h"
 #import "RSSearchModel.h"
+#import "LolTube-Swift.h"
 
 
 @interface RSVideoDetailViewModel ()
 
-@property(nonatomic, strong) RSYoutubeService *service;
+@property(nonatomic, strong) YoutubeService *service;
 
 @end
 
@@ -25,7 +25,7 @@
     self = [super init];
     if (self) {
         self.videoId = videoId;
-        self.service = [[RSYoutubeService alloc] init];
+        self.service = [YoutubeService new];
 
         self.shareUrlString = [NSString stringWithFormat:@"https://www.youtube.com/watch?v=%@", self.videoId];
         self.handoffUrlStringFormat = @"https://www.youtube.com/watch?v=%@&t=%ds";
@@ -36,7 +36,7 @@
 
 - (void)updateWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure {
     __weak typeof(self) weakSelf = self;
-    [self.service videoWithVideoId:self.videoId success:^(RSVideoModel *videoModel) {
+    [self.service video:self.videoId success:^(RSVideoModel *videoModel) {
         if (!videoModel.items || videoModel.items.count == 0) {
             return;
         }
