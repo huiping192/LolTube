@@ -15,8 +15,7 @@ static NSString *const kAppVersionKey = @"appVersion";
 - (NSArray *)channelIds {
     NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:kSharedUserDefaultsSuitName];
     NSArray *channelIds = [userDefaults arrayForKey:kChannelIdsKey];
-    NSString *appVersion = [self p_appVersion];
-    if (!channelIds || !appVersion) {
+    if (!channelIds) {
         NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
         channelIds = [cloudStore arrayForKey:kChannelIdsKey];
         if(channelIds){
@@ -30,7 +29,7 @@ static NSString *const kAppVersionKey = @"appVersion";
 }
 
 - (void)saveDefaultChannelIds {
-    NSArray *channelIds = @[@"UC2t5bjwHdUX4vM2g8TRDq5g", @"UCvqRdlKsE5Q8mf8YXbdIJLw", @"UClh5azhOaKzdlThQFgoq-tw", @"UC0RalGf69iYVBFteHInyJJg", @"UCUf53DHwoQw4SvETXZQ2Tmg", @"UCPOm2V7Ccdlkm2J1TqNptEw", @"UCrZT1akje889ZcVXDf9QkGg", @"UCGgbmTgF-sUJGd5B5N6VSFw", @"UC0t-xbEmmcJBQ6-fTZV2FNA",@"UCN078UFNwPgwWlU_V5WCTNw",@"UCc_7XbnN1bTFMhquCKt3ngA",@"UC6Y5ISL5xuPuV2--cEKbt6A",@"UCK4LHLRdoHlYL6unEAuTyqA",@"UCVEbcFWM43PS-d5vaSKUMng",@"UCGeHk-_K6Lee4CcVN2SKI2A",@"UCKDkGnyeib7mcU7LdD3x0jQ",@"UCBJLvzKYBCQJc1buauA3msw",@"UCdOWyp25T0HDtjpnV2LpIyw",@"UChBb5BEX36y-DXK7uISYbzg",@"UCQvdvLBve3JLBTkISSHOpEA",@"UC9YLd0REiXxLqQQH_CpJKZQ",@"UC0NwzCHb8Fg89eTB5eYX17Q",@"UCARZJejxRnmQ0m_tU7MgRiA",@"UCrrSA2uXHnFom2HQgNmUivw",@"UCCANEvHoWMJGpMNkxpM3KLg",@"UCuSrv3qgQA7SSi6R9bWag5A",@"UCtHosYGpdBx-X7uEkhJX7yg",@"UCudNGAQXzpE1sMfoqPs67mQ",@"UCYX9IB_lU43EenSWKDlheUg",];
+    NSArray *channelIds = @[@"UC2t5bjwHdUX4vM2g8TRDq5g", @"UCvqRdlKsE5Q8mf8YXbdIJLw", @"UClh5azhOaKzdlThQFgoq-tw", @"UC0RalGf69iYVBFteHInyJJg", @"UCUf53DHwoQw4SvETXZQ2Tmg", @"UCPOm2V7Ccdlkm2J1TqNptEw", @"UCrZT1akje889ZcVXDf9QkGg", @"UCGgbmTgF-sUJGd5B5N6VSFw",@"UCN078UFNwPgwWlU_V5WCTNw",@"UCc_7XbnN1bTFMhquCKt3ngA",@"UCVEbcFWM43PS-d5vaSKUMng",@"UCBJLvzKYBCQJc1buauA3msw",@"UCdOWyp25T0HDtjpnV2LpIyw",@"UChBb5BEX36y-DXK7uISYbzg",@"UC0NwzCHb8Fg89eTB5eYX17Q",@"UCARZJejxRnmQ0m_tU7MgRiA",@"UCuSrv3qgQA7SSi6R9bWag5A",@"UCtHosYGpdBx-X7uEkhJX7yg",@"UCudNGAQXzpE1sMfoqPs67mQ",@"UCYX9IB_lU43EenSWKDlheUg"];
     NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:kSharedUserDefaultsSuitName];
     [userDefaults setObject:channelIds forKey:kChannelIdsKey];
     [userDefaults synchronize];
@@ -47,7 +46,7 @@ static NSString *const kAppVersionKey = @"appVersion";
 
 -(void)p_saveAppVersion{
     NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:kSharedUserDefaultsSuitName];
-    [userDefaults setObject:@"1.1.0" forKey:kAppVersionKey];
+    [userDefaults setObject:@"1.2.0" forKey:kAppVersionKey];
     [userDefaults synchronize];
 }
 
