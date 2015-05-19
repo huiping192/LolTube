@@ -53,7 +53,7 @@ public class YoutubeService: NSObject {
                 "key": kYoutubeApiKey,
                 "part": "snippet",
                 "type": "video",
-                "maxResults": "10",
+                "maxResults": "5",
                 "order": "date",
                 "q": searchText ?? ""
         ]
