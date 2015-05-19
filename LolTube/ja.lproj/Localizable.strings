@@ -6,8 +6,8 @@
   Copyright (c) 2014 Huiping Guo. All rights reserved.
 */
 
-
-
+"VideoPostedTimeStringMinutesFormatter" = "%d分前";
+"VideoPostedTimeStringHoursFormatter" = "%d時間前";
 "VideoDetailPostedAtFormatter" = "%@ 掲載";
 "SearchChannels" = "もっとチャンネルをチェック";
 "SearchVideos" = "動画を検索";
