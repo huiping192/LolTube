@@ -1,11 +1,11 @@
 PODS:
   - AFNetworking (2.4.1):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-    - AFNetworking/UIKit
+    - AFNetworking/NSURLConnection (= 2.4.1)
+    - AFNetworking/NSURLSession (= 2.4.1)
+    - AFNetworking/Reachability (= 2.4.1)
+    - AFNetworking/Security (= 2.4.1)
+    - AFNetworking/Serialization (= 2.4.1)
+    - AFNetworking/UIKit (= 2.4.1)
   - AFNetworking/NSURLConnection (2.4.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
@@ -20,15 +20,19 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - GoogleAnalytics-iOS-SDK (3.10)
+  - GoogleAnalytics-iOS-SDK (3.10):
+    - GoogleAnalytics-iOS-SDK/Core (= 3.10)
+  - GoogleAnalytics-iOS-SDK/Core (3.10)
   - HexColors (2.2.1)
   - JSONModel (1.0.1)
+  - Nimble (0.4.2)
   - OCMock (3.1.1)
   - OHHTTPStubs (3.1.6):
-    - OHHTTPStubs/Core
+    - OHHTTPStubs/Core (= 3.1.6)
   - OHHTTPStubs/Core (3.1.6)
+  - Quick (0.3.1)
   - SDWebImage (3.7.1):
-    - SDWebImage/Core
+    - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
   - TSMessages (0.9.11):
     - HexColors
@@ -38,21 +42,25 @@ DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - GoogleAnalytics-iOS-SDK
   - JSONModel (~> 1.0.1)
+  - Nimble
   - OCMock (~> 3.1.1)
   - OHHTTPStubs (~> 3.1.5)
+  - Quick
   - SDWebImage (~> 3.7.0)
   - TSMessages
   - XCDYouTubeKit (~> 2.0.2)
 
 SPEC CHECKSUMS:
-  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
-  GoogleAnalytics-iOS-SDK: e5872d2acc120613d954320e206c7e3bc8357d7c
-  HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153
-  JSONModel: 634100aaacbd89811bc8a03da209356e5989c569
-  OCMock: f6cb8c162ab9d5620dddf411282c7b2c0ee78854
-  OHHTTPStubs: 6781373b69e0a67b27239799f11764d0fbefac55
-  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
-  TSMessages: e21ef5b1c7518cc590a4826c8b05b16b79b10c2c
-  XCDYouTubeKit: 65d5f5b9fe4e731327ab61ecc253b8e70e5d5a4d
+  AFNetworking: 41d45d2c14219af0fa5addf3cfd433a002c13c9f
+  GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
+  HexColors: abfd172e329dab59888614ccba6f216cec59289d
+  JSONModel: de5799179dd476f68e0de1be3a4a40c962cc535f
+  Nimble: 49b7a7da8919f42823d37c6d68cc6d15a7009f32
+  OCMock: a73f69963a8a542b0b343e2617650e4dca0cbbc2
+  OHHTTPStubs: b671969016b4c6f5ee3c26080c81114ba82e0710
+  Quick: 824572d3d198d51e52cf4aa722cebf7e59952a35
+  SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
+  TSMessages: 36965f3cbe0a4c68f563bac77cbd00f4333dd459
+  XCDYouTubeKit: 5a0412598bca14e6deb5884bc58cd452be2f4b17
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.36.3

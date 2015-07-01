@@ -1,0 +1,6 @@
+framework module GoogleAnalytics_iOS_SDK {
+  umbrella header "Pods-LolTubeTests-GoogleAnalytics-iOS-SDK-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,9 @@
+FRAMEWORK_SEARCH_PATHS = "$PODS_FRAMEWORK_BUILD_PATH"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_FRAMEWORK_BUILD_PATH/AFNetworking.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/GoogleAnalytics_iOS_SDK.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/HexColors.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/JSONModel.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/Nimble.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/OCMock.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/OHHTTPStubs.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/Quick.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/SDWebImage.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/TSMessages.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/XCDYouTubeKit.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -ObjC -framework "AFNetworking" -framework "GoogleAnalytics_iOS_SDK" -framework "HexColors" -framework "JSONModel" -framework "Nimble" -framework "OCMock" -framework "OHHTTPStubs" -framework "Quick" -framework "SDWebImage" -framework "TSMessages" -framework "XCDYouTubeKit"
+OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
+OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
+PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-LolTubeTests
+PODS_ROOT = ${SRCROOT}/Pods

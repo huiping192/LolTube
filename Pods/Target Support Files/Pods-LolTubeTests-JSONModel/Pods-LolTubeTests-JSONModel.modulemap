@@ -1,0 +1,6 @@
+framework module JSONModel {
+  umbrella header "Pods-LolTubeTests-JSONModel-umbrella.h"
+
+  export *
+  module * { export * }
+}
