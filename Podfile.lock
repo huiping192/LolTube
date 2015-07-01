@@ -20,7 +20,6 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Google-Mobile-Ads-SDK (7.0.0)
   - GoogleAnalytics-iOS-SDK (3.10):
     - GoogleAnalytics-iOS-SDK/Core (= 3.10)
   - GoogleAnalytics-iOS-SDK/Core (3.10)
@@ -41,7 +40,6 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
-  - Google-Mobile-Ads-SDK
   - GoogleAnalytics-iOS-SDK
   - JSONModel (~> 1.0.1)
   - Nimble
@@ -54,7 +52,6 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 41d45d2c14219af0fa5addf3cfd433a002c13c9f
-  Google-Mobile-Ads-SDK: 434b97467d33c64db4767db89e51f49aed9fac08
   GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
   HexColors: abfd172e329dab59888614ccba6f216cec59289d
   JSONModel: de5799179dd476f68e0de1be3a4a40c962cc535f
