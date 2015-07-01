@@ -13,7 +13,6 @@
 		7A9D50C4794BC7CDE9388DA2 /* RSVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D522E2ABA2D7CF8D28865 /* RSVideoDetailModel.m */; };
 		7A9D50E63C6B65C8E431B763 /* TopVideoCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5F76D1C4BA7B40BC23B4 /* TopVideoCollectionHeaderView.swift */; };
 		7A9D510F707B96B6F138CF6A /* FiftyChannel.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5072C6E4D2AEE57845F1 /* FiftyChannel.json */; };
-		7A9D513C31F29BBEDCD3E638 /* AdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5022020DE5F3354A7EF0 /* AdViewController.swift */; };
 		7A9D5148312C08C13B15F994 /* RSVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D588E065470FF7B751440 /* RSVideoModel.m */; };
 		7A9D515B47E7C38B0C86E72F /* RSChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5650CE10F3B152DB916C /* RSChannelModel.m */; };
 		7A9D517888BCFE3270DE9EB1 /* UIImageView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D51D455D1D7CB93CE543C /* UIImageView+Loading.m */; };
@@ -94,7 +93,6 @@
 		DC22FF7E1A1245AB0053FBB9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC22FF7D1A1245AB0053FBB9 /* CoreData.framework */; };
 		DC22FF801A1245C60053FBB9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC22FF7F1A1245C60053FBB9 /* AdSupport.framework */; };
 		DC22FF821A1245D70053FBB9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DC22FF811A1245D70053FBB9 /* libz.dylib */; };
-		DC25223E1A468C290060CC45 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC25223D1A468C290060CC45 /* iAd.framework */; };
 		DC37D4EC1AE67CFA00601458 /* LolChannelSearchChannelList.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5A4F7E3337B0F588D6AC /* LolChannelSearchChannelList.json */; };
 		DC47690B1A07EAA700DC3D2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC47690D1A07EAA700DC3D2D /* Main.storyboard */; };
 		DC5708F51A00DBF500DB8821 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5708F41A00DBF500DB8821 /* NotificationCenter.framework */; };
@@ -152,7 +150,6 @@
 		258B97C7D8C343E59B7679D4 /* libPods-VideoWidget.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VideoWidget.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A9D5005941F2FA356C54AC6 /* RSChannelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSChannelListViewController.m; sourceTree = "<group>"; };
 		7A9D50102F7D7771E38FD4D4 /* UIImageView+Loading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Loading.h"; sourceTree = "<group>"; };
-		7A9D5022020DE5F3354A7EF0 /* AdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdViewController.swift; sourceTree = "<group>"; };
 		7A9D506E4891A21646CF1E1D /* RSChannelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSChannelListViewController.h; sourceTree = "<group>"; };
 		7A9D5072C6E4D2AEE57845F1 /* FiftyChannel.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = FiftyChannel.json; sourceTree = "<group>"; };
 		7A9D507B80947852CAAF8097 /* CircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
@@ -314,7 +311,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC25223E1A468C290060CC45 /* iAd.framework in Frameworks */,
 				DC22FF821A1245D70053FBB9 /* libz.dylib in Frameworks */,
 				DC22FF801A1245C60053FBB9 /* AdSupport.framework in Frameworks */,
 				DC64F4C919E5582F00F860B4 /* SystemConfiguration.framework in Frameworks */,
@@ -482,7 +478,6 @@
 				7A9D52CFE863F2F5772B7F6A /* Top */,
 				7A9D5132CECE3324E4C43BD7 /* VideoDetail */,
 				7A9D540C286B4066C7A120F1 /* ChannelList */,
-				7A9D59A4FEC1B680D318D82F /* Ad */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -564,14 +559,6 @@
 				7A9D507B80947852CAAF8097 /* CircularImageView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		7A9D59A4FEC1B680D318D82F /* Ad */ = {
-			isa = PBXGroup;
-			children = (
-				7A9D5022020DE5F3354A7EF0 /* AdViewController.swift */,
-			);
-			path = Ad;
 			sourceTree = "<group>";
 		};
 		7A9D59BD8886AE67DA2D7CF6 /* Service */ = {
@@ -1120,7 +1107,6 @@
 				7A9D5AA116615721C59D3D61 /* RSEnvironment.m in Sources */,
 				7A9D5D78AAEE2467B5DC5C37 /* NSString+Util.m in Sources */,
 				7A9D580887DACDC2F061D9A6 /* RSEventTracker.m in Sources */,
-				7A9D5C1783AAD1882C343F6C,
 				7A9D571D6F71F2F391FE6E13 /* YoutubeService.swift in Sources */,
 				7A9D585648191456B550D65B /* RSVideoInfoUtil.m in Sources */,
 				7A9D54EC8DC06A980DAD71E5 /* RSVideoRelatedVideosViewController.m in Sources */,
@@ -1135,7 +1121,6 @@
 				7A9D5A8688EFA29DB30F0E7E /* VideoImageAnimator.swift in Sources */,
 				7A9D59972A3EB473B7490571 /* RSVideoListCollectionViewLayout.m in Sources */,
 				7A9D5B51022DD5A6334506D9 /* TopViewModel.swift in Sources */,
-				7A9D513C31F29BBEDCD3E638 /* AdViewController.swift in Sources */,
 				7A9D56CE982FCDCD9C3B91C4 /* RoundView.swift in Sources */,
 				7A9D5DB0985B4C2C1838AF44 /* CircularImageView.swift in Sources */,
 				7A9D5BDEAF78FB037EDB4CDA /* RSChannelTableViewCell.m in Sources */,

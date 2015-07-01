@@ -584,49 +584,6 @@
             </objects>
             <point key="canvasLocation" x="1885" y="-456"/>
         </scene>
-        <!--Ad View Controller-->
-        <scene sceneID="SSC-G4-Gc4">
-            <objects>
-                <viewController id="g12-Jb-PEU" customClass="AdViewController" customModule="LolTube" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="eJw-Uh-aqh"/>
-                        <viewControllerLayoutGuide type="bottom" id="ou6-Bd-r4n"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kYz-Jv-vhp">
-                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KJX-pi-2Oh" userLabel="iad Banner View">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
-                                <connections>
-                                    <outlet property="delegate" destination="g12-Jb-PEU" id="7CR-V2-ohJ"/>
-                                </connections>
-                            </adBannerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T7x-kj-VhY" userLabel="admob banner view" customClass="GADBannerView">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="T7x-kj-VhY" firstAttribute="leading" secondItem="kYz-Jv-vhp" secondAttribute="leading" id="1ga-24-38i"/>
-                            <constraint firstAttribute="trailing" secondItem="T7x-kj-VhY" secondAttribute="trailing" id="G0W-l0-BCd"/>
-                            <constraint firstItem="ou6-Bd-r4n" firstAttribute="top" secondItem="KJX-pi-2Oh" secondAttribute="bottom" id="X98-sP-TDz"/>
-                            <constraint firstItem="KJX-pi-2Oh" firstAttribute="top" secondItem="eJw-Uh-aqh" secondAttribute="bottom" id="ZYc-OU-Jfk"/>
-                            <constraint firstItem="T7x-kj-VhY" firstAttribute="top" secondItem="eJw-Uh-aqh" secondAttribute="bottom" id="f9k-vL-gJk"/>
-                            <constraint firstAttribute="trailing" secondItem="KJX-pi-2Oh" secondAttribute="trailing" id="hgI-xM-yfj"/>
-                            <constraint firstItem="KJX-pi-2Oh" firstAttribute="leading" secondItem="kYz-Jv-vhp" secondAttribute="leading" id="m8I-pp-879"/>
-                            <constraint firstAttribute="bottom" secondItem="T7x-kj-VhY" secondAttribute="bottom" id="rDF-37-UYP"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="adMobBannerView" destination="T7x-kj-VhY" id="CeQ-OJ-GrG"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EOu-Mg-5Ek" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2917.125" y="-1012"/>
-        </scene>
         <!--Video Info View Controller-->
         <scene sceneID="aOM-td-0jN">
             <objects>
@@ -640,7 +597,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5DH-ab-Ytd">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="103"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="153"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V7U-rX-9yh">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="504"/>
@@ -720,23 +677,11 @@
                                     <constraint firstItem="V7U-rX-9yh" firstAttribute="width" secondItem="5DH-ab-Ytd" secondAttribute="width" id="rzF-tI-ceS"/>
                                 </constraints>
                             </scrollView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iy0-mc-7aj" userLabel="ad Container View">
-                                <rect key="frame" x="0.0" y="103" width="600" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Oym-yx-WZY"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="g12-Jb-PEU" kind="embed" id="eG8-px-PID"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Iy0-mc-7aj" firstAttribute="leading" secondItem="R1L-z9-qbz" secondAttribute="leading" id="Cit-wH-ehT"/>
+                            <constraint firstItem="k6L-ei-upB" firstAttribute="top" secondItem="5DH-ab-Ytd" secondAttribute="bottom" id="6U0-QN-hKV"/>
                             <constraint firstItem="5DH-ab-Ytd" firstAttribute="leading" secondItem="R1L-z9-qbz" secondAttribute="leading" id="EMU-K6-URy"/>
-                            <constraint firstItem="Iy0-mc-7aj" firstAttribute="top" secondItem="5DH-ab-Ytd" secondAttribute="bottom" id="F1d-7x-4NK"/>
-                            <constraint firstAttribute="trailing" secondItem="Iy0-mc-7aj" secondAttribute="trailing" id="Ila-8r-NBV"/>
-                            <constraint firstItem="k6L-ei-upB" firstAttribute="top" secondItem="Iy0-mc-7aj" secondAttribute="bottom" id="RpX-qW-uEp"/>
                             <constraint firstItem="5DH-ab-Ytd" firstAttribute="top" secondItem="dmY-sR-VST" secondAttribute="bottom" id="b9j-Fi-u1e"/>
                             <constraint firstAttribute="trailing" secondItem="5DH-ab-Ytd" secondAttribute="trailing" id="ru0-HY-zvN"/>
                             <constraint firstItem="k6L-ei-upB" firstAttribute="top" secondItem="5DH-ab-Ytd" secondAttribute="bottom" id="xax-Cr-lNH"/>
@@ -747,9 +692,6 @@
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
-                            <mask key="subviews">
-                                <exclude reference="Iy0-mc-7aj"/>
-                            </mask>
                             <mask key="constraints">
                                 <include reference="xax-Cr-lNH"/>
                             </mask>
@@ -857,25 +799,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fvY-Ab-ZWO" userLabel="ad Container View">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="TPd-lk-o0z"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="TPd-lk-o0z"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=regular">
-                                    <mask key="constraints">
-                                        <include reference="TPd-lk-o0z"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <segue destination="g12-Jb-PEU" kind="embed" id="GfN-7p-g80"/>
-                                </connections>
-                            </containerView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vSa-dD-iSE">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -998,35 +921,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="53m-KV-ggM" firstAttribute="top" secondItem="vSa-dD-iSE" secondAttribute="bottom" id="2PU-GZ-GCE"/>
-                            <constraint firstItem="vSa-dD-iSE" firstAttribute="top" secondItem="fvY-Ab-ZWO" secondAttribute="bottom" id="3kk-xu-DqZ"/>
                             <constraint firstItem="vSa-dD-iSE" firstAttribute="top" secondItem="hrC-Oa-Drv" secondAttribute="top" id="4t5-96-GI1"/>
                             <constraint firstItem="vSa-dD-iSE" firstAttribute="leading" secondItem="hrC-Oa-Drv" secondAttribute="leading" id="DqF-sf-hzq"/>
-                            <constraint firstAttribute="trailing" secondItem="fvY-Ab-ZWO" secondAttribute="trailing" id="JGj-SZ-Ysi"/>
-                            <constraint firstItem="fvY-Ab-ZWO" firstAttribute="leading" secondItem="hrC-Oa-Drv" secondAttribute="leading" id="X9h-1n-nc8"/>
+                            <constraint firstItem="vSa-dD-iSE" firstAttribute="top" secondItem="sIv-4X-zc3" secondAttribute="bottom" id="P0D-sJ-bMk"/>
                             <constraint firstAttribute="trailing" secondItem="vSa-dD-iSE" secondAttribute="trailing" id="f9K-56-OPU"/>
-                            <constraint firstItem="fvY-Ab-ZWO" firstAttribute="top" secondItem="sIv-4X-zc3" secondAttribute="bottom" id="fDg-PN-Fgw"/>
                         </constraints>
                         <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="fvY-Ab-ZWO"/>
-                            </mask>
                             <mask key="constraints">
-                                <exclude reference="JGj-SZ-Ysi"/>
-                                <exclude reference="X9h-1n-nc8"/>
-                                <exclude reference="fDg-PN-Fgw"/>
-                                <exclude reference="3kk-xu-DqZ"/>
+                                <exclude reference="P0D-sJ-bMk"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
-                            <mask key="subviews">
-                                <include reference="fvY-Ab-ZWO"/>
-                            </mask>
                             <mask key="constraints">
-                                <include reference="JGj-SZ-Ysi"/>
-                                <include reference="X9h-1n-nc8"/>
-                                <include reference="fDg-PN-Fgw"/>
-                                <include reference="3kk-xu-DqZ"/>
                                 <exclude reference="4t5-96-GI1"/>
+                                <include reference="P0D-sJ-bMk"/>
                             </mask>
                         </variation>
                     </view>
@@ -1820,6 +1728,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="9C3-LU-CzA"/>
         <segue reference="XCj-fU-gfg"/>
-        <segue reference="GfN-7p-g80"/>
     </inferredMetricsTieBreakers>
 </document>
