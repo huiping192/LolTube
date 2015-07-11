@@ -1,8 +1,3 @@
-//
-// Created by 郭 輝平 on 3/7/15.
-// Copyright (c) 2015 Huiping Guo. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
@@ -163,27 +158,28 @@ class TopViewController: UIViewController {
     }
 
     private func configureTopView() {
-        if let topVideoList = viewModel.topVideoList {
-            for (index, video) in topVideoList.enumerate() {
-                loadVideoImage(video.videoId, imageUrlString: video.highThumbnailUrl, secondImageUrlString: video.thumbnailUrl) {
-                    image in
-                    switch index {
-                    case 0:
-                        self.topImageView01.image = image
-                        self.topImageTitleLabel01?.text = video.title
-                        self.topImageTitleLabel?.text = video.title
-                    case 1:
-                        self.topImageView02.image = image
-                        self.topImageTitleLabel02?.text = video.title
-                    case 2:
-                        self.topImageView03.image = image
-                        self.topImageTitleLabel03?.text = video.title
-                    case 3:
-                        self.topImageView04.image = image
-                        self.topImageTitleLabel04?.text = video.title
-                    default:
-                        break
-                    }
+        guard let topVideoList = viewModel.topVideoList else {
+            return
+        }
+        for (index, video) in topVideoList.enumerate() {
+            loadVideoImage(video.videoId, imageUrlString: video.highThumbnailUrl, secondImageUrlString: video.thumbnailUrl) {
+                image in
+                switch index {
+                case 0:
+                    self.topImageView01.image = image
+                    self.topImageTitleLabel01?.text = video.title
+                    self.topImageTitleLabel?.text = video.title
+                case 1:
+                    self.topImageView02.image = image
+                    self.topImageTitleLabel02?.text = video.title
+                case 2:
+                    self.topImageView03.image = image
+                    self.topImageTitleLabel03?.text = video.title
+                case 3:
+                    self.topImageView04.image = image
+                    self.topImageTitleLabel04?.text = video.title
+                default:
+                    break
                 }
             }
         }
@@ -285,13 +281,16 @@ extension TopViewController: UICollectionViewDataSource {
             }
             
             headerView.titleLabel.text = channel.title
-            headerView.moreButton.addTarget(self, action:"moreButtonTapped:", forControlEvents: .TouchUpInside)
+            
             headerView.moreButton.tag = indexPath.section
+            headerView.moreButton.addTarget(self, action:"moreButtonTapped:", forControlEvents: .TouchUpInside)
             loadChannelImage(channel.channelId, imageUrlString: channel.thumbnailUrl) {
                 image in
                 headerView.thumbnailImageView.image = image
             }
-            
+
+            headerView.tag = indexPath.section
+            headerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "headerViewTapped:"))
             return headerView
         case UICollectionElementKindSectionFooter:
             let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "footerView", forIndexPath: indexPath) as UICollectionReusableView
@@ -303,6 +302,14 @@ extension TopViewController: UICollectionViewDataSource {
         }
     }
 
+    func headerViewTapped(gestureRecognizer: UITapGestureRecognizer){
+        guard let view = gestureRecognizer.view , channel = channel(view.tag) else {
+            return
+        }
+        
+        navigationController?.pushViewController(instantiateChannelDetailViewController(channel.channelId), animated: true)
+    }
+    
     func moreButtonTapped(button: UIButton){
         guard let channel = channel(button.tag) else {
             return
