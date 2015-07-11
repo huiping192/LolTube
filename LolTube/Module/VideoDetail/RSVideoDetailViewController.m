@@ -67,6 +67,9 @@ static NSString *const kSegueIdRelatedVideos = @"relatedVideosEmbed";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    [[RSVideoService sharedInstance] saveHistoryVideoId:self.videoId];
+    
     if (![self.videoPlayerViewController.moviePlayer isFullscreen]) {
         [self p_playVideo];
     }

@@ -36,7 +36,7 @@
 
 - (void)updateWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure {
     __weak typeof(self) weakSelf = self;
-    [self.service video:self.videoId success:^(RSVideoModel *videoModel) {
+    [self.service video:@[self.videoId] success:^(RSVideoModel *videoModel) {
         if (!videoModel.items || videoModel.items.count == 0) {
             return;
         }

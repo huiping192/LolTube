@@ -100,6 +100,9 @@
 		DC1196C11B5105DD0090338F /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1196C01B5105DD0090338F /* ViewControllerFactory.swift */; };
 		DC1196C31B510C3A0090338F /* SimpleListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1196C21B510C3A0090338F /* SimpleListCollectionViewController.swift */; };
 		DC1196C51B510DF90090338F /* SimpleListCollectionViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1196C41B510DF90090338F /* SimpleListCollectionViewModelProtocol.swift */; };
+		DC1873551B513B0100121563 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1873541B513B0100121563 /* HistoryViewController.swift */; };
+		DC1873571B513B5400121563 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1873561B513B5400121563 /* HistoryViewModel.swift */; };
+		DC1873591B513C7B00121563 /* HistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1873581B513C7B00121563 /* HistoryCollectionViewCell.swift */; };
 		DC1C9D441AF214050079AFC4 /* YoutubeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D597407BB9DD1397A6220 /* YoutubeService.swift */; };
 		DC22FF7E1A1245AB0053FBB9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC22FF7D1A1245AB0053FBB9 /* CoreData.framework */; };
 		DC22FF801A1245C60053FBB9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC22FF7F1A1245C60053FBB9 /* AdSupport.framework */; };
@@ -304,6 +307,9 @@
 		DC1196C01B5105DD0090338F /* ViewControllerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 		DC1196C21B510C3A0090338F /* SimpleListCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleListCollectionViewController.swift; sourceTree = "<group>"; };
 		DC1196C41B510DF90090338F /* SimpleListCollectionViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleListCollectionViewModelProtocol.swift; sourceTree = "<group>"; };
+		DC1873541B513B0100121563 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		DC1873561B513B5400121563 /* HistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		DC1873581B513C7B00121563 /* HistoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		DC1C9D411AF213D00079AFC4 /* VideoWidget-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VideoWidget-Bridging-Header.h"; sourceTree = "<group>"; };
 		DC22FF7D1A1245AB0053FBB9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		DC22FF7F1A1245C60053FBB9 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -566,6 +572,7 @@
 				7A9D540C286B4066C7A120F1 /* ChannelList */,
 				7A9D53AC5C8BABC71710AAE1 /* ChannelDetail */,
 				7A9D50C103B1D5AE87D4D3C7 /* VideoList */,
+				7A9D5999710E6679EA542C59 /* History */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -646,6 +653,16 @@
 				7A9D507B80947852CAAF8097 /* CircularImageView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		7A9D5999710E6679EA542C59 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				DC1873541B513B0100121563 /* HistoryViewController.swift */,
+				DC1873561B513B5400121563 /* HistoryViewModel.swift */,
+				DC1873581B513C7B00121563 /* HistoryCollectionViewCell.swift */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 		7A9D59BD8886AE67DA2D7CF6 /* Service */ = {
@@ -1209,6 +1226,7 @@
 				DC9467691B4C133D0043E33B /* RSPlaylistModel.m in Sources */,
 				DC1196C51B510DF90090338F /* SimpleListCollectionViewModelProtocol.swift in Sources */,
 				7A9D5A766490C3ECF29776DE /* UIViewController+RSError.m in Sources */,
+				DC1873551B513B0100121563 /* HistoryViewController.swift in Sources */,
 				7A9D5AA116615721C59D3D61 /* RSEnvironment.m in Sources */,
 				7A9D5D78AAEE2467B5DC5C37 /* NSString+Util.m in Sources */,
 				DC842D771B4AF5980085FF8D /* PlaylistsViewModel.swift in Sources */,
@@ -1230,6 +1248,7 @@
 				7A9D5E43566454C41B98499F /* RSVideoListViewController.m in Sources */,
 				7A9D5F981118FFCA6A4428AF /* RSVideoDetailAnimator.m in Sources */,
 				7A9D59972A3EB473B7490571 /* RSVideoListCollectionViewLayout.m in Sources */,
+				DC1873591B513C7B00121563 /* HistoryCollectionViewCell.swift in Sources */,
 				DC51F4C91B46DA5E009AEC11 /* ChannelInfoUtil.swift in Sources */,
 				DC1196B81B4ED2C40090338F /* RSPlaylistItemsModel.m in Sources */,
 				7A9D5B51022DD5A6334506D9 /* TopViewModel.swift in Sources */,
@@ -1258,6 +1277,7 @@
 				DC1196B11B4EC8080090338F /* PlaylistViewController.swift in Sources */,
 				7A9D50C4794BC7CDE9388DA2 /* RSVideoDetailModel.m in Sources */,
 				DC51F4C31B451777009AEC11 /* VideoListViewModel.swift in Sources */,
+				DC1873571B513B5400121563 /* HistoryViewModel.swift in Sources */,
 				7A9D5DD926C658587A69CB76 /* RSJsonModel.m in Sources */,
 				DC1196C11B5105DD0090338F /* ViewControllerFactory.swift in Sources */,
 				DC1196BF1B50FFC50090338F /* ImageUtil.swift in Sources */,
