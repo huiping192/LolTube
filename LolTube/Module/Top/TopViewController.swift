@@ -8,10 +8,10 @@ import UIKit
 
 class TopViewController: UIViewController {
 
-    private let cellDefaultWidth = CGFloat(145.0);
-    private let cellDefaultHeight = CGFloat(125.0);
-    private let cellImageHeightWidthRatio = CGFloat(9.0 / 16.0);
-    private let cellMargin = CGFloat(8);
+    private let cellDefaultWidth = CGFloat(145.0)
+    private let cellDefaultHeight = CGFloat(125.0)
+    private let cellImageHeightWidthRatio = CGFloat(9.0 / 16.0)
+    private let cellMargin = CGFloat(8)
 
     // MARK: top view
     @IBOutlet private var topImageView01: UIImageView!
@@ -40,9 +40,9 @@ class TopViewController: UIViewController {
     }()
 
 
-    private let viewModel: TopViewModel = TopViewModel()
-    private let imageLoadingOperationQueue: NSOperationQueue = NSOperationQueue()
-    private var imageLoadingOperationDictionary: [String:NSOperation] = [String: NSOperation]()
+    private let viewModel = TopViewModel()
+    private let imageLoadingOperationQueue = NSOperationQueue()
+    private var imageLoadingOperationDictionary = [String: NSOperation]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,16 +77,14 @@ class TopViewController: UIViewController {
         if let segueId = segue.identifier {
             switch segueId {
             case "videoDetail":
-                var videoDetailViewController = segue.destinationViewController as! RSVideoDetailViewController;
+                let videoDetailViewController = segue.destinationViewController as! RSVideoDetailViewController
                 let collectionViewCell = sender as! UICollectionViewCell
 
-                if let indexPath = videosCollectionView.indexPathForCell(collectionViewCell) {
-                    if let video = video(indexPath) {
-                        videoDetailViewController.videoId = video.videoId
-                    }
+                if let indexPath = videosCollectionView.indexPathForCell(collectionViewCell),video = video(indexPath) {
+                    videoDetailViewController.videoId = video.videoId
                 }
             case "topImageToVideoDetail":
-                var videoDetailViewController = segue.destinationViewController as! RSVideoDetailViewController;
+                let videoDetailViewController = segue.destinationViewController as! RSVideoDetailViewController
                 topImagePageControl?.currentPage = currentTopImageNumber()
 
                 if let video = viewModel.topVideoList?[currentTopImageNumber()] {
@@ -98,7 +96,7 @@ class TopViewController: UIViewController {
         }
     }
 
-// MARK: data loading
+    // MARK: data loading
     private func loadVideosData() {
         mainScrollView.alpha = 0.0
         animateLoadingView()
@@ -109,14 +107,14 @@ class TopViewController: UIViewController {
             self.videosCollectionView.reloadData()
             self.layoutCollectionViewSize()
 
-            self.stopAnimateLoadingView();
+            self.stopAnimateLoadingView()
             UIView.animateWithDuration(0.25) {
                 [unowned self] in
                 self.mainScrollView.alpha = 1.0
             }
 
         }, failure: {
-            (error: NSError) in
+            [unowned self]error in
             self.showError(error)
         })
     }
@@ -124,22 +122,22 @@ class TopViewController: UIViewController {
     func refresh(refreshControl: UIRefreshControl) {
         viewModel.update({
             [unowned self] in
-
             self.configureTopView()
             self.videosCollectionView.reloadData()
             refreshControl.endRefreshing()
         }, failure: {
-            (error: NSError) in
+            [unowned self]error in
             self.showError(error)
             refreshControl.endRefreshing()
         })
     }
 
     private func video(indexPath: NSIndexPath) -> Video? {
-        if let channel = channel(indexPath.section) {
-            return viewModel.videoDictionary?[channel]?[indexPath.row]
+        guard let channel = channel(indexPath.section) else {
+            return nil
         }
-        return nil
+        
+        return viewModel.videoDictionary?[channel]?[indexPath.row]
     }
 
     private func channel(section: Int) -> Channel? {
@@ -157,7 +155,7 @@ class TopViewController: UIViewController {
     }
 
     private func configureView() {
-        navigationController!.interactivePopGestureRecognizer.delegate = self
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
         topImageScrollView.scrollsToTop = false
         videosCollectionView.scrollsToTop = false
 
@@ -166,9 +164,9 @@ class TopViewController: UIViewController {
 
     private func configureTopView() {
         if let topVideoList = viewModel.topVideoList {
-            for (index, video: Video) in enumerate(topVideoList) {
-                loadVideoImage(video.videoId, imageUrlString: video.highThumbnailUrl!, secondImageUrlString: video.thumbnailUrl!) {
-                    (image: UIImage!) in
+            for (index, video) in topVideoList.enumerate() {
+                loadVideoImage(video.videoId, imageUrlString: video.highThumbnailUrl, secondImageUrlString: video.thumbnailUrl) {
+                    image in
                     switch index {
                     case 0:
                         self.topImageView01.image = image
@@ -195,14 +193,14 @@ class TopViewController: UIViewController {
         return Int(topImageScrollView.contentOffset.x / topImageScrollView.frame.size.width)
     }
 
-// MARK: image loading
+    // MARK: image loading
     private func loadVideoImage(videoId: String, imageUrlString: String?, secondImageUrlString: String?, success: (UIImage) -> Void) {
         if imageUrlString == nil && secondImageUrlString == nil {
             return
         }
 
         let imageLoadingOperation = UIImageView.asynLoadingImageWithUrlString(imageUrlString, secondImageUrlString: secondImageUrlString, needBlackWhiteEffect: false) {
-            (image: UIImage!) in
+            image in
             success(image)
         }
 
@@ -211,12 +209,12 @@ class TopViewController: UIViewController {
     }
 
     private func loadChannelImage(channelId: NSString, imageUrlString: String?, success: (UIImage) -> Void) {
-        if imageUrlString == nil {
+        guard imageUrlString != nil else {
             return
         }
 
         let imageLoadingOperation = UIImageView.asynLoadingImageWithUrlString(imageUrlString, secondImageUrlString: nil, needBlackWhiteEffect: false) {
-            (image: UIImage!) in
+            image in
             success(image)
         }
 
@@ -237,40 +235,37 @@ extension TopViewController: UICollectionViewDataSource {
         case (.Regular, .Regular):
             return 4
         default:
-            if let channel = viewModel.channelList?[section] {
-                if let videoList = viewModel.videoDictionary?[channel] {
-                    return videoList.count
-                }
+            if let channel = viewModel.channelList?[section],videoList = viewModel.videoDictionary?[channel] {
+                return videoList.count
             }
         }
-
         return 0
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("videoCell", forIndexPath: indexPath) as! TopVideoCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("videoCell", forIndexPath: indexPath) as! TopVideoCell
 
-        if let video = video(indexPath) {
-            cell.titleLabel.text = video.title
-            cell.durationLabel.text = video.duration
-            cell.viewCountLabel.text = video.viewCountString
-
-            var firstImageUrlString: String?
-            var secondImageUrlString: String?
-            if (indexPath.row == 0 && indexPath.section != 0) {
-                firstImageUrlString = video.highThumbnailUrl ?? video.thumbnailUrl
-                secondImageUrlString = video.thumbnailUrl
-            } else {
-                firstImageUrlString = video.thumbnailUrl
-                secondImageUrlString = nil
-            }
-
-            loadVideoImage(video.videoId, imageUrlString: firstImageUrlString, secondImageUrlString: secondImageUrlString) {
-                (image: UIImage!) in
-                UIView.transitionWithView(cell.thunmbnailImageView, duration: 0.25, options: .TransitionCrossDissolve, animations: {
-                    cell.thunmbnailImageView.image = image
-                }, completion: nil)
-            }
+        guard let video = video(indexPath) else {
+            return cell
+        }
+        
+        cell.titleLabel.text = video.title
+        cell.durationLabel.text = video.duration
+        cell.viewCountLabel.text = video.viewCountString
+        
+        var firstImageUrlString: String?
+        var secondImageUrlString: String?
+        if (indexPath.row == 0 && indexPath.section != 0) {
+            firstImageUrlString = video.highThumbnailUrl ?? video.thumbnailUrl
+            secondImageUrlString = video.thumbnailUrl
+        } else {
+            firstImageUrlString = video.thumbnailUrl
+            secondImageUrlString = nil
+        }
+        
+        loadVideoImage(video.videoId, imageUrlString: firstImageUrlString, secondImageUrlString: secondImageUrlString) {
+            [weak cell]image in
+            cell?.thunmbnailImageView.image = image
         }
 
         return cell
@@ -283,42 +278,52 @@ extension TopViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionElementKindSectionHeader:
-            var headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "headerView", forIndexPath: indexPath) as! TopVideoCollectionHeaderView
-            if let channel = channel(indexPath.section) {
-                headerView.titleLabel.text = channel.title
-                loadChannelImage(channel.channelId, imageUrlString: channel.thumbnailUrl) {
-                    (image: UIImage!) in
-                    headerView.thumbnailImageView.image = image;
-                }
+            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "headerView", forIndexPath: indexPath) as! TopVideoCollectionHeaderView
+            
+            guard let channel = channel(indexPath.section) else {
+                return headerView
             }
+            
+            headerView.titleLabel.text = channel.title
+            headerView.moreButton.addTarget(self, action:"moreButtonTapped:", forControlEvents: .TouchUpInside)
+            headerView.moreButton.tag = indexPath.section
+            loadChannelImage(channel.channelId, imageUrlString: channel.thumbnailUrl) {
+                image in
+                headerView.thumbnailImageView.image = image
+            }
+            
             return headerView
         case UICollectionElementKindSectionFooter:
-            let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "footerView", forIndexPath: indexPath) as! UICollectionReusableView
+            let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "footerView", forIndexPath: indexPath) as UICollectionReusableView
             footerView.hidden = indexPath.section == collectionView.numberOfSections() - 1
 
             return footerView
         default:
-            let collectionReusableView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "footerView", forIndexPath: indexPath) as! UICollectionReusableView
-            collectionReusableView.hidden = true
-            return collectionReusableView
+            return UICollectionReusableView()
         }
+    }
 
+    func moreButtonTapped(button: UIButton){
+        guard let channel = channel(button.tag) else {
+            return
+        }
+        
+        navigationController?.pushViewController(instantiateChannelDetailViewController(channel.channelId), animated: true)
     }
 }
 
 extension TopViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        if let video = video(indexPath) {
-            if let imageLoadingOperation = imageLoadingOperationDictionary[video.videoId] {
-                imageLoadingOperation.cancel()
-                imageLoadingOperationDictionary.removeValueForKey(video.videoId)
-            }
+        guard let video = video(indexPath),imageLoadingOperation = imageLoadingOperationDictionary[video.videoId] else {
+            return
         }
+        imageLoadingOperation.cancel()
+        imageLoadingOperationDictionary.removeValueForKey(video.videoId)
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let collectionWidth = collectionView.frame.size.width
-        var cellCount: Int;
+        let cellCount: Int
 
         switch (traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
         case (.Regular, _ ):
@@ -337,16 +342,15 @@ extension TopViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: cellMargin, bottom: cellMargin, right: cellMargin);
+        return UIEdgeInsets(top: 0, left: cellMargin, bottom: cellMargin, right: cellMargin)
     }
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        if (scrollView == topImageScrollView) {
-            if let video = viewModel.topVideoList?[currentTopImageNumber()] {
-                topImagePageControl?.currentPage = currentTopImageNumber();
-                topImageTitleLabel?.text = video.title
-            }
+        guard let video = viewModel.topVideoList?[currentTopImageNumber()] where scrollView == topImageScrollView else {
+            return
         }
+        topImagePageControl?.currentPage = currentTopImageNumber()
+        topImageTitleLabel?.text = video.title
     }
 }
 
