@@ -13,6 +13,7 @@
 #import "UIImageView+Loading.h"
 #import "UIViewController+RSError.h"
 #import "RSEventTracker.h"
+#import "LolTube-Swift.h"
 
 @interface RSChannelListViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -184,4 +185,13 @@
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
     [self.tableViewModel moveChannelWithIndexPath:sourceIndexPath toIndexPath:toIndexPath];
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIStoryboard *channelDetailStoryboard = [UIStoryboard storyboardWithName:@"ChannelDetail" bundle:nil];
+    ChannelDetailViewController *channelDetailViewController = [channelDetailStoryboard instantiateInitialViewController];
+    RSChannelTableViewCellVo *cellVo = self.tableViewModel.items[(NSUInteger) indexPath.row];
+    channelDetailViewController.channelId = cellVo.channelId;
+    [self.navigationController pushViewController:channelDetailViewController animated:YES];
+}
+
 @end

@@ -18,12 +18,33 @@
 
 @end
 
+@interface RSBrandingSettingsImage :JSONModel
+
+@property (nonatomic, strong) NSString *bannerMobileImageUrl;
+
+@end
+
+@interface RSBrandingSettings :JSONModel
+
+@property (nonatomic, strong) RSBrandingSettingsImage *image;
+
+@end
+
+@interface RSStatistics :JSONModel
+
+@property (nonatomic, copy) NSString *viewCount;
+@property (nonatomic, copy) NSString *subscriberCount;
+@property (nonatomic, copy) NSString *videoCount;
+
+@end
 
 @interface RSChannelItem:JSONModel
 
 @property (nonatomic, copy) NSString *channelId;
 
 @property (nonatomic, strong)  RSChannelSnippet *snippet;
+@property (nonatomic, strong)  RSBrandingSettings<Optional> *brandingSettings;
+@property (nonatomic, strong)  RSStatistics<Optional> *statistics;
 
 @end
 
@@ -31,6 +52,11 @@
 
 @property (nonatomic, copy) NSString *publishedAt;
 @property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *channelDescription;
+
 @property (nonatomic, strong) RSThumbnails *thumbnails;
 
 @end
+
+
+

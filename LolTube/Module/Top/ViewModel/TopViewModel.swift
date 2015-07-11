@@ -1,8 +1,3 @@
-//
-// Created by 郭 輝平 on 3/11/15.
-// Copyright (c) 2015 Huiping Guo. All rights reserved.
-//
-
 import Foundation
 
 class TopViewModel {
@@ -11,7 +6,6 @@ class TopViewModel {
     private let channelService = RSChannelService()
 
     var topVideoList: [Video]?
-
     var channelList: [Channel]?
     var videoDictionary: [Channel:[Video]]?
 
@@ -20,11 +14,10 @@ class TopViewModel {
     }
 
     func update(success: () -> Void, failure: (NSError) -> Void) {
-        let defaultChannelIdList = channelService.channelIds()
+        let defaultChannelIdList = channelService.channelIds() as! [String]
 
-        youtubeService.channel(defaultChannelIdList as! [String], success: {
-            [unowned self](channelModel: RSChannelModel) in
-
+        youtubeService.channel(defaultChannelIdList, success: {
+            [unowned self]channelModel in
             var channelList = [Channel]()
             var channelIdList = [String]()
 
@@ -37,10 +30,7 @@ class TopViewModel {
                 success()
             }, failure: failure)
 
-        }, failure: {
-            (error: NSError!) in
-            failure(error)
-        })
+        }, failure: failure)
     }
 
     private func loadVideos(channelList: [Channel], success: () -> Void, failure: (NSError) -> Void) {
@@ -50,12 +40,12 @@ class TopViewModel {
         }
 
         self.youtubeService.videoList(channelIdList, searchText: nil, nextPageTokenList: nil, success: {
-            [unowned self](searchModelList: [RSSearchModel]) in
+            [unowned self]searchModelList in
 
             var videoDictionary = [Channel: [Video]]()
             var allVideoList = [Video]()
 
-            for (index, searchModel) in enumerate(searchModelList) {
+            for (index, searchModel) in searchModelList.enumerate() {
                 var videoList = [Video]()
 
                 for item in searchModel.items as! [RSItem] {
@@ -68,46 +58,47 @@ class TopViewModel {
             }
 
             self.updateVideoDetail(allVideoList, success: {
-                self.topVideoList = self.todayFourHighRankVideoList(allVideoList)
-                self.channelList = self.sortChannelList(channelList, videoDictionary: videoDictionary)
-                self.videoDictionary = videoDictionary
-                success()
-            }, failure: {
-                (error: NSError!) in
-                failure(error)
-            })
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                    [unowned self] in
+                    self.topVideoList = self.todayFourHighRankVideoList(allVideoList)
+                    self.channelList = self.topChannelList(channelList, videoDictionary: videoDictionary)
+                    self.videoDictionary = videoDictionary
+                    dispatch_async(dispatch_get_main_queue()) {
+                        success()
+                    }
+                }
+                
+            }, failure: failure)
 
-        }, failure: {
-            (error: NSError!) in
-            failure(error)
-        })
+        }, failure: failure)
     }
 
     private func updateVideoDetail(videoList: [Video], success: () -> Void, failure: (NSError) -> Void) {
-        var videoIdList = videoList.map {
+        let videoIdList = videoList.map {
             (video: Video) -> String in
             return video.videoId
         }
 
         youtubeService.videoDetailList(videoIdList, success: {
-            (videoDetailModel: RSVideoDetailModel!) in
+            videoDetailModel in
 
-            for (index, detailItem) in enumerate(videoDetailModel.items as! [RSVideoDetailItem]) {
-                var video = videoList[index]
-                video.duration = RSVideoInfoUtil.convertVideoDuration(detailItem.contentDetails.duration)
-                video.viewCountString = RSVideoInfoUtil.convertVideoViewCount(detailItem.statistics.viewCount.toInt() ?? 0)
-                video.viewCount = detailItem.statistics.viewCount.toInt() ?? 0
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                for (index, detailItem) in (videoDetailModel.items as! [RSVideoDetailItem]).enumerate() {
+                    let video = videoList[index]
+                    video.duration = RSVideoInfoUtil.convertVideoDuration(detailItem.contentDetails.duration)
+                    video.viewCountString = RSVideoInfoUtil.convertVideoViewCount(Int(detailItem.statistics.viewCount) ?? 0)
+                    video.viewCount = Int(detailItem.statistics.viewCount) ?? 0
+                }
+                dispatch_async(dispatch_get_main_queue()) {
+                    success()
+                }
             }
-
-            success()
-        }, failure: {
-            (error: NSError!) in
-            failure(error)
-        })
+            
+        }, failure: failure)
     }
 
     private func convertChannel(item: RSChannelItem) -> Channel {
-        var channel = Channel()
+        let channel = Channel()
         channel.channelId = item.channelId
         channel.title = item.snippet.title
         channel.thumbnailUrl = item.snippet.thumbnails.medium.url
@@ -116,19 +107,19 @@ class TopViewModel {
     }
 
     private func convertVideo(item: RSItem) -> Video {
-        var video = Video()
+        let video = Video()
         video.videoId = item.id.videoId
         video.channelId = item.snippet.channelId
         video.channelTitle = item.snippet.channelTitle
         video.title = item.snippet.title
         video.thumbnailUrl = item.snippet.thumbnails.medium.url
-        video.highThumbnailUrl = "http://i.ytimg.com/vi/\(video.videoId)/maxresdefault.jpg"
+        video.highThumbnailUrl = "https://i.ytimg.com/vi/\(video.videoId)/maxresdefault.jpg"
         video.publishedAt = item.snippet.publishedAt
         return video
     }
 
     private func todayFourHighRankVideoList(videoList: [Video]) -> [Video] {
-        var sortedVideoList = videoList.sorted {
+        var sortedVideoList = videoList.sort {
             (video1, video2) in
             let video1PublishedDate = NSDate(fromISO8601String: video1.publishedAt)
             let video2PublishedDate = NSDate(fromISO8601String: video2.publishedAt)
@@ -136,11 +127,12 @@ class TopViewModel {
             return video1.viewCount > video2.viewCount || video1PublishedDate.compare(video2PublishedDate) == .OrderedDescending
         }
 
-        return Array(sortedVideoList[0 ... 4])
+        //FIXME: do not have 4 videos crash
+        return Array(sortedVideoList[0 ..< 4])
     }
 
     private func sortChannelList(channelList: [Channel], videoDictionary: [Channel:[Video]]) -> [Channel] {
-        return channelList.sorted {
+        return channelList.sort {
             (channel1, channel2) in
 
             let videoList1 = videoDictionary[channel1]
@@ -160,5 +152,16 @@ class TopViewModel {
 
             return video1PublishedDate.compare(video2PublishedDate) == .OrderedDescending
         }
+    }
+    
+    private func topChannelList(channelList: [Channel], videoDictionary: [Channel:[Video]]) -> [Channel]{
+        let sortedChannelList = sortChannelList(channelList, videoDictionary: videoDictionary)
+       
+        let maxChannelCount = 8
+        if sortedChannelList.count > maxChannelCount {
+            return Array(sortedChannelList[0 ..< maxChannelCount])
+        }
+        
+        return sortedChannelList
     }
 }

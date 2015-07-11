@@ -5,6 +5,7 @@
 
 #import <JSONModel/JSONModel.h>
 #import "RSJsonModel.h"
+#import "RSPageInfo.h"
 
 @protocol RSItem;
 @class RSId;
@@ -15,6 +16,8 @@
 
 @interface RSSearchModel : RSJsonModel
 @property(nonatomic, copy) NSString<Optional> *nextPageToken;
+
+@property(nonatomic, strong) RSPageInfo *pageInfo;
 
 @property(nonatomic, strong) NSArray <RSItem> *items;
 

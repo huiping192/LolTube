@@ -10,5 +10,6 @@ class TopVideoCollectionHeaderView:UICollectionReusableView {
 
     @IBOutlet var titleLabel:UILabel!
     @IBOutlet var thumbnailImageView:UIImageView!
+    @IBOutlet var moreButton:UIButton!
 
 }
