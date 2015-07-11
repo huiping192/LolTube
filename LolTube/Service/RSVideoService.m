@@ -6,10 +6,12 @@
 #import "RSVideoService.h"
 
 static NSTimeInterval const kDiffPlaybackTime = 5.0;
+static int const kMaxItemCount = 49;
 
 @interface RSVideoService ()
 
-@property(nonatomic, strong) NSMutableDictionary *videoList;
+@property(nonatomic, strong) NSMutableDictionary *videoDictionary;
+@property(nonatomic, strong) NSMutableArray *videoIdList;
 
 @end
 
@@ -31,46 +33,66 @@ static RSVideoService *sharedInstance = nil;
 
 - (void)configure {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    self.videoList = [[userDefaults dictionaryForKey:kPlayFinishedVideoIdsKey] mutableCopy];
-    if (!self.videoList) {
+    self.videoDictionary = [[userDefaults dictionaryForKey:kPlayFinishedVideoIdsKey] mutableCopy];
+    if (!self.videoDictionary) {
         NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
-        self.videoList = [[cloudStore dictionaryForKey:kPlayFinishedVideoIdsKey] mutableCopy];
+        self.videoDictionary = [[cloudStore dictionaryForKey:kPlayFinishedVideoIdsKey] mutableCopy];
 
-        if(!self.videoList){
-            self.videoList = [[NSMutableDictionary alloc] init];
+        if(!self.videoDictionary){
+            self.videoDictionary = [[NSMutableDictionary alloc] init];
         }
+    }
+    
+    self.videoIdList = [[userDefaults stringArrayForKey:kHistoryVideoIdsKey] mutableCopy];
+    if(!self.videoIdList){
+        self.videoIdList = [[NSMutableArray alloc] init];
     }
 }
 
 - (BOOL)isPlayFinishedWithVideoId:(NSString *)videoId {
-    return (self.videoList)[videoId] != nil;
+    return (self.videoDictionary)[videoId] != nil;
 
 }
 
+-(void)saveHistoryVideoId:(NSString *)videoId{
+    if([self.videoIdList containsObject:videoId]){
+        [self.videoIdList removeObject:videoId];
+    }
+    
+    if(self.videoIdList.count >= kMaxItemCount){
+        [self.videoIdList removeObjectAtIndex:0];
+    }
+    [self.videoIdList addObject:videoId];
+}
+
 - (void)savePlayFinishedVideoId:(NSString *)videoId {
-    if ((self.videoList)[videoId] != nil) {
+    if ((self.videoDictionary)[videoId] != nil) {
         return;
     }
-    (self.videoList)[videoId] = @(0);
-
+    if(self.videoDictionary.count >= kMaxItemCount){
+        [self.videoDictionary removeObjectForKey:self.videoDictionary.allKeys[0]];
+    }
+    
+    (self.videoDictionary)[videoId] = @(0);
+    
     [self save];
 }
 
 - (void)updateLastPlaybackTimeWithVideoId:(NSString *)videoId lastPlaybackTime:(NSTimeInterval)lastPlaybackTime {
-    (self.videoList)[videoId] = @(lastPlaybackTime);
+    (self.videoDictionary)[videoId] = @(lastPlaybackTime);
 
     [self save];
 }
 
 - (NSTimeInterval)lastPlaybackTimeWithVideoId:(NSString *)videoId {
-    NSNumber *lastPlaybackTimeNumber = (self.videoList)[videoId];
+    NSNumber *lastPlaybackTimeNumber = (self.videoDictionary)[videoId];
     return lastPlaybackTimeNumber.floatValue - kDiffPlaybackTime > 0 ? lastPlaybackTimeNumber.floatValue - kDiffPlaybackTime : lastPlaybackTimeNumber.floatValue;
 }
 
 - (void)overrideVideoDataWithVideoDictionary:(NSDictionary *)videoDictionary {
-    self.videoList = [videoDictionary mutableCopy];
-    if (!self.videoList) {
-        self.videoList = [[NSMutableDictionary alloc] init];
+    self.videoDictionary = [videoDictionary mutableCopy];
+    if (!self.videoDictionary) {
+        self.videoDictionary = [[NSMutableDictionary alloc] init];
     }
     [self save];
 }
@@ -79,12 +101,18 @@ static RSVideoService *sharedInstance = nil;
 - (void)save {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
-    [userDefaults setObject:self.videoList forKey:kPlayFinishedVideoIdsKey];
+    [userDefaults setObject:self.videoDictionary forKey:kPlayFinishedVideoIdsKey];
+    [userDefaults setObject:self.videoIdList forKey:kHistoryVideoIdsKey];
+
     [userDefaults synchronize];
 
     NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
-    [cloudStore setObject:self.videoList forKey:kPlayFinishedVideoIdsKey];
+    [cloudStore setObject:self.videoDictionary forKey:kPlayFinishedVideoIdsKey];
     [cloudStore synchronize];
+}
+
+-(NSArray *)historyVideoIdList{
+    return [[self.videoIdList reverseObjectEnumerator] allObjects];
 }
 
 @end

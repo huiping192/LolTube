@@ -12,7 +12,7 @@ public class YoutubeService: NSObject {
 
     // api url
     let searchUrlString = "https://www.googleapis.com/youtube/v3/search?fields=items(id%2Csnippet)%2CpageInfo%2CnextPageToken"
-    let videoUrlString = "https://www.googleapis.com/youtube/v3/videos?fields=items(fileDetails%2Cplayer%2CprocessingDetails%2CprojectDetails%2CrecordingDetails%2Csnippet%2Cstatistics%2Cstatus)"
+    let videoUrlString = "https://www.googleapis.com/youtube/v3/videos"
     let videoDetailUrlString = "https://www.googleapis.com/youtube/v3/videos"
     let channelUrlString = "https://www.googleapis.com/youtube/v3/channels?fields=items(auditDetails,brandingSettings,contentDetails,contentOwnerDetails,id,snippet,statistics,status,topicDetails)"
     
@@ -69,18 +69,15 @@ public class YoutubeService: NSObject {
             success?(jsonModeList as! [RSSearchModel])
         }, failure: failure)
     }
-
-    public func video(videoId: String, success: ((RSVideoModel) -> Void)?, failure: ((NSError) -> Void)?) {
+    
+    public func video(videoIdList: [String], success: ((RSVideoModel) -> Void)?, failure: ((NSError) -> Void)?) {
         let queryparameters = [
-                "key": kYoutubeApiKey,
-                "part": "snippet",
-                "id": videoId
+            "key": kYoutubeApiKey,
+            "part": "snippet,statistics,contentDetails",
+            "id": ",".join(videoIdList)
         ]
-
-        request(videoUrlString, queryParameters: queryparameters, jsonModelClass: RSVideoModel.self as RSJsonModel.Type, success: {
-            (jsonModel: RSJsonModel) in
-            success?(jsonModel as! RSVideoModel)
-        }, failure: failure)
+        
+        request(videoUrlString, queryParameters: queryparameters, jsonModelClass: RSVideoModel.self, success: success, failure: failure)
     }
 
     public func channel(channelIdList: [String], success: ((RSChannelModel) -> Void)?, failure: ((NSError) -> Void)?) {

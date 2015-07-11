@@ -12,7 +12,7 @@ protocol SimpleListCollectionViewControllerDelegate:class {
 
 class SimpleListCollectionViewController: UIViewController,SimpleListCollectionViewControllerDelegate {
     
-    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     private weak var delegate: SimpleListCollectionViewControllerDelegate!
 

@@ -6,6 +6,7 @@
 
 #import <JSONModel/JSONModel.h>
 #import "RSJsonModel.h"
+#import "RSVideoDetailModel.h"
 
 @protocol RSVideoItem;
 
@@ -13,7 +14,6 @@
 @class RSThumbnails;
 
 @interface RSVideoModel : RSJsonModel
-
 @property (nonatomic, strong)  NSArray<RSVideoItem> *items;
 
 @end
@@ -21,8 +21,11 @@
 
 @interface RSVideoItem:JSONModel
 
-@property (nonatomic, strong)  RSVideoSnippet *snippet;
+@property (nonatomic, copy) NSString *id;
 
+@property (nonatomic, strong)  RSVideoSnippet *snippet;
+@property (nonatomic, strong)  RSVideoContentDetails *contentDetails;
+@property (nonatomic, strong)  RSVideoStatistics *statistics;
 @end
 
 @interface RSVideoSnippet :JSONModel
@@ -32,5 +35,9 @@
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *videoDescription;
 @property (nonatomic, strong) RSThumbnails *thumbnails;
+
+@property (nonatomic, copy) NSString *channelTitle;
+
+
 
 @end
