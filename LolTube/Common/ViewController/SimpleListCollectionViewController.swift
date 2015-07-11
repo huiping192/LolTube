@@ -157,7 +157,7 @@ extension SimpleListCollectionViewController: UICollectionViewDelegateFlowLayout
     }
     
     var cellHeight: CGFloat {
-        return 90.0
+        return 100.0
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
