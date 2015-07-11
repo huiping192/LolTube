@@ -1,10 +1,3 @@
-/* 
-  Localizable.strings
-  LolTube
-
-  Created by 郭 輝平 on 9/8/14.
-  Copyright (c) 2014 Huiping Guo. All rights reserved.
-*/
 "VideoPostedTimeStringMinutesFormatter" = "%d minutes ago";
 "VideoPostedTimeStringHoursFormatter" = "%d hours ago";
 "VideoDetailPostedAtFormatter" = "%@ posted";
@@ -21,3 +14,6 @@
 "VideoLikeDislikeFormat" = "%@ likes, %@ dislikes";
 "VideoDetailInfo" = "Info";
 "VideoDietalSuggestions" = "Suggestions";
+
+"ChannelSubscriberCountFormat" = "%@ subscribers";
+"ChannelVideoCountFormat" = "%@ videos";

@@ -10,3 +10,6 @@
 #import "RSVideoDetailModel.h"
 #import "RSThumbnails.h"
 #import "RSJsonModel.h"
+#import "RSPlaylistModel.h"
+#import "RSPlaylistItemsModel.h"
+#import "RSPageInfo.h"

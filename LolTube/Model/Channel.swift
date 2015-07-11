@@ -1,15 +1,18 @@
-//
-// Created by 郭 輝平 on 3/13/15.
-// Copyright (c) 2015 Huiping Guo. All rights reserved.
-//
-
 import Foundation
 
 class Channel: Hashable {
     var channelId: String!
     var title: String?
-
+    var description: String?
     var thumbnailUrl: String?
+    var bannerImageUrl: String?
+
+    var videoCount: Int?
+    var subscriberCount: Int?
+    var viewCount: Int?
+    var videoCountString: String?
+    var subscriberCountString: String?
+    var viewCountString: String?
 
     init() {
 
