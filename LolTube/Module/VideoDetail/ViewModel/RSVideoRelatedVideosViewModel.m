@@ -9,6 +9,7 @@
 #import "NSString+Util.h"
 #import "LolTube-Swift.h"
 #import "RSVideoDetailModel.h"
+#import "RSVideoInfoUtil.h"
 
 @interface RSVideoRelatedVideosViewModel ()
 
@@ -52,7 +53,7 @@
         cellVo.title = item.snippet.title;
         cellVo.channelTitle = item.snippet.channelTitle;
         cellVo.thumbnailImageUrl = item.snippet.thumbnails.medium.url;
-
+        cellVo.publishedAtString = [RSVideoInfoUtil convertToShortPostedTime:item.snippet.publishedAt];
         [newItems addObject:cellVo];
     }
 
@@ -69,14 +70,13 @@
                 return;
             }
             RSVideoDetailItem *detailItem = videoDetailModel.items[0];
-            cellVo.duration = [self p_convertVideoDuration:detailItem.contentDetails.duration];
+            cellVo.duration = [RSVideoInfoUtil convertVideoDuration:detailItem.contentDetails.duration];
+            cellVo.viewCount = [RSVideoInfoUtil convertVideoViewCount:detailItem.statistics.viewCount.intValue];
 
-            NSNumberFormatter *formatter = [NSNumberFormatter new];
-            [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-            NSString *formatted = [formatter stringFromNumber:@(detailItem.statistics.viewCount.intValue)];
-
-            cellVo.viewCount = [NSString stringWithFormat:NSLocalizedString(@"VideoViewCountFormat", @"%@ views"), formatted];
-
+            if(cellVo.viewCount && cellVo.publishedAtString){
+                cellVo.viewCountpublishedAt = [NSString stringWithFormat:@"%@ ・ %@",cellVo.viewCount,cellVo.publishedAtString];
+            }
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (success) {
                     success();
@@ -85,62 +85,6 @@
         });
     }                                 failure:failure];
 }
-
--(NSString *)p_convertVideoDuration:(NSString *)duration{
-    NSString *hour = nil;
-    NSString *minute = nil;
-    NSString *second = nil;
-
-    NSArray *durationSpilt = [duration componentsSeparatedByString:@"PT"];
-    if (durationSpilt.count != 2) {
-        return nil;
-    }
-    NSString *hms = durationSpilt[1];
-    NSString *ms = durationSpilt[1];
-    NSString *s = durationSpilt[1];
-
-    if ([hms indexOf:@"H"] >= 0) {
-        NSArray *hourSpilt = [hms componentsSeparatedByString:@"H"];
-        if (hourSpilt.count == 2) {
-            hour = hourSpilt[0];
-            ms = hourSpilt[1];
-        }
-    }
-
-    if ([ms indexOf:@"M"] >= 0) {
-        NSArray *minuteSpilt = [ms componentsSeparatedByString:@"M"];
-        if (minuteSpilt.count == 2) {
-            minute = minuteSpilt[0];
-            s = minuteSpilt[1];
-        }
-    }
-
-    if ([s indexOf:@"S"] >= 0) {
-        NSArray *secondSpilt = [s componentsSeparatedByString:@"S"];
-        if (secondSpilt.count > 1) {
-            second = secondSpilt[0];
-        }
-    }
-
-    int mInt = minute.intValue;
-    if (mInt < 10) {
-        minute = [NSString stringWithFormat:@"0%d", mInt];
-    }
-    int sInt = second.intValue;
-    if (sInt < 10) {
-        second = [NSString stringWithFormat:@"0%d", sInt];
-    }
-
-    minute = minute ? minute : @"00";
-    second = second ? second : @"00";
-
-    if (hour) {
-        return [NSString stringWithFormat:@"%@:%@:%@", hour, minute, second];
-    } else {
-        return [NSString stringWithFormat:@"%@:%@", minute, second];
-    }
-}
-
 @end
 
 @implementation RSRelatedVideoCollectionViewCellVo

@@ -28,4 +28,7 @@
 @property(nonatomic, copy) NSString *thumbnailImageUrl;
 @property(nonatomic, copy) NSString *viewCount;
 @property(nonatomic, copy) NSString *duration;
+@property(nonatomic, copy) NSString *viewCountpublishedAt;
+@property(nonatomic, copy) NSString *publishedAtString;
+
 @end

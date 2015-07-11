@@ -11,6 +11,8 @@
 "VideoQualityLow" = "低";
 "Cancel" = "キャンセル";
 "VideoViewCountFormat" = "再生回数%@回";
+"VideoViewCountTenThousandFormat" = "%@万";
+"VideoViewCountThousandFormat" = "%@千";
 "VideoLikeDislikeFormat" = "高評価%@件,低評価%@件";
 "VideoDetailInfo" = "詳細";
 "VideoDietalSuggestions" = "おすすめ";
@@ -18,3 +20,15 @@
 "ChannelSubscriberCountFormat" = "チャンネル登録者数 %@ 人";
 "ChannelVideoCountFormat" = "%@ 本の動画";
 
+
+"PublishedAtYearsFormat" = "%ld年前";
+"PublishedAtMonthsFormat" = "%ld月前";
+"PublishedAtWeeksFormat" = "%ld週間前";
+"PublishedAtDaysFormat" = "%ld日前";
+"PublishedAtHoursFormat" = "%ld時間前";
+"PublishedAtMinsFormat" = "%ld分前";
+"PublishedAtSingleYearFormat" = "%ld年前";
+"PublishedAtSingleMonthFormat" = "%ld月前";
+"PublishedAtSingleWeekFormat" = "%ld週間前";
+"PublishedAtSingleDayFormat" = "%ld日前";
+"PublishedAtSingleHourFormat" = "%ld時間前";

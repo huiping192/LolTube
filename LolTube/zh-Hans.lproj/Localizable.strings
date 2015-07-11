@@ -11,9 +11,22 @@
 "VideoQualityLow" = "低";
 "Cancel" = "取消";
 "VideoViewCountFormat" = "%@次观看";
+"VideoViewCountTenThousandFormat" = "%@万";
+"VideoViewCountThousandFormat" = "%@千";
 "VideoLikeDislikeFormat" = "%@人喜欢,%@人不喜欢";
 "VideoDetailInfo" = "详情";
 "VideoDietalSuggestions" = "推荐视频";
 
 "ChannelSubscriberCountFormat" = "%@ 位订阅者";
 "ChannelVideoCountFormat" = "%@ 个视频";
+"PublishedAtYearsFormat" = "%ld年前";
+"PublishedAtMonthsFormat" = "%ld个月前";
+"PublishedAtWeeksFormat" = "%ld周前";
+"PublishedAtDaysFormat" = "%ld天前";
+"PublishedAtHoursFormat" = "%ld小时前";
+"PublishedAtMinsFormat" = "%ld分钟前";
+"PublishedAtSingleYearFormat" = "%ld年前";
+"PublishedAtSingleMonthFormat" = "%ld个月前";
+"PublishedAtSingleWeekFormat" = "%ld周前";
+"PublishedAtSingleDayFormat" = "%ld天前";
+"PublishedAtSingleHourFormat" = "%ld小时前";

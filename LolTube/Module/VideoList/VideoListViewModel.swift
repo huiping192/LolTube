@@ -61,6 +61,9 @@ class VideoListViewModel: SimpleListCollectionViewModelProtocol {
                 video.duration = RSVideoInfoUtil.convertVideoDuration(detailItem.contentDetails.duration)
                 video.viewCountString = RSVideoInfoUtil.convertVideoViewCount(Int(detailItem.statistics.viewCount) ?? 0)
                 video.viewCount = Int(detailItem.statistics.viewCount) ?? 0
+                if let viewCount = video.viewCountString , publishedAtString = video.publishedAtString{
+                    video.viewCountPublishedAt = "\(viewCount) ・ \(publishedAtString)"
+                }
             }
 
             success()
@@ -76,6 +79,8 @@ class VideoListViewModel: SimpleListCollectionViewModelProtocol {
         video.thumbnailUrl = item.snippet.thumbnails.medium.url
         video.highThumbnailUrl = "http://i.ytimg.com/vi/\(video.videoId)/maxresdefault.jpg"
         video.publishedAt = item.snippet.publishedAt
+        video.publishedAtString = RSVideoInfoUtil.convertToShortPostedTime(item.snippet.publishedAt)
+
         return video
     }
 }

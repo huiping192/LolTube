@@ -69,14 +69,24 @@
 }
 
 + (NSString *)convertVideoViewCount:(NSInteger)viewCount {
-    NSNumberFormatter *formatter = [NSNumberFormatter new];
-    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    NSString *formatted = [formatter stringFromNumber:@(viewCount)];
+    NSString *formatted = @(viewCount).stringValue;
+    NSInteger tenThousandCount = viewCount / 10000;
+    NSInteger thousandCount = viewCount / 1000;
 
+    if(tenThousandCount > 0){
+        NSString *tenThousandformatted = NSLocalizedString(@"VideoViewCountTenThousandFormat", nil);
+        if(![tenThousandformatted isEqualToString:@"VideoViewCountTenThousandFormat"]){
+            formatted = [NSString stringWithFormat:tenThousandformatted, @(tenThousandCount)];
+        }else {
+            formatted = [NSString stringWithFormat:NSLocalizedString(@"VideoViewCountThousandFormat", nil), @(thousandCount)];
+        }
+    } else if (thousandCount > 0) {
+        formatted = [NSString stringWithFormat:NSLocalizedString(@"VideoViewCountThousandFormat", nil), @(thousandCount)];
+    }
     return [NSString stringWithFormat:NSLocalizedString(@"VideoViewCountFormat", @"%@ views"), formatted];
 }
 
-- (NSString *)convertPostedTime:(NSString *)publishedAt {
++ (NSString *)convertPostedTime:(NSString *)publishedAt {
     NSString *publishedDateString = nil;
 
     NSDate *publishedDate = [NSDate dateFromISO8601String:publishedAt];
@@ -94,6 +104,65 @@
     }
 
     return publishedDateString;
+}
+
++ (NSString *)convertToShortPostedTime:(NSString *)publishedAt{
+    NSDate *publishedDate = [NSDate dateFromISO8601String:publishedAt];
+    NSTimeInterval diffTime = [[NSDate alloc]init].timeIntervalSince1970 - publishedDate.timeIntervalSince1970;
+    
+    NSTimeInterval minTime = 60;
+    NSTimeInterval hourTime = 60 *  minTime;
+    NSTimeInterval dayTime = 24 * hourTime;
+    NSTimeInterval weekTime = 7 * dayTime;
+    NSTimeInterval monthTime = 30 * dayTime;
+    NSTimeInterval yearTime = 365 * dayTime;
+    
+    NSInteger yearCount = diffTime / yearTime;
+    if (yearCount > 0) {
+        if(yearCount == 1){
+            return [NSString stringWithFormat:NSLocalizedString(@"PublishedAtSingleYearFormat", @"%ld year ago"), yearCount];
+        }
+        return [NSString stringWithFormat:NSLocalizedString(@"PublishedAtYearsFormat", @"%ld years ago"), yearCount];
+    }
+    
+    NSInteger monthCount = diffTime / monthTime;
+    if (monthCount > 0) {
+        if(monthCount == 1){
+            return [NSString stringWithFormat:NSLocalizedString(@"PublishedAtSingleMonthFormat", @"%ld month ago"), monthCount];
+        }
+        return [NSString stringWithFormat:NSLocalizedString(@"PublishedAtMonthsFormat", @"%ld months ago"), monthCount];
+    }
+    
+    NSInteger weekCount = diffTime / weekTime;
+    if (weekCount > 0) {
+        if(weekCount == 1){
+            return [NSString stringWithFormat:NSLocalizedString(@"PublishedAtSingleWeekFormat", @"%ld week ago"), weekCount];
+        }
+        return [NSString stringWithFormat:NSLocalizedString(@"PublishedAtWeeksFormat", @"%ld weeks ago"), weekCount];
+    }
+    
+    NSInteger dayCount = diffTime / dayTime;
+    if (dayCount > 0) {
+        if(dayCount == 1){
+            return [NSString stringWithFormat:NSLocalizedString(@"PublishedAtSingleDayFormat", @"%ld day ago"), dayCount];
+        }
+        return [NSString stringWithFormat:NSLocalizedString(@"PublishedAtDaysFormat", @"%ld days ago"), dayCount];
+    }
+    
+    NSInteger hourCount = diffTime / hourTime;
+    if (hourCount > 0) {
+        if(hourCount == 1){
+            return [NSString stringWithFormat:NSLocalizedString(@"PublishedAtSingleHourFormat", @"%ld hour ago"), hourCount];
+        }
+        return [NSString stringWithFormat:NSLocalizedString(@"PublishedAtHoursFormat", @"%ld hours ago"), hourCount];
+    }
+    
+    NSInteger minCount = diffTime / minTime;
+    if (minCount > 0) {
+        return [NSString stringWithFormat:NSLocalizedString(@"PublishedAtMinsFormat", @"%ld min ago"), minCount];
+    }
+    
+    return @"1 day ago";
 }
 
 @end
