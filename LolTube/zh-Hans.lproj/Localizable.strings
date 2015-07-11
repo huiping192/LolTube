@@ -11,6 +11,8 @@
 "VideoQualityLow" = "低";
 "Cancel" = "取消";
 "VideoViewCountFormat" = "%@次观看";
+"VideoViewCountTenThousandFormat" = "%@万";
+"VideoViewCountThousandFormat" = "%@千";
 "VideoLikeDislikeFormat" = "%@人喜欢,%@人不喜欢";
 "VideoDetailInfo" = "详情";
 "VideoDietalSuggestions" = "推荐视频";

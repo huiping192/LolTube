@@ -69,10 +69,20 @@
 }
 
 + (NSString *)convertVideoViewCount:(NSInteger)viewCount {
-    NSNumberFormatter *formatter = [NSNumberFormatter new];
-    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    NSString *formatted = [formatter stringFromNumber:@(viewCount)];
+    NSString *formatted = @(viewCount).stringValue;
+    NSInteger tenThousandCount = viewCount / 10000;
+    NSInteger thousandCount = viewCount / 1000;
 
+    if(tenThousandCount > 0){
+        NSString *tenThousandformatted = NSLocalizedString(@"VideoViewCountTenThousandFormat", nil);
+        if(![tenThousandformatted isEqualToString:@"VideoViewCountTenThousandFormat"]){
+            formatted = [NSString stringWithFormat:tenThousandformatted, @(tenThousandCount)];
+        }else {
+            formatted = [NSString stringWithFormat:NSLocalizedString(@"VideoViewCountThousandFormat", nil), @(thousandCount)];
+        }
+    } else if (thousandCount > 0) {
+        formatted = [NSString stringWithFormat:NSLocalizedString(@"VideoViewCountThousandFormat", nil), @(thousandCount)];
+    }
     return [NSString stringWithFormat:NSLocalizedString(@"VideoViewCountFormat", @"%@ views"), formatted];
 }
 
