@@ -36,7 +36,9 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        collectionView.collectionViewLayout.invalidateLayout()
+        if let collectionView = collectionView {
+            collectionView.collectionViewLayout.invalidateLayout()
+        }
     }
     
     private func loadData() {
