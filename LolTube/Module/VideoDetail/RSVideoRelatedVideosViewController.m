@@ -94,11 +94,11 @@ static CGFloat const kCellHeight = 90.0;
 
     if (cellVo.duration) {
         cell.durationLabel.text = cellVo.duration;
-        cell.viewCountLabel.text = cellVo.viewCount;
+        cell.viewCountLabel.text = cellVo.viewCountpublishedAt;
     } else {
         [self.viewModel updateVideoDetailWithCellVo:cellVo success:^{
             cell.durationLabel.text = cellVo.duration;
-            cell.viewCountLabel.text = cellVo.viewCount;
+            cell.viewCountLabel.text = cellVo.viewCountpublishedAt;
 
         }                                   failure:nil];
     }

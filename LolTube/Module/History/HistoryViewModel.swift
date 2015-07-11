@@ -38,11 +38,16 @@ class HistoryViewModel:SimpleListCollectionViewModelProtocol {
         video.title = item.snippet.title
         video.thumbnailUrl = item.snippet.thumbnails.medium.url
         video.publishedAt = item.snippet.publishedAt
-        
+        video.publishedAtString = RSVideoInfoUtil.convertToShortPostedTime(item.snippet.publishedAt)
+
         video.duration = RSVideoInfoUtil.convertVideoDuration(item.contentDetails.duration)
         video.viewCountString = RSVideoInfoUtil.convertVideoViewCount(Int(item.statistics.viewCount) ?? 0)
         video.viewCount = Int(item.statistics.viewCount) ?? 0
 
+        if let viewCount = video.viewCountString , publishedAtString = video.publishedAtString{
+            video.viewCountPublishedAt = "\(viewCount) ・ \(publishedAtString)"
+        }
+        
         return video
     }
 }

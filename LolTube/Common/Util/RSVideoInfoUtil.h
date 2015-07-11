@@ -14,5 +14,8 @@
 
 + (NSString *)convertVideoViewCount:(NSInteger)viewCount;
 
-- (NSString *)convertPostedTime:(NSString *)publishedAt;
++ (NSString *)convertPostedTime:(NSString *)publishedAt;
+
++ (NSString *)convertToShortPostedTime:(NSString *)publishedAt;
+
 @end

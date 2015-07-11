@@ -18,3 +18,14 @@
 
 "ChannelSubscriberCountFormat" = "%@ subscribers";
 "ChannelVideoCountFormat" = "%@ videos";
+"PublishedAtYearsFormat" = "%ld years ago";
+"PublishedAtMonthsFormat" = "%ld months ago";
+"PublishedAtWeeksFormat" = "%ld weeks ago";
+"PublishedAtDaysFormat" = "%ld days ago";
+"PublishedAtHoursFormat" = "%ld hours ago";
+"PublishedAtMinsFormat" = "%ld min ago";
+"PublishedAtSingleYearFormat" = "%ld year ago";
+"PublishedAtSingleMonthFormat" = "%ld month ago";
+"PublishedAtSingleWeekFormat" = "%ld week ago";
+"PublishedAtSingleDayFormat" = "%ld day ago";
+"PublishedAtSingleHourFormat" = "%ld hour ago";

@@ -12,12 +12,14 @@ class Video {
     var title: String?
     var channelTitle: String?
     var publishedAt: String?
+    var publishedAtString: String?
     var duration: String?
     var viewCountString: String?
     var viewCount: Int?
     var thumbnailUrl: String?
     var highThumbnailUrl: String?
-
+    var viewCountPublishedAt:String?
+    
     init(){
 
     }

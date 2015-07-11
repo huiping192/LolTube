@@ -53,7 +53,7 @@
         cellVo.title = item.snippet.title;
         cellVo.channelTitle = item.snippet.channelTitle;
         cellVo.thumbnailImageUrl = item.snippet.thumbnails.medium.url;
-
+        cellVo.publishedAtString = [RSVideoInfoUtil convertToShortPostedTime:item.snippet.publishedAt];
         [newItems addObject:cellVo];
     }
 
@@ -73,6 +73,10 @@
             cellVo.duration = [RSVideoInfoUtil convertVideoDuration:detailItem.contentDetails.duration];
             cellVo.viewCount = [RSVideoInfoUtil convertVideoViewCount:detailItem.statistics.viewCount.intValue];
 
+            if(cellVo.viewCount && cellVo.publishedAtString){
+                cellVo.viewCountpublishedAt = [NSString stringWithFormat:@"%@ ・ %@",cellVo.viewCount,cellVo.publishedAtString];
+            }
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (success) {
                     success();

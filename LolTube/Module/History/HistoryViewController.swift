@@ -30,7 +30,7 @@ class HistoryViewController:SimpleListCollectionViewController {
         cell.titleLabel.text = video.title
         cell.channelLabel.text = video.channelTitle
         cell.durationLabel.text = video.duration
-        cell.viewCountLabel.text = video.viewCountString
+        cell.viewCountLabel.text =  video.viewCountPublishedAt
         
         let imageOperation = UIImageView.asynLoadingImageWithUrlString(video.thumbnailUrl, secondImageUrlString: nil, needBlackWhiteEffect: false) {
             [weak cell] image in

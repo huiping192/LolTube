@@ -19,3 +19,15 @@
 
 "ChannelSubscriberCountFormat" = "%@ 位訂閱者";
 "ChannelVideoCountFormat" = "%@ 個視頻";
+
+"PublishedAtYearsFormat" = "%ld年前";
+"PublishedAtMonthsFormat" = "%ld個月前";
+"PublishedAtWeeksFormat" = "%ld周前";
+"PublishedAtDaysFormat" = "%ld天前";
+"PublishedAtHoursFormat" = "%ld小時前";
+"PublishedAtMinsFormat" = "%ld分鐘前";
+"PublishedAtSingleYearFormat" = "%ld年前";
+"PublishedAtSingleMonthFormat" = "%ld個月前";
+"PublishedAtSingleWeekFormat" = "%ld周前";
+"PublishedAtSingleDayFormat" = "%ld天前";
+"PublishedAtSingleHourFormat" = "%ld小時前";
