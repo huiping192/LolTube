@@ -4,7 +4,7 @@ import UIKit
 class TopViewController: UIViewController {
 
     private let cellDefaultWidth = CGFloat(145.0)
-    private let cellDefaultHeight = CGFloat(125.0)
+    private let cellDefaultHeight = CGFloat(140.0)
     private let cellImageHeightWidthRatio = CGFloat(9.0 / 16.0)
     private let cellMargin = CGFloat(8)
 

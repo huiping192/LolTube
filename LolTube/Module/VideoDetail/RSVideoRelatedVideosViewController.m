@@ -12,7 +12,7 @@
 #import "RSVideoDetailViewController.h"
 
 static CGFloat const kCellMinWidth = 280.0;
-static CGFloat const kCellHeight = 90.0;
+static CGFloat const kCellHeight = 100.0;
 
 @interface RSVideoRelatedVideosViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
