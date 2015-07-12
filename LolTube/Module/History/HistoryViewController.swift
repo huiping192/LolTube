@@ -11,7 +11,11 @@ class HistoryViewController:SimpleListCollectionViewController {
         
         viewModel.update(success: {
             [unowned self] in
-            self.collectionView.reloadData()
+            self.collectionView.performBatchUpdates({
+                [unowned self] in
+                self.collectionView.reloadSections(NSIndexSet(index: 0))
+                }, completion: nil)
+
             },failure:{
                 error in
                 self.showError(error)

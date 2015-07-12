@@ -62,9 +62,17 @@ static CGFloat const kCellHeight = 100.0;
 
     __weak typeof(self) weakSelf = self;
     [self.viewModel updateWithSuccess:^{
+        self.collectionView.alpha = 0.0;
+        
         [weakSelf stopAnimateLoadingView];
-
         [self.collectionView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.25 animations:^{
+                self.collectionView.alpha = 1.0;
+            }                completion:^(BOOL finished) {
+                [self.collectionView flashScrollIndicators];
+            }];
+        });
     }                         failure:^(NSError *error) {
         [weakSelf showError:error];
         [weakSelf stopAnimateLoadingView];
