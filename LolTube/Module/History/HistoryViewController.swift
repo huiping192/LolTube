@@ -8,7 +8,7 @@ class HistoryViewController:SimpleListCollectionViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         viewModel.update(success: {
             [unowned self] in
             self.collectionView.performBatchUpdates({
