@@ -6,8 +6,8 @@ class ChannelInfoViewController: UIViewController {
     
     var channelDescription:String?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         descriptionTextView.text = channelDescription
     }

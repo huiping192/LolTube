@@ -36,7 +36,9 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        collectionView.collectionViewLayout.invalidateLayout()
+        if let collectionView = collectionView {
+            collectionView.collectionViewLayout.invalidateLayout()
+        }
     }
     
     private func loadData() {
@@ -45,8 +47,16 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
         viewModel.update(
             success: {
                 [unowned self] in
+                self.collectionView.alpha = 0.0;
                 self.stopAnimateLoadingView()
                 self.collectionView.reloadData()
+
+                dispatch_async(dispatch_get_main_queue()) {
+                    UIView.animateWithDuration(0.25) {
+                        [unowned self] in
+                        self.collectionView.alpha = 1.0;
+                    }
+                }
             }, failure: {
                 [unowned self] error in
                 self.showError(error)

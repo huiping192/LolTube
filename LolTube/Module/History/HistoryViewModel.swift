@@ -13,9 +13,23 @@ class HistoryViewModel:SimpleListCollectionViewModelProtocol {
     }
     
     func update(success success: (() -> Void), failure: ((error:NSError) -> Void)){
-        let videoIdList = RSVideoService.sharedInstance().historyVideoIdList() as! [String]
+        let newVideoIdList = RSVideoService.sharedInstance().historyVideoIdList() as! [String]
 
-        youtubeService.video(videoIdList, success: {
+        guard newVideoIdList.count != 0 else {
+            success()
+            return
+        }
+        
+        let videoIdList = videoList.map{
+            video in
+            return video.videoId
+        } as [String]
+        
+        guard newVideoIdList != videoIdList else {
+            return
+        }
+        
+        youtubeService.video(newVideoIdList, success: {
             [unowned self]videoModel in
             
             var videoList = [Video]()

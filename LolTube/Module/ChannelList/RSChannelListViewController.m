@@ -50,14 +50,20 @@
 
     __weak typeof(self) weakSelf = self;
     [self.tableViewModel updateWithSuccess:^{
-        self.tableView.alpha = 1.0;
         [weakSelf stopAnimateLoadingView];
         [weakSelf.tableView reloadData];
         NSIndexPath *currentSelectedIndexPath = [self p_currentSelectedIndexPath];
         if (currentSelectedIndexPath) {
             [self.tableView scrollToRowAtIndexPath:currentSelectedIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
         }
-        [self.tableView flashScrollIndicators];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.25 animations:^{
+                self.tableView.alpha = 1.0;
+            }                completion:^(BOOL finished) {
+                [self.tableView flashScrollIndicators];
+            }];
+        });
     }                              failure:^(NSError *error) {
         [self showError:error];
         [weakSelf stopAnimateLoadingView];

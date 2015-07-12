@@ -44,7 +44,6 @@
 		7A9D5909AB58845520363BEE /* RSVideoDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D53594B88C1789424001F /* RSVideoDetailViewModel.m */; };
 		7A9D59972A3EB473B7490571 /* RSVideoListCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D541446E54B6F621F0431 /* RSVideoListCollectionViewLayout.m */; };
 		7A9D59A8FA8D919C39DCC359 /* StringUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D526397DA6DDCCAC2F3B6 /* StringUtilTest.swift */; };
-		7A9D59B88B0CEFC42F0780AE /* ChannelDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5F0A151C096B90CE9E22 /* ChannelDetail.storyboard */; };
 		7A9D59E8FFC59D16DE955870 /* RSSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D55464B861B4D6516B608 /* RSSearchTableViewCell.m */; };
 		7A9D5A766490C3ECF29776DE /* UIViewController+RSError.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5393063A2FA9933C12FF /* UIViewController+RSError.m */; };
 		7A9D5A90DDD5575A1071CF0F /* RSVideoRelatedVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5AD97117DA3161808D91 /* RSVideoRelatedVideoCell.m */; };
@@ -132,6 +131,7 @@
 		DCA44BDE1A0CE8E100A4A758 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA44BDC1A0CE8E100A4A758 /* Crashlytics.framework */; };
 		DCA44BDF1A0CE8E100A4A758 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA44BDD1A0CE8E100A4A758 /* Fabric.framework */; };
 		DCD316AC1AD84EB700978606 /* TwoChannel.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5D1DA9E665D3274CBB65 /* TwoChannel.json */; };
+		DCEB19781B52532600F255B3 /* ChannelDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCEB197A1B52532600F255B3 /* ChannelDetail.storyboard */; };
 		DCEBA51419BCB2AF007C3FC7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCEBA51619BCB2AF007C3FC7 /* Localizable.strings */; };
 		DCF9878B19BF0EEC00E9BCBE /* AMTumblrHud.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF9878A19BF0EEC00E9BCBE /* AMTumblrHud.m */; };
 /* End PBXBuildFile section */
@@ -268,7 +268,6 @@
 		7A9D5EA8C5336F661DB33788 /* RSVideoDetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailViewModel.h; sourceTree = "<group>"; };
 		7A9D5EB9DC371E29737FC931 /* RSEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSEnvironment.h; sourceTree = "<group>"; };
 		7A9D5ECE406570808051959E /* RSVideoDetailAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailAnimator.h; sourceTree = "<group>"; };
-		7A9D5F0A151C096B90CE9E22 /* ChannelDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChannelDetail.storyboard; sourceTree = "<group>"; };
 		7A9D5F6AFCB86F0AF7AA7008 /* RSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNavigationController.h; sourceTree = "<group>"; };
 		7A9D5F76D1C4BA7B40BC23B4 /* TopVideoCollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopVideoCollectionHeaderView.swift; sourceTree = "<group>"; };
 		7B97C0A21DC93CB7C90E8CBA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -318,7 +317,6 @@
 		DC47690C1A07EAA700DC3D2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DC47690F1A07EAAA00DC3D2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		DC4769111A07EAAF00DC3D2D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
-		DC4769131A07EAB000DC3D2D /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/Main.strings"; sourceTree = "<group>"; };
 		DC4769171A07EAB300DC3D2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		DC4769191A07EAB500DC3D2D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		DC51B44D1A0D36760034DDD1 /* LolTube-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "LolTube-Bridging-Header.h"; path = "Common/Util/LolTube-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -348,6 +346,10 @@
 		DC94676B1B4C17F40043E33B /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		DCA44BDC1A0CE8E100A4A758 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		DCA44BDD1A0CE8E100A4A758 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		DCEB197E1B52532F00F255B3 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ChannelDetail.strings"; sourceTree = "<group>"; };
+		DCEB19801B52533100F255B3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ChannelDetail.strings"; sourceTree = "<group>"; };
+		DCEB19811B52533200F255B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ChannelDetail.storyboard; sourceTree = "<group>"; };
+		DCEB19831B52536C00F255B3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ChannelDetail.strings; sourceTree = "<group>"; };
 		DCEBA50C19BCAD8C007C3FC7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DCEBA50D19BCAD8C007C3FC7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DCEBA51519BCB2AF007C3FC7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -515,7 +517,7 @@
 				DC51F4C61B455699009AEC11 /* ChannelDetailViewModel.swift */,
 				DC51F4B81B450FF9009AEC11 /* ChannelDetailViewController.swift */,
 				DC51F4BA1B45101B009AEC11 /* ChannelInfoViewController.swift */,
-				7A9D5F0A151C096B90CE9E22 /* ChannelDetail.storyboard */,
+				DCEB197A1B52532600F255B3 /* ChannelDetail.storyboard */,
 				DC842D721B4AF2A80085FF8D /* PlaylistsViewController.swift */,
 				DC842D741B4AF3200085FF8D /* PlaylistsCollectionViewCell.swift */,
 				DC842D761B4AF5980085FF8D /* PlaylistsViewModel.swift */,
@@ -1029,7 +1031,6 @@
 				en,
 				Base,
 				ja,
-				"zh-Hans-CN",
 				"zh-Hant",
 				"zh-Hans",
 			);
@@ -1055,7 +1056,7 @@
 				DC51F4BF1B45134A009AEC11 /* VideoList.storyboard in Resources */,
 				DCEBA51419BCB2AF007C3FC7 /* Localizable.strings in Resources */,
 				DC47690B1A07EAA700DC3D2D /* Main.storyboard in Resources */,
-				7A9D59B88B0CEFC42F0780AE /* ChannelDetail.storyboard in Resources */,
+				DCEB19781B52532600F255B3 /* ChannelDetail.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1371,11 +1372,21 @@
 				DC47690C1A07EAA700DC3D2D /* Base */,
 				DC47690F1A07EAAA00DC3D2D /* en */,
 				DC4769111A07EAAF00DC3D2D /* ja */,
-				DC4769131A07EAB000DC3D2D /* zh-Hans-CN */,
 				DC4769171A07EAB300DC3D2D /* zh-Hant */,
 				DC4769191A07EAB500DC3D2D /* zh-Hans */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DCEB197A1B52532600F255B3 /* ChannelDetail.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DCEB197E1B52532F00F255B3 /* zh-Hant */,
+				DCEB19801B52533100F255B3 /* zh-Hans */,
+				DCEB19811B52533200F255B3 /* Base */,
+				DCEB19831B52536C00F255B3 /* ja */,
+			);
+			name = ChannelDetail.storyboard;
 			sourceTree = "<group>";
 		};
 		DCEBA51619BCB2AF007C3FC7 /* Localizable.strings */ = {

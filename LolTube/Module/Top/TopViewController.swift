@@ -103,9 +103,12 @@ class TopViewController: UIViewController {
             self.layoutCollectionViewSize()
 
             self.stopAnimateLoadingView()
-            UIView.animateWithDuration(0.25) {
-                [unowned self] in
-                self.mainScrollView.alpha = 1.0
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                UIView.animateWithDuration(0.25) {
+                    [unowned self] in
+                    self.mainScrollView.alpha = 1.0
+                }
             }
 
         }, failure: {

@@ -44,12 +44,18 @@
 
     __weak typeof(self) weakSelf = self;
     [self.viewModel updateWithSuccess:^{
+        self.view.alpha = 0.0;
+
         [weakSelf stopAnimateLoadingView];
 
         weakSelf.titleLabel.text = weakSelf.viewModel.title;
         weakSelf.postedAtLabel.text = weakSelf.viewModel.postedTime;
         weakSelf.descriptionTextView.text = weakSelf.viewModel.videoDescription;
-
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.25 animations:^{
+                self.view.alpha = 1.0;
+            }];
+        });
     }                         failure:^(NSError *error) {
         [weakSelf showError:error];
         [weakSelf stopAnimateLoadingView];
