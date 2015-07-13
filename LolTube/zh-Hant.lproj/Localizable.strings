@@ -2,9 +2,9 @@
 "VideoPostedTimeStringHoursFormatter" = "%d小時前";
 "VideoDetailPostedAtFormatter" = "%@ 發布";
 "SearchChannels" = "瀏覽更多的頻道";
-"SearchVideos" = "搜索視頻";
-"VideoWidgetNoVideos" = "今天還沒有視頻發布.";
-"VideoWidgetMoreVideos" = "在LolTube上瀏覽%d個更多視頻";
+"SearchVideos" = "搜索影片";
+"VideoWidgetNoVideos" = "今天還沒有影片發布.";
+"VideoWidgetMoreVideos" = "在LolTube上瀏覽%d個更多影片";
 "SwitchVideoQuality" = "畫質選擇";
 "VideoQualityHigh" = "高";
 "VideoQualityMedium" = "標準";
@@ -15,10 +15,10 @@
 "VideoViewCountThousandFormat" = "%@千";
 "VideoLikeDislikeFormat" = "%@人喜歡,%@人不喜歡";
 "VideoDetailInfo" = "詳情";
-"VideoDietalSuggestions" = "推薦視頻";
+"VideoDietalSuggestions" = "推薦影片";
 
 "ChannelSubscriberCountFormat" = "%@ 位訂閱者";
-"ChannelVideoCountFormat" = "%@ 個視頻";
+"ChannelVideoCountFormat" = "%@ 部影片";
 
 "PublishedAtYearsFormat" = "%ld年前";
 "PublishedAtMonthsFormat" = "%ld個月前";

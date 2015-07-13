@@ -3,7 +3,7 @@
 "9C9-8w-tWM.segmentTitles[0]" = "動画";
 
 /* Class = "UISegmentedControl"; 9C9-8w-tWM.segmentTitles[1] = "Playlist"; ObjectID = "9C9-8w-tWM"; */
-"9C9-8w-tWM.segmentTitles[1]" = "チャンネル";
+"9C9-8w-tWM.segmentTitles[1]" = "再生リスト";
 
 /* Class = "UISegmentedControl"; 9C9-8w-tWM.segmentTitles[2] = "About"; ObjectID = "9C9-8w-tWM"; */
 "9C9-8w-tWM.segmentTitles[2]" = "概要";
