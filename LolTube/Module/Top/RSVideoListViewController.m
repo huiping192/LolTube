@@ -176,7 +176,7 @@ static NSString *const kSegueIdChannelList = @"channelList";
 
 - (void)p_loadVideosData {
     if (self.title) {
-        self.navigationItem.title = self.title;
+        self.navigationItem.title = self.navigationTitle;
     }
 
     [self animateLoadingView];

@@ -239,6 +239,9 @@ static NSString *const kSegueIdRelatedVideos = @"relatedVideosEmbed";
             videoQualityActionSheet.destructiveButtonIndex = 2;
             break;
         }
+        default: {
+            break;
+        }
     }
     [videoQualityActionSheet showInView:self.view];
 }

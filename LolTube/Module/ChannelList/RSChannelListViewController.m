@@ -99,13 +99,13 @@
 
             RSChannelService *channelService = [[RSChannelService alloc] init];
             videoListViewController.channelIds = channelService.channelIds;
-            videoListViewController.title = @"LolTube";
+            videoListViewController.navigationTitle = @"LolTube";
             videoListViewController.needShowChannelTitleView = YES;
         } else {
             RSVideoListViewController *videoListViewController = (RSVideoListViewController *) segue.destinationViewController;
 
             videoListViewController.channelIds = @[item.channelId];
-            videoListViewController.title = item.title;
+            videoListViewController.navigationTitle = item.title;
             videoListViewController.needShowChannelTitleView = NO;
         }
 
