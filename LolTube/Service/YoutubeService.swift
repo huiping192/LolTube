@@ -7,9 +7,9 @@ import Foundation
 
 @objc
 public class YoutubeService: NSObject {
-
+    
     let kYoutubeApiKey = "AIzaSyBb1ZDTeUmzba4Kk4wsYtmi70tr7UBo3HA"
-
+    
     // api url
     let searchUrlString = "https://www.googleapis.com/youtube/v3/search?fields=items(id%2Csnippet)%2CpageInfo%2CnextPageToken"
     let videoUrlString = "https://www.googleapis.com/youtube/v3/videos"
@@ -19,55 +19,50 @@ public class YoutubeService: NSObject {
     let playlistsUrlString = "https://www.googleapis.com/youtube/v3/playlists"
     
     let playlistItemsUrlString = "https://www.googleapis.com/youtube/v3/playlistItems"
+    
     public override init() {
-
+        
     }
-
+    
     public func videoList(channelId: String, searchText: String?, nextPageToken: String?, success: ((RSSearchModel) -> Void)?, failure: ((NSError) -> Void)?) {
         let queryparameters = [
-                "key": kYoutubeApiKey,
-                "part": "snippet",
-                "channelId": channelId,
-                "type": "video",
-                "maxResults": "10",
-                "order": "date",
-                "pageToken": nextPageToken ?? "",
-                "q": searchText ?? ""
+            "key": kYoutubeApiKey,
+            "part": "snippet",
+            "channelId": channelId,
+            "type": "video",
+            "maxResults": "10",
+            "order": "date",
+            "pageToken": nextPageToken ?? "",
+            "q": searchText ?? ""
         ]
-
-        request(searchUrlString, queryParameters: queryparameters, jsonModelClass: RSSearchModel.self as RSJsonModel.Type, success: {
-            (jsonModel: RSJsonModel) in
-            success?(jsonModel as! RSSearchModel)
-        }, failure: failure)
+        
+        request(searchUrlString, queryParameters: queryparameters, jsonModelClass: RSSearchModel.self, success: success, failure: failure)
     }
-
+    
     public func videoList(channelIdList: [String], searchText: String?, nextPageTokenList: [String]?, success: (([RSSearchModel]) -> Void)?, failure: ((NSError) -> Void)?) {
-        if channelIdList.count == 1 {
+        guard channelIdList.count != 1 else {
             videoList(channelIdList[0], searchText: searchText, nextPageToken: nextPageTokenList?[0], success: {
                 (searchModel: RSSearchModel) in
                 success?([searchModel])
-
-            }, failure: failure)
+                
+                }, failure: failure)
             return
         }
         let queryparameters = [
-                "key": kYoutubeApiKey,
-                "part": "snippet",
-                "type": "video",
-                "maxResults": "5",
-                "order": "date",
-                "q": searchText ?? ""
+            "key": kYoutubeApiKey,
+            "part": "snippet",
+            "type": "video",
+            "maxResults": "5",
+            "order": "date",
+            "q": searchText ?? ""
         ]
-
+        
         var dynamicParametersValueList = ["channelId": channelIdList]
         if let nextPageTokenList = nextPageTokenList {
             dynamicParametersValueList["pageToken"] = nextPageTokenList
         }
-
-        request(searchUrlString, staticParameters: queryparameters, dynamicParameters: dynamicParametersValueList, jsonModelClass: RSSearchModel.self as RSJsonModel.Type, success: {
-            (jsonModeList: [RSJsonModel]) in
-            success?(jsonModeList as! [RSSearchModel])
-        }, failure: failure)
+        
+        request(searchUrlString, staticParameters: queryparameters, dynamicParameters: dynamicParametersValueList, jsonModelClass: RSSearchModel.self, success: success, failure: failure)
     }
     
     public func video(videoIdList: [String], success: ((RSVideoModel) -> Void)?, failure: ((NSError) -> Void)?) {
@@ -79,26 +74,28 @@ public class YoutubeService: NSObject {
         
         request(videoUrlString, queryParameters: queryparameters, jsonModelClass: RSVideoModel.self, success: success, failure: failure)
     }
-
+    
     public func channel(channelIdList: [String], success: ((RSChannelModel) -> Void)?, failure: ((NSError) -> Void)?) {
         let queryparameters = [
-                "key": kYoutubeApiKey,
-                "part": "snippet"
+            "key": kYoutubeApiKey,
+            "part": "snippet"
         ]
         let dynamicParametersValueList = requestMultipleIdsDynamicParamter(channelIdList)
-
-        request(channelUrlString, staticParameters: queryparameters, dynamicParameters: dynamicParametersValueList, jsonModelClass: RSChannelModel.self as RSJsonModel.Type, success: {
-            (jsonModeList: [RSJsonModel]) in
-
+        
+        let successBlock: (([RSChannelModel]) -> Void) = {
+            jsonModeList in
+            
             var allChannelItems = [RSChannelItem]()
-            for channelModel in jsonModeList as! [RSChannelModel] {
+            for channelModel in jsonModeList {
                 allChannelItems += channelModel.items as! [RSChannelItem]
             }
             let allChannelModel = RSChannelModel()
             allChannelModel.items = allChannelItems
             success?(allChannelModel)
-        }, failure: failure)
-
+        }
+        
+        request(channelUrlString, staticParameters: queryparameters, dynamicParameters: dynamicParametersValueList, jsonModelClass: RSChannelModel.self, success: successBlock, failure: failure)
+        
     }
     
     public func channelDetail(channelId: String, success: ((RSChannelModel) -> Void)?, failure: ((NSError) -> Void)?) {
@@ -108,84 +105,74 @@ public class YoutubeService: NSObject {
             "id": channelId
         ]
         
-        request(channelUrlString, queryParameters: queryparameters, jsonModelClass: RSChannelModel.self as RSJsonModel.Type, success: {
-            (jsonModel: RSJsonModel) in
-            success?(jsonModel as! RSChannelModel)
-        }, failure: failure)
+        request(channelUrlString, queryParameters: queryparameters, jsonModelClass: RSChannelModel.self, success: success, failure: failure)
     }
-
+    
     public func channelList(searchText: String?, nextPageToken: String?, success: ((RSSearchModel) -> Void)?, failure: ((NSError) -> Void)?) {
         let queryparameters = [
-                "key": kYoutubeApiKey,
-                "part": "snippet",
-                "type": "channel",
-                "maxResults": "10",
-                "order": "date",
-                "pageToken": nextPageToken ?? "",
-                "q": searchText ?? ""
+            "key": kYoutubeApiKey,
+            "part": "snippet",
+            "type": "channel",
+            "maxResults": "10",
+            "order": "date",
+            "pageToken": nextPageToken ?? "",
+            "q": searchText ?? ""
         ]
-
-        request(searchUrlString, queryParameters: queryparameters, jsonModelClass: RSSearchModel.self as RSJsonModel.Type, success: {
-            (jsonModel: RSJsonModel) in
-            success?(jsonModel as! RSSearchModel)
-        }, failure: failure)
+        
+        request(searchUrlString, queryParameters: queryparameters, jsonModelClass: RSSearchModel.self, success: success, failure: failure)
     }
-
-
+    
+    
     public func todayVideoList(channelIdList: [String], success: (([RSSearchModel]) -> Void)?, failure: ((NSError) -> Void)?) {
         let queryparameters = [
-                "key": kYoutubeApiKey,
-                "part": "snippet",
-                "type": "video",
-                "maxResults": "5",
-                "order": "date",
-                "publishedAfter": NSDate.todayRFC3339DateTime() as String
+            "key": kYoutubeApiKey,
+            "part": "snippet",
+            "type": "video",
+            "maxResults": "5",
+            "order": "date",
+            "publishedAfter": NSDate.todayRFC3339DateTime() as String
         ]
-
+        
         let dynamicParametersValueList = ["channelId": channelIdList]
-
-        request(searchUrlString, staticParameters: queryparameters, dynamicParameters: dynamicParametersValueList, jsonModelClass: RSSearchModel.self as RSJsonModel.Type, success: {
-            (jsonModeList: [RSJsonModel]) in
-            success?(jsonModeList as! [RSSearchModel])
-        }, failure: failure)
+        
+        request(searchUrlString, staticParameters: queryparameters, dynamicParameters: dynamicParametersValueList, jsonModelClass: RSSearchModel.self, success: success, failure: failure)
     }
-
+    
     public func relatedVideoList(videoId: String, success: ((RSSearchModel) -> Void)?, failure: ((NSError) -> Void)?) {
         let queryparameters = [
-                "key": kYoutubeApiKey,
-                "part": "snippet",
-                "relatedToVideoId": videoId,
-                "type": "video",
-                "maxResults": "20"
+            "key": kYoutubeApiKey,
+            "part": "snippet",
+            "relatedToVideoId": videoId,
+            "type": "video",
+            "maxResults": "20"
         ]
-
-        request(searchUrlString, queryParameters: queryparameters, jsonModelClass: RSSearchModel.self as RSJsonModel.Type, success: {
-            (jsonModel: RSJsonModel) in
-            success?(jsonModel as! RSSearchModel)
-        }, failure: failure)
+        
+        request(searchUrlString, queryParameters: queryparameters, jsonModelClass: RSSearchModel.self, success: success, failure: failure)
     }
-
+    
     public func videoDetailList(videoIdList: [String], success: ((RSVideoDetailModel) -> Void)?, failure: ((NSError) -> Void)?) {
         let queryparameters = [
-                "key": kYoutubeApiKey,
-                "part": "contentDetails,statistics"
+            "key": kYoutubeApiKey,
+            "part": "contentDetails,statistics"
         ]
         let dynamicParametersValueList = requestMultipleIdsDynamicParamter(videoIdList)
-
-        request(videoDetailUrlString, staticParameters: queryparameters, dynamicParameters: dynamicParametersValueList, jsonModelClass: RSVideoDetailModel.self as RSJsonModel.Type, success: {
-            (jsonModeList: [RSJsonModel]) in
-
+        
+        let successBlock: (([RSVideoDetailModel]) -> Void) = {
+            videoDetailModelList in
+            
             var allChannelItems = [RSVideoDetailItem]()
-            for channelModel in jsonModeList as! [RSVideoDetailModel] {
+            for channelModel in videoDetailModelList {
                 allChannelItems += channelModel.items as! [RSVideoDetailItem]
             }
             let allChannelModel = RSVideoDetailModel()
             allChannelModel.items = allChannelItems
             success?(allChannelModel)
-        }, failure: failure)
+        }
+        
+        request(videoDetailUrlString, staticParameters: queryparameters, dynamicParameters: dynamicParametersValueList, jsonModelClass: RSVideoDetailModel.self, success: successBlock, failure: failure)
     }
     
-    public func playlists(channelId: String,nextPageToken:String?, success: ((RSPlaylistModel) -> Void)?, failure: ((NSError) -> Void)?) {
+    public func playlists(channelId: String, nextPageToken: String?, success: ((RSPlaylistModel) -> Void)?, failure: ((NSError) -> Void)?) {
         let queryparameters = [
             "key": kYoutubeApiKey,
             "part": "snippet,contentDetails",
@@ -197,7 +184,7 @@ public class YoutubeService: NSObject {
         request(playlistsUrlString, queryParameters: queryparameters, jsonModelClass: RSPlaylistModel.self, success: success, failure: failure)
     }
     
-    public func playlistItems(playlistid: String,nextPageToken:String?, success: ((RSPlaylistItemsModel) -> Void)?, failure: ((NSError) -> Void)?) {
+    public func playlistItems(playlistid: String, nextPageToken: String?, success: ((RSPlaylistItemsModel) -> Void)?, failure: ((NSError) -> Void)?) {
         let queryparameters = [
             "key": kYoutubeApiKey,
             "part": "snippet",
@@ -208,13 +195,13 @@ public class YoutubeService: NSObject {
         
         request(playlistItemsUrlString, queryParameters: queryparameters, jsonModelClass: RSPlaylistItemsModel.self, success: success, failure: failure)
     }
-
-
-    private func requestMultipleIdsDynamicParamter(idList:[String]) -> [String:[String]] {
+    
+    
+    private func requestMultipleIdsDynamicParamter(idList: [String]) -> [String:[String]] {
         var idPerUnitList = [String]()
         let idPerUnitCount = 50
         let idListCount = idList.count
-
+        
         var requestCount = idListCount / idPerUnitCount
         if idListCount % idPerUnitCount != 0 {
             requestCount++
@@ -227,14 +214,14 @@ public class YoutubeService: NSObject {
             }
             idPerUnitList.append(",".join(Array(idList[beginListIndex ... endListIndex])))
         }
-
+        
         return ["id": idPerUnitList]
     }
-
+    
     private func request<T:RSJsonModel>(urlString: String, queryParameters: [String:String], jsonModelClass: T.Type, success: ((T) -> Void)?, failure: ((NSError) -> Void)?) {
-        let httpOperationManager = AFHTTPRequestOperationManager()
-        httpOperationManager.GET(urlString, parameters: queryParameters, success: {
-            (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
+        
+        let successBlock: ((AFHTTPRequestOperation!, AnyObject!) -> Void) = {
+            (_, responseObject) in
             
             do {
                 let jsonModel = try jsonModelClass.init(dictionary: responseObject as! [String:AnyObject])
@@ -242,19 +229,20 @@ public class YoutubeService: NSObject {
             } catch let error  {
                 failure?(error as NSError)
             }
-
-        }, failure: {
-            (operation: AFHTTPRequestOperation!, error: NSError!) in
+        }
+        
+        AFHTTPRequestOperationManager().GET(urlString, parameters: queryParameters, success: successBlock, failure: {
+            (_, error) in
             failure?(error)
         })
     }
-
+    
     private func request<T:RSJsonModel>(urlString: String, staticParameters: [String:String], dynamicParameters: [String:[String]], jsonModelClass: T.Type, success: (([T]) -> Void)?, failure: ((NSError) -> Void)?) {
         var operationList = [AFHTTPRequestOperation]()
-
+        
         var parameters = staticParameters
         var dynamicParameterKeyList = Array(dynamicParameters.keys)
-        for index in 0 ..< dynamicParameters[dynamicParameterKeyList[0]]!.count {
+        for index in 0 ..< (dynamicParameters[dynamicParameterKeyList[0]]?.count ?? 0) {
             for key in dynamicParameterKeyList {
                 if let dynamicParameterValue = dynamicParameters[key]?[index] {
                     parameters[key] = dynamicParameterValue
@@ -263,18 +251,19 @@ public class YoutubeService: NSObject {
             let httpRequestOperation = AFHTTPRequestOperation(request: AFHTTPRequestSerializer().requestWithMethod("GET", URLString: urlString, parameters: parameters))
             operationList.append(httpRequestOperation)
         }
-
+        
         var jsonModelList = [T]()
         var error: NSError?
-        let operations = AFURLConnectionOperation.batchOfRequestOperations(operationList, progressBlock: {
-            (numberOfFinishedOperations: UInt, totalNumberOfOperations: UInt) in
-
+        
+        let progressBlock: ((UInt, UInt) -> Void) = {
+            (numberOfFinishedOperations, totalNumberOfOperations) in
+            
             let operation = operationList[Int(numberOfFinishedOperations - 1)]
             if let operationError = operation.error {
                 error = operationError
                 return
             }
-
+            
             var jsonParseError: JSONModelError?
             let jsonModel = jsonModelClass.init(string: operation.responseString, error: &jsonParseError)
             if let jsonParseError = jsonParseError {
@@ -282,17 +271,21 @@ public class YoutubeService: NSObject {
             } else {
                 jsonModelList.append(jsonModel)
             }
-
-        }, completionBlock: {
-            (operations: Array!) in
-
+        }
+        
+        let completionBlock: ([AnyObject]! -> Void) = {
+            _ in
+            
             if let error = error {
                 failure?(error)
             } else {
                 success?(jsonModelList)
             }
-        }) as! [NSOperation]
-
+        }
+        
+        let operations = AFURLConnectionOperation.batchOfRequestOperations(operationList, progressBlock: progressBlock, completionBlock: completionBlock) as! [NSOperation]
+        
         NSOperationQueue.mainQueue().addOperations(operations, waitUntilFinished: false)
     }
+    
 }
