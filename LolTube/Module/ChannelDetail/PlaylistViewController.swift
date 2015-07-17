@@ -24,7 +24,7 @@ class PlaylistViewController: SimpleListCollectionViewController {
         cell.videoNumberLabel.text = String(indexPath.row + 1)
         cell.titleLabel.text = video.title
         cell.channelLabel.text = video.channelTitle
-        cell.durationLabel.text = video.duration
+        cell.durationLabel.text = video.durationString
         cell.viewCountLabel.text = video.viewCountPublishedAt
         
         let imageOperation = UIImageView.asynLoadingImageWithUrlString(video.thumbnailUrl, secondImageUrlString: nil, needBlackWhiteEffect: false) {

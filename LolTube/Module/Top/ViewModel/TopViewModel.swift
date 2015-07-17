@@ -23,7 +23,7 @@ class TopViewModel {
             
             for item: RSChannelItem in channelModel.items as! [RSChannelItem] {
                 channelIdList.append(item.channelId)
-                channelList.append(self.convertChannel(item))
+                channelList.append(Channel(channelItem:item))
             }
             
             self.loadVideos(channelList, success: success, failure: failure)
@@ -48,7 +48,7 @@ class TopViewModel {
             for (index, searchModel) in searchModelList.enumerate() {
                 var videoList = [Video]()
                 for item in searchModel.items as! [RSItem] {
-                    let video = self.convertVideo(item)
+                    let video = Video(item:item)
                     videoList.append(video)
                     allVideoList.append(video)
                 }
@@ -58,7 +58,7 @@ class TopViewModel {
             
             let successBlock:(() -> Void) = {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-                    [unowned self] in
+                    [unowned self]  in
                     self.topVideoList = self.todayFourHighRankVideoList(allVideoList)
                     self.channelList = self.topChannelList(channelList, videoDictionary: videoDictionary)
                     self.videoDictionary = videoDictionary
@@ -84,13 +84,7 @@ class TopViewModel {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
                 for (index, detailItem) in (videoDetailModel.items as! [RSVideoDetailItem]).enumerate() {
                     let video = videoList[index]
-                    video.duration = RSVideoInfoUtil.convertVideoDuration(detailItem.contentDetails.duration)
-                    video.viewCountString = RSVideoInfoUtil.convertVideoViewCount(Int(detailItem.statistics.viewCount) ?? 0)
-                    video.viewCount = Int(detailItem.statistics.viewCount) ?? 0
-                    
-                    if let viewCount = video.viewCountString , publishedAtString = video.publishedAtString{
-                        video.viewCountPublishedAt = "\(viewCount) ・ \(publishedAtString)"
-                    }
+                    video.update(detailItem)
                 }
                 dispatch_async(dispatch_get_main_queue()) {
                     success()
@@ -99,29 +93,6 @@ class TopViewModel {
         }
         
         youtubeService.videoDetailList(videoIdList, success: successBlock, failure: failure)
-    }
-
-    private func convertChannel(item: RSChannelItem) -> Channel {
-        let channel = Channel()
-        channel.channelId = item.channelId
-        channel.title = item.snippet.title
-        channel.thumbnailUrl = item.snippet.thumbnails.medium.url
-
-        return channel
-    }
-
-    private func convertVideo(item: RSItem) -> Video {
-        let video = Video()
-        video.videoId = item.id.videoId
-        video.channelId = item.snippet.channelId
-        video.channelTitle = item.snippet.channelTitle
-        video.title = item.snippet.title
-        video.thumbnailUrl = item.snippet.thumbnails.medium.url
-        video.highThumbnailUrl = "https://i.ytimg.com/vi/\(video.videoId)/maxresdefault.jpg"
-        video.publishedAt = item.snippet.publishedAt
-        video.publishedAtString = RSVideoInfoUtil.convertToShortPostedTime(item.snippet.publishedAt)
-
-        return video
     }
 
     private func todayFourHighRankVideoList(videoList: [Video]) -> [Video] {

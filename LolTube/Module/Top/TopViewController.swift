@@ -257,7 +257,7 @@ extension TopViewController: UICollectionViewDataSource {
         }
         
         cell.titleLabel.text = video.title
-        cell.durationLabel.text = video.duration
+        cell.durationLabel.text = video.durationString
         cell.viewCountLabel.text =  video.viewCountPublishedAt
         
         var firstImageUrlString: String?
