@@ -29,7 +29,7 @@ class HistoryViewModel:SimpleListCollectionViewModelProtocol {
             return
         }
         
-        youtubeService.video(newVideoIdList, success: {
+        let successBlock:((RSVideoModel) -> Void) = {
             [unowned self]videoModel in
             
             var videoList = [Video]()
@@ -40,7 +40,8 @@ class HistoryViewModel:SimpleListCollectionViewModelProtocol {
             
             self.videoList = videoList
             success()
-            }, failure: failure)
+        }
+        youtubeService.video(newVideoIdList, success: successBlock, failure: failure)
     }
     
     
