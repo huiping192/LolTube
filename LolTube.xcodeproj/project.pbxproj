@@ -52,6 +52,7 @@
 		7A9D5B51022DD5A6334506D9 /* TopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D59CA519ECF7EC6BACEC3 /* TopViewModel.swift */; };
 		7A9D5BDEAF78FB037EDB4CDA /* RSChannelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D557FC5A5781A70A96A10 /* RSChannelTableViewCell.m */; };
 		7A9D5C048C7A36A3DD033EE2 /* RSJsonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5A17C810AF687DD2F0C0 /* RSJsonModel.m */; };
+		7A9D5C16E96AE387AC29233D /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5D70F639F721B551180A /* IntExtensions.swift */; };
 		7A9D5C20AC3EAD887249EB04 /* NSDate+RSFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D57868192765BB8591D47 /* NSDate+RSFormatter.m */; };
 		7A9D5C3FCC0072AB2ACDD402 /* RSVideoRelatedVideosViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5D121FE134F0EA003F75 /* RSVideoRelatedVideosViewModel.m */; };
 		7A9D5C639F1A613376BC21EC /* RSChannelService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D518DC4BF259949301CF7 /* RSChannelService.m */; };
@@ -95,7 +96,7 @@
 		DC1196B91B4ED3F30090338F /* RSPlaylistItemsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1196B71B4ED2C40090338F /* RSPlaylistItemsModel.m */; };
 		DC1196BC1B503D4B0090338F /* RSPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1196BB1B503D4B0090338F /* RSPageInfo.m */; };
 		DC1196BD1B503F010090338F /* RSPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1196BB1B503D4B0090338F /* RSPageInfo.m */; };
-		DC1196BF1B50FFC50090338F /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1196BE1B50FFC50090338F /* ImageUtil.swift */; };
+		DC1196BF1B50FFC50090338F /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1196BE1B50FFC50090338F /* UIImageExtensions.swift */; };
 		DC1196C11B5105DD0090338F /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1196C01B5105DD0090338F /* ViewControllerFactory.swift */; };
 		DC1196C31B510C3A0090338F /* SimpleListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1196C21B510C3A0090338F /* SimpleListCollectionViewController.swift */; };
 		DC1196C51B510DF90090338F /* SimpleListCollectionViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1196C41B510DF90090338F /* SimpleListCollectionViewModelProtocol.swift */; };
@@ -115,7 +116,6 @@
 		DC51F4C11B451696009AEC11 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51F4C01B451696009AEC11 /* VideoCollectionViewCell.swift */; };
 		DC51F4C31B451777009AEC11 /* VideoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51F4C21B451777009AEC11 /* VideoListViewModel.swift */; };
 		DC51F4C71B455699009AEC11 /* ChannelDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51F4C61B455699009AEC11 /* ChannelDetailViewModel.swift */; };
-		DC51F4C91B46DA5E009AEC11 /* ChannelInfoUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51F4C81B46DA5E009AEC11 /* ChannelInfoUtil.swift */; };
 		DC5708F51A00DBF500DB8821 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5708F41A00DBF500DB8821 /* NotificationCenter.framework */; };
 		DC5708FB1A00DBF500DB8821 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5708FA1A00DBF500DB8821 /* TodayViewController.m */; };
 		DC5708FD1A00DBF500DB8821 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5708FC1A00DBF500DB8821 /* MainInterface.storyboard */; };
@@ -130,6 +130,10 @@
 		DC94676C1B4C17F40043E33B /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94676B1B4C17F40043E33B /* Playlist.swift */; };
 		DCA44BDE1A0CE8E100A4A758 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA44BDC1A0CE8E100A4A758 /* Crashlytics.framework */; };
 		DCA44BDF1A0CE8E100A4A758 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA44BDD1A0CE8E100A4A758 /* Fabric.framework */; };
+		DCC0B8B61B58D1BE0081E5CA /* UIStoryboardSegueExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC0B8B51B58D1BE0081E5CA /* UIStoryboardSegueExtensions.swift */; };
+		DCC0B8B81B58D66E0081E5CA /* UICollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC0B8B71B58D66E0081E5CA /* UICollectionViewExtensions.swift */; };
+		DCC0B8BA1B58DEBE0081E5CA /* TopVideoCollectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC0B8B91B58DEBE0081E5CA /* TopVideoCollectionFooterView.swift */; };
+		DCCD1A081B58E9AC00CB54DD /* UINavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD1A071B58E9AC00CB54DD /* UINavigationBarExtensions.swift */; };
 		DCD316AC1AD84EB700978606 /* TwoChannel.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5D1DA9E665D3274CBB65 /* TwoChannel.json */; };
 		DCEB19781B52532600F255B3 /* ChannelDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCEB197A1B52532600F255B3 /* ChannelDetail.storyboard */; };
 		DCEBA51419BCB2AF007C3FC7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCEBA51619BCB2AF007C3FC7 /* Localizable.strings */; };
@@ -262,6 +266,7 @@
 		7A9D5CED6FFAB8E9DC37BFFF /* RSThumbnails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSThumbnails.h; sourceTree = "<group>"; };
 		7A9D5D121FE134F0EA003F75 /* RSVideoRelatedVideosViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoRelatedVideosViewModel.m; sourceTree = "<group>"; };
 		7A9D5D1DA9E665D3274CBB65 /* TwoChannel.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = TwoChannel.json; sourceTree = "<group>"; };
+		7A9D5D70F639F721B551180A /* IntExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
 		7A9D5E0933CDDBBBDBCD4594 /* RSStringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSStringUtil.h; sourceTree = "<group>"; };
 		7A9D5E1CAC258986C7A0B45D /* RSVideoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoService.m; sourceTree = "<group>"; };
 		7A9D5E2A063FBEE5C97DB549 /* RSVideoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoCollectionViewCell.m; sourceTree = "<group>"; };
@@ -302,7 +307,7 @@
 		DC1196B71B4ED2C40090338F /* RSPlaylistItemsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPlaylistItemsModel.m; sourceTree = "<group>"; };
 		DC1196BA1B503D4B0090338F /* RSPageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPageInfo.h; sourceTree = "<group>"; };
 		DC1196BB1B503D4B0090338F /* RSPageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPageInfo.m; sourceTree = "<group>"; };
-		DC1196BE1B50FFC50090338F /* ImageUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
+		DC1196BE1B50FFC50090338F /* UIImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageExtensions.swift; path = ../Util/UIImageExtensions.swift; sourceTree = "<group>"; };
 		DC1196C01B5105DD0090338F /* ViewControllerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 		DC1196C21B510C3A0090338F /* SimpleListCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleListCollectionViewController.swift; sourceTree = "<group>"; };
 		DC1196C41B510DF90090338F /* SimpleListCollectionViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleListCollectionViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -328,7 +333,6 @@
 		DC51F4C01B451696009AEC11 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		DC51F4C21B451777009AEC11 /* VideoListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoListViewModel.swift; sourceTree = "<group>"; };
 		DC51F4C61B455699009AEC11 /* ChannelDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelDetailViewModel.swift; sourceTree = "<group>"; };
-		DC51F4C81B46DA5E009AEC11 /* ChannelInfoUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelInfoUtil.swift; sourceTree = "<group>"; };
 		DC5708F31A00DBF500DB8821 /* VideoWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = VideoWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC5708F41A00DBF500DB8821 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		DC5708F81A00DBF500DB8821 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -346,6 +350,10 @@
 		DC94676B1B4C17F40043E33B /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		DCA44BDC1A0CE8E100A4A758 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		DCA44BDD1A0CE8E100A4A758 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		DCC0B8B51B58D1BE0081E5CA /* UIStoryboardSegueExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryboardSegueExtensions.swift; sourceTree = "<group>"; };
+		DCC0B8B71B58D66E0081E5CA /* UICollectionViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtensions.swift; sourceTree = "<group>"; };
+		DCC0B8B91B58DEBE0081E5CA /* TopVideoCollectionFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopVideoCollectionFooterView.swift; sourceTree = "<group>"; };
+		DCCD1A071B58E9AC00CB54DD /* UINavigationBarExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtensions.swift; sourceTree = "<group>"; };
 		DCEB197E1B52532F00F255B3 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ChannelDetail.strings"; sourceTree = "<group>"; };
 		DCEB19801B52533100F255B3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ChannelDetail.strings"; sourceTree = "<group>"; };
 		DCEB19811B52533200F255B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ChannelDetail.storyboard; sourceTree = "<group>"; };
@@ -425,8 +433,6 @@
 				7A9D590838A9BAA06C47605D /* RSEventTracker.h */,
 				7A9D5743674D21807B2ACD84 /* RSVideoInfoUtil.h */,
 				7A9D53A9E8EF6576E1654ECE /* RSVideoInfoUtil.m */,
-				DC51F4C81B46DA5E009AEC11 /* ChannelInfoUtil.swift */,
-				DC1196BE1B50FFC50090338F /* ImageUtil.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -446,6 +452,14 @@
 				7A9D52794B528C81C3264DFB /* ViewModel */,
 			);
 			path = VideoDetail;
+			sourceTree = "<group>";
+		};
+		7A9D51B526DC4CF822671753 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7A9D5D70F639F721B551180A /* IntExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		7A9D51D7BB968A6A8B264137 /* Layout */ = {
@@ -603,6 +617,7 @@
 				7A9D5E2A063FBEE5C97DB549 /* RSVideoCollectionViewCell.m */,
 				7A9D5286A597D87BFDE26663 /* TopVideoCell.swift */,
 				7A9D5F76D1C4BA7B40BC23B4 /* TopVideoCollectionHeaderView.swift */,
+				DCC0B8B91B58DEBE0081E5CA /* TopVideoCollectionFooterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -629,9 +644,10 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		7A9D575BA2B9127AB9F13AC4 /* Category */ = {
+		7A9D575BA2B9127AB9F13AC4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				DC1196BE1B50FFC50090338F /* UIImageExtensions.swift */,
 				7A9D57868192765BB8591D47 /* NSDate+RSFormatter.m */,
 				7A9D55867E9F573269326BFA /* NSDate+RSFormatter.h */,
 				7A9D5545E4F7CAFF362E9CEB /* UIViewController+RSLoading.m */,
@@ -644,7 +660,11 @@
 				7A9D5335364E80C0D66DFADA /* UIViewController+RSError.h */,
 				7A9D5AD72E31A33F26DC4840 /* NSString+Util.m */,
 				7A9D587E2E91D179550C060E /* NSString+Util.h */,
+				DCC0B8B51B58D1BE0081E5CA /* UIStoryboardSegueExtensions.swift */,
+				DCC0B8B71B58D66E0081E5CA /* UICollectionViewExtensions.swift */,
+				DCCD1A071B58E9AC00CB54DD /* UINavigationBarExtensions.swift */,
 			);
+			name = Extensions;
 			path = Category;
 			sourceTree = "<group>";
 		};
@@ -734,6 +754,7 @@
 				7A9D50E5C2FBC9003C9B521E /* Channel.swift */,
 				7A9D512944F19F5B2B5B9B90 /* Video.swift */,
 				DC94676B1B4C17F40043E33B /* Playlist.swift */,
+				7A9D51B526DC4CF822671753 /* Extensions */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -743,7 +764,7 @@
 			children = (
 				7A9D5685F04E20BBB4AB0EDE /* RSEnvironment.m */,
 				7A9D5EB9DC371E29737FC931 /* RSEnvironment.h */,
-				7A9D575BA2B9127AB9F13AC4 /* Category */,
+				7A9D575BA2B9127AB9F13AC4 /* Extensions */,
 				7A9D51026767D0DDE8AC6533 /* Util */,
 				7A9D5762644C6D3E621F4B31 /* View */,
 				7A9D5C6691B9F079183AAD3C /* ViewController */,
@@ -992,7 +1013,7 @@
 			attributes = {
 				CLASSPREFIX = RS;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Huiping Guo";
 				TargetAttributes = {
 					DC1044A619B2FA6B007A86E6 = {
@@ -1237,6 +1258,7 @@
 				7A9D585648191456B550D65B /* RSVideoInfoUtil.m in Sources */,
 				DC51F4B91B450FF9009AEC11 /* ChannelDetailViewController.swift in Sources */,
 				7A9D54EC8DC06A980DAD71E5 /* RSVideoRelatedVideosViewController.m in Sources */,
+				DCC0B8B61B58D1BE0081E5CA /* UIStoryboardSegueExtensions.swift in Sources */,
 				7A9D55A5852D9DA760734F99 /* RSVideoInfoViewController.m in Sources */,
 				7A9D5EE617E0D4BE371D6616 /* RSVideoDetailViewController.m in Sources */,
 				7A9D58A96A9F1162F3AAE864 /* RSVideoDetailSegmentViewController.m in Sources */,
@@ -1244,13 +1266,13 @@
 				DC842D751B4AF3200085FF8D /* PlaylistsCollectionViewCell.swift in Sources */,
 				DC51F4C71B455699009AEC11 /* ChannelDetailViewModel.swift in Sources */,
 				7A9D57E507D4AE69356CBD33 /* RSChannelSearchViewController.m in Sources */,
+				DCCD1A081B58E9AC00CB54DD /* UINavigationBarExtensions.swift in Sources */,
 				7A9D5354CB276B49E4C1A679 /* RSChannelListViewController.m in Sources */,
 				7A9D5E047642539A74E9E1FF /* TopViewController.swift in Sources */,
 				7A9D5E43566454C41B98499F /* RSVideoListViewController.m in Sources */,
 				7A9D5F981118FFCA6A4428AF /* RSVideoDetailAnimator.m in Sources */,
 				7A9D59972A3EB473B7490571 /* RSVideoListCollectionViewLayout.m in Sources */,
 				DC1873591B513C7B00121563 /* HistoryCollectionViewCell.swift in Sources */,
-				DC51F4C91B46DA5E009AEC11 /* ChannelInfoUtil.swift in Sources */,
 				DC1196B81B4ED2C40090338F /* RSPlaylistItemsModel.m in Sources */,
 				7A9D5B51022DD5A6334506D9 /* TopViewModel.swift in Sources */,
 				7A9D56CE982FCDCD9C3B91C4 /* RoundView.swift in Sources */,
@@ -1266,6 +1288,7 @@
 				7A9D5909AB58845520363BEE /* RSVideoDetailViewModel.m in Sources */,
 				7A9D5C3FCC0072AB2ACDD402 /* RSVideoRelatedVideosViewModel.m in Sources */,
 				7A9D57863767B8B7EDAF00DE /* RSVideoListCollectionViewModel.m in Sources */,
+				DCC0B8BA1B58DEBE0081E5CA /* TopVideoCollectionFooterView.swift in Sources */,
 				7A9D5EB52386205BCB0125A4 /* RSNavigationController.m in Sources */,
 				7A9D521320B2B1B88B16EBFB /* Channel.swift in Sources */,
 				7A9D5CB34E43D853F3FC323C /* Video.swift in Sources */,
@@ -1281,11 +1304,13 @@
 				DC1873571B513B5400121563 /* HistoryViewModel.swift in Sources */,
 				7A9D5DD926C658587A69CB76 /* RSJsonModel.m in Sources */,
 				DC1196C11B5105DD0090338F /* ViewControllerFactory.swift in Sources */,
-				DC1196BF1B50FFC50090338F /* ImageUtil.swift in Sources */,
+				DC1196BF1B50FFC50090338F /* UIImageExtensions.swift in Sources */,
 				DC94676C1B4C17F40043E33B /* Playlist.swift in Sources */,
+				DCC0B8B81B58D66E0081E5CA /* UICollectionViewExtensions.swift in Sources */,
 				DC842D731B4AF2A80085FF8D /* PlaylistsViewController.swift in Sources */,
 				7A9D573438D3BF99FEAE3207 /* RSThumbnails.m in Sources */,
 				7A9D59E8FFC59D16DE955870 /* RSSearchTableViewCell.m in Sources */,
+				7A9D5C16E96AE387AC29233D /* IntExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1422,6 +1447,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1495,6 +1521,7 @@
 				INFOPLIST_FILE = "LolTube/LolTube-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.huiping192.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "LolTube/Common/Util/LolTube-Bridging-Header.h";
@@ -1524,6 +1551,7 @@
 				INFOPLIST_FILE = "LolTube/LolTube-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.huiping192.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "LolTube/Common/Util/LolTube-Bridging-Header.h";
@@ -1551,6 +1579,7 @@
 				);
 				INFOPLIST_FILE = "LolTubeTests/LolTubeTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.huiping192.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "LolTubeTests/Common/Category/LolTubeTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1574,6 +1603,7 @@
 				GCC_PREFIX_HEADER = "LolTube/LolTube-Prefix.pch";
 				INFOPLIST_FILE = "LolTubeTests/LolTubeTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.huiping192.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "LolTubeTests/Common/Category/LolTubeTests-Bridging-Header.h";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -1599,6 +1629,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.huiping192.LolTube.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -1621,6 +1652,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.huiping192.LolTube.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;

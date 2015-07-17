@@ -1,27 +1,27 @@
 import Foundation
 
-
 class VideoListViewController: SimpleListCollectionViewController {
 
     var channelId:String!
 
-    let imageLoadingOperationQueue = NSOperationQueue()
+    private let imageLoadingOperationQueue = NSOperationQueue()
 
     override func collectionViewModel() -> SimpleListCollectionViewModelProtocol{
         return VideoListViewModel(channelId:channelId)
     }
     
     override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("relatedVideoCell", forIndexPath: indexPath) as! VideoCellectionViewCell
+        let cell = collectionView.dequeueReusableCell(indexPath, type: VideoCellectionViewCell.self)
         let video = (viewModel as! VideoListViewModel).videoList[indexPath.row]
         
         cell.titleLabel.text = video.title
         cell.channelLabel.text = video.channelTitle
-        cell.durationLabel.text = video.duration
+        cell.durationLabel.text = video.durationString
         cell.viewCountLabel.text = video.viewCountPublishedAt
         
         let imageOperation = UIImageView.asynLoadingImageWithUrlString(video.thumbnailUrl, secondImageUrlString: nil, needBlackWhiteEffect: false) {
-            [weak cell] image in
+            [unowned self] image in
+            let cell = self.collectionView.cell(indexPath, type: VideoCellectionViewCell.self)
             cell?.thumbnailImageView.image = image
         }
         

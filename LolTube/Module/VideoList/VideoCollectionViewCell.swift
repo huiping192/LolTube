@@ -1,6 +1,6 @@
 import Foundation
 
-class VideoCellectionViewCell: UICollectionViewCell {
+class VideoCellectionViewCell: UICollectionViewCell,Reusable {
     
     @IBOutlet weak var thumbnailImageView:UIImageView!
     @IBOutlet weak var durationLabel:UILabel!
@@ -11,5 +11,9 @@ class VideoCellectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         contentView.frame = bounds
         super.layoutSubviews()
+    }
+    
+    static var reuseIdentifier:String {
+        return "relatedVideoCell"
     }
 }

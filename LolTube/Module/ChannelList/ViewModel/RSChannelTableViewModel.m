@@ -46,9 +46,6 @@ static NSArray <RSChannelTableViewCellVo> *itemsCache;
 
     [self.youtubeService channel:_channelIds success:^(RSChannelModel *channelModel) {
         NSMutableArray *items = [[NSMutableArray alloc] init];
-
-        RSChannelTableViewCellVo *allChannelsCellVo = [[RSChannelTableViewCellVo alloc] init];
-
         for (RSChannelItem *item in channelModel.items) {
             RSChannelTableViewCellVo *cellVo = [[RSChannelTableViewCellVo alloc] init];
 

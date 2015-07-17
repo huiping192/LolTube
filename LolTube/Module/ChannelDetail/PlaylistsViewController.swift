@@ -12,14 +12,15 @@ class PlaylistsViewController: SimpleListCollectionViewController {
     }
     
     override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("playlistCell", forIndexPath: indexPath) as! PlaylistsCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(indexPath, type: PlaylistsCollectionViewCell.self)
         let playlist = (viewModel as! PlaylistsViewModel).playlists[indexPath.row]
         
         cell.titleLabel.text = playlist.title
         cell.videoCountLabel.text = playlist.videoCountString
         
         let imageOperation = UIImageView.asynLoadingImageWithUrlString(playlist.thumbnailUrl, secondImageUrlString: nil, needBlackWhiteEffect: false) {
-            [weak cell] image in
+            [unowned self] image in
+            let cell = self.collectionView.cell(indexPath, type: PlaylistsCollectionViewCell.self)
             cell?.thumbnailImageView.image = image
         }
         

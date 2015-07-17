@@ -5,8 +5,8 @@ class PlaylistsViewModel:SimpleListCollectionViewModelProtocol {
     let channelId:String
     
     var playlists = [Playlist]()
-    var nextPageToken: String?
-    var totalResults:Int?
+    private var nextPageToken: String?
+    private var totalResults:Int?
 
     private let youtubeService = YoutubeService()
     
@@ -20,37 +20,25 @@ class PlaylistsViewModel:SimpleListCollectionViewModelProtocol {
             return
         }
         
-        youtubeService.playlists(channelId,nextPageToken:nextPageToken, success: {
+        let successBlock:((RSPlaylistModel) -> Void) = {
             [unowned self](playlistModel) in
             
             var playlists = [Playlist]()
             
             for playlistItem in playlistModel.items as! [RSPlaylistItem] {
-                playlists.append(self.convertPlaylist(playlistItem))
+                playlists.append(Playlist(playlistItem:playlistItem))
             }
             
             self.totalResults = Int(playlistModel.pageInfo.totalResults)
             self.nextPageToken = playlistModel.nextPageToken
             self.playlists += playlists
             success()
-            
-            }, failure: failure)
+        }
+        
+        youtubeService.playlists(channelId,nextPageToken:nextPageToken, success: successBlock, failure: failure)
     }
     
     func numberOfItems() -> Int{
         return playlists.count
     }
-    
-    private func convertPlaylist(item: RSPlaylistItem) -> Playlist {
-        let playlist = Playlist()
-        
-        playlist.playlistId = item.playlistId
-        playlist.title = item.snippet.title
-        playlist.videoCountString = ChannelInfoUtil.convertVideoCount(Int(item.contentDetails.itemCount) ?? 0)
-        playlist.thumbnailUrl = item.snippet.thumbnails.medium.url
-        
-        return playlist
-    }
-    
-    
 }

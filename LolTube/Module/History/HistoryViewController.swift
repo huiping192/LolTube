@@ -3,9 +3,8 @@ import Foundation
 
 class HistoryViewController:SimpleListCollectionViewController {
     
-    let imageLoadingOperationQueue = NSOperationQueue()
+    private let imageLoadingOperationQueue = NSOperationQueue()
 
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -15,9 +14,8 @@ class HistoryViewController:SimpleListCollectionViewController {
                 [unowned self] in
                 self.collectionView.reloadSections(NSIndexSet(index: 0))
                 }, completion: nil)
-
             },failure:{
-                error in
+                [unowned self]error in
                 self.showError(error)
             }
         )
@@ -28,16 +26,17 @@ class HistoryViewController:SimpleListCollectionViewController {
     }
     
     override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("historyVideoCell", forIndexPath: indexPath) as! HistoryCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(indexPath, type: HistoryCollectionViewCell.self)
         let video = (viewModel as! HistoryViewModel).videoList[indexPath.row]
         
         cell.titleLabel.text = video.title
         cell.channelLabel.text = video.channelTitle
-        cell.durationLabel.text = video.duration
+        cell.durationLabel.text = video.durationString
         cell.viewCountLabel.text =  video.viewCountPublishedAt
         
         let imageOperation = UIImageView.asynLoadingImageWithUrlString(video.thumbnailUrl, secondImageUrlString: nil, needBlackWhiteEffect: false) {
-            [weak cell] image in
+            [unowned self] image in
+            let cell = self.collectionView.cell(indexPath, type: HistoryCollectionViewCell.self)
             cell?.thumbnailImageView.image = image
         }
         
