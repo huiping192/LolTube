@@ -12,10 +12,10 @@ struct  Channel: Hashable,Equatable {
     var viewCount: Int?
     
     var videoCountString: String? {
-        return ChannelInfoUtil.convertVideoCount(videoCount ?? 0)
+        return (videoCount ?? 0).toVideoCountFormat()
     }
     var subscriberCountString: String? {
-        return ChannelInfoUtil.convertSubscriberCount(subscriberCount ?? 0)
+        return (subscriberCount ?? 0).toSubscriberCountFormat()
     }
     var viewCountString: String? {
         return RSVideoInfoUtil.convertVideoViewCount(viewCount ?? 0)

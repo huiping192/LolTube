@@ -31,8 +31,9 @@ extension UINavigationBar {
         let navbarTitleTextAttributes:[String:AnyObject] = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         titleTextAttributes = navbarTitleTextAttributes
         
-        shadowImage = createImageWithColor(UIColor.clearColor())
-        setBackgroundImage(createImageWithColor(UIColor.clearColor()), forBarMetrics: .Default)
+        let clearImage = UIImage(color:UIColor.clearColor())
+        shadowImage = clearImage
+        setBackgroundImage(clearImage, forBarMetrics: .Default)
         translucent = true
         tintColor = UIColor.whiteColor()
         barStyle = .Black;

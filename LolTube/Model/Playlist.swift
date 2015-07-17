@@ -8,7 +8,7 @@ struct Playlist {
     var itemCount: Int?
 
     var videoCountString:String? {
-        return ChannelInfoUtil.convertVideoCount(itemCount ?? 0)
+        return (itemCount ?? 0).toVideoCountFormat()
     }
     
     init(playlistItem:RSPlaylistItem){
