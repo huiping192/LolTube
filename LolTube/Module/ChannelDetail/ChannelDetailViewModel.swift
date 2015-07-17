@@ -12,16 +12,15 @@ class ChannelDetailViewModel {
     }
     
     func update(success success: () -> Void, failure: (NSError) -> Void) {
-        youtubeService.channelDetail(channelId, success: {
+        
+        let successBlock:((RSChannelModel) -> Void) = {
             [unowned self](channelModel) in
-            
             if let channelItem = channelModel.items[0] as? RSChannelItem{
                 self.channel = self.convertChannel(channelItem)
             }
-            
             success()
-            
-        }, failure: failure)
+        }
+        youtubeService.channelDetail(channelId, success: successBlock, failure: failure)
     }
     
     private func convertChannel(item: RSChannelItem) -> Channel {

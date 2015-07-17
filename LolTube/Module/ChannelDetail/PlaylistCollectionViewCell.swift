@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class PlaylistCollectionViewCell: UICollectionViewCell {
+class PlaylistCollectionViewCell: UICollectionViewCell,Reusable {
     @IBOutlet weak var videoNumberLabel:UILabel!
 
     @IBOutlet weak var thumbnailImageView:UIImageView!
@@ -9,5 +9,9 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var viewCountLabel:UILabel!
     @IBOutlet weak var titleLabel:UILabel!
     @IBOutlet weak var channelLabel:UILabel!
+ 
     
+    static var reuseIdentifier:String {
+        return "playlistCollectionViewCell"
+    }
 }

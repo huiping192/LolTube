@@ -5,7 +5,7 @@ class PlaylistViewController: SimpleListCollectionViewController {
     var playlistId:String!
     var playlistTitle:String!
     
-    let imageLoadingOperationQueue = NSOperationQueue()
+    private let imageLoadingOperationQueue = NSOperationQueue()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +18,7 @@ class PlaylistViewController: SimpleListCollectionViewController {
     }
     
     override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("playlistCollectionViewCell", forIndexPath: indexPath) as! PlaylistCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(indexPath, type: PlaylistCollectionViewCell.self)
         let video = (viewModel as! PlaylistViewModel).videoList[indexPath.row]
         
         cell.videoNumberLabel.text = String(indexPath.row + 1)
@@ -28,7 +28,8 @@ class PlaylistViewController: SimpleListCollectionViewController {
         cell.viewCountLabel.text = video.viewCountPublishedAt
         
         let imageOperation = UIImageView.asynLoadingImageWithUrlString(video.thumbnailUrl, secondImageUrlString: nil, needBlackWhiteEffect: false) {
-            [weak cell] image in
+            [unowned self] image in
+            let cell = self.collectionView.cell(indexPath, type: PlaylistCollectionViewCell.self)
             cell?.thumbnailImageView.image = image
         }
         

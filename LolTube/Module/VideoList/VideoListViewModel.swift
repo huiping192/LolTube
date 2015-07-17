@@ -6,8 +6,8 @@ class VideoListViewModel: SimpleListCollectionViewModelProtocol {
 
     var videoList = [Video]()
 
-    var nextPageToken: String?
-    var totalResults:Int?
+    private var nextPageToken: String?
+    private var totalResults:Int?
 
     private let youtubeService = YoutubeService()
 
@@ -21,26 +21,29 @@ class VideoListViewModel: SimpleListCollectionViewModelProtocol {
             return
         }
         
-        youtubeService.videoList(channelId, searchText: nil, nextPageToken: nextPageToken, success: {
+        let successBlock:((RSSearchModel) -> Void) = {
             [unowned self](searchModel) in
             
             var videoList = [Video]()
-
+            
             for item in searchModel.items as! [RSItem] {
                 let video = self.convertVideo(item)
                 videoList.append(video)
             }
-
+            
+            let successBlock:(() -> Void) = {
+                [unowned self] in
+                self.totalResults = Int(searchModel.pageInfo.totalResults)
+                self.nextPageToken = searchModel.nextPageToken
+                self.videoList += videoList
+                success()
+            }
+            
             self.updateVideoDetail(videoList: videoList,
-                    success: {
-                        [unowned self] in
-                        self.totalResults = Int(searchModel.pageInfo.totalResults)
-                        self.nextPageToken = searchModel.nextPageToken
-                        self.videoList += videoList
-                        success()
-                    }, failure: failure)
+                success: successBlock, failure: failure)
+        }
 
-        }, failure: failure)
+        youtubeService.videoList(channelId, searchText: nil, nextPageToken: nextPageToken, success: successBlock, failure: failure)
     }
     
     func numberOfItems() -> Int{
@@ -53,9 +56,9 @@ class VideoListViewModel: SimpleListCollectionViewModelProtocol {
             return video.videoId
         } as [String]
 
-        youtubeService.videoDetailList(videoIdList, success: {
+        let successBlock:((RSVideoDetailModel) -> Void) = {
             (videoDetailModel: RSVideoDetailModel!) in
-
+            
             for (index, detailItem) in (videoDetailModel.items as! [RSVideoDetailItem]).enumerate() {
                 let video = videoList[index]
                 video.duration = RSVideoInfoUtil.convertVideoDuration(detailItem.contentDetails.duration)
@@ -65,9 +68,11 @@ class VideoListViewModel: SimpleListCollectionViewModelProtocol {
                     video.viewCountPublishedAt = "\(viewCount) ・ \(publishedAtString)"
                 }
             }
-
+            
             success()
-        }, failure: failure)
+        }
+        
+        youtubeService.videoDetailList(videoIdList, success: successBlock, failure: failure)
     }
 
     private func convertVideo(item: RSItem) -> Video {

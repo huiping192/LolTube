@@ -271,7 +271,8 @@ extension TopViewController: UICollectionViewDataSource {
         }
         
         loadVideoImage(video.videoId, imageUrlString: firstImageUrlString, secondImageUrlString: secondImageUrlString) {
-            [weak cell]image in
+            [weak collectionView] image in
+            let cell = collectionView?.cell(indexPath, type: TopVideoCell.self)
             cell?.thunmbnailImageView.image = image
         }
 
@@ -295,8 +296,8 @@ extension TopViewController: UICollectionViewDataSource {
             headerView.moreButton.tag = indexPath.section
             headerView.moreButton.addTarget(self, action:"moreButtonTapped:", forControlEvents: .TouchUpInside)
             loadChannelImage(channel.channelId, imageUrlString: channel.thumbnailUrl) {
-                image in
-                headerView.thumbnailImageView.image = image
+                [weak headerView]image in
+                headerView?.thumbnailImageView.image = image
             }
 
             headerView.tag = indexPath.section

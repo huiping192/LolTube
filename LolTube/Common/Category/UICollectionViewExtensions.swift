@@ -15,5 +15,9 @@ extension UICollectionView {
     func dequeueReusableSupplementaryView<T:UICollectionReusableView where T:Reusable>(kind:String,indexPath: NSIndexPath,type:T.Type) -> T {
         return dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: T.reuseIdentifier, forIndexPath: indexPath) as! T
     }
+    
+    func cell<T:UICollectionViewCell where T:Reusable>(indexPath: NSIndexPath,type:T.Type) -> T?{
+        return cellForItemAtIndexPath(indexPath) as? T
+    }
 
 }
