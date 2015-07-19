@@ -20,6 +20,6 @@ class ChannelDetailViewModel {
             }
             success()
         }
-        youtubeService.channelDetail(channelId, success: successBlock, failure: failure)
+        youtubeService.channelDetail([channelId], success: successBlock, failure: failure)
     }
 }

@@ -20,7 +20,7 @@
 
 @interface RSBrandingSettingsImage :JSONModel
 
-@property (nonatomic, strong) NSString *bannerMobileImageUrl;
+@property (nonatomic, strong) NSString<Optional> *bannerMobileImageUrl;
 
 @end
 

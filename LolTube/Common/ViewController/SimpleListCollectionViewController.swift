@@ -41,13 +41,14 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
         }
     }
     
-    private func loadData() {
+    func loadData() {
         animateLoadingView()
         
         viewModel.update(
             success: {
                 [unowned self] in
                 self.collectionView.alpha = 0.0;
+                self.collectionView.setContentOffset(CGPointZero, animated: false)
                 self.stopAnimateLoadingView()
                 self.collectionView.reloadData()
 

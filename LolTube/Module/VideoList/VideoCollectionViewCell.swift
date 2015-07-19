@@ -14,6 +14,6 @@ class VideoCellectionViewCell: UICollectionViewCell,Reusable {
     }
     
     static var reuseIdentifier:String {
-        return "relatedVideoCell"
+        return "videoCell"
     }
 }
