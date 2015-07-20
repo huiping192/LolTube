@@ -5,6 +5,12 @@
 
 import Foundation
 
+public enum YoutubeSearchType:String {
+    case Video = "video"
+    case Channel = "channel"
+    case Playlist = "playlist"
+}
+
 @objc
 public class YoutubeService: NSObject {
     
@@ -30,7 +36,7 @@ public class YoutubeService: NSObject {
             "part": "snippet",
             "channelId": channelId,
             "type": "video",
-            "maxResults": "10",
+            "maxResults": "20",
             "order": "date",
             "pageToken": nextPageToken ?? "",
             "q": searchText ?? ""
@@ -95,17 +101,28 @@ public class YoutubeService: NSObject {
         }
         
         request(channelUrlString, staticParameters: queryparameters, dynamicParameters: dynamicParametersValueList, jsonModelClass: RSChannelModel.self, success: successBlock, failure: failure)
-        
     }
     
-    public func channelDetail(channelId: String, success: ((RSChannelModel) -> Void)?, failure: ((NSError) -> Void)?) {
+    public func channelDetail(channelIdList: [String], success: ((RSChannelModel) -> Void)?, failure: ((NSError) -> Void)?) {
         let queryparameters = [
             "key": kYoutubeApiKey,
             "part": "snippet,brandingSettings,statistics",
-            "id": channelId
         ]
+        let dynamicParametersValueList = requestMultipleIdsDynamicParamter(channelIdList)
         
-        request(channelUrlString, queryParameters: queryparameters, jsonModelClass: RSChannelModel.self, success: success, failure: failure)
+        let successBlock: (([RSChannelModel]) -> Void) = {
+            jsonModeList in
+            
+            var allChannelItems = [RSChannelItem]()
+            for channelModel in jsonModeList {
+                allChannelItems += channelModel.items as! [RSChannelItem]
+            }
+            let allChannelModel = RSChannelModel()
+            allChannelModel.items = allChannelItems
+            success?(allChannelModel)
+        }
+        
+        request(channelUrlString, staticParameters: queryparameters, dynamicParameters: dynamicParametersValueList, jsonModelClass: RSChannelModel.self, success: successBlock, failure: failure)
     }
     
     public func channelList(searchText: String?, nextPageToken: String?, success: ((RSSearchModel) -> Void)?, failure: ((NSError) -> Void)?) {
@@ -178,26 +195,60 @@ public class YoutubeService: NSObject {
             "part": "snippet,contentDetails",
             "pageToken": nextPageToken ?? "",
             "channelId": channelId,
-            "maxResults": "10"
+            "maxResults": "20"
         ]
         
         request(playlistsUrlString, queryParameters: queryparameters, jsonModelClass: RSPlaylistModel.self, success: success, failure: failure)
     }
     
-    public func playlistItems(playlistid: String, nextPageToken: String?, success: ((RSPlaylistItemsModel) -> Void)?, failure: ((NSError) -> Void)?) {
+    public func playlistsDetail(playlistsIdList: [String], success: ((RSPlaylistModel) -> Void)?, failure: ((NSError) -> Void)?) {
+        let queryparameters = [
+            "key": kYoutubeApiKey,
+            "part": "snippet,contentDetails",
+        ]
+        let dynamicParametersValueList = requestMultipleIdsDynamicParamter(playlistsIdList)
+        
+        let successBlock: (([RSPlaylistModel]) -> Void) = {
+            playlistModel in
+            
+            var allPlaylistItems = [RSPlaylistItem]()
+            for playlistModel in playlistModel {
+                allPlaylistItems += playlistModel.items as! [RSPlaylistItem]
+            }
+            let allPlaylistModel = RSPlaylistModel()
+            allPlaylistModel.items = allPlaylistItems
+            success?(allPlaylistModel)
+        }
+        
+        request(playlistsUrlString, staticParameters: queryparameters, dynamicParameters: dynamicParametersValueList, jsonModelClass: RSPlaylistModel.self, success: successBlock, failure: failure)
+    }
+    
+    public func playlistItems(playlistId: String, nextPageToken: String?, success: ((RSPlaylistItemsModel) -> Void)?, failure: ((NSError) -> Void)?) {
         let queryparameters = [
             "key": kYoutubeApiKey,
             "part": "snippet",
-            "playlistId": playlistid,
+            "playlistId": playlistId,
             "pageToken": nextPageToken ?? "",
-            "maxResults": "10"
+            "maxResults": "20"
         ]
         
         request(playlistItemsUrlString, queryParameters: queryparameters, jsonModelClass: RSPlaylistItemsModel.self, success: success, failure: failure)
     }
-    
-    
-    private func requestMultipleIdsDynamicParamter(idList: [String]) -> [String:[String]] {
+
+    public func search(searchType:YoutubeSearchType,searchText: String, nextPageToken: String?, success: ((RSSearchModel) -> Void)?, failure: ((NSError) -> Void)?) {
+        let queryparameters = [
+                "key": kYoutubeApiKey,
+                "part": "snippet",
+                "type": searchType.rawValue,
+                "maxResults": "20",
+                "pageToken": nextPageToken ?? "",
+                "q": searchText ?? ""
+        ]
+
+        request(searchUrlString, queryParameters: queryparameters, jsonModelClass: RSSearchModel.self, success: success, failure: failure)
+    }
+
+    private func requestMultipleIdsDynamicParamter(idList:[String]) -> [String:[String]] {
         var idPerUnitList = [String]()
         let idPerUnitCount = 50
         let idListCount = idList.count

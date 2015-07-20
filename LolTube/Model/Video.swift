@@ -16,7 +16,7 @@ class Video {
         return RSVideoInfoUtil.convertVideoDuration(duration)
     }
     var highThumbnailUrl: String?{
-        return "http://i.ytimg.com/vi/\(videoId)/maxresdefault.jpg"
+        return "https://i.ytimg.com/vi/\(videoId)/maxresdefault.jpg"
     }
     var viewCountString: String?{
         return RSVideoInfoUtil.convertVideoViewCount(viewCount ?? 0)

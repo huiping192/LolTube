@@ -46,5 +46,6 @@
 @property(nonatomic, copy) NSString *kind;
 @property(nonatomic, copy) NSString<Optional> *videoId;
 @property(nonatomic, copy) NSString<Optional> *channelId;
+@property(nonatomic, copy) NSString<Optional> *playlistId;
 
 @end

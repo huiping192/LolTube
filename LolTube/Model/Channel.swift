@@ -33,7 +33,12 @@ struct  Channel: Hashable,Equatable {
             self.subscriberCount = Int(statistics.subscriberCount)
             self.videoCount = Int(statistics.videoCount)
         }
-        
+    }
+    
+    init(item:RSItem){
+        self.channelId = item.snippet.channelId
+        self.title = item.snippet.title
+        self.thumbnailUrl = item.snippet.thumbnails.medium.url
     }
 
     var hashValue: Int {
