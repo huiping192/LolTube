@@ -388,14 +388,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trending Searches" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HhL-Tj-p2I">
-                                        <rect key="frame" x="224" y="30" width="152" height="21.5"/>
+                                        <rect key="frame" x="224" y="82" width="152" height="21.5"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mux-1G-dZa">
-                                        <rect key="frame" x="257" y="113" width="86" height="32"/>
+                                        <rect key="frame" x="257" y="180" width="86" height="32"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <state key="normal" title="LoL Esports">
@@ -406,7 +406,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yg-hQ-7Le">
-                                        <rect key="frame" x="250" y="207" width="100" height="32"/>
+                                        <rect key="frame" x="250" y="274" width="100" height="32"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <state key="normal" title="OPLOLReplay">
@@ -417,7 +417,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uCY-8S-t4L">
-                                        <rect key="frame" x="243" y="254" width="113" height="32"/>
+                                        <rect key="frame" x="243" y="321" width="113" height="32"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <state key="normal" title="Protatomonster">
@@ -428,7 +428,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zF0-CL-BXL">
-                                        <rect key="frame" x="257" y="160" width="86" height="32"/>
+                                        <rect key="frame" x="257" y="227" width="86" height="32"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <state key="normal" title="Pro Replays">
@@ -439,7 +439,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9T6-2d-d0O">
-                                        <rect key="frame" x="230" y="66" width="139" height="32"/>
+                                        <rect key="frame" x="230" y="133" width="139" height="32"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <state key="normal" title="League of Legends">
@@ -449,22 +449,34 @@
                                             <action selector="suggestionWardTapped:" destination="QB0-Ee-eOc" eventType="touchUpInside" id="L7g-R2-54a"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dgq-lT-9SC">
+                                        <rect key="frame" x="282" y="368" width="35" height="32"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <state key="normal" title="Ekko">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="suggestionWardTapped:" destination="QB0-Ee-eOc" eventType="touchUpInside" id="UJ6-EJ-aYn"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="HhL-Tj-p2I" firstAttribute="top" secondItem="Eys-vy-vFh" secondAttribute="top" constant="30" id="3wP-dU-kgs"/>
                                     <constraint firstAttribute="centerX" secondItem="uCY-8S-t4L" secondAttribute="centerX" id="8C6-Xu-q7r"/>
                                     <constraint firstItem="zF0-CL-BXL" firstAttribute="top" secondItem="mux-1G-dZa" secondAttribute="bottom" constant="15" id="Dd3-Wm-y9M"/>
                                     <constraint firstAttribute="centerX" secondItem="zF0-CL-BXL" secondAttribute="centerX" id="E2n-eO-Rvr"/>
                                     <constraint firstItem="mux-1G-dZa" firstAttribute="top" secondItem="9T6-2d-d0O" secondAttribute="bottom" constant="15" id="EWR-Hp-WAP"/>
+                                    <constraint firstItem="Dgq-lT-9SC" firstAttribute="top" secondItem="uCY-8S-t4L" secondAttribute="bottom" constant="15" id="JFn-kc-JMh"/>
                                     <constraint firstItem="uCY-8S-t4L" firstAttribute="top" secondItem="4yg-hQ-7Le" secondAttribute="bottom" constant="15" id="Z91-Oy-4ZC"/>
                                     <constraint firstAttribute="centerX" secondItem="9T6-2d-d0O" secondAttribute="centerX" id="ZO3-3B-p2i"/>
+                                    <constraint firstItem="Dgq-lT-9SC" firstAttribute="centerX" secondItem="Eys-vy-vFh" secondAttribute="centerX" id="a7e-kw-tsf"/>
                                     <constraint firstAttribute="centerX" secondItem="HhL-Tj-p2I" secondAttribute="centerX" id="cTC-b9-shm"/>
                                     <constraint firstAttribute="centerX" secondItem="4yg-hQ-7Le" secondAttribute="centerX" id="f8q-qM-F1k"/>
+                                    <constraint firstItem="zF0-CL-BXL" firstAttribute="centerY" secondItem="Eys-vy-vFh" secondAttribute="centerY" id="fs4-tI-Bdm"/>
                                     <constraint firstItem="4yg-hQ-7Le" firstAttribute="top" secondItem="zF0-CL-BXL" secondAttribute="bottom" constant="15" id="pIe-j0-a5P"/>
                                     <constraint firstAttribute="centerX" secondItem="mux-1G-dZa" secondAttribute="centerX" id="riA-oW-VCx"/>
-                                    <constraint firstItem="9T6-2d-d0O" firstAttribute="top" secondItem="HhL-Tj-p2I" secondAttribute="bottom" constant="15" id="sJp-W2-JxA"/>
+                                    <constraint firstItem="9T6-2d-d0O" firstAttribute="top" secondItem="HhL-Tj-p2I" secondAttribute="bottom" constant="30" id="sJp-W2-JxA"/>
                                 </constraints>
                             </view>
                         </subviews>
