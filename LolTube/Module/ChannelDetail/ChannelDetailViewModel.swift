@@ -5,7 +5,10 @@ class ChannelDetailViewModel {
 
     var channel:Channel?
     
+    var isSubscribed:Bool?
     private let youtubeService = YoutubeService()
+    private let channelService = RSChannelService()
+
 
     init(channelId:String){
         self.channelId = channelId
@@ -18,8 +21,25 @@ class ChannelDetailViewModel {
             if let channelItem = channelModel.items[0] as? RSChannelItem{
                 self.channel = Channel(channelItem: channelItem)
             }
+            
+            self.isSubscribed = (self.channelService.channelIds() as! [String]).contains(self.channelId)
             success()
         }
         youtubeService.channelDetail([channelId], success: successBlock, failure: failure)
+    }
+    
+    func subscribeChannel(success success: () -> Void, failure: (NSError) -> Void){
+        guard let isSubscribed = isSubscribed else {
+            success()
+            return
+        }
+        if isSubscribed {
+            channelService.deleteChannelId(channelId)
+            self.isSubscribed = false
+        } else {
+            channelService.saveChannelId(channelId)
+            self.isSubscribed = true
+        }
+        success()
     }
 }

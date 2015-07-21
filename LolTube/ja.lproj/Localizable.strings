@@ -32,3 +32,6 @@
 "PublishedAtSingleWeekFormat" = "%ld週間前";
 "PublishedAtSingleDayFormat" = "%ld日前";
 "PublishedAtSingleHourFormat" = "%ld時間前";
+
+"ChannelSubscribed" = "登録済み";
+"ChannelUnsubscribe" = "チャンネル登録";

@@ -11,6 +11,8 @@ class ChannelDetailViewController: UIViewController {
     @IBOutlet private weak var viewCountLabel:UILabel!
     @IBOutlet private weak var subscriberCountLabel:UILabel!
 
+    @IBOutlet private weak var subscribeButton:UIButton!
+
     @IBOutlet private weak var containView:UIView!
     
     private var viewModel:ChannelDetailViewModel!
@@ -45,6 +47,25 @@ class ChannelDetailViewController: UIViewController {
         navigationController?.navigationBar.configureNavigationBar(.Default)
     }
     
+    
+    @IBAction func subscribeButtonTapped(button:UIButton){
+        let successBlock:(() -> Void) = {
+            [unowned self] in
+            guard let isSubscribed = self.viewModel.isSubscribed else {
+                return
+            }
+            let buttonTitle = isSubscribed ? NSLocalizedString("ChannelSubscribed", comment: "") : NSLocalizedString("ChannelUnsubscribe", comment: "")
+            self.subscribeButton.setTitle(buttonTitle, forState: .Normal)
+        }
+        
+        let failureBlock:((NSError) -> Void) = {
+            [unowned self] error in
+            self.showError(error)
+        }
+        
+        viewModel.subscribeChannel(success: successBlock, failure: failureBlock)
+    }
+    
     private func cleanup(){
         videoListViewController = nil
         playlistsViewController = nil
@@ -55,7 +76,7 @@ class ChannelDetailViewController: UIViewController {
         
         let successBlock:(() -> Void) = {
             [unowned self] in
-            guard let channel = self.viewModel.channel else {
+            guard let channel = self.viewModel.channel , let isSubscribed = self.viewModel.isSubscribed else {
                 return
             }
             
@@ -63,6 +84,9 @@ class ChannelDetailViewController: UIViewController {
             self.viewCountLabel.text = channel.viewCountString
             self.videoCountLabel.text = channel.videoCountString
             self.subscriberCountLabel.text = channel.subscriberCountString
+            
+            let buttonTitle = isSubscribed ? NSLocalizedString("ChannelSubscribed", comment: "") : NSLocalizedString("ChannelUnsubscribe", comment: "")
+            self.subscribeButton.setTitle(buttonTitle, forState: .Normal)
             
             let imageOperation = UIImageView.asynLoadingImageWithUrlString(channel.thumbnailUrl, secondImageUrlString: nil, needBlackWhiteEffect: false) {
                 [unowned self] image in

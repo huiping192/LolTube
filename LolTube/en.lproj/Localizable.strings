@@ -29,3 +29,6 @@
 "PublishedAtSingleWeekFormat" = "%ld week ago";
 "PublishedAtSingleDayFormat" = "%ld day ago";
 "PublishedAtSingleHourFormat" = "%ld hour ago";
+
+"ChannelSubscribed" = "Subscribed";
+"ChannelUnsubscribe" = "Subscribe";
