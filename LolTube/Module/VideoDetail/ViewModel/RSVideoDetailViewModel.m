@@ -47,6 +47,9 @@
         weakSelf.highThumbnailImageUrl = [NSString stringWithFormat:@"http://i.ytimg.com/vi/%@/maxresdefault.jpg", weakSelf.videoId];
         weakSelf.defaultThumbnailImageUrl = videoItem.snippet.thumbnails.medium.url;
 
+        weakSelf.channelId = videoItem.snippet.channelId;
+        weakSelf.channelTitle = videoItem.snippet.channelTitle;
+
         dispatch_async(dispatch_get_main_queue(), ^{
             if (success) {
                 success();
