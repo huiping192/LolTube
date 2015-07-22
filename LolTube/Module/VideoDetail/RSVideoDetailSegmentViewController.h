@@ -10,4 +10,6 @@
 
 @property (nonatomic, copy) NSString *videoId;
 
+- (void)updateWithChannelId:(NSString *)channelId channelTitle:(NSString *)channelTitle;
+
 @end

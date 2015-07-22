@@ -11,8 +11,6 @@
 
 @protocol RSChannelCollectionViewCellVo;
 
-static NSArray <RSChannelTableViewCellVo> *itemsCache;
-
 @interface RSChannelTableViewModel ()
 @property(nonatomic, strong) YoutubeService *youtubeService;
 
@@ -37,13 +35,18 @@ static NSArray <RSChannelTableViewCellVo> *itemsCache;
 }
 
 - (void)updateWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure {
-    if (itemsCache) {
-        _items = itemsCache.copy;
+    NSArray *channelIds = [self.channelService channelIds];
+    
+    NSCountedSet *set1 = [[NSCountedSet alloc] initWithArray:channelIds];
+    NSCountedSet *set2 = [[NSCountedSet alloc] initWithArray:self.channelIds];
+    
+    BOOL isEqual = [set1 isEqualToSet:set2];
+    if(isEqual){
         success();
         return;
     }
-    self.channelIds = [self.channelService channelIds];
-
+    
+    self.channelIds = channelIds;
     [self.youtubeService channel:_channelIds success:^(RSChannelModel *channelModel) {
         NSMutableArray *items = [[NSMutableArray alloc] init];
         for (RSChannelItem *item in channelModel.items) {
@@ -57,7 +60,6 @@ static NSArray <RSChannelTableViewCellVo> *itemsCache;
         }
 
         _items = (NSArray <RSChannelTableViewCellVo> *) items.copy;
-        itemsCache = (NSArray <RSChannelTableViewCellVo> *) items.copy;
         dispatch_async(dispatch_get_main_queue(), ^{
             if (success) {
                 success();
@@ -77,7 +79,6 @@ static NSArray <RSChannelTableViewCellVo> *itemsCache;
     [mutableItems removeObjectAtIndex:(NSUInteger) indexPath.row];
 
     _items = (id) mutableItems;
-    itemsCache = (id) mutableItems;
 }
 
 - (void)moveChannelWithIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)toIndexPath {
@@ -91,11 +92,6 @@ static NSArray <RSChannelTableViewCellVo> *itemsCache;
     [mutableItems insertObject:cellVo atIndex:(NSUInteger) toIndexPath.row];
 
     _items = (id) mutableItems;
-    itemsCache = (id) mutableItems;
-}
-
-+ (void)clearCache {
-    itemsCache = nil;
 }
 
 @end

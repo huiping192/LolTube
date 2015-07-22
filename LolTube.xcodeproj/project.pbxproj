@@ -10,6 +10,7 @@
 		25C508257CFE98CC8F6E51A0 /* Pods_LolTubeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8753EE0B5BA1B8708AE55A9D /* Pods_LolTubeTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7A9D502564EF5651A21D735F /* RSTodayVideoTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5A57F12E827DA02DC5C6 /* RSTodayVideoTableViewModel.m */; };
 		7A9D5029F6AC659B11F3829F /* TopVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5286A597D87BFDE26663 /* TopVideoCell.swift */; };
+		7A9D50935DBFA85ADFA6FBD1 /* RSVideoDetailSegmentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5318CE66D417996EB3AB /* RSVideoDetailSegmentViewModel.m */; };
 		7A9D50C4794BC7CDE9388DA2 /* RSVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D522E2ABA2D7CF8D28865 /* RSVideoDetailModel.m */; };
 		7A9D50E63C6B65C8E431B763 /* TopVideoCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5F76D1C4BA7B40BC23B4 /* TopVideoCollectionHeaderView.swift */; };
 		7A9D510F707B96B6F138CF6A /* FiftyChannel.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5072C6E4D2AEE57845F1 /* FiftyChannel.json */; };
@@ -70,6 +71,7 @@
 		7A9D5FE6121499045F3F1D14 /* RSChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5650CE10F3B152DB916C /* RSChannelModel.m */; };
 		7D3B56BEC73C460A8FD88FC8 /* libPods-VideoWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 258B97C7D8C343E59B7679D4 /* libPods-VideoWidget.a */; };
 		D2912024C3464678820F0B0F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE8E8822B6E415281465DA6 /* libPods.a */; };
+		DC01A0E21B5E84EE0003FE21 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01A0E11B5E84EE0003FE21 /* RoundButton.swift */; };
 		DC0586A21B5A5486001A4B37 /* ChannelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0586A11B5A5486001A4B37 /* ChannelCollectionViewCell.swift */; };
 		DC08FBD31B52699F008A499E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC08FBD21B52699F008A499E /* SearchViewController.swift */; };
 		DC0F691C1A03DFD70061EB95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC1044C219B2FA6B007A86E6 /* Images.xcassets */; };
@@ -211,7 +213,9 @@
 		7A9D524F7C274F87C6746729 /* RSVideoDetailSegmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailSegmentViewController.h; sourceTree = "<group>"; };
 		7A9D526397DA6DDCCAC2F3B6 /* StringUtilTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtilTest.swift; sourceTree = "<group>"; };
 		7A9D5286A597D87BFDE26663 /* TopVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopVideoCell.swift; sourceTree = "<group>"; };
+		7A9D5318CE66D417996EB3AB /* RSVideoDetailSegmentViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailSegmentViewModel.m; sourceTree = "<group>"; };
 		7A9D5335364E80C0D66DFADA /* UIViewController+RSError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RSError.h"; sourceTree = "<group>"; };
+		7A9D533C8D5AA148024886E3 /* RSVideoDetailSegmentViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailSegmentViewModel.h; sourceTree = "<group>"; };
 		7A9D53594B88C1789424001F /* RSVideoDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailViewModel.m; sourceTree = "<group>"; };
 		7A9D5393063A2FA9933C12FF /* UIViewController+RSError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RSError.m"; sourceTree = "<group>"; };
 		7A9D53A9E8EF6576E1654ECE /* RSVideoInfoUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoInfoUtil.m; sourceTree = "<group>"; };
@@ -289,6 +293,7 @@
 		D8442925C8150BEAE8DCEA78 /* Pods-VideoWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-VideoWidget/Pods-VideoWidget.release.xcconfig"; sourceTree = "<group>"; };
 		D8E859BE1395F41E87F829F2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DBB64CB7BFAAE2450E92F8F6 /* Pods-LolTubeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LolTubeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LolTubeTests/Pods-LolTubeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DC01A0E11B5E84EE0003FE21 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		DC0586A11B5A5486001A4B37 /* ChannelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewCell.swift; sourceTree = "<group>"; };
 		DC08FBD21B52699F008A499E /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		DC0F69281A075CD90061EB95 /* LolTube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LolTube.entitlements; sourceTree = "<group>"; };
@@ -495,6 +500,8 @@
 				7A9D53594B88C1789424001F /* RSVideoDetailViewModel.m */,
 				7A9D59213ADCFCDA4A610BA8 /* RSVideoRelatedVideosViewModel.h */,
 				7A9D5D121FE134F0EA003F75 /* RSVideoRelatedVideosViewModel.m */,
+				7A9D5318CE66D417996EB3AB /* RSVideoDetailSegmentViewModel.m */,
+				7A9D533C8D5AA148024886E3 /* RSVideoDetailSegmentViewModel.h */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -703,6 +710,7 @@
 			children = (
 				7A9D5C4426984FD4283A3177 /* RoundView.swift */,
 				7A9D507B80947852CAAF8097 /* CircularImageView.swift */,
+				DC01A0E11B5E84EE0003FE21 /* RoundButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1292,6 +1300,7 @@
 				DC51F4B91B450FF9009AEC11 /* ChannelDetailViewController.swift in Sources */,
 				7A9D54EC8DC06A980DAD71E5 /* RSVideoRelatedVideosViewController.m in Sources */,
 				DCC0B8B61B58D1BE0081E5CA /* UIStoryboardSegueExtensions.swift in Sources */,
+				DC01A0E21B5E84EE0003FE21 /* RoundButton.swift in Sources */,
 				7A9D55A5852D9DA760734F99 /* RSVideoInfoViewController.m in Sources */,
 				7A9D5EE617E0D4BE371D6616 /* RSVideoDetailViewController.m in Sources */,
 				7A9D58A96A9F1162F3AAE864 /* RSVideoDetailSegmentViewController.m in Sources */,
@@ -1349,6 +1358,7 @@
 				7A9D573438D3BF99FEAE3207 /* RSThumbnails.m in Sources */,
 				7A9D59E8FFC59D16DE955870 /* RSSearchTableViewCell.m in Sources */,
 				7A9D5C16E96AE387AC29233D /* IntExtensions.swift in Sources */,
+				7A9D50935DBFA85ADFA6FBD1 /* RSVideoDetailSegmentViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

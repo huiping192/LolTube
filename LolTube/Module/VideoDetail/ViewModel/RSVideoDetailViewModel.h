@@ -17,6 +17,10 @@
 @property(nonatomic, copy) NSString *highThumbnailImageUrl;
 @property(nonatomic, copy) NSString *defaultThumbnailImageUrl;
 
+@property(nonatomic, copy) NSString *channelId;
+@property(nonatomic, copy) NSString *channelTitle;
+
+
 - (instancetype)initWithVideoId:(NSString *)videoId;
 
 - (void)updateWithSuccess:(void (^)())success failure:(void (^)(NSError *))failure;

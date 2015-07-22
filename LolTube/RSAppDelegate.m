@@ -118,7 +118,6 @@
                     NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:kSharedUserDefaultsSuitName];
                     [userDefaults setObject:[store objectForKey:key] forKey:key];
                     [userDefaults synchronize];
-                    [RSChannelTableViewModel clearCache];
                 }
 
             }

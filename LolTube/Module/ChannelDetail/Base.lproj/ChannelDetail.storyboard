@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8152.3" systemVersion="15A204h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gYS-dt-FSg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8164.2" systemVersion="14F6a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gYS-dt-FSg">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8124.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8135.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Channel Detail View Controller-->
         <scene sceneID="bOo-u9-Cns">
@@ -38,7 +43,7 @@
                                         <blurEffect style="light"/>
                                     </visualEffectView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Txx-LE-WJ0" userLabel="channel icon image view" customClass="CircularImageView" customModule="LolTube" customModuleProvider="target">
-                                        <rect key="frame" x="25" y="62" width="60" height="60"/>
+                                        <rect key="frame" x="20" y="62" width="60" height="60"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Txx-LE-WJ0" secondAttribute="height" id="2fx-Bu-nA2"/>
@@ -46,45 +51,56 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps0-aY-nS5" userLabel="videoCount">
-                                        <rect key="frame" x="115" y="109" width="0.0" height="0.0"/>
+                                        <rect key="frame" x="100" y="109" width="0.0" height="0.0"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v28-kj-deH" userLabel="viewCount">
-                                        <rect key="frame" x="115" y="114" width="0.0" height="0.0"/>
+                                        <rect key="frame" x="100" y="114" width="0.0" height="0.0"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrB-ud-bHx" userLabel="subscriberCount">
-                                        <rect key="frame" x="115" y="119" width="0.0" height="0.0"/>
+                                        <rect key="frame" x="100" y="119" width="0.0" height="0.0"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nj8-Du-5A9" customClass="RoundButton" customModule="LolTube" customModuleProvider="target">
+                                        <rect key="frame" x="559" y="100" width="16" height="28"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                        <inset key="contentEdgeInsets" minX="8" minY="5" maxX="8" maxY="5"/>
+                                        <connections>
+                                            <action selector="subscribeButtonTapped:" destination="gYS-dt-FSg" eventType="touchUpInside" id="7vQ-vX-Nt9"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="UqT-Mc-e5N" secondAttribute="trailing" id="0Dn-qK-aXp"/>
                                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="jrB-ud-bHx" secondAttribute="trailing" id="5J6-LS-Jpu"/>
+                                    <constraint firstItem="Nj8-Du-5A9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="v28-kj-deH" secondAttribute="trailing" id="7NE-xf-T73"/>
                                     <constraint firstItem="v28-kj-deH" firstAttribute="leading" secondItem="ps0-aY-nS5" secondAttribute="leading" id="J0U-Bo-zJH"/>
-                                    <constraint firstItem="Txx-LE-WJ0" firstAttribute="leading" secondItem="xml-Fe-aUI" secondAttribute="leading" constant="25" id="JrI-Er-LTM"/>
+                                    <constraint firstItem="Txx-LE-WJ0" firstAttribute="leading" secondItem="xml-Fe-aUI" secondAttribute="leading" constant="20" id="JrI-Er-LTM"/>
                                     <constraint firstItem="v28-kj-deH" firstAttribute="leading" secondItem="jrB-ud-bHx" secondAttribute="leading" id="No0-XS-25O"/>
                                     <constraint firstItem="1hA-Bf-tlR" firstAttribute="top" secondItem="xml-Fe-aUI" secondAttribute="top" id="W5r-4Y-MC0"/>
                                     <constraint firstAttribute="bottom" secondItem="Txx-LE-WJ0" secondAttribute="bottom" constant="8" id="XIR-ie-LnR"/>
+                                    <constraint firstItem="Nj8-Du-5A9" firstAttribute="centerY" secondItem="v28-kj-deH" secondAttribute="centerY" id="XbN-fi-PXZ"/>
                                     <constraint firstItem="jrB-ud-bHx" firstAttribute="top" secondItem="v28-kj-deH" secondAttribute="bottom" constant="5" id="ZZ3-1s-Ztp"/>
                                     <constraint firstAttribute="bottom" secondItem="1hA-Bf-tlR" secondAttribute="bottom" id="aHI-pD-aFa"/>
                                     <constraint firstAttribute="height" constant="130" id="bIP-xG-80E"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="v28-kj-deH" secondAttribute="trailing" id="bkt-sE-Ztq"/>
-                                    <constraint firstItem="ps0-aY-nS5" firstAttribute="leading" secondItem="Txx-LE-WJ0" secondAttribute="trailing" constant="30" id="cJm-Bf-f27"/>
+                                    <constraint firstItem="ps0-aY-nS5" firstAttribute="leading" secondItem="Txx-LE-WJ0" secondAttribute="trailing" constant="20" id="cJm-Bf-f27"/>
                                     <constraint firstAttribute="trailing" secondItem="1hA-Bf-tlR" secondAttribute="trailing" id="eFA-KU-W3K"/>
                                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="ps0-aY-nS5" secondAttribute="trailing" id="gh2-Tb-bNm"/>
                                     <constraint firstAttribute="bottom" secondItem="UqT-Mc-e5N" secondAttribute="bottom" id="njJ-uN-AdW"/>
+                                    <constraint firstAttribute="trailing" secondItem="Nj8-Du-5A9" secondAttribute="trailing" constant="25" id="tKs-8H-PYP"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="jrB-ud-bHx" secondAttribute="bottom" constant="3" id="voe-nT-Zg6"/>
                                     <constraint firstItem="v28-kj-deH" firstAttribute="top" secondItem="ps0-aY-nS5" secondAttribute="bottom" constant="5" id="wzp-PR-hM1"/>
                                     <constraint firstItem="UqT-Mc-e5N" firstAttribute="leading" secondItem="xml-Fe-aUI" secondAttribute="leading" id="xJH-Kl-8qA"/>
@@ -144,6 +160,7 @@
                     <connections>
                         <outlet property="backgroundThumbnailImageView" destination="UqT-Mc-e5N" id="sQM-Zm-1pn"/>
                         <outlet property="containView" destination="smB-xO-UZE" id="VpK-al-uHg"/>
+                        <outlet property="subscribeButton" destination="Nj8-Du-5A9" id="oe2-GR-Zo0"/>
                         <outlet property="subscriberCountLabel" destination="jrB-ud-bHx" id="Hwq-0C-hUp"/>
                         <outlet property="thumbnailImageView" destination="Txx-LE-WJ0" id="KdP-PR-eE0"/>
                         <outlet property="videoCountLabel" destination="ps0-aY-nS5" id="RTH-cO-1NB"/>

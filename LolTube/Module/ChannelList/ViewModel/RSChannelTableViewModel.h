@@ -18,7 +18,6 @@
 
 - (void)moveChannelWithIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)toIndexPath;
 
-+(void)clearCache;
 @end
 
 

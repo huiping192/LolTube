@@ -106,6 +106,9 @@ static NSString *const kSegueIdRelatedVideos = @"relatedVideosEmbed";
         [weakSelf.imageLoadingOperationQueue addOperation:imageOperation];
 
         weakSelf.shareButton.enabled = YES;
+        
+        [weakSelf.videoDetailSegmentViewController updateWithChannelId:self.videoDetailViewModel.channelId channelTitle:self.videoDetailViewModel.channelTitle];
+
     }                                    failure:^(NSError *error) {
         [weakSelf showError:error];
     }];
