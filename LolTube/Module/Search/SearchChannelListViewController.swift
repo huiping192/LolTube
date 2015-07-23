@@ -3,7 +3,7 @@ import Foundation
 class SearchChannelListViewController: SimpleListCollectionViewController,Searchable {
     private var _searchText:String!{
         didSet{
-            guard let viewModel =  viewModel as? SearchChannelListViewModel where viewModel.searchText != _searchText else {
+            guard let viewModel =  viewModel where viewModel.searchText != _searchText else {
                 return
             }
             viewModel.searchText = _searchText
@@ -20,17 +20,19 @@ class SearchChannelListViewController: SimpleListCollectionViewController,Search
         }
     }
     
+    var viewModel:SearchChannelListViewModel!
+    
     let imageLoadingOperationQueue = NSOperationQueue()
     
     override func collectionViewModel() -> SimpleListCollectionViewModelProtocol{
-        let searchChannelListViewModel = SearchChannelListViewModel()
-        searchChannelListViewModel.searchText = _searchText
-        return searchChannelListViewModel
+        viewModel = SearchChannelListViewModel()
+        viewModel.searchText = _searchText
+        return viewModel
     }
     
     override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(indexPath, type: ChannelCollectionViewCell.self)
-        let channel = (viewModel as! SearchChannelListViewModel).channelList[indexPath.row]
+        let channel = viewModel.channelList[indexPath.row]
         
         cell.titleLabel.text = channel.title
         cell.videoCountLabel.text = channel.videoCountString
@@ -38,7 +40,8 @@ class SearchChannelListViewController: SimpleListCollectionViewController,Search
         
         cell.thumbnailImageView.image = nil
         let imageOperation = UIImageView.asynLoadingImageWithUrlString(channel.thumbnailUrl, secondImageUrlString: nil, needBlackWhiteEffect: false) {
-            [weak cell] image in
+            [unowned self] image in
+            let cell = self.collectionView.cell(indexPath, type: ChannelCollectionViewCell.self)
             cell?.thumbnailImageView.image = image
         }
         imageLoadingOperationQueue.addOperation(imageOperation)
@@ -48,7 +51,7 @@ class SearchChannelListViewController: SimpleListCollectionViewController,Search
     }
     
     override func didSelectItemAtIndexPath(indexPath: NSIndexPath){
-        let channel = (viewModel as! SearchChannelListViewModel).channelList[indexPath.row]
+        let channel = viewModel.channelList[indexPath.row]
         navigationController?.pushViewController(instantiateChannelDetailViewController(channel.channelId), animated: true)
     }
 }

@@ -4,15 +4,17 @@ class VideoListViewController: SimpleListCollectionViewController {
 
     var channelId:String!
 
+    var viewModel:VideoListViewModel!
     private let imageLoadingOperationQueue = NSOperationQueue()
 
     override func collectionViewModel() -> SimpleListCollectionViewModelProtocol{
-        return VideoListViewModel(channelId:channelId)
+        viewModel = VideoListViewModel(channelId:channelId)
+        return viewModel
     }
     
     override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(indexPath, type: VideoCellectionViewCell.self)
-        let video = (viewModel as! VideoListViewModel).videoList[indexPath.row]
+        let video = viewModel.videoList[indexPath.row]
         
         cell.titleLabel.text = video.title
         cell.channelLabel.text = video.channelTitle
@@ -31,7 +33,7 @@ class VideoListViewController: SimpleListCollectionViewController {
     }
     
     override func didSelectItemAtIndexPath(indexPath: NSIndexPath){
-        let video = (viewModel as! VideoListViewModel).videoList[indexPath.row]
+        let video = viewModel.videoList[indexPath.row]
         navigationController?.pushViewController(instantiateVideoDetailViewController(video.videoId), animated: true)
     }
 }

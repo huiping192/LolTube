@@ -5,6 +5,8 @@ class PlaylistViewController: SimpleListCollectionViewController {
     var playlistId:String!
     var playlistTitle:String!
     
+    var viewModel:PlaylistViewModel!
+    
     private let imageLoadingOperationQueue = NSOperationQueue()
 
     override func viewDidLoad() {
@@ -14,12 +16,13 @@ class PlaylistViewController: SimpleListCollectionViewController {
     }
     
     override func collectionViewModel() -> SimpleListCollectionViewModelProtocol{
-        return PlaylistViewModel(playlistId: playlistId)
+        viewModel = PlaylistViewModel(playlistId: playlistId)
+        return viewModel
     }
     
     override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(indexPath, type: PlaylistCollectionViewCell.self)
-        let video = (viewModel as! PlaylistViewModel).videoList[indexPath.row]
+        let video = viewModel.videoList[indexPath.row]
         
         cell.videoNumberLabel.text = String(indexPath.row + 1)
         cell.titleLabel.text = video.title
@@ -39,7 +42,7 @@ class PlaylistViewController: SimpleListCollectionViewController {
     }
     
     override func didSelectItemAtIndexPath(indexPath: NSIndexPath){
-        let cellVo = (viewModel as! PlaylistViewModel).videoList[indexPath.row]
+        let cellVo = viewModel.videoList[indexPath.row]
         navigationController?.pushViewController(instantiateVideoDetailViewController(cellVo.videoId), animated: true)
     }
 }
