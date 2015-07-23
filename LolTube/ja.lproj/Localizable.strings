@@ -35,3 +35,11 @@
 
 "ChannelSubscribed" = "登録済み";
 "ChannelUnsubscribe" = "チャンネル登録";
+
+"ChannelVideoEmptyData" = "このチャンネルには動画がありません。";
+"ChannelPlaylistsEmptyData" = "このチャンネルには再生リストがありません。";
+"ChannelPlaylistEmptyData" = "この再生リストには動画がありません。";
+"HistoryEmptyData" = "このリストには動画が含まれていません。";
+"SearchVideoEmptyData" = "一致する動画はありませんでした。";
+"SearchChannelEmptyData" = "一致するチャンネルはありませんでした。";
+"SearchPlaylistEmptyData" = "一致する再生リストはありませんでした。";

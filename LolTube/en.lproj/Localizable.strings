@@ -32,3 +32,11 @@
 
 "ChannelSubscribed" = "Subscribed";
 "ChannelUnsubscribe" = "Subscribe";
+
+"ChannelVideoEmptyData" = "No videos in this channel yet.";
+"ChannelPlaylistsEmptyData" = "No playlist in this channel yet.";
+"ChannelPlaylistEmptyData" = "No videos in this playlist yet.";
+"HistoryEmptyData" = "This list has no videos.";
+"SearchVideoEmptyData" = "No videos found.";
+"SearchChannelEmptyData" = "No channels found.";
+"SearchPlaylistEmptyData" = "No playlist found.";

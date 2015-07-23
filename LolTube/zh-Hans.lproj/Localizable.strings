@@ -33,3 +33,12 @@
 
 "ChannelSubscribed" = "已订阅";
 "ChannelUnsubscribe" = "订阅";
+
+
+"ChannelVideoEmptyData" = "这个频道没有任何视频。";
+"ChannelPlaylistsEmptyData" = "这个频道没有任何播放列表。";
+"ChannelPlaylistEmptyData" = "这个播放列表没有任何视频。";
+"HistoryEmptyData" = "这个列表没有任何视频。";
+"SearchVideoEmptyData" = "没搜索到任何相关视频。";
+"SearchChannelEmptyData" = "没搜索到任何相关频道。";
+"SearchPlaylistEmptyData" = "没搜索到任何相关播放列表。";

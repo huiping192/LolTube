@@ -8,6 +8,11 @@ protocol SimpleListCollectionViewControllerDelegate:class {
     func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell
     
     func didSelectItemAtIndexPath(indexPath: NSIndexPath)
+    
+    var emptyDataTitle:String{
+        get
+    }
+
 }
 
 class SimpleListCollectionViewController: UIViewController,SimpleListCollectionViewControllerDelegate {
@@ -19,11 +24,20 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
     private var _viewModel:SimpleListCollectionViewModelProtocol!
     private var isLoading = false
     
+    private var dataLoaded = false
+
+    var emptyDataTitle:String{
+        return ""
+    }
+    
     override func viewDidLoad() {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "preferredContentSizeChanged:", name: UIContentSizeCategoryDidChangeNotification, object: nil)
         
         delegate = self
+        collectionView.emptyDataSetSource = self
+        collectionView.emptyDataSetDelegate = self
+        
         _viewModel = delegate.collectionViewModel()
         loadData()
     }
@@ -47,6 +61,7 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
         _viewModel.update(
             success: {
                 [unowned self] in
+                self.dataLoaded = true
                 self.collectionView.alpha = 0.0;
                 self.collectionView.setContentOffset(CGPointZero, animated: false)
                 self.stopAnimateLoadingView()
@@ -186,5 +201,25 @@ private class SimpleListCollectionViewModel: SimpleListCollectionViewModelProtoc
     
     func update(success success: (() -> Void), failure: ((error:NSError) -> Void)){
         
+    }
+}
+
+extension SimpleListCollectionViewController: DZNEmptyDataSetSource {
+    func imageForEmptyDataSet(scrollView:UIScrollView!) -> UIImage! {
+        return UIImage(named: "Empty_Data")
+    }
+    
+    func titleForEmptyDataSet(scrollView:UIScrollView!) -> NSAttributedString! {
+        let text = emptyDataTitle
+        let attributes = [NSFontAttributeName:UIFont.boldSystemFontOfSize(18),NSForegroundColorAttributeName:UIColor.darkGrayColor()]
+        
+        return NSAttributedString(string: text, attributes: attributes)
+    }
+}
+
+extension SimpleListCollectionViewController: DZNEmptyDataSetDelegate {
+    
+    func emptyDataSetShouldDisplay(scrollView:UIScrollView!) -> Bool{
+        return dataLoaded && _viewModel.numberOfItems() == 0
     }
 }

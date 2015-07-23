@@ -6,6 +6,11 @@ class HistoryViewController:SimpleListCollectionViewController {
     private let imageLoadingOperationQueue = NSOperationQueue()
 
     var viewModel:HistoryViewModel!
+    
+    override var emptyDataTitle:String{
+        return NSLocalizedString("HistoryEmptyData", comment: "")
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 

@@ -2878,7 +2878,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D148401C6AC56807480570B9C7FA11B1 /* AFNetworking-Private.xcconfig */;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -2906,7 +2906,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 12EF018313D42235CF1DD2C3D04F4DE0 /* SDWebImage-Private.xcconfig */;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -2988,7 +2988,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E1508526D6C2CBE80FEE82C0F5C1ECC7 /* JSONModel-Private.xcconfig */;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -3158,7 +3158,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E1508526D6C2CBE80FEE82C0F5C1ECC7 /* JSONModel-Private.xcconfig */;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -3359,7 +3359,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 12EF018313D42235CF1DD2C3D04F4DE0 /* SDWebImage-Private.xcconfig */;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -3474,7 +3474,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D148401C6AC56807480570B9C7FA11B1 /* AFNetworking-Private.xcconfig */;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
