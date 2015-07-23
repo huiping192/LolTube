@@ -42,7 +42,8 @@ class SearchVideoListViewController: SimpleListCollectionViewController,Searchab
         
         cell.thumbnailImageView.image = nil
         let imageOperation = UIImageView.asynLoadingImageWithUrlString(video.thumbnailUrl, secondImageUrlString: nil, needBlackWhiteEffect: false) {
-            [weak cell] image in
+            [unowned self] image in
+            let cell = self.collectionView.cell(indexPath, type: VideoCellectionViewCell.self)
             cell?.thumbnailImageView.image = image
         }
         

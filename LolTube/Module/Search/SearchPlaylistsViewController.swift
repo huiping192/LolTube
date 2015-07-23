@@ -40,7 +40,8 @@ class SearchPlaylistsViewController: SimpleListCollectionViewController,Searchab
         
         cell.thumbnailImageView.image = nil
         let imageOperation = UIImageView.asynLoadingImageWithUrlString(playlist.thumbnailUrl, secondImageUrlString: nil, needBlackWhiteEffect: false) {
-            [weak cell] image in
+            [unowned self] image in
+            let cell = self.collectionView.cell(indexPath, type: PlaylistsCollectionViewCell.self)
             cell?.thumbnailImageView.image = image
         }
         imageLoadingOperationQueue.addOperation(imageOperation)
