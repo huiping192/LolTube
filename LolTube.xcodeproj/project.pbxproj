@@ -17,8 +17,11 @@
 		7A9D5148312C08C13B15F994 /* RSVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D588E065470FF7B751440 /* RSVideoModel.m */; };
 		7A9D515B47E7C38B0C86E72F /* RSChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5650CE10F3B152DB916C /* RSChannelModel.m */; };
 		7A9D517888BCFE3270DE9EB1 /* UIImageView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D51D455D1D7CB93CE543C /* UIImageView+Loading.m */; };
+		7A9D51ABE18A0C8736203486 /* PlaylistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5CE6D9DE255880AB0675 /* PlaylistsViewModel.swift */; };
+		7A9D51B3ACA78568076119F3 /* PlaylistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D54432D8ED591C779E11B /* PlaylistViewModel.swift */; };
 		7A9D51CFA22CA82EC960CA7B /* RSThumbnails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D550D828214C4B085A20D /* RSThumbnails.m */; };
 		7A9D51ED44B6253F72975269 /* RSVideoInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D50B5067E9C022D928E40 /* RSVideoInfoViewModel.m */; };
+		7A9D520400495FFA39742BA9 /* ChannelDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5FA53B83588D46CFFF92 /* ChannelDetailViewModel.swift */; };
 		7A9D521320B2B1B88B16EBFB /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D50E5C2FBC9003C9B521E /* Channel.swift */; };
 		7A9D5221D105A982CA7413A1 /* RSVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D522E2ABA2D7CF8D28865 /* RSVideoDetailModel.m */; };
 		7A9D533BD41BF929A8993258 /* NSDateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D571016D3664FBDB5479B /* NSDateTests.swift */; };
@@ -28,11 +31,14 @@
 		7A9D54EC8DC06A980DAD71E5 /* RSVideoRelatedVideosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5CCAFA198A4073222A6C /* RSVideoRelatedVideosViewController.m */; };
 		7A9D55A5852D9DA760734F99 /* RSVideoInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5AC68727A9BCD0BEFF02 /* RSVideoInfoViewController.m */; };
 		7A9D55AE709EF08F3CF26663 /* YoutubeServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D57086D3483D4DAB0CB21 /* YoutubeServiceSpec.swift */; };
+		7A9D55D673B125147980223D /* ChannelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D526C78F464CE031BDCB5 /* ChannelCollectionViewCell.swift */; };
 		7A9D5634A5DEAE65CC9D46FF /* RSStringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5B7BE899A291E20B351C /* RSStringUtil.m */; };
 		7A9D565F9F049CDB43ACCBE9 /* TwoVideosDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5695E285A65D8216CA04 /* TwoVideosDetail.json */; };
+		7A9D5666B0A18751B34A37F9 /* SearchVideoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D509996E34EF5012B6056 /* SearchVideoListViewModel.swift */; };
 		7A9D56CE982FCDCD9C3B91C4 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5C4426984FD4283A3177 /* RoundView.swift */; };
 		7A9D571D6F71F2F391FE6E13 /* YoutubeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D597407BB9DD1397A6220 /* YoutubeService.swift */; };
 		7A9D573438D3BF99FEAE3207 /* RSThumbnails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D550D828214C4B085A20D /* RSThumbnails.m */; };
+		7A9D573B7278D0A0CBAE966B /* PlaylistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D518C3176C323B3099C62 /* PlaylistCollectionViewCell.swift */; };
 		7A9D57863767B8B7EDAF00DE /* RSVideoListCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D55DFF28A4B98FBFDB780 /* RSVideoListCollectionViewModel.m */; };
 		7A9D57D2B2292D25C801CFFE /* RSVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D588E065470FF7B751440 /* RSVideoModel.m */; };
 		7A9D580887DACDC2F061D9A6 /* RSEventTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5B6C4E70B83A481B38F5 /* RSEventTracker.m */; };
@@ -60,19 +66,21 @@
 		7A9D5CBD3E03AF5E9EB19420 /* FiftyVideosDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5B9AB3E6776CBA3BA769 /* FiftyVideosDetail.json */; };
 		7A9D5D78AAEE2467B5DC5C37 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5AD72E31A33F26DC4840 /* NSString+Util.m */; };
 		7A9D5DB0985B4C2C1838AF44 /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D507B80947852CAAF8097 /* CircularImageView.swift */; };
+		7A9D5DC7B40B226EE331BB61 /* PlaylistsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5CD1B874DFA55EEA9B9E /* PlaylistsCollectionViewCell.swift */; };
 		7A9D5DCC6656C8CA39AF629B /* RSVideoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5E2A063FBEE5C97DB549 /* RSVideoCollectionViewCell.m */; };
 		7A9D5DD926C658587A69CB76 /* RSJsonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5A17C810AF687DD2F0C0 /* RSJsonModel.m */; };
 		7A9D5E047642539A74E9E1FF /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D50E2E7E043A6D87228A8 /* TopViewController.swift */; };
 		7A9D5E43566454C41B98499F /* RSVideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D57085808629C9C515323 /* RSVideoListViewController.m */; };
 		7A9D5EB52386205BCB0125A4 /* RSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D51BA505E402A59D85EB1 /* RSNavigationController.m */; };
+		7A9D5ED4EC7D8C7DBDB04EC1 /* SearchPlaylistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5957290E603F30289527 /* SearchPlaylistsViewModel.swift */; };
 		7A9D5EE617E0D4BE371D6616 /* RSVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D57E8E3DC4EA4BCA323D2 /* RSVideoDetailViewController.m */; };
+		7A9D5EFBCC830062D614642A /* SearchChannelListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D58907113769320D6EDF4 /* SearchChannelListViewModel.swift */; };
 		7A9D5F14B85FDCEF4668D937 /* RSVideoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5E1CAC258986C7A0B45D /* RSVideoService.m */; };
 		7A9D5F981118FFCA6A4428AF /* RSVideoDetailAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5BB3CD33191256CCC27E /* RSVideoDetailAnimator.m */; };
 		7A9D5FE6121499045F3F1D14 /* RSChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5650CE10F3B152DB916C /* RSChannelModel.m */; };
 		7D3B56BEC73C460A8FD88FC8 /* libPods-VideoWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 258B97C7D8C343E59B7679D4 /* libPods-VideoWidget.a */; };
 		D2912024C3464678820F0B0F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE8E8822B6E415281465DA6 /* libPods.a */; };
 		DC01A0E21B5E84EE0003FE21 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01A0E11B5E84EE0003FE21 /* RoundButton.swift */; };
-		DC0586A21B5A5486001A4B37 /* ChannelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0586A11B5A5486001A4B37 /* ChannelCollectionViewCell.swift */; };
 		DC08FBD31B52699F008A499E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC08FBD21B52699F008A499E /* SearchViewController.swift */; };
 		DC0F691C1A03DFD70061EB95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC1044C219B2FA6B007A86E6 /* Images.xcassets */; };
 		DC0F691E1A051A600061EB95 /* RSChannelService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D518DC4BF259949301CF7 /* RSChannelService.m */; };
@@ -93,8 +101,6 @@
 		DC1044CC19B2FA6B007A86E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1044AE19B2FA6B007A86E6 /* UIKit.framework */; };
 		DC1044D419B2FA6B007A86E6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC1044D219B2FA6B007A86E6 /* InfoPlist.strings */; };
 		DC1196B11B4EC8080090338F /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1196B01B4EC8080090338F /* PlaylistViewController.swift */; };
-		DC1196B31B4EC90A0090338F /* PlaylistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1196B21B4EC90A0090338F /* PlaylistCollectionViewCell.swift */; };
-		DC1196B51B4ECA090090338F /* PlaylistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1196B41B4ECA090090338F /* PlaylistViewModel.swift */; };
 		DC1196B81B4ED2C40090338F /* RSPlaylistItemsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1196B71B4ED2C40090338F /* RSPlaylistItemsModel.m */; };
 		DC1196B91B4ED3F30090338F /* RSPlaylistItemsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1196B71B4ED2C40090338F /* RSPlaylistItemsModel.m */; };
 		DC1196BC1B503D4B0090338F /* RSPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1196BB1B503D4B0090338F /* RSPageInfo.m */; };
@@ -119,7 +125,6 @@
 		DC51F4BF1B45134A009AEC11 /* VideoList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC51F4BE1B45134A009AEC11 /* VideoList.storyboard */; };
 		DC51F4C11B451696009AEC11 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51F4C01B451696009AEC11 /* VideoCollectionViewCell.swift */; };
 		DC51F4C31B451777009AEC11 /* VideoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51F4C21B451777009AEC11 /* VideoListViewModel.swift */; };
-		DC51F4C71B455699009AEC11 /* ChannelDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51F4C61B455699009AEC11 /* ChannelDetailViewModel.swift */; };
 		DC5708F51A00DBF500DB8821 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5708F41A00DBF500DB8821 /* NotificationCenter.framework */; };
 		DC5708FB1A00DBF500DB8821 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5708FA1A00DBF500DB8821 /* TodayViewController.m */; };
 		DC5708FD1A00DBF500DB8821 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5708FC1A00DBF500DB8821 /* MainInterface.storyboard */; };
@@ -127,17 +132,12 @@
 		DC64F4C719E5524900F860B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DC64F4C519E5524900F860B4 /* Reachability.m */; };
 		DC64F4C919E5582F00F860B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC64F4C819E5582F00F860B4 /* SystemConfiguration.framework */; };
 		DC842D731B4AF2A80085FF8D /* PlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC842D721B4AF2A80085FF8D /* PlaylistsViewController.swift */; };
-		DC842D751B4AF3200085FF8D /* PlaylistsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC842D741B4AF3200085FF8D /* PlaylistsCollectionViewCell.swift */; };
-		DC842D771B4AF5980085FF8D /* PlaylistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC842D761B4AF5980085FF8D /* PlaylistsViewModel.swift */; };
 		DC9467691B4C133D0043E33B /* RSPlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9467681B4C133D0043E33B /* RSPlaylistModel.m */; };
 		DC94676A1B4C16A50043E33B /* RSPlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9467681B4C133D0043E33B /* RSPlaylistModel.m */; };
 		DC94676C1B4C17F40043E33B /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94676B1B4C17F40043E33B /* Playlist.swift */; };
 		DC9CC5E81B5CE53E0047DFDC /* SearchVideoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9CC5E71B5CE53E0047DFDC /* SearchVideoListViewController.swift */; };
-		DC9CC5EA1B5CE5D20047DFDC /* SearchVideoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9CC5E91B5CE5D20047DFDC /* SearchVideoListViewModel.swift */; };
 		DC9CC5EC1B5CE6850047DFDC /* SearchChannelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9CC5EB1B5CE6850047DFDC /* SearchChannelListViewController.swift */; };
-		DC9CC5EE1B5CE7000047DFDC /* SearchChannelListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9CC5ED1B5CE7000047DFDC /* SearchChannelListViewModel.swift */; };
 		DC9CC5F01B5CE76E0047DFDC /* SearchPlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9CC5EF1B5CE76E0047DFDC /* SearchPlaylistsViewController.swift */; };
-		DC9CC5F21B5CE7B30047DFDC /* SearchPlaylistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9CC5F11B5CE7B30047DFDC /* SearchPlaylistsViewModel.swift */; };
 		DCA44BDE1A0CE8E100A4A758 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA44BDC1A0CE8E100A4A758 /* Crashlytics.framework */; };
 		DCA44BDF1A0CE8E100A4A758 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA44BDD1A0CE8E100A4A758 /* Fabric.framework */; };
 		DCC0B8B61B58D1BE0081E5CA /* UIStoryboardSegueExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC0B8B51B58D1BE0081E5CA /* UIStoryboardSegueExtensions.swift */; };
@@ -195,6 +195,7 @@
 		7A9D506E4891A21646CF1E1D /* RSChannelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSChannelListViewController.h; sourceTree = "<group>"; };
 		7A9D5072C6E4D2AEE57845F1 /* FiftyChannel.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = FiftyChannel.json; sourceTree = "<group>"; };
 		7A9D507B80947852CAAF8097 /* CircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
+		7A9D509996E34EF5012B6056 /* SearchVideoListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVideoListViewModel.swift; sourceTree = "<group>"; };
 		7A9D50B1F6FB8E93CAFBBE4C /* RSVideoListCollectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoListCollectionViewModel.h; sourceTree = "<group>"; };
 		7A9D50B5067E9C022D928E40 /* RSVideoInfoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoInfoViewModel.m; sourceTree = "<group>"; };
 		7A9D50D61627344D955161E7 /* UIImage+RSImageEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RSImageEffect.h"; sourceTree = "<group>"; };
@@ -204,6 +205,7 @@
 		7A9D5142F5118BBD86D87526 /* RSVideoListCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoListCollectionViewLayout.h; sourceTree = "<group>"; };
 		7A9D51490E5161855397D994 /* UIViewController+RSLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RSLoading.h"; sourceTree = "<group>"; };
 		7A9D517BF5F85FDF0B1AD516 /* RSSearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSearchModel.m; sourceTree = "<group>"; };
+		7A9D518C3176C323B3099C62 /* PlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
 		7A9D518DC4BF259949301CF7 /* RSChannelService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSChannelService.m; sourceTree = "<group>"; };
 		7A9D51BA505E402A59D85EB1 /* RSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNavigationController.m; sourceTree = "<group>"; };
 		7A9D51D455D1D7CB93CE543C /* UIImageView+Loading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Loading.m"; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 		7A9D522E2ABA2D7CF8D28865 /* RSVideoDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailModel.m; sourceTree = "<group>"; };
 		7A9D524F7C274F87C6746729 /* RSVideoDetailSegmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailSegmentViewController.h; sourceTree = "<group>"; };
 		7A9D526397DA6DDCCAC2F3B6 /* StringUtilTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtilTest.swift; sourceTree = "<group>"; };
+		7A9D526C78F464CE031BDCB5 /* ChannelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewCell.swift; sourceTree = "<group>"; };
 		7A9D5286A597D87BFDE26663 /* TopVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopVideoCell.swift; sourceTree = "<group>"; };
 		7A9D5318CE66D417996EB3AB /* RSVideoDetailSegmentViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailSegmentViewModel.m; sourceTree = "<group>"; };
 		7A9D5335364E80C0D66DFADA /* UIViewController+RSError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RSError.h"; sourceTree = "<group>"; };
@@ -221,6 +224,7 @@
 		7A9D53A9E8EF6576E1654ECE /* RSVideoInfoUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoInfoUtil.m; sourceTree = "<group>"; };
 		7A9D541446E54B6F621F0431 /* RSVideoListCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoListCollectionViewLayout.m; sourceTree = "<group>"; };
 		7A9D54358213CF2862CAD03D /* RSVideoInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoInfoViewController.h; sourceTree = "<group>"; };
+		7A9D54432D8ED591C779E11B /* PlaylistViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistViewModel.swift; sourceTree = "<group>"; };
 		7A9D5444F575EA712468E034 /* RSVideoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoListViewController.h; sourceTree = "<group>"; };
 		7A9D54C7A9228D83D1120A05 /* RSChannelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSChannelTableViewCell.h; sourceTree = "<group>"; };
 		7A9D550D828214C4B085A20D /* RSThumbnails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSThumbnails.m; sourceTree = "<group>"; };
@@ -251,11 +255,13 @@
 		7A9D58472CEC4CF30FB62297 /* UIImage+RSImageEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RSImageEffect.m"; sourceTree = "<group>"; };
 		7A9D587E2E91D179550C060E /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
 		7A9D588E065470FF7B751440 /* RSVideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoModel.m; sourceTree = "<group>"; };
+		7A9D58907113769320D6EDF4 /* SearchChannelListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchChannelListViewModel.swift; sourceTree = "<group>"; };
 		7A9D58BCA4FC17F9831757EF /* RSVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoModel.h; sourceTree = "<group>"; };
 		7A9D58F31A59D97CBEF3721B /* RSVideoDetailSegmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailSegmentViewController.m; sourceTree = "<group>"; };
 		7A9D5904CA4C863FB30FC721 /* RSTodayVideoTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTodayVideoTableViewModel.h; sourceTree = "<group>"; };
 		7A9D590838A9BAA06C47605D /* RSEventTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSEventTracker.h; sourceTree = "<group>"; };
 		7A9D59213ADCFCDA4A610BA8 /* RSVideoRelatedVideosViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoRelatedVideosViewModel.h; sourceTree = "<group>"; };
+		7A9D5957290E603F30289527 /* SearchPlaylistsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlaylistsViewModel.swift; sourceTree = "<group>"; };
 		7A9D597407BB9DD1397A6220 /* YoutubeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeService.swift; sourceTree = "<group>"; };
 		7A9D59CA519ECF7EC6BACEC3 /* TopViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewModel.swift; sourceTree = "<group>"; };
 		7A9D5A17C810AF687DD2F0C0 /* RSJsonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSJsonModel.m; sourceTree = "<group>"; };
@@ -273,6 +279,8 @@
 		7A9D5BB3CD33191256CCC27E /* RSVideoDetailAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailAnimator.m; sourceTree = "<group>"; };
 		7A9D5C4426984FD4283A3177 /* RoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
 		7A9D5CCAFA198A4073222A6C /* RSVideoRelatedVideosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoRelatedVideosViewController.m; sourceTree = "<group>"; };
+		7A9D5CD1B874DFA55EEA9B9E /* PlaylistsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsCollectionViewCell.swift; sourceTree = "<group>"; };
+		7A9D5CE6D9DE255880AB0675 /* PlaylistsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsViewModel.swift; sourceTree = "<group>"; };
 		7A9D5CED6FFAB8E9DC37BFFF /* RSThumbnails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSThumbnails.h; sourceTree = "<group>"; };
 		7A9D5D121FE134F0EA003F75 /* RSVideoRelatedVideosViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoRelatedVideosViewModel.m; sourceTree = "<group>"; };
 		7A9D5D1DA9E665D3274CBB65 /* TwoChannel.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = TwoChannel.json; sourceTree = "<group>"; };
@@ -285,6 +293,7 @@
 		7A9D5ECE406570808051959E /* RSVideoDetailAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailAnimator.h; sourceTree = "<group>"; };
 		7A9D5F6AFCB86F0AF7AA7008 /* RSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNavigationController.h; sourceTree = "<group>"; };
 		7A9D5F76D1C4BA7B40BC23B4 /* TopVideoCollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopVideoCollectionHeaderView.swift; sourceTree = "<group>"; };
+		7A9D5FA53B83588D46CFFF92 /* ChannelDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelDetailViewModel.swift; sourceTree = "<group>"; };
 		7B97C0A21DC93CB7C90E8CBA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		8193BF955BBF21FDBDE2F533 /* Pods-LolTubeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LolTubeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LolTubeTests/Pods-LolTubeTests.release.xcconfig"; sourceTree = "<group>"; };
 		8753EE0B5BA1B8708AE55A9D /* Pods_LolTubeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LolTubeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -294,7 +303,6 @@
 		D8E859BE1395F41E87F829F2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DBB64CB7BFAAE2450E92F8F6 /* Pods-LolTubeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LolTubeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LolTubeTests/Pods-LolTubeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC01A0E11B5E84EE0003FE21 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
-		DC0586A11B5A5486001A4B37 /* ChannelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewCell.swift; sourceTree = "<group>"; };
 		DC08FBD21B52699F008A499E /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		DC0F69281A075CD90061EB95 /* LolTube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LolTube.entitlements; sourceTree = "<group>"; };
 		DC0F69291A075CE80061EB95 /* VideoWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = VideoWidget.entitlements; sourceTree = "<group>"; };
@@ -314,8 +322,6 @@
 		DC1044D119B2FA6B007A86E6 /* LolTubeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LolTubeTests-Info.plist"; sourceTree = "<group>"; };
 		DC1044D319B2FA6B007A86E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DC1196B01B4EC8080090338F /* PlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
-		DC1196B21B4EC90A0090338F /* PlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
-		DC1196B41B4ECA090090338F /* PlaylistViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistViewModel.swift; sourceTree = "<group>"; };
 		DC1196B61B4ED2C40090338F /* RSPlaylistItemsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPlaylistItemsModel.h; sourceTree = "<group>"; };
 		DC1196B71B4ED2C40090338F /* RSPlaylistItemsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPlaylistItemsModel.m; sourceTree = "<group>"; };
 		DC1196BA1B503D4B0090338F /* RSPageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPageInfo.h; sourceTree = "<group>"; };
@@ -346,7 +352,6 @@
 		DC51F4BE1B45134A009AEC11 /* VideoList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VideoList.storyboard; sourceTree = "<group>"; };
 		DC51F4C01B451696009AEC11 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		DC51F4C21B451777009AEC11 /* VideoListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoListViewModel.swift; sourceTree = "<group>"; };
-		DC51F4C61B455699009AEC11 /* ChannelDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelDetailViewModel.swift; sourceTree = "<group>"; };
 		DC5708F31A00DBF500DB8821 /* VideoWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = VideoWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC5708F41A00DBF500DB8821 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		DC5708F81A00DBF500DB8821 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -357,17 +362,12 @@
 		DC64F4C619E5524900F860B4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		DC64F4C819E5582F00F860B4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DC842D721B4AF2A80085FF8D /* PlaylistsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsViewController.swift; sourceTree = "<group>"; };
-		DC842D741B4AF3200085FF8D /* PlaylistsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsCollectionViewCell.swift; sourceTree = "<group>"; };
-		DC842D761B4AF5980085FF8D /* PlaylistsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsViewModel.swift; sourceTree = "<group>"; };
 		DC9467671B4C133D0043E33B /* RSPlaylistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPlaylistModel.h; sourceTree = "<group>"; };
 		DC9467681B4C133D0043E33B /* RSPlaylistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPlaylistModel.m; sourceTree = "<group>"; };
 		DC94676B1B4C17F40043E33B /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		DC9CC5E71B5CE53E0047DFDC /* SearchVideoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVideoListViewController.swift; sourceTree = "<group>"; };
-		DC9CC5E91B5CE5D20047DFDC /* SearchVideoListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVideoListViewModel.swift; sourceTree = "<group>"; };
 		DC9CC5EB1B5CE6850047DFDC /* SearchChannelListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchChannelListViewController.swift; sourceTree = "<group>"; };
-		DC9CC5ED1B5CE7000047DFDC /* SearchChannelListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchChannelListViewModel.swift; sourceTree = "<group>"; };
 		DC9CC5EF1B5CE76E0047DFDC /* SearchPlaylistsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlaylistsViewController.swift; sourceTree = "<group>"; };
-		DC9CC5F11B5CE7B30047DFDC /* SearchPlaylistsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlaylistsViewModel.swift; sourceTree = "<group>"; };
 		DCA44BDC1A0CE8E100A4A758 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		DCA44BDD1A0CE8E100A4A758 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		DCC0B8B51B58D1BE0081E5CA /* UIStoryboardSegueExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryboardSegueExtensions.swift; sourceTree = "<group>"; };
@@ -433,6 +433,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A9D505C5E5E9D2C99676E2F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7A9D5FA53B83588D46CFFF92 /* ChannelDetailViewModel.swift */,
+				7A9D5CE6D9DE255880AB0675 /* PlaylistsViewModel.swift */,
+				7A9D54432D8ED591C779E11B /* PlaylistViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		7A9D50C103B1D5AE87D4D3C7 /* VideoList */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,16 +560,13 @@
 		7A9D53AC5C8BABC71710AAE1 /* ChannelDetail */ = {
 			isa = PBXGroup;
 			children = (
-				DC51F4C61B455699009AEC11 /* ChannelDetailViewModel.swift */,
 				DC51F4B81B450FF9009AEC11 /* ChannelDetailViewController.swift */,
 				DC51F4BA1B45101B009AEC11 /* ChannelInfoViewController.swift */,
 				DCEB197A1B52532600F255B3 /* ChannelDetail.storyboard */,
 				DC842D721B4AF2A80085FF8D /* PlaylistsViewController.swift */,
-				DC842D741B4AF3200085FF8D /* PlaylistsCollectionViewCell.swift */,
-				DC842D761B4AF5980085FF8D /* PlaylistsViewModel.swift */,
 				DC1196B01B4EC8080090338F /* PlaylistViewController.swift */,
-				DC1196B21B4EC90A0090338F /* PlaylistCollectionViewCell.swift */,
-				DC1196B41B4ECA090090338F /* PlaylistViewModel.swift */,
+				7A9D505C5E5E9D2C99676E2F /* ViewModel */,
+				7A9D5DBAB34D80A7435EF272 /* View */,
 			);
 			path = ChannelDetail;
 			sourceTree = "<group>";
@@ -610,6 +617,7 @@
 				7A9D50C103B1D5AE87D4D3C7 /* VideoList */,
 				7A9D5999710E6679EA542C59 /* History */,
 				7A9D55580F416ABFE2536494 /* Search */,
+				DC47690D1A07EAA700DC3D2D /* Main.storyboard */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -626,14 +634,12 @@
 			isa = PBXGroup;
 			children = (
 				DC08FBD21B52699F008A499E /* SearchViewController.swift */,
-				DC0586A11B5A5486001A4B37 /* ChannelCollectionViewCell.swift */,
 				DC9CC5E71B5CE53E0047DFDC /* SearchVideoListViewController.swift */,
-				DC9CC5E91B5CE5D20047DFDC /* SearchVideoListViewModel.swift */,
 				DC9CC5EB1B5CE6850047DFDC /* SearchChannelListViewController.swift */,
-				DC9CC5ED1B5CE7000047DFDC /* SearchChannelListViewModel.swift */,
 				DC9CC5EF1B5CE76E0047DFDC /* SearchPlaylistsViewController.swift */,
-				DC9CC5F11B5CE7B30047DFDC /* SearchPlaylistsViewModel.swift */,
 				DC2F038D1B5CF32600AAC8F8 /* Search.storyboard */,
+				7A9D5C7020FD5901ABB41454 /* ViewModel */,
+				7A9D5CC605CCD43F4C71F109 /* View */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -768,6 +774,24 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		7A9D5C7020FD5901ABB41454 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7A9D58907113769320D6EDF4 /* SearchChannelListViewModel.swift */,
+				7A9D5957290E603F30289527 /* SearchPlaylistsViewModel.swift */,
+				7A9D509996E34EF5012B6056 /* SearchVideoListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7A9D5CC605CCD43F4C71F109 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7A9D526C78F464CE031BDCB5 /* ChannelCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		7A9D5CF8F8A4CE4F2E69B2CB /* Lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -797,6 +821,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		7A9D5DBAB34D80A7435EF272 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7A9D518C3176C323B3099C62 /* PlaylistCollectionViewCell.swift */,
+				7A9D5CD1B874DFA55EEA9B9E /* PlaylistsCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		7A9D5E819280DF093ABDC934 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -816,14 +849,6 @@
 				7A9D572D3772432EF31F861E /* Service */,
 			);
 			path = Resource;
-			sourceTree = "<group>";
-		};
-		7A9D5F425AB97F89FB258289 /* StoryBoard */ = {
-			isa = PBXGroup;
-			children = (
-				DC47690D1A07EAA700DC3D2D /* Main.storyboard */,
-			);
-			path = StoryBoard;
 			sourceTree = "<group>";
 		};
 		7A9D5FE26025B246663F393A /* ViewModel */ = {
@@ -883,12 +908,10 @@
 		DC1044B019B2FA6B007A86E6 /* LolTube */ = {
 			isa = PBXGroup;
 			children = (
-				DC0F69281A075CD90061EB95 /* LolTube.entitlements */,
 				DC1044B919B2FA6B007A86E6 /* RSAppDelegate.h */,
 				DC1044BA19B2FA6B007A86E6 /* RSAppDelegate.m */,
 				DC1044C219B2FA6B007A86E6 /* Images.xcassets */,
 				DC1044B119B2FA6B007A86E6 /* Supporting Files */,
-				7A9D5F425AB97F89FB258289 /* StoryBoard */,
 				7A9D59BD8886AE67DA2D7CF6 /* Service */,
 				7A9D5D6A5556C56CFBE04C95 /* Model */,
 				7A9D5E819280DF093ABDC934 /* Common */,
@@ -901,6 +924,7 @@
 		DC1044B119B2FA6B007A86E6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DC0F69281A075CD90061EB95 /* LolTube.entitlements */,
 				DC1044B219B2FA6B007A86E6 /* LolTube-Info.plist */,
 				DC1044B319B2FA6B007A86E6 /* InfoPlist.strings */,
 				DC1044B619B2FA6B007A86E6 /* main.m */,
@@ -935,7 +959,6 @@
 		DC5708F61A00DBF500DB8821 /* VideoWidget */ = {
 			isa = PBXGroup;
 			children = (
-				DC0F69291A075CE80061EB95 /* VideoWidget.entitlements */,
 				DC5708F91A00DBF500DB8821 /* TodayViewController.h */,
 				DC5708FA1A00DBF500DB8821 /* TodayViewController.m */,
 				DC5708FC1A00DBF500DB8821 /* MainInterface.storyboard */,
@@ -949,6 +972,7 @@
 		DC5708F71A00DBF500DB8821 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DC0F69291A075CE80061EB95 /* VideoWidget.entitlements */,
 				DC1C9D411AF213D00079AFC4 /* VideoWidget-Bridging-Header.h */,
 				DC5708F81A00DBF500DB8821 /* Info.plist */,
 			);
@@ -1291,7 +1315,6 @@
 				DC1873551B513B0100121563 /* HistoryViewController.swift in Sources */,
 				7A9D5AA116615721C59D3D61 /* RSEnvironment.m in Sources */,
 				7A9D5D78AAEE2467B5DC5C37 /* NSString+Util.m in Sources */,
-				DC842D771B4AF5980085FF8D /* PlaylistsViewModel.swift in Sources */,
 				DC51F4C11B451696009AEC11 /* VideoCollectionViewCell.swift in Sources */,
 				7A9D580887DACDC2F061D9A6 /* RSEventTracker.m in Sources */,
 				7A9D571D6F71F2F391FE6E13 /* YoutubeService.swift in Sources */,
@@ -1304,12 +1327,8 @@
 				7A9D55A5852D9DA760734F99 /* RSVideoInfoViewController.m in Sources */,
 				7A9D5EE617E0D4BE371D6616 /* RSVideoDetailViewController.m in Sources */,
 				7A9D58A96A9F1162F3AAE864 /* RSVideoDetailSegmentViewController.m in Sources */,
-				DC9CC5EA1B5CE5D20047DFDC /* SearchVideoListViewModel.swift in Sources */,
 				DC1196BC1B503D4B0090338F /* RSPageInfo.m in Sources */,
 				DC9CC5F01B5CE76E0047DFDC /* SearchPlaylistsViewController.swift in Sources */,
-				DC842D751B4AF3200085FF8D /* PlaylistsCollectionViewCell.swift in Sources */,
-				DC51F4C71B455699009AEC11 /* ChannelDetailViewModel.swift in Sources */,
-				DC9CC5EE1B5CE7000047DFDC /* SearchChannelListViewModel.swift in Sources */,
 				DCCD1A081B58E9AC00CB54DD /* UINavigationBarExtensions.swift in Sources */,
 				7A9D5354CB276B49E4C1A679 /* RSChannelListViewController.m in Sources */,
 				7A9D5E047642539A74E9E1FF /* TopViewController.swift in Sources */,
@@ -1331,18 +1350,14 @@
 				7A9D5847110E0C6CBC669A94 /* RSChannelTableViewModel.m in Sources */,
 				7A9D51ED44B6253F72975269 /* RSVideoInfoViewModel.m in Sources */,
 				7A9D5909AB58845520363BEE /* RSVideoDetailViewModel.m in Sources */,
-				DC0586A21B5A5486001A4B37 /* ChannelCollectionViewCell.swift in Sources */,
-				DC9CC5F21B5CE7B30047DFDC /* SearchPlaylistsViewModel.swift in Sources */,
 				7A9D5C3FCC0072AB2ACDD402 /* RSVideoRelatedVideosViewModel.m in Sources */,
 				7A9D57863767B8B7EDAF00DE /* RSVideoListCollectionViewModel.m in Sources */,
 				DCC0B8BA1B58DEBE0081E5CA /* TopVideoCollectionFooterView.swift in Sources */,
 				7A9D5EB52386205BCB0125A4 /* RSNavigationController.m in Sources */,
 				7A9D521320B2B1B88B16EBFB /* Channel.swift in Sources */,
 				7A9D5CB34E43D853F3FC323C /* Video.swift in Sources */,
-				DC1196B31B4EC90A0090338F /* PlaylistCollectionViewCell.swift in Sources */,
 				7A9D515B47E7C38B0C86E72F /* RSChannelModel.m in Sources */,
 				7A9D5148312C08C13B15F994 /* RSVideoModel.m in Sources */,
-				DC1196B51B4ECA090090338F /* PlaylistViewModel.swift in Sources */,
 				DC51F4BB1B45101B009AEC11 /* ChannelInfoViewController.swift in Sources */,
 				7A9D5B295074CA6D408AEBB3 /* RSSearchModel.m in Sources */,
 				DC1196B11B4EC8080090338F /* PlaylistViewController.swift in Sources */,
@@ -1359,6 +1374,15 @@
 				7A9D59E8FFC59D16DE955870 /* RSSearchTableViewCell.m in Sources */,
 				7A9D5C16E96AE387AC29233D /* IntExtensions.swift in Sources */,
 				7A9D50935DBFA85ADFA6FBD1 /* RSVideoDetailSegmentViewModel.m in Sources */,
+				7A9D55D673B125147980223D /* ChannelCollectionViewCell.swift in Sources */,
+				7A9D5EFBCC830062D614642A /* SearchChannelListViewModel.swift in Sources */,
+				7A9D5ED4EC7D8C7DBDB04EC1 /* SearchPlaylistsViewModel.swift in Sources */,
+				7A9D5666B0A18751B34A37F9 /* SearchVideoListViewModel.swift in Sources */,
+				7A9D520400495FFA39742BA9 /* ChannelDetailViewModel.swift in Sources */,
+				7A9D573B7278D0A0CBAE966B /* PlaylistCollectionViewCell.swift in Sources */,
+				7A9D5DC7B40B226EE331BB61 /* PlaylistsCollectionViewCell.swift in Sources */,
+				7A9D51ABE18A0C8736203486 /* PlaylistsViewModel.swift in Sources */,
+				7A9D51B3ACA78568076119F3 /* PlaylistViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1449,6 +1473,7 @@
 				DC4769191A07EAB500DC3D2D /* zh-Hans */,
 			);
 			name = Main.storyboard;
+			path = ../StoryBoard;
 			sourceTree = "<group>";
 		};
 		DCEB197A1B52532600F255B3 /* ChannelDetail.storyboard */ = {
