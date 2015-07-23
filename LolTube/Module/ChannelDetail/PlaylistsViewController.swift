@@ -7,13 +7,16 @@ class PlaylistsViewController: SimpleListCollectionViewController {
     
     let imageLoadingOperationQueue = NSOperationQueue()
     
+    var viewModel:PlaylistsViewModel!
+    
     override func collectionViewModel() -> SimpleListCollectionViewModelProtocol{
-        return PlaylistsViewModel(channelId:channelId)
+        viewModel = PlaylistsViewModel(channelId:channelId)
+        return viewModel
     }
     
     override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(indexPath, type: PlaylistsCollectionViewCell.self)
-        let playlist = (viewModel as! PlaylistsViewModel).playlists[indexPath.row]
+        let playlist = viewModel.playlists[indexPath.row]
         
         cell.titleLabel.text = playlist.title
         cell.videoCountLabel.text = playlist.videoCountString
@@ -30,7 +33,7 @@ class PlaylistsViewController: SimpleListCollectionViewController {
     }
     
     override func didSelectItemAtIndexPath(indexPath: NSIndexPath){
-        let playlist = (viewModel as! PlaylistsViewModel).playlists[indexPath.row]
+        let playlist = viewModel.playlists[indexPath.row]
         navigationController?.pushViewController(instantiatePlaylistViewController(playlist.playlistId,title:playlist.title), animated: true)
     }
 }

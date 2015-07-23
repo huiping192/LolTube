@@ -16,7 +16,7 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
     
     private weak var delegate: SimpleListCollectionViewControllerDelegate!
 
-    var viewModel:SimpleListCollectionViewModelProtocol!
+    private var _viewModel:SimpleListCollectionViewModelProtocol!
     private var isLoading = false
     
     override func viewDidLoad() {
@@ -24,7 +24,7 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "preferredContentSizeChanged:", name: UIContentSizeCategoryDidChangeNotification, object: nil)
         
         delegate = self
-        viewModel = delegate.collectionViewModel()
+        _viewModel = delegate.collectionViewModel()
         loadData()
     }
     
@@ -44,7 +44,7 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
     func loadData() {
         animateLoadingView()
         
-        viewModel.update(
+        _viewModel.update(
             success: {
                 [unowned self] in
                 self.collectionView.alpha = 0.0;
@@ -86,7 +86,7 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
 extension SimpleListCollectionViewController: UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.numberOfItems()
+        return _viewModel.numberOfItems()
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -129,9 +129,9 @@ extension SimpleListCollectionViewController: UICollectionViewDelegate {
         
         isLoading = true
         
-        viewModel.update(success: {
+        _viewModel.update(success: {
             [unowned self] in
-            let newVideoCount = self.viewModel.numberOfItems() - currentVideoCount
+            let newVideoCount = self._viewModel.numberOfItems() - currentVideoCount
             guard newVideoCount > 0 else {
                 self.isLoading = false
                 return

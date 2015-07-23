@@ -5,6 +5,7 @@ class HistoryViewController:SimpleListCollectionViewController {
     
     private let imageLoadingOperationQueue = NSOperationQueue()
 
+    var viewModel:HistoryViewModel!
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -22,12 +23,13 @@ class HistoryViewController:SimpleListCollectionViewController {
     }
     
     override func collectionViewModel() -> SimpleListCollectionViewModelProtocol{
-        return HistoryViewModel()
+        viewModel = HistoryViewModel()
+        return viewModel
     }
     
     override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(indexPath, type: HistoryCollectionViewCell.self)
-        let video = (viewModel as! HistoryViewModel).videoList[indexPath.row]
+        let video = viewModel.videoList[indexPath.row]
         
         cell.titleLabel.text = video.title
         cell.channelLabel.text = video.channelTitle
@@ -46,7 +48,7 @@ class HistoryViewController:SimpleListCollectionViewController {
     }
     
     override func didSelectItemAtIndexPath(indexPath: NSIndexPath){
-        let video = (viewModel as! HistoryViewModel).videoList[indexPath.row]
+        let video = viewModel.videoList[indexPath.row]
         navigationController?.pushViewController(instantiateVideoDetailViewController(video.videoId), animated: true)
     }
 }
