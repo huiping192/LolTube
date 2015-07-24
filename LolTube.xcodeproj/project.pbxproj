@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		25C508257CFE98CC8F6E51A0 /* Pods_LolTubeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8753EE0B5BA1B8708AE55A9D /* Pods_LolTubeTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		3F600FCCC4481C2E61E0D4E1 /* Pods_VideoWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46549C88BADDA21C341296F /* Pods_VideoWidget.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7A9D502564EF5651A21D735F /* RSTodayVideoTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5A57F12E827DA02DC5C6 /* RSTodayVideoTableViewModel.m */; };
 		7A9D5029F6AC659B11F3829F /* TopVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5286A597D87BFDE26663 /* TopVideoCell.swift */; };
 		7A9D50935DBFA85ADFA6FBD1 /* RSVideoDetailSegmentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5318CE66D417996EB3AB /* RSVideoDetailSegmentViewModel.m */; };
@@ -78,8 +79,7 @@
 		7A9D5F14B85FDCEF4668D937 /* RSVideoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5E1CAC258986C7A0B45D /* RSVideoService.m */; };
 		7A9D5F981118FFCA6A4428AF /* RSVideoDetailAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5BB3CD33191256CCC27E /* RSVideoDetailAnimator.m */; };
 		7A9D5FE6121499045F3F1D14 /* RSChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5650CE10F3B152DB916C /* RSChannelModel.m */; };
-		7D3B56BEC73C460A8FD88FC8 /* libPods-VideoWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 258B97C7D8C343E59B7679D4 /* libPods-VideoWidget.a */; };
-		D2912024C3464678820F0B0F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE8E8822B6E415281465DA6 /* libPods.a */; };
+		A427772ED7FC562199DFF711 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EFD920A10A9DA1588520BF /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		DC01A0E21B5E84EE0003FE21 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01A0E11B5E84EE0003FE21 /* RoundButton.swift */; };
 		DC08FBD31B52699F008A499E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC08FBD21B52699F008A499E /* SearchViewController.swift */; };
 		DC0F691C1A03DFD70061EB95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC1044C219B2FA6B007A86E6 /* Images.xcassets */; };
@@ -189,7 +189,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		258B97C7D8C343E59B7679D4 /* libPods-VideoWidget.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VideoWidget.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		10EFD920A10A9DA1588520BF /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A9D5005941F2FA356C54AC6 /* RSChannelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSChannelListViewController.m; sourceTree = "<group>"; };
 		7A9D50102F7D7771E38FD4D4 /* UIImageView+Loading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Loading.h"; sourceTree = "<group>"; };
 		7A9D506E4891A21646CF1E1D /* RSChannelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSChannelListViewController.h; sourceTree = "<group>"; };
@@ -297,8 +297,8 @@
 		7B97C0A21DC93CB7C90E8CBA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		8193BF955BBF21FDBDE2F533 /* Pods-LolTubeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LolTubeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LolTubeTests/Pods-LolTubeTests.release.xcconfig"; sourceTree = "<group>"; };
 		8753EE0B5BA1B8708AE55A9D /* Pods_LolTubeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LolTubeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8AE8E8822B6E415281465DA6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D19C7C5213AC5C1D0C53FABB /* Pods-VideoWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VideoWidget/Pods-VideoWidget.debug.xcconfig"; sourceTree = "<group>"; };
+		D46549C88BADDA21C341296F /* Pods_VideoWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VideoWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8442925C8150BEAE8DCEA78 /* Pods-VideoWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-VideoWidget/Pods-VideoWidget.release.xcconfig"; sourceTree = "<group>"; };
 		D8E859BE1395F41E87F829F2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DBB64CB7BFAAE2450E92F8F6 /* Pods-LolTubeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LolTubeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LolTubeTests/Pods-LolTubeTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -374,6 +374,7 @@
 		DCC0B8B71B58D66E0081E5CA /* UICollectionViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtensions.swift; sourceTree = "<group>"; };
 		DCC0B8B91B58DEBE0081E5CA /* TopVideoCollectionFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopVideoCollectionFooterView.swift; sourceTree = "<group>"; };
 		DCCD1A071B58E9AC00CB54DD /* UINavigationBarExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtensions.swift; sourceTree = "<group>"; };
+		DCE1807F1B61537000F5055B /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
 		DCEB197E1B52532F00F255B3 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ChannelDetail.strings"; sourceTree = "<group>"; };
 		DCEB19801B52533100F255B3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ChannelDetail.strings"; sourceTree = "<group>"; };
 		DCEB19811B52533200F255B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ChannelDetail.storyboard; sourceTree = "<group>"; };
@@ -406,7 +407,7 @@
 				DC1044AF19B2FA6B007A86E6 /* UIKit.framework in Frameworks */,
 				DC1044AB19B2FA6B007A86E6 /* Foundation.framework in Frameworks */,
 				DCA44BDE1A0CE8E100A4A758 /* Crashlytics.framework in Frameworks */,
-				D2912024C3464678820F0B0F /* libPods.a in Frameworks */,
+				A427772ED7FC562199DFF711 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,7 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC5708F51A00DBF500DB8821 /* NotificationCenter.framework in Frameworks */,
-				7D3B56BEC73C460A8FD88FC8 /* libPods-VideoWidget.a in Frameworks */,
+				3F600FCCC4481C2E61E0D4E1 /* Pods_VideoWidget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -886,6 +887,7 @@
 		DC1044A919B2FA6B007A86E6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DCE1807F1B61537000F5055B /* AFNetworking.framework */,
 				DC25223D1A468C290060CC45 /* iAd.framework */,
 				DC22FF811A1245D70053FBB9 /* libz.dylib */,
 				DC22FF7F1A1245C60053FBB9 /* AdSupport.framework */,
@@ -897,10 +899,10 @@
 				DC1044AC19B2FA6B007A86E6 /* CoreGraphics.framework */,
 				DC1044AE19B2FA6B007A86E6 /* UIKit.framework */,
 				DC1044C919B2FA6B007A86E6 /* XCTest.framework */,
-				8AE8E8822B6E415281465DA6 /* libPods.a */,
 				DC5708F41A00DBF500DB8821 /* NotificationCenter.framework */,
-				258B97C7D8C343E59B7679D4 /* libPods-VideoWidget.a */,
 				8753EE0B5BA1B8708AE55A9D /* Pods_LolTubeTests.framework */,
+				10EFD920A10A9DA1588520BF /* Pods.framework */,
+				D46549C88BADDA21C341296F /* Pods_VideoWidget.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1015,6 +1017,7 @@
 				8C8C1AB0675149FBA3D65059 /* Copy Pods Resources */,
 				DC5709061A00DBF500DB8821 /* Embed App Extensions */,
 				DCA44BDB1A0CE84200A4A758 /* ShellScript */,
+				E32DFB8F5CD5BC4638F2F741 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1288,6 +1291,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./Fabric.framework/run a4fad5e74a1a429b3f4276b1c07cda73f9443302 271a51c801fa2e8d0959e70b2ee5b49c9ef9dd171213e1ca2ba572aa3499a21d";
+		};
+		E32DFB8F5CD5BC4638F2F741 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1584,10 +1602,12 @@
 				CODE_SIGN_ENTITLEMENTS = LolTube/LolTube.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LolTube/LolTube-Prefix.pch";
@@ -1614,10 +1634,12 @@
 				CODE_SIGN_ENTITLEMENTS = LolTube/LolTube.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LolTube/LolTube-Prefix.pch";
@@ -1693,6 +1715,7 @@
 				CODE_SIGN_ENTITLEMENTS = VideoWidget/VideoWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1720,6 +1743,7 @@
 				CODE_SIGN_ENTITLEMENTS = VideoWidget/VideoWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = VideoWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
