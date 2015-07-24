@@ -315,7 +315,7 @@
                             <constraint firstItem="nLu-C0-RLG" firstAttribute="top" secondItem="6QS-jX-iBI" secondAttribute="top" id="xHl-Q2-RCJ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="O0N-72-1ef"/>
+                    <tabBarItem key="tabBarItem" title="Channel" image="Tab_Channel" id="O0N-72-1ef"/>
                     <navigationItem key="navigationItem" title="channel" id="uwz-9a-JU9">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="bki-XZ-3ot">
                             <connections>
@@ -2099,6 +2099,7 @@
     </scenes>
     <resources>
         <image name="DefaultThumbnail" width="320" height="180"/>
+        <image name="Tab_Channel" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="9C3-LU-CzA"/>
