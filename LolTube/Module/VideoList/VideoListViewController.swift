@@ -7,6 +7,10 @@ class VideoListViewController: SimpleListCollectionViewController {
     var viewModel:VideoListViewModel!
     private let imageLoadingOperationQueue = NSOperationQueue()
 
+    override var emptyDataTitle:String{
+        return NSLocalizedString("ChannelVideoEmptyData", comment: "")
+    }
+    
     override func collectionViewModel() -> SimpleListCollectionViewModelProtocol{
         viewModel = VideoListViewModel(channelId:channelId)
         return viewModel

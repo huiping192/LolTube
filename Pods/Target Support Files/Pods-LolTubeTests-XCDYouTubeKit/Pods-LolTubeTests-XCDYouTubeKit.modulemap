@@ -1,6 +1,0 @@
-framework module XCDYouTubeKit {
-  umbrella header "Pods-LolTubeTests-XCDYouTubeKit-umbrella.h"
-
-  export *
-  module * { export * }
-}

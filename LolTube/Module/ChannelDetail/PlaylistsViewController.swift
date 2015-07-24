@@ -9,6 +9,10 @@ class PlaylistsViewController: SimpleListCollectionViewController {
     
     var viewModel:PlaylistsViewModel!
     
+    override var emptyDataTitle:String{
+        return NSLocalizedString("ChannelPlaylistsEmptyData", comment: "")
+    }
+    
     override func collectionViewModel() -> SimpleListCollectionViewModelProtocol{
         viewModel = PlaylistsViewModel(channelId:channelId)
         return viewModel

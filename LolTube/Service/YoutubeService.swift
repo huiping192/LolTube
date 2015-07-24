@@ -4,6 +4,8 @@
 //
 
 import Foundation
+import AFNetworking
+import JSONModel
 
 public enum YoutubeSearchType:String {
     case Video = "video"

@@ -9,6 +9,10 @@ class PlaylistViewController: SimpleListCollectionViewController {
     
     private let imageLoadingOperationQueue = NSOperationQueue()
 
+    override var emptyDataTitle:String{
+        return NSLocalizedString("ChannelPlaylistEmptyData", comment: "")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

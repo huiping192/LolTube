@@ -24,6 +24,10 @@ class SearchChannelListViewController: SimpleListCollectionViewController,Search
     
     let imageLoadingOperationQueue = NSOperationQueue()
     
+    override var emptyDataTitle:String{
+        return NSLocalizedString("SearchChannelEmptyData", comment: "")
+    }
+    
     override func collectionViewModel() -> SimpleListCollectionViewModelProtocol{
         viewModel = SearchChannelListViewModel()
         viewModel.searchText = _searchText

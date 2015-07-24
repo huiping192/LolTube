@@ -34,3 +34,11 @@
 
 "ChannelSubscribed" = "已訂閱";
 "ChannelUnsubscribe" = "訂閱";
+
+"ChannelVideoEmptyData" = "這個頻道沒有任何影片。";
+"ChannelPlaylistsEmptyData" = "這個頻道沒有任何播放清單。";
+"ChannelPlaylistEmptyData" = "這個播放清單沒有任何影片。";
+"HistoryEmptyData" = "這個清單沒有任何影片。";
+"SearchVideoEmptyData" = "沒搜索到任何相關影片。";
+"SearchChannelEmptyData" = "沒搜索到任何相關頻道。";
+"SearchPlaylistEmptyData" = "沒搜索到任何相關播放清單。";

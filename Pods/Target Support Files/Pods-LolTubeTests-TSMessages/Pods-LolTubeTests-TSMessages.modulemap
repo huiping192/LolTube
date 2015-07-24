@@ -1,6 +1,0 @@
-framework module TSMessages {
-  umbrella header "Pods-LolTubeTests-TSMessages-umbrella.h"
-
-  export *
-  module * { export * }
-}
