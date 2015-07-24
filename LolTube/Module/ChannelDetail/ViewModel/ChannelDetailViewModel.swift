@@ -18,6 +18,11 @@ class ChannelDetailViewModel {
         
         let successBlock:((RSChannelModel) -> Void) = {
             [unowned self](channelModel) in
+            
+            guard channelModel.items.count > 0 else {
+                success()
+                return
+            }
             if let channelItem = channelModel.items[0] as? RSChannelItem{
                 self.channel = Channel(channelItem: channelItem)
             }

@@ -32,6 +32,15 @@
     __weak typeof(self) weakSelf = self;
     [self.youtubeService channelDetail:@[self.channelId] success:^(RSChannelModel *channelModel) {
 
+        if (channelModel.items.count == 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (success) {
+                    success();
+                }
+            });
+            return;
+        }
+        
         RSChannelItem *channelItem = channelModel.items[0];
         weakSelf.channelThumbnailImageUrl =  channelItem.snippet.thumbnails.medium.url;
         
