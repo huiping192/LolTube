@@ -36,21 +36,29 @@
                  object:nil];
 
     self.tableViewModel = [[RSChannelTableViewModel alloc] init];
+    
+    self.tableView.tableFooterView = [UIView new];
+
+    [self p_loadData:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self p_loadData];
+    [self p_loadData:NO];
 }
 
 
-- (void)p_loadData {
-    self.tableView.alpha = 0;
-    [self animateLoadingView];
+- (void)p_loadData:(BOOL)animation {
+    if(animation){
+        self.tableView.alpha = 0;
+        [self animateLoadingView];
+    }
 
     __weak typeof(self) weakSelf = self;
     [self.tableViewModel updateWithSuccess:^{
-        [weakSelf stopAnimateLoadingView];
+        if(animation){
+            [weakSelf stopAnimateLoadingView];
+        }
         [weakSelf.tableView reloadData];
         NSIndexPath *currentSelectedIndexPath = [self p_currentSelectedIndexPath];
         if (currentSelectedIndexPath) {
@@ -58,7 +66,7 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:0.25 animations:^{
+            [UIView animateWithDuration: animation?0.25:0 animations:^{
                 self.tableView.alpha = 1.0;
             }                completion:^(BOOL finished) {
                 [self.tableView flashScrollIndicators];
@@ -69,6 +77,7 @@
         [weakSelf stopAnimateLoadingView];
     }];
 }
+
 
 - (NSIndexPath *)p_currentSelectedIndexPath {
     if (self.currentChannelIds.count > 1) { // all channel
