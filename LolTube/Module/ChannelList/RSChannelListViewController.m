@@ -169,11 +169,11 @@
 
 #pragma mark - UITableViewDelegate
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return indexPath.row != 0 && indexPath.row != self.tableViewModel.items.count;
+    return self.tableViewModel.items.count != 1 && indexPath.row != self.tableViewModel.items.count;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return indexPath.row != 0 && indexPath.row != self.tableViewModel.items.count;
+    return indexPath.row != self.tableViewModel.items.count;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
