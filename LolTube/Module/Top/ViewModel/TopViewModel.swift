@@ -132,12 +132,7 @@ class TopViewModel {
     }
     
     private func topChannelList(channelList: [Channel], videoDictionary: [Channel:[Video]]) -> [Channel]{
-        let sortedChannelList = sortChannelList(channelList, videoDictionary: videoDictionary)
-       
-        let maxChannelCount = 8
-        if sortedChannelList.count > maxChannelCount {
-            return Array(sortedChannelList[0 ..< maxChannelCount])
-        }
+        let sortedChannelList = sortChannelList(channelList, videoDictionary: videoDictionary).filter{ videoDictionary[$0]?.count != 0}
         
         return sortedChannelList
     }
