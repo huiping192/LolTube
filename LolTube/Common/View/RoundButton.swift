@@ -13,7 +13,7 @@ class RoundButton: UIButton {
         }
         layer.masksToBounds = true
         layer.cornerRadius = cornerRadius
-        layer.borderColor = tintColor.CGColor
+        layer.borderColor = titleColorForState(.Normal)?.CGColor
         layer.borderWidth = 1.0
     }
 }

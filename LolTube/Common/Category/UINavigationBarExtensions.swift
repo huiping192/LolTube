@@ -4,6 +4,7 @@ import UIKit
 enum NavigationBarStyle {
     case Default
     case Clear
+    case ClearBlack
 }
 
 extension UINavigationBar {
@@ -13,6 +14,8 @@ extension UINavigationBar {
             defalutStyle()
         case .Clear:
             clearStyle()
+        case .ClearBlack:
+            clearBlackStyle()
         }
     }
     
@@ -37,5 +40,17 @@ extension UINavigationBar {
         translucent = true
         tintColor = UIColor.whiteColor()
         barStyle = .Black;
+    }
+    
+    private func clearBlackStyle(){
+        let navbarTitleTextAttributes:[String:AnyObject] = [NSForegroundColorAttributeName:UIColor.blackColor()]
+        titleTextAttributes = navbarTitleTextAttributes
+        
+        let clearImage = UIImage(color:UIColor.clearColor())
+        shadowImage = clearImage
+        setBackgroundImage(clearImage, forBarMetrics: .Default)
+        translucent = true
+        tintColor = UIApplication.sharedApplication().keyWindow?.tintColor
+        barStyle = .Default;
     }
 }
