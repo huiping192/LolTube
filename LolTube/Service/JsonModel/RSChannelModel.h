@@ -50,7 +50,7 @@
 
 @interface RSChannelSnippet :JSONModel
 
-@property (nonatomic, copy) NSString *publishedAt;
+@property (nonatomic, copy) NSString<Optional> *publishedAt;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *channelDescription;
 
