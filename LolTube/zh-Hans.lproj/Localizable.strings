@@ -42,3 +42,5 @@
 "SearchVideoEmptyData" = "没搜索到任何相关视频。";
 "SearchChannelEmptyData" = "没搜索到任何相关频道。";
 "SearchPlaylistEmptyData" = "没搜索到任何相关播放列表。";
+
+"Search" = "搜索";

@@ -43,3 +43,5 @@
 "SearchVideoEmptyData" = "一致する動画はありませんでした。";
 "SearchChannelEmptyData" = "一致するチャンネルはありませんでした。";
 "SearchPlaylistEmptyData" = "一致する再生リストはありませんでした。";
+
+"Search" = "検索";
