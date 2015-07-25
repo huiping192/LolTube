@@ -17,7 +17,7 @@
 "VideoDetailInfo" = "詳細";
 "VideoDietalSuggestions" = "おすすめ";
 
-"ChannelSubscriberCountFormat" = "チャンネル登録者数 %@ 人";
+"ChannelSubscriberCountFormat" = "登録者数 %@ 人";
 "ChannelVideoCountFormat" = "%@ 本の動画";
 
 
@@ -34,7 +34,7 @@
 "PublishedAtSingleHourFormat" = "%ld時間前";
 
 "ChannelSubscribed" = "登録済み";
-"ChannelUnsubscribe" = "チャンネル登録";
+"ChannelUnsubscribe" = "登録";
 
 "ChannelVideoEmptyData" = "このチャンネルには動画がありません。";
 "ChannelPlaylistsEmptyData" = "このチャンネルには再生リストがありません。";
@@ -43,3 +43,5 @@
 "SearchVideoEmptyData" = "一致する動画はありませんでした。";
 "SearchChannelEmptyData" = "一致するチャンネルはありませんでした。";
 "SearchPlaylistEmptyData" = "一致する再生リストはありませんでした。";
+
+"Search" = "検索";

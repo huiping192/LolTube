@@ -145,6 +145,8 @@
 		DCC0B8BA1B58DEBE0081E5CA /* TopVideoCollectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC0B8B91B58DEBE0081E5CA /* TopVideoCollectionFooterView.swift */; };
 		DCCD1A081B58E9AC00CB54DD /* UINavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD1A071B58E9AC00CB54DD /* UINavigationBarExtensions.swift */; };
 		DCD316AC1AD84EB700978606 /* TwoChannel.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5D1DA9E665D3274CBB65 /* TwoChannel.json */; };
+		DCDBECE81B63615C004474E9 /* UIImage+AverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDBECE71B63615C004474E9 /* UIImage+AverageColor.m */; };
+		DCDBECEA1B6371ED004474E9 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDBECE91B6371ED004474E9 /* UIColorExtensions.swift */; };
 		DCEB19781B52532600F255B3 /* ChannelDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCEB197A1B52532600F255B3 /* ChannelDetail.storyboard */; };
 		DCEBA51419BCB2AF007C3FC7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCEBA51619BCB2AF007C3FC7 /* Localizable.strings */; };
 		DCF9878B19BF0EEC00E9BCBE /* AMTumblrHud.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF9878A19BF0EEC00E9BCBE /* AMTumblrHud.m */; };
@@ -374,6 +376,9 @@
 		DCC0B8B71B58D66E0081E5CA /* UICollectionViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtensions.swift; sourceTree = "<group>"; };
 		DCC0B8B91B58DEBE0081E5CA /* TopVideoCollectionFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopVideoCollectionFooterView.swift; sourceTree = "<group>"; };
 		DCCD1A071B58E9AC00CB54DD /* UINavigationBarExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtensions.swift; sourceTree = "<group>"; };
+		DCDBECE61B63615C004474E9 /* UIImage+AverageColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AverageColor.h"; sourceTree = "<group>"; };
+		DCDBECE71B63615C004474E9 /* UIImage+AverageColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AverageColor.m"; sourceTree = "<group>"; };
+		DCDBECE91B6371ED004474E9 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		DCE1807F1B61537000F5055B /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
 		DCEB197E1B52532F00F255B3 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ChannelDetail.strings"; sourceTree = "<group>"; };
 		DCEB19801B52533100F255B3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ChannelDetail.strings"; sourceTree = "<group>"; };
@@ -707,6 +712,9 @@
 				DCC0B8B51B58D1BE0081E5CA /* UIStoryboardSegueExtensions.swift */,
 				DCC0B8B71B58D66E0081E5CA /* UICollectionViewExtensions.swift */,
 				DCCD1A071B58E9AC00CB54DD /* UINavigationBarExtensions.swift */,
+				DCDBECE61B63615C004474E9 /* UIImage+AverageColor.h */,
+				DCDBECE71B63615C004474E9 /* UIImage+AverageColor.m */,
+				DCDBECE91B6371ED004474E9 /* UIColorExtensions.swift */,
 			);
 			name = Extensions;
 			path = Category;
@@ -1341,6 +1349,7 @@
 				DC51F4B91B450FF9009AEC11 /* ChannelDetailViewController.swift in Sources */,
 				7A9D54EC8DC06A980DAD71E5 /* RSVideoRelatedVideosViewController.m in Sources */,
 				DCC0B8B61B58D1BE0081E5CA /* UIStoryboardSegueExtensions.swift in Sources */,
+				DCDBECE81B63615C004474E9 /* UIImage+AverageColor.m in Sources */,
 				DC01A0E21B5E84EE0003FE21 /* RoundButton.swift in Sources */,
 				7A9D55A5852D9DA760734F99 /* RSVideoInfoViewController.m in Sources */,
 				7A9D5EE617E0D4BE371D6616 /* RSVideoDetailViewController.m in Sources */,
@@ -1380,6 +1389,7 @@
 				7A9D5B295074CA6D408AEBB3 /* RSSearchModel.m in Sources */,
 				DC1196B11B4EC8080090338F /* PlaylistViewController.swift in Sources */,
 				7A9D50C4794BC7CDE9388DA2 /* RSVideoDetailModel.m in Sources */,
+				DCDBECEA1B6371ED004474E9 /* UIColorExtensions.swift in Sources */,
 				DC51F4C31B451777009AEC11 /* VideoListViewModel.swift in Sources */,
 				DC1873571B513B5400121563 /* HistoryViewModel.swift in Sources */,
 				7A9D5DD926C658587A69CB76 /* RSJsonModel.m in Sources */,

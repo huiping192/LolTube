@@ -13,9 +13,9 @@ class SearchViewController: UIViewController {
     @IBOutlet private weak var searchSuggestionView:UIView!
     @IBOutlet private weak var searchContentView:UIView!
     
-    @IBOutlet private weak var searchBar:UISearchBar!
+    lazy  var searchBar:UISearchBar = UISearchBar()
+    
     @IBOutlet private weak var searchTypeSegmentedControl:UISegmentedControl!
-
     
     @IBOutlet private weak var containView:UIView!
     
@@ -24,6 +24,26 @@ class SearchViewController: UIViewController {
     private var searchPlaylistsViewController:SearchPlaylistsViewController?
     
     private var currentViewController:UIViewController?
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        searchBar.delegate = self
+        searchBar.placeholder = NSLocalizedString("Search", comment: "")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView:searchBar)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        searchBar.frame = CGRect(origin: CGPointZero, size: CGSize(width: view.frame.width * 0.9, height: 44))
+    }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        searchBar.frame = CGRect(origin: CGPointZero, size: CGSize(width: size.width * 0.9, height: 44))
+    }
+
     
     private enum SearchType:Int {
         case Video = 0

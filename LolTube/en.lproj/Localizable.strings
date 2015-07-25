@@ -40,3 +40,5 @@
 "SearchVideoEmptyData" = "No videos found.";
 "SearchChannelEmptyData" = "No channels found.";
 "SearchPlaylistEmptyData" = "No playlist found.";
+
+"Search" = "Search";

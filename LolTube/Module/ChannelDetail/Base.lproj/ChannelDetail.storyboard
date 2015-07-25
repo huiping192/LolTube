@@ -95,12 +95,12 @@
                                     <constraint firstItem="jrB-ud-bHx" firstAttribute="top" secondItem="v28-kj-deH" secondAttribute="bottom" constant="5" id="ZZ3-1s-Ztp"/>
                                     <constraint firstAttribute="bottom" secondItem="1hA-Bf-tlR" secondAttribute="bottom" id="aHI-pD-aFa"/>
                                     <constraint firstAttribute="height" constant="130" id="bIP-xG-80E"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="v28-kj-deH" secondAttribute="trailing" id="bkt-sE-Ztq"/>
                                     <constraint firstItem="ps0-aY-nS5" firstAttribute="leading" secondItem="Txx-LE-WJ0" secondAttribute="trailing" constant="20" id="cJm-Bf-f27"/>
                                     <constraint firstAttribute="trailing" secondItem="1hA-Bf-tlR" secondAttribute="trailing" id="eFA-KU-W3K"/>
                                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="ps0-aY-nS5" secondAttribute="trailing" id="gh2-Tb-bNm"/>
+                                    <constraint firstItem="Nj8-Du-5A9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jrB-ud-bHx" secondAttribute="trailing" id="meP-Vc-F6H"/>
                                     <constraint firstAttribute="bottom" secondItem="UqT-Mc-e5N" secondAttribute="bottom" id="njJ-uN-AdW"/>
-                                    <constraint firstAttribute="trailing" secondItem="Nj8-Du-5A9" secondAttribute="trailing" constant="25" id="tKs-8H-PYP"/>
+                                    <constraint firstAttribute="trailing" secondItem="Nj8-Du-5A9" secondAttribute="trailing" priority="250" constant="25" id="tKs-8H-PYP"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="jrB-ud-bHx" secondAttribute="bottom" constant="3" id="voe-nT-Zg6"/>
                                     <constraint firstItem="v28-kj-deH" firstAttribute="top" secondItem="ps0-aY-nS5" secondAttribute="bottom" constant="5" id="wzp-PR-hM1"/>
                                     <constraint firstItem="UqT-Mc-e5N" firstAttribute="leading" secondItem="xml-Fe-aUI" secondAttribute="leading" id="xJH-Kl-8qA"/>

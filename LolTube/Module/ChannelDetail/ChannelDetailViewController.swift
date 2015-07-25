@@ -98,6 +98,18 @@ class ChannelDetailViewController: UIViewController {
             let bannerImageOperation = UIImageView.asynLoadingImageWithUrlString(channel.bannerImageUrl, secondImageUrlString: nil, needBlackWhiteEffect: false) {
                 [unowned self] image in
                 self.backgroundThumbnailImageView.image = image
+                let imageAverageColor = image.averageColor()
+
+                if UIColor.whiteColor().equal(imageAverageColor, tolerance: 0.3) {
+                    self.viewCountLabel.textColor = UIColor.darkGrayColor()
+                    self.videoCountLabel.textColor = UIColor.darkGrayColor()
+                    self.subscriberCountLabel.textColor = UIColor.darkGrayColor()
+                    self.navigationController?.navigationBar.configureNavigationBar(.ClearBlack)
+                }
+
+                if self.subscribeButton.tintColor.equal(imageAverageColor, tolerance: 0.3) {
+                    self.subscribeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                }
             }
             
             self.imageLoadingOperationQueue.addOperation(bannerImageOperation)

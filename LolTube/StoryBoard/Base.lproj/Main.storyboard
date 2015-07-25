@@ -130,7 +130,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDb-IS-giW">
-                                                    <rect key="frame" x="271" y="133" width="29" height="14"/>
+                                                    <rect key="frame" x="271" y="133" width="28.5" height="13.5"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -179,8 +179,8 @@
                                     <outlet property="delegate" destination="34D-TA-1gh" id="Dr3-zf-geJ"/>
                                 </connections>
                             </collectionView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="No Videos Found." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dM1-dG-AGN">
-                                <rect key="frame" x="222" y="289" width="157" height="23"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Videos Found." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dM1-dG-AGN">
+                                <rect key="frame" x="220.5" y="289" width="160" height="23"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -388,14 +388,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trending Searches" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HhL-Tj-p2I">
-                                        <rect key="frame" x="224" y="82" width="152" height="21.5"/>
+                                        <rect key="frame" x="224" y="82" width="151.5" height="21.5"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mux-1G-dZa">
-                                        <rect key="frame" x="257" y="180" width="86" height="32"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mux-1G-dZa">
+                                        <rect key="frame" x="256.5" y="180" width="87" height="32"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <state key="normal" title="LoL Esports">
@@ -470,6 +470,7 @@
                                     <constraint firstItem="Dgq-lT-9SC" firstAttribute="top" secondItem="uCY-8S-t4L" secondAttribute="bottom" constant="15" id="JFn-kc-JMh"/>
                                     <constraint firstItem="uCY-8S-t4L" firstAttribute="top" secondItem="4yg-hQ-7Le" secondAttribute="bottom" constant="15" id="Z91-Oy-4ZC"/>
                                     <constraint firstAttribute="centerX" secondItem="9T6-2d-d0O" secondAttribute="centerX" id="ZO3-3B-p2i"/>
+                                    <constraint firstItem="HhL-Tj-p2I" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Eys-vy-vFh" secondAttribute="top" id="a3y-Fx-yJ6"/>
                                     <constraint firstItem="Dgq-lT-9SC" firstAttribute="centerX" secondItem="Eys-vy-vFh" secondAttribute="centerX" id="a7e-kw-tsf"/>
                                     <constraint firstAttribute="centerX" secondItem="HhL-Tj-p2I" secondAttribute="centerX" id="cTC-b9-shm"/>
                                     <constraint firstAttribute="centerX" secondItem="4yg-hQ-7Le" secondAttribute="centerX" id="f8q-qM-F1k"/>
@@ -499,28 +500,12 @@
                         <view key="titleView" contentMode="scaleToFill" id="zD7-wl-qvg">
                             <rect key="frame" x="46" y="5.5" width="508" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="xmn-ad-WRC">
-                                    <rect key="frame" x="0.0" y="0.0" width="508" height="33"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="QB0-Ee-eOc" id="4O7-Go-hhK"/>
-                                    </connections>
-                                </searchBar>
-                            </subviews>
                             <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="xmn-ad-WRC" secondAttribute="bottom" id="MHx-0I-Xdx"/>
-                                <constraint firstItem="xmn-ad-WRC" firstAttribute="leading" secondItem="zD7-wl-qvg" secondAttribute="leading" id="Vky-4B-QNo"/>
-                                <constraint firstAttribute="trailing" secondItem="xmn-ad-WRC" secondAttribute="trailing" id="XkX-ew-Anv"/>
-                                <constraint firstItem="xmn-ad-WRC" firstAttribute="top" secondItem="zD7-wl-qvg" secondAttribute="top" id="yaG-YW-q1Q"/>
-                            </constraints>
                         </view>
                     </navigationItem>
                     <connections>
                         <outlet property="containView" destination="69c-5W-dXw" id="nF5-Iu-fjh"/>
-                        <outlet property="searchBar" destination="xmn-ad-WRC" id="U8b-9k-3iV"/>
                         <outlet property="searchContentView" destination="awJ-IK-NkP" id="Gif-b9-5rK"/>
                         <outlet property="searchSuggestionView" destination="Eys-vy-vFh" id="0TO-qm-La3"/>
                         <outlet property="searchTypeSegmentedControl" destination="geN-au-DG7" id="Dk9-BO-G9I"/>
@@ -563,7 +548,7 @@
                                 </connections>
                             </containerView>
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVX-7I-z3w" userLabel="video detail segment Container View">
-                                <rect key="frame" x="0.0" y="402" width="600" height="149"/>
+                                <rect key="frame" x="0.0" y="358" width="600" height="242"/>
                                 <animations/>
                                 <variation key="heightClass=compact" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="0.0" y="65" width="600" height="335"/>
@@ -576,7 +561,7 @@
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZl-Ce-Rfa" userLabel="video contain view">
-                                <rect key="frame" x="0.0" y="64" width="600" height="338"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="338"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qtb-Ym-NxJ" userLabel="thunbnail image view">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="338"/>
@@ -693,11 +678,11 @@
                         <viewControllerLayoutGuide type="bottom" id="k6L-ei-upB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="R1L-z9-qbz">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="152"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5DH-ab-Ytd">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="152"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V7U-rX-9yh">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="504"/>
@@ -826,7 +811,7 @@
                         <viewControllerLayoutGuide type="bottom" id="eRO-zY-LIM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wCb-m8-BBc">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="149"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="242"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MD2-Hq-VNJ">
@@ -909,7 +894,7 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lQB-T3-PLF">
-                                <rect key="frame" x="0.0" y="90" width="600" height="59"/>
+                                <rect key="frame" x="0.0" y="90" width="600" height="152"/>
                                 <animations/>
                                 <connections>
                                     <segue destination="qmv-6s-UEW" kind="embed" identifier="infoEmbed" id="4VS-bS-0Pa"/>
@@ -2102,7 +2087,7 @@
         <image name="Tab_Channel" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9C3-LU-CzA"/>
-        <segue reference="pGj-tb-mQC"/>
+        <segue reference="XCj-fU-gfg"/>
+        <segue reference="KZ4-Px-nV2"/>
     </inferredMetricsTieBreakers>
 </document>

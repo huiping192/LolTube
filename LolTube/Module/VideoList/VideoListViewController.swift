@@ -21,7 +21,6 @@ class VideoListViewController: SimpleListCollectionViewController {
         let video = viewModel.videoList[indexPath.row]
         
         cell.titleLabel.text = video.title
-        cell.channelLabel.text = video.channelTitle
         cell.durationLabel.text = video.durationString
         cell.viewCountLabel.text = video.viewCountPublishedAt
         

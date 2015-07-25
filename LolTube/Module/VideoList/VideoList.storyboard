@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8152.3" systemVersion="14F6a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Hkk-Wp-Ahf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8164.2" systemVersion="14F6a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Hkk-Wp-Ahf">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8124.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8135.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -75,12 +75,6 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3qS-td-IJT" userLabel="channel title label">
-                                                    <rect key="frame" x="138" y="80" width="0.0" height="0.0"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K35-s5-TKl" userLabel="viewcount label">
                                                     <rect key="frame" x="138" y="80" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
@@ -105,11 +99,10 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="K35-s5-TKl" firstAttribute="leading" secondItem="3qS-td-IJT" secondAttribute="leading" id="1Od-ka-85L"/>
+                                            <constraint firstItem="K35-s5-TKl" firstAttribute="leading" secondItem="O6Q-zf-rSn" secondAttribute="leading" id="1ps-SM-EqY"/>
                                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="K35-s5-TKl" secondAttribute="trailing" constant="5" id="4AW-ZU-Bxr"/>
-                                            <constraint firstItem="K35-s5-TKl" firstAttribute="top" secondItem="3qS-td-IJT" secondAttribute="bottom" id="4nb-tN-6i3"/>
-                                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="3qS-td-IJT" secondAttribute="trailing" constant="5" id="DHp-Lt-3Qq"/>
                                             <constraint firstItem="O6Q-zf-rSn" firstAttribute="leading" secondItem="hva-2N-YhP" secondAttribute="trailing" constant="5" id="DTk-ZA-Cb4"/>
+                                            <constraint firstItem="K35-s5-TKl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="O6Q-zf-rSn" secondAttribute="bottom" constant="3" id="Hnp-i0-dw4"/>
                                             <constraint firstItem="hva-2N-YhP" firstAttribute="leading" secondItem="TEk-52-aKQ" secondAttribute="leadingMargin" id="I9m-1n-uc7"/>
                                             <constraint firstAttribute="bottom" secondItem="1CC-f5-vg9" secondAttribute="bottom" id="JhB-Eh-98o"/>
                                             <constraint firstItem="7iV-oi-ucK" firstAttribute="leading" secondItem="TEk-52-aKQ" secondAttribute="leading" id="OdG-K7-1BO"/>
@@ -119,7 +112,6 @@
                                             <constraint firstItem="ha5-1o-Jsj" firstAttribute="top" secondItem="TEk-52-aKQ" secondAttribute="top" id="aR9-01-j5q"/>
                                             <constraint firstItem="K35-s5-TKl" firstAttribute="bottom" secondItem="hva-2N-YhP" secondAttribute="bottom" id="cdu-3k-KWn"/>
                                             <constraint firstItem="1CC-f5-vg9" firstAttribute="leading" secondItem="TEk-52-aKQ" secondAttribute="leading" id="dv7-Yy-X21"/>
-                                            <constraint firstItem="O6Q-zf-rSn" firstAttribute="leading" secondItem="3qS-td-IJT" secondAttribute="leading" id="dvS-eL-gYM"/>
                                             <constraint firstItem="O6Q-zf-rSn" firstAttribute="top" secondItem="y2N-Mz-O33" secondAttribute="top" id="gdz-6h-iUs"/>
                                             <constraint firstItem="1CC-f5-vg9" firstAttribute="top" secondItem="TEk-52-aKQ" secondAttribute="top" id="ibS-eO-eNs"/>
                                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="O6Q-zf-rSn" secondAttribute="trailing" constant="5" id="ogj-Rv-5OY"/>
@@ -128,7 +120,6 @@
                                         </constraints>
                                         <size key="customSize" width="240" height="90"/>
                                         <connections>
-                                            <outlet property="channelLabel" destination="3qS-td-IJT" id="SbT-8z-lfS"/>
                                             <outlet property="durationLabel" destination="hGY-yH-HMt" id="lwz-kw-Peg"/>
                                             <outlet property="thumbnailImageView" destination="y2N-Mz-O33" id="kjE-Vs-hDC"/>
                                             <outlet property="titleLabel" destination="O6Q-zf-rSn" id="ANA-9P-CjV"/>

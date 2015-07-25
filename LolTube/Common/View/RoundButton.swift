@@ -8,9 +8,12 @@ class RoundButton: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        guard titleForState(.Normal) != nil else {
+            return
+        }
         layer.masksToBounds = true
         layer.cornerRadius = cornerRadius
-        layer.borderColor = tintColor.CGColor
+        layer.borderColor = titleColorForState(.Normal)?.CGColor
         layer.borderWidth = 1.0
     }
 }

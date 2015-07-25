@@ -133,6 +133,7 @@ class TopViewController: UIViewController {
             [unowned self] in
             self.configureTopView()
             self.videosCollectionView.reloadData()
+            self.layoutCollectionViewSize()
             refreshControl.endRefreshing()
         }, failure: {
             [unowned self]error in
@@ -149,6 +150,9 @@ class TopViewController: UIViewController {
     }
 
     private func channel(section: Int) -> Channel? {
+        guard section < viewModel.channelList?.count else {
+            return nil
+        }
         return viewModel.channelList?[section]
     }
 
