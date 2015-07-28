@@ -31,6 +31,7 @@ class SearchViewController: UIViewController {
         
         searchBar.delegate = self
         searchBar.placeholder = NSLocalizedString("Search", comment: "")
+        searchBar.searchBarStyle = .Minimal
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView:searchBar)
     }
     

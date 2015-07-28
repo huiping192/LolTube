@@ -143,7 +143,7 @@ class TopViewController: UIViewController {
     }
 
     private func video(indexPath: NSIndexPath) -> Video? {
-        guard let channel = channel(indexPath.section) else {
+        guard let channel = channel(indexPath.section) where indexPath.row < viewModel.videoDictionary?[channel]?.count else {
             return nil
         }
         return viewModel.videoDictionary?[channel]?[indexPath.row]
@@ -237,21 +237,23 @@ class TopViewController: UIViewController {
 
 extension TopViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        var videoCount = 0
+        if let channel = viewModel.channelList?[section],videoList = viewModel.videoDictionary?[channel] {
+            videoCount = videoList.count
+        }
+        
         switch (traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
         case (.Compact, .Regular) where section == 0:
-            return 4
+            return min(videoCount,4)
         case (.Compact, .Compact):
-            return 3
+            return min(videoCount,3)
         case (.Regular, .Compact):
-            return 4
+            return min(videoCount,4)
         case (.Regular, .Regular):
-            return 4
+            return min(videoCount,4)
         default:
-            if let channel = viewModel.channelList?[section],videoList = viewModel.videoDictionary?[channel] {
-                return videoList.count
-            }
+           return videoCount
         }
-        return 0
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
