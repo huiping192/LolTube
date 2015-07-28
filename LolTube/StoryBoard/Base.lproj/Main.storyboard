@@ -224,7 +224,7 @@
         <!--Item-->
         <scene sceneID="ROr-ej-ttT">
             <objects>
-                <navigationController definesPresentationContext="YES" id="EdA-Mm-ky0" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="EdA-Mm-ky0" customClass="RSNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="bm6-E2-hoU"/>
                     <navigationItem key="navigationItem" id="f6u-TS-5dI"/>
                     <value key="contentSizeForViewInPopover" type="size" width="320" height="600"/>
@@ -1881,7 +1881,7 @@
         <!--Navigation Controller-->
         <scene sceneID="0Sf-bH-3qG">
             <objects>
-                <navigationController id="ov4-6Q-I3T" sceneMemberID="viewController">
+                <navigationController id="ov4-6Q-I3T" customClass="RSNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="history" id="MlC-Pz-fY1"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PmU-kz-5s4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2066,7 +2066,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Owh-nY-zTy">
             <objects>
-                <navigationController id="uEd-Xj-ymh" sceneMemberID="viewController">
+                <navigationController id="uEd-Xj-ymh" customClass="RSNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="L7f-JL-lKN"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5xe-eC-LdL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

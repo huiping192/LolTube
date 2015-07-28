@@ -35,6 +35,8 @@
                    name:UIContentSizeCategoryDidChangeNotification
                  object:nil];
 
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+
     self.tableViewModel = [[RSChannelTableViewModel alloc] init];
     
     self.tableView.tableFooterView = [UIView new];

@@ -29,6 +29,8 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
         searchBar.delegate = self
         searchBar.placeholder = NSLocalizedString("Search", comment: "")
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView:searchBar)
@@ -181,4 +183,8 @@ extension SearchViewController: UISearchBarDelegate{
         removeViewController(currentViewController)
         currentViewController = nil
     }
+}
+
+extension SearchViewController: UIGestureRecognizerDelegate {
+    
 }

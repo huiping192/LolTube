@@ -119,6 +119,7 @@
 		DC2F038E1B5CF32600AAC8F8 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC2F038D1B5CF32600AAC8F8 /* Search.storyboard */; };
 		DC37D4EC1AE67CFA00601458 /* LolChannelSearchChannelList.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5A4F7E3337B0F588D6AC /* LolChannelSearchChannelList.json */; };
 		DC47690B1A07EAA700DC3D2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC47690D1A07EAA700DC3D2D /* Main.storyboard */; };
+		DC47EED31B67C71B00002BD5 /* UINavigationController+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = DC47EED01B67C71B00002BD5 /* UINavigationController+Block.m */; };
 		DC51F4B91B450FF9009AEC11 /* ChannelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51F4B81B450FF9009AEC11 /* ChannelDetailViewController.swift */; };
 		DC51F4BB1B45101B009AEC11 /* ChannelInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51F4BA1B45101B009AEC11 /* ChannelInfoViewController.swift */; };
 		DC51F4BD1B451308009AEC11 /* VideoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51F4BC1B451308009AEC11 /* VideoListViewController.swift */; };
@@ -346,6 +347,9 @@
 		DC4769111A07EAAF00DC3D2D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		DC4769171A07EAB300DC3D2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		DC4769191A07EAB500DC3D2D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		DC47EED01B67C71B00002BD5 /* UINavigationController+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+Block.m"; path = "iOSBlocks/UINavigationController+Block.m"; sourceTree = "<group>"; };
+		DC47EED11B67C71B00002BD5 /* UINavigationController+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+Block.h"; path = "iOSBlocks/UINavigationController+Block.h"; sourceTree = "<group>"; };
+		DC47EED21B67C71B00002BD5 /* iOSBlocksProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iOSBlocksProtocol.h; path = iOSBlocks/iOSBlocksProtocol.h; sourceTree = "<group>"; };
 		DC51B44D1A0D36760034DDD1 /* LolTube-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "LolTube-Bridging-Header.h"; path = "Common/Util/LolTube-Bridging-Header.h"; sourceTree = "<group>"; };
 		DC51B4501A0D36CB0034DDD1 /* LolTubeTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "LolTubeTests-Bridging-Header.h"; path = "Common/Category/LolTubeTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		DC51F4B81B450FF9009AEC11 /* ChannelDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelDetailViewController.swift; sourceTree = "<group>"; };
@@ -804,6 +808,7 @@
 		7A9D5CF8F8A4CE4F2E69B2CB /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				DC47EECF1B67C70B00002BD5 /* iOSBlocks */,
 				DCF9878819BF0EEC00E9BCBE /* AMTumblrHud */,
 				7A9D570B1D75FB530BE5A4A9 /* Reachability */,
 			);
@@ -964,6 +969,16 @@
 				DC1044D219B2FA6B007A86E6 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DC47EECF1B67C70B00002BD5 /* iOSBlocks */ = {
+			isa = PBXGroup;
+			children = (
+				DC47EED01B67C71B00002BD5 /* UINavigationController+Block.m */,
+				DC47EED11B67C71B00002BD5 /* UINavigationController+Block.h */,
+				DC47EED21B67C71B00002BD5 /* iOSBlocksProtocol.h */,
+			);
+			name = iOSBlocks;
 			sourceTree = "<group>";
 		};
 		DC5708F61A00DBF500DB8821 /* VideoWidget */ = {
@@ -1387,6 +1402,7 @@
 				7A9D5148312C08C13B15F994 /* RSVideoModel.m in Sources */,
 				DC51F4BB1B45101B009AEC11 /* ChannelInfoViewController.swift in Sources */,
 				7A9D5B295074CA6D408AEBB3 /* RSSearchModel.m in Sources */,
+				DC47EED31B67C71B00002BD5 /* UINavigationController+Block.m in Sources */,
 				DC1196B11B4EC8080090338F /* PlaylistViewController.swift in Sources */,
 				7A9D50C4794BC7CDE9388DA2 /* RSVideoDetailModel.m in Sources */,
 				DCDBECEA1B6371ED004474E9 /* UIColorExtensions.swift in Sources */,

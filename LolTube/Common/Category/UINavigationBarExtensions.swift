@@ -22,35 +22,18 @@ extension UINavigationBar {
     private func defalutStyle(){
         let navbarTitleTextAttributes:[String:AnyObject] = [NSForegroundColorAttributeName:UIColor.blackColor()]
         titleTextAttributes = navbarTitleTextAttributes
-        
-        shadowImage = nil
-        setBackgroundImage(nil, forBarMetrics: .Default)
-        translucent = false
-        tintColor = UIApplication.sharedApplication().keyWindow?.tintColor
         barStyle = .Default;
     }
     
     private func clearStyle(){
         let navbarTitleTextAttributes:[String:AnyObject] = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         titleTextAttributes = navbarTitleTextAttributes
-        
-        let clearImage = UIImage(color:UIColor.clearColor())
-        shadowImage = clearImage
-        setBackgroundImage(clearImage, forBarMetrics: .Default)
-        translucent = true
-        tintColor = UIColor.whiteColor()
         barStyle = .Black;
     }
     
     private func clearBlackStyle(){
         let navbarTitleTextAttributes:[String:AnyObject] = [NSForegroundColorAttributeName:UIColor.blackColor()]
         titleTextAttributes = navbarTitleTextAttributes
-        
-        let clearImage = UIImage(color:UIColor.clearColor())
-        shadowImage = clearImage
-        setBackgroundImage(clearImage, forBarMetrics: .Default)
-        translucent = true
-        tintColor = UIApplication.sharedApplication().keyWindow?.tintColor
         barStyle = .Default;
     }
 }

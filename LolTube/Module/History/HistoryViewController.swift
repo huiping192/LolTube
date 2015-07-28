@@ -11,6 +11,11 @@ class HistoryViewController:SimpleListCollectionViewController {
         return NSLocalizedString("HistoryEmptyData", comment: "")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -56,4 +61,8 @@ class HistoryViewController:SimpleListCollectionViewController {
         let video = viewModel.videoList[indexPath.row]
         navigationController?.pushViewController(instantiateVideoDetailViewController(video.videoId), animated: true)
     }
+}
+
+extension HistoryViewController: UIGestureRecognizerDelegate {
+    
 }
