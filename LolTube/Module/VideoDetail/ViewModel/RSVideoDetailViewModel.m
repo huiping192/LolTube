@@ -6,7 +6,6 @@
 #import "RSVideoDetailViewModel.h"
 #import "RSVideoModel.h"
 #import "RSThumbnails.h"
-#import "NSDate+RSFormatter.h"
 #import "RSSearchModel.h"
 #import "LolTube-Swift.h"
 

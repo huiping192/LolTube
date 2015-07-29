@@ -8,7 +8,7 @@
 
 #import "RSVideoInfoUtil.h"
 #import "NSString+Util.h"
-#import "NSDate+RSFormatter.h"
+#import "LolTube-Swift.h"
 
 @implementation RSVideoInfoUtil
 
@@ -89,7 +89,7 @@
 + (NSString *)convertPostedTime:(NSString *)publishedAt {
     NSString *publishedDateString = nil;
 
-    NSDate *publishedDate = [NSDate dateFromISO8601String:publishedAt];
+    NSDate *publishedDate = [NSDate dateWithIso8601String:publishedAt];
     NSTimeInterval timeDifference = [[NSDate date] timeIntervalSinceDate:publishedDate];
     int timeDifferenceInHours = (int) (timeDifference / 3600);
     int timeDifferenceInMinutes = (int) ((timeDifference - timeDifferenceInHours) / 60);
@@ -107,7 +107,8 @@
 }
 
 + (NSString *)convertToShortPostedTime:(NSString *)publishedAt{
-    NSDate *publishedDate = [NSDate dateFromISO8601String:publishedAt];
+    
+    NSDate *publishedDate = [NSDate dateWithIso8601String:publishedAt];
     NSTimeInterval diffTime = [[NSDate alloc]init].timeIntervalSince1970 - publishedDate.timeIntervalSince1970;
     
     NSTimeInterval minTime = 60;

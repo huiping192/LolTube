@@ -13,13 +13,10 @@
 #import "RSVideoInfoUtil.h"
 #import "RSChannelModel.h"
 #import "UIViewController+RSError.h"
-#import "NSDate+RSFormatter.h"
-
 #import "RSSearchModel.h"
 #import "AFNetworking/AFNetworking.h"
 #import "RSVideoModel.h"
 #import "RSChannelModel.h"
-#import "NSDate+RSFormatter.h"
 #import "RSVideoDetailModel.h"
 #import "RSThumbnails.h"
 #import "RSJsonModel.h"
