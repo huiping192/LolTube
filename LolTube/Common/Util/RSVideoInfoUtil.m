@@ -7,11 +7,26 @@
 //
 
 #import "RSVideoInfoUtil.h"
-#import "NSString+Util.h"
 #import "LolTube-Swift.h"
 
-@implementation RSVideoInfoUtil
+@interface NSString (Util)
+- (int)indexOf:(NSString *)text;
 
+@end
+
+@implementation NSString (Util)
+
+- (int)indexOf:(NSString *)text {
+    NSRange range = [self rangeOfString:text];
+    if (range.length > 0) {
+        return (int)range.location;
+    } else {
+        return -1;
+    }
+}
+@end
+
+@implementation RSVideoInfoUtil
 
 + (NSString *)convertVideoDuration:(NSString *)duration {
     NSString *hour = nil;
@@ -167,3 +182,4 @@
 }
 
 @end
+

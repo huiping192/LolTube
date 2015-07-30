@@ -62,7 +62,6 @@
 		7A9D5C639F1A613376BC21EC /* RSChannelService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D518DC4BF259949301CF7 /* RSChannelService.m */; };
 		7A9D5CB34E43D853F3FC323C /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D512944F19F5B2B5B9B90 /* Video.swift */; };
 		7A9D5CBD3E03AF5E9EB19420 /* FiftyVideosDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5B9AB3E6776CBA3BA769 /* FiftyVideosDetail.json */; };
-		7A9D5D78AAEE2467B5DC5C37 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5AD72E31A33F26DC4840 /* NSString+Util.m */; };
 		7A9D5DB0985B4C2C1838AF44 /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D507B80947852CAAF8097 /* CircularImageView.swift */; };
 		7A9D5DC7B40B226EE331BB61 /* PlaylistsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5CD1B874DFA55EEA9B9E /* PlaylistsCollectionViewCell.swift */; };
 		7A9D5DCC6656C8CA39AF629B /* RSVideoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5E2A063FBEE5C97DB549 /* RSVideoCollectionViewCell.m */; };
@@ -253,7 +252,6 @@
 		7A9D57CBDE00299D431BB29E /* RSChannelTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSChannelTableViewModel.h; sourceTree = "<group>"; };
 		7A9D57E8E3DC4EA4BCA323D2 /* RSVideoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailViewController.m; sourceTree = "<group>"; };
 		7A9D58472CEC4CF30FB62297 /* UIImage+RSImageEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RSImageEffect.m"; sourceTree = "<group>"; };
-		7A9D587E2E91D179550C060E /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
 		7A9D588E065470FF7B751440 /* RSVideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoModel.m; sourceTree = "<group>"; };
 		7A9D58907113769320D6EDF4 /* SearchChannelListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchChannelListViewModel.swift; sourceTree = "<group>"; };
 		7A9D58BCA4FC17F9831757EF /* RSVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoModel.h; sourceTree = "<group>"; };
@@ -269,7 +267,6 @@
 		7A9D5A57F12E827DA02DC5C6 /* RSTodayVideoTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTodayVideoTableViewModel.m; sourceTree = "<group>"; };
 		7A9D5AB115FA7BE1F3B692E8 /* RSChannelService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSChannelService.h; sourceTree = "<group>"; };
 		7A9D5AC68727A9BCD0BEFF02 /* RSVideoInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoInfoViewController.m; sourceTree = "<group>"; };
-		7A9D5AD72E31A33F26DC4840 /* NSString+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Util.m"; sourceTree = "<group>"; };
 		7A9D5AD97117DA3161808D91 /* RSVideoRelatedVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoRelatedVideoCell.m; sourceTree = "<group>"; };
 		7A9D5AF46BFEA231319F7D33 /* LoLProChannelVideoList.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = LoLProChannelVideoList.json; sourceTree = "<group>"; };
 		7A9D5B6C4E70B83A481B38F5 /* RSEventTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSEventTracker.m; sourceTree = "<group>"; };
@@ -705,14 +702,12 @@
 				7A9D50102F7D7771E38FD4D4 /* UIImageView+Loading.h */,
 				7A9D58472CEC4CF30FB62297 /* UIImage+RSImageEffect.m */,
 				7A9D50D61627344D955161E7 /* UIImage+RSImageEffect.h */,
-				7A9D5AD72E31A33F26DC4840 /* NSString+Util.m */,
-				7A9D587E2E91D179550C060E /* NSString+Util.h */,
-				DC1196BE1B50FFC50090338F /* UIImageExtensions.swift */,
+				DCDBECE61B63615C004474E9 /* UIImage+AverageColor.h */,
+				DCDBECE71B63615C004474E9 /* UIImage+AverageColor.m */,
 				DCC0B8B51B58D1BE0081E5CA /* UIStoryboardSegueExtensions.swift */,
 				DCC0B8B71B58D66E0081E5CA /* UICollectionViewExtensions.swift */,
 				DCCD1A071B58E9AC00CB54DD /* UINavigationBarExtensions.swift */,
-				DCDBECE61B63615C004474E9 /* UIImage+AverageColor.h */,
-				DCDBECE71B63615C004474E9 /* UIImage+AverageColor.m */,
+				DC1196BE1B50FFC50090338F /* UIImageExtensions.swift */,
 				DCDBECE91B6371ED004474E9 /* UIColorExtensions.swift */,
 				DCB16C131B6D371E00F8AC86 /* UIViewContollerExtensions.swift */,
 				DCD7B4191B7374B3004A4A04 /* UIViewExtensions.swift */,
@@ -1335,7 +1330,6 @@
 				DC08FBD31B52699F008A499E /* SearchViewController.swift in Sources */,
 				DC1873551B513B0100121563 /* HistoryViewController.swift in Sources */,
 				7A9D5AA116615721C59D3D61 /* RSEnvironment.m in Sources */,
-				7A9D5D78AAEE2467B5DC5C37 /* NSString+Util.m in Sources */,
 				DC51F4C11B451696009AEC11 /* VideoCollectionViewCell.swift in Sources */,
 				7A9D580887DACDC2F061D9A6 /* RSEventTracker.m in Sources */,
 				7A9D571D6F71F2F391FE6E13 /* YoutubeService.swift in Sources */,
