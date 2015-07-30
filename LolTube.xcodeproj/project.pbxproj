@@ -32,7 +32,6 @@
 		7A9D55A5852D9DA760734F99 /* RSVideoInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5AC68727A9BCD0BEFF02 /* RSVideoInfoViewController.m */; };
 		7A9D55AE709EF08F3CF26663 /* YoutubeServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D57086D3483D4DAB0CB21 /* YoutubeServiceSpec.swift */; };
 		7A9D55D673B125147980223D /* ChannelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D526C78F464CE031BDCB5 /* ChannelCollectionViewCell.swift */; };
-		7A9D5634A5DEAE65CC9D46FF /* RSStringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5B7BE899A291E20B351C /* RSStringUtil.m */; };
 		7A9D565F9F049CDB43ACCBE9 /* TwoVideosDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5695E285A65D8216CA04 /* TwoVideosDetail.json */; };
 		7A9D5666B0A18751B34A37F9 /* SearchVideoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D509996E34EF5012B6056 /* SearchVideoListViewModel.swift */; };
 		7A9D56CE982FCDCD9C3B91C4 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5C4426984FD4283A3177 /* RoundView.swift */; };
@@ -143,6 +142,7 @@
 		DCC0B8B81B58D66E0081E5CA /* UICollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC0B8B71B58D66E0081E5CA /* UICollectionViewExtensions.swift */; };
 		DCC0B8BA1B58DEBE0081E5CA /* TopVideoCollectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC0B8B91B58DEBE0081E5CA /* TopVideoCollectionFooterView.swift */; };
 		DCCD1A081B58E9AC00CB54DD /* UINavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD1A071B58E9AC00CB54DD /* UINavigationBarExtensions.swift */; };
+		DCD30AA51B69251000ECB105 /* ImageLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD30AA41B69251000ECB105 /* ImageLoadOperation.swift */; };
 		DCD316AC1AD84EB700978606 /* TwoChannel.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5D1DA9E665D3274CBB65 /* TwoChannel.json */; };
 		DCD7B4161B73726F004A4A04 /* Loading.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCD7B4151B73726F004A4A04 /* Loading.xib */; };
 		DCD7B41A1B7374B3004A4A04 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7B4191B7374B3004A4A04 /* UIViewExtensions.swift */; };
@@ -152,6 +152,7 @@
 		DCDBECEA1B6371ED004474E9 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDBECE91B6371ED004474E9 /* UIColorExtensions.swift */; };
 		DCEB19781B52532600F255B3 /* ChannelDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCEB197A1B52532600F255B3 /* ChannelDetail.storyboard */; };
 		DCEBA51419BCB2AF007C3FC7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCEBA51619BCB2AF007C3FC7 /* Localizable.strings */; };
+		DCEC27F71B6A6D4D0068B892 /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEC27F61B6A6D4D0068B892 /* ConcurrentOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -378,6 +379,7 @@
 		DCD7B4191B7374B3004A4A04 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		DCD7B41C1B7394C2004A4A04 /* LoadingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCollectionViewCell.swift; sourceTree = "<group>"; };
 		DCD7B41E1B739675004A4A04 /* LoadingCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCollectionViewCell.xib; sourceTree = "<group>"; };
+		DCD30AA41B69251000ECB105 /* ImageLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoadOperation.swift; sourceTree = "<group>"; };
 		DCDBECE61B63615C004474E9 /* UIImage+AverageColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AverageColor.h"; sourceTree = "<group>"; };
 		DCDBECE71B63615C004474E9 /* UIImage+AverageColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AverageColor.m"; sourceTree = "<group>"; };
 		DCDBECE91B6371ED004474E9 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 		DCEBA50D19BCAD8C007C3FC7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DCEBA51519BCB2AF007C3FC7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DCEBA51719BCB2B3007C3FC7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DCEC27F61B6A6D4D0068B892 /* ConcurrentOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperation.swift; sourceTree = "<group>"; };
 		DCF9878219BDBB2B00E9BCBE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		DCF9878319BDBB2B00E9BCBE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		DCF9878419BDBB2B00E9BCBE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -467,6 +470,8 @@
 				7A9D590838A9BAA06C47605D /* RSEventTracker.h */,
 				7A9D5743674D21807B2ACD84 /* RSVideoInfoUtil.h */,
 				7A9D53A9E8EF6576E1654ECE /* RSVideoInfoUtil.m */,
+				DCD30AA41B69251000ECB105 /* ImageLoadOperation.swift */,
+				DCEC27F61B6A6D4D0068B892 /* ConcurrentOperation.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1339,6 +1344,7 @@
 				7A9D571D6F71F2F391FE6E13 /* YoutubeService.swift in Sources */,
 				7A9D585648191456B550D65B /* RSVideoInfoUtil.m in Sources */,
 				DC9CC5E81B5CE53E0047DFDC /* SearchVideoListViewController.swift in Sources */,
+				DCEC27F71B6A6D4D0068B892 /* ConcurrentOperation.swift in Sources */,
 				DC51F4B91B450FF9009AEC11 /* ChannelDetailViewController.swift in Sources */,
 				7A9D54EC8DC06A980DAD71E5 /* RSVideoRelatedVideosViewController.m in Sources */,
 				DCC0B8B61B58D1BE0081E5CA /* UIStoryboardSegueExtensions.swift in Sources */,
@@ -1387,6 +1393,7 @@
 				DCDBECEA1B6371ED004474E9 /* UIColorExtensions.swift in Sources */,
 				DC51F4C31B451777009AEC11 /* VideoListViewModel.swift in Sources */,
 				DC1873571B513B5400121563 /* HistoryViewModel.swift in Sources */,
+				DCD30AA51B69251000ECB105 /* ImageLoadOperation.swift in Sources */,
 				7A9D5DD926C658587A69CB76 /* RSJsonModel.m in Sources */,
 				DC1196C11B5105DD0090338F /* ViewControllerFactory.swift in Sources */,
 				DC1196BF1B50FFC50090338F /* UIImageExtensions.swift in Sources */,

@@ -7,7 +7,8 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImageView (Loading)
-+ (NSOperation *)asynLoadingImageWithUrlString:(NSString *)urlString secondImageUrlString:(NSString *)secondImageUrlString needBlackWhiteEffect:(BOOL)needBlackWhiteEffect success:(void (^)(UIImage *image))success;
 
-- (void)asynLoadingImageWithUrlString:(NSString *)urlString placeHolderImage:(UIImage *)placeHolderImage;
++ (NSOperation *)asynLoadingImageWithUrlString:(NSString *)urlString secondImageUrlString:(NSString *)secondImageUrlString needBlackWhiteEffect:(BOOL)needBlackWhiteEffect success:(void (^)(UIImage *image))success __attribute__((deprecated));
+
+- (void)asynLoadingImageWithUrlString:(NSString *)urlString placeHolderImage:(UIImage *)placeHolderImage __attribute__((deprecated));
 @end

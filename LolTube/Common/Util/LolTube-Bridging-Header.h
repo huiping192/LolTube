@@ -6,7 +6,6 @@
 #import "RSEnvironment.h"
 #import "RSSearchModel.h"
 #import "RSThumbnails.h"
-#import "UIImageView+Loading.h"
 #import "RSVideoDetailViewController.h"
 #import "RSChannelService.h"
 #import "RSVideoDetailModel.h"

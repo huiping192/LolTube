@@ -43,13 +43,14 @@ class SearchChannelListViewController: SimpleListCollectionViewController,Search
         cell.subscriberCountLabel.text = channel.subscriberCountString
         
         cell.thumbnailImageView.image = nil
-        let imageOperation = UIImageView.asynLoadingImageWithUrlString(channel.thumbnailUrl, secondImageUrlString: nil, needBlackWhiteEffect: false) {
-            [unowned self] image in
-            let cell = self.collectionView.cell(indexPath, type: ChannelCollectionViewCell.self)
-            cell?.thumbnailImageView.image = image
+        if let thumbnailUrl = channel.thumbnailUrl {
+            let imageOperation = ImageLoadOperation(url:thumbnailUrl){
+                [unowned self] image in
+                let cell = self.collectionView.cell(indexPath, type: ChannelCollectionViewCell.self)
+                cell?.thumbnailImageView.image = image
+            }
+            imageLoadingOperationQueue.addOperation(imageOperation)
         }
-        imageLoadingOperationQueue.addOperation(imageOperation)
-        
         return cell
         
     }

@@ -47,6 +47,12 @@ class ChannelDetailViewController: UIViewController {
         navigationController?.navigationBar.configureNavigationBar(.Default)
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        imageLoadingOperationQueue.cancelAllOperations()
+    }
+    
     
     @IBAction func subscribeButtonTapped(button:UIButton){
         let successBlock:(() -> Void) = {
@@ -88,32 +94,33 @@ class ChannelDetailViewController: UIViewController {
             let buttonTitle = isSubscribed ? NSLocalizedString("ChannelSubscribed", comment: "") : NSLocalizedString("ChannelUnsubscribe", comment: "")
             self.subscribeButton.setTitle(buttonTitle, forState: .Normal)
             
-            let imageOperation = UIImageView.asynLoadingImageWithUrlString(channel.thumbnailUrl, secondImageUrlString: nil, needBlackWhiteEffect: false) {
-                [unowned self] image in
-                self.thumbnailImageView.image = image
+            if let thumbnailUrl = channel.thumbnailUrl {
+                let imageOperation = ImageLoadOperation(url: thumbnailUrl){
+                    [unowned self] image in
+                    self.thumbnailImageView.image = image
+                }
+                self.imageLoadingOperationQueue.addOperation(imageOperation)
             }
             
-            self.imageLoadingOperationQueue.addOperation(imageOperation)
-            
-            let bannerImageOperation = UIImageView.asynLoadingImageWithUrlString(channel.bannerImageUrl, secondImageUrlString: nil, needBlackWhiteEffect: false) {
-                [unowned self] image in
-                self.backgroundThumbnailImageView.image = image
-                let imageAverageColor = image.averageColor()
-
-                if UIColor.whiteColor().equal(imageAverageColor, tolerance: 0.3) {
-                    self.viewCountLabel.textColor = UIColor.darkGrayColor()
-                    self.videoCountLabel.textColor = UIColor.darkGrayColor()
-                    self.subscriberCountLabel.textColor = UIColor.darkGrayColor()
-                    self.navigationController?.navigationBar.configureNavigationBar(.ClearBlack)
+            if let bannerImageUrl = channel.bannerImageUrl {
+                let bannerImageOperation = ImageLoadOperation(url: bannerImageUrl){
+                    [unowned self] image in
+                    self.backgroundThumbnailImageView.image = image
+                    let imageAverageColor = image.averageColor()
+                    
+                    if UIColor.whiteColor().equal(imageAverageColor, tolerance: 0.3) {
+                        self.viewCountLabel.textColor = UIColor.darkGrayColor()
+                        self.videoCountLabel.textColor = UIColor.darkGrayColor()
+                        self.subscriberCountLabel.textColor = UIColor.darkGrayColor()
+                        self.navigationController?.navigationBar.configureNavigationBar(.ClearBlack)
+                    }
+                    
+                    if self.subscribeButton.tintColor.equal(imageAverageColor, tolerance: 0.3) {
+                        self.subscribeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                    }
                 }
-
-                if self.subscribeButton.tintColor.equal(imageAverageColor, tolerance: 0.3) {
-                    self.subscribeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-                }
+                self.imageLoadingOperationQueue.addOperation(bannerImageOperation)
             }
-            
-            self.imageLoadingOperationQueue.addOperation(bannerImageOperation)
-            
         }
         
         let failureBlock:((NSError) -> Void) = {
