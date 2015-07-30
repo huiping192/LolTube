@@ -27,7 +27,6 @@
 		7A9D5221D105A982CA7413A1 /* RSVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D522E2ABA2D7CF8D28865 /* RSVideoDetailModel.m */; };
 		7A9D533BD41BF929A8993258 /* NSDate+FormatterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D571016D3664FBDB5479B /* NSDate+FormatterSpec.swift */; };
 		7A9D5354CB276B49E4C1A679 /* RSChannelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5005941F2FA356C54AC6 /* RSChannelListViewController.m */; };
-		7A9D53DFD3C33E8F18FBF450 /* UIImage+RSImageEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D58472CEC4CF30FB62297 /* UIImage+RSImageEffect.m */; };
 		7A9D54EC8DC06A980DAD71E5 /* RSVideoRelatedVideosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5CCAFA198A4073222A6C /* RSVideoRelatedVideosViewController.m */; };
 		7A9D55A5852D9DA760734F99 /* RSVideoInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5AC68727A9BCD0BEFF02 /* RSVideoInfoViewController.m */; };
 		7A9D55AE709EF08F3CF26663 /* YoutubeServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D57086D3483D4DAB0CB21 /* YoutubeServiceSpec.swift */; };
@@ -81,7 +80,6 @@
 		DC0F691C1A03DFD70061EB95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC1044C219B2FA6B007A86E6 /* Images.xcassets */; };
 		DC0F691E1A051A600061EB95 /* RSChannelService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D518DC4BF259949301CF7 /* RSChannelService.m */; };
 		DC0F69201A051A740061EB95 /* UIImageView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D51D455D1D7CB93CE543C /* UIImageView+Loading.m */; };
-		DC0F69261A051DBB0061EB95 /* UIImage+RSImageEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D58472CEC4CF30FB62297 /* UIImage+RSImageEffect.m */; };
 		DC0F69271A0528810061EB95 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCEBA51619BCB2AF007C3FC7 /* Localizable.strings */; };
 		DC0F9AB11B0F3FDC001EE2ED /* NSDateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D55DFBA4E542C93EBE79A /* NSDateExtensions.swift */; };
 		DC1044AB19B2FA6B007A86E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1044AA19B2FA6B007A86E6 /* Foundation.framework */; };
@@ -202,7 +200,6 @@
 		7A9D509996E34EF5012B6056 /* SearchVideoListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVideoListViewModel.swift; sourceTree = "<group>"; };
 		7A9D50B1F6FB8E93CAFBBE4C /* RSVideoListCollectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoListCollectionViewModel.h; sourceTree = "<group>"; };
 		7A9D50B5067E9C022D928E40 /* RSVideoInfoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoInfoViewModel.m; sourceTree = "<group>"; };
-		7A9D50D61627344D955161E7 /* UIImage+RSImageEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RSImageEffect.h"; sourceTree = "<group>"; };
 		7A9D50E2E7E043A6D87228A8 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		7A9D50E5C2FBC9003C9B521E /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		7A9D512944F19F5B2B5B9B90 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
@@ -251,7 +248,6 @@
 		7A9D5743674D21807B2ACD84 /* RSVideoInfoUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoInfoUtil.h; sourceTree = "<group>"; };
 		7A9D57CBDE00299D431BB29E /* RSChannelTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSChannelTableViewModel.h; sourceTree = "<group>"; };
 		7A9D57E8E3DC4EA4BCA323D2 /* RSVideoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailViewController.m; sourceTree = "<group>"; };
-		7A9D58472CEC4CF30FB62297 /* UIImage+RSImageEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RSImageEffect.m"; sourceTree = "<group>"; };
 		7A9D588E065470FF7B751440 /* RSVideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoModel.m; sourceTree = "<group>"; };
 		7A9D58907113769320D6EDF4 /* SearchChannelListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchChannelListViewModel.swift; sourceTree = "<group>"; };
 		7A9D58BCA4FC17F9831757EF /* RSVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoModel.h; sourceTree = "<group>"; };
@@ -700,8 +696,6 @@
 				7A9D55867E9F573269326BFA /* NSDate+RSFormatter.h */,
 				7A9D51D455D1D7CB93CE543C /* UIImageView+Loading.m */,
 				7A9D50102F7D7771E38FD4D4 /* UIImageView+Loading.h */,
-				7A9D58472CEC4CF30FB62297 /* UIImage+RSImageEffect.m */,
-				7A9D50D61627344D955161E7 /* UIImage+RSImageEffect.h */,
 				DCDBECE61B63615C004474E9 /* UIImage+AverageColor.h */,
 				DCDBECE71B63615C004474E9 /* UIImage+AverageColor.m */,
 				DCC0B8B51B58D1BE0081E5CA /* UIStoryboardSegueExtensions.swift */,
@@ -1324,7 +1318,6 @@
 				7A9D5C639F1A613376BC21EC /* RSChannelService.m in Sources */,
 				7A9D517888BCFE3270DE9EB1 /* UIImageView+Loading.m in Sources */,
 				7A9D5F14B85FDCEF4668D937 /* RSVideoService.m in Sources */,
-				7A9D53DFD3C33E8F18FBF450 /* UIImage+RSImageEffect.m in Sources */,
 				DC9467691B4C133D0043E33B /* RSPlaylistModel.m in Sources */,
 				DC1196C51B510DF90090338F /* SimpleListCollectionViewModelProtocol.swift in Sources */,
 				DC08FBD31B52699F008A499E /* SearchViewController.swift in Sources */,
@@ -1425,7 +1418,6 @@
 			files = (
 				DC0F691E1A051A600061EB95 /* RSChannelService.m in Sources */,
 				DC0F69201A051A740061EB95 /* UIImageView+Loading.m in Sources */,
-				DC0F69261A051DBB0061EB95 /* UIImage+RSImageEffect.m in Sources */,
 				DC1196BD1B503F010090338F /* RSPageInfo.m in Sources */,
 				DC0F9AB11B0F3FDC001EE2ED /* NSDateExtensions.swift in Sources */,
 				DC5708FB1A00DBF500DB8821 /* TodayViewController.m in Sources */,
