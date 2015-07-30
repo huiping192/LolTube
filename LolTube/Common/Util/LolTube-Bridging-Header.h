@@ -11,7 +11,6 @@
 #import "RSVideoDetailModel.h"
 #import "RSVideoInfoUtil.h"
 #import "RSChannelModel.h"
-#import "UIViewController+RSError.h"
 #import "RSSearchModel.h"
 #import "AFNetworking/AFNetworking.h"
 #import "RSVideoModel.h"

@@ -11,7 +11,6 @@
 #import "RSChannelService.h"
 #import "UIImageView+Loading.h"
 #import "RSVideoService.h"
-#import "UIViewController+RSError.h"
 #import "RSEventTracker.h"
 #import "RSEnvironment.h"
 #import "LolTube-Swift.h"

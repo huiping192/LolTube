@@ -51,7 +51,6 @@
 		7A9D59972A3EB473B7490571 /* RSVideoListCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D541446E54B6F621F0431 /* RSVideoListCollectionViewLayout.m */; };
 		7A9D59A8FA8D919C39DCC359 /* StringUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D526397DA6DDCCAC2F3B6 /* StringUtilTest.swift */; };
 		7A9D59E8FFC59D16DE955870 /* RSSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D55464B861B4D6516B608 /* RSSearchTableViewCell.m */; };
-		7A9D5A766490C3ECF29776DE /* UIViewController+RSError.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5393063A2FA9933C12FF /* UIViewController+RSError.m */; };
 		7A9D5A90DDD5575A1071CF0F /* RSVideoRelatedVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5AD97117DA3161808D91 /* RSVideoRelatedVideoCell.m */; };
 		7A9D5AA116615721C59D3D61 /* RSEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5685F04E20BBB4AB0EDE /* RSEnvironment.m */; };
 		7A9D5B295074CA6D408AEBB3 /* RSSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D517BF5F85FDF0B1AD516 /* RSSearchModel.m */; };
@@ -153,6 +152,7 @@
 		DCEB19781B52532600F255B3 /* ChannelDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCEB197A1B52532600F255B3 /* ChannelDetail.storyboard */; };
 		DCEBA51419BCB2AF007C3FC7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCEBA51619BCB2AF007C3FC7 /* Localizable.strings */; };
 		DCEC27F71B6A6D4D0068B892 /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEC27F61B6A6D4D0068B892 /* ConcurrentOperation.swift */; };
+		DCEC27F91B6A749A0068B892 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEC27F81B6A749A0068B892 /* UIViewControllerExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -221,10 +221,8 @@
 		7A9D526C78F464CE031BDCB5 /* ChannelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewCell.swift; sourceTree = "<group>"; };
 		7A9D5286A597D87BFDE26663 /* TopVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopVideoCell.swift; sourceTree = "<group>"; };
 		7A9D5318CE66D417996EB3AB /* RSVideoDetailSegmentViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailSegmentViewModel.m; sourceTree = "<group>"; };
-		7A9D5335364E80C0D66DFADA /* UIViewController+RSError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RSError.h"; sourceTree = "<group>"; };
 		7A9D533C8D5AA148024886E3 /* RSVideoDetailSegmentViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailSegmentViewModel.h; sourceTree = "<group>"; };
 		7A9D53594B88C1789424001F /* RSVideoDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailViewModel.m; sourceTree = "<group>"; };
-		7A9D5393063A2FA9933C12FF /* UIViewController+RSError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RSError.m"; sourceTree = "<group>"; };
 		7A9D53A9E8EF6576E1654ECE /* RSVideoInfoUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoInfoUtil.m; sourceTree = "<group>"; };
 		7A9D541446E54B6F621F0431 /* RSVideoListCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoListCollectionViewLayout.m; sourceTree = "<group>"; };
 		7A9D54358213CF2862CAD03D /* RSVideoInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoInfoViewController.h; sourceTree = "<group>"; };
@@ -393,6 +391,7 @@
 		DCEBA51519BCB2AF007C3FC7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DCEBA51719BCB2B3007C3FC7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DCEC27F61B6A6D4D0068B892 /* ConcurrentOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperation.swift; sourceTree = "<group>"; };
+		DCEC27F81B6A749A0068B892 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		DCF9878219BDBB2B00E9BCBE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		DCF9878319BDBB2B00E9BCBE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		DCF9878419BDBB2B00E9BCBE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -706,8 +705,6 @@
 				7A9D50102F7D7771E38FD4D4 /* UIImageView+Loading.h */,
 				7A9D58472CEC4CF30FB62297 /* UIImage+RSImageEffect.m */,
 				7A9D50D61627344D955161E7 /* UIImage+RSImageEffect.h */,
-				7A9D5393063A2FA9933C12FF /* UIViewController+RSError.m */,
-				7A9D5335364E80C0D66DFADA /* UIViewController+RSError.h */,
 				7A9D5AD72E31A33F26DC4840 /* NSString+Util.m */,
 				7A9D587E2E91D179550C060E /* NSString+Util.h */,
 				DC1196BE1B50FFC50090338F /* UIImageExtensions.swift */,
@@ -720,6 +717,7 @@
 				DCB16C131B6D371E00F8AC86 /* UIViewContollerExtensions.swift */,
 				DCD7B4191B7374B3004A4A04 /* UIViewExtensions.swift */,
 				7A9D55DFBA4E542C93EBE79A /* NSDateExtensions.swift */,
+				DCEC27F81B6A749A0068B892 /* UIViewControllerExtensions.swift */,
 			);
 			name = Extensions;
 			path = Category;
@@ -1334,7 +1332,6 @@
 				7A9D53DFD3C33E8F18FBF450 /* UIImage+RSImageEffect.m in Sources */,
 				DC9467691B4C133D0043E33B /* RSPlaylistModel.m in Sources */,
 				DC1196C51B510DF90090338F /* SimpleListCollectionViewModelProtocol.swift in Sources */,
-				7A9D5A766490C3ECF29776DE /* UIViewController+RSError.m in Sources */,
 				DC08FBD31B52699F008A499E /* SearchViewController.swift in Sources */,
 				DC1873551B513B0100121563 /* HistoryViewController.swift in Sources */,
 				7A9D5AA116615721C59D3D61 /* RSEnvironment.m in Sources */,
@@ -1379,6 +1376,7 @@
 				7A9D51ED44B6253F72975269 /* RSVideoInfoViewModel.m in Sources */,
 				7A9D5909AB58845520363BEE /* RSVideoDetailViewModel.m in Sources */,
 				7A9D5C3FCC0072AB2ACDD402 /* RSVideoRelatedVideosViewModel.m in Sources */,
+				DCEC27F91B6A749A0068B892 /* UIViewControllerExtensions.swift in Sources */,
 				7A9D57863767B8B7EDAF00DE /* RSVideoListCollectionViewModel.m in Sources */,
 				DCC0B8BA1B58DEBE0081E5CA /* TopVideoCollectionFooterView.swift in Sources */,
 				7A9D5EB52386205BCB0125A4 /* RSNavigationController.m in Sources */,

@@ -6,7 +6,6 @@
 #import "RSVideoDetailViewController.h"
 #import "RSVideoDetailViewModel.h"
 #import "RSVideoService.h"
-#import "UIViewController+RSError.h"
 #import "RSEnvironment.h"
 #import "RSVideoDetailSegmentViewController.h"
 #import "RSVideoRelatedVideosViewController.h"
@@ -14,6 +13,7 @@
 #import "RSEventTracker.h"
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "LolTube-Swift.h"
 
 /** related video width **/
 static const CGFloat kCompactPadWidth = 768.0f;
