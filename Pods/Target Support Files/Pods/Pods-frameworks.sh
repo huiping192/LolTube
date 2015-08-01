@@ -53,6 +53,7 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/AFNetworking.framework'
+  install_framework 'Pods/Async.framework'
   install_framework 'Pods/Cartography.framework'
   install_framework 'Pods/DZNEmptyDataSet.framework'
   install_framework 'Pods/HexColors.framework'
@@ -63,6 +64,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/AFNetworking.framework'
+  install_framework 'Pods/Async.framework'
   install_framework 'Pods/Cartography.framework'
   install_framework 'Pods/DZNEmptyDataSet.framework'
   install_framework 'Pods/HexColors.framework'
