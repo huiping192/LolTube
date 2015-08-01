@@ -12,6 +12,7 @@ pod 'SDWebImage', '~> 3.7.0'
 pod "TSMessages"
 pod 'GoogleAnalytics-iOS-SDK'
 pod 'DZNEmptyDataSet'
+pod 'Cartography', :git => "git@github.com:robb/Cartography.git", :branch => "swift-2.0"
 
 target :LolTubeTests do
   pod 'OCMock', '~> 3.1.1'

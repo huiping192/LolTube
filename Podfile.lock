@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - Cartography (0.5.0)
   - DZNEmptyDataSet (1.6.1)
   - GoogleAnalytics-iOS-SDK (3.10):
     - GoogleAnalytics-iOS-SDK/Core (= 3.10)
@@ -41,6 +42,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - Cartography (from `git@github.com:robb/Cartography.git`, branch `swift-2.0`)
   - DZNEmptyDataSet
   - GoogleAnalytics-iOS-SDK
   - JSONModel (~> 1.0.1)
@@ -52,8 +54,19 @@ DEPENDENCIES:
   - TSMessages
   - XCDYouTubeKit (~> 2.0.2)
 
+EXTERNAL SOURCES:
+  Cartography:
+    :branch: swift-2.0
+    :git: git@github.com:robb/Cartography.git
+
+CHECKOUT OPTIONS:
+  Cartography:
+    :commit: 5e42e13504399764e45cfc81eafb8c27500c9743
+    :git: git@github.com:robb/Cartography.git
+
 SPEC CHECKSUMS:
   AFNetworking: 41d45d2c14219af0fa5addf3cfd433a002c13c9f
+  Cartography: 314f5ed1495995760487161eeb7a8a0940d88ad3
   DZNEmptyDataSet: 3d31c27758230f03c71199f8c522bcfa99fba16c
   GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
   HexColors: abfd172e329dab59888614ccba6f216cec59289d
@@ -66,4 +79,4 @@ SPEC CHECKSUMS:
   TSMessages: cda5e3a623bcf1912b1c436eb754b07651289b74
   XCDYouTubeKit: 5a0412598bca14e6deb5884bc58cd452be2f4b17
 
-COCOAPODS: 0.38.0
+COCOAPODS: 0.38.2

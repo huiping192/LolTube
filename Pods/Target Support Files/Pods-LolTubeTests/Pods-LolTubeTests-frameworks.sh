@@ -53,6 +53,7 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-LolTubeTests/AFNetworking.framework'
+  install_framework 'Pods-LolTubeTests/Cartography.framework'
   install_framework 'Pods-LolTubeTests/DZNEmptyDataSet.framework'
   install_framework 'Pods-LolTubeTests/HexColors.framework'
   install_framework 'Pods-LolTubeTests/JSONModel.framework'
@@ -66,6 +67,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-LolTubeTests/AFNetworking.framework'
+  install_framework 'Pods-LolTubeTests/Cartography.framework'
   install_framework 'Pods-LolTubeTests/DZNEmptyDataSet.framework'
   install_framework 'Pods-LolTubeTests/HexColors.framework'
   install_framework 'Pods-LolTubeTests/JSONModel.framework'
