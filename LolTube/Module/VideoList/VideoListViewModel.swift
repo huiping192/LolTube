@@ -46,8 +46,12 @@ class VideoListViewModel: SimpleListCollectionViewModelProtocol {
         youtubeService.videoList(channelId, searchText: nil, nextPageToken: nextPageToken, success: successBlock, failure: failure)
     }
     
-    func numberOfItems() -> Int{
+    func loadedNumberOfItems() -> Int {
         return videoList.count
+    }
+    
+    func allNumberOfItems() -> Int {
+        return totalResults ?? 0
     }
 
     private func updateVideoDetail(videoList videoList: [Video], success: (() -> Void), failure: ((error:NSError) -> Void)?) {

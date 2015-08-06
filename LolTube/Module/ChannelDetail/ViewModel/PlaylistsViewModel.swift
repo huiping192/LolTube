@@ -38,7 +38,11 @@ class PlaylistsViewModel:SimpleListCollectionViewModelProtocol {
         youtubeService.playlists(channelId,nextPageToken:nextPageToken, success: successBlock, failure: failure)
     }
     
-    func numberOfItems() -> Int{
+    func loadedNumberOfItems() -> Int {
         return playlists.count
+    }
+    
+    func allNumberOfItems() -> Int {
+        return totalResults ?? 0
     }
 }

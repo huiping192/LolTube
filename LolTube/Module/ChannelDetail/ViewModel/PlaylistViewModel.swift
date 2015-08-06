@@ -13,8 +13,12 @@ class PlaylistViewModel:SimpleListCollectionViewModelProtocol {
         self.playlistId = playlistId
     }
     
-    func numberOfItems() -> Int{
+    func loadedNumberOfItems() -> Int {
         return videoList.count
+    }
+    
+    func allNumberOfItems() -> Int {
+        return totalResults ?? 0
     }
     
     func update(success success: (() -> Void), failure: ((error:NSError) -> Void)) {

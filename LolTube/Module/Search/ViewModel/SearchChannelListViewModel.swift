@@ -54,8 +54,12 @@ class SearchChannelListViewModel: SimpleListCollectionViewModelProtocol {
         youtubeService.search(.Channel, searchText: searchText, nextPageToken: channelListNextPageToken, success: successBlock, failure: failure)
     }
     
-    func numberOfItems() -> Int{
+    func loadedNumberOfItems() -> Int{
         return channelList.count
+    }
+    
+    func allNumberOfItems() -> Int {
+        return channelListTotalResults ?? 0
     }
     
     private func updateChannelDetail(channelList:[Channel],success:(([Channel]) -> Void),failure: ((error:NSError) -> Void)? = nil){

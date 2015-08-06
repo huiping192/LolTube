@@ -8,7 +8,11 @@ class HistoryViewModel:SimpleListCollectionViewModelProtocol {
     
     private let youtubeService = YoutubeService()
 
-    func numberOfItems() -> Int{
+    func loadedNumberOfItems() -> Int {
+        return videoList.count
+    }
+    
+    func allNumberOfItems() -> Int {
         return videoList.count
     }
     
