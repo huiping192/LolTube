@@ -6,7 +6,6 @@
 #import "RSChannelListViewController.h"
 #import "RSChannelTableViewCell.h"
 #import "RSChannelTableViewModel.h"
-#import "UIViewController+RSLoading.h"
 #import "RSVideoListViewController.h"
 #import "RSSearchTableViewCell.h"
 #import "RSChannelService.h"
@@ -51,13 +50,13 @@
 - (void)p_loadData:(BOOL)animation {
     if(animation){
         self.tableView.alpha = 0;
-        [self animateLoadingView];
+        [self startLoadingAnimation];
     }
 
     __weak typeof(self) weakSelf = self;
     [self.tableViewModel updateWithSuccess:^{
         if(animation){
-            [weakSelf stopAnimateLoadingView];
+            [weakSelf stopLoadingAnimation];
         }
         [weakSelf.tableView reloadData];
         NSIndexPath *currentSelectedIndexPath = [self p_currentSelectedIndexPath];
@@ -74,7 +73,7 @@
         });
     }                              failure:^(NSError *error) {
         [self showError:error];
-        [weakSelf stopAnimateLoadingView];
+        [weakSelf stopLoadingAnimation];
     }];
 }
 

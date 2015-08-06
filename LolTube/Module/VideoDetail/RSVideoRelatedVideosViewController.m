@@ -5,11 +5,11 @@
 
 #import "RSVideoRelatedVideosViewController.h"
 #import "RSVideoRelatedVideosViewModel.h"
-#import "UIViewController+RSLoading.h"
 #import "UIViewController+RSError.h"
 #import "RSVideoRelatedVideoCell.h"
 #import "UIImageView+Loading.h"
 #import "RSVideoDetailViewController.h"
+#import "LolTube-Swift.h"
 
 static CGFloat const kCellMinWidth = 280.0;
 static CGFloat const kCellHeight = 100.0;
@@ -58,13 +58,13 @@ static CGFloat const kCellHeight = 100.0;
 
 - (void)p_loadData {
     self.viewModel = [[RSVideoRelatedVideosViewModel alloc] initWithVideoId:self.videoId];
-    [self animateLoadingView];
+    [self startLoadingAnimation];
 
     __weak typeof(self) weakSelf = self;
     [self.viewModel updateWithSuccess:^{
         self.collectionView.alpha = 0.0;
         
-        [weakSelf stopAnimateLoadingView];
+        [weakSelf stopLoadingAnimation];
         [self.collectionView reloadData];
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.25 animations:^{
@@ -75,7 +75,7 @@ static CGFloat const kCellHeight = 100.0;
         });
     }                         failure:^(NSError *error) {
         [weakSelf showError:error];
-        [weakSelf stopAnimateLoadingView];
+        [weakSelf stopLoadingAnimation];
     }];
 }
 

@@ -12,7 +12,6 @@
 #import "RSVideoDetailModel.h"
 #import "RSVideoInfoUtil.h"
 #import "RSChannelModel.h"
-#import "UIViewController+RSLoading.h"
 #import "UIViewController+RSError.h"
 #import "NSDate+RSFormatter.h"
 

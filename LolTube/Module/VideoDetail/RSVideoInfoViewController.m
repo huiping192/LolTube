@@ -5,8 +5,8 @@
 
 #import "RSVideoInfoViewController.h"
 #import "RSVideoInfoViewModel.h"
-#import "UIViewController+RSLoading.h"
 #import "UIViewController+RSError.h"
+#import "LolTube-Swift.h"
 
 @interface RSVideoInfoViewController ()
 
@@ -40,13 +40,13 @@
 
 - (void)p_loadData {
     self.viewModel = [[RSVideoInfoViewModel alloc] initWithVideoId:self.videoId];
-    [self animateLoadingView];
+    [self startLoadingAnimation];
 
     __weak typeof(self) weakSelf = self;
     [self.viewModel updateWithSuccess:^{
         self.view.alpha = 0.0;
 
-        [weakSelf stopAnimateLoadingView];
+        [weakSelf stopLoadingAnimation];
 
         weakSelf.titleLabel.text = weakSelf.viewModel.title;
         weakSelf.postedAtLabel.text = weakSelf.viewModel.postedTime;
@@ -58,7 +58,7 @@
         });
     }                         failure:^(NSError *error) {
         [weakSelf showError:error];
-        [weakSelf stopAnimateLoadingView];
+        [weakSelf stopLoadingAnimation];
     }];
 
     [self.viewModel updateVideoDetailWithSuccess:^{

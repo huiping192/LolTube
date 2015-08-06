@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8164.2" systemVersion="14F19a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8135.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGY-um-1PG" userLabel="Container View">
+                    <rect key="frame" x="255" y="290" width="89" height="20"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUE-SD-jma">
+                            <rect key="frame" x="25" y="0.0" width="64" height="20"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="qOP-RS-1Bc">
+                            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="qOP-RS-1Bc" firstAttribute="top" secondItem="DGY-um-1PG" secondAttribute="top" id="2vX-P7-5Ae"/>
+                        <constraint firstItem="cUE-SD-jma" firstAttribute="top" secondItem="DGY-um-1PG" secondAttribute="top" id="9wF-c9-MRT"/>
+                        <constraint firstAttribute="bottom" secondItem="cUE-SD-jma" secondAttribute="bottom" id="C3E-A2-x8e"/>
+                        <constraint firstItem="cUE-SD-jma" firstAttribute="leading" secondItem="qOP-RS-1Bc" secondAttribute="trailing" constant="5" id="KOB-JK-OMp"/>
+                        <constraint firstAttribute="bottom" secondItem="qOP-RS-1Bc" secondAttribute="bottom" id="RXz-fF-g4t"/>
+                        <constraint firstItem="qOP-RS-1Bc" firstAttribute="leading" secondItem="DGY-um-1PG" secondAttribute="leading" id="cVw-Pk-yah"/>
+                        <constraint firstAttribute="trailing" secondItem="cUE-SD-jma" secondAttribute="trailing" id="hdu-yi-FfV"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="DGY-um-1PG" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="5sy-75-pwY"/>
+                <constraint firstItem="DGY-um-1PG" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cSS-g9-0sq"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

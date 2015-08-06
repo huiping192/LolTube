@@ -57,7 +57,7 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
     }
     
     func loadData() {
-        animateLoadingView()
+        startLoadingAnimation()
         
         _viewModel.update(
             success: {
@@ -65,7 +65,7 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
                 self.dataLoaded = true
                 self.collectionView.alpha = 0.0;
                 self.collectionView.setContentOffset(CGPointZero, animated: false)
-                self.stopAnimateLoadingView()
+                self.stopLoadingAnimation()
                 self.collectionView.reloadData()
 
                 dispatch_async(dispatch_get_main_queue()) {
@@ -77,7 +77,7 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
             }, failure: {
                 [unowned self] error in
                 self.showError(error)
-                self.stopAnimateLoadingView()
+                self.stopLoadingAnimation()
             })
     }
     

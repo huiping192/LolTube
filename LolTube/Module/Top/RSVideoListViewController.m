@@ -7,7 +7,6 @@
 #import "RSVideoCollectionViewCell.h"
 #import "RSVideoListCollectionViewModel.h"
 #import "RSVideoDetailViewController.h"
-#import "UIViewController+RSLoading.h"
 #import "RSChannelListViewController.h"
 #import "RSChannelService.h"
 #import "UIImageView+Loading.h"
@@ -15,6 +14,7 @@
 #import "UIViewController+RSError.h"
 #import "RSEventTracker.h"
 #import "RSEnvironment.h"
+#import "LolTube-Swift.h"
 
 static NSString *const kVideoCellId = @"videoCell";
 
@@ -179,7 +179,7 @@ static NSString *const kSegueIdChannelList = @"channelList";
         self.navigationItem.title = self.navigationTitle;
     }
 
-    [self animateLoadingView];
+    [self startLoadingAnimation];
     self.collectionViewFirstShownFlag = YES;
     self.collectionView.alpha = 0.0;
     [self.noVideoFoundLabel setHidden:YES];
@@ -189,7 +189,7 @@ static NSString *const kSegueIdChannelList = @"channelList";
         [weakSelf.noVideoFoundLabel setHidden:weakSelf.collectionViewModel.items.count != 0];
 
         [weakSelf.collectionView reloadData];
-        [weakSelf stopAnimateLoadingView];
+        [weakSelf stopLoadingAnimation];
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.25 animations:^{
                 self.collectionViewFirstShownFlag = NO;
@@ -203,7 +203,7 @@ static NSString *const kSegueIdChannelList = @"channelList";
 
         self.collectionViewFirstShownFlag = NO;
         self.collectionView.alpha = 1.0;
-        [weakSelf stopAnimateLoadingView];
+        [weakSelf stopLoadingAnimation];
     }];
 }
 
