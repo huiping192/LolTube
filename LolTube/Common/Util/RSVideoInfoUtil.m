@@ -7,11 +7,26 @@
 //
 
 #import "RSVideoInfoUtil.h"
-#import "NSString+Util.h"
-#import "NSDate+RSFormatter.h"
+#import "LolTube-Swift.h"
+
+@interface NSString (Util)
+- (int)indexOf:(NSString *)text;
+
+@end
+
+@implementation NSString (Util)
+
+- (int)indexOf:(NSString *)text {
+    NSRange range = [self rangeOfString:text];
+    if (range.length > 0) {
+        return (int)range.location;
+    } else {
+        return -1;
+    }
+}
+@end
 
 @implementation RSVideoInfoUtil
-
 
 + (NSString *)convertVideoDuration:(NSString *)duration {
     NSString *hour = nil;
@@ -89,7 +104,7 @@
 + (NSString *)convertPostedTime:(NSString *)publishedAt {
     NSString *publishedDateString = nil;
 
-    NSDate *publishedDate = [NSDate dateFromISO8601String:publishedAt];
+    NSDate *publishedDate = [NSDate dateWithIso8601String:publishedAt];
     NSTimeInterval timeDifference = [[NSDate date] timeIntervalSinceDate:publishedDate];
     int timeDifferenceInHours = (int) (timeDifference / 3600);
     int timeDifferenceInMinutes = (int) ((timeDifference - timeDifferenceInHours) / 60);
@@ -107,7 +122,8 @@
 }
 
 + (NSString *)convertToShortPostedTime:(NSString *)publishedAt{
-    NSDate *publishedDate = [NSDate dateFromISO8601String:publishedAt];
+    
+    NSDate *publishedDate = [NSDate dateWithIso8601String:publishedAt];
     NSTimeInterval diffTime = [[NSDate alloc]init].timeIntervalSince1970 - publishedDate.timeIntervalSince1970;
     
     NSTimeInterval minTime = 60;
@@ -166,3 +182,4 @@
 }
 
 @end
+

@@ -7,7 +7,6 @@
 #import "RSVideoInfoViewController.h"
 #import "RSVideoRelatedVideosViewController.h"
 #import "RSVideoDetailSegmentViewModel.h"
-#import "UIViewController+RSError.h"
 #import "UIImageView+Loading.h"
 #import "LolTube-Swift.h"
 

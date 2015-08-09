@@ -5,7 +5,6 @@
 
 #import "RSVideoInfoViewModel.h"
 #import "RSVideoModel.h"
-#import "NSDate+RSFormatter.h"
 #import "LolTube-Swift.h"
 #import "RSVideoDetailModel.h"
 
@@ -85,7 +84,7 @@
 
 
 - (NSString *)p_postedTimeWithPublishedAt:(NSString *)publishedAt {
-    NSDate *publishedDate = [NSDate dateFromISO8601String:publishedAt];
+    NSDate *publishedDate = [NSDate dateWithIso8601String:publishedAt];
     NSDateFormatter *form = [[NSDateFormatter alloc] init];
     [form setDateFormat:@"yyyy/MM/dd HH:mm"];
     form.locale = [NSLocale currentLocale];

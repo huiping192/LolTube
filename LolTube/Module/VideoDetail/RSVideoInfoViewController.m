@@ -5,7 +5,6 @@
 
 #import "RSVideoInfoViewController.h"
 #import "RSVideoInfoViewModel.h"
-#import "UIViewController+RSError.h"
 #import "LolTube-Swift.h"
 
 @interface RSVideoInfoViewController ()

@@ -41,13 +41,14 @@ class HistoryViewController:SimpleListCollectionViewController {
         cell.durationLabel.text = video.durationString
         cell.viewCountLabel.text =  video.viewCountPublishedAt
         
-        let imageOperation = UIImageView.asynLoadingImageWithUrlString(video.thumbnailUrl, secondImageUrlString: nil, needBlackWhiteEffect: false) {
-            [unowned self] image in
-            let cell = self.collectionView.cell(indexPath, type: HistoryCollectionViewCell.self)
-            cell?.thumbnailImageView.image = image
+        if let thumbnailUrl = video.thumbnailUrl {
+            let imageOperation = ImageLoadOperation(url:thumbnailUrl){
+                [unowned self] image in
+                let cell = self.collectionView.cell(indexPath, type: HistoryCollectionViewCell.self)
+                cell?.thumbnailImageView.image = image
+            }
+            imageLoadingOperationQueue.addOperation(imageOperation)
         }
-        
-        imageLoadingOperationQueue.addOperation(imageOperation)
         
         return cell
     }

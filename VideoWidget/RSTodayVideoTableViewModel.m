@@ -7,9 +7,7 @@
 #import "RSSearchModel.h"
 #import "RSThumbnails.h"
 #import "RSChannelService.h"
-#import "NSDate+RSFormatter.h"
 #import "VideoWidget-Swift.h"
-
 static NSString *const kVideoWidgetCacheKey = @"videoWidgetCache";
 
 @interface RSTodayVideoTableViewModel ()
@@ -100,7 +98,8 @@ static NSString *const kVideoWidgetCacheKey = @"videoWidgetCache";
 - (NSArray *)p_sortChannelItems:(NSArray *)items {
     NSMutableArray *mutableItems = items.mutableCopy;
     [mutableItems sortUsingComparator:^NSComparisonResult(RSVideoListTableViewCellVo *item1, RSVideoListTableViewCellVo *item2) {
-        return [[NSDate dateFromISO8601String:item2.publishedAt] compare:[NSDate dateFromISO8601String:item1.publishedAt]];
+        
+        return [[NSDate dateWithIso8601String:item2.publishedAt] compare:[NSDate dateWithIso8601String:item1.publishedAt]];
     }];
     return mutableItems;
 }

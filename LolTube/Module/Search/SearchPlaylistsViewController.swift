@@ -43,13 +43,14 @@ class SearchPlaylistsViewController: SimpleListCollectionViewController,Searchab
         cell.videoCountLabel.text = playlist.videoCountString
         
         cell.thumbnailImageView.image = nil
-        let imageOperation = UIImageView.asynLoadingImageWithUrlString(playlist.thumbnailUrl, secondImageUrlString: nil, needBlackWhiteEffect: false) {
-            [unowned self] image in
-            let cell = self.collectionView.cell(indexPath, type: PlaylistsCollectionViewCell.self)
-            cell?.thumbnailImageView.image = image
+        if let thumbnailUrl = playlist.thumbnailUrl {
+            let imageOperation = ImageLoadOperation(url:thumbnailUrl){
+                [unowned self] image in
+                let cell = self.collectionView.cell(indexPath, type: PlaylistsCollectionViewCell.self)
+                cell?.thumbnailImageView.image = image
+            }
+            imageLoadingOperationQueue.addOperation(imageOperation)
         }
-        imageLoadingOperationQueue.addOperation(imageOperation)
-        
         return cell
     }
     

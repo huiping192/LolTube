@@ -98,10 +98,13 @@ class TopViewModel {
     private func todayFourHighRankVideoList(videoList: [Video]) -> [Video] {
         var sortedVideoList = videoList.sort {
             (video1, video2) in
-            let video1PublishedDate = NSDate(fromISO8601String: video1.publishedAt)
-            let video2PublishedDate = NSDate(fromISO8601String: video2.publishedAt)
+            if let video1PublishedAt = video1.publishedAt, video2PublishedAt = video2.publishedAt {
+                if let video1PublishedDate = NSDate.date(iso8601String: video1PublishedAt), video2PublishedDate = NSDate.date(iso8601String: video2PublishedAt) {
+                    return video1.viewCount > video2.viewCount || video1PublishedDate.compare(video2PublishedDate) == .OrderedDescending
+                }
+            }
 
-            return video1.viewCount > video2.viewCount || video1PublishedDate.compare(video2PublishedDate) == .OrderedDescending
+            return false
         }
 
         return  sortedVideoList.count >= 4 ? Array(sortedVideoList[0 ..< 4]) : sortedVideoList
@@ -124,10 +127,12 @@ class TopViewModel {
             let video1 = videoList1![0]
             let video2 = videoList2![0]
 
-            let video1PublishedDate = NSDate(fromISO8601String: video1.publishedAt)
-            let video2PublishedDate = NSDate(fromISO8601String: video2.publishedAt)
-
-            return video1PublishedDate.compare(video2PublishedDate) == .OrderedDescending
+            if let video1PublishedAt = video1.publishedAt, video2PublishedAt = video2.publishedAt {
+                if let video1PublishedDate = NSDate.date(iso8601String: video1PublishedAt), video2PublishedDate = NSDate.date(iso8601String: video2PublishedAt) {
+                    return video1PublishedDate.compare(video2PublishedDate) == .OrderedDescending
+                }
+            }
+            return false
         }
     }
     

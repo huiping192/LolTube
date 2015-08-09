@@ -5,7 +5,6 @@
 
 #import "RSVideoRelatedVideosViewController.h"
 #import "RSVideoRelatedVideosViewModel.h"
-#import "UIViewController+RSError.h"
 #import "RSVideoRelatedVideoCell.h"
 #import "UIImageView+Loading.h"
 #import "RSVideoDetailViewController.h"

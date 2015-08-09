@@ -5,7 +5,6 @@
 
 #import "RSVideoListCollectionViewModel.h"
 #import "RSSearchModel.h"
-#import "NSDate+RSFormatter.h"
 #import "RSThumbnails.h"
 #import "LolTube-Swift.h"
 #import "RSVideoDetailModel.h"
@@ -177,7 +176,7 @@
 - (NSArray *)p_sortChannelItems:(NSArray *)items desc:(BOOL)desc {
     NSMutableArray *mutableItems = items.mutableCopy;
     [mutableItems sortUsingComparator:^NSComparisonResult(RSVideoCollectionViewCellVo *item1, RSVideoCollectionViewCellVo *item2) {
-        return desc ? [[NSDate dateFromISO8601String:item2.publishedAt] compare:[NSDate dateFromISO8601String:item1.publishedAt]] : [[NSDate dateFromISO8601String:item1.publishedAt] compare:[NSDate dateFromISO8601String:item2.publishedAt]];
+        return desc ? [[NSDate dateWithIso8601String:item2.publishedAt] compare:[NSDate dateWithIso8601String:item1.publishedAt]] : [[NSDate dateWithIso8601String:item1.publishedAt] compare:[NSDate dateWithIso8601String:item2.publishedAt]];
     }];
     return mutableItems;
 }
