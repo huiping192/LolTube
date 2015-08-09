@@ -20,4 +20,9 @@ extension UICollectionView {
         return cellForItemAtIndexPath(indexPath) as? T
     }
 
+    func register<T:UICollectionViewCell where T:Reusable>(nibName nibName:String,type:T.Type) {
+        registerNib(UINib(nibName: nibName, bundle: nil), forCellWithReuseIdentifier: T.reuseIdentifier)
+    }
+    
+    
 }

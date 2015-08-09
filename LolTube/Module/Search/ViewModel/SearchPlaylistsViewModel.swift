@@ -54,10 +54,13 @@ class SearchPlaylistsViewModel: SimpleListCollectionViewModelProtocol {
         youtubeService.search(.Playlist, searchText: searchText, nextPageToken: playlistsNextPageToken, success: successBlock, failure: failure)
     }
     
-    func numberOfItems() -> Int{
+    func loadedNumberOfItems() -> Int {
         return playlists.count
     }
     
+    func allNumberOfItems() -> Int {
+        return playlistsTotalResults ?? 0
+    }
     
     private func updatePlaylistsDetail(playlists:[Playlist],success:(([Playlist]) -> Void),failure: ((error:NSError) -> Void)? = nil){
         let playlistIdList = playlists.map{

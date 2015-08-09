@@ -101,15 +101,14 @@ class TopViewController: UIViewController {
     // MARK: data loading
     private func loadVideosData() {
         mainScrollView.alpha = 0.0
-        animateLoadingView()
-
+        startLoadingAnimation()
         let successBlock:(() -> Void) = {
             [unowned self] in
             self.configureTopView()
             self.videosCollectionView.reloadData()
             self.layoutCollectionViewSize()
             
-            self.stopAnimateLoadingView()
+            self.stopLoadingAnimation()
             
             dispatch_async(dispatch_get_main_queue()) {
                 UIView.animateWithDuration(0.25) {
@@ -122,7 +121,7 @@ class TopViewController: UIViewController {
         let failureBlock:((NSError) -> Void) = {
             [unowned self]error in
             self.showError(error)
-            self.stopAnimateLoadingView()
+            self.stopLoadingAnimation()
         }
         
         viewModel.update(successBlock, failure: failureBlock)

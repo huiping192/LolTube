@@ -1,7 +1,10 @@
 import Foundation
 
 protocol SimpleListCollectionViewModelProtocol:class {
-    func numberOfItems() -> Int
+        
+    func loadedNumberOfItems() -> Int
+    
+    func allNumberOfItems() -> Int
 
     func update(success success: (() -> Void), failure: ((error:NSError) -> Void))
 }
