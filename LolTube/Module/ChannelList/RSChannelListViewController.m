@@ -204,6 +204,8 @@
     ChannelDetailViewController *channelDetailViewController = [channelDetailStoryboard instantiateInitialViewController];
     RSChannelTableViewCellVo *cellVo = self.tableViewModel.items[(NSUInteger) indexPath.row];
     channelDetailViewController.channelId = cellVo.channelId;
+    channelDetailViewController.channelTitle = cellVo.title;
+
     [self.navigationController pushViewController:channelDetailViewController animated:YES];
 }
 

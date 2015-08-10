@@ -328,7 +328,7 @@ extension TopViewController: UICollectionViewDataSource {
             return
         }
         
-        navigationController?.pushViewController(instantiateChannelDetailViewController(channel.channelId), animated: true)
+        navigationController?.pushViewController(instantiateChannelDetailViewController(id:channel.channelId,title:channel.title), animated: true)
     }
     
     func moreButtonTapped(button: UIButton){
@@ -336,7 +336,7 @@ extension TopViewController: UICollectionViewDataSource {
             return
         }
         
-        navigationController?.pushViewController(instantiateChannelDetailViewController(channel.channelId), animated: true)
+        navigationController?.pushViewController(instantiateChannelDetailViewController(id:channel.channelId,title:channel.title), animated: true)
     }
 }
 

@@ -20,9 +20,11 @@ extension UIViewController {
         case SearchPlaylists = "SearchPlaylists"
     }
     
-    func instantiateChannelDetailViewController(channelId:String) -> ChannelDetailViewController{
+    func instantiateChannelDetailViewController(id id:String,title:String?) -> ChannelDetailViewController{
         let channelDetailViewController = viewController(.ChannelDetail, type: ChannelDetailViewController.self)
-        channelDetailViewController.channelId = channelId
+        channelDetailViewController.channelId = id
+        channelDetailViewController.channelTitle = title
+
         return channelDetailViewController
     }
     

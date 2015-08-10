@@ -74,6 +74,8 @@
     UIStoryboard *channelDetailStoryboard = [UIStoryboard storyboardWithName:@"ChannelDetail" bundle:nil];
     ChannelDetailViewController *channelDetailViewController = [channelDetailStoryboard instantiateInitialViewController];
     channelDetailViewController.channelId = self.viewModel.channelId;
+    channelDetailViewController.channelTitle = self.channelTitleLabel.text;
+
     [self.navigationController pushViewController:channelDetailViewController animated:YES];
 }
 
