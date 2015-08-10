@@ -9,11 +9,15 @@ import UIKit
 @IBDesignable
 class RoundView: UIView {
     @IBInspectable  var cornerRadius: CGFloat = 3.0
+    @IBInspectable  var borderWidth: CGFloat = 0.5
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
         layer.masksToBounds = true
         layer.cornerRadius = cornerRadius
+        
+        layer.borderColor = UIColor.lightGrayColor().CGColor
+        layer.borderWidth = borderWidth
     }
 }
