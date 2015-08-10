@@ -25,6 +25,7 @@ class PlaylistsViewController: SimpleListCollectionViewController {
         cell.titleLabel.text = playlist.title
         cell.videoCountLabel.text = playlist.videoCountString
         
+        cell.thumbnailImageView.image = nil
         if let thumbnailUrl = playlist.thumbnailUrl {
             let imageOperation = ImageLoadOperation(url:thumbnailUrl){
                 [unowned self]image in

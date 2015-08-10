@@ -4,7 +4,8 @@ import Foundation
 class ChannelDetailViewController: UIViewController {
  
     var channelId:String!
-    
+    var channelTitle:String?
+
     @IBOutlet private weak var thumbnailImageView:UIImageView!
     @IBOutlet private weak var backgroundThumbnailImageView:UIImageView!
     @IBOutlet private weak var videoCountLabel:UILabel!
@@ -27,6 +28,7 @@ class ChannelDetailViewController: UIViewController {
         super.viewDidLoad()
         
         viewModel = ChannelDetailViewModel(channelId: channelId)
+        navigationItem.title = channelTitle
         configureVideoListViewController()
         loadData()
     }
