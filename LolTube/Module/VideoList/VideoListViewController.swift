@@ -24,6 +24,7 @@ class VideoListViewController: SimpleListCollectionViewController {
         cell.durationLabel.text = video.durationString
         cell.viewCountLabel.text = video.viewCountPublishedAt
         
+        cell.thumbnailImageView.image = nil
         if let thumbnailUrl = video.thumbnailUrl {
             let imageOperation = ImageLoadOperation(url:thumbnailUrl){
                 [unowned self] image in
