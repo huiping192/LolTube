@@ -28,8 +28,8 @@ class PlaylistsViewController: SimpleListCollectionViewController {
         cell.thumbnailImageView.image = nil
         if let thumbnailUrl = playlist.thumbnailUrl {
             let imageOperation = ImageLoadOperation(url:thumbnailUrl){
-                [unowned self]image in
-                let cell = self.collectionView.cell(indexPath, type: PlaylistsCollectionViewCell.self)
+                [weak self]image in
+                let cell = self?.collectionView.cell(indexPath, type: PlaylistsCollectionViewCell.self)
                 cell?.thumbnailImageView.image = image
             }
             imageLoadingOperationQueue.addOperation(imageOperation)

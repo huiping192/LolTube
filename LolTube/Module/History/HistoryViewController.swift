@@ -15,14 +15,14 @@ class HistoryViewController:SimpleListCollectionViewController {
         super.viewWillAppear(animated)
 
         viewModel.update(success: {
-            [unowned self] in
-            self.collectionView.performBatchUpdates({
-                [unowned self] in
-                self.collectionView.reloadSections(NSIndexSet(index: 0))
+            [weak self] in
+            self?.collectionView.performBatchUpdates({
+                [weak self] in
+                self?.collectionView.reloadSections(NSIndexSet(index: 0))
                 }, completion: nil)
             },failure:{
-                [unowned self]error in
-                self.showError(error)
+                [weak self]error in
+                self?.showError(error)
             }
         )
     }
@@ -44,8 +44,8 @@ class HistoryViewController:SimpleListCollectionViewController {
         cell.thumbnailImageView.image = nil
         if let thumbnailUrl = video.thumbnailUrl {
             let imageOperation = ImageLoadOperation(url:thumbnailUrl){
-                [unowned self] image in
-                let cell = self.collectionView.cell(indexPath, type: HistoryCollectionViewCell.self)
+                [weak self] image in
+                let cell = self?.collectionView.cell(indexPath, type: HistoryCollectionViewCell.self)
                 cell?.thumbnailImageView.image = image
             }
             imageLoadingOperationQueue.addOperation(imageOperation)

@@ -58,17 +58,17 @@ class ChannelDetailViewController: UIViewController {
     
     @IBAction func subscribeButtonTapped(button:UIButton){
         let successBlock:(() -> Void) = {
-            [unowned self] in
-            guard let isSubscribed = self.viewModel.isSubscribed else {
+            [weak self] in
+            guard let isSubscribed = self?.viewModel.isSubscribed else {
                 return
             }
             let buttonTitle = isSubscribed ? NSLocalizedString("ChannelSubscribed", comment: "") : NSLocalizedString("ChannelUnsubscribe", comment: "")
-            self.subscribeButton.setTitle(buttonTitle, forState: .Normal)
+            self?.subscribeButton.setTitle(buttonTitle, forState: .Normal)
         }
         
         let failureBlock:((NSError) -> Void) = {
-            [unowned self] error in
-            self.showError(error)
+            [weak self] error in
+            self?.showError(error)
         }
         
         viewModel.subscribeChannel(success: successBlock, failure: failureBlock)
@@ -83,77 +83,79 @@ class ChannelDetailViewController: UIViewController {
     private func loadData(){
         
         let successBlock:(() -> Void) = {
-            [unowned self] in
-            guard let channel = self.viewModel.channel , let isSubscribed = self.viewModel.isSubscribed else {
+            [weak self] in
+            guard let channel = self?.viewModel.channel , let isSubscribed = self?.viewModel.isSubscribed else {
                 return
             }
             
-            self.navigationItem.title = channel.title
-            self.viewCountLabel.text = channel.viewCountString
-            self.videoCountLabel.text = channel.videoCountString
-            self.subscriberCountLabel.text = channel.subscriberCountString
+            self?.navigationItem.title = channel.title
+            self?.viewCountLabel.text = channel.viewCountString
+            self?.videoCountLabel.text = channel.videoCountString
+            self?.subscriberCountLabel.text = channel.subscriberCountString
             
             let buttonTitle = isSubscribed ? NSLocalizedString("ChannelSubscribed", comment: "") : NSLocalizedString("ChannelUnsubscribe", comment: "")
-            self.subscribeButton.setTitle(buttonTitle, forState: .Normal)
+            self?.subscribeButton.setTitle(buttonTitle, forState: .Normal)
             
             if let thumbnailUrl = channel.thumbnailUrl {
                 let imageOperation = ImageLoadOperation(url: thumbnailUrl){
-                    [unowned self] image in
-                    self.thumbnailImageView.image = image
+                    [weak self] image in
+                    self?.thumbnailImageView.image = image
                 }
-                self.imageLoadingOperationQueue.addOperation(imageOperation)
+                self?.imageLoadingOperationQueue.addOperation(imageOperation)
             }
             
             if let bannerImageUrl = channel.bannerImageUrl {
                 let bannerImageOperation = ImageLoadOperation(url: bannerImageUrl){
-                    [unowned self] image in
-                    self.backgroundThumbnailImageView.image = image
+                    [weak self] image in
+                    
+                    guard let weakSelf = self else {
+                        return
+                    }
+                    
+                    weakSelf.backgroundThumbnailImageView.image = image
                     let imageAverageColor = image.averageColor()
                     
                     if UIColor.whiteColor().equal(imageAverageColor, tolerance: 0.3) {
-                        self.viewCountLabel.textColor = UIColor.darkGrayColor()
-                        self.videoCountLabel.textColor = UIColor.darkGrayColor()
-                        self.subscriberCountLabel.textColor = UIColor.darkGrayColor()
-                        self.navigationController?.navigationBar.configureNavigationBar(.ClearBlack)
+                        weakSelf.viewCountLabel.textColor = UIColor.darkGrayColor()
+                        weakSelf.videoCountLabel.textColor = UIColor.darkGrayColor()
+                        weakSelf.subscriberCountLabel.textColor = UIColor.darkGrayColor()
+                        weakSelf.navigationController?.navigationBar.configureNavigationBar(.ClearBlack)
                     }
                     
-                    if self.subscribeButton.tintColor.equal(imageAverageColor, tolerance: 0.3) {
-                        self.subscribeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                    if weakSelf.subscribeButton.tintColor.equal(imageAverageColor, tolerance: 0.3) {
+                        weakSelf.subscribeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
                     }
                 }
-                self.imageLoadingOperationQueue.addOperation(bannerImageOperation)
+                self?.imageLoadingOperationQueue.addOperation(bannerImageOperation)
             }
         }
         
         let failureBlock:((NSError) -> Void) = {
-            [unowned self] error in
-            self.showError(error)
+            [weak self] error in
+            self?.showError(error)
         }
         viewModel.update(success: successBlock, failure: failureBlock)
     }
     
     private func configureVideoListViewController(){
         self.videoListViewController = configureChildViewController(self.videoListViewController){
-            [unowned self] in
             return self.instantiateVideoListViewController(self.channelId)
         }
     }
     
     private func configurePlaylistsViewController(){
         self.playlistsViewController = configureChildViewController(self.playlistsViewController){
-            [unowned self] in
             return self.instantiatePlaylistsViewController(self.channelId)
         }
     }
     
     private func configureInfoViewController(){
         self.channelInfoViewController = configureChildViewController(self.channelInfoViewController){
-            [unowned self] in
             return self.instantiateChannelInfoViewController(self.viewModel.channel?.description ?? "")
         }
     }
     
-    private func configureChildViewController<T:UIViewController>(childViewController:T?,initBlock:(() -> T)) -> T{
+    private func configureChildViewController<T:UIViewController>(childViewController:T?,@noescape initBlock:(() -> T)) -> T{
         let realChildViewController = childViewController ?? initBlock()
         swapToChildViewController(realChildViewController)
         return realChildViewController

@@ -27,8 +27,8 @@ class VideoListViewController: SimpleListCollectionViewController {
         cell.thumbnailImageView.image = nil
         if let thumbnailUrl = video.thumbnailUrl {
             let imageOperation = ImageLoadOperation(url:thumbnailUrl){
-                [unowned self] image in
-                let cell = self.collectionView.cell(indexPath, type: VideoCellectionViewCell.self)
+                [weak collectionView] image in
+                let cell = collectionView?.cell(indexPath, type: VideoCellectionViewCell.self)
                 cell?.thumbnailImageView.image = image
             }
             imageLoadingOperationQueue.addOperation(imageOperation)
