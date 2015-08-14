@@ -68,6 +68,12 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
         }
     }
     
+    
+    deinit{
+        collectionView.emptyDataSetDelegate = nil
+        collectionView.emptyDataSetSource = nil
+    }
+    
     func loadData() {
         dataSourceState = .Loading
         startLoadingAnimation()

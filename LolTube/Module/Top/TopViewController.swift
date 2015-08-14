@@ -106,25 +106,25 @@ class TopViewController: UIViewController {
         startLoadingAnimation()
 
         let successBlock:(() -> Void) = {
-            [unowned self] in
-            self.configureTopView()
-            self.videosCollectionView.reloadData()
-            self.layoutCollectionViewSize()
+            [weak self] in
+            self?.configureTopView()
+            self?.videosCollectionView.reloadData()
+            self?.layoutCollectionViewSize()
             
-            self.stopLoadingAnimation()
+            self?.stopLoadingAnimation()
             
             dispatch_async(dispatch_get_main_queue()) {
                 UIView.animateWithDuration(0.25) {
-                    [unowned self] in
-                    self.mainScrollView.alpha = 1.0
+                    [weak self] in
+                    self?.mainScrollView.alpha = 1.0
                 }
             }
         }
         
         let failureBlock:((NSError) -> Void) = {
-            [unowned self]error in
-            self.showError(error)
-            self.stopLoadingAnimation()
+            [weak self]error in
+            self?.showError(error)
+            self?.stopLoadingAnimation()
         }
         
         viewModel.update(successBlock, failure: failureBlock)
@@ -132,14 +132,14 @@ class TopViewController: UIViewController {
     
     func refresh(refreshControl: UIRefreshControl) {
         viewModel.update({
-            [unowned self] in
-            self.configureTopView()
-            self.videosCollectionView.reloadData()
-            self.layoutCollectionViewSize()
+            [weak self] in
+            self?.configureTopView()
+            self?.videosCollectionView.reloadData()
+            self?.layoutCollectionViewSize()
             refreshControl.endRefreshing()
             }, failure: {
-                [unowned self]error in
-                self.showError(error)
+                [weak self]error in
+                self?.showError(error)
                 refreshControl.endRefreshing()
             })
     }

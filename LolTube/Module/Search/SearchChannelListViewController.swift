@@ -45,8 +45,8 @@ class SearchChannelListViewController: SimpleListCollectionViewController,Search
         cell.thumbnailImageView.image = nil
         if let thumbnailUrl = channel.thumbnailUrl {
             let imageOperation = ImageLoadOperation(url:thumbnailUrl){
-                [unowned self] image in
-                let cell = self.collectionView.cell(indexPath, type: ChannelCollectionViewCell.self)
+                [weak self] image in
+                let cell = self?.collectionView.cell(indexPath, type: ChannelCollectionViewCell.self)
                 cell?.thumbnailImageView.image = image
             }
             imageLoadingOperationQueue.addOperation(imageOperation)

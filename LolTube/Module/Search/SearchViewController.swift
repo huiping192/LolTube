@@ -54,7 +54,6 @@ class SearchViewController: UIViewController {
     
     private func configureSearchVideoListViewController(searchText:String){
         searchVideoListViewController = configureChildViewController(searchVideoListViewController){
-            [unowned self] in
             return self.instantiateSearchVideoListViewController(searchText)
         }
         searchVideoListViewController?.searchText = searchText
@@ -62,7 +61,6 @@ class SearchViewController: UIViewController {
     
     private func configureSearchChannelListViewController(searchText:String){
         searchChannelListViewController = configureChildViewController(searchChannelListViewController){
-            [unowned self] in
             return self.instantiateSearchChannelListViewController(searchText)
         }
         searchChannelListViewController?.searchText = searchText
@@ -70,13 +68,12 @@ class SearchViewController: UIViewController {
     
     private func configureSearchPlaylistsViewController(searchText:String){
         searchPlaylistsViewController = configureChildViewController(searchPlaylistsViewController){
-            [unowned self] in
             return self.instantiateSearchPlaylistsViewController(searchText)
         }
         searchPlaylistsViewController?.searchText = searchText
     }
     
-    private func configureChildViewController<T:UIViewController>(childViewController:T?,initBlock:(() -> T)) -> T{
+    private func configureChildViewController<T:UIViewController>(childViewController:T?,@noescape initBlock:(() -> T)) -> T{
         let realChildViewController = childViewController ?? initBlock()
         swapToChildViewController(realChildViewController)
         return realChildViewController
