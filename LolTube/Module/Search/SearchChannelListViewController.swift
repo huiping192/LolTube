@@ -24,6 +24,10 @@ class SearchChannelListViewController: SimpleListCollectionViewController,Search
     
     let imageLoadingOperationQueue = NSOperationQueue()
     
+    override var cellHeight: CGFloat {
+        return 85.0
+    }
+    
     override var emptyDataTitle:String{
         return NSLocalizedString("SearchChannelEmptyData", comment: "")
     }
@@ -35,7 +39,7 @@ class SearchChannelListViewController: SimpleListCollectionViewController,Search
     }
     
     override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
-        let cell = collectionView.dequeueReusableCell(indexPath, type: ChannelCollectionViewCell.self)
+        let cell = collectionView.dequeueReusableCell(indexPath, type: SearchChannelCollectionViewCell.self)
         let channel = viewModel.channelList[indexPath.row]
         
         cell.titleLabel.text = channel.title
