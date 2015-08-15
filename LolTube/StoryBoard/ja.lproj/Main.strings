@@ -21,7 +21,7 @@
 "NJp-E6-W2S.placeholder" = "Search";
 
 /* Class = "IBUIBarButtonItem"; title = "Channel"; ObjectID = "cQj-8A-JDz"; */
-"cQj-8A-JDz.title" = "チャンネル";
+"bm6-E2-hoU.title" = "チャンネル";
 
 /* Class = "IBUILabel"; text = "Label"; ObjectID = "dZD-9V-gEE"; */
 "dZD-9V-gEE.text" = "Label";
@@ -45,6 +45,6 @@
 
 "0Ku-nl-exn.title" = "履歴";
 
-"O0N-72-1ef.title" = "チャンネル";
+"6E2-Vg-00b.title" = "チャンネル";
 
 "HhL-Tj-p2I.text" = "人気検索";

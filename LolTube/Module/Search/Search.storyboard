@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8152.3" systemVersion="14F6a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="14F25a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8124.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -182,7 +182,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="channelCell" id="glr-Cf-lwD" userLabel="channel cell" customClass="ChannelCollectionViewCell" customModule="LolTube" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="channelCell" id="glr-Cf-lwD" userLabel="channel cell" customClass="SearchChannelCollectionViewCell" customModule="LolTube" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -197,10 +197,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zbk-dD-Vap" userLabel="thumbnail view" customClass="RoundView" customModule="LolTube" customModuleProvider="target">
-                                                    <rect key="frame" x="23" y="10" width="70" height="70"/>
+                                                    <rect key="frame" x="23" y="15" width="60" height="60"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A3W-tx-LBt" userLabel="thumbnail image view">
-                                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -208,25 +208,25 @@
                                                         <constraint firstItem="A3W-tx-LBt" firstAttribute="top" secondItem="zbk-dD-Vap" secondAttribute="top" id="FXd-Kv-DaA"/>
                                                         <constraint firstAttribute="bottom" secondItem="A3W-tx-LBt" secondAttribute="bottom" id="dv9-yH-jHz"/>
                                                         <constraint firstAttribute="trailing" secondItem="A3W-tx-LBt" secondAttribute="trailing" id="j3c-wS-GYB"/>
-                                                        <constraint firstAttribute="width" constant="70" id="p8f-QO-ify"/>
+                                                        <constraint firstAttribute="width" constant="60" id="p8f-QO-ify"/>
                                                         <constraint firstItem="A3W-tx-LBt" firstAttribute="leading" secondItem="zbk-dD-Vap" secondAttribute="leading" id="trv-ea-9b3"/>
                                                         <constraint firstAttribute="width" secondItem="zbk-dD-Vap" secondAttribute="height" id="zlm-j6-UGY"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6zJ-Ar-iCQ" userLabel="title label">
-                                                    <rect key="frame" x="113" y="10" width="0.0" height="0.0"/>
+                                                    <rect key="frame" x="103" y="15" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCC-zw-JjE" userLabel="video count label">
-                                                    <rect key="frame" x="113" y="80" width="0.0" height="0.0"/>
+                                                    <rect key="frame" x="103" y="75" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TX9-It-1eo" userLabel="subscriber count Label">
-                                                    <rect key="frame" x="113" y="80" width="0.0" height="0.0"/>
+                                                    <rect key="frame" x="103" y="75" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -259,9 +259,10 @@
                                             <constraint firstItem="jaB-8o-dCY" firstAttribute="top" secondItem="glr-Cf-lwD" secondAttribute="top" id="JZ2-ND-gac"/>
                                             <constraint firstAttribute="centerY" secondItem="zbk-dD-Vap" secondAttribute="centerY" id="Mib-5Z-f2Y"/>
                                             <constraint firstItem="q52-cG-c5f" firstAttribute="leading" secondItem="glr-Cf-lwD" secondAttribute="leading" id="OZu-i7-fzl"/>
-                                            <constraint firstItem="TX9-It-1eo" firstAttribute="bottom" secondItem="zbk-dD-Vap" secondAttribute="bottom" id="Q0f-EU-X0V"/>
+                                            <constraint firstItem="TX9-It-1eo" firstAttribute="bottom" secondItem="zbk-dD-Vap" secondAttribute="bottom" priority="250" id="Q0f-EU-X0V"/>
                                             <constraint firstAttribute="trailing" secondItem="q52-cG-c5f" secondAttribute="trailing" id="Voc-0W-faA"/>
                                             <constraint firstItem="TX9-It-1eo" firstAttribute="top" secondItem="QCC-zw-JjE" secondAttribute="bottom" id="ZAY-JP-c9h"/>
+                                            <constraint firstItem="QCC-zw-JjE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6zJ-Ar-iCQ" secondAttribute="bottom" id="iAK-32-8jq"/>
                                             <constraint firstAttribute="bottom" secondItem="q52-cG-c5f" secondAttribute="bottom" id="iNJ-73-sna"/>
                                             <constraint firstItem="zbk-dD-Vap" firstAttribute="leading" secondItem="glr-Cf-lwD" secondAttribute="leadingMargin" constant="15" id="tqb-Kz-ObS"/>
                                             <constraint firstItem="TX9-It-1eo" firstAttribute="leading" secondItem="QCC-zw-JjE" secondAttribute="leading" id="uJJ-bI-6AR"/>
