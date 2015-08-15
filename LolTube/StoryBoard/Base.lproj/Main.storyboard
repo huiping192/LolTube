@@ -2072,11 +2072,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="g4w-fQ-taf" secondAttribute="bottom" id="1Yd-wd-Ihk"/>
+                            <constraint firstItem="Thm-RS-SRP" firstAttribute="top" secondItem="g4w-fQ-taf" secondAttribute="bottom" id="Qjx-qO-KwS"/>
                             <constraint firstItem="g4w-fQ-taf" firstAttribute="leading" secondItem="ei3-o2-AEV" secondAttribute="leading" id="Rr2-Ah-Zof"/>
                             <constraint firstItem="g4w-fQ-taf" firstAttribute="top" secondItem="JaN-Cv-2Cc" secondAttribute="bottom" id="rb6-cz-YxM"/>
                             <constraint firstAttribute="trailing" secondItem="g4w-fQ-taf" secondAttribute="trailing" id="tIi-0e-HE4"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Qjx-qO-KwS"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="Qjx-qO-KwS"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Channel" id="6E2-Vg-00b"/>
