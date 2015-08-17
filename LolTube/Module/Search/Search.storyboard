@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="14F25a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
@@ -106,13 +106,17 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="V4r-G0-DGF" secondAttribute="trailing" constant="5" id="7Dd-Po-Gov"/>
+                                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="V4r-G0-DGF" secondAttribute="trailing" constant="5" id="7Dd-Po-Gov">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                                            </constraint>
                                             <constraint firstItem="fVj-Hu-6cY" firstAttribute="leading" secondItem="j7l-dS-TB5" secondAttribute="leading" id="7KX-r0-qXa"/>
                                             <constraint firstAttribute="trailing" secondItem="fVj-Hu-6cY" secondAttribute="trailing" id="7qz-YZ-aok"/>
                                             <constraint firstItem="znX-e3-tkQ" firstAttribute="bottom" secondItem="F3S-JW-UEc" secondAttribute="bottom" id="CdW-wF-y4S"/>
                                             <constraint firstItem="V4r-G0-DGF" firstAttribute="leading" secondItem="F3S-JW-UEc" secondAttribute="trailing" constant="5" id="EOU-ZE-QT8"/>
                                             <constraint firstAttribute="bottom" secondItem="fVj-Hu-6cY" secondAttribute="bottom" id="Gdy-9m-lFG"/>
-                                            <constraint firstItem="F3S-JW-UEc" firstAttribute="leading" secondItem="j7l-dS-TB5" secondAttribute="leadingMargin" id="Ke1-Ng-fCl"/>
+                                            <constraint firstItem="F3S-JW-UEc" firstAttribute="leading" secondItem="j7l-dS-TB5" secondAttribute="leadingMargin" id="Ke1-Ng-fCl">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="15"/>
+                                            </constraint>
                                             <constraint firstItem="dhe-Mi-u6C" firstAttribute="leading" secondItem="j7l-dS-TB5" secondAttribute="leading" id="NZd-aw-h1k"/>
                                             <constraint firstItem="znX-e3-tkQ" firstAttribute="leading" secondItem="IPV-dZ-o5J" secondAttribute="leading" id="WJ3-4O-oFQ"/>
                                             <constraint firstAttribute="bottom" secondItem="dhe-Mi-u6C" secondAttribute="bottom" id="WZ7-y9-9m6"/>
@@ -264,7 +268,9 @@
                                             <constraint firstItem="TX9-It-1eo" firstAttribute="top" secondItem="QCC-zw-JjE" secondAttribute="bottom" id="ZAY-JP-c9h"/>
                                             <constraint firstItem="QCC-zw-JjE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6zJ-Ar-iCQ" secondAttribute="bottom" id="iAK-32-8jq"/>
                                             <constraint firstAttribute="bottom" secondItem="q52-cG-c5f" secondAttribute="bottom" id="iNJ-73-sna"/>
-                                            <constraint firstItem="zbk-dD-Vap" firstAttribute="leading" secondItem="glr-Cf-lwD" secondAttribute="leadingMargin" constant="15" id="tqb-Kz-ObS"/>
+                                            <constraint firstItem="zbk-dD-Vap" firstAttribute="leading" secondItem="glr-Cf-lwD" secondAttribute="leadingMargin" constant="15" id="tqb-Kz-ObS">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="23"/>
+                                            </constraint>
                                             <constraint firstItem="TX9-It-1eo" firstAttribute="leading" secondItem="QCC-zw-JjE" secondAttribute="leading" id="uJJ-bI-6AR"/>
                                             <constraint firstItem="6zJ-Ar-iCQ" firstAttribute="top" secondItem="A3W-tx-LBt" secondAttribute="top" id="vHf-lq-KOs"/>
                                             <constraint firstAttribute="trailing" secondItem="ejs-RV-RQ8" secondAttribute="trailing" id="xbI-4w-KEB"/>
@@ -390,7 +396,9 @@
                                             <constraint firstItem="uBA-Ii-htQ" firstAttribute="leading" secondItem="Uzd-8p-uOm" secondAttribute="leading" id="BC7-zi-Xma"/>
                                             <constraint firstItem="P5S-pf-FIp" firstAttribute="top" secondItem="uVq-fo-Dqh" secondAttribute="top" id="HRR-d6-ET2"/>
                                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Uzd-8p-uOm" secondAttribute="trailing" id="Is6-gC-bLl"/>
-                                            <constraint firstItem="9cr-QU-qBy" firstAttribute="leading" secondItem="uVq-fo-Dqh" secondAttribute="leadingMargin" id="J4n-RO-xWG"/>
+                                            <constraint firstItem="9cr-QU-qBy" firstAttribute="leading" secondItem="uVq-fo-Dqh" secondAttribute="leadingMargin" id="J4n-RO-xWG">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="15"/>
+                                            </constraint>
                                             <constraint firstItem="uBA-Ii-htQ" firstAttribute="top" secondItem="m7L-GS-afn" secondAttribute="top" multiplier="2" id="ShD-sl-Rpj"/>
                                             <constraint firstAttribute="bottom" secondItem="6wW-iB-jCc" secondAttribute="bottom" id="UGf-B2-Aol"/>
                                             <constraint firstItem="Uzd-8p-uOm" firstAttribute="top" secondItem="uBA-Ii-htQ" secondAttribute="bottom" constant="5" id="Ujn-QB-sNJ"/>

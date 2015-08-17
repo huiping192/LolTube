@@ -124,6 +124,7 @@
 		DC5709001A00DBF500DB8821 /* VideoWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DC5708F31A00DBF500DB8821 /* VideoWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DC64F4C719E5524900F860B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DC64F4C519E5524900F860B4 /* Reachability.m */; };
 		DC64F4C919E5582F00F860B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC64F4C819E5582F00F860B4 /* SystemConfiguration.framework */; };
+		DC82E5CD1B84C32A00420A1E /* VideoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC82E5CC1B84C32A00420A1E /* VideoCollectionViewController.swift */; };
 		DC842D731B4AF2A80085FF8D /* PlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC842D721B4AF2A80085FF8D /* PlaylistsViewController.swift */; };
 		DC9467691B4C133D0043E33B /* RSPlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9467681B4C133D0043E33B /* RSPlaylistModel.m */; };
 		DC94676A1B4C16A50043E33B /* RSPlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9467681B4C133D0043E33B /* RSPlaylistModel.m */; };
@@ -355,6 +356,7 @@
 		DC64F4C519E5524900F860B4 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		DC64F4C619E5524900F860B4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		DC64F4C819E5582F00F860B4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		DC82E5CC1B84C32A00420A1E /* VideoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewController.swift; sourceTree = "<group>"; };
 		DC842D721B4AF2A80085FF8D /* PlaylistsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsViewController.swift; sourceTree = "<group>"; };
 		DC9467671B4C133D0043E33B /* RSPlaylistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPlaylistModel.h; sourceTree = "<group>"; };
 		DC9467681B4C133D0043E33B /* RSPlaylistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPlaylistModel.m; sourceTree = "<group>"; };
@@ -780,6 +782,7 @@
 				DC1196C41B510DF90090338F /* SimpleListCollectionViewModelProtocol.swift */,
 				DCD7B41C1B7394C2004A4A04 /* LoadingCollectionViewCell.swift */,
 				DCD7B41E1B739675004A4A04 /* LoadingCollectionViewCell.xib */,
+				DC82E5CC1B84C32A00420A1E /* VideoCollectionViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1323,6 +1326,7 @@
 				DC1196C31B510C3A0090338F /* SimpleListCollectionViewController.swift in Sources */,
 				7A9D5C639F1A613376BC21EC /* RSChannelService.m in Sources */,
 				7A9D517888BCFE3270DE9EB1 /* UIImageView+Loading.m in Sources */,
+				DC82E5CD1B84C32A00420A1E /* VideoCollectionViewController.swift in Sources */,
 				7A9D5F14B85FDCEF4668D937 /* RSVideoService.m in Sources */,
 				DC9467691B4C133D0043E33B /* RSPlaylistModel.m in Sources */,
 				DC1196C51B510DF90090338F /* SimpleListCollectionViewModelProtocol.swift in Sources */,

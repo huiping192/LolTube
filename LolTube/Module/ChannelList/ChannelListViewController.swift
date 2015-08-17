@@ -6,14 +6,19 @@ class ChannelListViewController: SimpleListCollectionViewController {
     var viewModel:ChannelListViewModel!
     private let imageLoadingOperationQueue = NSOperationQueue()
     
-    override var cellHeight:CGFloat {
-        return 60
+    override var cellHeight: CGFloat {
+        switch (traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
+        case (.Regular, .Regular):
+            return 80.0
+        default:
+            return 60.0
+        }
     }
     
     override var emptyDataTitle:String{
         return NSLocalizedString("ChannelVideoEmptyData", comment: "")
     }
-    
+        
     override func collectionViewModel() -> SimpleListCollectionViewModelProtocol{
         viewModel = ChannelListViewModel()
         return viewModel

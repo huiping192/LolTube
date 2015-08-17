@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8164.2" systemVersion="14F6a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Hkk-Wp-Ahf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Hkk-Wp-Ahf">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8135.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -103,7 +103,9 @@
                                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="K35-s5-TKl" secondAttribute="trailing" constant="5" id="4AW-ZU-Bxr"/>
                                             <constraint firstItem="O6Q-zf-rSn" firstAttribute="leading" secondItem="hva-2N-YhP" secondAttribute="trailing" constant="5" id="DTk-ZA-Cb4"/>
                                             <constraint firstItem="K35-s5-TKl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="O6Q-zf-rSn" secondAttribute="bottom" constant="3" id="Hnp-i0-dw4"/>
-                                            <constraint firstItem="hva-2N-YhP" firstAttribute="leading" secondItem="TEk-52-aKQ" secondAttribute="leadingMargin" id="I9m-1n-uc7"/>
+                                            <constraint firstItem="hva-2N-YhP" firstAttribute="leading" secondItem="TEk-52-aKQ" secondAttribute="leadingMargin" id="I9m-1n-uc7">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="15"/>
+                                            </constraint>
                                             <constraint firstAttribute="bottom" secondItem="1CC-f5-vg9" secondAttribute="bottom" id="JhB-Eh-98o"/>
                                             <constraint firstItem="7iV-oi-ucK" firstAttribute="leading" secondItem="TEk-52-aKQ" secondAttribute="leading" id="OdG-K7-1BO"/>
                                             <constraint firstAttribute="centerY" secondItem="hva-2N-YhP" secondAttribute="centerY" id="OtX-iK-eWa"/>
@@ -114,7 +116,9 @@
                                             <constraint firstItem="1CC-f5-vg9" firstAttribute="leading" secondItem="TEk-52-aKQ" secondAttribute="leading" id="dv7-Yy-X21"/>
                                             <constraint firstItem="O6Q-zf-rSn" firstAttribute="top" secondItem="y2N-Mz-O33" secondAttribute="top" id="gdz-6h-iUs"/>
                                             <constraint firstItem="1CC-f5-vg9" firstAttribute="top" secondItem="TEk-52-aKQ" secondAttribute="top" id="ibS-eO-eNs"/>
-                                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="O6Q-zf-rSn" secondAttribute="trailing" constant="5" id="ogj-Rv-5OY"/>
+                                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="O6Q-zf-rSn" secondAttribute="trailing" constant="5" id="ogj-Rv-5OY">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                                            </constraint>
                                             <constraint firstItem="7iV-oi-ucK" firstAttribute="top" secondItem="ha5-1o-Jsj" secondAttribute="bottom" id="pVR-OZ-uBY"/>
                                             <constraint firstAttribute="bottom" secondItem="7iV-oi-ucK" secondAttribute="bottom" id="uCl-U1-6zb"/>
                                         </constraints>

@@ -1,7 +1,7 @@
 
 import Foundation
 
-class HistoryViewController:SimpleListCollectionViewController {
+class HistoryViewController:VideoCollectionViewController {
     
     private let imageLoadingOperationQueue = NSOperationQueue()
 

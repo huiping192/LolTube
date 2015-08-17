@@ -13,7 +13,7 @@ class SearchViewController: UIViewController {
     @IBOutlet private weak var searchSuggestionView:UIView!
     @IBOutlet private weak var searchContentView:UIView!
     
-    lazy  var searchBar:UISearchBar = UISearchBar()
+    let searchController = UISearchController(searchResultsController: nil)
     
     @IBOutlet private weak var searchTypeSegmentedControl:UISegmentedControl!
     
@@ -25,26 +25,40 @@ class SearchViewController: UIViewController {
     
     private var currentViewController:UIViewController?
     
+    private var searchBar:UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchBar.delegate = self
-        searchBar.placeholder = NSLocalizedString("Search", comment: "")
-        searchBar.searchBarStyle = .Minimal
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView:searchBar)
+        if traitCollection.horizontalSizeClass == .Regular && traitCollection.verticalSizeClass == .Regular {
+            navigationItem.title = NSLocalizedString("Search", comment: "")
+            let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 260, height: 44.0))
+            searchBar.delegate = self
+            searchBar.searchBarStyle = .Minimal
+            navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBar)
+            self.searchBar = searchBar
+        } else {
+            searchController.searchBar.delegate = self
+            searchController.searchBar.placeholder = NSLocalizedString("Search", comment: "")
+            searchController.searchBar.searchBarStyle = .Minimal
+            searchController.hidesNavigationBarDuringPresentation = false
+            searchController.dimsBackgroundDuringPresentation = false
+            navigationItem.titleView = searchController.searchBar
+            self.searchBar = searchController.searchBar
+        }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        searchBar.frame = CGRect(origin: CGPointZero, size: CGSize(width: view.frame.width * 0.9, height: 44))
-    }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        searchBar.frame = CGRect(origin: CGPointZero, size: CGSize(width: size.width * 0.9, height: 44))
-    }
+        
+        coordinator.animateAlongsideTransition({
+            [unowned self]_ in
+            self.searchVideoListViewController?.collectionView.collectionViewLayout.invalidateLayout()
+            self.searchChannelListViewController?.collectionView.collectionViewLayout.invalidateLayout()
+            self.searchPlaylistsViewController?.collectionView.collectionViewLayout.invalidateLayout()
 
+        }, completion: nil)
+    }
     
     private enum SearchType:Int {
         case Video = 0
@@ -107,8 +121,9 @@ class SearchViewController: UIViewController {
         containView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[childView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["childView":childView] as [String:AnyObject]))
     }
     
-    
     @IBAction func segmentedControlValueChanged(segmentedControl:UISegmentedControl) {
+        searchBar.resignFirstResponder()
+
         guard let searchText = searchBar.text , let searchType = SearchType(rawValue:segmentedControl.selectedSegmentIndex) else {
             return
         }
@@ -123,6 +138,8 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func suggestionWardTapped(suggestionWardButton:UIButton) {
+        searchBar.resignFirstResponder()
+
         let searchText = suggestionWardButton.titleForState(.Normal)!
         
         searchBar.text = searchText
@@ -147,6 +164,7 @@ extension SearchViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
+        
         guard let searchText = searchBar.text else {
             return
         }

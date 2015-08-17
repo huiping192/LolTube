@@ -1,6 +1,6 @@
 import Foundation
 
-class PlaylistViewController: SimpleListCollectionViewController {
+class PlaylistViewController: VideoCollectionViewController {
     
     var playlistId:String!
     var playlistTitle:String!

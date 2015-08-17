@@ -248,9 +248,12 @@ extension TopViewController: UICollectionViewDataSource {
         case (.Compact, .Compact):
             return min(videoCount,3)
         case (.Regular, .Compact):
-            return min(videoCount,4)
+            return min(videoCount,3)
         case (.Regular, .Regular):
-            return min(videoCount,4)
+            if view.frame.width > 768.0 {
+                return min(videoCount,4)
+            }
+            return min(videoCount,3)
         default:
             return videoCount
         }
@@ -356,11 +359,17 @@ extension TopViewController: UICollectionViewDelegateFlowLayout {
         
         switch (traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
         case (.Regular, _ ):
-            cellCount = 4
+            if view.frame.width > 768.0 {
+                cellCount = 4
+            } else {
+                cellCount = 3
+            }
         case (.Compact, .Regular) where indexPath.section > 0 && indexPath.row == 0:
             cellCount = 1
         case (.Compact, .Regular):
             cellCount = 2
+        case (.Compact, .Compact):
+            cellCount = 3
         default:
             cellCount = 3
         }
