@@ -14,8 +14,12 @@ class HistoryViewController:VideoCollectionViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        viewModel.update(success: {
-            [weak self] in
+        viewModel.refresh(success: {
+            [weak self] isDataChanged in
+            guard isDataChanged == true else {
+                return
+            }
+            self?.collectionView.reloadEmptyDataSet()
             self?.collectionView.performBatchUpdates({
                 [weak self] in
                 self?.collectionView.reloadSections(NSIndexSet(index: 0))
