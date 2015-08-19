@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="14F25a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zba-lz-CV3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zba-lz-CV3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
@@ -180,7 +180,7 @@
                                 </connections>
                             </collectionView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Videos Found." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dM1-dG-AGN">
-                                <rect key="frame" x="220.5" y="289" width="160" height="23"/>
+                                <rect key="frame" x="220" y="289" width="160" height="23"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -290,7 +290,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trending Searches" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HhL-Tj-p2I">
-                                        <rect key="frame" x="224" y="82" width="151.5" height="21.5"/>
+                                        <rect key="frame" x="224" y="81" width="152" height="22"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -399,12 +399,6 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="n6R-MV-bRF">
                         <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="zD7-wl-qvg">
-                            <rect key="frame" x="46" y="5.5" width="508" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <animations/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        </view>
                     </navigationItem>
                     <connections>
                         <outlet property="containView" destination="69c-5W-dXw" id="nF5-Iu-fjh"/>
@@ -737,6 +731,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="XT1-l3-Tfm"/>
                                 </constraints>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="44" width="505" height="1"/>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tni-xT-Smt" userLabel="channle register view">
                                 <rect key="frame" x="0.0" y="45" width="600" height="44"/>
@@ -758,6 +755,9 @@
                                         <rect key="frame" x="559" y="8" width="16" height="27"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                         <inset key="contentEdgeInsets" minX="8" minY="5" maxX="8" maxY="5"/>
+                                        <variation key="heightClass=regular-widthClass=regular" ambiguous="YES">
+                                            <rect key="frame" x="464" y="8" width="16" height="27"/>
+                                        </variation>
                                         <connections>
                                             <action selector="channelRegisterButtonTapped:" destination="hWB-Ak-hFl" eventType="touchUpInside" id="NeL-Hc-HBk"/>
                                         </connections>
@@ -783,6 +783,9 @@
                                     <constraint firstItem="uew-Ph-IS9" firstAttribute="top" secondItem="Fma-CL-BBf" secondAttribute="top" id="ad0-im-zGW"/>
                                     <constraint firstItem="Fma-CL-BBf" firstAttribute="centerY" secondItem="Tni-xT-Smt" secondAttribute="centerY" id="yki-Ld-eEl"/>
                                 </constraints>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="45" width="505" height="44"/>
+                                </variation>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="nZ6-DW-Ujc" appends="YES" id="z56-Uk-hCh"/>
                                 </connections>
@@ -1915,7 +1918,9 @@
                                             <constraint firstItem="pAm-EU-Zcc" firstAttribute="leading" secondItem="heE-86-Bcl" secondAttribute="leading" id="CXU-zj-BNY"/>
                                             <constraint firstAttribute="trailing" secondItem="frc-JU-LEo" secondAttribute="trailing" id="Ew2-UO-5a2"/>
                                             <constraint firstItem="2fm-qN-AI5" firstAttribute="leading" secondItem="heE-86-Bcl" secondAttribute="leading" id="HFr-FU-oVu"/>
-                                            <constraint firstItem="LnM-Vg-brN" firstAttribute="leading" secondItem="0ut-Zu-smm" secondAttribute="leadingMargin" id="IGX-4l-bDp"/>
+                                            <constraint firstItem="LnM-Vg-brN" firstAttribute="leading" secondItem="0ut-Zu-smm" secondAttribute="leadingMargin" id="IGX-4l-bDp">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="15"/>
+                                            </constraint>
                                             <constraint firstAttribute="centerY" secondItem="LnM-Vg-brN" secondAttribute="centerY" id="Ktm-H3-Vcw"/>
                                             <constraint firstItem="IkU-kt-JkB" firstAttribute="top" secondItem="frc-JU-LEo" secondAttribute="bottom" id="MG0-lH-cc5"/>
                                             <constraint firstItem="IkU-kt-JkB" firstAttribute="leading" secondItem="0ut-Zu-smm" secondAttribute="leading" id="MnG-v6-Icu"/>
@@ -1926,7 +1931,9 @@
                                             <constraint firstItem="7Hz-lV-ee6" firstAttribute="top" secondItem="0ut-Zu-smm" secondAttribute="top" id="p1i-en-Bvv"/>
                                             <constraint firstItem="frc-JU-LEo" firstAttribute="top" secondItem="0ut-Zu-smm" secondAttribute="top" id="qwg-Oi-iu6"/>
                                             <constraint firstAttribute="trailing" secondItem="IkU-kt-JkB" secondAttribute="trailing" id="saI-ru-Kr8"/>
-                                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="pAm-EU-Zcc" secondAttribute="trailing" constant="5" id="tam-wT-rzh"/>
+                                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="pAm-EU-Zcc" secondAttribute="trailing" constant="5" id="tam-wT-rzh">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                                            </constraint>
                                             <constraint firstItem="2fm-qN-AI5" firstAttribute="top" secondItem="heE-86-Bcl" secondAttribute="bottom" id="yvL-MV-UMk"/>
                                         </constraints>
                                         <size key="customSize" width="240" height="90"/>
@@ -1996,7 +2003,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="g4w-fQ-taf">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="3Kf-N8-3xC">
                                     <size key="itemSize" width="200" height="200"/>
@@ -2015,7 +2022,9 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yF0-GL-OqD" customClass="CircularImageView" customModule="LolTube" customModuleProvider="target">
                                                     <rect key="frame" x="23" y="78" width="44" height="44"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="44" id="BHg-XI-ePE"/>
+                                                        <constraint firstAttribute="width" constant="44" id="BHg-XI-ePE">
+                                                            <variation key="heightClass=regular-widthClass=regular" constant="60"/>
+                                                        </constraint>
                                                         <constraint firstAttribute="width" secondItem="yF0-GL-OqD" secondAttribute="height" id="X8o-8C-3hA"/>
                                                     </constraints>
                                                 </imageView>
@@ -2048,7 +2057,9 @@
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="ZkV-Yl-Usv" secondAttribute="bottom" id="3fp-aO-MsJ"/>
                                             <constraint firstAttribute="trailing" secondItem="Nlx-34-qnr" secondAttribute="trailing" id="7Vs-Nm-i7X"/>
-                                            <constraint firstItem="yF0-GL-OqD" firstAttribute="leading" secondItem="1mI-nl-hbi" secondAttribute="leadingMargin" constant="15" id="9Im-Bd-qq3"/>
+                                            <constraint firstItem="yF0-GL-OqD" firstAttribute="leading" secondItem="1mI-nl-hbi" secondAttribute="leadingMargin" constant="15" id="9Im-Bd-qq3">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                                            </constraint>
                                             <constraint firstAttribute="trailing" secondItem="ZkV-Yl-Usv" secondAttribute="trailing" id="DTe-XB-mY8"/>
                                             <constraint firstItem="Nlx-34-qnr" firstAttribute="top" secondItem="1mI-nl-hbi" secondAttribute="top" id="HU6-9d-UFr"/>
                                             <constraint firstItem="yF0-GL-OqD" firstAttribute="centerY" secondItem="1mI-nl-hbi" secondAttribute="centerY" id="MhM-cA-i3W"/>
@@ -2077,14 +2088,9 @@
                             <constraint firstItem="g4w-fQ-taf" firstAttribute="top" secondItem="JaN-Cv-2Cc" secondAttribute="bottom" id="rb6-cz-YxM"/>
                             <constraint firstAttribute="trailing" secondItem="g4w-fQ-taf" secondAttribute="trailing" id="tIi-0e-HE4"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Qjx-qO-KwS"/>
-                            </mask>
-                        </variation>
                         <variation key="widthClass=compact">
                             <mask key="constraints">
-                                <include reference="Qjx-qO-KwS"/>
+                                <exclude reference="Qjx-qO-KwS"/>
                             </mask>
                         </variation>
                     </view>

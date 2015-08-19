@@ -218,12 +218,13 @@ extension SimpleListCollectionViewController: UICollectionViewDelegate {
 
 extension SimpleListCollectionViewController: UICollectionViewDelegateFlowLayout {
     
-    var cellMinWidth: CGFloat {
-        return 280.0
-    }
-    
     var cellHeight: CGFloat {
-        return 100.0
+        switch (traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
+        case (.Regular, .Regular):
+            return 120.0
+        default:
+            return 100.0
+        }
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -232,9 +233,18 @@ extension SimpleListCollectionViewController: UICollectionViewDelegateFlowLayout
         }
         
         let collectionViewWidth = collectionView.frame.size.width as CGFloat
-        let cellCount = Int(collectionViewWidth / cellMinWidth)
         let cellWidth = collectionViewWidth / CGFloat(cellCount)
         return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    var cellCount: Int {
+        switch (traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
+        case (.Compact, .Regular):
+            return 1
+        default:
+            return 2
+        }
+
     }
 }
 

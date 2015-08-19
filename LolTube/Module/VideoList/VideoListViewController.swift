@@ -1,6 +1,6 @@
 import Foundation
 
-class VideoListViewController: SimpleListCollectionViewController {
+class VideoListViewController: VideoCollectionViewController {
 
     var channelId:String!
 

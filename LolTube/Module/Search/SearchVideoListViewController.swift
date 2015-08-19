@@ -1,6 +1,6 @@
 import Foundation
 
-class SearchVideoListViewController: SimpleListCollectionViewController,Searchable {
+class SearchVideoListViewController: VideoCollectionViewController,Searchable {
     
     private var _searchText:String!{
         didSet{
