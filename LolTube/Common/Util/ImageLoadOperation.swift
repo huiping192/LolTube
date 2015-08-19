@@ -11,11 +11,14 @@ class ImageLoadOperation: ConcurrentOperation {
     private var replaceImageImageOperation:SDWebImageOperation?
     
     private lazy var progressBlock: SDWebImageDownloaderProgressBlock = {
-        [unowned self]_ in
-        if self.cancelled {
-            self.webImageOperation?.cancel()
-            self.replaceImageImageOperation?.cancel()
-            self.state = .Finished
+        [weak self]_ in
+        guard let weakSelf = self else {
+            return
+        }
+        if weakSelf.cancelled {
+            weakSelf.webImageOperation?.cancel()
+            weakSelf.replaceImageImageOperation?.cancel()
+            weakSelf.state = .Finished
         }
     }
     
@@ -48,11 +51,11 @@ class ImageLoadOperation: ConcurrentOperation {
     private func loadMainImageImage(){
         state = .Executing
         webImageOperation = loadImage(url){
-            [unowned self]image in
+            [weak self]image in
             if let image = image {
-                self.completeOperation(image)
+                self?.completeOperation(image)
             } else {
-                self.loadReplaceImage()
+                self?.loadReplaceImage()
             }
         }
         
@@ -72,14 +75,17 @@ class ImageLoadOperation: ConcurrentOperation {
         }
         
         replaceImageImageOperation = loadImage(replaceImageUrl){
-            [unowned self]image in
-            
-            guard let image = image else {
-                self.completeOperation(self.placeHolderImage)
+            [weak self]image in
+            guard let weakSelf = self else {
                 return
             }
             
-            self.completeOperation(image)
+            guard let image = image else {
+                weakSelf.completeOperation((weakSelf.placeHolderImage))
+                return
+            }
+            
+            weakSelf.completeOperation(image)
         }
     }
     
@@ -90,9 +96,9 @@ class ImageLoadOperation: ConcurrentOperation {
         }
         
         let completedBlock: SDWebImageCompletionWithFinishedBlock = {
-            [unowned self](image , _ ,_ ,_ ,_ ) in
-            guard !self.cancelled else {
-                self.state = .Finished
+            [weak self](image , _ ,_ ,_ ,_ ) in
+            guard !(self?.cancelled ?? false) else {
+                self?.state = .Finished
                 return
             }
             
