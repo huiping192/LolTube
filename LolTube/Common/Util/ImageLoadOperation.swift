@@ -3,7 +3,7 @@ import SDWebImage
 
 class ImageLoadOperation: ConcurrentOperation {
     
-    private let url:String
+    private let url:String?
     private let replaceImageUrl:String?
     private let completed:UIImage -> Void
     
@@ -26,7 +26,7 @@ class ImageLoadOperation: ConcurrentOperation {
         return UIImage(named: "DefaultThumbnail")!
         }()
     
-    init(url:String,replaceImageUrl:String? = nil,completed:(UIImage)-> Void) {
+    init(url:String?,replaceImageUrl:String? = nil,completed:(UIImage)-> Void) {
         self.url = url
         self.replaceImageUrl = replaceImageUrl
         self.completed = completed
@@ -50,6 +50,11 @@ class ImageLoadOperation: ConcurrentOperation {
     
     private func loadMainImageImage(){
         state = .Executing
+        guard let url = self.url else {
+            self.completeOperation(placeHolderImage)
+            return
+        }
+        
         webImageOperation = loadImage(url){
             [weak self]image in
             if let image = image {
