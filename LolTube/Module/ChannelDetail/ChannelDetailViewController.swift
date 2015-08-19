@@ -104,30 +104,28 @@ class ChannelDetailViewController: UIViewController {
                 self?.imageLoadingOperationQueue.addOperation(imageOperation)
             }
             
-            if let bannerImageUrl = channel.bannerImageUrl {
-                let bannerImageOperation = ImageLoadOperation(url: bannerImageUrl){
-                    [weak self] image in
-                    
-                    guard let weakSelf = self else {
-                        return
-                    }
-                    
-                    weakSelf.backgroundThumbnailImageView.image = image
-                    let imageAverageColor = image.averageColor()
-                    
-                    if UIColor.whiteColor().equal(imageAverageColor, tolerance: 0.3) {
-                        weakSelf.viewCountLabel.textColor = UIColor.darkGrayColor()
-                        weakSelf.videoCountLabel.textColor = UIColor.darkGrayColor()
-                        weakSelf.subscriberCountLabel.textColor = UIColor.darkGrayColor()
-                        weakSelf.navigationController?.navigationBar.configureNavigationBar(.ClearBlack)
-                    }
-                    
-                    if weakSelf.subscribeButton.tintColor.equal(imageAverageColor, tolerance: 0.3) {
-                        weakSelf.subscribeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-                    }
+            let bannerImageOperation = ImageLoadOperation(url: channel.bannerImageUrl){
+                [weak self] image in
+                
+                guard let weakSelf = self else {
+                    return
                 }
-                self?.imageLoadingOperationQueue.addOperation(bannerImageOperation)
+                
+                weakSelf.backgroundThumbnailImageView.image = image
+                let imageAverageColor = image.averageColor()
+                
+                if UIColor.whiteColor().equal(imageAverageColor, tolerance: 0.3) {
+                    weakSelf.viewCountLabel.textColor = UIColor.darkGrayColor()
+                    weakSelf.videoCountLabel.textColor = UIColor.darkGrayColor()
+                    weakSelf.subscriberCountLabel.textColor = UIColor.darkGrayColor()
+                    weakSelf.navigationController?.navigationBar.configureNavigationBar(.ClearBlack)
+                }
+                
+                if weakSelf.subscribeButton.tintColor.equal(imageAverageColor, tolerance: 0.3) {
+                    weakSelf.subscribeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                }
             }
+            self?.imageLoadingOperationQueue.addOperation(bannerImageOperation)
         }
         
         let failureBlock:((NSError) -> Void) = {
