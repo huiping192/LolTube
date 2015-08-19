@@ -340,7 +340,7 @@
                                             <action selector="suggestionWardTapped:" destination="QB0-Ee-eOc" eventType="touchUpInside" id="bdV-P2-eXD"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9T6-2d-d0O">
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9T6-2d-d0O">
                                         <rect key="frame" x="230" y="133" width="139" height="32"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -731,6 +731,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="XT1-l3-Tfm"/>
                                 </constraints>
+                                <variation key="widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="44" width="505" height="1"/>
+                                </variation>
                                 <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="0.0" y="44" width="505" height="1"/>
                                 </variation>
@@ -755,6 +758,9 @@
                                         <rect key="frame" x="559" y="8" width="16" height="27"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                         <inset key="contentEdgeInsets" minX="8" minY="5" maxX="8" maxY="5"/>
+                                        <variation key="widthClass=regular" ambiguous="YES">
+                                            <rect key="frame" x="464" y="8" width="16" height="27"/>
+                                        </variation>
                                         <variation key="heightClass=regular-widthClass=regular" ambiguous="YES">
                                             <rect key="frame" x="464" y="8" width="16" height="27"/>
                                         </variation>
@@ -783,6 +789,9 @@
                                     <constraint firstItem="uew-Ph-IS9" firstAttribute="top" secondItem="Fma-CL-BBf" secondAttribute="top" id="ad0-im-zGW"/>
                                     <constraint firstItem="Fma-CL-BBf" firstAttribute="centerY" secondItem="Tni-xT-Smt" secondAttribute="centerY" id="yki-Ld-eEl"/>
                                 </constraints>
+                                <variation key="widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="45" width="505" height="44"/>
+                                </variation>
                                 <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="0.0" y="45" width="505" height="44"/>
                                 </variation>
@@ -2088,11 +2097,6 @@
                             <constraint firstItem="g4w-fQ-taf" firstAttribute="top" secondItem="JaN-Cv-2Cc" secondAttribute="bottom" id="rb6-cz-YxM"/>
                             <constraint firstAttribute="trailing" secondItem="g4w-fQ-taf" secondAttribute="trailing" id="tIi-0e-HE4"/>
                         </constraints>
-                        <variation key="widthClass=compact">
-                            <mask key="constraints">
-                                <exclude reference="Qjx-qO-KwS"/>
-                            </mask>
-                        </variation>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Channel" id="6E2-Vg-00b"/>
