@@ -7,6 +7,7 @@ class SearchPlaylistsViewController: SimpleListCollectionViewController,Searchab
                 return
             }
             viewModel.searchText = _searchText
+            self.collectionView.alpha = 0.0;
             super.loadData()
         }
     }
