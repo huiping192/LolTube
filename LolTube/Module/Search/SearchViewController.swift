@@ -45,6 +45,8 @@ class SearchViewController: UIViewController {
             searchController.dimsBackgroundDuringPresentation = false
             navigationItem.titleView = searchController.searchBar
             self.searchBar = searchController.searchBar
+            //fix UISearchController makes the controller black bug
+            definesPresentationContext = true
         }
     }
     
