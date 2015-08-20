@@ -7,6 +7,7 @@ class SearchChannelListViewController: SimpleListCollectionViewController,Search
                 return
             }
             viewModel.searchText = _searchText
+            self.collectionView.alpha = 0.0;
             super.loadData()
         }
     }
