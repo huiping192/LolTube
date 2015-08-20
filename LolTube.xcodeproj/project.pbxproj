@@ -127,6 +127,8 @@
 		DC82E5CD1B84C32A00420A1E /* VideoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC82E5CC1B84C32A00420A1E /* VideoCollectionViewController.swift */; };
 		DC82E5CF1B84E10200420A1E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC82E5CE1B84E10200420A1E /* Launch Screen.storyboard */; };
 		DC842D731B4AF2A80085FF8D /* PlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC842D721B4AF2A80085FF8D /* PlaylistsViewController.swift */; };
+		DC9446BA1B86239100871410 /* Loading.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9446BC1B86239100871410 /* Loading.xib */; };
+		DC9446C31B8623DF00871410 /* LoadingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9446C51B8623DF00871410 /* LoadingCollectionViewCell.xib */; };
 		DC9467691B4C133D0043E33B /* RSPlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9467681B4C133D0043E33B /* RSPlaylistModel.m */; };
 		DC94676A1B4C16A50043E33B /* RSPlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9467681B4C133D0043E33B /* RSPlaylistModel.m */; };
 		DC94676C1B4C17F40043E33B /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC94676B1B4C17F40043E33B /* Playlist.swift */; };
@@ -145,10 +147,8 @@
 		DCCD1A081B58E9AC00CB54DD /* UINavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD1A071B58E9AC00CB54DD /* UINavigationBarExtensions.swift */; };
 		DCD30AA51B69251000ECB105 /* ImageLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD30AA41B69251000ECB105 /* ImageLoadOperation.swift */; };
 		DCD316AC1AD84EB700978606 /* TwoChannel.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5D1DA9E665D3274CBB65 /* TwoChannel.json */; };
-		DCD7B4161B73726F004A4A04 /* Loading.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCD7B4151B73726F004A4A04 /* Loading.xib */; };
 		DCD7B41A1B7374B3004A4A04 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7B4191B7374B3004A4A04 /* UIViewExtensions.swift */; };
 		DCD7B41D1B7394C2004A4A04 /* LoadingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7B41C1B7394C2004A4A04 /* LoadingCollectionViewCell.swift */; };
-		DCD7B41F1B739675004A4A04 /* LoadingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCD7B41E1B739675004A4A04 /* LoadingCollectionViewCell.xib */; };
 		DCDBECE81B63615C004474E9 /* UIImage+AverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDBECE71B63615C004474E9 /* UIImage+AverageColor.m */; };
 		DCDBECEA1B6371ED004474E9 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDBECE91B6371ED004474E9 /* UIColorExtensions.swift */; };
 		DCEB19781B52532600F255B3 /* ChannelDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCEB197A1B52532600F255B3 /* ChannelDetail.storyboard */; };
@@ -360,6 +360,14 @@
 		DC82E5CC1B84C32A00420A1E /* VideoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewController.swift; sourceTree = "<group>"; };
 		DC82E5CE1B84E10200420A1E /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		DC842D721B4AF2A80085FF8D /* PlaylistsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsViewController.swift; sourceTree = "<group>"; };
+		DC9446BB1B86239100871410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Loading.xib; sourceTree = "<group>"; };
+		DC9446BE1B86239300871410 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Loading.strings; sourceTree = "<group>"; };
+		DC9446C01B86239300871410 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Loading.strings"; sourceTree = "<group>"; };
+		DC9446C21B86239400871410 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Loading.strings"; sourceTree = "<group>"; };
+		DC9446C41B8623DF00871410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LoadingCollectionViewCell.xib; sourceTree = "<group>"; };
+		DC9446C71B8623E200871410 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LoadingCollectionViewCell.strings; sourceTree = "<group>"; };
+		DC9446C91B8623E200871410 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LoadingCollectionViewCell.strings"; sourceTree = "<group>"; };
+		DC9446CB1B8623E600871410 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LoadingCollectionViewCell.strings"; sourceTree = "<group>"; };
 		DC9467671B4C133D0043E33B /* RSPlaylistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPlaylistModel.h; sourceTree = "<group>"; };
 		DC9467681B4C133D0043E33B /* RSPlaylistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPlaylistModel.m; sourceTree = "<group>"; };
 		DC94676B1B4C17F40043E33B /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
@@ -377,10 +385,8 @@
 		DCC0B8B91B58DEBE0081E5CA /* TopVideoCollectionFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopVideoCollectionFooterView.swift; sourceTree = "<group>"; };
 		DCCD1A071B58E9AC00CB54DD /* UINavigationBarExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtensions.swift; sourceTree = "<group>"; };
 		DCD30AA41B69251000ECB105 /* ImageLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoadOperation.swift; sourceTree = "<group>"; };
-		DCD7B4151B73726F004A4A04 /* Loading.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Loading.xib; path = ../Category/Loading.xib; sourceTree = "<group>"; };
 		DCD7B4191B7374B3004A4A04 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		DCD7B41C1B7394C2004A4A04 /* LoadingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCollectionViewCell.swift; sourceTree = "<group>"; };
-		DCD7B41E1B739675004A4A04 /* LoadingCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCollectionViewCell.xib; sourceTree = "<group>"; };
 		DCDBECE61B63615C004474E9 /* UIImage+AverageColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AverageColor.h"; sourceTree = "<group>"; };
 		DCDBECE71B63615C004474E9 /* UIImage+AverageColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AverageColor.m"; sourceTree = "<group>"; };
 		DCDBECE91B6371ED004474E9 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
@@ -724,7 +730,7 @@
 		7A9D5762644C6D3E621F4B31 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DCD7B4151B73726F004A4A04 /* Loading.xib */,
+				DC9446BC1B86239100871410 /* Loading.xib */,
 				7A9D5C4426984FD4283A3177 /* RoundView.swift */,
 				7A9D507B80947852CAAF8097 /* CircularImageView.swift */,
 				DC01A0E11B5E84EE0003FE21 /* RoundButton.swift */,
@@ -783,7 +789,7 @@
 				DC1196C21B510C3A0090338F /* SimpleListCollectionViewController.swift */,
 				DC1196C41B510DF90090338F /* SimpleListCollectionViewModelProtocol.swift */,
 				DCD7B41C1B7394C2004A4A04 /* LoadingCollectionViewCell.swift */,
-				DCD7B41E1B739675004A4A04 /* LoadingCollectionViewCell.xib */,
+				DC9446C51B8623DF00871410 /* LoadingCollectionViewCell.xib */,
 				DC82E5CC1B84C32A00420A1E /* VideoCollectionViewController.swift */,
 			);
 			path = ViewController;
@@ -1142,10 +1148,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCD7B41F1B739675004A4A04 /* LoadingCollectionViewCell.xib in Resources */,
+				DC9446C31B8623DF00871410 /* LoadingCollectionViewCell.xib in Resources */,
 				DC1044C319B2FA6B007A86E6 /* Images.xcassets in Resources */,
 				DC1044B519B2FA6B007A86E6 /* InfoPlist.strings in Resources */,
-				DCD7B4161B73726F004A4A04 /* Loading.xib in Resources */,
+				DC9446BA1B86239100871410 /* Loading.xib in Resources */,
 				DC51F4BF1B45134A009AEC11 /* VideoList.storyboard in Resources */,
 				DCEBA51419BCB2AF007C3FC7 /* Localizable.strings in Resources */,
 				DC2F038E1B5CF32600AAC8F8 /* Search.storyboard in Resources */,
@@ -1504,6 +1510,29 @@
 			);
 			name = Main.storyboard;
 			path = ../StoryBoard;
+			sourceTree = "<group>";
+		};
+		DC9446BC1B86239100871410 /* Loading.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DC9446BB1B86239100871410 /* Base */,
+				DC9446BE1B86239300871410 /* ja */,
+				DC9446C01B86239300871410 /* zh-Hant */,
+				DC9446C21B86239400871410 /* zh-Hans */,
+			);
+			name = Loading.xib;
+			path = ../Category;
+			sourceTree = "<group>";
+		};
+		DC9446C51B8623DF00871410 /* LoadingCollectionViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DC9446C41B8623DF00871410 /* Base */,
+				DC9446C71B8623E200871410 /* ja */,
+				DC9446C91B8623E200871410 /* zh-Hant */,
+				DC9446CB1B8623E600871410 /* zh-Hans */,
+			);
+			name = LoadingCollectionViewCell.xib;
 			sourceTree = "<group>";
 		};
 		DCEB197A1B52532600F255B3 /* ChannelDetail.storyboard */ = {

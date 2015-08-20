@@ -1,5 +1,6 @@
 import Foundation
 import SDWebImage
+import Async
 
 class ImageLoadOperation: ConcurrentOperation {
     
@@ -67,8 +68,11 @@ class ImageLoadOperation: ConcurrentOperation {
     }
     
     private func completeOperation(image:UIImage){
-        completed(image)
-        state = .Finished
+        Async.main{
+            [weak self] in
+            self?.completed(image)
+            self?.state = .Finished
+        }
     }
     
     
