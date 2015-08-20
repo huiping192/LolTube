@@ -15,7 +15,6 @@
 "HhL-Tj-p2I.text" = "Trending Searches";
 
 /* Class = "IBUINavigationItem"; title = "LolTube"; ObjectID = "HyJ-GY-dxl"; */
-"HyJ-GY-dxl.title" = "LolTube";
 
 /* Class = "IBUISearchBar"; placeholder = "Search"; ObjectID = "NJp-E6-W2S"; */
 "NJp-E6-W2S.placeholder" = "Search";
@@ -48,3 +47,5 @@
 "6E2-Vg-00b.title" = "頻道";
 
 "HhL-Tj-p2I.text" = "人氣搜索";
+
+"Pdd-Rn-zrX.title" = "精選項目";
