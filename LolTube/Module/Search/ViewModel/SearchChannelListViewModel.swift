@@ -33,22 +33,19 @@ class SearchChannelListViewModel: SimpleListCollectionViewModelProtocol {
         }
         
         let successBlock:((RSSearchModel) -> Void) = {
-            [unowned self](searchModel) in
+            [weak self](searchModel) in
             
-            var channelList = [Channel]()
-            for item in searchModel.items as! [RSItem] {
-                let channel = Channel(item:item)
-                channelList.append(channel)
-            }
+            let channelList = (searchModel.items as! [RSItem]).map{ Channel(item:$0) }
+  
             let successBlock:(([Channel]) -> Void) = {
-                [unowned self]channelList in
-                self.channelListNextPageToken = searchModel.nextPageToken
-                self.channelListTotalResults = Int(searchModel.pageInfo.totalResults)
-                self.channelList += channelList
+                [weak self]channelList in
+                self?.channelListNextPageToken = searchModel.nextPageToken
+                self?.channelListTotalResults = Int(searchModel.pageInfo.totalResults)
+                self?.channelList += channelList
                 
                 success()
             }
-            self.updateChannelDetail(channelList, success: successBlock, failure: failure)
+            self?.updateChannelDetail(channelList, success: successBlock, failure: failure)
         }
         
         youtubeService.search(.Channel, searchText: searchText, nextPageToken: channelListNextPageToken, success: successBlock, failure: failure)
@@ -63,18 +60,11 @@ class SearchChannelListViewModel: SimpleListCollectionViewModelProtocol {
     }
     
     private func updateChannelDetail(channelList:[Channel],success:(([Channel]) -> Void),failure: ((error:NSError) -> Void)? = nil){
-        let channelIdList = channelList.map{
-            channel in
-            return channel.channelId
-            } as [String]
+        let channelIdList = channelList.map{ $0.channelId! } 
         
         let successBlock:((RSChannelModel) -> Void) = {
             channelModel in
-            var updatedChannelList = [Channel]()
-            
-            for channelItem in channelModel.items as! [RSChannelItem]{
-                updatedChannelList.append(Channel(channelItem: channelItem))
-            }
+            let updatedChannelList = (channelModel.items as! [RSChannelItem]).map{ Channel(channelItem: $0) }
             
             success(updatedChannelList)
         }

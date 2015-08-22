@@ -33,21 +33,15 @@ class SearchVideoListViewModel:SimpleListCollectionViewModelProtocol{
         }
         
         let successBlock:((RSSearchModel) -> Void) = {
-            [unowned self](searchModel) in
+            [weak self](searchModel) in
             
-            var videoList = [Video]()
-            
-            for item in searchModel.items as! [RSItem] {
-                let video = Video(item:item)
-                videoList.append(video)
-            }
-            
-            self.updateVideoDetail(videoList: videoList,
+            let videoList = (searchModel.items as! [RSItem]).map{ Video(item:$0) }
+            self?.updateVideoDetail(videoList: videoList,
                 success: {
-                    [unowned self] in
-                    self.videoListNextPageToken = searchModel.nextPageToken
-                    self.videoListTotalResults = Int(searchModel.pageInfo.totalResults)
-                    self.videoList += videoList
+                    [weak self] in
+                    self?.videoListNextPageToken = searchModel.nextPageToken
+                    self?.videoListTotalResults = Int(searchModel.pageInfo.totalResults)
+                    self?.videoList += videoList
                     success()
                 }, failure: failure)
             
@@ -66,10 +60,7 @@ class SearchVideoListViewModel:SimpleListCollectionViewModelProtocol{
     }
     
     private func updateVideoDetail(videoList videoList: [Video], success: (() -> Void), failure: ((error:NSError) -> Void)? = nil) {
-        let videoIdList = videoList.map {
-            video in
-            return video.videoId
-            } as [String]
+        let videoIdList = videoList.map { $0.videoId! } 
         
         let successBlock: ((RSVideoDetailModel) -> Void) = {
             videoDetailModel in

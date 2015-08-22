@@ -8,7 +8,7 @@ class ChannelListViewModel: SimpleListCollectionViewModelProtocol{
     
     private let youtubeService = YoutubeService()
     private let channelService = RSChannelService()
-
+    
     init() {
         
     }
@@ -19,8 +19,7 @@ class ChannelListViewModel: SimpleListCollectionViewModelProtocol{
         let successBlock:((RSChannelModel) -> Void) = {
             [weak self](channelModel) in
             
-            let channelItemList = channelModel.items as! [RSChannelItem]
-            self?.channelList = channelItemList.map{Channel(channelItem:$0)}
+            self?.channelList = (channelModel.items as! [RSChannelItem]).map{Channel(channelItem:$0)}
             
             success()
         }
@@ -39,5 +38,5 @@ class ChannelListViewModel: SimpleListCollectionViewModelProtocol{
     func deleteChannel(channelId channelId:String){
         channelService.deleteChannelId(channelId)
     }
-
+    
 }

@@ -17,17 +17,19 @@ class ChannelDetailViewModel {
     func update(success success: () -> Void, failure: (NSError) -> Void) {
         
         let successBlock:((RSChannelModel) -> Void) = {
-            [unowned self](channelModel) in
-            
+            [weak self](channelModel) in
+            guard let weakSelf = self else {
+                return
+            }
             guard channelModel.items.count > 0 else {
                 success()
                 return
             }
             if let channelItem = channelModel.items[0] as? RSChannelItem{
-                self.channel = Channel(channelItem: channelItem)
+                weakSelf.channel = Channel(channelItem: channelItem)
             }
             
-            self.isSubscribed = (self.channelService.channelIds() as! [String]).contains(self.channelId)
+            weakSelf.isSubscribed = (weakSelf.channelService.channelIds() as! [String]).contains(weakSelf.channelId)
             success()
         }
         youtubeService.channelDetail([channelId], success: successBlock, failure: failure)

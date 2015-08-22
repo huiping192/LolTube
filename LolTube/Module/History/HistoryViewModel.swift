@@ -25,15 +25,10 @@ class HistoryViewModel:SimpleListCollectionViewModelProtocol {
         }
         
         let successBlock:((RSVideoModel) -> Void) = {
-            [unowned self]videoModel in
+            [weak self]videoModel in
             
-            var videoList = [Video]()
+            self?.videoList = (videoModel.items as! [RSVideoItem]).map{ Video(videoItem:$0) }
             
-            for videoItem in videoModel.items as! [RSVideoItem] {
-                videoList.append(Video(videoItem:videoItem))
-            }
-            
-            self.videoList = videoList
             success()
         }
         youtubeService.video(newVideoIdList, success: successBlock, failure: failure)
@@ -42,17 +37,9 @@ class HistoryViewModel:SimpleListCollectionViewModelProtocol {
     func refresh(success success: ((isDataChanged:Bool) -> Void), failure: ((error:NSError) -> Void)){
         let newVideoIdList = RSVideoService.sharedInstance().historyVideoIdList() as! [String]
         
-        guard newVideoIdList.count != 0 else {
-            success(isDataChanged: false)
-            return
-        }
-        
-        let videoIdList = videoList.map{
-            video in
-            return video.videoId
-            } as [String]
-        
-        guard newVideoIdList != videoIdList else {
+        let videoIdList = videoList.map{ $0.videoId! }
+
+        guard newVideoIdList.count != 0 || newVideoIdList != videoIdList else {
             success(isDataChanged: false)
             return
         }
