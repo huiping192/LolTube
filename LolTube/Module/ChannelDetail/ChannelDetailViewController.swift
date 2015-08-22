@@ -11,7 +11,11 @@ class ChannelDetailViewController: UIViewController {
             thumbnailImageView.backgroundColor = UIColor(red: 239.0 / 255.0, green: 239.0 / 255.0, blue: 244.0 / 255.0, alpha: 1.0)
         }
     }
-    @IBOutlet private weak var backgroundThumbnailImageView:UIImageView!
+    @IBOutlet private weak var backgroundThumbnailImageView:UIImageView!{
+        didSet{
+            backgroundThumbnailImageView.image = UIImage(named: "DefaultThumbnail")
+        }
+    }
     @IBOutlet private weak var videoCountLabel:UILabel!
     @IBOutlet private weak var viewCountLabel:UILabel!
     @IBOutlet private weak var subscriberCountLabel:UILabel!

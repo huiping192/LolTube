@@ -54,10 +54,10 @@ class SearchViewController: UIViewController {
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         
         coordinator.animateAlongsideTransition({
-            [unowned self]_ in
-            self.searchVideoListViewController?.collectionView.collectionViewLayout.invalidateLayout()
-            self.searchChannelListViewController?.collectionView.collectionViewLayout.invalidateLayout()
-            self.searchPlaylistsViewController?.collectionView.collectionViewLayout.invalidateLayout()
+            [weak self]_ in
+            self?.searchVideoListViewController?.collectionView.collectionViewLayout.invalidateLayout()
+            self?.searchChannelListViewController?.collectionView.collectionViewLayout.invalidateLayout()
+            self?.searchPlaylistsViewController?.collectionView.collectionViewLayout.invalidateLayout()
 
         }, completion: nil)
     }
