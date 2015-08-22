@@ -183,7 +183,9 @@ static NSString *const kSegueIdRelatedVideos = @"relatedVideosEmbed";
     if (self.videoDetailViewModel.shareUrlString) {
         [items addObject:[NSURL URLWithString:self.videoDetailViewModel.shareUrlString]];
     }
+    
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
+    activityController.popoverPresentationController.barButtonItem = sender;
     __weak typeof(self) weakSelf = self;
     [self presentViewController:activityController animated:YES completion:^{
         //TODO: success alert
