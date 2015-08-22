@@ -28,22 +28,22 @@ class PlaylistViewModel:SimpleListCollectionViewModelProtocol {
         }
         
         let successBlock:((RSPlaylistItemsModel) -> Void) = {
-            [unowned self](playlistItems) in
-            var videoList = [Video]()
+            [weak self](playlistItems) in
             
-            for item in playlistItems.items as! [RSPlaylistVideoItem] {
-                let video = Video(playlistVideoItem:item)
-                videoList.append(video)
-            }
+            let videoList = (playlistItems.items as! [RSPlaylistVideoItem]).map{ Video(playlistVideoItem:$0) }
             
             let successBlock:(() -> Void) = {
-                self.totalResults = Int(playlistItems.pageInfo.totalResults)
-                self.nextPageToken = playlistItems.nextPageToken
-                self.videoList += videoList
+                [weak self] in
+                guard let weakSelf = self else {
+                    return
+                }
+                weakSelf.totalResults = Int(playlistItems.pageInfo.totalResults)
+                weakSelf.nextPageToken = playlistItems.nextPageToken
+                weakSelf.videoList += videoList
                 success()
             }
             
-            self.updateVideoDetail(videoList: videoList,
+            self?.updateVideoDetail(videoList: videoList,
                 success: successBlock, failure: failure)
             
         }
@@ -51,10 +51,7 @@ class PlaylistViewModel:SimpleListCollectionViewModelProtocol {
     }
     
     private func updateVideoDetail(videoList videoList: [Video], success: (() -> Void), failure: ((error:NSError) -> Void)?) {
-        let videoIdList = videoList.map {
-            video in
-            return video.videoId
-        } as [String]
+        let videoIdList = videoList.map { $0.videoId! }
         
         let successBlock:((RSVideoDetailModel) -> Void) = {
             (videoDetailModel: RSVideoDetailModel!) in

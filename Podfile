@@ -9,7 +9,7 @@ pod 'AFNetworking', '~> 2.0'
 pod 'JSONModel', '~> 1.0.1'
 pod 'XCDYouTubeKit', '~> 2.0.2'
 pod 'SDWebImage', '~> 3.7.0'
-pod "TSMessages"
+pod 'TSMessages', :git => 'https://github.com/KrauseFx/TSMessages.git'
 pod 'GoogleAnalytics-iOS-SDK'
 pod 'DZNEmptyDataSet'
 pod 'Cartography', :git => "git@github.com:robb/Cartography.git", :branch => "swift-2.0"

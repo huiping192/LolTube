@@ -81,6 +81,8 @@
 
 
 - (void)p_configureViews {
+    self.channelThumbnailImageView.backgroundColor = [UIColor colorWithRed:239.0 / 255.0 green:239.0 / 255.0 blue:244.0 / 255.0 alpha:1.0];
+    
     [self.videoSegmentedControl setTitle:NSLocalizedString(@"VideoDetailInfo", @"Info") forSegmentAtIndex:0];
     [self.videoSegmentedControl setTitle:NSLocalizedString(@"VideoDietalSuggestions", @"Suggestions") forSegmentAtIndex:1];
 }

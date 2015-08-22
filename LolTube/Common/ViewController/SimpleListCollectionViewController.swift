@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import DZNEmptyDataSet
+import Async
 
 protocol SimpleListCollectionViewControllerDelegate:class {
     
@@ -68,8 +69,9 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
         }
     }
     
-    
-    deinit{
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
         collectionView.emptyDataSetDelegate = nil
         collectionView.emptyDataSetSource = nil
     }
@@ -79,31 +81,34 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
         startLoadingAnimation()
         _viewModel.update(
             success: {
-                [unowned self] in
-                if self._viewModel.loadedNumberOfItems() == 0 {
-                    self.dataSourceState = .EmptyData
-                } else if self._viewModel.loadedNumberOfItems() == self._viewModel.allNumberOfItems(){
-                    self.dataSourceState = .FullLoaded
+                [weak self] in
+                guard let weakSelf = self else {
+                    return
+                }
+                if weakSelf._viewModel.loadedNumberOfItems() == 0 {
+                    weakSelf.dataSourceState = .EmptyData
+                } else if weakSelf._viewModel.loadedNumberOfItems() == weakSelf._viewModel.allNumberOfItems(){
+                    weakSelf.dataSourceState = .FullLoaded
                 } else {
-                    self.dataSourceState = .PartLoaded
+                    weakSelf.dataSourceState = .PartLoaded
                 }
                 
-                self.collectionView.alpha = 0.0;
-                self.collectionView.setContentOffset(CGPointZero, animated: false)
-                self.stopLoadingAnimation()
-                self.collectionView.reloadData()
+                weakSelf.collectionView.alpha = 0.0;
+                weakSelf.collectionView.setContentOffset(CGPointZero, animated: false)
+                weakSelf.stopLoadingAnimation()
+                weakSelf.collectionView.reloadData()
 
-                dispatch_async(dispatch_get_main_queue()) {
+                Async.main {
                     UIView.animateWithDuration(0.25) {
-                        [unowned self] in
-                        self.collectionView.alpha = 1.0;
+                        [weak self] in
+                        self?.collectionView.alpha = 1.0;
                     }
                 }
             }, failure: {
-                [unowned self] error in
-                self.dataSourceState = .LoadFailure
-                self.showError(error)
-                self.stopLoadingAnimation()
+                [weak self] error in
+                self?.dataSourceState = .LoadFailure
+                self?.showError(error)
+                self?.stopLoadingAnimation()
             })
     }
     
@@ -178,10 +183,13 @@ extension SimpleListCollectionViewController: UICollectionViewDelegate {
         dataSourceState = .Loading
         
         _viewModel.update(success: {
-            [unowned self] in
-            self.dataSourceState = self._viewModel.loadedNumberOfItems() == self._viewModel.allNumberOfItems() ? .FullLoaded : .PartLoaded
+            [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.dataSourceState = weakSelf._viewModel.loadedNumberOfItems() == weakSelf._viewModel.allNumberOfItems() ? .FullLoaded : .PartLoaded
             
-            let newVideoCount = self._viewModel.loadedNumberOfItems() - currentVideoCount
+            let newVideoCount = weakSelf._viewModel.loadedNumberOfItems() - currentVideoCount
             guard newVideoCount > 0 else {                
                 return
             }
@@ -194,23 +202,23 @@ extension SimpleListCollectionViewController: UICollectionViewDelegate {
             
             let deleteIndexPaths = [NSIndexPath(forRow: currentVideoCount, inSection: 0)]
             
-            self.collectionView.performBatchUpdates({
-                [unowned self] in
-                if self.dataSourceState == .FullLoaded {
-                    self.collectionView.deleteItemsAtIndexPaths(deleteIndexPaths)
+            weakSelf.collectionView.performBatchUpdates({
+                [weak self] in
+                if self?.dataSourceState == .FullLoaded {
+                    self?.collectionView.deleteItemsAtIndexPaths(deleteIndexPaths)
                 }
                 
-                self.collectionView.insertItemsAtIndexPaths(indexPaths)
+                self?.collectionView.insertItemsAtIndexPaths(indexPaths)
 
                 }, completion: {
-                    [unowned self] _ in
-                    self.dataSourceState = .PartLoaded
+                    [weak self] _ in
+                    self?.dataSourceState = .PartLoaded
                 })
             
             },failure:{
-                error in
-                self.showError(error)
-                self.dataSourceState = .LoadFailure
+                [weak self]error in
+                self?.showError(error)
+                self?.dataSourceState = .LoadFailure
             }
         )
     }

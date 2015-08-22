@@ -21,17 +21,13 @@ class PlaylistsViewModel:SimpleListCollectionViewModelProtocol {
         }
         
         let successBlock:((RSPlaylistModel) -> Void) = {
-            [unowned self](playlistModel) in
+            [weak self](playlistModel) in
             
-            var playlists = [Playlist]()
+            let playlists = (playlistModel.items as! [RSPlaylistItem]).map{ Playlist(playlistItem:$0) }
             
-            for playlistItem in playlistModel.items as! [RSPlaylistItem] {
-                playlists.append(Playlist(playlistItem:playlistItem))
-            }
-            
-            self.totalResults = Int(playlistModel.pageInfo.totalResults)
-            self.nextPageToken = playlistModel.nextPageToken
-            self.playlists += playlists
+            self?.totalResults = Int(playlistModel.pageInfo.totalResults)
+            self?.nextPageToken = playlistModel.nextPageToken
+            self?.playlists += playlists
             success()
         }
         

@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import Async
 
 class TopViewController: UIViewController {
     
@@ -113,7 +114,7 @@ class TopViewController: UIViewController {
             
             self?.stopLoadingAnimation()
             
-            dispatch_async(dispatch_get_main_queue()) {
+            Async.main{               
                 UIView.animateWithDuration(0.25) {
                     [weak self] in
                     self?.mainScrollView.alpha = 1.0
@@ -160,11 +161,11 @@ class TopViewController: UIViewController {
     
     // MARK: view cconfiguration
     private func layoutCollectionViewSize() {
-        dispatch_async(dispatch_get_main_queue(), {
+        Async.main{               
             [unowned self] in
             self.collectionHeightConstraint.constant = self.videosCollectionView.contentSize.height
             self.videosCollectionView.layoutIfNeeded()
-            })
+        }
     }
     
     private func configureView() {
