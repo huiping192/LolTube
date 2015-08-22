@@ -125,7 +125,6 @@
 		DC64F4C719E5524900F860B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DC64F4C519E5524900F860B4 /* Reachability.m */; };
 		DC64F4C919E5582F00F860B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC64F4C819E5582F00F860B4 /* SystemConfiguration.framework */; };
 		DC82E5CD1B84C32A00420A1E /* VideoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC82E5CC1B84C32A00420A1E /* VideoCollectionViewController.swift */; };
-		DC82E5CF1B84E10200420A1E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC82E5CE1B84E10200420A1E /* Launch Screen.storyboard */; };
 		DC842D731B4AF2A80085FF8D /* PlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC842D721B4AF2A80085FF8D /* PlaylistsViewController.swift */; };
 		DC9446BA1B86239100871410 /* Loading.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9446BC1B86239100871410 /* Loading.xib */; };
 		DC9446C31B8623DF00871410 /* LoadingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9446C51B8623DF00871410 /* LoadingCollectionViewCell.xib */; };
@@ -140,6 +139,7 @@
 		DC9CC5F01B5CE76E0047DFDC /* SearchPlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9CC5EF1B5CE76E0047DFDC /* SearchPlaylistsViewController.swift */; };
 		DCA44BDE1A0CE8E100A4A758 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA44BDC1A0CE8E100A4A758 /* Crashlytics.framework */; };
 		DCA44BDF1A0CE8E100A4A758 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA44BDD1A0CE8E100A4A758 /* Fabric.framework */; };
+		DCA49FCE1B889ED3005D5786 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCA49FCD1B889ED3005D5786 /* Launch Screen.storyboard */; };
 		DCB16C141B6D371E00F8AC86 /* UIViewContollerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB16C131B6D371E00F8AC86 /* UIViewContollerExtensions.swift */; };
 		DCC0B8B61B58D1BE0081E5CA /* UIStoryboardSegueExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC0B8B51B58D1BE0081E5CA /* UIStoryboardSegueExtensions.swift */; };
 		DCC0B8B81B58D66E0081E5CA /* UICollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC0B8B71B58D66E0081E5CA /* UICollectionViewExtensions.swift */; };
@@ -358,7 +358,6 @@
 		DC64F4C619E5524900F860B4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		DC64F4C819E5582F00F860B4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DC82E5CC1B84C32A00420A1E /* VideoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewController.swift; sourceTree = "<group>"; };
-		DC82E5CE1B84E10200420A1E /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		DC842D721B4AF2A80085FF8D /* PlaylistsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsViewController.swift; sourceTree = "<group>"; };
 		DC9446BB1B86239100871410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Loading.xib; sourceTree = "<group>"; };
 		DC9446BE1B86239300871410 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Loading.strings; sourceTree = "<group>"; };
@@ -379,6 +378,7 @@
 		DC9CC5EF1B5CE76E0047DFDC /* SearchPlaylistsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlaylistsViewController.swift; sourceTree = "<group>"; };
 		DCA44BDC1A0CE8E100A4A758 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		DCA44BDD1A0CE8E100A4A758 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		DCA49FCD1B889ED3005D5786 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		DCB16C131B6D371E00F8AC86 /* UIViewContollerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewContollerExtensions.swift; sourceTree = "<group>"; };
 		DCC0B8B51B58D1BE0081E5CA /* UIStoryboardSegueExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryboardSegueExtensions.swift; sourceTree = "<group>"; };
 		DCC0B8B71B58D66E0081E5CA /* UICollectionViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtensions.swift; sourceTree = "<group>"; };
@@ -945,6 +945,7 @@
 		DC1044B119B2FA6B007A86E6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DCA49FCD1B889ED3005D5786 /* Launch Screen.storyboard */,
 				DC0F69281A075CD90061EB95 /* LolTube.entitlements */,
 				DC1044B219B2FA6B007A86E6 /* LolTube-Info.plist */,
 				DC1044B319B2FA6B007A86E6 /* InfoPlist.strings */,
@@ -952,7 +953,6 @@
 				DC1044B819B2FA6B007A86E6 /* LolTube-Prefix.pch */,
 				DCEBA51619BCB2AF007C3FC7 /* Localizable.strings */,
 				DC51B44D1A0D36760034DDD1 /* LolTube-Bridging-Header.h */,
-				DC82E5CE1B84E10200420A1E /* Launch Screen.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1156,7 +1156,7 @@
 				DCEBA51419BCB2AF007C3FC7 /* Localizable.strings in Resources */,
 				DC2F038E1B5CF32600AAC8F8 /* Search.storyboard in Resources */,
 				DC47690B1A07EAA700DC3D2D /* Main.storyboard in Resources */,
-				DC82E5CF1B84E10200420A1E /* Launch Screen.storyboard in Resources */,
+				DCA49FCE1B889ED3005D5786 /* Launch Screen.storyboard in Resources */,
 				DCEB19781B52532600F255B3 /* ChannelDetail.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
