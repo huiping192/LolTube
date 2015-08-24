@@ -19,6 +19,12 @@ class PlaylistViewController: VideoCollectionViewController {
         navigationItem.title = playlistTitle
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        EventTracker.trackViewContentView(viewName: "Playlist Detail", viewType: PlaylistViewController.self, viewId: playlistTitle)
+    }
+    
     override func collectionViewModel() -> SimpleListCollectionViewModelProtocol{
         viewModel = PlaylistViewModel(playlistId: playlistId)
         return viewModel

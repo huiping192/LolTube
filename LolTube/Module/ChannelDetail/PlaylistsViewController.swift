@@ -4,6 +4,7 @@ import UIKit
 class PlaylistsViewController: SimpleListCollectionViewController {
     
     var channelId:String!
+    var channelTitle:String!
     
     let imageLoadingOperationQueue = NSOperationQueue()
     
@@ -11,6 +12,12 @@ class PlaylistsViewController: SimpleListCollectionViewController {
     
     override var emptyDataTitle:String{
         return NSLocalizedString("ChannelPlaylistsEmptyData", comment: "")
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        EventTracker.trackViewContentView(viewName: "Channel Playlist", viewType: PlaylistsViewController.self, viewId: channelTitle)
     }
     
     override func collectionViewModel() -> SimpleListCollectionViewModelProtocol{

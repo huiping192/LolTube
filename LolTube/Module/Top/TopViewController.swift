@@ -57,6 +57,8 @@ class TopViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        EventTracker.trackViewContentView(viewName:"Featured", viewType:TopViewController.self )
+        
         videosCollectionView.collectionViewLayout.invalidateLayout()
         layoutCollectionViewSize()
     }

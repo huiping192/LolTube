@@ -23,4 +23,5 @@
 #import "RSPageInfo.h"
 #import "RSVideoService.h"
 #import "UIImage+AverageColor.h"
+#import <Crashlytics/Crashlytics.h>
 
