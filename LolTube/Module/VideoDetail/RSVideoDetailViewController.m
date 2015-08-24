@@ -10,7 +10,6 @@
 #import "RSVideoDetailSegmentViewController.h"
 #import "RSVideoRelatedVideosViewController.h"
 #import "UIImageView+Loading.h"
-#import "RSEventTracker.h"
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "LolTube-Swift.h"
@@ -186,11 +185,13 @@ static NSString *const kSegueIdRelatedVideos = @"relatedVideosEmbed";
     
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
     activityController.popoverPresentationController.barButtonItem = sender;
+    
     __weak typeof(self) weakSelf = self;
-    [self presentViewController:activityController animated:YES completion:^{
-        //TODO: success alert
-        [RSEventTracker trackVideoDetailShareWithVideoId:weakSelf.videoId];
-    }];
+    [activityController setCompletionWithItemsHandler:^(NSString * __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError) {
+        [EventTracker trackViewDetailShareWithActivityType:activityType videoId:weakSelf.videoId];
+
+    }];  
+    [self presentViewController:activityController animated:YES completion:nil];
 }
 
 #pragma mark - movie function
@@ -213,8 +214,8 @@ static NSString *const kSegueIdRelatedVideos = @"relatedVideosEmbed";
 }
 
 - (void)p_playVideo {
-    [RSEventTracker trackVideoDetailPlayWithVideoId:self.videoId];
-
+    [EventTracker trackVideoDetailPlay:self.videoId];
+    
     NSTimeInterval initialPlaybackTime = self.initialPlaybackTime == 0.0 ? [[RSVideoService sharedInstance] lastPlaybackTimeWithVideoId:self.videoId] : self.initialPlaybackTime;
     [self p_playVideoWithInitialPlaybackTime:initialPlaybackTime videoQualities:@[@(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240)]];
     self.currentVideoQuality = XCDYouTubeVideoQualityMedium360;

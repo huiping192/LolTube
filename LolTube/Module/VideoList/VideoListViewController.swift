@@ -3,12 +3,19 @@ import Foundation
 class VideoListViewController: VideoCollectionViewController {
 
     var channelId:String!
+    var channelTitle:String!
 
     var viewModel:VideoListViewModel!
     private let imageLoadingOperationQueue = NSOperationQueue()
 
     override var emptyDataTitle:String{
         return NSLocalizedString("ChannelVideoEmptyData", comment: "")
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        EventTracker.trackViewContentView(viewName: "Channel Video", viewType: VideoListViewController.self, viewId: channelTitle)
     }
     
     override func collectionViewModel() -> SimpleListCollectionViewModelProtocol{

@@ -28,24 +28,30 @@ extension UIViewController {
         return channelDetailViewController
     }
     
-    func instantiateVideoListViewController(channelId:String) -> VideoListViewController{
+    func instantiateVideoListViewController(channelId:String,channelTitle:String) -> VideoListViewController{
         let videoListViewController = viewController(.VideoList, type: VideoListViewController.self)
         videoListViewController.channelId = channelId
+        videoListViewController.channelTitle = channelTitle
         return videoListViewController
     }
     
-    func instantiatePlaylistsViewController(channelId:String) -> PlaylistsViewController{
+    func instantiatePlaylistsViewController(channelId:String,channelTitle:String) -> PlaylistsViewController{
         let playlistsViewController = viewController(.ChannelDetail,viewControllerId:.playlists, type: PlaylistsViewController.self)
         
         playlistsViewController.channelId = channelId
+        playlistsViewController.channelTitle = channelTitle
+
         return playlistsViewController
     }
     
-    func instantiateChannelInfoViewController(description:String) -> ChannelInfoViewController{
+    func instantiateChannelInfoViewController(description:String,channelId:String,channelTitle:String) -> ChannelInfoViewController{
         
         let channelInfoViewController = viewController(.ChannelDetail,viewControllerId:.channelInfo, type: ChannelInfoViewController.self)
         
+        channelInfoViewController.channelTitle = channelTitle
+        channelInfoViewController.channelId = channelId
         channelInfoViewController.channelDescription = description
+        
         return channelInfoViewController
     }
     

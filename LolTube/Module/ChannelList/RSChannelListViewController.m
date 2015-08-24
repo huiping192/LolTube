@@ -10,7 +10,6 @@
 #import "RSSearchTableViewCell.h"
 #import "RSChannelService.h"
 #import "UIImageView+Loading.h"
-#import "RSEventTracker.h"
 #import "LolTube-Swift.h"
 
 @interface RSChannelListViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -189,8 +188,6 @@
         RSChannelTableViewCellVo *cellVo = self.tableViewModel.items[(NSUInteger) indexPath.row];
         [self.tableViewModel deleteChannelWithIndexPath:indexPath];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-
-        [RSEventTracker trackChannelListDeleteWithChannelId:cellVo.channelId];
     }
     [tableView endUpdates];
 }

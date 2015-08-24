@@ -14,6 +14,8 @@ class HistoryViewController:VideoCollectionViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
+        EventTracker.trackViewContentView(viewName:"History", viewType:TopViewController.self )
+
         viewModel.refresh(success: {
             [weak self] isDataChanged in
             guard isDataChanged == true else {

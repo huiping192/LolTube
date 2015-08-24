@@ -12,7 +12,6 @@
 #import "RSVideoDetailViewController.h"
 #import "RSChannelService.h"
 #import "RSChannelTableViewModel.h"
-#import "RSEventTracker.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 
@@ -29,8 +28,6 @@
 }
 
 - (void)p_savePersetting {
-    [RSEventTracker configure];
-
     [self.window setTintColor:[UIColor colorWithRed:255 / 255.0f green:94 / 255.0f blue:58 / 255.0f alpha:1.0]];
 }
 

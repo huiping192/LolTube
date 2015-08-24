@@ -50,6 +50,11 @@ class SearchViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        EventTracker.trackViewContentView(viewName:"Search", viewType:SearchViewController.self )
+    }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         
@@ -164,12 +169,14 @@ extension SearchViewController: UISearchBarDelegate{
         return true
     }
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+
         searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
         
         guard let searchText = searchBar.text else {
             return
         }
+        EventTracker.trackSearch(searchText)
         
         searchSuggestionView.alpha = 0.0
         searchContentView.alpha = 1.0

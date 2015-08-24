@@ -4,7 +4,7 @@ import Foundation
 class ChannelDetailViewController: UIViewController {
  
     var channelId:String!
-    var channelTitle:String?
+    var channelTitle:String!
 
     @IBOutlet private weak var thumbnailImageView:UIImageView!{
         didSet{
@@ -48,6 +48,8 @@ class ChannelDetailViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        EventTracker.trackViewContentView(viewName: "Channel Detail", viewType: ChannelDetailViewController.self, viewId: channelTitle)
+        
         navigationController?.navigationBar.configureNavigationBar(.Clear)
     }
     
@@ -65,11 +67,18 @@ class ChannelDetailViewController: UIViewController {
     
     
     @IBAction func subscribeButtonTapped(button:UIButton){
+        if viewModel.isSubscribed ?? false {
+            EventTracker.trackDeleteChannel(channelTitle: channelTitle, channelId: channelId)
+        }else {
+            EventTracker.trackAddChannel(channelTitle: channelTitle, channelId: channelId)
+        }
+        
         let successBlock:(() -> Void) = {
             [weak self] in
             guard let isSubscribed = self?.viewModel.isSubscribed else {
                 return
             }
+            
             let buttonTitle = isSubscribed ? NSLocalizedString("ChannelSubscribed", comment: "") : NSLocalizedString("ChannelUnsubscribe", comment: "")
             self?.subscribeButton.setTitle(buttonTitle, forState: .Normal)
         }
@@ -145,19 +154,19 @@ class ChannelDetailViewController: UIViewController {
     
     private func configureVideoListViewController(){
         self.videoListViewController = configureChildViewController(self.videoListViewController){
-            return self.instantiateVideoListViewController(self.channelId)
+            return self.instantiateVideoListViewController(self.channelId,channelTitle:channelTitle)
         }
     }
     
     private func configurePlaylistsViewController(){
         self.playlistsViewController = configureChildViewController(self.playlistsViewController){
-            return self.instantiatePlaylistsViewController(self.channelId)
+            return self.instantiatePlaylistsViewController(self.channelId,channelTitle:channelTitle)
         }
     }
     
     private func configureInfoViewController(){
         self.channelInfoViewController = configureChildViewController(self.channelInfoViewController){
-            return self.instantiateChannelInfoViewController(self.viewModel.channel?.description ?? "")
+            return self.instantiateChannelInfoViewController(self.viewModel.channel?.description ?? "",channelId:self.channelId,channelTitle:channelTitle)
         }
     }
     

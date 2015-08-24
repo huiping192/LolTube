@@ -15,6 +15,12 @@ class ChannelListViewController: SimpleListCollectionViewController {
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        EventTracker.trackViewContentView(viewName:"Channel", viewType:ChannelListViewController.self )
+    }
+    
     override var emptyDataTitle:String{
         return NSLocalizedString("ChannelVideoEmptyData", comment: "")
     }
