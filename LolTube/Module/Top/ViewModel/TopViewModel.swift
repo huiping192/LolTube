@@ -56,7 +56,8 @@ class TopViewModel {
                     weakSelf.channelList = weakSelf.topChannelList(channelList, videoDictionary: videoDictionary)
                     weakSelf.videoDictionary = videoDictionary
                     
-                    }.main{ success() }
+                    Async.main{success()}
+                    }
             }
             self?.updateVideoDetail(allVideoList, success: successBlock, failure: failure)
         }
@@ -74,8 +75,9 @@ class TopViewModel {
                 for (index, detailItem) in (videoDetailModel.items as! [RSVideoDetailItem]).enumerate() {
                     videoList[index].update(detailItem)
                 }
+                Async.main{success()}
                 
-                }.main{success()}
+                }
         }
         
         youtubeService.videoDetailList(videoIdList, success: successBlock, failure: failure)

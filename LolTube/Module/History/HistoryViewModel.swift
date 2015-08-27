@@ -36,14 +36,21 @@ class HistoryViewModel:SimpleListCollectionViewModelProtocol {
     
     func refresh(success success: ((isDataChanged:Bool) -> Void), failure: ((error:NSError) -> Void)){
         let newVideoIdList = RSVideoService.sharedInstance().historyVideoIdList() as! [String]
-        
+                
         let videoIdList = videoList.map{ $0.videoId! }
 
-        guard newVideoIdList.count != 0 || newVideoIdList != videoIdList else {
+        guard newVideoIdList.count != 0 && newVideoIdList != videoIdList else {
             success(isDataChanged: false)
             return
         }
-        
-        update(success: {success(isDataChanged: true)}, failure: failure)
+                
+        update(success: {
+            [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            let isDataChanged =  videoIdList != weakSelf.videoList.map{ $0.videoId! }
+            success(isDataChanged: isDataChanged)
+            }, failure: failure)
     }
 }
