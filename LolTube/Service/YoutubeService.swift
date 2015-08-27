@@ -77,7 +77,7 @@ public class YoutubeService: NSObject {
         let queryparameters = [
             "key": kYoutubeApiKey,
             "part": "snippet,statistics,contentDetails",
-            "id": ",".join(videoIdList)
+            "id": videoIdList.joinWithSeparator(",")
         ]
         
         request(videoUrlString, queryParameters: queryparameters, jsonModelClass: RSVideoModel.self, success: success, failure: failure)
@@ -265,7 +265,7 @@ public class YoutubeService: NSObject {
             if endListIndex >= idListCount {
                 endListIndex = idListCount - 1
             }
-            idPerUnitList.append(",".join(Array(idList[beginListIndex ... endListIndex])))
+            idPerUnitList.append(Array(idList[beginListIndex ... endListIndex]).joinWithSeparator(","))
         }
         
         return ["id": idPerUnitList]

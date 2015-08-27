@@ -44,6 +44,13 @@ class HistoryViewModel:SimpleListCollectionViewModelProtocol {
             return
         }
         
-        update(success: {success(isDataChanged: true)}, failure: failure)
+        update(success: {
+            [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            let isDataChanged =  videoIdList != weakSelf.videoList.map{ $0.videoId! }
+            success(isDataChanged: isDataChanged)
+            }, failure: failure)
     }
 }
