@@ -19,6 +19,22 @@ class ChannelListViewController: SimpleListCollectionViewController {
         super.viewWillAppear(animated)
         
         EventTracker.trackViewContentView(viewName:"Channel", viewType:ChannelListViewController.self )
+        
+        viewModel.refresh(success: {
+            [weak self] isDataChanged in
+            guard isDataChanged == true else {
+                return
+            }
+            self?.collectionView.reloadEmptyDataSet()
+            self?.collectionView.performBatchUpdates({
+                [weak self] in
+                self?.collectionView.reloadSections(NSIndexSet(index: 0))
+                }, completion: nil)
+            },failure:{
+                [weak self]error in
+                self?.showError(error)
+            }
+        )
     }
     
     override var emptyDataTitle:String{
