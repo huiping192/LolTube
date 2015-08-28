@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RgK-DN-Ibe">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
+    </dependencies>
+    <scenes>
+        <!--Banner View Controller-->
+        <scene sceneID="cX8-uU-x2h">
+            <objects>
+                <viewController id="RgK-DN-Ibe" customClass="BannerViewController" customModule="LolTube" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zXz-AJ-kdO"/>
+                        <viewControllerLayoutGuide type="bottom" id="s40-tq-XPC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="x1e-Ik-AZE">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPV-jD-zLy">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mPV-jD-zLy" firstAttribute="top" secondItem="x1e-Ik-AZE" secondAttribute="top" id="8Nu-tR-GbI"/>
+                            <constraint firstAttribute="bottom" secondItem="mPV-jD-zLy" secondAttribute="bottom" id="A4X-1U-ZfW"/>
+                            <constraint firstItem="mPV-jD-zLy" firstAttribute="leading" secondItem="x1e-Ik-AZE" secondAttribute="leading" id="KWm-k1-l1i"/>
+                            <constraint firstAttribute="trailing" secondItem="mPV-jD-zLy" secondAttribute="trailing" id="MwB-ok-gUj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="containView" destination="mPV-jD-zLy" id="x84-fu-CON"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9ba-GW-loF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="337" y="-35"/>
+        </scene>
+        <!--Combined Banner View Controller-->
+        <scene sceneID="jgF-vG-dF3">
+            <objects>
+                <viewController storyboardIdentifier="CombinedBanner" id="dq0-23-kki" customClass="CombinedBannerViewController" customModule="LolTube" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0wH-GI-2Bx"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zsx-wp-ZDw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fSx-Xx-r2S">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iQx-Ou-Vtl">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="z0A-fH-3ob">
+                                    <size key="itemSize" width="100" height="100"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BannerCell" id="fRR-Or-cBc" customClass="BannerCell" customModule="LolTube" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HBg-rO-yjM">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="HBg-rO-yjM" secondAttribute="bottom" id="0FB-eu-Qnn"/>
+                                            <constraint firstItem="HBg-rO-yjM" firstAttribute="leading" secondItem="fRR-Or-cBc" secondAttribute="leading" id="678-xr-abs"/>
+                                            <constraint firstAttribute="trailing" secondItem="HBg-rO-yjM" secondAttribute="trailing" id="mpX-tg-tRX"/>
+                                            <constraint firstItem="HBg-rO-yjM" firstAttribute="top" secondItem="fRR-Or-cBc" secondAttribute="top" id="wXh-Nx-ely"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="thunmbnailImageView" destination="HBg-rO-yjM" id="u28-PQ-ipp"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="dq0-23-kki" id="soG-qX-V24"/>
+                                    <outlet property="delegate" destination="dq0-23-kki" id="k5l-yt-PLa"/>
+                                </connections>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jt3-bu-dTU" userLabel="label View">
+                                <rect key="frame" x="0.0" y="570" width="600" height="30"/>
+                                <subviews>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQj-ku-nxf">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="NzH-mt-V0P">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1J-k1-6rY">
+                                                    <rect key="frame" x="8" y="15" width="0.0" height="0.0"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="xO6-Av-Bxf">
+                                                    <rect key="frame" x="537" y="-4" width="55" height="37"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="55" id="7wg-3A-KLG"/>
+                                                    </constraints>
+                                                </pageControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="xO6-Av-Bxf" secondAttribute="trailing" constant="8" id="Bzd-iY-Kti"/>
+                                                <constraint firstItem="L1J-k1-6rY" firstAttribute="leading" secondItem="NzH-mt-V0P" secondAttribute="leading" constant="8" id="GYW-P8-nZs"/>
+                                                <constraint firstItem="L1J-k1-6rY" firstAttribute="centerY" secondItem="NzH-mt-V0P" secondAttribute="centerY" id="IFJ-dO-lfk"/>
+                                                <constraint firstItem="xO6-Av-Bxf" firstAttribute="centerY" secondItem="NzH-mt-V0P" secondAttribute="centerY" id="OXQ-U6-T8G"/>
+                                                <constraint firstItem="xO6-Av-Bxf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="L1J-k1-6rY" secondAttribute="trailing" constant="3" id="rzG-L1-HgO"/>
+                                            </constraints>
+                                        </view>
+                                        <blurEffect style="dark"/>
+                                    </visualEffectView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="eQj-ku-nxf" firstAttribute="top" secondItem="jt3-bu-dTU" secondAttribute="top" id="BWy-6k-Q9N"/>
+                                    <constraint firstAttribute="bottom" secondItem="eQj-ku-nxf" secondAttribute="bottom" id="JTF-gP-Mjx"/>
+                                    <constraint firstItem="eQj-ku-nxf" firstAttribute="leading" secondItem="jt3-bu-dTU" secondAttribute="leading" id="bvg-4b-9Hi"/>
+                                    <constraint firstAttribute="trailing" secondItem="eQj-ku-nxf" secondAttribute="trailing" id="dpg-Gh-9yh"/>
+                                    <constraint firstAttribute="height" constant="30" id="mXD-Gk-oGO"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="iQx-Ou-Vtl" secondAttribute="bottom" id="0Mb-Ud-OD0"/>
+                            <constraint firstItem="iQx-Ou-Vtl" firstAttribute="top" secondItem="fSx-Xx-r2S" secondAttribute="top" id="2rM-as-ljY"/>
+                            <constraint firstAttribute="bottom" secondItem="jt3-bu-dTU" secondAttribute="bottom" id="Tg8-kE-l4L"/>
+                            <constraint firstAttribute="trailing" secondItem="jt3-bu-dTU" secondAttribute="trailing" id="ZWF-me-Rhm"/>
+                            <constraint firstAttribute="trailing" secondItem="iQx-Ou-Vtl" secondAttribute="trailing" id="jvQ-6U-fco"/>
+                            <constraint firstItem="jt3-bu-dTU" firstAttribute="leading" secondItem="fSx-Xx-r2S" secondAttribute="leading" id="vBN-Fs-mpx"/>
+                            <constraint firstItem="iQx-Ou-Vtl" firstAttribute="leading" secondItem="fSx-Xx-r2S" secondAttribute="leading" id="xti-yM-Qtm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="iQx-Ou-Vtl" id="ieD-Cj-dls"/>
+                        <outlet property="currentVideoTitleLabel" destination="L1J-k1-6rY" id="dDz-iE-jb2"/>
+                        <outlet property="videoImagePageControl" destination="xO6-Av-Bxf" id="SjC-vP-PZw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e2B-2J-rRU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1139" y="-35"/>
+        </scene>
+        <!--Split Banner View Controller-->
+        <scene sceneID="6aP-rL-TVG">
+            <objects>
+                <viewController storyboardIdentifier="SplitBanner" id="IvH-TI-o2P" customClass="SplitBannerViewController" customModule="LolTube" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8C9-9C-aka"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ptv-EJ-Vhm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0nU-ja-LKq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OT1-G7-PkP">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4hb-E9-Vbg">
+                                    <size key="itemSize" width="200" height="200"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BannerCell" id="WAf-o0-Gdu" customClass="BannerCell" customModule="LolTube" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ffd-ih-wNK">
+                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                                </imageView>
+                                                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBc-PQ-qyt">
+                                                    <rect key="frame" x="0.0" y="170" width="200" height="30"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="QOA-Ok-JiK">
+                                                        <rect key="frame" x="0.0" y="0.0" width="200" height="30"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwA-Vg-Yad">
+                                                                <rect key="frame" x="3" y="8" width="31" height="15"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="vwA-Vg-Yad" firstAttribute="leading" secondItem="QOA-Ok-JiK" secondAttribute="leading" constant="3" id="GuQ-xC-Ikt"/>
+                                                            <constraint firstItem="vwA-Vg-Yad" firstAttribute="centerY" secondItem="QOA-Ok-JiK" secondAttribute="centerY" id="U7f-nH-lHv"/>
+                                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vwA-Vg-Yad" secondAttribute="trailing" constant="3" id="wlS-Yu-TIk"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="kjy-QA-dfb"/>
+                                                    </constraints>
+                                                    <blurEffect style="dark"/>
+                                                </visualEffectView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="ffd-ih-wNK" secondAttribute="bottom" id="1QW-L9-0vF"/>
+                                            <constraint firstItem="ffd-ih-wNK" firstAttribute="leading" secondItem="WAf-o0-Gdu" secondAttribute="leading" id="5u4-fw-FJF"/>
+                                            <constraint firstAttribute="trailing" secondItem="ffd-ih-wNK" secondAttribute="trailing" id="Gju-WY-bb0"/>
+                                            <constraint firstItem="tBc-PQ-qyt" firstAttribute="leading" secondItem="WAf-o0-Gdu" secondAttribute="leading" id="Hdh-3I-yUv"/>
+                                            <constraint firstAttribute="bottom" secondItem="tBc-PQ-qyt" secondAttribute="bottom" id="RKB-Mi-dns"/>
+                                            <constraint firstAttribute="trailing" secondItem="tBc-PQ-qyt" secondAttribute="trailing" id="YFP-Fm-SOM"/>
+                                            <constraint firstItem="ffd-ih-wNK" firstAttribute="top" secondItem="WAf-o0-Gdu" secondAttribute="top" id="gpM-Ic-pFa"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="thunmbnailImageView" destination="ffd-ih-wNK" id="b94-JL-xjW"/>
+                                            <outlet property="titleLabel" destination="vwA-Vg-Yad" id="zch-Tl-qIV"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="IvH-TI-o2P" id="eb8-P6-r0D"/>
+                                    <outlet property="delegate" destination="IvH-TI-o2P" id="eQW-LT-Hh4"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OT1-G7-PkP" firstAttribute="top" secondItem="0nU-ja-LKq" secondAttribute="top" id="0yY-AQ-5hp"/>
+                            <constraint firstAttribute="trailing" secondItem="OT1-G7-PkP" secondAttribute="trailing" id="KpN-sS-aex"/>
+                            <constraint firstAttribute="bottom" secondItem="OT1-G7-PkP" secondAttribute="bottom" id="gb1-6u-Bjk"/>
+                            <constraint firstItem="OT1-G7-PkP" firstAttribute="leading" secondItem="0nU-ja-LKq" secondAttribute="leading" id="wta-Wo-W5U"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="OT1-G7-PkP" id="lxu-V7-Cfp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jSF-Bf-umg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1139" y="721"/>
+        </scene>
+    </scenes>
+</document>

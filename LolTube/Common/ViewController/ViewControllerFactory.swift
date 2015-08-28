@@ -6,6 +6,7 @@ extension UIViewController {
         case VideoList = "VideoList"
         case Search = "Search"
         case Main = "Main"
+        case Banner = "Banner"
     }
     
     private enum ViewControllerIdentifier:String {
@@ -14,10 +15,15 @@ extension UIViewController {
         case playlists = "playlists"
         case channelInfo = "channelInfo"
         
-        // MARK: search child view controllers
+        // search child view controllers
         case SearchVideoList = "SearchVideoList"
         case SearchChannelList = "SearchChannelList"
         case SearchPlaylists = "SearchPlaylists"
+        
+        // banner
+        case SplitBanner = "SplitBanner"
+        case CombinedBanner = "CombinedBanner"
+        
     }
     
     func instantiateChannelDetailViewController(id id:String,title:String?) -> ChannelDetailViewController{
@@ -95,6 +101,30 @@ extension UIViewController {
         return searchPlaylistsViewController
     }
     
+    func instantiateBannerViewController(videoList:[Video]) ->  BannerViewController{
+        let bannerViewController = viewController(.Banner, type: BannerViewController.self)
+        
+        bannerViewController.videoList = videoList
+        
+        return bannerViewController
+    }
+    
+    func instantiateSplitBannerViewController(videoList:[Video]) ->  SplitBannerViewController{
+        let bannerViewController = viewController(.Banner,viewControllerId:.SplitBanner, type: SplitBannerViewController.self)
+        
+        bannerViewController.videoList = videoList
+        
+        return bannerViewController
+    }
+    
+    func instantiateCombinedBannerViewController(videoList:[Video]) ->  CombinedBannerViewController{
+        let bannerViewController = viewController(.Banner,viewControllerId:.CombinedBanner, type: CombinedBannerViewController.self)
+        
+        bannerViewController.videoList = videoList
+        
+        return bannerViewController
+    }
+    
     private func viewController<T:UIViewController>(storyboardName:StoryboardName,viewControllerId:ViewControllerIdentifier? = nil,type:T.Type) -> T {
         if let viewControllerId = viewControllerId {
            return UIStoryboard(name: storyboardName.rawValue, bundle: nil).instantiateViewControllerWithIdentifier(viewControllerId.rawValue) as! T
@@ -102,4 +132,5 @@ extension UIViewController {
         
         return UIStoryboard(name: storyboardName.rawValue, bundle: nil).instantiateInitialViewController() as! T
     }
+    
 }
