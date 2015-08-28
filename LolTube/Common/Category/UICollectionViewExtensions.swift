@@ -17,7 +17,7 @@ extension UICollectionView {
     }
     
     func cell<T:UICollectionViewCell where T:Reusable>(indexPath: NSIndexPath,type:T.Type) -> T?{
-        return cellForItemAtIndexPath(indexPath) as? T
+        return cellForItemAtIndexPath(indexPath).map{$0 as! T}
     }
 
     func register<T:UICollectionViewCell where T:Reusable>(nibName nibName:String,type:T.Type) {

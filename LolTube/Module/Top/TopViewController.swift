@@ -6,7 +6,7 @@ class TopViewController: UIViewController {
     
     private enum SegueIdentifier:String {
         case videoDetail = "videoDetail"
-        case topImageToVideoDetail = "topImageToVideoDetail"
+        case Banner = "Banner"
     }
     
     private let cellDefaultWidth = CGFloat(145.0)
@@ -14,25 +14,16 @@ class TopViewController: UIViewController {
     private let cellImageHeightWidthRatio = CGFloat(9.0 / 16.0)
     private let cellMargin = CGFloat(8)
     
-    // MARK: top view
-    @IBOutlet private var topImageView01: UIImageView!
-    @IBOutlet private var topImageView02: UIImageView!
-    @IBOutlet private var topImageView03: UIImageView!
-    @IBOutlet private var topImageView04: UIImageView!
-    
-    @IBOutlet private var topImageTitleLabel: UILabel?
-    @IBOutlet private var topImagePageControl: UIPageControl?
-    
-    @IBOutlet private var topImageTitleLabel01: UILabel?
-    @IBOutlet private var topImageTitleLabel02: UILabel?
-    @IBOutlet private var topImageTitleLabel03: UILabel?
-    @IBOutlet private var topImageTitleLabel04: UILabel?
-    
     @IBOutlet private var mainScrollView: UIScrollView!
-    @IBOutlet private var topImageScrollView: UIScrollView!
-    @IBOutlet private var videosCollectionView: UICollectionView!
-    
+    @IBOutlet private var bannerContainerView: UIView!
+    @IBOutlet private var videosCollectionView: UICollectionView!{
+        didSet{
+            videosCollectionView.scrollsToTop = false
+        }
+    }
     @IBOutlet private var collectionHeightConstraint: NSLayoutConstraint!
+    
+    private var bannerViewController: BannerViewController!
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -44,8 +35,8 @@ class TopViewController: UIViewController {
     private let viewModel = TopViewModel()
     private let imageLoadingOperationQueue = NSOperationQueue()
     private var channelVideoImageLoadingOperationDictionary = [String: NSOperation]()
-    private var topVideoImageLoadingOperationDictionary = [String: NSOperation]()
     private var channelImageLoadingOperationDictionary = [String: NSOperation]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,24 +81,17 @@ class TopViewController: UIViewController {
             }
             let videoDetailViewController = segue.destinationViewController(RSVideoDetailViewController.self)
             videoDetailViewController.videoId = video.videoId
-            
-        case .topImageToVideoDetail:
-            guard let video = viewModel.topVideoList?[currentTopImageNumber()] else {
-                return
-            }
-            let videoDetailViewController = segue.destinationViewController(RSVideoDetailViewController.self)
-            topImagePageControl?.currentPage = currentTopImageNumber()
-            videoDetailViewController.videoId = video.videoId
+
+        case .Banner:
+            bannerViewController = segue.destinationViewController(BannerViewController.self)
         }
     }
-    
-    
     
     // MARK: data loading
     private func loadVideosData() {
         mainScrollView.alpha = 0.0
         startLoadingAnimation()
-
+        
         let successBlock:(() -> Void) = {
             [weak self] in
             self?.configureTopView()
@@ -172,7 +156,6 @@ class TopViewController: UIViewController {
     
     private func configureView() {
         navigationController?.interactivePopGestureRecognizer?.delegate = self
-        topImageScrollView.scrollsToTop = false
         videosCollectionView.scrollsToTop = false
         
         mainScrollView.addSubview(refreshControl)
@@ -182,33 +165,9 @@ class TopViewController: UIViewController {
         guard let topVideoList = viewModel.topVideoList else {
             return
         }
-        for (index, video) in topVideoList.enumerate() {
-            loadTopVideoImage(video.videoId, imageUrlString: video.highThumbnailUrl, secondImageUrlString: video.thumbnailUrl) {
-                image in
-                switch index {
-                case 0:
-                    self.topImageView01.image = image
-                    self.topImageTitleLabel01?.text = video.title
-                    self.topImageTitleLabel?.text = video.title
-                case 1:
-                    self.topImageView02.image = image
-                    self.topImageTitleLabel02?.text = video.title
-                case 2:
-                    self.topImageView03.image = image
-                    self.topImageTitleLabel03?.text = video.title
-                case 3:
-                    self.topImageView04.image = image
-                    self.topImageTitleLabel04?.text = video.title
-                default:
-                    break
-                }
-            }
-        }
+        bannerViewController.videoList = topVideoList
     }
     
-    private func currentTopImageNumber() -> Int {
-        return Int(topImageScrollView.contentOffset.x / topImageScrollView.frame.size.width)
-    }
 }
 
 // MARK: image loading
@@ -219,23 +178,19 @@ private extension TopViewController {
             return nil
         }
         
-        let imageLoadingOperation = ImageLoadOperation(url: imageUrlString, replaceImageUrl: replaceImageUrl,completed:success)
-        
-        imageLoadingOperationQueue.addOperation(imageLoadingOperation)
-        return imageLoadingOperation
+        let imageLoadOperation = ImageLoadOperation(url: imageUrlString, replaceImageUrl: replaceImageUrl,completed:success)
+        imageLoadingOperationQueue.addOperation(imageLoadOperation)
+        return imageLoadOperation
     }
     
     func loadChannelVideoImage(videoId: String, imageUrlString: String?, secondImageUrlString: String?, success: (UIImage) -> Void) {
         channelVideoImageLoadingOperationDictionary[videoId] = loadImage(imageUrlString, replaceImageUrl: secondImageUrlString, success: success)
     }
     
-    func loadTopVideoImage(videoId: String, imageUrlString: String?, secondImageUrlString: String?, success: (UIImage) -> Void) {
-        topVideoImageLoadingOperationDictionary[videoId] = loadImage(imageUrlString, replaceImageUrl: secondImageUrlString, success: success)
-    }
-    
     func loadChannelImage(channelId: String, imageUrlString: String?, success: (UIImage) -> Void) {
         channelImageLoadingOperationDictionary[channelId] = loadImage(imageUrlString, success: success)
     }
+
 }
 
 extension TopViewController: UICollectionViewDataSource {
@@ -384,14 +339,6 @@ extension TopViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: cellMargin, bottom: cellMargin, right: cellMargin)
-    }
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        guard let video = viewModel.topVideoList?[currentTopImageNumber()] where scrollView == topImageScrollView else {
-            return
-        }
-        topImagePageControl?.currentPage = currentTopImageNumber()
-        topImageTitleLabel?.text = video.title
     }
 }
 
