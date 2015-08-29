@@ -169,6 +169,16 @@ public class YoutubeService: NSObject {
         request(searchUrlString, queryParameters: queryparameters, jsonModelClass: RSSearchModel.self, success: success, failure: failure)
     }
     
+    public func videoDetail(videoId: String, success: ((RSVideoDetailModel) -> Void)?, failure: ((NSError) -> Void)?) {
+        let queryparameters = [
+            "key": kYoutubeApiKey,
+            "part": "contentDetails,statistics",
+            "id": videoId
+        ]
+        
+        request(videoDetailUrlString, queryParameters: queryparameters, jsonModelClass: RSVideoDetailModel.self, success: success, failure: failure)
+    }
+    
     public func videoDetailList(videoIdList: [String], success: ((RSVideoDetailModel) -> Void)?, failure: ((NSError) -> Void)?) {
         let queryparameters = [
             "key": kYoutubeApiKey,

@@ -1162,14 +1162,14 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3w-lH-NEx" userLabel="view count label">
-                                                            <rect key="frame" x="1" y="97" width="0.0" height="0.0"/>
+                                                            <rect key="frame" x="1" y="92" width="0.0" height="0.0"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hE8-HW-Hih" userLabel="title label">
-                                                            <rect key="frame" x="1" y="92" width="0.0" height="0.0"/>
+                                                            <rect key="frame" x="1" y="89" width="0.0" height="0.0"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1182,12 +1182,16 @@
                                                 <animations/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hE8-HW-Hih" secondAttribute="trailing" id="0Te-2m-KmY"/>
-                                                    <constraint firstItem="N3w-lH-NEx" firstAttribute="top" secondItem="hE8-HW-Hih" secondAttribute="bottom" constant="5" id="5FD-Ac-DeG"/>
+                                                    <constraint firstItem="N3w-lH-NEx" firstAttribute="top" secondItem="hE8-HW-Hih" secondAttribute="bottom" constant="3" id="5FD-Ac-DeG">
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="5"/>
+                                                    </constraint>
                                                     <constraint firstItem="hE8-HW-Hih" firstAttribute="leading" secondItem="cmX-C8-FeO" secondAttribute="leading" constant="1" id="Hbd-et-P8B"/>
                                                     <constraint firstAttribute="trailing" secondItem="Rsb-37-QQ7" secondAttribute="trailing" id="RNA-wK-eH6"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="N3w-lH-NEx" secondAttribute="trailing" id="W4c-Ry-sC0"/>
                                                     <constraint firstItem="hE8-HW-Hih" firstAttribute="leading" secondItem="N3w-lH-NEx" secondAttribute="leading" id="aT2-Oh-YHY"/>
-                                                    <constraint firstItem="hE8-HW-Hih" firstAttribute="top" secondItem="Rsb-37-QQ7" secondAttribute="bottom" constant="8" id="idZ-we-Ffq"/>
+                                                    <constraint firstItem="hE8-HW-Hih" firstAttribute="top" secondItem="Rsb-37-QQ7" secondAttribute="bottom" constant="5" id="idZ-we-Ffq">
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="8"/>
+                                                    </constraint>
                                                     <constraint firstItem="Rsb-37-QQ7" firstAttribute="leading" secondItem="cmX-C8-FeO" secondAttribute="leading" id="mcd-3G-ysE"/>
                                                     <constraint firstItem="Rsb-37-QQ7" firstAttribute="top" secondItem="cmX-C8-FeO" secondAttribute="top" id="yrH-g0-4D6"/>
                                                 </constraints>
@@ -1308,7 +1312,7 @@
                                 <constraints>
                                     <constraint firstItem="cWl-kr-h8k" firstAttribute="leading" secondItem="q87-ZK-g0W" secondAttribute="leading" id="1fp-cZ-Ld4"/>
                                     <constraint firstItem="OTm-Vz-MHT" firstAttribute="leading" secondItem="q87-ZK-g0W" secondAttribute="leading" id="4pO-OB-ih5"/>
-                                    <constraint firstAttribute="bottom" secondItem="OTm-Vz-MHT" secondAttribute="bottom" constant="50" id="S8R-20-ut6"/>
+                                    <constraint firstAttribute="bottom" secondItem="OTm-Vz-MHT" secondAttribute="bottom" id="S8R-20-ut6"/>
                                     <constraint firstAttribute="trailing" secondItem="cWl-kr-h8k" secondAttribute="trailing" id="TJ5-TT-CNh"/>
                                     <constraint firstItem="OTm-Vz-MHT" firstAttribute="top" secondItem="cWl-kr-h8k" secondAttribute="bottom" constant="10" id="Vzf-nv-gYq"/>
                                     <constraint firstItem="cWl-kr-h8k" firstAttribute="top" secondItem="q87-ZK-g0W" secondAttribute="top" id="bgQ-1U-aVa"/>
@@ -1324,7 +1328,7 @@
                             <constraint firstItem="q87-ZK-g0W" firstAttribute="leading" secondItem="7qN-B6-ZRI" secondAttribute="leading" id="0VE-sx-ObT"/>
                             <constraint firstItem="q87-ZK-g0W" firstAttribute="top" secondItem="q5P-UC-4qe" secondAttribute="bottom" id="BQf-Vy-0b7"/>
                             <constraint firstAttribute="trailing" secondItem="q87-ZK-g0W" secondAttribute="trailing" id="IUf-Hy-omj"/>
-                            <constraint firstItem="GYl-Lh-JVo" firstAttribute="bottom" secondItem="q87-ZK-g0W" secondAttribute="bottom" id="l4p-CQ-Kh0"/>
+                            <constraint firstItem="GYl-Lh-JVo" firstAttribute="top" secondItem="q87-ZK-g0W" secondAttribute="bottom" id="kuv-lU-6nU"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
