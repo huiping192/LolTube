@@ -32,55 +32,55 @@ class TopViewModel {
         
         let successBlock:(([RSSearchModel]) -> Void) = {
             [weak self]searchModelList in
-            
-            var videoDictionary = [Channel: [Video]]()
-            var allVideoList = [Video]()
-            
-            for (index, searchModel) in searchModelList.enumerate() {
-                var videoList = [Video]()
-                for item in searchModel.items as! [RSItem] {
-                    let video = Video(item:item)
-                    videoList.append(video)
-                    allVideoList.append(video)
+            Async.userInitiated{
+                [weak self]  in
+                guard let weakSelf = self else {
+                    return
                 }
-                videoDictionary[channelList[index]] = videoList;
-            }
-            
-            let successBlock:(() -> Void) = {
-                Async.userInitiated{
-                    [weak self]  in
-                    guard let weakSelf = self else {
-                        return
-                    }
-                    weakSelf.topVideoList = weakSelf.highRankVideoList(allVideoList)
-                    weakSelf.channelList = weakSelf.topChannelList(channelList, videoDictionary: videoDictionary)
-                    weakSelf.videoDictionary = videoDictionary
+                var videoDictionary = [Channel: [Video]]()
+                var allVideoList = [Video]()
+                
+                for (index, searchModel) in searchModelList.enumerate() {
+                    var videoList = [Video]()
                     
-                    Async.main{success()}
+                    (searchModel.items as! [RSItem]).forEach{
+                        let video = Video(item:$0)
+                        videoList.append(video)
+                        allVideoList.append(video)
                     }
+                    
+                    videoDictionary[channelList[index]] = videoList;
+                }
+                
+                weakSelf.topVideoList = weakSelf.highRankVideoList(allVideoList)
+                weakSelf.channelList = weakSelf.topChannelList(channelList, videoDictionary: videoDictionary)
+                weakSelf.videoDictionary = videoDictionary
+                
+                Async.main{success()}
             }
-            self?.updateVideoDetail(allVideoList, success: successBlock, failure: failure)
         }
         
         let channelIdList = channelList.map { $0.channelId! }
         self.youtubeService.videoList(channelIdList, searchText: nil, nextPageTokenList: nil, success: successBlock, failure: failure)
     }
     
-    private func updateVideoDetail(videoList: [Video], success: () -> Void, failure: (NSError) -> Void) {
-        let videoIdList = videoList.map { $0.videoId! }
+    func updateVideoDetail(video: Video, success: () -> Void, failure: ((NSError) -> Void)? = nil) {
+        guard video.duration == nil || video.viewCount == nil else {
+            Async.main{success()}
+            return
+        }
         
         let successBlock:((RSVideoDetailModel) -> Void) = {
             videoDetailModel in
             Async.userInitiated{
-                for (index, detailItem) in (videoDetailModel.items as! [RSVideoDetailItem]).enumerate() {
-                    videoList[index].update(detailItem)
+                if let videoDetail = (videoDetailModel.items as! [RSVideoDetailItem]).first {
+                    video.update(videoDetail)
                 }
                 Async.main{success()}
-                
-                }
+            }
         }
         
-        youtubeService.videoDetailList(videoIdList, success: successBlock, failure: failure)
+        youtubeService.videoDetail(video.videoId, success: successBlock, failure: failure)
     }
     
     private func highRankVideoList(videoList: [Video]) -> [Video] {

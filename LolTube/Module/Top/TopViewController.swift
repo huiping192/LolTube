@@ -100,8 +100,8 @@ class TopViewController: UIViewController {
             
             self?.stopLoadingAnimation()
             
-            Async.main{               
-                UIView.animateWithDuration(0.25) {
+            Async.main{
+                UIView.animateWithDuration(0.1) {
                     [weak self] in
                     self?.mainScrollView.alpha = 1.0
                 }
@@ -218,33 +218,7 @@ extension TopViewController: UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(indexPath,type:TopVideoCell.self)
-        guard let video = video(indexPath) else {
-            return cell
-        }
-        
-        cell.titleLabel.text = video.title
-        cell.durationLabel.text = video.durationString
-        cell.viewCountLabel.text =  video.viewCountPublishedAt
-        
-        var firstImageUrlString: String?
-        var secondImageUrlString: String?
-        if (indexPath.row == 0 && indexPath.section != 0) {
-            firstImageUrlString = video.highThumbnailUrl ?? video.thumbnailUrl
-            secondImageUrlString = video.thumbnailUrl
-        } else {
-            firstImageUrlString = video.thumbnailUrl
-            secondImageUrlString = nil
-        }
-        
-        cell.thunmbnailImageView.image = nil
-        loadChannelVideoImage(video.videoId, imageUrlString: firstImageUrlString, secondImageUrlString: secondImageUrlString) {
-            [weak collectionView] image in
-            let cell = collectionView?.cell(indexPath, type: TopVideoCell.self)
-            cell?.thunmbnailImageView.image = image
-        }
-        
-        return cell
+        return collectionView.dequeueReusableCell(indexPath,type:TopVideoCell.self)
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -302,6 +276,38 @@ extension TopViewController: UICollectionViewDataSource {
 }
 
 extension TopViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath){
+        guard let video = video(indexPath),cell = cell as? TopVideoCell else {
+            return
+        }
+        
+        cell.titleLabel.text = video.title
+        
+        var firstImageUrlString: String?
+        var secondImageUrlString: String?
+        if (indexPath.row == 0 && indexPath.section != 0) {
+            firstImageUrlString = video.highThumbnailUrl ?? video.thumbnailUrl
+            secondImageUrlString = video.thumbnailUrl
+        } else {
+            firstImageUrlString = video.thumbnailUrl
+            secondImageUrlString = nil
+        }
+        
+        cell.thunmbnailImageView.image = nil
+        loadChannelVideoImage(video.videoId, imageUrlString: firstImageUrlString, secondImageUrlString: secondImageUrlString) {
+            [weak collectionView] image in
+            let cell = collectionView?.cell(indexPath, type: TopVideoCell.self)
+            cell?.thunmbnailImageView.image = image
+        }
+        
+        viewModel.updateVideoDetail(video, success: {
+            [weak collectionView] in
+            let cell = collectionView?.cell(indexPath, type: TopVideoCell.self)
+            cell?.durationLabel.text = video.durationString
+            cell?.viewCountLabel.text =  video.viewCountPublishedAt
+            })
+    }
+
     func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         guard let video = video(indexPath),imageLoadingOperation = channelVideoImageLoadingOperationDictionary[video.videoId] else {
             return
@@ -340,6 +346,11 @@ extension TopViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: cellMargin, bottom: cellMargin, right: cellMargin)
     }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize{
+        return section == collectionView.numberOfSections() - 1 ? CGSizeZero : CGSize(width: collectionView.frame.width, height: 12)
+    }
+
 }
 
 extension TopViewController: UIGestureRecognizerDelegate {
