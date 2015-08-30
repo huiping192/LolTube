@@ -160,6 +160,7 @@
 		DCEBA51419BCB2AF007C3FC7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCEBA51619BCB2AF007C3FC7 /* Localizable.strings */; };
 		DCEC27F71B6A6D4D0068B892 /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEC27F61B6A6D4D0068B892 /* ConcurrentOperation.swift */; };
 		DCEC27F91B6A749A0068B892 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEC27F81B6A749A0068B892 /* UIViewControllerExtensions.swift */; };
+		DCEDB9FC1B8F612700BD0A0B /* ChannelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEDB9FB1B8F612700BD0A0B /* ChannelService.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -410,6 +411,7 @@
 		DCEBA51719BCB2B3007C3FC7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DCEC27F61B6A6D4D0068B892 /* ConcurrentOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperation.swift; sourceTree = "<group>"; };
 		DCEC27F81B6A749A0068B892 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		DCEDB9FB1B8F612700BD0A0B /* ChannelService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelService.swift; sourceTree = "<group>"; };
 		DCF9878219BDBB2B00E9BCBE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		DCF9878319BDBB2B00E9BCBE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		DCF9878419BDBB2B00E9BCBE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -773,6 +775,7 @@
 			children = (
 				7A9D518DC4BF259949301CF7 /* RSChannelService.m */,
 				7A9D5AB115FA7BE1F3B692E8 /* RSChannelService.h */,
+				DCEDB9FB1B8F612700BD0A0B /* ChannelService.swift */,
 				7A9D5E1CAC258986C7A0B45D /* RSVideoService.m */,
 				7A9D56878B6EAD4145C3F188 /* RSVideoService.h */,
 				7A9D597407BB9DD1397A6220 /* YoutubeService.swift */,
@@ -1418,6 +1421,7 @@
 				DC51F4BB1B45101B009AEC11 /* ChannelInfoViewController.swift in Sources */,
 				7A9D5B295074CA6D408AEBB3 /* RSSearchModel.m in Sources */,
 				DC1196B11B4EC8080090338F /* PlaylistViewController.swift in Sources */,
+				DCEDB9FC1B8F612700BD0A0B /* ChannelService.swift in Sources */,
 				7A9D50C4794BC7CDE9388DA2 /* RSVideoDetailModel.m in Sources */,
 				DCDBECEA1B6371ED004474E9 /* UIColorExtensions.swift in Sources */,
 				DC9B1C3E1B6DFC6300E16A81 /* SplitBannerViewController.swift in Sources */,
