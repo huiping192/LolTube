@@ -53,9 +53,9 @@ class BannerViewController:UIViewController {
     
     func swapToChildViewController(childViewController:UIViewController){
         if let currentViewController = currentViewController {
-            remove(currentViewController)
+            remove(childViewController:currentViewController)
         }
-        add(childViewController,containerView:containView)
+        add(childViewController:childViewController,containerView:containView)
         currentViewController = childViewController
     }
 }

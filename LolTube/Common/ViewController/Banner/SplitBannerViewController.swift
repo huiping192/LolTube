@@ -11,19 +11,19 @@ class SplitBannerViewController: UIViewController {
     private let imageLoadingOperationQueue = NSOperationQueue()
     private var imageLoadingOperationDictionary = [String: NSOperation]()
     
-    var videoList:[Video]?{
-        didSet{
-            guard collectionView != nil else {
-                return
-            }
-            collectionView.reloadData()
-            collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .None, animated: false)
-        }
+    var videoList:[Video]?
+   
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        collectionView.reloadData()
+        collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .None, animated: false)
     }
 }
 
 
 extension SplitBannerViewController: UICollectionViewDataSource {
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return videoList?.count ?? 0
     }
@@ -35,7 +35,7 @@ extension SplitBannerViewController: UICollectionViewDataSource {
         }
         
         cell.titleLabel?.text = video.title
-        
+        cell.thunmbnailImageView.image = nil
         let firstImageUrlString = video.highThumbnailUrl ?? video.thumbnailUrl
         let secondImageUrlString = video.thumbnailUrl
         loadVideoImage(video.videoId, imageUrlString: firstImageUrlString, secondImageUrlString: secondImageUrlString) {

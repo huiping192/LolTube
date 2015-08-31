@@ -14,49 +14,71 @@ class CombinedBannerViewController:UIViewController {
     private let imageLoadingOperationQueue = NSOperationQueue()
     private var imageLoadingOperationDictionary = [String: NSOperation]()
     
+    private var scrollToNextVideoTimer:NSTimer?
+    
     var videoList:[Video]?{
         didSet{
-            configureView()
+            var realVideoList = videoList
+            if let firstItem = videoList?.first, lastItem = videoList?.last {
+                realVideoList?.insert(lastItem, atIndex: 0)
+                realVideoList?.append(firstItem)
+                self.realVideoList = realVideoList
+            }
         }
     }
-   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    
+    var realVideoList:[Video]?
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if (scrollToNextVideoTimer == nil) {
+            startScrollToNextVideoTimer()
+        }
         configureView()
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-        let currentPageNumber = videoImagePageControl.currentPage
-        self.collectionView.alpha = 3.0
-        coordinator.animateAlongsideTransition({
-            [unowned self] _ in
-            self.collectionView.collectionViewLayout.invalidateLayout()
-            self.collectionView.scrollToItemAtIndexPath(NSIndexPath(forItem: currentPageNumber, inSection: 0), atScrollPosition: .None, animated: false)
-            }, completion: {
-                [unowned self] _ in
-                self.collectionView.alpha = 1.0
-            })
-    }
-    
     private func configureView(){
-        guard let collectionView = collectionView else {
-            return
-        }
         collectionView.reloadData()
 
-        currentVideoTitleLabel.text = videoList?[0].title
+        currentVideoTitleLabel.text = realVideoList?[1].title
         videoImagePageControl.numberOfPages = videoList?.count ?? 0
         videoImagePageControl.currentPage = 0
+        collectionView.scrollToItemAtIndexPath(NSIndexPath(forItem: 1, inSection: 0), atScrollPosition: .Left, animated: false)
     }
 
+    func scrollToNextVideo(){
+        guard let videoCount = realVideoList?.count else {
+            return
+        }
+        let currentPage = Int(collectionView.contentOffset.x / collectionView.frame.width)
+        let nextPage = currentPage + 1 >= videoCount - 1 ? 1 : currentPage + 1
+
+        guard let video = realVideoList?[nextPage] else {
+            return
+        }
+        let indexPath = NSIndexPath(forItem: nextPage, inSection: 0)
+        collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .Left, animated: true)
+        videoImagePageControl.currentPage = nextPage - 1
+        currentVideoTitleLabel.text = video.title
+    }
+    
+    private func startScrollToNextVideoTimer(){
+        if let scrollToNextVideoTimer = scrollToNextVideoTimer {
+            scrollToNextVideoTimer.invalidate()
+        }
+        scrollToNextVideoTimer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "scrollToNextVideo", userInfo: nil, repeats: true)
+    }
+    
+    private func stopScrollToNextVideoTimer(){
+        scrollToNextVideoTimer?.invalidate()
+        scrollToNextVideoTimer = nil
+    }
 }
 
 
 extension CombinedBannerViewController: UICollectionViewDataSource {
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return videoList?.count ?? 0
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {        
+        return realVideoList?.count ?? 0
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -64,6 +86,8 @@ extension CombinedBannerViewController: UICollectionViewDataSource {
         guard let video = video(indexPath) else {
             return cell
         }
+        
+        cell.thunmbnailImageView.image = nil
         
         let firstImageUrlString = video.highThumbnailUrl ?? video.thumbnailUrl
         let secondImageUrlString = video.thumbnailUrl
@@ -88,17 +112,13 @@ extension CombinedBannerViewController: UICollectionViewDataSource {
     }
     
     private func video(indexPath:NSIndexPath) -> Video? {
-        return videoList?[indexPath.row]
+        return realVideoList?[indexPath.row]
     }
 }
 
 extension CombinedBannerViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath){
-        guard let video = videoList?[indexPath.item] else {
-            return
-        }
-        videoImagePageControl.currentPage = indexPath.item
-        currentVideoTitleLabel.text = video.title
+        
     }
 
     func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
@@ -119,4 +139,34 @@ extension CombinedBannerViewController: UICollectionViewDelegateFlowLayout {
         }
         navigationController?.pushViewController(instantiateVideoDetailViewController(video.videoId), animated: true)
     }
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        guard let realVideoList = realVideoList else {
+            return 
+        }
+        let indexPath:NSIndexPath
+        let rightWidth = scrollView.frame.width * CGFloat(realVideoList.count - 1)
+        if scrollView.contentOffset.x == rightWidth {
+            indexPath = NSIndexPath(forItem: 1, inSection: 0)
+            collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .Left, animated: false)
+        } else if scrollView.contentOffset.x == 0 {
+            indexPath = NSIndexPath(forItem: realVideoList.count - 2, inSection: 0)
+            collectionView.scrollToItemAtIndexPath(NSIndexPath(forItem: realVideoList.count - 2, inSection: 0), atScrollPosition: .Left, animated: false)
+        } else {            
+            indexPath = NSIndexPath(forItem: Int(scrollView.contentOffset.x / scrollView.frame.width), inSection: 0)
+        }
+        
+        let currentPage = indexPath.item - 1
+        let video = realVideoList[currentPage] 
+        videoImagePageControl.currentPage = currentPage
+        currentVideoTitleLabel.text = video.title
+    }
+    
+    func scrollViewWillBeginDragging(scrollView: UIScrollView){
+        stopScrollToNextVideoTimer()
+    }
+    
+    func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>){
+        startScrollToNextVideoTimer()
+    }
+    
 }
