@@ -4,8 +4,6 @@
 //
 
 #import "RSNavigationController.h"
-#import "RSVideoListViewController.h"
-#import "RSVideoDetailAnimator.h"
 #import "RSVideoDetailViewController.h"
 #import "RSEnvironment.h"
 #import "LolTube-Swift.h"
@@ -33,9 +31,6 @@
 
 
 - (id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
-    if (([fromVC isKindOfClass:[RSVideoListViewController class]] && [toVC isKindOfClass:[RSVideoDetailViewController class]]) || ([fromVC isKindOfClass:[RSVideoDetailViewController class]] && [toVC isKindOfClass:[RSVideoListViewController class]])) {
-        return [[RSVideoDetailAnimator alloc] initWithOperation:operation];
-    }
     return nil;
 }
 

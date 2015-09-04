@@ -1,13 +1,9 @@
-//
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
 #import <Foundation/Foundation.h>
 
 #import "RSEnvironment.h"
 #import "RSSearchModel.h"
 #import "RSThumbnails.h"
 #import "RSVideoDetailViewController.h"
-#import "RSChannelService.h"
 #import "RSVideoDetailModel.h"
 #import "RSVideoInfoUtil.h"
 #import "RSChannelModel.h"

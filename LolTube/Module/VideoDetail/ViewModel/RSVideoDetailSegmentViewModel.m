@@ -1,5 +1,4 @@
 #import "RSVideoDetailSegmentViewModel.h"
-#import "RSChannelService.h"
 #import "LolTube-Swift.h"
 #import "RSChannelModel.h"
 #import "RSThumbnails.h"
@@ -7,7 +6,7 @@
 
 @interface RSVideoDetailSegmentViewModel ()
 
-@property(nonatomic, strong) RSChannelService *channelService;
+@property(nonatomic, strong) ChannelService *channelService;
 @property(nonatomic, strong) YoutubeService *youtubeService;
 
 
@@ -21,7 +20,7 @@
     self = [super init];
     if (self) {
         self.channelId = channelId;
-        self.channelService = [[RSChannelService alloc] init];
+        self.channelService = [[ChannelService alloc] init];
         self.youtubeService = [[YoutubeService alloc] init];
     }
 

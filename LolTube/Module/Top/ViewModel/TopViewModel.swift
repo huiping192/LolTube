@@ -4,7 +4,7 @@ import Async
 class TopViewModel {
     
     private let youtubeService = YoutubeService()
-    private let channelService = RSChannelService()
+    private let channelService = ChannelService()
     
     var topVideoList: [Video]?
     var channelList: [Channel]?
@@ -15,7 +15,7 @@ class TopViewModel {
     }
     
     func update(success: () -> Void, failure: (NSError) -> Void) {
-        let defaultChannelIdList = channelService.channelIds() as! [String]
+        let defaultChannelIdList = channelService.channelIds()
         
         let successBlock:((RSChannelModel) -> Void) = {
             [weak self]channelModel in
