@@ -8,9 +8,9 @@
 
 #import "TodayViewController.h"
 #import "RSTodayVideoTableViewModel.h"
-#import "RSChannelService.h"
 #import "UIImageView+Loading.h"
 #import <NotificationCenter/NotificationCenter.h>
+#import "VideoWidget-Swift.h"
 
 static const NSInteger kMaxCellNumber = 5;
 static NSString *const kCellId = @"videoCell";
@@ -35,7 +35,7 @@ static NSString *const kLolTubeSchemeVideoPath = @"";
 - (void)awakeFromNib {
     [super awakeFromNib];
 
-    RSChannelService *channelService = [[RSChannelService alloc] init];
+    ChannelService *channelService = [[ChannelService alloc] init];
     self.tableViewModel = [[RSTodayVideoTableViewModel alloc] initWithChannelIds:[channelService channelIds]];
 }
 

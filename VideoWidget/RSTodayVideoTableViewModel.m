@@ -6,9 +6,9 @@
 #import "RSTodayVideoTableViewModel.h"
 #import "RSSearchModel.h"
 #import "RSThumbnails.h"
-#import "RSChannelService.h"
 #import "VideoWidget-Swift.h"
 static NSString *const kVideoWidgetCacheKey = @"videoWidgetCache";
+static NSString *const kSharedUserDefaultsSuitName = @"kSharedUserDefaultsSuitName";
 
 @interface RSTodayVideoTableViewModel ()
 

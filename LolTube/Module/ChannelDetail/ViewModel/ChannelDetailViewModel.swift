@@ -7,7 +7,7 @@ class ChannelDetailViewModel {
     
     var isSubscribed:Bool?
     private let youtubeService = YoutubeService()
-    private let channelService = RSChannelService()
+    private let channelService = ChannelService()
 
 
     init(channelId:String){
@@ -29,7 +29,7 @@ class ChannelDetailViewModel {
                 weakSelf.channel = Channel(channelItem: channelItem)
             }
             
-            weakSelf.isSubscribed = (weakSelf.channelService.channelIds() as! [String]).contains(weakSelf.channelId)
+            weakSelf.isSubscribed = (weakSelf.channelService.channelIds()).contains(weakSelf.channelId)
             success()
         }
         youtubeService.channelDetail([channelId], success: successBlock, failure: failure)

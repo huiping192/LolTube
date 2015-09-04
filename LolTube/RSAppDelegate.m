@@ -7,13 +7,14 @@
 //
 
 #import "RSAppDelegate.h"
-#import "RSVideoListViewController.h"
 #import "RSVideoService.h"
 #import "RSVideoDetailViewController.h"
-#import "RSChannelService.h"
-#import "RSChannelTableViewModel.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+
+static NSString *const kSharedUserDefaultsSuitName = @"kSharedUserDefaultsSuitName";
+static NSString *const kChannelIdsKey = @"channleIds";
+
 
 @implementation RSAppDelegate
 
@@ -35,9 +36,9 @@
     UIViewController *rootViewController = self.window.rootViewController;
     if ([rootViewController isKindOfClass:[UINavigationController class]]) {
         UIViewController *navigationTopViewController = ((UINavigationController *) rootViewController).topViewController;
-        if ([navigationTopViewController isKindOfClass:[RSVideoListViewController class]]) {
-            [((RSVideoListViewController *) navigationTopViewController) fetchNewDataWithCompletionHandler:completionHandler];
-        }
+//        if ([navigationTopViewController isKindOfClass:[RSVideoListViewController class]]) {
+//            [((RSVideoListViewController *) navigationTopViewController) fetchNewDataWithCompletionHandler:completionHandler];
+//        }
     }
 }
 

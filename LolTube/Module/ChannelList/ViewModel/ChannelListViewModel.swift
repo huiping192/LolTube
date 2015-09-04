@@ -7,7 +7,7 @@ class ChannelListViewModel: SimpleListCollectionViewModelProtocol{
     var channelList = [Channel]()
     
     private let youtubeService = YoutubeService()
-    private let channelService = RSChannelService()
+    private let channelService = ChannelService()
     
     init() {
         
@@ -15,7 +15,7 @@ class ChannelListViewModel: SimpleListCollectionViewModelProtocol{
     
     func update(success success: (() -> Void), failure: ((error:NSError) -> Void)) {
         
-        let channelIdList = channelService.channelIds() as! [String]
+        let channelIdList = channelService.channelIds()
         
         let successBlock:((RSChannelModel) -> Void) = {
             [weak self](channelModel) in
@@ -30,7 +30,7 @@ class ChannelListViewModel: SimpleListCollectionViewModelProtocol{
     
     func refresh(success success: ((isDataChanged:Bool) -> Void), failure: ((error:NSError) -> Void)) {
         
-        let newChannelIdList = channelService.channelIds() as! [String]
+        let newChannelIdList = channelService.channelIds()
         let channelIdList = channelList.map{ $0.channelId! }
         
         guard newChannelIdList.count != 0 && newChannelIdList != channelIdList else {
