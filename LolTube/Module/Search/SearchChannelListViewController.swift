@@ -29,6 +29,10 @@ class SearchChannelListViewController: SimpleListCollectionViewController,Search
         return 85.0
     }
     
+    deinit{
+        imageLoadingOperationQueue.cancelAllOperations()
+    }
+    
     override var emptyDataTitle:String{
         return NSLocalizedString("SearchChannelEmptyData", comment: "")
     }

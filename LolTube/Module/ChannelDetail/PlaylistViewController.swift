@@ -25,6 +25,10 @@ class PlaylistViewController: VideoCollectionViewController {
         EventTracker.trackViewContentView(viewName: "Playlist Detail", viewType: PlaylistViewController.self, viewId: playlistTitle)
     }
     
+    deinit{
+        imageLoadingOperationQueue.cancelAllOperations()
+    }
+    
     override func collectionViewModel() -> SimpleListCollectionViewModelProtocol{
         viewModel = PlaylistViewModel(playlistId: playlistId)
         return viewModel

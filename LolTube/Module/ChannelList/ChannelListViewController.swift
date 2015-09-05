@@ -37,6 +37,10 @@ class ChannelListViewController: SimpleListCollectionViewController {
         )
     }
     
+    deinit{
+        imageLoadingOperationQueue.cancelAllOperations()
+    }
+    
     override var emptyDataTitle:String{
         return NSLocalizedString("ChannelVideoEmptyData", comment: "")
     }

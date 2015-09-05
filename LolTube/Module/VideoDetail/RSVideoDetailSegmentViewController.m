@@ -55,6 +55,8 @@
 
         NSString *title = weakSelf.viewModel.isSubscribed? NSLocalizedString(@"ChannelSubscribed", nil) : NSLocalizedString(@"ChannelUnsubscribe",nil);
         [weakSelf.channelRegisterButton setTitle:title forState:UIControlStateNormal];
+        UIColor *buttonColor = weakSelf.viewModel.isSubscribed ? [UIColor lightGrayColor] : weakSelf.view.tintColor ;
+        [weakSelf.channelRegisterButton setTitleColor:buttonColor forState:UIControlStateNormal];
     }                                    failure:^(NSError *error) {
         [weakSelf showError:error];
     }];
@@ -65,6 +67,8 @@
     [self.viewModel subscribeChannelWithSuccess:^{
         NSString *title = weakSelf.viewModel.isSubscribed? NSLocalizedString(@"ChannelSubscribed", nil) : NSLocalizedString(@"ChannelUnsubscribe",nil);
         [weakSelf.channelRegisterButton setTitle:title forState:UIControlStateNormal];
+        UIColor *buttonColor = weakSelf.viewModel.isSubscribed ? [UIColor lightGrayColor] : weakSelf.view.tintColor ;
+        [weakSelf.channelRegisterButton setTitleColor:buttonColor forState:UIControlStateNormal];
     }                                    failure:^(NSError *error) {
         [weakSelf showError:error];
     }];

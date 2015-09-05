@@ -3,10 +3,10 @@
 "3yj-eT-joF.text" = "Label";
 
 /* Class = "IBUIButton"; normalTitle = "OPLOLReplay"; ObjectID = "4yg-hQ-7Le"; */
-"4yg-hQ-7Le.normalTitle" = "OPLOLReplay";
+"4yg-hQ-7Le.normalTitle" = "ahq西門";
 
 /* Class = "IBUIButton"; normalTitle = "League of Legends"; ObjectID = "9T6-2d-d0O"; */
-"9T6-2d-d0O.normalTitle" = "League of Legends";
+"9T6-2d-d0O.normalTitle" = "LMS";
 
 /* Class = "IBUILabel"; text = "Explore More Channels"; ObjectID = "DG9-PH-7Gm"; */
 "DG9-PH-7Gm.text" = "Explore More Channels";
@@ -26,16 +26,16 @@
 "dZD-9V-gEE.text" = "Label";
 
 /* Class = "IBUIButton"; normalTitle = "LoL Esports"; ObjectID = "mux-1G-dZa"; */
-"mux-1G-dZa.normalTitle" = "LoL Esports";
+"mux-1G-dZa.normalTitle" = "小學生上線了";
 
 /* Class = "IBUIButton"; normalTitle = "Protatomonster"; ObjectID = "uCY-8S-t4L"; */
-"uCY-8S-t4L.normalTitle" = "Protatomonster";
+"uCY-8S-t4L.normalTitle" = "抗韓中年人";
 
 /* Class = "IBUINavigationItem"; title = "channel"; ObjectID = "uwz-9a-JU9"; */
 "uwz-9a-JU9.title" = "頻道";
 
 /* Class = "IBUIButton"; normalTitle = "Pro Replays"; ObjectID = "zF0-CL-BXL"; */
-"zF0-CL-BXL.normalTitle" = "Pro Replays";
+"zF0-CL-BXL.normalTitle" = "若風解說";
 
 /* no video label*/
 "dM1-dG-AGN.text" = "沒有找到相關影片。";

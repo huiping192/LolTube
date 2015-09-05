@@ -20,6 +20,10 @@ class PlaylistsViewController: SimpleListCollectionViewController {
         EventTracker.trackViewContentView(viewName: "Channel Playlist", viewType: PlaylistsViewController.self, viewId: channelTitle)
     }
     
+    deinit{
+        imageLoadingOperationQueue.cancelAllOperations()
+    }
+    
     override func collectionViewModel() -> SimpleListCollectionViewModelProtocol{
         viewModel = PlaylistsViewModel(channelId:channelId)
         return viewModel
