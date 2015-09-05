@@ -27,6 +27,11 @@ class SearchVideoListViewController: VideoCollectionViewController,Searchable {
     override var emptyDataTitle:String{
         return NSLocalizedString("SearchVideoEmptyData", comment: "")
     }
+    
+    deinit{
+        imageLoadingOperationQueue.cancelAllOperations()
+    }
+    
     override func collectionViewModel() -> SimpleListCollectionViewModelProtocol{
         viewModel = SearchVideoListViewModel()
         viewModel.searchText = _searchText

@@ -18,6 +18,10 @@ class VideoListViewController: VideoCollectionViewController {
         EventTracker.trackViewContentView(viewName: "Channel Video", viewType: VideoListViewController.self, viewId: channelTitle)
     }
     
+    deinit{
+        imageLoadingOperationQueue.cancelAllOperations()
+    }
+    
     override func collectionViewModel() -> SimpleListCollectionViewModelProtocol{
         viewModel = VideoListViewModel(channelId:channelId)
         return viewModel

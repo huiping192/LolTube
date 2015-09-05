@@ -53,10 +53,8 @@ class TopViewController: UIViewController {
         videosCollectionView.collectionViewLayout.invalidateLayout()
         layoutCollectionViewSize()
     }
-    
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        
+   
+    deinit{
         imageLoadingOperationQueue.cancelAllOperations()
     }
     

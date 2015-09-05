@@ -59,12 +59,9 @@ class ChannelDetailViewController: UIViewController {
         navigationController?.navigationBar.configureNavigationBar(.Default)
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        
+    deinit{
         imageLoadingOperationQueue.cancelAllOperations()
     }
-    
     
     @IBAction func subscribeButtonTapped(button:UIButton){
         if viewModel.isSubscribed ?? false {

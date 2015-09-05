@@ -29,6 +29,10 @@ class SearchPlaylistsViewController: SimpleListCollectionViewController,Searchab
         return NSLocalizedString("SearchPlaylistEmptyData", comment: "")
     }
     
+    deinit{
+        imageLoadingOperationQueue.cancelAllOperations()
+    }
+    
     override func collectionViewModel() -> SimpleListCollectionViewModelProtocol{
         viewModel = SearchPlaylistsViewModel()
         viewModel.searchText = _searchText

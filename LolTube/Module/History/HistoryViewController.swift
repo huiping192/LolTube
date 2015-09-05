@@ -33,6 +33,10 @@ class HistoryViewController:VideoCollectionViewController {
         )
     }
     
+    deinit{
+        imageLoadingOperationQueue.cancelAllOperations()
+    }
+    
     override func collectionViewModel() -> SimpleListCollectionViewModelProtocol{
         viewModel = HistoryViewModel()
         return viewModel
