@@ -79,8 +79,7 @@ class ChannelDetailViewController: UIViewController {
                 return
             }
             
-            let buttonTitle = isSubscribed ? NSLocalizedString("ChannelSubscribed", comment: "") : NSLocalizedString("ChannelUnsubscribe", comment: "")
-            self?.subscribeButton.setTitle(buttonTitle, forState: .Normal)
+            self?.updateSubscribeButton(isSubscribed)
         }
         
         let failureBlock:((NSError) -> Void) = {
@@ -97,6 +96,13 @@ class ChannelDetailViewController: UIViewController {
         channelInfoViewController = nil
     }
     
+    private func updateSubscribeButton(isSubscribed:Bool){
+        let buttonTitle = isSubscribed ? NSLocalizedString("ChannelSubscribed", comment: "") : NSLocalizedString("ChannelUnsubscribe", comment: "")
+        let buttonColor = isSubscribed ? UIColor(white: 1.0, alpha: 0.6) : view.tintColor
+        subscribeButton.setTitle(buttonTitle, forState: .Normal)
+        subscribeButton.setTitleColor(buttonColor, forState: .Normal)
+    }
+    
     private func loadData(){
         
         let successBlock:(() -> Void) = {
@@ -110,8 +116,7 @@ class ChannelDetailViewController: UIViewController {
             self?.videoCountLabel.text = channel.videoCountString
             self?.subscriberCountLabel.text = channel.subscriberCountString
             
-            let buttonTitle = isSubscribed ? NSLocalizedString("ChannelSubscribed", comment: "") : NSLocalizedString("ChannelUnsubscribe", comment: "")
-            self?.subscribeButton.setTitle(buttonTitle, forState: .Normal)
+            self?.updateSubscribeButton(isSubscribed)
             
             if let thumbnailUrl = channel.thumbnailUrl {
                 let imageOperation = ImageLoadOperation(url: thumbnailUrl){
@@ -135,11 +140,9 @@ class ChannelDetailViewController: UIViewController {
                     weakSelf.viewCountLabel.textColor = UIColor.darkGrayColor()
                     weakSelf.videoCountLabel.textColor = UIColor.darkGrayColor()
                     weakSelf.subscriberCountLabel.textColor = UIColor.darkGrayColor()
+                    weakSelf.subscribeButton.setTitleColor(UIColor.darkGrayColor(), forState: .Normal)
+
                     weakSelf.navigationController?.navigationBar.configureNavigationBar(.ClearBlack)
-                }
-                
-                if weakSelf.subscribeButton.tintColor.equal(imageAverageColor, tolerance: 0.3) {
-                    weakSelf.subscribeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
                 }
             }
             self?.imageLoadingOperationQueue.addOperation(bannerImageOperation)
