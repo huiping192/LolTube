@@ -1049,7 +1049,7 @@
                                                     </constraints>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BMN-mc-6LE" customClass="CircularImageView" customModule="LolTube" customModuleProvider="target">
-                                                    <rect key="frame" x="17" y="10" width="25" height="25"/>
+                                                    <rect key="frame" x="20" y="10" width="25" height="25"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="M7V-LF-xcN">
@@ -1059,9 +1059,9 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NfZ-5L-J05" userLabel="section title label">
-                                                    <rect key="frame" x="57" y="22" width="0.0" height="0.0"/>
+                                                    <rect key="frame" x="53" y="22" width="0.0" height="0.0"/>
                                                     <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1081,14 +1081,16 @@
                                                 </constraint>
                                                 <constraint firstAttribute="centerY" secondItem="HxG-cK-iu2" secondAttribute="centerY" id="3xC-m7-bGS"/>
                                                 <constraint firstItem="HxG-cK-iu2" firstAttribute="leading" secondItem="DjR-Xf-c0I" secondAttribute="leading" constant="10" id="9NB-Xf-cfy"/>
-                                                <constraint firstItem="BMN-mc-6LE" firstAttribute="leading" secondItem="HxG-cK-iu2" secondAttribute="trailing" constant="5" id="Dsf-As-OsV">
+                                                <constraint firstItem="BMN-mc-6LE" firstAttribute="leading" secondItem="HxG-cK-iu2" secondAttribute="trailing" constant="8" id="Dsf-As-OsV">
                                                     <variation key="heightClass=regular-widthClass=regular" constant="15"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerY" secondItem="BMN-mc-6LE" secondAttribute="centerY" id="EaN-Qs-0Qy"/>
                                                 <constraint firstItem="0hW-fC-9oh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NfZ-5L-J05" secondAttribute="trailing" constant="3" id="VLx-zT-dci"/>
                                                 <constraint firstAttribute="centerY" secondItem="NfZ-5L-J05" secondAttribute="centerY" id="lik-K4-IOc"/>
                                                 <constraint firstAttribute="centerY" secondItem="0hW-fC-9oh" secondAttribute="centerY" id="lqk-BB-Kis"/>
-                                                <constraint firstItem="NfZ-5L-J05" firstAttribute="leading" secondItem="BMN-mc-6LE" secondAttribute="trailing" constant="15" id="ryj-Y1-bCR"/>
+                                                <constraint firstItem="NfZ-5L-J05" firstAttribute="leading" secondItem="BMN-mc-6LE" secondAttribute="trailing" constant="8" id="ryj-Y1-bCR">
+                                                    <variation key="heightClass=regular-widthClass=regular" constant="15"/>
+                                                </constraint>
                                                 <constraint firstAttribute="trailing" secondItem="0hW-fC-9oh" secondAttribute="trailing" constant="10" id="zN9-ER-Vb3"/>
                                             </constraints>
                                             <variation key="widthClass=regular">
@@ -1505,7 +1507,4 @@
         <image name="DefaultThumbnail" width="320" height="180"/>
         <image name="Tab_Channel" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="pGj-tb-mQC"/>
-    </inferredMetricsTieBreakers>
 </document>
