@@ -69,9 +69,7 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
         }
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        
+    deinit{
         collectionView.emptyDataSetDelegate = nil
         collectionView.emptyDataSetSource = nil
     }
