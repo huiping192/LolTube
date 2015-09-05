@@ -37,6 +37,7 @@ class TopViewController: UIViewController {
     private var channelVideoImageLoadingOperationDictionary = [String: NSOperation]()
     private var channelImageLoadingOperationDictionary = [String: NSOperation]()
 
+    private var prevFrame:CGRect?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +51,16 @@ class TopViewController: UIViewController {
         
         EventTracker.trackViewContentView(viewName:"Featured", viewType:TopViewController.self )
         
-        videosCollectionView.collectionViewLayout.invalidateLayout()
-        layoutCollectionViewSize()
+        if let prevFrame = prevFrame where prevFrame != view.frame {
+            videosCollectionView.reloadData()
+            layoutCollectionViewSize()
+        }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        prevFrame = view.frame
     }
    
     deinit{
@@ -61,8 +70,14 @@ class TopViewController: UIViewController {
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         
-        videosCollectionView.reloadData()
-        layoutCollectionViewSize()
+        self.videosCollectionView.collectionViewLayout.invalidateLayout()
+        coordinator.animateAlongsideTransition({
+            [unowned self]_ in
+            self.videosCollectionView.reloadData()
+            self.layoutCollectionViewSize()
+            
+            }, completion:nil)
+
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
