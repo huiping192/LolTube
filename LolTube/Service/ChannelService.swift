@@ -40,13 +40,13 @@ class ChannelService: NSObject {
         case Sp4zie = "UCmtQGojT9O2LVzVIVKDGEjw"
         case MiDOrAFK = "UCnoSiiatisjE3RbM7DgdFmA"
         case TheCarry = "UCTkeYBsxfJcsqi9kMbqLsfA"
-
+        
         // chinese channels
         
         case LeagueofLegendsTW = "UCekadoaN7x7g7FlmKg13jWg"
         case FåntäsyZ = "UCDgtlI_erc41UoqaeD816Kg"
         case 英雄聯盟最新資訊 = "UC_iOMGX-tdJKvjPEvy8z7Fw"
-        case 云之彼岸LOL = "UCk2_iV0Q1EPbOiJ6aOOLbZw" 
+        case 云之彼岸LOL = "UCk2_iV0Q1EPbOiJ6aOOLbZw"
         case 最強聯盟BestLeague = "UCtMM6QD3n-jCjUfvflarboA"
         case 最強聯盟爆笑集錦x直播頻 = "UCNooNOGnABoxyDwHuQAH92w"
         case R大 = "UCcUrfKffo1wjIZ_GMKgPEqQ"
@@ -59,9 +59,15 @@ class ChannelService: NSObject {
         case SKTT1FakerSoloQueue = "UCXJ2HbqZ7b-L6G9rWyPFfow"
         case GarenaTaiwan = "UCCqnLewexMM7LwGzqpMpPrA"
         case SivHD中譯版 = "UCgO0J4fCNTyU-PibDiNEFjQ"
+        case ahqESportsClub = "UChXDO6h-vhSyoQQMz9vQ6YQ"
+        case GG3B0 = "UClN448pkRACE6X0NNGzGQtg"
+        case Dinter = "UC0SkNQXPJ60hKEFubOz0fDA"
+        case 烏啦啦 = "UCjvjMvoMY1GgXc04VntTZhg"
+        case HongKongEsportsLtd = "UCMwKmIVf-ZT7eQTkof6IzPw"
+        
         // korean channels
         case RangmalTV = "UCc_7XbnN1bTFMhquCKt3ngA"
-
+        
         static func englishChannels() -> [DefaultChannel]{
             return [
                 .LeagueofLegends,
@@ -91,6 +97,7 @@ class ChannelService: NSObject {
         static func chineseChannels() -> [DefaultChannel]{
             return [
                 .LeagueofLegendsTW,
+                .LoLEsports,
                 .FåntäsyZ,
                 .英雄聯盟最新資訊,
                 .云之彼岸LOL,
@@ -105,7 +112,14 @@ class ChannelService: NSObject {
                 .英雄聯盟日常,
                 .SKTT1FakerSoloQueue,
                 .GarenaTaiwan,
-                .SivHD中譯版
+                .SivHD中譯版,
+                .ahqESportsClub,
+                .GG3B0,
+                .Dinter,
+                .烏啦啦,
+                .HongKongEsportsLtd,
+                .OPLOLReplay,
+                .EpicSkillshot
             ]
         }
         
