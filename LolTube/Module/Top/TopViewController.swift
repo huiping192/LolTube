@@ -70,13 +70,14 @@ class TopViewController: UIViewController {
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         
-        self.videosCollectionView.collectionViewLayout.invalidateLayout()
-        coordinator.animateAlongsideTransition({
-            [unowned self]_ in
-            self.videosCollectionView.reloadData()
+        self.videosCollectionView.reloadData()
+        
+        coordinator.animateAlongsideTransition(nil, completion: {
+        _ in
             self.layoutCollectionViewSize()
-            
-            }, completion:nil)
+        
+        })
+        
 
     }
     
@@ -107,17 +108,15 @@ class TopViewController: UIViewController {
         
         let successBlock:(() -> Void) = {
             [weak self] in
+            
             self?.configureTopView()
             self?.videosCollectionView.reloadData()
             self?.layoutCollectionViewSize()
             
             self?.stopLoadingAnimation()
             
-            Async.main{
-                UIView.animateWithDuration(0.1) {
-                    [weak self] in
-                    self?.mainScrollView.alpha = 1.0
-                }
+            UIView.animateWithDuration(0.1) {
+                self?.mainScrollView.alpha = 1.0
             }
         }
         
@@ -125,6 +124,7 @@ class TopViewController: UIViewController {
             [weak self]error in
             self?.showError(error)
             self?.stopLoadingAnimation()
+            self?.mainScrollView.alpha = 1.0
         }
         
         viewModel.update(successBlock, failure: failureBlock)
@@ -161,7 +161,6 @@ class TopViewController: UIViewController {
     // MARK: view cconfiguration
     private func layoutCollectionViewSize() {
         Async.main{               
-            [unowned self] in
             self.collectionHeightConstraint.constant = self.videosCollectionView.contentSize.height
             self.videosCollectionView.layoutIfNeeded()
         }
@@ -361,7 +360,7 @@ extension TopViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize{
-        return section == collectionView.numberOfSections() - 1 ? CGSizeZero : CGSize(width: collectionView.frame.width, height: 12)
+        return section == collectionView.numberOfSections() - 1 ? CGSizeZero : CGSize(width: collectionView.frame.width, height: 8)
     }
 
 }

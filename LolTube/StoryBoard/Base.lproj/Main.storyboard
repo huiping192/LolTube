@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zba-lz-CV3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zba-lz-CV3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -898,7 +898,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q87-ZK-g0W">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q87-ZK-g0W">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWl-kr-h8k" userLabel="top banner View">
@@ -951,7 +951,7 @@
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="8" id="Led-wQ-uJf">
                                             <size key="itemSize" width="150" height="130"/>
                                             <size key="headerReferenceSize" width="320" height="44"/>
-                                            <size key="footerReferenceSize" width="0.0" height="12"/>
+                                            <size key="footerReferenceSize" width="0.0" height="8"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
@@ -1114,7 +1114,7 @@
                                             </connections>
                                         </collectionReusableView>
                                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="footerView" id="gbb-PG-8nK" customClass="TopVideoCollectionFooterView" customModule="LolTube" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="174" width="600" height="12"/>
+                                            <rect key="frame" x="0.0" y="174" width="600" height="8"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aDq-kO-wD4" userLabel="Top Space View">
@@ -1126,7 +1126,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vHb-x9-lRh" userLabel="Bot Space View">
-                                                    <rect key="frame" x="0.0" y="11" width="600" height="1"/>
+                                                    <rect key="frame" x="0.0" y="7" width="600" height="1"/>
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.87493738619999994" green="0.87382725449999998" blue="0.89321848999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
