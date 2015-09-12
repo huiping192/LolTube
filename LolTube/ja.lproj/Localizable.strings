@@ -45,3 +45,7 @@
 "SearchPlaylistEmptyData" = "一致する再生リストはありませんでした。";
 
 "Search" = "検索";
+
+"Video" = "動画";
+"Channel" = "チャンネル";
+"Playlist" = "再生リスト";
