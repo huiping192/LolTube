@@ -87,8 +87,6 @@ extension CombinedBannerViewController: UICollectionViewDataSource {
             return cell
         }
         
-        cell.thunmbnailImageView.image = nil
-        
         let firstImageUrlString = video.highThumbnailUrl ?? video.thumbnailUrl
         let secondImageUrlString = video.thumbnailUrl
         loadVideoImage(video.videoId, imageUrlString: firstImageUrlString, secondImageUrlString: secondImageUrlString) {
@@ -117,10 +115,6 @@ extension CombinedBannerViewController: UICollectionViewDataSource {
 }
 
 extension CombinedBannerViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath){
-        
-    }
-
     func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         guard let video = video(indexPath) , imageLoadingOperation = imageLoadingOperationDictionary[video.videoId] else {
             return
@@ -139,6 +133,7 @@ extension CombinedBannerViewController: UICollectionViewDelegateFlowLayout {
         }
         navigationController?.pushViewController(instantiateVideoDetailViewController(video.videoId), animated: true)
     }
+    
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         guard let realVideoList = realVideoList else {
             return 
@@ -155,9 +150,9 @@ extension CombinedBannerViewController: UICollectionViewDelegateFlowLayout {
             indexPath = NSIndexPath(forItem: Int(scrollView.contentOffset.x / scrollView.frame.width), inSection: 0)
         }
         
-        let currentPage = indexPath.item - 1
+        let currentPage = indexPath.item
         let video = realVideoList[currentPage] 
-        videoImagePageControl.currentPage = currentPage
+        videoImagePageControl.currentPage = currentPage - 1
         currentVideoTitleLabel.text = video.title
     }
     
