@@ -30,6 +30,11 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchTypeSegmentedControl.setTitle(NSLocalizedString("Video", comment: ""), forSegmentAtIndex: 0)
+        searchTypeSegmentedControl.setTitle(NSLocalizedString("Channel", comment: ""), forSegmentAtIndex: 1)
+        searchTypeSegmentedControl.setTitle(NSLocalizedString("Playlist", comment: ""), forSegmentAtIndex: 2)
+
+        
         if traitCollection.horizontalSizeClass == .Regular && traitCollection.verticalSizeClass == .Regular {
             navigationItem.title = NSLocalizedString("Search", comment: "")
             let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 260, height: 44.0))

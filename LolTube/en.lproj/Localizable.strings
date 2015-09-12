@@ -42,3 +42,7 @@
 "SearchPlaylistEmptyData" = "No playlist found.";
 
 "Search" = "Search";
+
+"Video" = "Video";
+"Channel" = "Channel";
+"Playlist" = "Playlist";

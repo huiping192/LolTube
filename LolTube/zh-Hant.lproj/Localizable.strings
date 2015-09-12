@@ -44,3 +44,6 @@
 "SearchPlaylistEmptyData" = "沒搜索到任何相關播放清單。";
 
 "Search" = "搜索";
+"Video" = "影片";
+"Channel" = "頻道";
+"Playlist" = "播放清單";
