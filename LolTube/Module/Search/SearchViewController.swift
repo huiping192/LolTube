@@ -146,36 +146,16 @@ class SearchViewController: UIViewController {
     
     @IBAction func suggestionWardTapped(suggestionWardButton:UIButton) {
         searchBar.resignFirstResponder()
-
-        let searchText = suggestionWardButton.titleForState(.Normal)!
-        
+        let searchText = suggestionWardButton.titleForState(.Normal)
         searchBar.text = searchText
-        
-        searchSuggestionView.alpha = 0.0
-        searchContentView.alpha = 1.0
-        
-        if self.currentViewController == nil {
-            configureSearchVideoListViewController(searchText)
-        }
-        
-        var currentViewController = self.currentViewController as? Searchable
-        currentViewController!.searchText = searchText
+        search(searchText)
     }
-}
-
-extension SearchViewController: UISearchBarDelegate{
-    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
-        searchBar.showsCancelButton = true
-        return true
-    }
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-
-        searchBar.resignFirstResponder()
-        searchBar.showsCancelButton = false
-        
-        guard let searchText = searchBar.text else {
+    
+    private func search(searchText:String?){
+        guard let searchText = searchText else {
             return
         }
+        
         EventTracker.trackSearch(searchText)
         
         searchSuggestionView.alpha = 0.0
@@ -185,8 +165,24 @@ extension SearchViewController: UISearchBarDelegate{
             configureSearchVideoListViewController(searchText)
         }
         
-        var currentViewController = self.currentViewController as? Searchable
-        currentViewController!.searchText = searchText
+        let childVcs:[UIViewController?] = [searchVideoListViewController,searchChannelListViewController,searchPlaylistsViewController]
+        childVcs.map{$0 as? Searchable}.forEach{
+            (var searchable) -> Void in
+            searchable?.searchText = searchText
+        }
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate{
+    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
+        searchBar.showsCancelButton = true
+        return true
+    }
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
+        
+        search(searchBar.text)
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
