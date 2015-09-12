@@ -4,7 +4,7 @@ class ChannelService: NSObject {
     let appVersionKey = "appVersion"
     let channelIdsKey = "channleIds" 
     let sharedUserDefaultsSuitName = "kSharedUserDefaultsSuitName"
-    let currentAppVersion = "2.0.0"
+    let currentAppVersion = "1.2.0"
     
     private let cloudStore = NSUbiquitousKeyValueStore.defaultStore()
     
@@ -154,7 +154,7 @@ class ChannelService: NSObject {
     
     
     private func saveAppVersion(){
-        userDefaults.setObject("2.0.0", forKey: appVersionKey)
+        userDefaults.setObject(currentAppVersion, forKey: appVersionKey)
         userDefaults.synchronize()
     }
     
