@@ -22,3 +22,6 @@
 #import <Crashlytics/Crashlytics.h>
 #import <Google/Analytics.h>
 #import "RSStreamListModel.h"
+#import "RSVideoDetailSegmentViewController.h"
+#import "RSVideoRelatedVideosViewController.h"
+

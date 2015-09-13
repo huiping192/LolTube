@@ -12,9 +12,10 @@
 
 @class RSVideoSnippet;
 @class RSThumbnails;
+@class RSVideoItem;
 
 @interface RSVideoModel : RSJsonModel
-@property (nonatomic, strong)  NSArray<RSVideoItem> *items;
+@property (nonatomic, strong)  NSArray<RSVideoItem *><RSVideoItem> *items;
 
 @end
 

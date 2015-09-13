@@ -68,7 +68,10 @@
 		7A9D5F14B85FDCEF4668D937 /* RSVideoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5E1CAC258986C7A0B45D /* RSVideoService.m */; };
 		7A9D5FE6121499045F3F1D14 /* RSChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5650CE10F3B152DB916C /* RSChannelModel.m */; };
 		A427772ED7FC562199DFF711 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EFD920A10A9DA1588520BF /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		DC00BD7E1BC00F23003E4D19 /* VideoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC00BD7D1BC00F23003E4D19 /* VideoDetailViewModel.swift */; settings = {ASSET_TAGS = (); }; };
+		DC00BD841BC020CB003E4D19 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC00BD831BC020CB003E4D19 /* Localization.swift */; settings = {ASSET_TAGS = (); }; };
 		DC01A0E21B5E84EE0003FE21 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01A0E11B5E84EE0003FE21 /* RoundButton.swift */; };
+		DC085E9E1BA5A77D00F03893 /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC085E9D1BA5A77D00F03893 /* VideoDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DC08FBD31B52699F008A499E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC08FBD21B52699F008A499E /* SearchViewController.swift */; };
 		DC0F691C1A03DFD70061EB95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC1044C219B2FA6B007A86E6 /* Images.xcassets */; };
 		DC0F69201A051A740061EB95 /* UIImageView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D51D455D1D7CB93CE543C /* UIImageView+Loading.m */; };
@@ -299,7 +302,10 @@
 		D8442925C8150BEAE8DCEA78 /* Pods-VideoWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-VideoWidget/Pods-VideoWidget.release.xcconfig"; sourceTree = "<group>"; };
 		D8E859BE1395F41E87F829F2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DBB64CB7BFAAE2450E92F8F6 /* Pods-LolTubeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LolTubeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LolTubeTests/Pods-LolTubeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DC00BD7D1BC00F23003E4D19 /* VideoDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailViewModel.swift; sourceTree = "<group>"; };
+		DC00BD831BC020CB003E4D19 /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		DC01A0E11B5E84EE0003FE21 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		DC085E9D1BA5A77D00F03893 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		DC08FBD21B52699F008A499E /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		DC0F69281A075CD90061EB95 /* LolTube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LolTube.entitlements; sourceTree = "<group>"; };
 		DC0F69291A075CE80061EB95 /* VideoWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = VideoWidget.entitlements; sourceTree = "<group>"; };
@@ -518,6 +524,7 @@
 				DCD30AA41B69251000ECB105 /* ImageLoadOperation.swift */,
 				DCEC27F61B6A6D4D0068B892 /* ConcurrentOperation.swift */,
 				7A9D5053B81104085DC0E2D2 /* EventTracker.swift */,
+				DC00BD831BC020CB003E4D19 /* Localization.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -525,16 +532,17 @@
 		7A9D5132CECE3324E4C43BD7 /* VideoDetail */ = {
 			isa = PBXGroup;
 			children = (
+				7A9D5B18FEB655D5FD0B6961 /* View */,
+				7A9D52794B528C81C3264DFB /* ViewModel */,
 				7A9D5CCAFA198A4073222A6C /* RSVideoRelatedVideosViewController.m */,
 				7A9D5B9761793BBE5F5676B5 /* RSVideoRelatedVideosViewController.h */,
 				7A9D524F7C274F87C6746729 /* RSVideoDetailSegmentViewController.h */,
 				7A9D58F31A59D97CBEF3721B /* RSVideoDetailSegmentViewController.m */,
-				7A9D5AC68727A9BCD0BEFF02 /* RSVideoInfoViewController.m */,
-				7A9D57E8E3DC4EA4BCA323D2 /* RSVideoDetailViewController.m */,
-				7A9D571C0A6639DE010AC567 /* RSVideoDetailViewController.h */,
 				7A9D54358213CF2862CAD03D /* RSVideoInfoViewController.h */,
-				7A9D5B18FEB655D5FD0B6961 /* View */,
-				7A9D52794B528C81C3264DFB /* ViewModel */,
+				7A9D5AC68727A9BCD0BEFF02 /* RSVideoInfoViewController.m */,
+				7A9D571C0A6639DE010AC567 /* RSVideoDetailViewController.h */,
+				7A9D57E8E3DC4EA4BCA323D2 /* RSVideoDetailViewController.m */,
+				DC085E9D1BA5A77D00F03893 /* VideoDetailViewController.swift */,
 			);
 			path = VideoDetail;
 			sourceTree = "<group>";
@@ -558,6 +566,7 @@
 				7A9D5D121FE134F0EA003F75 /* RSVideoRelatedVideosViewModel.m */,
 				7A9D5318CE66D417996EB3AB /* RSVideoDetailSegmentViewModel.m */,
 				7A9D533C8D5AA148024886E3 /* RSVideoDetailSegmentViewModel.h */,
+				DC00BD7D1BC00F23003E4D19 /* VideoDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1374,6 +1383,7 @@
 				DC1196C51B510DF90090338F /* SimpleListCollectionViewModelProtocol.swift in Sources */,
 				DC08FBD31B52699F008A499E /* SearchViewController.swift in Sources */,
 				DC1873551B513B0100121563 /* HistoryViewController.swift in Sources */,
+				DC085E9E1BA5A77D00F03893 /* VideoDetailViewController.swift in Sources */,
 				7A9D5AA116615721C59D3D61 /* RSEnvironment.m in Sources */,
 				DC51F4C11B451696009AEC11 /* VideoCollectionViewCell.swift in Sources */,
 				7A9D571D6F71F2F391FE6E13 /* YoutubeService.swift in Sources */,
@@ -1420,6 +1430,7 @@
 				7A9D5C3FCC0072AB2ACDD402 /* RSVideoRelatedVideosViewModel.m in Sources */,
 				DCEC27F91B6A749A0068B892 /* UIViewControllerExtensions.swift in Sources */,
 				DCC0B8BA1B58DEBE0081E5CA /* TopVideoCollectionFooterView.swift in Sources */,
+				DC00BD7E1BC00F23003E4D19 /* VideoDetailViewModel.swift in Sources */,
 				7A9D5EB52386205BCB0125A4 /* RSNavigationController.m in Sources */,
 				7A9D521320B2B1B88B16EBFB /* YoutubeChannel.swift in Sources */,
 				7A9D5CB34E43D853F3FC323C /* Video.swift in Sources */,
@@ -1445,6 +1456,7 @@
 				DCC0B8B81B58D66E0081E5CA /* UICollectionViewExtensions.swift in Sources */,
 				DC842D731B4AF2A80085FF8D /* PlaylistsViewController.swift in Sources */,
 				7A9D573438D3BF99FEAE3207 /* RSThumbnails.m in Sources */,
+				DC00BD841BC020CB003E4D19 /* Localization.swift in Sources */,
 				7A9D59E8FFC59D16DE955870 /* RSSearchTableViewCell.m in Sources */,
 				7A9D5C16E96AE387AC29233D /* IntExtensions.swift in Sources */,
 				DCA636B11B6D05A900F8689B /* CombinedBannerViewController.swift in Sources */,

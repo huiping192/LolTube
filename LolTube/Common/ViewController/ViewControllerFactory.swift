@@ -66,8 +66,8 @@ extension UIViewController {
         return channelInfoViewController
     }
     
-    func instantiateVideoDetailViewController(videoId:String) -> RSVideoDetailViewController{
-        let videoDetailViewController = viewController(.Main,viewControllerId:.videoDetail, type: RSVideoDetailViewController.self)
+    func instantiateVideoDetailViewController(videoId:String) -> VideoDetailViewController{
+        let videoDetailViewController = viewController(.Main,viewControllerId:.videoDetail, type: VideoDetailViewController.self)
         
         videoDetailViewController.videoId = videoId
         return videoDetailViewController
