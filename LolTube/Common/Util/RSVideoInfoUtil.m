@@ -83,11 +83,12 @@
     }
 }
 
-+ (NSString *)convertVideoViewCount:(NSInteger)viewCount {
-    NSString *formatted = @(viewCount).stringValue;
-    NSInteger tenThousandCount = viewCount / 10000;
-    NSInteger thousandCount = viewCount / 1000;
 
++ (NSString *)convertNumber:(NSInteger)number {
+    NSString *formatted = @(number).stringValue;
+    NSInteger tenThousandCount = number / 10000;
+    NSInteger thousandCount = number / 1000;
+    
     if(tenThousandCount > 0){
         NSString *tenThousandformatted = NSLocalizedString(@"VideoViewCountTenThousandFormat", nil);
         if(![tenThousandformatted isEqualToString:@"VideoViewCountTenThousandFormat"]){
@@ -98,7 +99,20 @@
     } else if (thousandCount > 0) {
         formatted = [NSString stringWithFormat:NSLocalizedString(@"VideoViewCountThousandFormat", nil), @(thousandCount)];
     }
-    return [NSString stringWithFormat:NSLocalizedString(@"VideoViewCountFormat", @"%@ views"), formatted];
+    return formatted;
+}
+
+
++ (NSString *)convertVideoViewCount:(NSInteger)viewCount {
+    return [NSString stringWithFormat:NSLocalizedString(@"VideoViewCountFormat", @"%@ views"), [self convertNumber:viewCount]];
+}
+
++ (NSString *)convertFollowerCount:(NSInteger)followerCount{
+    return [NSString stringWithFormat:NSLocalizedString(@"TwitchFollowerCountFormat", @"%@ views"), [self convertNumber:followerCount]];
+}
+
++ (NSString *)convertViewerCount:(NSInteger)viewerCount{
+    return [NSString stringWithFormat:NSLocalizedString(@"TwitchViewerCountFormat", @"%@ views"), [self convertNumber:viewerCount]]; 
 }
 
 + (NSString *)convertPostedTime:(NSString *)publishedAt {

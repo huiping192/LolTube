@@ -46,3 +46,7 @@
 "Video" = "Video";
 "Channel" = "Channel";
 "Playlist" = "Playlist";
+
+"TwitchViewerCountFormat" = "%@ viewer";
+"TwitchFollowerCountFormat" = "%@ follower";
+

@@ -14,6 +14,10 @@
 
 + (NSString *)convertVideoViewCount:(NSInteger)viewCount;
 
++ (NSString *)convertViewerCount:(NSInteger)viewerCount;
+
++ (NSString *)convertFollowerCount:(NSInteger)followerCount;
+
 + (NSString *)convertPostedTime:(NSString *)publishedAt;
 
 + (NSString *)convertToShortPostedTime:(NSString *)publishedAt;

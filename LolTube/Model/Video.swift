@@ -1,7 +1,7 @@
 import Foundation
 
 // FIXME: change Video to struct
-class Video {
+class Video: BannerItem {
     var videoId: String!
     var channelId: String?
 
@@ -64,5 +64,14 @@ class Video {
     func update(videoDetailModel: RSVideoDetailItem){
         duration = videoDetailModel.contentDetails.duration
         viewCount = Int(videoDetailModel.statistics.viewCount)
+    }
+    
+    var selectedAction:(sourceViewController:UIViewController) -> Void {
+        return { [weak self]sourceViewController in
+            guard let strongSelf = self else {
+                return 
+            }
+            sourceViewController.showViewController(sourceViewController.instantiateVideoDetailViewController(strongSelf.videoId), sender: sourceViewController)
+        }
     }
 }

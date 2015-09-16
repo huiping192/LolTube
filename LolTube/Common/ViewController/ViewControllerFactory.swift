@@ -7,6 +7,8 @@ extension UIViewController {
         case Search = "Search"
         case Main = "Main"
         case Banner = "Banner"
+        case Twitch
+
     }
     
     private enum ViewControllerIdentifier:String {
@@ -23,6 +25,9 @@ extension UIViewController {
         // banner
         case SplitBanner = "SplitBanner"
         case CombinedBanner = "CombinedBanner"
+        
+        // twitch
+        case Stream
         
     }
     
@@ -101,28 +106,39 @@ extension UIViewController {
         return searchPlaylistsViewController
     }
     
-    func instantiateBannerViewController(videoList:[Video]) ->  BannerViewController{
+    func instantiateBannerViewController(bannerItemList:[BannerItem]) ->  BannerViewController{
         let bannerViewController = viewController(.Banner, type: BannerViewController.self)
         
-        bannerViewController.videoList = videoList
+        bannerViewController.bannerItemList = bannerItemList
         
         return bannerViewController
     }
     
-    func instantiateSplitBannerViewController(videoList:[Video]) ->  SplitBannerViewController{
+    func instantiateSplitBannerViewController(bannerItemList:[BannerItem]) ->  SplitBannerViewController{
         let bannerViewController = viewController(.Banner,viewControllerId:.SplitBanner, type: SplitBannerViewController.self)
         
-        bannerViewController.videoList = videoList
+        bannerViewController.bannerItemList = bannerItemList
         
         return bannerViewController
     }
     
-    func instantiateCombinedBannerViewController(videoList:[Video]) ->  CombinedBannerViewController{
+    func instantiateCombinedBannerViewController(bannerItemList:[BannerItem]) ->  CombinedBannerViewController{
         let bannerViewController = viewController(.Banner,viewControllerId:.CombinedBanner, type: CombinedBannerViewController.self)
         
-        bannerViewController.videoList = videoList
+        bannerViewController.bannerItemList = bannerItemList
         
         return bannerViewController
+    }
+    
+    func instantiateTwitchStreamViewController(steam :TwitchStream) ->  TwitchStreamViewController{
+        let twitchStreamViewController = viewController(.Twitch,viewControllerId:.Stream, type: TwitchStreamViewController.self)
+        twitchStreamViewController.stream = steam
+        return twitchStreamViewController
+    }
+    
+    func instantiateTwitchStreamListViewController() -> TwitchStreamListViewController{
+        let twitchStreamListViewController = viewController(.Twitch, type: TwitchStreamListViewController.self)
+        return twitchStreamListViewController
     }
     
     private func viewController<T:UIViewController>(storyboardName:StoryboardName,viewControllerId:ViewControllerIdentifier? = nil,type:T.Type) -> T {

@@ -15,4 +15,8 @@ extension Int {
     func toSubscriberCountFormat() -> String {
         return NSString(format: NSLocalizedString("ChannelSubscriberCountFormat", comment: ""), self.toDecimalStyleString()) as String
     }
+    
+    func toViewerCountFormat() -> String {
+        return NSString(format: NSLocalizedString("TwitchViewerCountFormat", comment: ""), self.toDecimalStyleString()) as String
+    }
 }

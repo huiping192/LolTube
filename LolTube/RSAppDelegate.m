@@ -12,6 +12,7 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import <Google/Analytics.h>
+#import <AVFoundation/AVFoundation.h>
 
 static NSString *const kSharedUserDefaultsSuitName = @"kSharedUserDefaultsSuitName";
 static NSString *const kChannelIdsKey = @"channleIds";
@@ -27,6 +28,8 @@ static NSString *const kChannelIdsKey = @"channleIds";
     [self p_configureCloud];
     [self p_configureAnalytics];
     
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+
     return YES;
 }
 

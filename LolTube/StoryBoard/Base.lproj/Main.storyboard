@@ -1041,7 +1041,6 @@
                                                     <outlet property="thunmbnailImageView" destination="dff-Kz-bmu" id="Q8N-wc-jBl"/>
                                                     <outlet property="titleLabel" destination="hE8-HW-Hih" id="fIE-JX-0kK"/>
                                                     <outlet property="viewCountLabel" destination="N3w-lH-NEx" id="z6w-ni-BPQ"/>
-                                                    <segue destination="99o-UL-MFg" kind="show" identifier="videoDetail" id="pGj-tb-mQC"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>

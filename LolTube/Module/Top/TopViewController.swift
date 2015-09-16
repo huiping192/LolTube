@@ -5,7 +5,6 @@ import Async
 class TopViewController: UIViewController {
     
     private enum SegueIdentifier:String {
-        case videoDetail = "videoDetail"
         case Banner = "Banner"
     }
     
@@ -41,20 +40,20 @@ class TopViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        EventTracker.trackViewContentView(viewName:"Featured", viewType:TopViewController.self )
+
         configureView()
         loadVideosData()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        EventTracker.trackViewContentView(viewName:"Featured", viewType:TopViewController.self )
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         if let prevFrame = prevFrame where prevFrame != view.frame {
-            videosCollectionView.reloadData()
-            layoutCollectionViewSize()
+            self.videosCollectionView.reloadData()
+            self.layoutCollectionViewSize()
         }
+
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -77,8 +76,6 @@ class TopViewController: UIViewController {
             self.layoutCollectionViewSize()
         
         })
-        
-
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -89,13 +86,6 @@ class TopViewController: UIViewController {
         }
         
         switch segueId {
-        case .videoDetail:
-            guard let collectionViewCell = sender as? UICollectionViewCell,indexPath = videosCollectionView.indexPathForCell(collectionViewCell),video = video(indexPath) else {
-                return
-            }
-            let videoDetailViewController = segue.destinationViewController(RSVideoDetailViewController.self)
-            videoDetailViewController.videoId = video.videoId
-
         case .Banner:
             bannerViewController = segue.destinationViewController(BannerViewController.self)
         }
@@ -152,10 +142,10 @@ class TopViewController: UIViewController {
     }
     
     private func channel(section: Int) -> Channel? {
-        guard section < viewModel.channelList?.count else {
+        guard section <= viewModel.channelList?.count else {
             return nil
         }
-        return viewModel.channelList?[section]
+        return viewModel.channelList?[section - 1]
     }
     
     // MARK: view cconfiguration
@@ -177,7 +167,7 @@ class TopViewController: UIViewController {
         guard let topVideoList = viewModel.topVideoList else {
             return
         }
-        bannerViewController.videoList = topVideoList
+        bannerViewController.bannerItemList = topVideoList.map{$0 as BannerItem }
     }
     
 }
@@ -207,8 +197,28 @@ private extension TopViewController {
 
 extension TopViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard section != 0 else {
+            let streamCount = viewModel.twtichStreamList?.count ?? 0
+            
+            switch (traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
+            case (.Compact, .Regular) where section == 0:
+                return min(streamCount,4)
+            case (.Compact, .Compact):
+                return min(streamCount,3)
+            case (.Regular, .Compact):
+                return min(streamCount,3)
+            case (.Regular, .Regular):
+                if view.frame.width > 768.0 {
+                    return min(streamCount,4)
+                }
+                return min(streamCount,3)
+            default:
+                return streamCount
+            }
+        }
+        
         var videoCount = 0
-        if let channel = viewModel.channelList?[section],videoList = viewModel.videoDictionary?[channel] {
+        if let channel = viewModel.channelList?[section - 1],videoList = viewModel.videoDictionary?[channel] {
             videoCount = videoList.count
         }
         
@@ -234,13 +244,26 @@ extension TopViewController: UICollectionViewDataSource {
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return viewModel.channelList?.count ?? 0
+        return (viewModel.channelList?.count ?? 0) + 1
     }
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(kind, indexPath: indexPath, type: TopVideoCollectionHeaderView.self)
+            
+            if indexPath.section == 0 {
+                headerView.titleLabel.text = "Twitch"
+                
+                headerView.moreButton.tag = indexPath.section
+                headerView.moreButton.addTarget(self, action:"moreButtonTapped:", forControlEvents: .TouchUpInside)
+                headerView.thumbnailImageView.image = UIImage(named: "Twitch")
+                headerView.tag = indexPath.section
+                headerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "headerViewTapped:"))
+                return headerView
+            }
+            
+            
             guard let channel = channel(indexPath.section) else {
                 return headerView
             }
@@ -271,6 +294,12 @@ extension TopViewController: UICollectionViewDataSource {
     }
     
     func headerViewTapped(gestureRecognizer: UITapGestureRecognizer){
+        guard gestureRecognizer.view?.tag != 0 else {
+            showViewController(instantiateTwitchStreamListViewController(), sender: self)
+            return
+        }
+        
+        
         guard let view = gestureRecognizer.view , channel = channel(view.tag) else {
             return
         }
@@ -279,6 +308,11 @@ extension TopViewController: UICollectionViewDataSource {
     }
     
     func moreButtonTapped(button: UIButton){
+        guard button.tag != 0 else {
+            showViewController(instantiateTwitchStreamListViewController(), sender: self)
+            return
+        }
+
         guard let channel = channel(button.tag) else {
             return
         }
@@ -288,7 +322,40 @@ extension TopViewController: UICollectionViewDataSource {
 }
 
 extension TopViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        guard indexPath.section != 0 else {
+            guard let twitchStream = viewModel.twtichStreamList?[indexPath.row] else {
+                return
+            }
+            twitchStream.selectedAction(sourceViewController: self)
+            
+            return
+        }
+        
+        guard let video = video(indexPath) else {
+            return
+        }
+        video.selectedAction(sourceViewController: self)
+    }
+    
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath){
+        guard indexPath.section != 0 else {
+            guard let twitchStream = viewModel.twtichStreamList?[indexPath.row],cell = cell as? TopVideoCell else {
+                return
+            }
+            
+            loadImage(twitchStream.thumbnailUrl){
+                [weak collectionView] image in
+                let cell = collectionView?.cell(indexPath, type: TopVideoCell.self)
+                cell?.thunmbnailImageView.image = image
+            }
+            cell.titleLabel.text = twitchStream.title
+            cell.viewCountLabel.text =  twitchStream.viewersString
+            cell.durationLabel.text = nil
+            
+            return
+        }
+        
         guard let video = video(indexPath),cell = cell as? TopVideoCell else {
             return
         }
@@ -321,6 +388,9 @@ extension TopViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        guard indexPath.section != 0 else {
+            return
+        }
         guard let video = video(indexPath),imageLoadingOperation = channelVideoImageLoadingOperationDictionary[video.videoId] else {
             return
         }
