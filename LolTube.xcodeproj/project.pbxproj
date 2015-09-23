@@ -26,7 +26,6 @@
 		7A9D521320B2B1B88B16EBFB /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D50E5C2FBC9003C9B521E /* Channel.swift */; };
 		7A9D5221D105A982CA7413A1 /* RSVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D522E2ABA2D7CF8D28865 /* RSVideoDetailModel.m */; };
 		7A9D533BD41BF929A8993258 /* NSDate+FormatterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D571016D3664FBDB5479B /* NSDate+FormatterSpec.swift */; };
-		7A9D5354CB276B49E4C1A679 /* RSChannelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5005941F2FA356C54AC6 /* RSChannelListViewController.m */; };
 		7A9D54173333A8DCD115D73B /* Banner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5B874B5EA9F6FA7293D1 /* Banner.storyboard */; };
 		7A9D54EC8DC06A980DAD71E5 /* RSVideoRelatedVideosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5CCAFA198A4073222A6C /* RSVideoRelatedVideosViewController.m */; };
 		7A9D55A5852D9DA760734F99 /* RSVideoInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5AC68727A9BCD0BEFF02 /* RSVideoInfoViewController.m */; };
@@ -105,6 +104,7 @@
 		DC2F038E1B5CF32600AAC8F8 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC2F038D1B5CF32600AAC8F8 /* Search.storyboard */; };
 		DC37D4EC1AE67CFA00601458 /* LolChannelSearchChannelList.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5A4F7E3337B0F588D6AC /* LolChannelSearchChannelList.json */; };
 		DC47690B1A07EAA700DC3D2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC47690D1A07EAA700DC3D2D /* Main.storyboard */; };
+		DC47DABF1BB2628200865131 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC47DABE1BB2628200865131 /* GoogleService-Info.plist */; settings = {ASSET_TAGS = (); }; };
 		DC51F4B91B450FF9009AEC11 /* ChannelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51F4B81B450FF9009AEC11 /* ChannelDetailViewController.swift */; };
 		DC51F4BB1B45101B009AEC11 /* ChannelInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51F4BA1B45101B009AEC11 /* ChannelInfoViewController.swift */; };
 		DC51F4BD1B451308009AEC11 /* VideoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51F4BC1B451308009AEC11 /* VideoListViewController.swift */; };
@@ -321,6 +321,7 @@
 		DC4769111A07EAAF00DC3D2D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		DC4769171A07EAB300DC3D2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		DC4769191A07EAB500DC3D2D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		DC47DABE1BB2628200865131 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DC51B44D1A0D36760034DDD1 /* LolTube-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "LolTube-Bridging-Header.h"; path = "Common/Util/LolTube-Bridging-Header.h"; sourceTree = "<group>"; };
 		DC51B4501A0D36CB0034DDD1 /* LolTubeTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "LolTubeTests-Bridging-Header.h"; path = "Common/Category/LolTubeTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		DC51F4B81B450FF9009AEC11 /* ChannelDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelDetailViewController.swift; sourceTree = "<group>"; };
@@ -909,6 +910,7 @@
 		DC1044B119B2FA6B007A86E6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DC47DABE1BB2628200865131 /* GoogleService-Info.plist */,
 				DCA49FCD1B889ED3005D5786 /* Launch Screen.storyboard */,
 				DC0F69281A075CD90061EB95 /* LolTube.entitlements */,
 				DC1044B219B2FA6B007A86E6 /* LolTube-Info.plist */,
@@ -1117,6 +1119,7 @@
 				DC1044B519B2FA6B007A86E6 /* InfoPlist.strings in Resources */,
 				DC9446BA1B86239100871410 /* Loading.xib in Resources */,
 				DC51F4BF1B45134A009AEC11 /* VideoList.storyboard in Resources */,
+				DC47DABF1BB2628200865131 /* GoogleService-Info.plist in Resources */,
 				DCEBA51419BCB2AF007C3FC7 /* Localizable.strings in Resources */,
 				DC2F038E1B5CF32600AAC8F8 /* Search.storyboard in Resources */,
 				DC47690B1A07EAA700DC3D2D /* Main.storyboard in Resources */,

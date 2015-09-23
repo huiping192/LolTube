@@ -11,6 +11,7 @@
 #import "RSVideoDetailViewController.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+#import <Google/Analytics.h>
 
 static NSString *const kSharedUserDefaultsSuitName = @"kSharedUserDefaultsSuitName";
 static NSString *const kChannelIdsKey = @"channleIds";
@@ -24,7 +25,8 @@ static NSString *const kChannelIdsKey = @"channleIds";
     [self p_savePersetting];
     [self p_configureVideoService];
     [self p_configureCloud];
-
+    [self p_configureAnalytics];
+    
     return YES;
 }
 
@@ -97,6 +99,17 @@ static NSString *const kChannelIdsKey = @"channleIds";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(storeDidChange:) name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification object:[NSUbiquitousKeyValueStore defaultStore]];
 
     [[NSUbiquitousKeyValueStore defaultStore] synchronize];
+}
+
+- (void)p_configureAnalytics {
+    NSError *configureError;
+    [[GGLContext sharedInstance] configureWithError:&configureError];
+    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
+    
+    // Optional: configure GAI options.
+    GAI *gai = [GAI sharedInstance];
+    gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
+    gai.logger.logLevel = kGAILogLevelVerbose;  // remove before app release
 }
 
 - (void)storeDidChange:(NSNotification *)notification {

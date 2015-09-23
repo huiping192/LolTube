@@ -10,7 +10,7 @@ pod 'JSONModel', '~> 1.0.1'
 pod 'XCDYouTubeKit', '~> 2.0.2'
 pod 'SDWebImage', '~> 3.7.0'
 pod 'TSMessages', :git => 'https://github.com/KrauseFx/TSMessages.git'
-pod 'GoogleAnalytics-iOS-SDK'
+pod 'Google/Analytics', '~> 1.0.0'
 pod 'DZNEmptyDataSet'
 pod 'Cartography', :git => "git@github.com:robb/Cartography.git", :branch => "swift-2.0"
 pod 'Async', :git => "git@github.com:duemunk/Async.git", :branch => "feature/Swift_2.0"
@@ -33,7 +33,7 @@ end
 post_install do |installer_representation|
   installer_representation.pods_project.targets.each do |target|
     puts "taret=#{target.name}"
-    if target.name == "Pods-VideoWidget-AFNetworking" || target.name == "Pods-VideoWidget-JSONModel" || target.name == "Pods-VideoWidget-SDWebImage"
+    if target.name == "AFNetworking" || target.name == "JSONModel" || target.name == "SDWebImage"
       target.build_configurations.each do |config|
         config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
       end
