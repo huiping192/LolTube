@@ -23,9 +23,19 @@ PODS:
   - Async (1.3.1)
   - Cartography (0.5.0)
   - DZNEmptyDataSet (1.6.1)
-  - GoogleAnalytics-iOS-SDK (3.10):
-    - GoogleAnalytics-iOS-SDK/Core (= 3.10)
-  - GoogleAnalytics-iOS-SDK/Core (3.10)
+  - Google/Analytics (1.0.7):
+    - Google/Core
+    - GoogleAnalytics (~> 3.12)
+  - Google/Core (1.0.7):
+    - GoogleNetworkingUtilities (~> 1.0)
+    - GoogleSymbolUtilities (~> 1.0)
+    - GoogleUtilities (~> 1.0)
+  - GoogleAnalytics (3.13.0)
+  - GoogleNetworkingUtilities (1.0.0):
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleSymbolUtilities (1.0.0)
+  - GoogleUtilities (1.0.1):
+    - GoogleSymbolUtilities (~> 1.0)
   - HexColors (2.3.0)
   - JSONModel (1.0.1)
   - Nimble (0.4.2)
@@ -46,7 +56,7 @@ DEPENDENCIES:
   - Async (from `git@github.com:duemunk/Async.git`, branch `feature/Swift_2.0`)
   - Cartography (from `git@github.com:robb/Cartography.git`, branch `swift-2.0`)
   - DZNEmptyDataSet
-  - GoogleAnalytics-iOS-SDK
+  - Google/Analytics (~> 1.0.0)
   - JSONModel (~> 1.0.1)
   - Nimble
   - OCMock (~> 3.1.1)
@@ -82,7 +92,11 @@ SPEC CHECKSUMS:
   Async: edb15b1e34181d7c9873ce6b5d6eabc1c99e638b
   Cartography: 314f5ed1495995760487161eeb7a8a0940d88ad3
   DZNEmptyDataSet: 3d31c27758230f03c71199f8c522bcfa99fba16c
-  GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
+  Google: 875f5a8ade86dd02e36586e4a54814843938c7f6
+  GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
+  GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
+  GoogleSymbolUtilities: a7b0feed1fe667c8d5e647177938d0ecd62d6948
+  GoogleUtilities: e3475cd4d45134221d2f3f3626095a1c49b62041
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   JSONModel: de5799179dd476f68e0de1be3a4a40c962cc535f
   Nimble: 49b7a7da8919f42823d37c6d68cc6d15a7009f32
