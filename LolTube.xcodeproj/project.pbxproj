@@ -1085,7 +1085,6 @@
 				DC5708EF1A00DBF500DB8821 /* Sources */,
 				DC5708F01A00DBF500DB8821 /* Frameworks */,
 				DC5708F11A00DBF500DB8821 /* Resources */,
-				2AC97878B2FD49C6A2F94C6D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1220,21 +1219,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LolTubeTests/Pods-LolTubeTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2AC97878B2FD49C6A2F94C6D /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VideoWidget/Pods-VideoWidget-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2F1AB611F1E348F88CCFAC27 /* Check Pods Manifest.lock */ = {
@@ -1778,7 +1762,8 @@
 				CODE_SIGN_ENTITLEMENTS = VideoWidget/VideoWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1806,7 +1791,8 @@
 				CODE_SIGN_ENTITLEMENTS = VideoWidget/VideoWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = VideoWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
