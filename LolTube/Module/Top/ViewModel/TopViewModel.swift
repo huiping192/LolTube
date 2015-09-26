@@ -5,10 +5,13 @@ class TopViewModel {
     
     private let youtubeService = YoutubeService()
     private let channelService = ChannelService()
-    
+    private let twitchService = TwitchService()
+
     var topVideoList: [Video]?
     var channelList: [Channel]?
     var videoDictionary: [Channel:[Video]]?
+    
+    var twtichStreamList: [TwitchStream]?
     
     init() {
         
@@ -29,7 +32,6 @@ class TopViewModel {
     }
     
     private func loadVideos(channelList: [Channel], success: () -> Void, failure: (NSError) -> Void) {
-        
         let successBlock:(([RSSearchModel]) -> Void) = {
             [weak self]searchModelList in
             Async.userInitiated{
@@ -43,10 +45,12 @@ class TopViewModel {
                 for (index, searchModel) in searchModelList.enumerate() {
                     var videoList = [Video]()
                     
-                    (searchModel.items as! [RSItem]).forEach{
-                        let video = Video(item:$0)
-                        videoList.append(video)
-                        allVideoList.append(video)
+                    if searchModel.items != nil {
+                        (searchModel.items as! [RSItem]).forEach{
+                            let video = Video(item:$0)
+                            videoList.append(video)
+                            allVideoList.append(video)
+                        }
                     }
                     
                     videoDictionary[channelList[index]] = videoList;
@@ -56,12 +60,25 @@ class TopViewModel {
                 weakSelf.channelList = weakSelf.topChannelList(channelList, videoDictionary: videoDictionary)
                 weakSelf.videoDictionary = videoDictionary
                 
-                Async.main{success()}
+                weakSelf.loadTwitchStream({
+                    Async.main{success()}
+                    }, failure: failure)
+                
             }
         }
         
         let channelIdList = channelList.map { $0.channelId! }
         self.youtubeService.videoList(channelIdList, searchText: nil, nextPageTokenList: nil, success: successBlock, failure: failure)
+    }
+    
+    func loadTwitchStream(success: () -> Void, failure: ((NSError) -> Void)?) {
+        let successBlock:(RSStreamListModel -> Void) = {
+            [weak self]streamListModel in
+            self?.twtichStreamList = streamListModel.streams.map{ TwitchStream($0) }
+            success()
+        }
+        
+        twitchService.steamList(pageCount:4, pageNumber: 0, success: successBlock, failure: failure)
     }
     
     func updateVideoDetail(video: Video, success: () -> Void, failure: ((NSError) -> Void)? = nil) {

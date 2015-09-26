@@ -47,3 +47,8 @@
 "Video" = "影片";
 "Channel" = "頻道";
 "Playlist" = "播放清單";
+
+
+"TwitchViewerCountFormat" = "%@位觀看者";
+"TwitchFollowerCountFormat" = "%@關註";
+

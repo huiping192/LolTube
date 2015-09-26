@@ -12,14 +12,13 @@ class CombinedBannerViewController:UIViewController {
     @IBOutlet private var videoImagePageControl: UIPageControl!
     
     private let imageLoadingOperationQueue = NSOperationQueue()
-    private var imageLoadingOperationDictionary = [String: NSOperation]()
     
     private var scrollToNextVideoTimer:NSTimer?
     
-    var videoList:[Video]?{
+    var bannerItemList:[BannerItem]?{
         didSet{
-            var realVideoList = videoList
-            if let firstItem = videoList?.first, lastItem = videoList?.last {
+            var realVideoList = bannerItemList
+            if let firstItem = bannerItemList?.first, lastItem = bannerItemList?.last {
                 realVideoList?.insert(lastItem, atIndex: 0)
                 realVideoList?.append(firstItem)
                 self.realVideoList = realVideoList
@@ -27,7 +26,7 @@ class CombinedBannerViewController:UIViewController {
         }
     }
     
-    var realVideoList:[Video]?
+    var realVideoList:[BannerItem]?
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -41,7 +40,7 @@ class CombinedBannerViewController:UIViewController {
         collectionView.reloadData()
 
         currentVideoTitleLabel.text = realVideoList?[1].title
-        videoImagePageControl.numberOfPages = videoList?.count ?? 0
+        videoImagePageControl.numberOfPages = bannerItemList?.count ?? 0
         videoImagePageControl.currentPage = 0
         collectionView.scrollToItemAtIndexPath(NSIndexPath(forItem: 1, inSection: 0), atScrollPosition: .Left, animated: false)
     }
@@ -83,13 +82,13 @@ extension CombinedBannerViewController: UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(indexPath,type:BannerCell.self)
-        guard let video = video(indexPath) else {
+        guard let banner = bannerItem(indexPath) else {
             return cell
         }
         
-        let firstImageUrlString = video.highThumbnailUrl ?? video.thumbnailUrl
-        let secondImageUrlString = video.thumbnailUrl
-        loadVideoImage(video.videoId, imageUrlString: firstImageUrlString, secondImageUrlString: secondImageUrlString) {
+        let firstImageUrlString = banner.highThumbnailUrl ?? banner.thumbnailUrl
+        let secondImageUrlString = banner.thumbnailUrl
+        loadImage(firstImageUrlString, secondImageUrlString: secondImageUrlString) {
             [weak collectionView] image in
             let cell = collectionView?.cell(indexPath, type: BannerCell.self)
             cell?.thunmbnailImageView.image = image
@@ -98,40 +97,32 @@ extension CombinedBannerViewController: UICollectionViewDataSource {
         return cell
     }
     
-    private func loadVideoImage(videoId: String, imageUrlString: String?, secondImageUrlString: String?, success: (UIImage) -> Void) {
+    private func loadImage(imageUrlString: String?, secondImageUrlString: String?, success: (UIImage) -> Void) {
         guard let imageUrlString = imageUrlString else {
             return
         }
         
         let imageLoadOperation = ImageLoadOperation(url: imageUrlString, replaceImageUrl: secondImageUrlString, completed: success)
-        
         imageLoadingOperationQueue.addOperation(imageLoadOperation)
-        imageLoadingOperationDictionary[videoId] = imageLoadOperation
     }
     
-    private func video(indexPath:NSIndexPath) -> Video? {
+    private func bannerItem(indexPath:NSIndexPath) -> BannerItem? {
         return realVideoList?[indexPath.row]
     }
 }
 
 extension CombinedBannerViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        guard let video = video(indexPath) , imageLoadingOperation = imageLoadingOperationDictionary[video.videoId] else {
-            return
-        }
-        imageLoadingOperation.cancel()
-        imageLoadingOperationDictionary.removeValueForKey(video.videoId)
-    }
-    
+  
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return collectionView.frame.size
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
-        guard let video = video(indexPath) else {
+        guard let bannerItem = bannerItem(indexPath) else {
             return
         }
-        navigationController?.pushViewController(instantiateVideoDetailViewController(video.videoId), animated: true)
+
+        bannerItem.selectedAction(sourceViewController: self)
     }
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {

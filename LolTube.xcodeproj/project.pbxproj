@@ -105,12 +105,22 @@
 		DC37D4EC1AE67CFA00601458 /* LolChannelSearchChannelList.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5A4F7E3337B0F588D6AC /* LolChannelSearchChannelList.json */; };
 		DC47690B1A07EAA700DC3D2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC47690D1A07EAA700DC3D2D /* Main.storyboard */; };
 		DC47DABF1BB2628200865131 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC47DABE1BB2628200865131 /* GoogleService-Info.plist */; settings = {ASSET_TAGS = (); }; };
+		DC47DAC11BB28EB800865131 /* BannerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC47DAC01BB28EB800865131 /* BannerItem.swift */; settings = {ASSET_TAGS = (); }; };
+		DC47DAC31BB2B28400865131 /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC47DAC21BB2B28400865131 /* HttpService.swift */; settings = {ASSET_TAGS = (); }; };
+		DC47DAC41BB2B37800865131 /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC47DAC21BB2B28400865131 /* HttpService.swift */; settings = {ASSET_TAGS = (); }; };
+		DC47DAC61BB43B7200865131 /* TwitchStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC47DAC51BB43B7200865131 /* TwitchStreamViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		DC47DAC81BB43B9D00865131 /* Twitch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC47DAC71BB43B9D00865131 /* Twitch.storyboard */; settings = {ASSET_TAGS = (); }; };
+		DC47DACA1BB445BB00865131 /* Twitch-iframe-player.html in Resources */ = {isa = PBXBuildFile; fileRef = DC47DAC91BB445BB00865131 /* Twitch-iframe-player.html */; settings = {ASSET_TAGS = (); }; };
+		DC47DACE1BB6785600865131 /* TwitchStreamListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC47DACD1BB6785600865131 /* TwitchStreamListViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		DC47DAD11BB678DF00865131 /* TwitchStreamListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC47DAD01BB678DF00865131 /* TwitchStreamListViewModel.swift */; settings = {ASSET_TAGS = (); }; };
 		DC51F4B91B450FF9009AEC11 /* ChannelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51F4B81B450FF9009AEC11 /* ChannelDetailViewController.swift */; };
 		DC51F4BB1B45101B009AEC11 /* ChannelInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51F4BA1B45101B009AEC11 /* ChannelInfoViewController.swift */; };
 		DC51F4BD1B451308009AEC11 /* VideoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51F4BC1B451308009AEC11 /* VideoListViewController.swift */; };
 		DC51F4BF1B45134A009AEC11 /* VideoList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC51F4BE1B45134A009AEC11 /* VideoList.storyboard */; };
 		DC51F4C11B451696009AEC11 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51F4C01B451696009AEC11 /* VideoCollectionViewCell.swift */; };
 		DC51F4C31B451777009AEC11 /* VideoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC51F4C21B451777009AEC11 /* VideoListViewModel.swift */; };
+		DC53D80D1BA874AC00103192 /* TwitchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC53D80C1BA874AC00103192 /* TwitchService.swift */; };
+		DC53D8101BA8785500103192 /* RSStreamListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC53D80F1BA8785500103192 /* RSStreamListModel.m */; };
 		DC5708F51A00DBF500DB8821 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5708F41A00DBF500DB8821 /* NotificationCenter.framework */; };
 		DC5708FB1A00DBF500DB8821 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5708FA1A00DBF500DB8821 /* TodayViewController.m */; };
 		DC5708FD1A00DBF500DB8821 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5708FC1A00DBF500DB8821 /* MainInterface.storyboard */; };
@@ -119,6 +129,7 @@
 		DC64F4C919E5582F00F860B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC64F4C819E5582F00F860B4 /* SystemConfiguration.framework */; };
 		DC82E5CD1B84C32A00420A1E /* VideoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC82E5CC1B84C32A00420A1E /* VideoCollectionViewController.swift */; };
 		DC842D731B4AF2A80085FF8D /* PlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC842D721B4AF2A80085FF8D /* PlaylistsViewController.swift */; };
+		DC8680AF1BAC38FF001D7706 /* TwitchStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8680AE1BAC38FF001D7706 /* TwitchStream.swift */; settings = {ASSET_TAGS = (); }; };
 		DC9446BA1B86239100871410 /* Loading.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9446BC1B86239100871410 /* Loading.xib */; };
 		DC9446C31B8623DF00871410 /* LoadingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9446C51B8623DF00871410 /* LoadingCollectionViewCell.xib */; };
 		DC9467691B4C133D0043E33B /* RSPlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9467681B4C133D0043E33B /* RSPlaylistModel.m */; };
@@ -136,7 +147,7 @@
 		DCA44BDF1A0CE8E100A4A758 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA44BDD1A0CE8E100A4A758 /* Fabric.framework */; };
 		DCA49FCE1B889ED3005D5786 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCA49FCD1B889ED3005D5786 /* Launch Screen.storyboard */; };
 		DCA636B11B6D05A900F8689B /* CombinedBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA636B01B6D05A900F8689B /* CombinedBannerViewController.swift */; };
-		DCA9550A1B988B300030DCF6 /* ChannelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEDB9FB1B8F612700BD0A0B /* ChannelService.swift */; settings = {ASSET_TAGS = (); }; };
+		DCA9550A1B988B300030DCF6 /* ChannelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEDB9FB1B8F612700BD0A0B /* ChannelService.swift */; };
 		DCB16C141B6D371E00F8AC86 /* UIViewContollerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB16C131B6D371E00F8AC86 /* UIViewContollerExtensions.swift */; };
 		DCC0B8B61B58D1BE0081E5CA /* UIStoryboardSegueExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC0B8B51B58D1BE0081E5CA /* UIStoryboardSegueExtensions.swift */; };
 		DCC0B8B81B58D66E0081E5CA /* UICollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC0B8B71B58D66E0081E5CA /* UICollectionViewExtensions.swift */; };
@@ -152,7 +163,7 @@
 		DCEBA51419BCB2AF007C3FC7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCEBA51619BCB2AF007C3FC7 /* Localizable.strings */; };
 		DCEC27F71B6A6D4D0068B892 /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEC27F61B6A6D4D0068B892 /* ConcurrentOperation.swift */; };
 		DCEC27F91B6A749A0068B892 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEC27F81B6A749A0068B892 /* UIViewControllerExtensions.swift */; };
-		DCEDB9FC1B8F612700BD0A0B /* ChannelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEDB9FB1B8F612700BD0A0B /* ChannelService.swift */; settings = {ASSET_TAGS = (); }; };
+		DCEDB9FC1B8F612700BD0A0B /* ChannelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEDB9FB1B8F612700BD0A0B /* ChannelService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -322,6 +333,13 @@
 		DC4769171A07EAB300DC3D2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		DC4769191A07EAB500DC3D2D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		DC47DABE1BB2628200865131 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DC47DAC01BB28EB800865131 /* BannerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerItem.swift; sourceTree = "<group>"; };
+		DC47DAC21BB2B28400865131 /* HttpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
+		DC47DAC51BB43B7200865131 /* TwitchStreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitchStreamViewController.swift; sourceTree = "<group>"; };
+		DC47DAC71BB43B9D00865131 /* Twitch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Twitch.storyboard; sourceTree = "<group>"; };
+		DC47DAC91BB445BB00865131 /* Twitch-iframe-player.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Twitch-iframe-player.html"; sourceTree = "<group>"; };
+		DC47DACD1BB6785600865131 /* TwitchStreamListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitchStreamListViewController.swift; sourceTree = "<group>"; };
+		DC47DAD01BB678DF00865131 /* TwitchStreamListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitchStreamListViewModel.swift; sourceTree = "<group>"; };
 		DC51B44D1A0D36760034DDD1 /* LolTube-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "LolTube-Bridging-Header.h"; path = "Common/Util/LolTube-Bridging-Header.h"; sourceTree = "<group>"; };
 		DC51B4501A0D36CB0034DDD1 /* LolTubeTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "LolTubeTests-Bridging-Header.h"; path = "Common/Category/LolTubeTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		DC51F4B81B450FF9009AEC11 /* ChannelDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelDetailViewController.swift; sourceTree = "<group>"; };
@@ -330,6 +348,9 @@
 		DC51F4BE1B45134A009AEC11 /* VideoList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VideoList.storyboard; sourceTree = "<group>"; };
 		DC51F4C01B451696009AEC11 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		DC51F4C21B451777009AEC11 /* VideoListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoListViewModel.swift; sourceTree = "<group>"; };
+		DC53D80C1BA874AC00103192 /* TwitchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitchService.swift; sourceTree = "<group>"; };
+		DC53D80E1BA8785500103192 /* RSStreamListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSStreamListModel.h; sourceTree = "<group>"; };
+		DC53D80F1BA8785500103192 /* RSStreamListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSStreamListModel.m; sourceTree = "<group>"; };
 		DC5708F31A00DBF500DB8821 /* VideoWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = VideoWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC5708F41A00DBF500DB8821 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		DC5708F81A00DBF500DB8821 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -341,6 +362,7 @@
 		DC64F4C819E5582F00F860B4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DC82E5CC1B84C32A00420A1E /* VideoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewController.swift; sourceTree = "<group>"; };
 		DC842D721B4AF2A80085FF8D /* PlaylistsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsViewController.swift; sourceTree = "<group>"; };
+		DC8680AE1BAC38FF001D7706 /* TwitchStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitchStream.swift; sourceTree = "<group>"; };
 		DC9446BB1B86239100871410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Loading.xib; sourceTree = "<group>"; };
 		DC9446BE1B86239300871410 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Loading.strings; sourceTree = "<group>"; };
 		DC9446C01B86239300871410 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Loading.strings"; sourceTree = "<group>"; };
@@ -444,6 +466,7 @@
 				DCA636B01B6D05A900F8689B /* CombinedBannerViewController.swift */,
 				7A9D5B874B5EA9F6FA7293D1 /* Banner.storyboard */,
 				DC9B1C3B1B6D0CBA00E16A81 /* BannerCell.swift */,
+				DC47DAC01BB28EB800865131 /* BannerItem.swift */,
 			);
 			path = Banner;
 			sourceTree = "<group>";
@@ -554,6 +577,8 @@
 				DC1196B71B4ED2C40090338F /* RSPlaylistItemsModel.m */,
 				DC1196BA1B503D4B0090338F /* RSPageInfo.h */,
 				DC1196BB1B503D4B0090338F /* RSPageInfo.m */,
+				DC53D80E1BA8785500103192 /* RSStreamListModel.h */,
+				DC53D80F1BA8785500103192 /* RSStreamListModel.m */,
 			);
 			path = JsonModel;
 			sourceTree = "<group>";
@@ -609,6 +634,7 @@
 		7A9D54910BDA4167EB25E1DC /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				DC47690D1A07EAA700DC3D2D /* Main.storyboard */,
 				7A9D52CFE863F2F5772B7F6A /* Top */,
 				7A9D5132CECE3324E4C43BD7 /* VideoDetail */,
 				7A9D540C286B4066C7A120F1 /* ChannelList */,
@@ -616,7 +642,7 @@
 				7A9D50C103B1D5AE87D4D3C7 /* VideoList */,
 				7A9D5999710E6679EA542C59 /* History */,
 				7A9D55580F416ABFE2536494 /* Search */,
-				DC47690D1A07EAA700DC3D2D /* Main.storyboard */,
+				7A9D57CFBC98C0998369B44A /* Twitch */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -707,6 +733,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		7A9D57CFBC98C0998369B44A /* Twitch */ = {
+			isa = PBXGroup;
+			children = (
+				DC47DACF1BB6786700865131 /* Stream */,
+				DC47DAC71BB43B9D00865131 /* Twitch.storyboard */,
+				DC47DACD1BB6785600865131 /* TwitchStreamListViewController.swift */,
+				DC47DAD01BB678DF00865131 /* TwitchStreamListViewModel.swift */,
+			);
+			path = Twitch;
+			sourceTree = "<group>";
+		};
 		7A9D5999710E6679EA542C59 /* History */ = {
 			isa = PBXGroup;
 			children = (
@@ -720,11 +757,13 @@
 		7A9D59BD8886AE67DA2D7CF6 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				7A9D531CBB1900445FF0B61E /* JsonModel */,
 				DCEDB9FB1B8F612700BD0A0B /* ChannelService.swift */,
 				7A9D5E1CAC258986C7A0B45D /* RSVideoService.m */,
 				7A9D56878B6EAD4145C3F188 /* RSVideoService.h */,
 				7A9D597407BB9DD1397A6220 /* YoutubeService.swift */,
-				7A9D531CBB1900445FF0B61E /* JsonModel */,
+				DC53D80C1BA874AC00103192 /* TwitchService.swift */,
+				DC47DAC21BB2B28400865131 /* HttpService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -800,6 +839,7 @@
 		7A9D5D6A5556C56CFBE04C95 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DC8680AE1BAC38FF001D7706 /* TwitchStream.swift */,
 				7A9D50E5C2FBC9003C9B521E /* Channel.swift */,
 				7A9D512944F19F5B2B5B9B90 /* Video.swift */,
 				DC94676B1B4C17F40043E33B /* Playlist.swift */,
@@ -942,6 +982,15 @@
 				DC1044D219B2FA6B007A86E6 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DC47DACF1BB6786700865131 /* Stream */ = {
+			isa = PBXGroup;
+			children = (
+				DC47DAC51BB43B7200865131 /* TwitchStreamViewController.swift */,
+				DC47DAC91BB445BB00865131 /* Twitch-iframe-player.html */,
+			);
+			name = Stream;
 			sourceTree = "<group>";
 		};
 		DC5708F61A00DBF500DB8821 /* VideoWidget */ = {
@@ -1119,10 +1168,12 @@
 				DC1044B519B2FA6B007A86E6 /* InfoPlist.strings in Resources */,
 				DC9446BA1B86239100871410 /* Loading.xib in Resources */,
 				DC51F4BF1B45134A009AEC11 /* VideoList.storyboard in Resources */,
+				DC47DAC81BB43B9D00865131 /* Twitch.storyboard in Resources */,
 				DC47DABF1BB2628200865131 /* GoogleService-Info.plist in Resources */,
 				DCEBA51419BCB2AF007C3FC7 /* Localizable.strings in Resources */,
 				DC2F038E1B5CF32600AAC8F8 /* Search.storyboard in Resources */,
 				DC47690B1A07EAA700DC3D2D /* Main.storyboard in Resources */,
+				DC47DACA1BB445BB00865131 /* Twitch-iframe-player.html in Resources */,
 				DCA49FCE1B889ED3005D5786 /* Launch Screen.storyboard in Resources */,
 				DCEB19781B52532600F255B3 /* ChannelDetail.storyboard in Resources */,
 				7A9D54173333A8DCD115D73B /* Banner.storyboard in Resources */,
@@ -1302,6 +1353,7 @@
 				DC1044BB19B2FA6B007A86E6 /* RSAppDelegate.m in Sources */,
 				DC64F4C719E5524900F860B4 /* Reachability.m in Sources */,
 				DC1196C31B510C3A0090338F /* SimpleListCollectionViewController.swift in Sources */,
+				DC47DAD11BB678DF00865131 /* TwitchStreamListViewModel.swift in Sources */,
 				7A9D517888BCFE3270DE9EB1 /* UIImageView+Loading.m in Sources */,
 				DC82E5CD1B84C32A00420A1E /* VideoCollectionViewController.swift in Sources */,
 				7A9D5F14B85FDCEF4668D937 /* RSVideoService.m in Sources */,
@@ -1333,9 +1385,11 @@
 				DC1196B81B4ED2C40090338F /* RSPlaylistItemsModel.m in Sources */,
 				7A9D5B51022DD5A6334506D9 /* TopViewModel.swift in Sources */,
 				DCD7B41D1B7394C2004A4A04 /* LoadingCollectionViewCell.swift in Sources */,
+				DC47DAC31BB2B28400865131 /* HttpService.swift in Sources */,
 				7A9D56CE982FCDCD9C3B91C4 /* RoundView.swift in Sources */,
 				DC51F4BD1B451308009AEC11 /* VideoListViewController.swift in Sources */,
 				DC9B1C3C1B6D0CBA00E16A81 /* BannerCell.swift in Sources */,
+				DC47DACE1BB6785600865131 /* TwitchStreamListViewController.swift in Sources */,
 				DC9CC5EC1B5CE6850047DFDC /* SearchChannelListViewController.swift in Sources */,
 				DC99E02E1B7A3EA5004939D2 /* ChannelCollectionViewCell.swift in Sources */,
 				7A9D5DB0985B4C2C1838AF44 /* CircularImageView.swift in Sources */,
@@ -1356,9 +1410,11 @@
 				7A9D5B295074CA6D408AEBB3 /* RSSearchModel.m in Sources */,
 				DC1196B11B4EC8080090338F /* PlaylistViewController.swift in Sources */,
 				DCEDB9FC1B8F612700BD0A0B /* ChannelService.swift in Sources */,
+				DC53D80D1BA874AC00103192 /* TwitchService.swift in Sources */,
 				7A9D50C4794BC7CDE9388DA2 /* RSVideoDetailModel.m in Sources */,
 				DCDBECEA1B6371ED004474E9 /* UIColorExtensions.swift in Sources */,
 				DC9B1C3E1B6DFC6300E16A81 /* SplitBannerViewController.swift in Sources */,
+				DC47DAC11BB28EB800865131 /* BannerItem.swift in Sources */,
 				DC51F4C31B451777009AEC11 /* VideoListViewModel.swift in Sources */,
 				DC1873571B513B5400121563 /* HistoryViewModel.swift in Sources */,
 				DCD30AA51B69251000ECB105 /* ImageLoadOperation.swift in Sources */,
@@ -1366,6 +1422,7 @@
 				DC1196C11B5105DD0090338F /* ViewControllerFactory.swift in Sources */,
 				DC1196BF1B50FFC50090338F /* UIImageExtensions.swift in Sources */,
 				DC94676C1B4C17F40043E33B /* Playlist.swift in Sources */,
+				DC47DAC61BB43B7200865131 /* TwitchStreamViewController.swift in Sources */,
 				DCC0B8B81B58D66E0081E5CA /* UICollectionViewExtensions.swift in Sources */,
 				DC842D731B4AF2A80085FF8D /* PlaylistsViewController.swift in Sources */,
 				7A9D573438D3BF99FEAE3207 /* RSThumbnails.m in Sources */,
@@ -1373,6 +1430,7 @@
 				7A9D5C16E96AE387AC29233D /* IntExtensions.swift in Sources */,
 				DCA636B11B6D05A900F8689B /* CombinedBannerViewController.swift in Sources */,
 				7A9D50935DBFA85ADFA6FBD1 /* RSVideoDetailSegmentViewModel.m in Sources */,
+				DC53D8101BA8785500103192 /* RSStreamListModel.m in Sources */,
 				7A9D55D673B125147980223D /* SearchChannelCollectionViewCell.swift in Sources */,
 				7A9D5EFBCC830062D614642A /* SearchChannelListViewModel.swift in Sources */,
 				7A9D5ED4EC7D8C7DBDB04EC1 /* SearchPlaylistsViewModel.swift in Sources */,
@@ -1380,6 +1438,7 @@
 				7A9D520400495FFA39742BA9 /* ChannelDetailViewModel.swift in Sources */,
 				7A9D573B7278D0A0CBAE966B /* PlaylistCollectionViewCell.swift in Sources */,
 				7A9D5DC7B40B226EE331BB61 /* PlaylistsCollectionViewCell.swift in Sources */,
+				DC8680AF1BAC38FF001D7706 /* TwitchStream.swift in Sources */,
 				7A9D51ABE18A0C8736203486 /* PlaylistsViewModel.swift in Sources */,
 				7A9D51B3ACA78568076119F3 /* PlaylistViewModel.swift in Sources */,
 				7A9D576C7003CA816C38CA14 /* NSDateExtensions.swift in Sources */,
@@ -1415,6 +1474,7 @@
 				DC1196B91B4ED3F30090338F /* RSPlaylistItemsModel.m in Sources */,
 				7A9D5221D105A982CA7413A1 /* RSVideoDetailModel.m in Sources */,
 				7A9D5C048C7A36A3DD033EE2 /* RSJsonModel.m in Sources */,
+				DC47DAC41BB2B37800865131 /* HttpService.swift in Sources */,
 				7A9D51CFA22CA82EC960CA7B /* RSThumbnails.m in Sources */,
 				DC94676A1B4C16A50043E33B /* RSPlaylistModel.m in Sources */,
 			);

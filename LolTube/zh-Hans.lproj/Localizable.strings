@@ -48,3 +48,6 @@
 "Video" = "视频";
 "Channel" = "频道";
 "Playlist" = "播放列表";
+
+"TwitchViewerCountFormat" = "%@位观看者";
+"TwitchFollowerCountFormat" = "%@关注";

@@ -49,3 +49,7 @@
 "Video" = "動画";
 "Channel" = "チャンネル";
 "Playlist" = "再生リスト";
+
+"TwitchViewerCountFormat" = "%@視聴者";
+"TwitchFollowerCountFormat" = "%@フォロワ";
+

@@ -10,13 +10,13 @@ class BannerViewController:UIViewController {
 
     private var currentViewController: UIViewController?
 
-    var videoList:[Video]!{
+    var bannerItemList:[BannerItem]!{
         didSet{
             if currentViewController == nil {
                 configureViewController(traitCollection, transitionCoordinator: nil)
             }
-            combinedBannerViewController?.videoList = videoList
-            splitBannerViewController?.videoList = videoList
+            combinedBannerViewController?.bannerItemList = bannerItemList
+            splitBannerViewController?.bannerItemList = bannerItemList
         }
     }
     
@@ -27,19 +27,19 @@ class BannerViewController:UIViewController {
     
     
     private func configureViewController(newCollection: UITraitCollection, transitionCoordinator coordinator: UIViewControllerTransitionCoordinator?) {
-        guard videoList != nil else {
+        guard bannerItemList != nil else {
             return
         }
         switch (newCollection.horizontalSizeClass, newCollection.verticalSizeClass) {
         case (.Compact, .Regular) :
             combinedBannerViewController = configureChildViewController(combinedBannerViewController){
                 [unowned self] in
-                return self.instantiateCombinedBannerViewController(self.videoList)
+                return self.instantiateCombinedBannerViewController(self.bannerItemList)
             }
         default:
             splitBannerViewController = configureChildViewController(splitBannerViewController){
                 [unowned self] in
-                return self.instantiateSplitBannerViewController(self.videoList)
+                return self.instantiateSplitBannerViewController(self.bannerItemList)
             }
         }
 
