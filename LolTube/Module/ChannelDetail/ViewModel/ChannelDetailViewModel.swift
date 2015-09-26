@@ -26,7 +26,7 @@ class ChannelDetailViewModel {
                 return
             }
             if let channelItem = channelModel.items[0] as? RSChannelItem{
-                weakSelf.channel = Channel(channelItem: channelItem)
+                weakSelf.channel = Channel(channelItem)
             }
             
             weakSelf.isSubscribed = (weakSelf.channelService.channelIds()).contains(weakSelf.channelId)

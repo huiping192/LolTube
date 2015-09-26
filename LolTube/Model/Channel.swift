@@ -22,7 +22,7 @@ struct  Channel: Hashable,Equatable {
     }
 
 
-    init(channelItem:RSChannelItem){
+    init(_ channelItem:RSChannelItem){
         self.channelId = channelItem.channelId
         self.title = channelItem.snippet.title
         self.description = channelItem.snippet.channelDescription
@@ -35,7 +35,7 @@ struct  Channel: Hashable,Equatable {
         }
     }
     
-    init(item:RSItem){
+    init(_ item:RSItem){
         self.channelId = item.snippet.channelId
         self.title = item.snippet.title
         self.thumbnailUrl = item.snippet.thumbnails.medium.url

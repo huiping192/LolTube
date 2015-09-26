@@ -31,7 +31,7 @@ class Video: BannerItem {
         return "\(viewCount) ・ \(publishedAtString)"
     }
     
-    init(videoItem:RSVideoItem){
+    init(_ videoItem:RSVideoItem){
         self.videoId = videoItem.id
         self.channelId = videoItem.snippet.channelId
         self.channelTitle = videoItem.snippet.channelTitle
@@ -42,7 +42,7 @@ class Video: BannerItem {
         self.viewCount = Int(videoItem.statistics.viewCount)
     }
     
-    init(playlistVideoItem:RSPlaylistVideoItem){
+    init(_ playlistVideoItem:RSPlaylistVideoItem){
         self.videoId = playlistVideoItem.snippet.resourceId.videoId
         self.channelId = playlistVideoItem.snippet.channelId
         self.channelTitle = playlistVideoItem.snippet.channelTitle
@@ -51,7 +51,7 @@ class Video: BannerItem {
         self.publishedAt = playlistVideoItem.snippet.publishedAt
     }
     
-    init(item:RSItem){
+    init(_ item:RSItem){
         self.videoId = item.id.videoId
         self.channelId = item.snippet.channelId
         self.channelTitle = item.snippet.channelTitle

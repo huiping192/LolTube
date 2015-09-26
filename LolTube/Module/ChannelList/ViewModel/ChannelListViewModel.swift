@@ -19,7 +19,7 @@ class ChannelListViewModel: SimpleListCollectionViewModelProtocol{
         
         let successBlock:((RSChannelModel) -> Void) = {
             [weak self](channelModel) in
-            self?.channelList = (channelModel.items as! [RSChannelItem]).map{Channel(channelItem:$0)}
+            self?.channelList = (channelModel.items as! [RSChannelItem]).map{Channel($0)}
             
             success()
         }

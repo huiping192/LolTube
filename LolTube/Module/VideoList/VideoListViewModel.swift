@@ -24,7 +24,7 @@ class VideoListViewModel: SimpleListCollectionViewModelProtocol {
         let successBlock:((RSSearchModel) -> Void) = {
             [weak self](searchModel) in
             
-            let videoList = (searchModel.items as! [RSItem]).map{ Video(item:$0) }
+            let videoList = (searchModel.items as! [RSItem]).map{ Video($0) }
             
             let successBlock:(() -> Void) = {
                 [weak self] in

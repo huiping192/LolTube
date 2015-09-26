@@ -35,7 +35,7 @@ class SearchChannelListViewModel: SimpleListCollectionViewModelProtocol {
         let successBlock:((RSSearchModel) -> Void) = {
             [weak self](searchModel) in
             
-            let channelList = (searchModel.items as! [RSItem]).map{ Channel(item:$0) }
+            let channelList = (searchModel.items as! [RSItem]).map{ Channel($0) }
   
             let successBlock:(([Channel]) -> Void) = {
                 [weak self]channelList in
@@ -64,7 +64,7 @@ class SearchChannelListViewModel: SimpleListCollectionViewModelProtocol {
         
         let successBlock:((RSChannelModel) -> Void) = {
             channelModel in
-            let updatedChannelList = (channelModel.items as! [RSChannelItem]).map{ Channel(channelItem: $0) }
+            let updatedChannelList = (channelModel.items as! [RSChannelItem]).map{ Channel($0) }
             
             success(updatedChannelList)
         }

@@ -23,7 +23,7 @@ class TopViewModel {
         let successBlock:((RSChannelModel) -> Void) = {
             [weak self]channelModel in
             
-            let channelList = (channelModel.items as! [RSChannelItem]).map{Channel(channelItem:$0)}
+            let channelList = (channelModel.items as! [RSChannelItem]).map{Channel($0)}
             
             self?.loadVideos(channelList, success: success, failure: failure)
         }
@@ -47,8 +47,8 @@ class TopViewModel {
                     
                     if searchModel.items != nil {
                         (searchModel.items as! [RSItem]).forEach{
-                            let video = Video(item:$0)
-                            videoList.append(video)
+                            let video = Video($0)
+                       videoList.append(video)
                             allVideoList.append(video)
                         }
                     }
