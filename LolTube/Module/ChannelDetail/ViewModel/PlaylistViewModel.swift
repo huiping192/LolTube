@@ -55,7 +55,7 @@ class PlaylistViewModel:SimpleListCollectionViewModelProtocol {
         
         let successBlock:((RSVideoDetailModel) -> Void) = {
             (videoDetailModel: RSVideoDetailModel!) in
-            for (index, detailItem) in (videoDetailModel.items as! [RSVideoDetailItem]).enumerate() {
+            for (index, detailItem) in (videoDetailModel.items).enumerate() {
                 let video = videoList[index]
                 video.update(detailItem)
             }

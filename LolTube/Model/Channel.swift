@@ -1,51 +1,38 @@
+//
+//  Channel.swift
+//  LolTube
+//
+//  Created by 郭 輝平 on 9/28/15.
+//  Copyright © 2015 Huiping Guo. All rights reserved.
+//
+
 import Foundation
 
-struct  Channel: Hashable,Equatable {
-    var channelId: String!
-    var title: String?
-    var description: String?
-    var thumbnailUrl: String?
-    var bannerImageUrl: String?
+enum ThumbnailType {
+    case Local
+    case Remote
+}
 
-    var videoCount: Int?
-    var subscriberCount: Int?
-    var viewCount: Int?
+protocol Channel {
     
-    var videoCountString: String? {
-        return (videoCount ?? 0).toVideoCountFormat()
+    
+    var id: String{
+        get
     }
-    var subscriberCountString: String? {
-        return (subscriberCount ?? 0).toSubscriberCountFormat()
+    var title: String?{
+        get
     }
-    var viewCountString: String? {
-        return RSVideoInfoUtil.convertVideoViewCount(viewCount ?? 0)
-    }
-
-
-    init(_ channelItem:RSChannelItem){
-        self.channelId = channelItem.channelId
-        self.title = channelItem.snippet.title
-        self.description = channelItem.snippet.channelDescription
-        self.thumbnailUrl = channelItem.snippet.thumbnails.medium.url
-        self.bannerImageUrl = channelItem.brandingSettings?.image?.bannerMobileImageUrl
-        if let statistics = channelItem.statistics {
-            self.viewCount = Int(statistics.viewCount)
-            self.subscriberCount = Int(statistics.subscriberCount)
-            self.videoCount = Int(statistics.videoCount)
-        }
+    var thumbnailUrl: String?{
+        get
     }
     
-    init(_ item:RSItem){
-        self.channelId = item.snippet.channelId
-        self.title = item.snippet.title
-        self.thumbnailUrl = item.snippet.thumbnails.medium.url
+    var thumbnailType:ThumbnailType{
+        get
     }
-
-    var hashValue: Int {
-        return 1
+    
+    var selectedAction:(sourceViewController:UIViewController) -> Void {
+        get
     }
 }
 
-func ==(lhs: Channel, rhs: Channel) -> Bool {
-    return lhs.channelId == rhs.channelId
-}
+

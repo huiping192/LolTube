@@ -10,7 +10,7 @@ class BannerViewController:UIViewController {
 
     private var currentViewController: UIViewController?
 
-    var bannerItemList:[BannerItem]!{
+    var bannerItemList:[TopItem]!{
         didSet{
             if currentViewController == nil {
                 configureViewController(traitCollection, transitionCoordinator: nil)

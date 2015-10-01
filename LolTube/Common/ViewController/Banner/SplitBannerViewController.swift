@@ -10,7 +10,7 @@ class SplitBannerViewController: UIViewController {
     
     private let imageLoadingOperationQueue = NSOperationQueue()
     
-    var bannerItemList:[BannerItem]?
+    var bannerItemList:[TopItem]?
    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -55,7 +55,7 @@ extension SplitBannerViewController: UICollectionViewDataSource {
         imageLoadingOperationQueue.addOperation(imageLoadOperation)
     }
     
-    private func bannerItem(indexPath:NSIndexPath) -> BannerItem? {
+    private func bannerItem(indexPath:NSIndexPath) -> TopItem? {
         return bannerItemList?[indexPath.row]
     }
 }

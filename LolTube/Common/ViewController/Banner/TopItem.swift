@@ -1,6 +1,10 @@
 import Foundation
 
-protocol BannerItem {
+protocol TopItem {
+    var id:String{
+        get
+    }
+    
     var title: String?{
         get
     }

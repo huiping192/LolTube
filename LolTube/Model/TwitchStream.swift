@@ -2,8 +2,11 @@
 
 import Foundation
 
-class TwitchStream: BannerItem  {
-    var id: String!
+class TwitchStream: TopItem {
+    var id: String {
+        return "Twitch Stream  \(streamId)"
+    }
+    var streamId: String!
     var name: String!
     var title: String?
     var thumbnailUrl: String?
@@ -34,7 +37,7 @@ class TwitchStream: BannerItem  {
         }
     }
     init(_ streamModel:RSStreamModel){
-        self.id = String(streamModel._id)
+        self.streamId = String(streamModel._id)
         self.title = streamModel.channel.status
         self.name = streamModel.channel.display_name
         self.highThumbnailUrl = streamModel.preview.medium

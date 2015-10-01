@@ -13,13 +13,14 @@
 @class RSSnippet;
 @class RSThumbnails;
 @class RSThumbnail;
+@class RSItem;
 
 @interface RSSearchModel : RSJsonModel
 @property(nonatomic, copy) NSString<Optional> *nextPageToken;
 
 @property(nonatomic, strong) RSPageInfo<Optional> *pageInfo;
 
-@property(nonatomic, strong) NSArray <RSItem,Optional> *items;
+@property(nonatomic, strong) NSArray <RSItem *><RSItem,Optional> *items;
 
 @end
 

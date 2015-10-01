@@ -106,7 +106,7 @@ extension UIViewController {
         return searchPlaylistsViewController
     }
     
-    func instantiateBannerViewController(bannerItemList:[BannerItem]) ->  BannerViewController{
+    func instantiateBannerViewController(bannerItemList:[TopItem]) ->  BannerViewController{
         let bannerViewController = viewController(.Banner, type: BannerViewController.self)
         
         bannerViewController.bannerItemList = bannerItemList
@@ -114,7 +114,7 @@ extension UIViewController {
         return bannerViewController
     }
     
-    func instantiateSplitBannerViewController(bannerItemList:[BannerItem]) ->  SplitBannerViewController{
+    func instantiateSplitBannerViewController(bannerItemList:[TopItem]) ->  SplitBannerViewController{
         let bannerViewController = viewController(.Banner,viewControllerId:.SplitBanner, type: SplitBannerViewController.self)
         
         bannerViewController.bannerItemList = bannerItemList
@@ -122,7 +122,7 @@ extension UIViewController {
         return bannerViewController
     }
     
-    func instantiateCombinedBannerViewController(bannerItemList:[BannerItem]) ->  CombinedBannerViewController{
+    func instantiateCombinedBannerViewController(bannerItemList:[TopItem]) ->  CombinedBannerViewController{
         let bannerViewController = viewController(.Banner,viewControllerId:.CombinedBanner, type: CombinedBannerViewController.self)
         
         bannerViewController.bannerItemList = bannerItemList

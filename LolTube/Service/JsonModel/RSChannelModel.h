@@ -9,12 +9,12 @@
 
 @class RSChannelSnippet;
 @class RSThumbnails;
-
+@class RSChannelItem;
 
 @protocol RSChannelItem;
 
 @interface RSChannelModel : RSJsonModel
-@property (nonatomic, strong)  NSArray<RSChannelItem> *items;
+@property (nonatomic, strong)  NSArray<RSChannelItem *><RSChannelItem> *items;
 
 @end
 

@@ -15,7 +15,7 @@ class CombinedBannerViewController:UIViewController {
     
     private var scrollToNextVideoTimer:NSTimer?
     
-    var bannerItemList:[BannerItem]?{
+    var bannerItemList:[TopItem]?{
         didSet{
             var realVideoList = bannerItemList
             if let firstItem = bannerItemList?.first, lastItem = bannerItemList?.last {
@@ -26,7 +26,7 @@ class CombinedBannerViewController:UIViewController {
         }
     }
     
-    var realVideoList:[BannerItem]?
+    var realVideoList:[TopItem]?
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -106,7 +106,7 @@ extension CombinedBannerViewController: UICollectionViewDataSource {
         imageLoadingOperationQueue.addOperation(imageLoadOperation)
     }
     
-    private func bannerItem(indexPath:NSIndexPath) -> BannerItem? {
+    private func bannerItem(indexPath:NSIndexPath) -> TopItem? {
         return realVideoList?[indexPath.row]
     }
 }

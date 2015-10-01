@@ -33,7 +33,7 @@ class SearchPlaylistsViewModel: SimpleListCollectionViewModelProtocol {
         let successBlock:((RSSearchModel) -> Void) = {
             [weak self](searchModel) in
             
-            let playlists = (searchModel.items as! [RSItem]).map{ Playlist($0) }
+            let playlists = (searchModel.items).map{ Playlist($0) }
             
             let successBlock:(([Playlist]) -> Void) = {
                 [weak self]playlists in

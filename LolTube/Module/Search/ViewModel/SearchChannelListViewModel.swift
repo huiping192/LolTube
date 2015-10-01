@@ -4,13 +4,13 @@ class SearchChannelListViewModel: SimpleListCollectionViewModelProtocol {
     
     var searchText:String?{
         didSet{
-            channelList = [Channel]()
+            channelList = [YoutubeChannel]()
             channelListNextPageToken = nil
             channelListTotalResults = nil
         }
     }
     
-    var channelList = [Channel]()
+    var channelList = [YoutubeChannel]()
     
     private var channelListNextPageToken: String?
     private var channelListTotalResults:Int?
@@ -35,9 +35,9 @@ class SearchChannelListViewModel: SimpleListCollectionViewModelProtocol {
         let successBlock:((RSSearchModel) -> Void) = {
             [weak self](searchModel) in
             
-            let channelList = (searchModel.items as! [RSItem]).map{ Channel($0) }
+            let channelList = (searchModel.items).map{ YoutubeChannel($0) }
   
-            let successBlock:(([Channel]) -> Void) = {
+            let successBlock:(([YoutubeChannel]) -> Void) = {
                 [weak self]channelList in
                 self?.channelListNextPageToken = searchModel.nextPageToken
                 self?.channelListTotalResults = Int(searchModel.pageInfo.totalResults)
@@ -59,12 +59,12 @@ class SearchChannelListViewModel: SimpleListCollectionViewModelProtocol {
         return channelListTotalResults ?? 0
     }
     
-    private func updateChannelDetail(channelList:[Channel],success:(([Channel]) -> Void),failure: ((error:NSError) -> Void)? = nil){
-        let channelIdList = channelList.map{ $0.channelId! } 
+    private func updateChannelDetail(channelList:[YoutubeChannel],success:(([YoutubeChannel]) -> Void),failure: ((error:NSError) -> Void)? = nil){
+        let channelIdList = channelList.map{ $0.channelId } 
         
         let successBlock:((RSChannelModel) -> Void) = {
             channelModel in
-            let updatedChannelList = (channelModel.items as! [RSChannelItem]).map{ Channel($0) }
+            let updatedChannelList = channelModel.items.map{ YoutubeChannel($0) }
             
             success(updatedChannelList)
         }

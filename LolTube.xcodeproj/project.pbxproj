@@ -23,7 +23,7 @@
 		7A9D51CFA22CA82EC960CA7B /* RSThumbnails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D550D828214C4B085A20D /* RSThumbnails.m */; };
 		7A9D51ED44B6253F72975269 /* RSVideoInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D50B5067E9C022D928E40 /* RSVideoInfoViewModel.m */; };
 		7A9D520400495FFA39742BA9 /* ChannelDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5FA53B83588D46CFFF92 /* ChannelDetailViewModel.swift */; };
-		7A9D521320B2B1B88B16EBFB /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D50E5C2FBC9003C9B521E /* Channel.swift */; };
+		7A9D521320B2B1B88B16EBFB /* YoutubeChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D50E5C2FBC9003C9B521E /* YoutubeChannel.swift */; };
 		7A9D5221D105A982CA7413A1 /* RSVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D522E2ABA2D7CF8D28865 /* RSVideoDetailModel.m */; };
 		7A9D533BD41BF929A8993258 /* NSDate+FormatterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D571016D3664FBDB5479B /* NSDate+FormatterSpec.swift */; };
 		7A9D54173333A8DCD115D73B /* Banner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5B874B5EA9F6FA7293D1 /* Banner.storyboard */; };
@@ -105,7 +105,7 @@
 		DC37D4EC1AE67CFA00601458 /* LolChannelSearchChannelList.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5A4F7E3337B0F588D6AC /* LolChannelSearchChannelList.json */; };
 		DC47690B1A07EAA700DC3D2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC47690D1A07EAA700DC3D2D /* Main.storyboard */; };
 		DC47DABF1BB2628200865131 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC47DABE1BB2628200865131 /* GoogleService-Info.plist */; settings = {ASSET_TAGS = (); }; };
-		DC47DAC11BB28EB800865131 /* BannerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC47DAC01BB28EB800865131 /* BannerItem.swift */; settings = {ASSET_TAGS = (); }; };
+		DC47DAC11BB28EB800865131 /* TopItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC47DAC01BB28EB800865131 /* TopItem.swift */; settings = {ASSET_TAGS = (); }; };
 		DC47DAC31BB2B28400865131 /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC47DAC21BB2B28400865131 /* HttpService.swift */; settings = {ASSET_TAGS = (); }; };
 		DC47DAC41BB2B37800865131 /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC47DAC21BB2B28400865131 /* HttpService.swift */; settings = {ASSET_TAGS = (); }; };
 		DC47DAC61BB43B7200865131 /* TwitchStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC47DAC51BB43B7200865131 /* TwitchStreamViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -153,6 +153,15 @@
 		DCC0B8B81B58D66E0081E5CA /* UICollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC0B8B71B58D66E0081E5CA /* UICollectionViewExtensions.swift */; };
 		DCC0B8BA1B58DEBE0081E5CA /* TopVideoCollectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC0B8B91B58DEBE0081E5CA /* TopVideoCollectionFooterView.swift */; };
 		DCCD1A081B58E9AC00CB54DD /* UINavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD1A071B58E9AC00CB54DD /* UINavigationBarExtensions.swift */; };
+		DCD2E83A1BB6F52200F98EDD /* ChannelLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2E8391BB6F52200F98EDD /* ChannelLoadOperation.swift */; settings = {ASSET_TAGS = (); }; };
+		DCD2E83C1BB6F5B600F98EDD /* TwitchStreamListLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2E83B1BB6F5B600F98EDD /* TwitchStreamListLoadOperation.swift */; settings = {ASSET_TAGS = (); }; };
+		DCD2E83E1BB6FDCF00F98EDD /* ChannelVideoListLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2E83D1BB6FDCF00F98EDD /* ChannelVideoListLoadOperation.swift */; settings = {ASSET_TAGS = (); }; };
+		DCD2E8401BB7019500F98EDD /* VideoDetailUpdateOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2E83F1BB7019500F98EDD /* VideoDetailUpdateOperation.swift */; settings = {ASSET_TAGS = (); }; };
+		DCD2E8421BB703CD00F98EDD /* BannerItemListGenerationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2E8411BB703CD00F98EDD /* BannerItemListGenerationOperation.swift */; settings = {ASSET_TAGS = (); }; };
+		DCD2E8441BB9192900F98EDD /* ChannelSortOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2E8431BB9192900F98EDD /* ChannelSortOperation.swift */; settings = {ASSET_TAGS = (); }; };
+		DCD2E8461BB92D5E00F98EDD /* ChannelVideoListMergeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2E8451BB92D5E00F98EDD /* ChannelVideoListMergeOperation.swift */; settings = {ASSET_TAGS = (); }; };
+		DCD2E8481BB9644B00F98EDD /* TwitchChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2E8471BB9644B00F98EDD /* TwitchChannel.swift */; settings = {ASSET_TAGS = (); }; };
+		DCD2E84A1BB96F8400F98EDD /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2E8491BB96F8400F98EDD /* Channel.swift */; settings = {ASSET_TAGS = (); }; };
 		DCD30AA51B69251000ECB105 /* ImageLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD30AA41B69251000ECB105 /* ImageLoadOperation.swift */; };
 		DCD316AC1AD84EB700978606 /* TwoChannel.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5D1DA9E665D3274CBB65 /* TwoChannel.json */; };
 		DCD7B41A1B7374B3004A4A04 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7B4191B7374B3004A4A04 /* UIViewExtensions.swift */; };
@@ -213,7 +222,7 @@
 		7A9D509996E34EF5012B6056 /* SearchVideoListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVideoListViewModel.swift; sourceTree = "<group>"; };
 		7A9D50B5067E9C022D928E40 /* RSVideoInfoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoInfoViewModel.m; sourceTree = "<group>"; };
 		7A9D50E2E7E043A6D87228A8 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
-		7A9D50E5C2FBC9003C9B521E /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		7A9D50E5C2FBC9003C9B521E /* YoutubeChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeChannel.swift; sourceTree = "<group>"; };
 		7A9D512944F19F5B2B5B9B90 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		7A9D517BF5F85FDF0B1AD516 /* RSSearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSearchModel.m; sourceTree = "<group>"; };
 		7A9D518C3176C323B3099C62 /* PlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -333,7 +342,7 @@
 		DC4769171A07EAB300DC3D2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		DC4769191A07EAB500DC3D2D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		DC47DABE1BB2628200865131 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		DC47DAC01BB28EB800865131 /* BannerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerItem.swift; sourceTree = "<group>"; };
+		DC47DAC01BB28EB800865131 /* TopItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopItem.swift; sourceTree = "<group>"; };
 		DC47DAC21BB2B28400865131 /* HttpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
 		DC47DAC51BB43B7200865131 /* TwitchStreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitchStreamViewController.swift; sourceTree = "<group>"; };
 		DC47DAC71BB43B9D00865131 /* Twitch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Twitch.storyboard; sourceTree = "<group>"; };
@@ -391,6 +400,15 @@
 		DCC0B8B71B58D66E0081E5CA /* UICollectionViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtensions.swift; sourceTree = "<group>"; };
 		DCC0B8B91B58DEBE0081E5CA /* TopVideoCollectionFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopVideoCollectionFooterView.swift; sourceTree = "<group>"; };
 		DCCD1A071B58E9AC00CB54DD /* UINavigationBarExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtensions.swift; sourceTree = "<group>"; };
+		DCD2E8391BB6F52200F98EDD /* ChannelLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelLoadOperation.swift; sourceTree = "<group>"; };
+		DCD2E83B1BB6F5B600F98EDD /* TwitchStreamListLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitchStreamListLoadOperation.swift; sourceTree = "<group>"; };
+		DCD2E83D1BB6FDCF00F98EDD /* ChannelVideoListLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelVideoListLoadOperation.swift; sourceTree = "<group>"; };
+		DCD2E83F1BB7019500F98EDD /* VideoDetailUpdateOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailUpdateOperation.swift; sourceTree = "<group>"; };
+		DCD2E8411BB703CD00F98EDD /* BannerItemListGenerationOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerItemListGenerationOperation.swift; sourceTree = "<group>"; };
+		DCD2E8431BB9192900F98EDD /* ChannelSortOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelSortOperation.swift; sourceTree = "<group>"; };
+		DCD2E8451BB92D5E00F98EDD /* ChannelVideoListMergeOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelVideoListMergeOperation.swift; sourceTree = "<group>"; };
+		DCD2E8471BB9644B00F98EDD /* TwitchChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitchChannel.swift; sourceTree = "<group>"; };
+		DCD2E8491BB96F8400F98EDD /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		DCD30AA41B69251000ECB105 /* ImageLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoadOperation.swift; sourceTree = "<group>"; };
 		DCD7B4191B7374B3004A4A04 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		DCD7B41C1B7394C2004A4A04 /* LoadingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -466,7 +484,7 @@
 				DCA636B01B6D05A900F8689B /* CombinedBannerViewController.swift */,
 				7A9D5B874B5EA9F6FA7293D1 /* Banner.storyboard */,
 				DC9B1C3B1B6D0CBA00E16A81 /* BannerCell.swift */,
-				DC47DAC01BB28EB800865131 /* BannerItem.swift */,
+				DC47DAC01BB28EB800865131 /* TopItem.swift */,
 			);
 			path = Banner;
 			sourceTree = "<group>";
@@ -547,9 +565,9 @@
 		7A9D52CFE863F2F5772B7F6A /* Top */ = {
 			isa = PBXGroup;
 			children = (
-				7A9D50E2E7E043A6D87228A8 /* TopViewController.swift */,
 				7A9D5FE26025B246663F393A /* ViewModel */,
 				7A9D56800AF4ABC775D59414 /* View */,
+				7A9D50E2E7E043A6D87228A8 /* TopViewController.swift */,
 				7A9D51BA505E402A59D85EB1 /* RSNavigationController.m */,
 				7A9D5F6AFCB86F0AF7AA7008 /* RSNavigationController.h */,
 			);
@@ -840,10 +858,12 @@
 			isa = PBXGroup;
 			children = (
 				DC8680AE1BAC38FF001D7706 /* TwitchStream.swift */,
-				7A9D50E5C2FBC9003C9B521E /* Channel.swift */,
+				DCD2E8471BB9644B00F98EDD /* TwitchChannel.swift */,
+				7A9D50E5C2FBC9003C9B521E /* YoutubeChannel.swift */,
 				7A9D512944F19F5B2B5B9B90 /* Video.swift */,
 				DC94676B1B4C17F40043E33B /* Playlist.swift */,
 				7A9D51B526DC4CF822671753 /* Extensions */,
+				DCD2E8491BB96F8400F98EDD /* Channel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -882,6 +902,13 @@
 			isa = PBXGroup;
 			children = (
 				7A9D59CA519ECF7EC6BACEC3 /* TopViewModel.swift */,
+				DCD2E8391BB6F52200F98EDD /* ChannelLoadOperation.swift */,
+				DCD2E83B1BB6F5B600F98EDD /* TwitchStreamListLoadOperation.swift */,
+				DCD2E83D1BB6FDCF00F98EDD /* ChannelVideoListLoadOperation.swift */,
+				DCD2E83F1BB7019500F98EDD /* VideoDetailUpdateOperation.swift */,
+				DCD2E8411BB703CD00F98EDD /* BannerItemListGenerationOperation.swift */,
+				DCD2E8431BB9192900F98EDD /* ChannelSortOperation.swift */,
+				DCD2E8451BB92D5E00F98EDD /* ChannelVideoListMergeOperation.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1332,6 +1359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC1044B719B2FA6B007A86E6 /* main.m in Sources */,
+				DCD2E8401BB7019500F98EDD /* VideoDetailUpdateOperation.swift in Sources */,
 				DCB16C141B6D371E00F8AC86 /* UIViewContollerExtensions.swift in Sources */,
 				DC99E0301B7A401D004939D2 /* ChannelListViewModel.swift in Sources */,
 				DC1044BB19B2FA6B007A86E6 /* RSAppDelegate.m in Sources */,
@@ -1340,6 +1368,7 @@
 				DC47DAD11BB678DF00865131 /* TwitchStreamListViewModel.swift in Sources */,
 				7A9D517888BCFE3270DE9EB1 /* UIImageView+Loading.m in Sources */,
 				DC82E5CD1B84C32A00420A1E /* VideoCollectionViewController.swift in Sources */,
+				DCD2E83A1BB6F52200F98EDD /* ChannelLoadOperation.swift in Sources */,
 				7A9D5F14B85FDCEF4668D937 /* RSVideoService.m in Sources */,
 				DC9467691B4C133D0043E33B /* RSPlaylistModel.m in Sources */,
 				DC1196C51B510DF90090338F /* SimpleListCollectionViewModelProtocol.swift in Sources */,
@@ -1366,19 +1395,25 @@
 				DCCD1A081B58E9AC00CB54DD /* UINavigationBarExtensions.swift in Sources */,
 				7A9D5E047642539A74E9E1FF /* TopViewController.swift in Sources */,
 				DC1873591B513C7B00121563 /* HistoryCollectionViewCell.swift in Sources */,
+				DCD2E8481BB9644B00F98EDD /* TwitchChannel.swift in Sources */,
 				DC1196B81B4ED2C40090338F /* RSPlaylistItemsModel.m in Sources */,
 				7A9D5B51022DD5A6334506D9 /* TopViewModel.swift in Sources */,
 				DCD7B41D1B7394C2004A4A04 /* LoadingCollectionViewCell.swift in Sources */,
 				DC47DAC31BB2B28400865131 /* HttpService.swift in Sources */,
+				DCD2E8421BB703CD00F98EDD /* BannerItemListGenerationOperation.swift in Sources */,
 				7A9D56CE982FCDCD9C3B91C4 /* RoundView.swift in Sources */,
 				DC51F4BD1B451308009AEC11 /* VideoListViewController.swift in Sources */,
+				DCD2E8461BB92D5E00F98EDD /* ChannelVideoListMergeOperation.swift in Sources */,
 				DC9B1C3C1B6D0CBA00E16A81 /* BannerCell.swift in Sources */,
 				DC47DACE1BB6785600865131 /* TwitchStreamListViewController.swift in Sources */,
 				DC9CC5EC1B5CE6850047DFDC /* SearchChannelListViewController.swift in Sources */,
+				DCD2E8441BB9192900F98EDD /* ChannelSortOperation.swift in Sources */,
 				DC99E02E1B7A3EA5004939D2 /* ChannelCollectionViewCell.swift in Sources */,
+				DCD2E84A1BB96F8400F98EDD /* Channel.swift in Sources */,
 				7A9D5DB0985B4C2C1838AF44 /* CircularImageView.swift in Sources */,
 				7A9D5029F6AC659B11F3829F /* TopVideoCell.swift in Sources */,
 				7A9D50E63C6B65C8E431B763 /* TopVideoCollectionHeaderView.swift in Sources */,
+				DCD2E83C1BB6F5B600F98EDD /* TwitchStreamListLoadOperation.swift in Sources */,
 				7A9D5A90DDD5575A1071CF0F /* RSVideoRelatedVideoCell.m in Sources */,
 				7A9D51ED44B6253F72975269 /* RSVideoInfoViewModel.m in Sources */,
 				7A9D5909AB58845520363BEE /* RSVideoDetailViewModel.m in Sources */,
@@ -1386,7 +1421,7 @@
 				DCEC27F91B6A749A0068B892 /* UIViewControllerExtensions.swift in Sources */,
 				DCC0B8BA1B58DEBE0081E5CA /* TopVideoCollectionFooterView.swift in Sources */,
 				7A9D5EB52386205BCB0125A4 /* RSNavigationController.m in Sources */,
-				7A9D521320B2B1B88B16EBFB /* Channel.swift in Sources */,
+				7A9D521320B2B1B88B16EBFB /* YoutubeChannel.swift in Sources */,
 				7A9D5CB34E43D853F3FC323C /* Video.swift in Sources */,
 				7A9D515B47E7C38B0C86E72F /* RSChannelModel.m in Sources */,
 				7A9D5148312C08C13B15F994 /* RSVideoModel.m in Sources */,
@@ -1398,7 +1433,7 @@
 				7A9D50C4794BC7CDE9388DA2 /* RSVideoDetailModel.m in Sources */,
 				DCDBECEA1B6371ED004474E9 /* UIColorExtensions.swift in Sources */,
 				DC9B1C3E1B6DFC6300E16A81 /* SplitBannerViewController.swift in Sources */,
-				DC47DAC11BB28EB800865131 /* BannerItem.swift in Sources */,
+				DC47DAC11BB28EB800865131 /* TopItem.swift in Sources */,
 				DC51F4C31B451777009AEC11 /* VideoListViewModel.swift in Sources */,
 				DC1873571B513B5400121563 /* HistoryViewModel.swift in Sources */,
 				DCD30AA51B69251000ECB105 /* ImageLoadOperation.swift in Sources */,
@@ -1428,6 +1463,7 @@
 				7A9D576C7003CA816C38CA14 /* NSDateExtensions.swift in Sources */,
 				7A9D5C5AE614BE6CCC496130 /* EventTracker.swift in Sources */,
 				7A9D56B06AB8FA86671762E9 /* BannerViewController.swift in Sources */,
+				DCD2E83E1BB6FDCF00F98EDD /* ChannelVideoListLoadOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

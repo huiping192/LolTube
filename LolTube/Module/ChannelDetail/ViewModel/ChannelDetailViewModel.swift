@@ -3,7 +3,7 @@ import Foundation
 class ChannelDetailViewModel {
     let channelId:String
 
-    var channel:Channel?
+    var channel: YoutubeChannel?
     
     var isSubscribed:Bool?
     private let youtubeService = YoutubeService()
@@ -25,8 +25,8 @@ class ChannelDetailViewModel {
                 success()
                 return
             }
-            if let channelItem = channelModel.items[0] as? RSChannelItem{
-                weakSelf.channel = Channel(channelItem)
+            if let channelItem = channelModel.items.first {
+                weakSelf.channel = YoutubeChannel(channelItem)
             }
             
             weakSelf.isSubscribed = (weakSelf.channelService.channelIds()).contains(weakSelf.channelId)

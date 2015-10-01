@@ -1,7 +1,10 @@
 import Foundation
 
 // FIXME: change Video to struct
-class Video: BannerItem {
+class Video: TopItem {
+    var id: String{
+        return "Youtbe Video \(videoId)"
+    }
     var videoId: String!
     var channelId: String?
 
