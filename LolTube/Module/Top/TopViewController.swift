@@ -40,28 +40,26 @@ class TopViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         EventTracker.trackViewContentView(viewName:"Featured", viewType:TopViewController.self )
+       
+        videosCollectionView.addObserver(self, forKeyPath: "contentSize", options: .Old, context: nil)
         
         configureView()
         loadVideosData()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if let prevFrame = prevFrame where prevFrame != view.frame {
-            self.videosCollectionView.reloadData()
-            self.layoutCollectionViewSize()
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        guard keyPath == "contentSize" && object === videosCollectionView else {
+            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+            return
         }
-        
+        Async.main{
+            self.collectionHeightConstraint.constant = self.videosCollectionView.contentSize.height
+            self.mainScrollView.layoutIfNeeded()
+        }
     }
-    
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        prevFrame = view.frame
-    }
-    
+
     deinit{
+        videosCollectionView.removeObserver(self, forKeyPath: "contentSize")
         imageLoadingOperationQueue.cancelAllOperations()
     }
     
@@ -69,12 +67,6 @@ class TopViewController: UIViewController {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         
         self.videosCollectionView.reloadData()
-        
-        coordinator.animateAlongsideTransition(nil, completion: {
-            _ in
-            self.layoutCollectionViewSize()
-            
-        })
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -99,7 +91,6 @@ class TopViewController: UIViewController {
             [weak self] in
             
             self?.videosCollectionView.reloadData()
-            self?.layoutCollectionViewSize()
             
             self?.stopLoadingAnimation()
             
@@ -126,7 +117,6 @@ class TopViewController: UIViewController {
         let successBlock:(() -> Void) = {
             [weak self] in
             self?.videosCollectionView.reloadData()
-            self?.layoutCollectionViewSize()
             refreshControl.endRefreshing()
         }
         
@@ -157,15 +147,7 @@ class TopViewController: UIViewController {
         }
         return viewModel.channelList?[section]
     }
-    
-    // MARK: view cconfiguration
-    private func layoutCollectionViewSize() {
-        Async.main{               
-            self.collectionHeightConstraint.constant = self.videosCollectionView.contentSize.height
-            self.videosCollectionView.layoutIfNeeded()
-        }
-    }
-    
+
     private func configureView() {
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         videosCollectionView.scrollsToTop = false
