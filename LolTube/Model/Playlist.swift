@@ -12,14 +12,14 @@ struct Playlist {
         return (itemCount ?? 0).toVideoCountFormat()
     }
     
-    init(playlistItem:RSPlaylistItem){
+    init(_ playlistItem:RSPlaylistItem){
         self.playlistId = playlistItem.playlistId
         self.title = playlistItem.snippet.title
         self.itemCount = Int(playlistItem.contentDetails.itemCount)
         self.thumbnailUrl = playlistItem.snippet.thumbnails.medium.url
     }
     
-    init(item:RSItem){
+    init(_ item:RSItem){
         self.playlistId = item.id.playlistId
         self.title = item.snippet.title
         self.thumbnailUrl = item.snippet.thumbnails.medium.url

@@ -4,7 +4,7 @@ import UIKit
 
 class ChannelListViewModel: SimpleListCollectionViewModelProtocol{
     
-    var channelList = [Channel]()
+    var channelList = [YoutubeChannel]()
     
     private let youtubeService = YoutubeService()
     private let channelService = ChannelService()
@@ -19,7 +19,7 @@ class ChannelListViewModel: SimpleListCollectionViewModelProtocol{
         
         let successBlock:((RSChannelModel) -> Void) = {
             [weak self](channelModel) in
-            self?.channelList = (channelModel.items as! [RSChannelItem]).map{Channel(channelItem:$0)}
+            self?.channelList = (channelModel.items).map{YoutubeChannel($0)}
             
             success()
         }
@@ -31,7 +31,7 @@ class ChannelListViewModel: SimpleListCollectionViewModelProtocol{
     func refresh(success success: ((isDataChanged:Bool) -> Void), failure: ((error:NSError) -> Void)) {
         
         let newChannelIdList = channelService.channelIds()
-        let channelIdList = channelList.map{ $0.channelId! }
+        let channelIdList = channelList.map{ $0.channelId }
         
         guard newChannelIdList.count != 0 && newChannelIdList != channelIdList else {
             success(isDataChanged: false)
@@ -43,7 +43,7 @@ class ChannelListViewModel: SimpleListCollectionViewModelProtocol{
             guard let weakSelf = self else {
                 return
             }
-            let isDataChanged =  channelIdList != weakSelf.channelList.map{ $0.channelId! }
+            let isDataChanged =  channelIdList != weakSelf.channelList.map{ $0.channelId }
             success(isDataChanged: isDataChanged)
             }, failure: failure)
     }

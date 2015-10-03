@@ -24,3 +24,10 @@ extension UIImage: UIImageType {
         return image
     }
 }
+
+
+extension UIImage {
+    static var defaultImage:UIImage {
+        return UIImage(named:"DefaultThumbnail")!
+    }
+}

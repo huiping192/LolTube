@@ -30,7 +30,7 @@ class PlaylistViewModel:SimpleListCollectionViewModelProtocol {
         let successBlock:((RSPlaylistItemsModel) -> Void) = {
             [weak self](playlistItems) in
             
-            let videoList = (playlistItems.items as! [RSPlaylistVideoItem]).map{ Video(playlistVideoItem:$0) }
+            let videoList = (playlistItems.items as! [RSPlaylistVideoItem]).map{ Video($0) }
             
             let successBlock:(() -> Void) = {
                 [weak self] in
@@ -55,7 +55,7 @@ class PlaylistViewModel:SimpleListCollectionViewModelProtocol {
         
         let successBlock:((RSVideoDetailModel) -> Void) = {
             (videoDetailModel: RSVideoDetailModel!) in
-            for (index, detailItem) in (videoDetailModel.items as! [RSVideoDetailItem]).enumerate() {
+            for (index, detailItem) in (videoDetailModel.items).enumerate() {
                 let video = videoList[index]
                 video.update(detailItem)
             }

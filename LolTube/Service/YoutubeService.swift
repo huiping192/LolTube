@@ -89,7 +89,7 @@ public class YoutubeService: HttpService {
             
             var allChannelItems = [RSChannelItem]()
             for channelModel in jsonModeList {
-                allChannelItems += channelModel.items as! [RSChannelItem]
+                allChannelItems += channelModel.items
             }
             let allChannelModel = RSChannelModel()
             allChannelModel.items = allChannelItems
@@ -111,7 +111,7 @@ public class YoutubeService: HttpService {
             
             var allChannelItems = [RSChannelItem]()
             for channelModel in jsonModeList {
-                allChannelItems += channelModel.items as! [RSChannelItem]
+                allChannelItems += channelModel.items
             }
             let allChannelModel = RSChannelModel()
             allChannelModel.items = allChannelItems
@@ -185,7 +185,7 @@ public class YoutubeService: HttpService {
             
             var allChannelItems = [RSVideoDetailItem]()
             for channelModel in videoDetailModelList {
-                allChannelItems += channelModel.items as! [RSVideoDetailItem]
+                allChannelItems += channelModel.items
             }
             let allChannelModel = RSVideoDetailModel()
             allChannelModel.items = allChannelItems

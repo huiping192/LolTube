@@ -10,9 +10,10 @@
 @class RSVideoContentDetails;
 @class RSVideoStatistics;
 @protocol RSVideoDetailItem;
+@class RSVideoDetailItem;
 
 @interface RSVideoDetailModel : RSJsonModel
-@property (nonatomic, strong)  NSArray<RSVideoDetailItem> *items;
+@property (nonatomic, strong)  NSArray<RSVideoDetailItem *><RSVideoDetailItem> *items;
 @end
 
 

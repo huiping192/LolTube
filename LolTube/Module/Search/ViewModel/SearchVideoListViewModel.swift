@@ -35,7 +35,7 @@ class SearchVideoListViewModel:SimpleListCollectionViewModelProtocol{
         let successBlock:((RSSearchModel) -> Void) = {
             [weak self](searchModel) in
             
-            let videoList = (searchModel.items as! [RSItem]).map{ Video(item:$0) }
+            let videoList = (searchModel.items).map{ Video($0) }
             self?.updateVideoDetail(videoList: videoList,
                 success: {
                     [weak self] in
@@ -65,7 +65,7 @@ class SearchVideoListViewModel:SimpleListCollectionViewModelProtocol{
         let successBlock: ((RSVideoDetailModel) -> Void) = {
             videoDetailModel in
             
-            for (index, detailItem) in (videoDetailModel.items as! [RSVideoDetailItem]).enumerate() {
+            for (index, detailItem) in (videoDetailModel.items).enumerate() {
                 let video = videoList[index]
                 video.update(detailItem)
             }

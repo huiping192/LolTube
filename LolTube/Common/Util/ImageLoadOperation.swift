@@ -24,7 +24,7 @@ class ImageLoadOperation: ConcurrentOperation {
     }
     
     private lazy var placeHolderImage:UIImage = {
-        return UIImage(named: "DefaultThumbnail")!
+        return UIImage.defaultImage
         }()
     
     init(url:String?,replaceImageUrl:String? = nil,completed:(UIImage)-> Void) {

@@ -27,7 +27,7 @@ class HistoryViewModel:SimpleListCollectionViewModelProtocol {
         let successBlock:((RSVideoModel) -> Void) = {
             [weak self]videoModel in
             
-            self?.videoList = (videoModel.items as! [RSVideoItem]).map{ Video(videoItem:$0) }
+            self?.videoList = (videoModel.items as! [RSVideoItem]).map{ Video($0) }
             
             success()
         }

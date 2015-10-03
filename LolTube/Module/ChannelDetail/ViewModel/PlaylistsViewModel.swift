@@ -23,7 +23,7 @@ class PlaylistsViewModel:SimpleListCollectionViewModelProtocol {
         let successBlock:((RSPlaylistModel) -> Void) = {
             [weak self](playlistModel) in
             
-            let playlists = (playlistModel.items as! [RSPlaylistItem]).map{ Playlist(playlistItem:$0) }
+            let playlists = (playlistModel.items as! [RSPlaylistItem]).map{ Playlist($0) }
             
             self?.totalResults = Int(playlistModel.pageInfo.totalResults)
             self?.nextPageToken = playlistModel.nextPageToken

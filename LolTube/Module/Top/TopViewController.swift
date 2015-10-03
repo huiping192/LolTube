@@ -34,14 +34,13 @@ class TopViewController: UIViewController {
     private let viewModel = TopViewModel()
     private let imageLoadingOperationQueue = NSOperationQueue()
     private var channelVideoImageLoadingOperationDictionary = [String: NSOperation]()
-    private var channelImageLoadingOperationDictionary = [String: NSOperation]()
-
+    
     private var prevFrame:CGRect?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         EventTracker.trackViewContentView(viewName:"Featured", viewType:TopViewController.self )
-
+        
         configureView()
         loadVideosData()
     }
@@ -53,7 +52,7 @@ class TopViewController: UIViewController {
             self.videosCollectionView.reloadData()
             self.layoutCollectionViewSize()
         }
-
+        
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -61,7 +60,7 @@ class TopViewController: UIViewController {
         
         prevFrame = view.frame
     }
-   
+    
     deinit{
         imageLoadingOperationQueue.cancelAllOperations()
     }
@@ -72,9 +71,9 @@ class TopViewController: UIViewController {
         self.videosCollectionView.reloadData()
         
         coordinator.animateAlongsideTransition(nil, completion: {
-        _ in
+            _ in
             self.layoutCollectionViewSize()
-        
+            
         })
     }
     
@@ -99,7 +98,6 @@ class TopViewController: UIViewController {
         let successBlock:(() -> Void) = {
             [weak self] in
             
-            self?.configureTopView()
             self?.videosCollectionView.reloadData()
             self?.layoutCollectionViewSize()
             
@@ -117,35 +115,47 @@ class TopViewController: UIViewController {
             self?.mainScrollView.alpha = 1.0
         }
         
-        viewModel.update(successBlock, failure: failureBlock)
+        let bannerSuccessBlock:() -> Void = {
+            [weak self] in
+            self?.configureTopView()
+        }
+        viewModel.update(successBlock, bannerSuccess: bannerSuccessBlock, failure: failureBlock)
     }
     
     func refresh(refreshControl: UIRefreshControl) {
-        viewModel.update({
+        let successBlock:(() -> Void) = {
             [weak self] in
-            self?.configureTopView()
             self?.videosCollectionView.reloadData()
             self?.layoutCollectionViewSize()
             refreshControl.endRefreshing()
-            }, failure: {
-                [weak self]error in
-                self?.showError(error)
-                refreshControl.endRefreshing()
-            })
+        }
+        
+        let bannerSuccessBlock:() -> Void = {
+            [weak self] in
+            self?.configureTopView()
+        }
+        
+        let failureBlock:((NSError) -> Void) = {
+            [weak self]error in
+            self?.showError(error)
+            refreshControl.endRefreshing()
+        }
+        
+        viewModel.update(successBlock, bannerSuccess: bannerSuccessBlock, failure: failureBlock)
     }
     
-    private func video(indexPath: NSIndexPath) -> Video? {
-        guard let channel = channel(indexPath.section) where indexPath.row < viewModel.videoDictionary?[channel]?.count else {
+    private func topItem(indexPath: NSIndexPath) -> TopItem? {
+        guard let channel = channel(indexPath.section) where indexPath.row < viewModel.videoDictionary?[channel.id]?.count else {
             return nil
         }
-        return viewModel.videoDictionary?[channel]?[indexPath.row]
+        return viewModel.videoDictionary?[channel.id]?[indexPath.row]
     }
     
     private func channel(section: Int) -> Channel? {
-        guard section <= viewModel.channelList?.count else {
+        guard section < viewModel.channelList?.count else {
             return nil
         }
-        return viewModel.channelList?[section - 1]
+        return viewModel.channelList?[section]
     }
     
     // MARK: view cconfiguration
@@ -164,10 +174,9 @@ class TopViewController: UIViewController {
     }
     
     private func configureTopView() {
-        guard let topVideoList = viewModel.topVideoList else {
-            return
-        }
-        bannerViewController.bannerItemList = topVideoList.map{$0 as BannerItem }
+        guard let topVideoList = viewModel.bannerItemList else { return }
+        
+        bannerViewController.bannerItemList = topVideoList.map{$0 as TopItem}
     }
     
 }
@@ -176,9 +185,7 @@ class TopViewController: UIViewController {
 private extension TopViewController {
     
     func loadImage(url: String?, replaceImageUrl: String? = nil, success: (UIImage) -> Void) -> NSOperation? {
-        guard let  imageUrlString = url  else {
-            return nil
-        }
+        guard let  imageUrlString = url  else { return nil }
         
         let imageLoadOperation = ImageLoadOperation(url: imageUrlString, replaceImageUrl: replaceImageUrl,completed:success)
         imageLoadingOperationQueue.addOperation(imageLoadOperation)
@@ -189,53 +196,49 @@ private extension TopViewController {
         channelVideoImageLoadingOperationDictionary[videoId] = loadImage(imageUrlString, replaceImageUrl: secondImageUrlString, success: success)
     }
     
-    func loadChannelImage(channelId: String, imageUrlString: String?, success: (UIImage) -> Void) {
-        channelImageLoadingOperationDictionary[channelId] = loadImage(imageUrlString, success: success)
+    func loadChannelImage(channel: Channel, success: (UIImage) -> Void) {
+        switch channel.thumbnailType {
+        case .Local:
+            guard let thumbnailUrl = channel.thumbnailUrl , image = UIImage(named: thumbnailUrl) else {
+                success(UIImage.defaultImage)
+                return
+            }
+                success(image)
+        case .Remote:
+                loadImage(channel.thumbnailUrl, success: success)
+        }
     }
-
+    
 }
 
 extension TopViewController: UICollectionViewDataSource {
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard section != 0 else {
-            let streamCount = viewModel.twtichStreamList?.count ?? 0
-            
-            switch (traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
-            case (.Compact, .Regular) where section == 0:
-                return min(streamCount,4)
-            case (.Compact, .Compact):
-                return min(streamCount,3)
-            case (.Regular, .Compact):
-                return min(streamCount,3)
-            case (.Regular, .Regular):
-                if view.frame.width > 768.0 {
-                    return min(streamCount,4)
-                }
-                return min(streamCount,3)
-            default:
-                return streamCount
-            }
-        }
-        
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {        
         var videoCount = 0
-        if let channel = viewModel.channelList?[section - 1],videoList = viewModel.videoDictionary?[channel] {
+        if let channel = viewModel.channelList?[section],videoList = viewModel.videoDictionary?[channel.id] {
             videoCount = videoList.count
         }
-        
+    
+        return min(preferItemCount(section),videoCount)
+
+    }
+    
+    private func preferItemCount(section:Int) -> Int{
         switch (traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
         case (.Compact, .Regular) where section == 0:
-            return min(videoCount,4)
+            return 4
+        case (.Compact, .Regular):
+            return 5
         case (.Compact, .Compact):
-            return min(videoCount,3)
+            return 3
         case (.Regular, .Compact):
-            return min(videoCount,3)
+            return 3
         case (.Regular, .Regular):
             if view.frame.width > 768.0 {
-                return min(videoCount,4)
+                return 4
             }
-            return min(videoCount,3)
+            return 3
         default:
-            return videoCount
+            return 5
         }
     }
     
@@ -244,25 +247,13 @@ extension TopViewController: UICollectionViewDataSource {
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return (viewModel.channelList?.count ?? 0) + 1
+        return viewModel.channelList?.count ?? 0
     }
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(kind, indexPath: indexPath, type: TopVideoCollectionHeaderView.self)
-            
-            if indexPath.section == 0 {
-                headerView.titleLabel.text = "Twitch"
-                
-                headerView.moreButton.tag = indexPath.section
-                headerView.moreButton.addTarget(self, action:"moreButtonTapped:", forControlEvents: .TouchUpInside)
-                headerView.thumbnailImageView.image = UIImage(named: "Twitch")
-                headerView.tag = indexPath.section
-                headerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "headerViewTapped:"))
-                return headerView
-            }
-            
             
             guard let channel = channel(indexPath.section) else {
                 return headerView
@@ -274,7 +265,7 @@ extension TopViewController: UICollectionViewDataSource {
             headerView.moreButton.addTarget(self, action:"moreButtonTapped:", forControlEvents: .TouchUpInside)
             
             headerView.thumbnailImageView.image = nil
-            loadChannelImage(channel.channelId, imageUrlString: channel.thumbnailUrl) {
+            loadChannelImage(channel) {
                 [weak headerView]image in
                 headerView?.thumbnailImageView.image = image
             }
@@ -293,114 +284,75 @@ extension TopViewController: UICollectionViewDataSource {
         }
     }
     
-    func headerViewTapped(gestureRecognizer: UITapGestureRecognizer){
-        guard gestureRecognizer.view?.tag != 0 else {
-            showViewController(instantiateTwitchStreamListViewController(), sender: self)
-            return
-        }
+    func headerViewTapped(gestureRecognizer: UITapGestureRecognizer){  
+        guard let view = gestureRecognizer.view , channel = channel(view.tag) else { return }
         
-        
-        guard let view = gestureRecognizer.view , channel = channel(view.tag) else {
-            return
-        }
-        
-        navigationController?.pushViewController(instantiateChannelDetailViewController(id:channel.channelId,title:channel.title), animated: true)
+        channel.selectedAction(sourceViewController: self)
     }
     
     func moreButtonTapped(button: UIButton){
-        guard button.tag != 0 else {
-            showViewController(instantiateTwitchStreamListViewController(), sender: self)
-            return
-        }
-
-        guard let channel = channel(button.tag) else {
-            return
-        }
+        guard let channel = channel(button.tag) else { return }
         
-        navigationController?.pushViewController(instantiateChannelDetailViewController(id:channel.channelId,title:channel.title), animated: true)
+        channel.selectedAction(sourceViewController: self)
     }
 }
 
 extension TopViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        guard indexPath.section != 0 else {
-            guard let twitchStream = viewModel.twtichStreamList?[indexPath.row] else {
-                return
-            }
-            twitchStream.selectedAction(sourceViewController: self)
-            
-            return
-        }
-        
-        guard let video = video(indexPath) else {
-            return
-        }
-        video.selectedAction(sourceViewController: self)
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {        
+        guard let topItem = topItem(indexPath) else { return }
+topItem.selectedAction(sourceViewController: self)
     }
     
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath){
-        guard indexPath.section != 0 else {
-            guard let twitchStream = viewModel.twtichStreamList?[indexPath.row],cell = cell as? TopVideoCell else {
-                return
-            }
-            
-            loadImage(twitchStream.thumbnailUrl){
-                [weak collectionView] image in
-                let cell = collectionView?.cell(indexPath, type: TopVideoCell.self)
-                cell?.thunmbnailImageView.image = image
-            }
-            cell.titleLabel.text = twitchStream.title
-            cell.viewCountLabel.text =  twitchStream.viewersString
-            cell.durationLabel.text = nil
-            
-            return
-        }
+        guard let topItem = topItem(indexPath),cell = cell as? TopVideoCell else { return }
         
-        guard let video = video(indexPath),cell = cell as? TopVideoCell else {
-            return
-        }
-        
-        cell.titleLabel.text = video.title
+        cell.titleLabel.text = topItem.title
         
         var firstImageUrlString: String?
         var secondImageUrlString: String?
         if (indexPath.row == 0 && indexPath.section != 0) {
-            firstImageUrlString = video.highThumbnailUrl ?? video.thumbnailUrl
-            secondImageUrlString = video.thumbnailUrl
+            firstImageUrlString = topItem.highThumbnailUrl ?? topItem.thumbnailUrl
+            secondImageUrlString = topItem.thumbnailUrl
         } else {
-            firstImageUrlString = video.thumbnailUrl
+            firstImageUrlString = topItem.thumbnailUrl
             secondImageUrlString = nil
         }
         
         cell.thunmbnailImageView.image = nil
-        loadChannelVideoImage(video.videoId, imageUrlString: firstImageUrlString, secondImageUrlString: secondImageUrlString) {
+        loadChannelVideoImage(topItem.id, imageUrlString: firstImageUrlString, secondImageUrlString: secondImageUrlString) {
             [weak collectionView] image in
             let cell = collectionView?.cell(indexPath, type: TopVideoCell.self)
             cell?.thunmbnailImageView.image = image
         }
         
-        viewModel.updateVideoDetail(video, success: {
-            [weak collectionView] in
-            let cell = collectionView?.cell(indexPath, type: TopVideoCell.self)
-            cell?.durationLabel.text = video.durationString
-            cell?.viewCountLabel.text =  video.viewCountPublishedAt
-            })
-    }
-
-    func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        guard indexPath.section != 0 else {
-            return
+        if let video = topItem as? Video {
+            viewModel.updateVideoDetail(video){
+                [weak collectionView] in
+                let cell = collectionView?.cell(indexPath, type: TopVideoCell.self)
+                cell?.durationLabel.text = video.durationString
+                cell?.viewCountLabel.text =  video.viewCountPublishedAt
+            }
         }
-        guard let video = video(indexPath),imageLoadingOperation = channelVideoImageLoadingOperationDictionary[video.videoId] else {
+    }
+    
+    func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        guard let topItem = topItem(indexPath),imageLoadingOperation = channelVideoImageLoadingOperationDictionary[topItem.id] else {
             return
         }
         imageLoadingOperation.cancel()
-        channelVideoImageLoadingOperationDictionary.removeValueForKey(video.videoId)
-        
+        channelVideoImageLoadingOperationDictionary.removeValueForKey(topItem.id)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let collectionWidth = collectionView.frame.size.width
+        let cellCount = cellCountPreLine(indexPath)
+        
+        let cellWidth = (collectionWidth - cellMargin * CGFloat(cellCount + 1)) / CGFloat(cellCount)
+        let cellHeight = ((cellWidth - cellDefaultWidth) * cellImageHeightWidthRatio) + cellDefaultHeight
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    private func cellCountPreLine(indexPath: NSIndexPath) -> Int {
         let cellCount: Int
         
         switch (traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
@@ -419,10 +371,7 @@ extension TopViewController: UICollectionViewDelegateFlowLayout {
         default:
             cellCount = 3
         }
-        
-        let cellWidth = (collectionWidth - cellMargin * CGFloat(cellCount + 1)) / CGFloat(cellCount)
-        let cellHeight = ((cellWidth - cellDefaultWidth) * cellImageHeightWidthRatio) + cellDefaultHeight
-        return CGSize(width: cellWidth, height: cellHeight)
+        return cellCount
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
@@ -432,7 +381,7 @@ extension TopViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize{
         return section == collectionView.numberOfSections() - 1 ? CGSizeZero : CGSize(width: collectionView.frame.width, height: 8)
     }
-
+    
 }
 
 extension TopViewController: UIGestureRecognizerDelegate {
