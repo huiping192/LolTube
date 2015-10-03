@@ -292,7 +292,8 @@ topItem.selectedAction(sourceViewController: self)
         
         var firstImageUrlString: String?
         var secondImageUrlString: String?
-        if (indexPath.row == 0 && indexPath.section != 0) {
+        
+        if (indexPath.row == 0 && indexPath.section != 0) && (traitCollection.horizontalSizeClass == .Compact && traitCollection.verticalSizeClass == .Regular) {
             firstImageUrlString = topItem.highThumbnailUrl ?? topItem.thumbnailUrl
             secondImageUrlString = topItem.thumbnailUrl
         } else {
