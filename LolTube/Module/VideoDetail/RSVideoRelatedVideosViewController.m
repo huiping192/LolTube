@@ -7,7 +7,6 @@
 #import "RSVideoRelatedVideosViewModel.h"
 #import "RSVideoRelatedVideoCell.h"
 #import "UIImageView+Loading.h"
-#import "RSVideoDetailViewController.h"
 #import "LolTube-Swift.h"
 
 static CGFloat const kCellMinWidth = 280.0;
@@ -116,7 +115,7 @@ static CGFloat const kCellHeight = 100.0;
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    RSVideoDetailViewController *videoDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"videoDetail"];
+    VideoDetailViewController *videoDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"videoDetail"];
     RSRelatedVideoCollectionViewCellVo *cellVo = self.viewModel.relatedVideoList[(NSUInteger) indexPath.row];
 
     videoDetailViewController.videoId = cellVo.videoId;

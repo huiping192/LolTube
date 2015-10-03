@@ -4,7 +4,6 @@
 //
 
 #import "RSNavigationController.h"
-#import "RSVideoDetailViewController.h"
 #import "RSEnvironment.h"
 #import "LolTube-Swift.h"
 
@@ -38,7 +37,8 @@
     [super restoreUserActivityState:activity];
 
     if ([activity.activityType isEqualToString:kUserActivityTypeVideoDetail] && [activity.userInfo[kHandOffVersionKey] isEqualToString:kHandOffVersion]) {
-        RSVideoDetailViewController *videoDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:kViewControllerIdVideoDetail];
+        
+        VideoDetailViewController *videoDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:kViewControllerIdVideoDetail];
         videoDetailViewController.videoId = activity.userInfo[kUserActivityVideoDetailUserInfoKeyVideoId];
         videoDetailViewController.initialPlaybackTime = [((NSNumber *) activity.userInfo[kUserActivityVideoDetailUserInfoKeyVideoCurrentPlayTime]) floatValue];
 

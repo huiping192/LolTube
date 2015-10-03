@@ -3,7 +3,6 @@
 #import "RSEnvironment.h"
 #import "RSSearchModel.h"
 #import "RSThumbnails.h"
-#import "RSVideoDetailViewController.h"
 #import "RSVideoDetailModel.h"
 #import "RSVideoInfoUtil.h"
 #import "RSChannelModel.h"

@@ -8,11 +8,11 @@
 
 #import "RSAppDelegate.h"
 #import "RSVideoService.h"
-#import "RSVideoDetailViewController.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import <Google/Analytics.h>
 #import <AVFoundation/AVFoundation.h>
+#import "LolTube-Swift.h"
 
 static NSString *const kSharedUserDefaultsSuitName = @"kSharedUserDefaultsSuitName";
 static NSString *const kChannelIdsKey = @"channleIds";
@@ -56,7 +56,7 @@ static NSString *const kChannelIdsKey = @"channleIds";
     NSString *videoId = url.host;
 
     if (videoId) {
-        RSVideoDetailViewController *videoDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"videoDetail"];
+        VideoDetailViewController *videoDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"videoDetail"];
         videoDetailViewController.videoId = videoId;
         UIViewController *rootViewController = application.keyWindow.rootViewController;
         if ([rootViewController isKindOfClass:[UINavigationController class]]) {
