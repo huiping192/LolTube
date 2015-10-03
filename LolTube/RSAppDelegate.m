@@ -123,12 +123,8 @@ static NSString *const kChannelIdsKey = @"channleIds";
 - (void)p_configureAnalytics {
     NSError *configureError;
     [[GGLContext sharedInstance] configureWithError:&configureError];
-    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
-    
-    // Optional: configure GAI options.
     GAI *gai = [GAI sharedInstance];
-    gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
-    gai.logger.logLevel = kGAILogLevelVerbose;  // remove before app release
+    gai.trackUncaughtExceptions = YES;
 }
 
 - (void)storeDidChange:(NSNotification *)notification {
