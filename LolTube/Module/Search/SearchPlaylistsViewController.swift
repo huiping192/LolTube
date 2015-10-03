@@ -61,6 +61,6 @@ class SearchPlaylistsViewController: SimpleListCollectionViewController,Searchab
     
     override func didSelectItemAtIndexPath(indexPath: NSIndexPath){
         let playlist = viewModel.playlists[indexPath.row]
-        navigationController?.pushViewController(instantiatePlaylistViewController(playlist.playlistId,title:playlist.title), animated: true)
+        navigationController?.pushViewController(ViewControllerFactory.instantiatePlaylistViewController(playlist.playlistId,title:playlist.title), animated: true)
     }
 }

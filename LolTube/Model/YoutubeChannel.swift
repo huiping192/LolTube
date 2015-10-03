@@ -26,7 +26,7 @@ struct YoutubeChannel:Channel,Equatable {
 
     var selectedAction:(sourceViewController:UIViewController) -> Void {
         return { sourceViewController in
-            sourceViewController.showViewController(sourceViewController.instantiateChannelDetailViewController(id:self.channelId,title:self.title), sender: sourceViewController)
+            sourceViewController.showViewController(ViewControllerFactory.instantiateChannelDetailViewController(id:self.channelId,title:self.title), sender: sourceViewController)
         }
     }
     

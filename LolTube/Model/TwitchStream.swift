@@ -33,7 +33,7 @@ class TwitchStream: TopItem {
             guard let strongSelf = self else {
                 return 
             }
-            sourceViewController.showViewController(sourceViewController.instantiateTwitchStreamViewController(strongSelf), sender: sourceViewController)
+            sourceViewController.showViewController(ViewControllerFactory.instantiateTwitchStreamViewController(strongSelf), sender: sourceViewController)
         }
     }
     init(_ streamModel:RSStreamModel){

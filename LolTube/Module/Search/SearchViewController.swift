@@ -80,21 +80,21 @@ class SearchViewController: UIViewController {
     
     private func configureSearchVideoListViewController(searchText:String){
         searchVideoListViewController = configureChildViewController(searchVideoListViewController){
-            return self.instantiateSearchVideoListViewController(searchText)
+            return ViewControllerFactory.instantiateSearchVideoListViewController(searchText)
         }
         searchVideoListViewController?.searchText = searchText
     }
     
     private func configureSearchChannelListViewController(searchText:String){
         searchChannelListViewController = configureChildViewController(searchChannelListViewController){
-            return self.instantiateSearchChannelListViewController(searchText)
+            return ViewControllerFactory.instantiateSearchChannelListViewController(searchText)
         }
         searchChannelListViewController?.searchText = searchText
     }
     
     private func configureSearchPlaylistsViewController(searchText:String){
         searchPlaylistsViewController = configureChildViewController(searchPlaylistsViewController){
-            return self.instantiateSearchPlaylistsViewController(searchText)
+            return ViewControllerFactory.instantiateSearchPlaylistsViewController(searchText)
         }
         searchPlaylistsViewController?.searchText = searchText
     }

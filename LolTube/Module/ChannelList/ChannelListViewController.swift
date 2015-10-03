@@ -71,6 +71,6 @@ class ChannelListViewController: SimpleListCollectionViewController {
     
     override func didSelectItemAtIndexPath(indexPath: NSIndexPath){
         let channel = viewModel.channelList[indexPath.row]
-        navigationController?.pushViewController(instantiateChannelDetailViewController(id:channel.channelId,title:channel.title), animated: true)
+        navigationController?.pushViewController(ViewControllerFactory.instantiateChannelDetailViewController(id:channel.channelId,title:channel.title), animated: true)
     }
 }

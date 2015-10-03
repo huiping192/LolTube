@@ -34,12 +34,12 @@ class BannerViewController:UIViewController {
         case (.Compact, .Regular) :
             combinedBannerViewController = configureChildViewController(combinedBannerViewController){
                 [unowned self] in
-                return self.instantiateCombinedBannerViewController(self.bannerItemList)
+                return ViewControllerFactory.instantiateCombinedBannerViewController(self.bannerItemList)
             }
         default:
             splitBannerViewController = configureChildViewController(splitBannerViewController){
                 [unowned self] in
-                return self.instantiateSplitBannerViewController(self.bannerItemList)
+                return ViewControllerFactory.instantiateSplitBannerViewController(self.bannerItemList)
             }
         }
 
