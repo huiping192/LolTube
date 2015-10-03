@@ -40,12 +40,19 @@ static NSString *const kChannelIdsKey = @"channleIds";
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
     UIViewController *rootViewController = self.window.rootViewController;
-    if ([rootViewController isKindOfClass:[UINavigationController class]]) {
-        UIViewController *navigationTopViewController = ((UINavigationController *) rootViewController).topViewController;
-//        if ([navigationTopViewController isKindOfClass:[RSVideoListViewController class]]) {
-//            [((RSVideoListViewController *) navigationTopViewController) fetchNewDataWithCompletionHandler:completionHandler];
-//        }
+    if ([rootViewController isKindOfClass:[UITabBarController class]]) {
+        UITabBarController *tabBarController = (UITabBarController *)rootViewController;
+        if ([tabBarController.selectedViewController isKindOfClass:[UINavigationController class]]) {
+            UIViewController *navigationTopViewController = ((UINavigationController *) tabBarController.selectedViewController).topViewController;
+            if ([navigationTopViewController isKindOfClass:[TopViewController class]]) {
+                [((TopViewController *) navigationTopViewController) fetchNewData:completionHandler];
+                return;
+            }
+        }
     }
+    
+    
+    completionHandler(UIBackgroundFetchResultFailed);
 }
 
 - (void)p_configureVideoService {

@@ -82,6 +82,21 @@ class TopViewController: UIViewController {
         }
     }
     
+    func fetchNewData(completionHandler:UIBackgroundFetchResult -> Void){
+        viewModel.update({
+            [weak self] in
+            self?.configureTopView()
+            self?.videosCollectionView.reloadData()
+            completionHandler(.NewData)
+            },bannerSuccess:{
+                [weak self] in
+                self?.configureTopView()
+            }, failure: {
+                _ in
+                completionHandler(.Failed)
+            })
+
+    }
     // MARK: data loading
     private func loadVideosData() {
         mainScrollView.alpha = 0.0
