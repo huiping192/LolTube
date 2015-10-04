@@ -59,11 +59,14 @@ static NSString *const kChannelIdsKey = @"channleIds";
         VideoDetailViewController *videoDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"videoDetail"];
         videoDetailViewController.videoId = videoId;
         UIViewController *rootViewController = application.keyWindow.rootViewController;
-        if ([rootViewController isKindOfClass:[UINavigationController class]]) {
-            UINavigationController *navigationController = (UINavigationController *) rootViewController;
-            [navigationController popToRootViewControllerAnimated:NO];
-            [navigationController pushViewController:videoDetailViewController animated:YES];
+        if ([rootViewController isKindOfClass:[UITabBarController class]]) {
+            UITabBarController *tabBarController = (UITabBarController *)rootViewController;
+            if ([tabBarController.selectedViewController isKindOfClass:[UINavigationController class]]) {
+                UINavigationController *navigationController = (UINavigationController *) tabBarController.selectedViewController;
+                [navigationController pushViewController:videoDetailViewController animated:YES];
+            }
         }
+        
     }
 
     return YES;
