@@ -5,7 +5,6 @@
 
 #import "RSVideoDetailSegmentViewController.h"
 #import "RSVideoInfoViewController.h"
-#import "RSVideoRelatedVideosViewController.h"
 #import "RSVideoDetailSegmentViewModel.h"
 #import "UIImageView+Loading.h"
 #import "LolTube-Swift.h"
@@ -21,7 +20,7 @@
 @property(nonatomic, weak) IBOutlet UIImageView *channelThumbnailImageView;
 
 @property(nonatomic, strong) RSVideoInfoViewController *infoViewController;
-@property(nonatomic, strong) RSVideoRelatedVideosViewController *relatedVideosViewController;
+@property(nonatomic, strong) VideoRelatedVideosViewController *relatedVideosViewController;
 
 @property(nonatomic, strong) RSVideoDetailSegmentViewModel *viewModel;
 @property(nonatomic, strong) NSOperationQueue *imageLoadingOperationQueue;

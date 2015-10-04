@@ -724,7 +724,7 @@
         <!--Video Related Videos View Controller-->
         <scene sceneID="3vj-aQ-lac">
             <objects>
-                <viewController storyboardIdentifier="relatedVideos" id="KDz-oz-cKQ" customClass="RSVideoRelatedVideosViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="relatedVideos" id="KDz-oz-cKQ" customClass="VideoRelatedVideosViewController" customModule="LolTube" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sIv-4X-zc3"/>
                         <viewControllerLayoutGuide type="bottom" id="53m-KV-ggM"/>
@@ -744,7 +744,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="relatedVideoCell" id="4D7-vW-7be" customClass="RSVideoRelatedVideoCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="videoCell" id="4D7-vW-7be" customClass="VideoRelatedVideoCell" customModule="LolTube" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">

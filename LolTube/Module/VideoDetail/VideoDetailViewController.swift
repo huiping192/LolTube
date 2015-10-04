@@ -34,7 +34,7 @@ class VideoDetailViewController:UIViewController {
     var currentVideoQuality:XCDYouTubeVideoQuality = .Medium360
     
     var videoDetailSegmentViewController:RSVideoDetailSegmentViewController!
-    var relatedVideosViewController:RSVideoRelatedVideosViewController!
+    var relatedVideosViewController: VideoRelatedVideosViewController!
     
     let imageLoadingOperationQueue:NSOperationQueue =  NSOperationQueue()
     
@@ -118,7 +118,7 @@ class VideoDetailViewController:UIViewController {
             videoDetailSegmentViewController.videoId = videoId
             self.videoDetailSegmentViewController = videoDetailSegmentViewController
         case .relatedVideosEmbed:
-            let relatedVideosViewController = segue.destinationViewController(RSVideoRelatedVideosViewController.self)
+            let relatedVideosViewController = segue.destinationViewController(VideoRelatedVideosViewController.self)
             relatedVideosViewController.videoId = videoId
             self.relatedVideosViewController = relatedVideosViewController
         }
@@ -281,7 +281,10 @@ class VideoDetailViewController:UIViewController {
             transitionCoordinator.animateAlongsideTransition({
                 _ in
                 self.resizeRelatedVideosView(childTraitCollection)
-                },completion:nil)
+                },completion:{
+                    _ in
+                    self.relatedVideosViewController.collectionView.collectionViewLayout.invalidateLayout()
+            })
         }else {
             resizeRelatedVideosView(childTraitCollection)
         }
