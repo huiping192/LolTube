@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2013-2014 Cédric Luthi. All rights reserved.
+//  Copyright (c) 2013-2015 Cédric Luthi. All rights reserved.
 //
 
 #import "XCDYouTubeClient.h"
@@ -37,6 +37,7 @@
 	_languageIdentifier = languageIdentifier;
 	_queue = [NSOperationQueue new];
 	_queue.maxConcurrentOperationCount = 6; // paul_irish: Chrome re-confirmed that the 6 connections-per-host limit is the right magic number: https://code.google.com/p/chromium/issues/detail?id=285567#c14 [https://twitter.com/paul_irish/status/422808635698212864]
+	_queue.name = NSStringFromClass(self.class);
 	
 	return self;
 }
@@ -53,7 +54,7 @@
 	return _languageIdentifier;
 }
 
-- (id<XCDYouTubeOperation>) getVideoWithIdentifier:(NSString *)videoIdentifier completionHandler:(void (^)(XCDYouTubeVideo *video, NSError *error))completionHandler
+- (id<XCDYouTubeOperation>) getVideoWithIdentifier:(NSString *)videoIdentifier completionHandler:(void (^)(XCDYouTubeVideo * __nullable video, NSError * __nullable error))completionHandler
 {
 	if (!completionHandler)
 		@throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"The `completionHandler` argument must not be nil." userInfo:nil];
@@ -66,7 +67,7 @@
 			if (operation.video || operation.error) // If both `video` and `error` are nil, then the operation was cancelled
 				completionHandler(operation.video, operation.error);
 			operation.completionBlock = nil;
-#pragma clang diagnostic push
+#pragma clang diagnostic pop
 		}];
 	};
 	[self.queue addOperation:operation];
