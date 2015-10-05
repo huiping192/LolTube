@@ -44,7 +44,7 @@ class TwitchStreamViewController: UIViewController {
         
         EventTracker.trackViewContentView(viewName: "Twitch Stream", viewType: TwitchStreamViewController.self, viewId: stream.name)
 
-        nameLabel.text = stream.name
+        nameLabel.text = stream.displayName
         titleLabel.text = stream.title
         viewersLabel.text = stream.viewersString
         viewCountLabel.text = stream.viewCountString

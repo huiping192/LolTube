@@ -7,6 +7,7 @@ class TwitchStream: TopItem {
         return "Twitch Stream  \(streamId)"
     }
     var streamId: String!
+    var displayName: String!
     var name: String!
     var title: String?
     var thumbnailUrl: String?
@@ -39,7 +40,8 @@ class TwitchStream: TopItem {
     init(_ streamModel:RSStreamModel){
         self.streamId = String(streamModel._id)
         self.title = streamModel.channel.status
-        self.name = streamModel.channel.display_name
+        self.displayName = streamModel.channel.display_name
+        self.name = streamModel.channel.name
         self.highThumbnailUrl = streamModel.preview.medium
         self.thumbnailUrl = streamModel.preview.medium
         self.viewers = Int(streamModel.viewers)

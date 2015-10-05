@@ -40,12 +40,19 @@ static NSString *const kChannelIdsKey = @"channleIds";
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
     UIViewController *rootViewController = self.window.rootViewController;
-    if ([rootViewController isKindOfClass:[UINavigationController class]]) {
-        UIViewController *navigationTopViewController = ((UINavigationController *) rootViewController).topViewController;
-//        if ([navigationTopViewController isKindOfClass:[RSVideoListViewController class]]) {
-//            [((RSVideoListViewController *) navigationTopViewController) fetchNewDataWithCompletionHandler:completionHandler];
-//        }
+    if ([rootViewController isKindOfClass:[UITabBarController class]]) {
+        UITabBarController *tabBarController = (UITabBarController *)rootViewController;
+        if ([tabBarController.selectedViewController isKindOfClass:[UINavigationController class]]) {
+            UIViewController *navigationTopViewController = ((UINavigationController *) tabBarController.selectedViewController).topViewController;
+            if ([navigationTopViewController isKindOfClass:[TopViewController class]]) {
+                [((TopViewController *) navigationTopViewController) fetchNewData:completionHandler];
+                return;
+            }
+        }
     }
+    
+    
+    completionHandler(UIBackgroundFetchResultFailed);
 }
 
 - (void)p_configureVideoService {
@@ -123,12 +130,8 @@ static NSString *const kChannelIdsKey = @"channleIds";
 - (void)p_configureAnalytics {
     NSError *configureError;
     [[GGLContext sharedInstance] configureWithError:&configureError];
-    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
-    
-    // Optional: configure GAI options.
     GAI *gai = [GAI sharedInstance];
-    gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
-    gai.logger.logLevel = kGAILogLevelVerbose;  // remove before app release
+    gai.trackUncaughtExceptions = YES;
 }
 
 - (void)storeDidChange:(NSNotification *)notification {
