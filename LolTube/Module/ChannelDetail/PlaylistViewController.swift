@@ -59,6 +59,6 @@ class PlaylistViewController: VideoCollectionViewController {
     
     override func didSelectItemAtIndexPath(indexPath: NSIndexPath){
         let cellVo = viewModel.videoList[indexPath.row]
-        navigationController?.pushViewController(instantiateVideoDetailViewController(cellVo.videoId), animated: true)
+        navigationController?.pushViewController(ViewControllerFactory.instantiateVideoDetailViewController(cellVo.videoId), animated: true)
     }
 }

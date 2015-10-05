@@ -49,7 +49,7 @@ PODS:
   - SDWebImage/Core (3.7.1)
   - TSMessages (0.9.13):
     - HexColors (~> 2.3.0)
-  - XCDYouTubeKit (2.0.2)
+  - XCDYouTubeKit (2.3.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
@@ -64,7 +64,7 @@ DEPENDENCIES:
   - Quick
   - SDWebImage (~> 3.7.0)
   - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
-  - XCDYouTubeKit (~> 2.0.2)
+  - XCDYouTubeKit (~> 2.3.1)
 
 EXTERNAL SOURCES:
   Async:
@@ -105,6 +105,6 @@ SPEC CHECKSUMS:
   Quick: 824572d3d198d51e52cf4aa722cebf7e59952a35
   SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
   TSMessages: 6e403b790139636c15ab4f51946537095e03e79c
-  XCDYouTubeKit: 5a0412598bca14e6deb5884bc58cd452be2f4b17
+  XCDYouTubeKit: 80e9169b644acf4e67979142f789d9e7e9e15784
 
 COCOAPODS: 0.38.2

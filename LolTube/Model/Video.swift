@@ -74,7 +74,7 @@ class Video: TopItem {
             guard let strongSelf = self else {
                 return 
             }
-            sourceViewController.showViewController(sourceViewController.instantiateVideoDetailViewController(strongSelf.videoId), sender: sourceViewController)
+            sourceViewController.showViewController(ViewControllerFactory.instantiateVideoDetailViewController(strongSelf.videoId), sender: sourceViewController)
         }
     }
 }

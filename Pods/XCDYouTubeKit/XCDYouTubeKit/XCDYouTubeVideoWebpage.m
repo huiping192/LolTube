@@ -1,8 +1,10 @@
 //
-//  Copyright (c) 2013-2014 Cédric Luthi. All rights reserved.
+//  Copyright (c) 2013-2015 Cédric Luthi. All rights reserved.
 //
 
 #import "XCDYouTubeVideoWebpage.h"
+
+#import "XCDYouTubeLogger.h"
 
 @interface XCDYouTubeVideoWebpage ()
 @property (nonatomic, strong) NSData *data;
@@ -14,6 +16,7 @@
 	NSDictionary *_playerConfiguration;
 	NSDictionary *_videoInfo;
 	NSURL *_javaScriptPlayerURL;
+	BOOL _isAgeRestricted;
 }
 
 - (instancetype) initWithData:(NSData *)data response:(NSURLResponse *)response
@@ -35,15 +38,25 @@
 	{
 		__block NSDictionary *playerConfigurationDictionary;
 		CFStringEncoding encoding = CFStringConvertIANACharSetNameToEncoding((__bridge CFStringRef)self.response.textEncodingName ?: CFSTR(""));
-		NSString *html = CFBridgingRelease(CFStringCreateWithBytes(kCFAllocatorDefault, [self.data bytes], (CFIndex)[self.data length], encoding != kCFStringEncodingInvalidId ? encoding : kCFStringEncodingISOLatin1, false));
-		NSRegularExpression *playerConfigRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"ytplayer.config\\s*=\\s*(\\{.*?\\});" options:NSRegularExpressionCaseInsensitive error:NULL];
-		[playerConfigRegularExpression enumerateMatchesInString:html options:(NSMatchingOptions)0 range:NSMakeRange(0, html.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-			NSString *configString = [html substringWithRange:[result rangeAtIndex:1]];
-			NSDictionary *playerConfiguration = [NSJSONSerialization JSONObjectWithData:[configString dataUsingEncoding:NSUTF8StringEncoding] options:(NSJSONReadingOptions)0 error:NULL];
-			if ([playerConfiguration isKindOfClass:[NSDictionary class]])
+		NSString *html = CFBridgingRelease(CFStringCreateWithBytes(kCFAllocatorDefault, self.data.bytes, (CFIndex)self.data.length, encoding != kCFStringEncodingInvalidId ? encoding : kCFStringEncodingISOLatin1, false));
+		XCDYouTubeLogTrace(@"%@", html);
+		NSRegularExpression *playerConfigRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"ytplayer.config\\s*=\\s*(\\{.*?\\});|\\(\\s*'PLAYER_CONFIG',\\s*(\\{.*?\\})\\s*\\)" options:NSRegularExpressionCaseInsensitive error:NULL];
+		[playerConfigRegularExpression enumerateMatchesInString:html options:(NSMatchingOptions)0 range:NSMakeRange(0, html.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+		{
+			for (NSUInteger i = 1; i < result.numberOfRanges; i++)
 			{
-				playerConfigurationDictionary = playerConfiguration;
-				*stop = YES;
+				NSRange range = [result rangeAtIndex:i];
+				if (range.length == 0)
+					continue;
+				
+				NSString *configString = [html substringWithRange:range];
+				NSData *configData = [configString dataUsingEncoding:NSUTF8StringEncoding];
+				NSDictionary *playerConfiguration = [NSJSONSerialization JSONObjectWithData:configData ?: [NSData new] options:(NSJSONReadingOptions)0 error:NULL];
+				if ([playerConfiguration isKindOfClass:[NSDictionary class]])
+				{
+					playerConfigurationDictionary = playerConfiguration;
+					*stop = YES;
+				}
 			}
 		}];
 		_playerConfiguration = playerConfigurationDictionary;
@@ -59,7 +72,8 @@
 		if ([args isKindOfClass:[NSDictionary class]])
 		{
 			NSMutableDictionary *info = [NSMutableDictionary new];
-			[args enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
+			[args enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop)
+			{
 				if ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]])
 					info[key] = [value description];
 			}];
@@ -84,6 +98,18 @@
 		}
 	}
 	return _javaScriptPlayerURL;
+}
+
+- (BOOL) isAgeRestricted
+{
+	if (!_isAgeRestricted)
+	{
+		NSData *openGraphAgeRestriction = [@"og:restrictions:age" dataUsingEncoding:NSUTF8StringEncoding];
+		NSDataSearchOptions options = (NSDataSearchOptions)0;
+		NSRange range = NSMakeRange(0, self.data.length);
+		_isAgeRestricted = [self.data rangeOfData:openGraphAgeRestriction options:options range:range].location != NSNotFound;
+	}
+	return _isAgeRestricted;
 }
 
 @end

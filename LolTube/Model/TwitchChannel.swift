@@ -19,7 +19,7 @@ struct TwitchChannel: Channel {
     
     var selectedAction:(sourceViewController:UIViewController) -> Void {
         return { sourceViewController in
-            sourceViewController.showViewController(sourceViewController.instantiateTwitchStreamListViewController(), sender: sourceViewController)
+            sourceViewController.showViewController(ViewControllerFactory.instantiateTwitchStreamListViewController(), sender: sourceViewController)
         }
     }
 }

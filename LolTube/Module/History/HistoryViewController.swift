@@ -66,6 +66,6 @@ class HistoryViewController:VideoCollectionViewController {
     
     override func didSelectItemAtIndexPath(indexPath: NSIndexPath){
         let video = viewModel.videoList[indexPath.row]
-        navigationController?.pushViewController(instantiateVideoDetailViewController(video.videoId), animated: true)
+        navigationController?.pushViewController(ViewControllerFactory.instantiateVideoDetailViewController(video.videoId), animated: true)
     }
 }

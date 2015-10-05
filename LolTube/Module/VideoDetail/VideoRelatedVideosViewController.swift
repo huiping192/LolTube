@@ -1,45 +1,51 @@
+//
+//  VideoRelatedVideosViewController.swift
+//  LolTube
+//
+//  Created by 郭 輝平 on 10/4/15.
+//  Copyright © 2015 Huiping Guo. All rights reserved.
+//
+
 import Foundation
 
-class VideoListViewController: VideoCollectionViewController {
-
-    var channelId:String!
-    var channelTitle:String!
-
-    var viewModel:VideoListViewModel!
+class VideoRelatedVideosViewController:VideoCollectionViewController {
+    
+    var videoId:String!
+    
     private let imageLoadingOperationQueue = NSOperationQueue()
-
+    
+    var viewModel:VideoRelatedVideosViewModel!
+    
     override var emptyDataTitle:String{
-        return NSLocalizedString("ChannelVideoEmptyData", comment: "")
+        return NSLocalizedString("HistoryEmptyData", comment: "")
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        EventTracker.trackViewContentView(viewName: "Channel Video", viewType: VideoListViewController.self, viewId: channelTitle)
-    }
-    
+   
     deinit{
         imageLoadingOperationQueue.cancelAllOperations()
     }
     
     override func collectionViewModel() -> SimpleListCollectionViewModelProtocol{
-        viewModel = VideoListViewModel(channelId:channelId)
+        viewModel = VideoRelatedVideosViewModel(videoId: videoId)
         return viewModel
     }
     
+    override var cellCount: Int {
+         return 1
+    }
     override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
-        let cell = collectionView.dequeueReusableCell(indexPath, type: VideoCellectionViewCell.self)
+        let cell = collectionView.dequeueReusableCell(indexPath, type: VideoRelatedVideoCell.self)
         let video = viewModel.videoList[indexPath.row]
         
         cell.titleLabel.text = video.title
+        cell.channelLabel.text = video.channelTitle
         cell.durationLabel.text = video.durationString
-        cell.viewCountLabel.text = video.viewCountPublishedAt
+        cell.viewCountLabel.text =  video.viewCountPublishedAt
         
         cell.thumbnailImageView.image = nil
         if let thumbnailUrl = video.thumbnailUrl {
             let imageOperation = ImageLoadOperation(url:thumbnailUrl){
-                [weak collectionView] image in
-                let cell = collectionView?.cell(indexPath, type: VideoCellectionViewCell.self)
+                [weak self] image in
+                let cell = self?.collectionView.cell(indexPath, type: VideoRelatedVideoCell.self)
                 cell?.thumbnailImageView.image = image
             }
             imageLoadingOperationQueue.addOperation(imageOperation)

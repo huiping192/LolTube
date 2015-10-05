@@ -8,11 +8,12 @@
 
 #import "RSAppDelegate.h"
 #import "RSVideoService.h"
-#import "RSVideoDetailViewController.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import <Google/Analytics.h>
 #import <AVFoundation/AVFoundation.h>
+#import "LolTube-Swift.h"
+#import "RSEnvironment.h"
 
 static NSString *const kSharedUserDefaultsSuitName = @"kSharedUserDefaultsSuitName";
 static NSString *const kChannelIdsKey = @"channleIds";
@@ -56,22 +57,37 @@ static NSString *const kChannelIdsKey = @"channleIds";
     NSString *videoId = url.host;
 
     if (videoId) {
-        RSVideoDetailViewController *videoDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"videoDetail"];
+        VideoDetailViewController *videoDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"videoDetail"];
         videoDetailViewController.videoId = videoId;
-        UIViewController *rootViewController = application.keyWindow.rootViewController;
-        if ([rootViewController isKindOfClass:[UINavigationController class]]) {
-            UINavigationController *navigationController = (UINavigationController *) rootViewController;
-            [navigationController popToRootViewControllerAnimated:NO];
-            [navigationController pushViewController:videoDetailViewController animated:YES];
-        }
+        
+        [[self p_currentNavigationController] showViewController:videoDetailViewController sender:self];
     }
 
     return YES;
 }
 
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
-    [application.keyWindow.rootViewController restoreUserActivityState:userActivity];
+    if ([userActivity.activityType isEqualToString:kUserActivityTypeVideoDetail] && [userActivity.userInfo[kHandOffVersionKey] isEqualToString:kHandOffVersion]) {
+        
+        VideoDetailViewController *videoDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:kViewControllerIdVideoDetail];
+        videoDetailViewController.videoId = userActivity.userInfo[kUserActivityVideoDetailUserInfoKeyVideoId];
+        videoDetailViewController.initialPlaybackTime = [((NSNumber *) userActivity.userInfo[kUserActivityVideoDetailUserInfoKeyVideoCurrentPlayTime]) floatValue];
+        
+        [[self p_currentNavigationController] showViewController:videoDetailViewController sender:self];
+    }
+
     return YES;
+}
+
+-(UINavigationController *)p_currentNavigationController{
+    UIViewController *rootViewController = self.window.rootViewController;
+    if ([rootViewController isKindOfClass:[UITabBarController class]]) {
+        UITabBarController *tabBarController = (UITabBarController *)rootViewController;
+        if ([tabBarController.selectedViewController isKindOfClass:[UINavigationController class]]) {
+            return (UINavigationController *) tabBarController.selectedViewController;
+        }
+    }
+    return nil;
 }
 
 

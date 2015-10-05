@@ -154,19 +154,19 @@ class ChannelDetailViewController: UIViewController {
     
     private func configureVideoListViewController(){
         self.videoListViewController = configureChildViewController(self.videoListViewController){
-            return self.instantiateVideoListViewController(self.channelId,channelTitle:channelTitle)
+            return ViewControllerFactory.instantiateVideoListViewController(self.channelId,channelTitle:channelTitle)
         }
     }
     
     private func configurePlaylistsViewController(){
         self.playlistsViewController = configureChildViewController(self.playlistsViewController){
-            return self.instantiatePlaylistsViewController(self.channelId,channelTitle:channelTitle)
+            return ViewControllerFactory.instantiatePlaylistsViewController(self.channelId,channelTitle:channelTitle)
         }
     }
     
     private func configureInfoViewController(){
         self.channelInfoViewController = configureChildViewController(self.channelInfoViewController){
-            return self.instantiateChannelInfoViewController(self.viewModel.channel?.description ?? "",channelId:self.channelId,channelTitle:channelTitle)
+            return ViewControllerFactory.instantiateChannelInfoViewController(self.viewModel.channel?.description ?? "",channelId:self.channelId,channelTitle:channelTitle)
         }
     }
     

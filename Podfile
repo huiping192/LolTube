@@ -7,7 +7,7 @@ use_frameworks!
 
 pod 'AFNetworking', '~> 2.0'
 pod 'JSONModel', '~> 1.0.1'
-pod 'XCDYouTubeKit', '~> 2.0.2'
+pod 'XCDYouTubeKit', '~> 2.3.1'
 pod 'SDWebImage', '~> 3.7.0'
 pod 'TSMessages', :git => 'https://github.com/KrauseFx/TSMessages.git'
 pod 'Google/Analytics', '~> 1.0.0'
