@@ -50,3 +50,5 @@
 "TwitchViewerCountFormat" = "%@ viewer";
 "TwitchFollowerCountFormat" = "%@ follower";
 
+"SuggestionVideos" = "Suggestions";
+

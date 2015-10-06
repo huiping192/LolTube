@@ -222,7 +222,7 @@ extension TopViewController: UICollectionViewDataSource {
     private func preferItemCount(section:Int) -> Int{
         switch (traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
         case (.Compact, .Regular) where section == 0:
-            return 4
+            return 6
         case (.Compact, .Regular):
             return 5
         case (.Compact, .Compact):
@@ -258,17 +258,23 @@ extension TopViewController: UICollectionViewDataSource {
             
             headerView.titleLabel.text = channel.title
             
-            headerView.moreButton.tag = indexPath.section
-            headerView.moreButton.addTarget(self, action:"moreButtonTapped:", forControlEvents: .TouchUpInside)
-            
             headerView.thumbnailImageView.image = nil
             loadChannelImage(channel) {
                 [weak headerView]image in
                 headerView?.thumbnailImageView.image = image
             }
             
-            headerView.tag = indexPath.section
-            headerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "headerViewTapped:"))
+            headerView.moreButton.hidden = !channel.selectable
+            headerView.gestureRecognizers?.filter{$0 is UITapGestureRecognizer}.forEach{ headerView.removeGestureRecognizer($0) }
+            
+            if channel.selectable {
+                headerView.moreButton.tag = indexPath.section
+                headerView.moreButton.addTarget(self, action:"moreButtonTapped:", forControlEvents: .TouchUpInside)
+                
+                headerView.tag = indexPath.section
+                headerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "headerViewTapped:"))
+            }
+
             return headerView
         case UICollectionElementKindSectionFooter:
             let footerView = collectionView.dequeueReusableSupplementaryView(kind, indexPath: indexPath, type: TopVideoCollectionFooterView.self)
@@ -284,13 +290,13 @@ extension TopViewController: UICollectionViewDataSource {
     func headerViewTapped(gestureRecognizer: UITapGestureRecognizer){  
         guard let view = gestureRecognizer.view , channel = channel(view.tag) else { return }
         
-        channel.selectedAction(sourceViewController: self)
+        channel.selectedAction?(sourceViewController: self)
     }
     
     func moreButtonTapped(button: UIButton){
         guard let channel = channel(button.tag) else { return }
         
-        channel.selectedAction(sourceViewController: self)
+        channel.selectedAction?(sourceViewController: self)
     }
 }
 

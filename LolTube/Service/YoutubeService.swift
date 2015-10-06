@@ -26,7 +26,7 @@ public class YoutubeService: HttpService {
     
     let playlistItemsUrlString = "https://www.googleapis.com/youtube/v3/playlistItems"
     
-    public func videoList(channelId: String, searchText: String?, nextPageToken: String?, success: ((RSSearchModel) -> Void)?, failure: ((NSError) -> Void)?) {
+    public func videoList(channelId: String, searchText: String? = nil, nextPageToken: String? = nil, success: ((RSSearchModel) -> Void)?, failure: ((NSError) -> Void)?) {
         let queryparameters = [
             "key": kYoutubeApiKey,
             "part": "snippet",
@@ -151,13 +151,13 @@ public class YoutubeService: HttpService {
         request(searchUrlString, staticParameters: queryparameters, dynamicParameters: dynamicParametersValueList, jsonModelClass: RSSearchModel.self, success: success, failure: failure)
     }
     
-    public func relatedVideoList(videoId: String, success: ((RSSearchModel) -> Void)?, failure: ((NSError) -> Void)?) {
+    public func relatedVideoList(videoId: String,count: Int = 20 , success: ((RSSearchModel) -> Void)?, failure: ((NSError) -> Void)?) {
         let queryparameters = [
             "key": kYoutubeApiKey,
             "part": "snippet",
             "relatedToVideoId": videoId,
             "type": "video",
-            "maxResults": "20"
+            "maxResults": String(count)
         ]
         
         request(searchUrlString, queryParameters: queryparameters, jsonModelClass: RSSearchModel.self, success: success, failure: failure)

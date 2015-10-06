@@ -28,5 +28,5 @@ static NSString *const kHistoryVideoIdsKey = @"historyVideoIds";
 
 -(void)saveHistoryVideoId:(NSString *)videoId;
 
--(NSArray *)historyVideoIdList;
+-(NSArray<NSString *> * _Nullable )historyVideoIdList;
 @end
