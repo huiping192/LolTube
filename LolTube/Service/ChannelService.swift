@@ -47,8 +47,6 @@ class ChannelService: NSObject {
         case FåntäsyZ = "UCDgtlI_erc41UoqaeD816Kg"
         case 英雄聯盟最新資訊 = "UC_iOMGX-tdJKvjPEvy8z7Fw"
         case 云之彼岸LOL = "UCk2_iV0Q1EPbOiJ6aOOLbZw"
-        case 最強聯盟BestLeague = "UCtMM6QD3n-jCjUfvflarboA"
-        case 最強聯盟爆笑集錦x直播頻 = "UCNooNOGnABoxyDwHuQAH92w"
         case R大 = "UCcUrfKffo1wjIZ_GMKgPEqQ"
         case Solagas = "UCmqOPqjtFi-QppW3wDhPWEg"
         case 遊戲大聯盟 = "LOLGAMEPLAY999"
@@ -64,6 +62,8 @@ class ChannelService: NSObject {
         case Dinter = "UC0SkNQXPJ60hKEFubOz0fDA"
         case 烏啦啦 = "UCjvjMvoMY1GgXc04VntTZhg"
         case HongKongEsportsLtd = "UCMwKmIVf-ZT7eQTkof6IzPw"
+        case 新最強聯盟BestLeague = "UCv_P-98Hfhg-SkSPiTYtBqA"
+        case BestLeagueTV = "UCVDVaMwudVP1wfcNE7Aawbg"
         
         // korean channels
         case RangmalTV = "UCc_7XbnN1bTFMhquCKt3ngA"
@@ -101,8 +101,7 @@ class ChannelService: NSObject {
                 .FåntäsyZ,
                 .英雄聯盟最新資訊,
                 .云之彼岸LOL,
-                .最強聯盟BestLeague,
-                .最強聯盟爆笑集錦x直播頻,
+                .新最強聯盟BestLeague,
                 .R大,
                 .Solagas,
                 .遊戲大聯盟,
