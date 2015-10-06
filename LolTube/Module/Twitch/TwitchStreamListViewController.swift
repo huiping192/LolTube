@@ -38,7 +38,7 @@ class TwitchStreamListViewController: VideoCollectionViewController {
         
         cell.titleLabel.text = stream.title
         cell.channelLabel.text = stream.displayName
-        cell.viewCountLabel.text = stream.viewersString
+        cell.viewCountLabel.text = stream.subTitle
         
         cell.thumbnailImageView.image = nil
         if let thumbnailUrl = stream.thumbnailUrl {

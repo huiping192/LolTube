@@ -328,8 +328,10 @@ topItem.selectedAction(sourceViewController: self)
                 [weak collectionView] in
                 let cell = collectionView?.cell(indexPath, type: TopVideoCell.self)
                 cell?.durationLabel.text = video.durationString
-                cell?.viewCountLabel.text =  video.viewCountPublishedAt
+                cell?.viewCountLabel.text =  video.subTitle
             }
+        } else {
+            cell.viewCountLabel.text =  topItem.subTitle
         }
     }
     

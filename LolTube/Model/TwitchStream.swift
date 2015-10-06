@@ -17,12 +17,16 @@ class TwitchStream: TopItem {
     var views: Int?
     var logo: String?
 
-    var viewCountString: String? {
-        return RSVideoInfoUtil.convertVideoViewCount(views ?? 0)
+    var subTitle: String?{
+        return viewersString
     }
     
-    var viewersString: String? {
+    var viewersString: String?{
         return viewers?.toViewerCountFormat()
+    }
+
+    var viewCountString: String? {
+        return RSVideoInfoUtil.convertVideoViewCount(views ?? 0)
     }
     
     var followersString: String? {

@@ -15,6 +15,10 @@ protocol TopItem {
     var highThumbnailUrl: String?{
         get
     }
+    
+    var subTitle: String?{
+        get
+    }
 
     var selectedAction:(sourceViewController:UIViewController) -> Void {
         get

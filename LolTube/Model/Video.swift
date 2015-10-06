@@ -34,6 +34,10 @@ class Video: TopItem {
         return "\(viewCount) ・ \(publishedAtString)"
     }
     
+    var subTitle: String?{
+        return viewCountPublishedAt
+    }
+    
     init(_ videoItem:RSVideoItem){
         self.videoId = videoItem.id
         self.channelId = videoItem.snippet.channelId
