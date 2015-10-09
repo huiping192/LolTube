@@ -56,14 +56,18 @@ class EventTracker: NSObject {
     }
     
     private static func trackGoogleAnalyticsScreen(screenName screenName:String){
-        let tracker = GAI.sharedInstance().defaultTracker
+        guard let tracker = GAI.sharedInstance().defaultTracker else {
+            return
+        }
         tracker.set(kGAIScreenName, value: screenName)
         let parameters = GAIDictionaryBuilder.createScreenView().build() as [NSObject : AnyObject]
         tracker.send(parameters)
     }
     
     private static func trackGoogleAnalyticsEvent(category category:String,action:String,label:String? = nil) {
-        let tracker = GAI.sharedInstance().defaultTracker
+        guard let tracker = GAI.sharedInstance().defaultTracker else {
+            return
+        }
         let parameters =  GAIDictionaryBuilder.createEventWithCategory(category, action: action, label: label, value: nil).build() as [NSObject : AnyObject]
         tracker.send(parameters)
     }

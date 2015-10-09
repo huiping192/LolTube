@@ -22,7 +22,6 @@ static NSString *const kChannelIdsKey = @"channleIds";
 @implementation RSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [Fabric with:@[CrashlyticsKit]];
 
     [self p_savePersetting];
     [self p_configureVideoService];
@@ -128,10 +127,17 @@ static NSString *const kChannelIdsKey = @"channleIds";
 }
 
 - (void)p_configureAnalytics {
+#ifdef DEBUG
+    NSLog(@"No tracking user event in debug model");
+#else
+    [Fabric with:@[CrashlyticsKit]];
+    
     NSError *configureError;
     [[GGLContext sharedInstance] configureWithError:&configureError];
     GAI *gai = [GAI sharedInstance];
     gai.trackUncaughtExceptions = YES;
+#endif
+    
 }
 
 - (void)storeDidChange:(NSNotification *)notification {
