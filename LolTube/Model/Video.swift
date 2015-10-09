@@ -1,7 +1,7 @@
 import Foundation
 
 // FIXME: change Video to struct
-class Video: TopItem {
+class Video: TopItem,Hashable {
     var id: String{
         return "Youtbe Video \(videoId)"
     }
@@ -81,4 +81,12 @@ class Video: TopItem {
             sourceViewController.showViewController(ViewControllerFactory.instantiateVideoDetailViewController(strongSelf.videoId), sender: sourceViewController)
         }
     }
+    
+    var hashValue: Int { 
+        return self.id.hashValue
+    }
+}
+
+func ==(lhs: Video, rhs: Video) -> Bool {
+    return lhs.id == rhs.id
 }

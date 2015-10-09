@@ -13,12 +13,13 @@ class TopViewModel {
         
     private let operationQueue = NSOperationQueue()
 
-    private var channelLoadOperation:NSOperation?
-    private var channelVideoListLoadOperation:ChannelVideoListLoadOperation?
-    private var twitchStreamListLoadOperation:NSOperation?
-    private var bannerItemListGenerationOperation:BannerItemListGenerationOperation?
-    private var channelSortOperation:ChannelSortOperation?
-    private var channelVideoListMergeOperation:ChannelVideoListMergeOperation?
+    private weak var channelLoadOperation:NSOperation?
+    private weak var channelVideoListLoadOperation:ChannelVideoListLoadOperation?
+    private weak var twitchStreamListLoadOperation:NSOperation?
+    private weak var bannerItemListGenerationOperation:BannerItemListGenerationOperation?
+    private weak var channelSortOperation:ChannelSortOperation?
+    private weak var channelVideoListMergeOperation:ChannelVideoListMergeOperation?
+    private weak var suggestionVideoListLoadOperation:SuggestionVideoListLoadOperation?
     
     func update(videoSuccess: () -> Void,bannerSuccess: () -> Void,failure: (NSError) -> Void) {
         let channelLoadOperation = ChannelLoadOperation(success: {
@@ -66,10 +67,19 @@ class TopViewModel {
             
             Async.main{videoSuccess()}
         }
+                
         channelVideoListMergeOperation.addDependency(twitchStreamListLoadOperation)
         channelVideoListMergeOperation.addDependency(channelSortOperation)
         self.channelVideoListMergeOperation = channelVideoListMergeOperation
         
+        let suggestionVideoListLoadOperation = SuggestionVideoListLoadOperation(success: {
+            [weak self] suggestionVideoList in
+            self?.channelVideoListMergeOperation?.suggestionVideoList = suggestionVideoList
+            }, failure: failure)
+        
+        self.suggestionVideoListLoadOperation = suggestionVideoListLoadOperation
+        
+        operationQueue.addOperation(suggestionVideoListLoadOperation)
         operationQueue.addOperation(channelLoadOperation)
         operationQueue.addOperation(channelVideoListLoadOperation)
         operationQueue.addOperation(channelSortOperation)

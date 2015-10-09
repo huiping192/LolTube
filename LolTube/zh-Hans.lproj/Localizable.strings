@@ -51,3 +51,6 @@
 
 "TwitchViewerCountFormat" = "%@位观看者";
 "TwitchFollowerCountFormat" = "%@关注";
+
+"SuggestionVideos" = "推荐视频";
+

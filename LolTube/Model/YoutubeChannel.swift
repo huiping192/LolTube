@@ -24,7 +24,9 @@ struct YoutubeChannel:Channel,Equatable {
         return RSVideoInfoUtil.convertVideoViewCount(viewCount ?? 0)
     }
 
-    var selectedAction:(sourceViewController:UIViewController) -> Void {
+    let selectable: Bool = true
+
+    var selectedAction:((sourceViewController:UIViewController) -> Void)? {
         return { sourceViewController in
             sourceViewController.showViewController(ViewControllerFactory.instantiateChannelDetailViewController(id:self.channelId,title:self.title), sender: sourceViewController)
         }

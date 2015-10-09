@@ -17,6 +17,8 @@ enum Localization:String {
     case VideoQualityLow
     case Cancel
     
+    case SuggestionVideos
+    
     var localizedString: String {
         return NSLocalizedString(rawValue, comment: "")
     }

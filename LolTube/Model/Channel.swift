@@ -30,7 +30,11 @@ protocol Channel {
         get
     }
     
-    var selectedAction:(sourceViewController:UIViewController) -> Void {
+    var selectable: Bool{
+        get
+    }
+    
+    var selectedAction:((sourceViewController:UIViewController) -> Void)? {
         get
     }
 }

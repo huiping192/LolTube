@@ -111,7 +111,7 @@ static RSVideoService *sharedInstance = nil;
     [cloudStore synchronize];
 }
 
--(NSArray *)historyVideoIdList{
+-(NSArray<NSString *> * _Nullable )historyVideoIdList{
     return [[self.videoIdList reverseObjectEnumerator] allObjects];
 }
 
