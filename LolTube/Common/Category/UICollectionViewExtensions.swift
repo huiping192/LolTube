@@ -24,5 +24,11 @@ extension UICollectionView {
         registerNib(UINib(nibName: nibName, bundle: nil), forCellWithReuseIdentifier: T.reuseIdentifier)
     }
     
-    
+    func reloadData(completion: ()->()) {
+        reloadData()
+        performBatchUpdates({}, completion: {
+            _ in
+            completion() 
+        })
+    }
 }

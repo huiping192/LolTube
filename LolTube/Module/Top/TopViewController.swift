@@ -24,6 +24,8 @@ class TopViewController: UIViewController {
     
     private var bannerViewController: BannerViewController!
     
+    private var backgroundFetchOperation: NSOperation?
+
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
@@ -83,16 +85,33 @@ class TopViewController: UIViewController {
     }
     
     func fetchNewData(completionHandler:UIBackgroundFetchResult -> Void){
+        if let backgroundFetchOperation = backgroundFetchOperation where backgroundFetchOperation.finished == false {
+            print("background fetch completed with no data.")
+            completionHandler(.NoData)
+            return
+        }
+                
+        backgroundFetchOperation = NSBlockOperation(block: {
+            [weak self] in
+            completionHandler(.NewData)
+            self?.backgroundFetchOperation = nil
+            print("background fetch completed with new data.")
+        })
         viewModel.update({
             [weak self] in
-            self?.configureTopView()
-            self?.videosCollectionView.reloadData()
-            completionHandler(.NewData)
+            guard let strongSelf = self else { return }
+            strongSelf.configureTopView()
+            strongSelf.videosCollectionView.reloadData(){
+                if let backgroundFetchOperation = strongSelf.backgroundFetchOperation {
+                    strongSelf.imageLoadingOperationQueue.addOperation(backgroundFetchOperation)
+                }
+            }
             },bannerSuccess:{
                 [weak self] in
                 self?.configureTopView()
             }, failure: {
                 _ in
+                print("background fetch failed.")
                 completionHandler(.Failed)
             })
 
@@ -185,6 +204,7 @@ private extension TopViewController {
         guard let  imageUrlString = url  else { return nil }
         
         let imageLoadOperation = ImageLoadOperation(url: imageUrlString, replaceImageUrl: replaceImageUrl,completed:success)
+        backgroundFetchOperation?.addDependency(imageLoadOperation)
         imageLoadingOperationQueue.addOperation(imageLoadOperation)
         return imageLoadOperation
     }
