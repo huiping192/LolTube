@@ -14,6 +14,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "LolTube-Swift.h"
 #import "RSEnvironment.h"
+#import "Parse/Parse.h"
 
 static NSString *const kSharedUserDefaultsSuitName = @"kSharedUserDefaultsSuitName";
 static NSString *const kChannelIdsKey = @"channleIds";
@@ -27,6 +28,7 @@ static NSString *const kChannelIdsKey = @"channleIds";
     [self p_configureVideoService];
     [self p_configureCloud];
     [self p_configureAnalytics];
+    [self p_confiugureParse];
     
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 
@@ -36,6 +38,7 @@ static NSString *const kChannelIdsKey = @"channleIds";
 - (void)p_savePersetting {
     [self.window setTintColor:[UIColor colorWithRed:255 / 255.0f green:94 / 255.0f blue:58 / 255.0f alpha:1.0]];
 }
+
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
     UIViewController *rootViewController = self.window.rootViewController;
@@ -96,7 +99,6 @@ static NSString *const kChannelIdsKey = @"channleIds";
     return nil;
 }
 
-
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -138,6 +140,11 @@ static NSString *const kChannelIdsKey = @"channleIds";
     gai.trackUncaughtExceptions = YES;
 #endif
     
+}
+
+- (void)p_confiugureParse {
+    [Parse setApplicationId:@"RiOR6tciZr8EIL3WIFLpX3329qUUVWwy3gHZ9q2t"
+                  clientKey:@"bdQb4nuSr4wx6OqUWlNRJlghjbcmqOp0eP40wbMv"];
 }
 
 - (void)storeDidChange:(NSNotification *)notification {
