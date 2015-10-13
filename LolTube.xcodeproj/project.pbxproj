@@ -167,6 +167,10 @@
 		DCD2E84A1BB96F8400F98EDD /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2E8491BB96F8400F98EDD /* Channel.swift */; settings = {ASSET_TAGS = (); }; };
 		DCD30AA51B69251000ECB105 /* ImageLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD30AA41B69251000ECB105 /* ImageLoadOperation.swift */; };
 		DCD316AC1AD84EB700978606 /* TwoChannel.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5D1DA9E665D3274CBB65 /* TwoChannel.json */; };
+		DCD64B741BC976F000D47E0E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD64B721BC976F000D47E0E /* Parse.framework */; settings = {ASSET_TAGS = (); }; };
+		DCD64B751BC976F000D47E0E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD64B731BC976F000D47E0E /* Bolts.framework */; settings = {ASSET_TAGS = (); }; };
+		DCD64B771BC978F500D47E0E /* ParseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD64B761BC978F500D47E0E /* ParseService.swift */; settings = {ASSET_TAGS = (); }; };
+		DCD64B7A1BCABCDB00D47E0E /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD64B791BCABCDB00D47E0E /* SearchModel.swift */; settings = {ASSET_TAGS = (); }; };
 		DCD7B41A1B7374B3004A4A04 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7B4191B7374B3004A4A04 /* UIViewExtensions.swift */; };
 		DCD7B41D1B7394C2004A4A04 /* LoadingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7B41C1B7394C2004A4A04 /* LoadingCollectionViewCell.swift */; };
 		DCDBECE81B63615C004474E9 /* UIImage+AverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDBECE71B63615C004474E9 /* UIImage+AverageColor.m */; };
@@ -415,6 +419,10 @@
 		DCD2E8471BB9644B00F98EDD /* TwitchChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitchChannel.swift; sourceTree = "<group>"; };
 		DCD2E8491BB96F8400F98EDD /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		DCD30AA41B69251000ECB105 /* ImageLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoadOperation.swift; sourceTree = "<group>"; };
+		DCD64B721BC976F000D47E0E /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Parse/Parse.framework; sourceTree = "<group>"; };
+		DCD64B731BC976F000D47E0E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Parse/Bolts.framework; sourceTree = "<group>"; };
+		DCD64B761BC978F500D47E0E /* ParseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseService.swift; sourceTree = "<group>"; };
+		DCD64B791BCABCDB00D47E0E /* SearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		DCD7B4191B7374B3004A4A04 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		DCD7B41C1B7394C2004A4A04 /* LoadingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCollectionViewCell.swift; sourceTree = "<group>"; };
 		DCDBECE61B63615C004474E9 /* UIImage+AverageColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AverageColor.h"; sourceTree = "<group>"; };
@@ -451,9 +459,11 @@
 				DC22FF821A1245D70053FBB9 /* libz.dylib in Frameworks */,
 				DC22FF801A1245C60053FBB9 /* AdSupport.framework in Frameworks */,
 				DC64F4C919E5582F00F860B4 /* SystemConfiguration.framework in Frameworks */,
+				DCD64B751BC976F000D47E0E /* Bolts.framework in Frameworks */,
 				DC22FF7E1A1245AB0053FBB9 /* CoreData.framework in Frameworks */,
 				DCA44BDF1A0CE8E100A4A758 /* Fabric.framework in Frameworks */,
 				DC1044AD19B2FA6B007A86E6 /* CoreGraphics.framework in Frameworks */,
+				DCD64B741BC976F000D47E0E /* Parse.framework in Frameworks */,
 				DC1044AF19B2FA6B007A86E6 /* UIKit.framework in Frameworks */,
 				DC1044AB19B2FA6B007A86E6 /* Foundation.framework in Frameworks */,
 				DCA44BDE1A0CE8E100A4A758 /* Crashlytics.framework in Frameworks */,
@@ -782,6 +792,7 @@
 		7A9D59BD8886AE67DA2D7CF6 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				DCD64B781BCABC9900D47E0E /* ParseModel */,
 				7A9D531CBB1900445FF0B61E /* JsonModel */,
 				DCEDB9FB1B8F612700BD0A0B /* ChannelService.swift */,
 				7A9D5E1CAC258986C7A0B45D /* RSVideoService.m */,
@@ -789,6 +800,7 @@
 				7A9D597407BB9DD1397A6220 /* YoutubeService.swift */,
 				DC53D80C1BA874AC00103192 /* TwitchService.swift */,
 				DC47DAC21BB2B28400865131 /* HttpService.swift */,
+				DCD64B761BC978F500D47E0E /* ParseService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -846,6 +858,7 @@
 		7A9D5CF8F8A4CE4F2E69B2CB /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				DCD64B711BC976E000D47E0E /* Parse */,
 				7A9D570B1D75FB530BE5A4A9 /* Reachability */,
 			);
 			path = Lib;
@@ -1051,6 +1064,23 @@
 				DC5708F81A00DBF500DB8821 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DCD64B711BC976E000D47E0E /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+				DCD64B721BC976F000D47E0E /* Parse.framework */,
+				DCD64B731BC976F000D47E0E /* Bolts.framework */,
+			);
+			name = Parse;
+			sourceTree = "<group>";
+		};
+		DCD64B781BCABC9900D47E0E /* ParseModel */ = {
+			isa = PBXGroup;
+			children = (
+				DCD64B791BCABCDB00D47E0E /* SearchModel.swift */,
+			);
+			name = ParseModel;
 			sourceTree = "<group>";
 		};
 		DE4A07E6F6CB6D8574926563 /* Pods */ = {
@@ -1472,12 +1502,14 @@
 				7A9D520400495FFA39742BA9 /* ChannelDetailViewModel.swift in Sources */,
 				7A9D573B7278D0A0CBAE966B /* PlaylistCollectionViewCell.swift in Sources */,
 				7A9D5DC7B40B226EE331BB61 /* PlaylistsCollectionViewCell.swift in Sources */,
+				DCD64B771BC978F500D47E0E /* ParseService.swift in Sources */,
 				DC8680AF1BAC38FF001D7706 /* TwitchStream.swift in Sources */,
 				7A9D51ABE18A0C8736203486 /* PlaylistsViewModel.swift in Sources */,
 				7A9D51B3ACA78568076119F3 /* PlaylistViewModel.swift in Sources */,
 				7A9D576C7003CA816C38CA14 /* NSDateExtensions.swift in Sources */,
 				7A9D5C5AE614BE6CCC496130 /* EventTracker.swift in Sources */,
 				DC6159401BC549BE004EEC54 /* GroupOperation.swift in Sources */,
+				DCD64B7A1BCABCDB00D47E0E /* SearchModel.swift in Sources */,
 				7A9D56B06AB8FA86671762E9 /* BannerViewController.swift in Sources */,
 				DCD2E83E1BB6FDCF00F98EDD /* ChannelVideoListLoadOperation.swift in Sources */,
 			);
@@ -1708,6 +1740,8 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/LolTube/Lib",
+					"$(PROJECT_DIR)/LolTube/Lib/Parse",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LolTube/LolTube-Prefix.pch";
@@ -1739,6 +1773,8 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/LolTube/Lib",
+					"$(PROJECT_DIR)/LolTube/Lib/Parse",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LolTube/LolTube-Prefix.pch";
