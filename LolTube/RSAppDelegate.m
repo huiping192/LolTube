@@ -28,6 +28,8 @@ static NSString *const kChannelIdsKey = @"channleIds";
     [self p_configureCloud];
     [self p_configureAnalytics];
     
+    
+    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 
     return YES;
@@ -38,20 +40,27 @@ static NSString *const kChannelIdsKey = @"channleIds";
 }
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
-    UIViewController *rootViewController = self.window.rootViewController;
-    if ([rootViewController isKindOfClass:[UITabBarController class]]) {
-        UITabBarController *tabBarController = (UITabBarController *)rootViewController;
-        if ([tabBarController.selectedViewController isKindOfClass:[UINavigationController class]]) {
-            UIViewController *navigationTopViewController = ((UINavigationController *) tabBarController.selectedViewController).topViewController;
-            if ([navigationTopViewController isKindOfClass:[TopViewController class]]) {
-                [((TopViewController *) navigationTopViewController) fetchNewData:completionHandler];
-                return;
-            }
-        }
+    NSLog(@"background fetch started.");
+    
+    [EventTracker trackBackgroundFetch];
+    TopViewController *topViewController = [self p_topViewController];
+    if (topViewController){
+        [topViewController fetchNewData:completionHandler];
+    } else {
+        NSLog(@"background fetch failed.");
+        completionHandler(UIBackgroundFetchResultFailed); 
+    }
+}
+
+
+-(TopViewController *)p_topViewController{
+    UINavigationController *navigationViewController = [self p_currentNavigationController];
+    UIViewController *navigationTopViewController = navigationViewController.topViewController;
+    if ([navigationTopViewController isKindOfClass:[TopViewController class]]) {
+        return (TopViewController *)navigationTopViewController;
     }
     
-    
-    completionHandler(UIBackgroundFetchResultFailed);
+    return nil;
 }
 
 - (void)p_configureVideoService {
