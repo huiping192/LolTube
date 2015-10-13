@@ -55,6 +55,13 @@ class EventTracker: NSObject {
         EventTracker.trackGoogleAnalyticsEvent(category: "Channel", action: "Delete", label: channelTitle)
     }
     
+    static func trackBackgroundFetch() {
+        Answers.logCustomEventWithName("Background Fetch",
+            customAttributes: nil)
+        
+        EventTracker.trackGoogleAnalyticsEvent(category: "App", action: "BackgroundFetch", label: nil)
+    }
+    
     private static func trackGoogleAnalyticsScreen(screenName screenName:String){
         guard let tracker = GAI.sharedInstance().defaultTracker else {
             return

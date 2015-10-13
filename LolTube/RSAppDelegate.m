@@ -40,9 +40,9 @@ static NSString *const kChannelIdsKey = @"channleIds";
 }
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
-    
     NSLog(@"background fetch started.");
     
+    [EventTracker trackBackgroundFetch];
     TopViewController *topViewController = [self p_topViewController];
     if (topViewController){
         [topViewController fetchNewData:completionHandler];
