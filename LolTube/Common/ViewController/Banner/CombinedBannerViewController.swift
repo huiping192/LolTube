@@ -42,7 +42,9 @@ class CombinedBannerViewController:UIViewController {
         currentVideoTitleLabel.text = realVideoList?[1].title
         videoImagePageControl.numberOfPages = bannerItemList?.count ?? 0
         videoImagePageControl.currentPage = 0
-        collectionView.scrollToItemAtIndexPath(NSIndexPath(forItem: 1, inSection: 0), atScrollPosition: .Left, animated: false)
+        if realVideoList?.count > 0 {
+           collectionView.scrollToItemAtIndexPath(NSIndexPath(forItem: 1, inSection: 0), atScrollPosition: .Left, animated: false) 
+        }
     }
 
     func scrollToNextVideo(){
