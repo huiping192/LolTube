@@ -78,7 +78,6 @@
 		DC1044AF19B2FA6B007A86E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1044AE19B2FA6B007A86E6 /* UIKit.framework */; };
 		DC1044B519B2FA6B007A86E6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC1044B319B2FA6B007A86E6 /* InfoPlist.strings */; };
 		DC1044B719B2FA6B007A86E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1044B619B2FA6B007A86E6 /* main.m */; };
-		DC1044BB19B2FA6B007A86E6 /* RSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1044BA19B2FA6B007A86E6 /* RSAppDelegate.m */; };
 		DC1044C319B2FA6B007A86E6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC1044C219B2FA6B007A86E6 /* Images.xcassets */; };
 		DC1044CA19B2FA6B007A86E6 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1044C919B2FA6B007A86E6 /* XCTest.framework */; };
 		DC1044CB19B2FA6B007A86E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1044AA19B2FA6B007A86E6 /* Foundation.framework */; };
@@ -168,6 +167,7 @@
 		DCD30AA51B69251000ECB105 /* ImageLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD30AA41B69251000ECB105 /* ImageLoadOperation.swift */; };
 		DCD316AC1AD84EB700978606 /* TwoChannel.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5D1DA9E665D3274CBB65 /* TwoChannel.json */; };
 		DCD64B831BD1077400D47E0E /* TopViewDataLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD64B821BD1077400D47E0E /* TopViewDataLoadOperation.swift */; settings = {ASSET_TAGS = (); }; };
+		DCD64B851BD1198C00D47E0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD64B841BD1198C00D47E0E /* AppDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 		DCD7B41A1B7374B3004A4A04 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7B4191B7374B3004A4A04 /* UIViewExtensions.swift */; };
 		DCD7B41D1B7394C2004A4A04 /* LoadingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7B41C1B7394C2004A4A04 /* LoadingCollectionViewCell.swift */; };
 		DCDBECE81B63615C004474E9 /* UIImage+AverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDBECE71B63615C004474E9 /* UIImage+AverageColor.m */; };
@@ -313,8 +313,6 @@
 		DC1044B419B2FA6B007A86E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DC1044B619B2FA6B007A86E6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DC1044B819B2FA6B007A86E6 /* LolTube-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LolTube-Prefix.pch"; sourceTree = "<group>"; };
-		DC1044B919B2FA6B007A86E6 /* RSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSAppDelegate.h; sourceTree = "<group>"; };
-		DC1044BA19B2FA6B007A86E6 /* RSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSAppDelegate.m; sourceTree = "<group>"; };
 		DC1044C219B2FA6B007A86E6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DC1044C819B2FA6B007A86E6 /* LolTubeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LolTubeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC1044C919B2FA6B007A86E6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -417,6 +415,7 @@
 		DCD2E8491BB96F8400F98EDD /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		DCD30AA41B69251000ECB105 /* ImageLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoadOperation.swift; sourceTree = "<group>"; };
 		DCD64B821BD1077400D47E0E /* TopViewDataLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewDataLoadOperation.swift; sourceTree = "<group>"; };
+		DCD64B841BD1198C00D47E0E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCD7B4191B7374B3004A4A04 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		DCD7B41C1B7394C2004A4A04 /* LoadingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCollectionViewCell.swift; sourceTree = "<group>"; };
 		DCDBECE61B63615C004474E9 /* UIImage+AverageColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AverageColor.h"; sourceTree = "<group>"; };
@@ -971,8 +970,7 @@
 		DC1044B019B2FA6B007A86E6 /* LolTube */ = {
 			isa = PBXGroup;
 			children = (
-				DC1044B919B2FA6B007A86E6 /* RSAppDelegate.h */,
-				DC1044BA19B2FA6B007A86E6 /* RSAppDelegate.m */,
+				DCD64B841BD1198C00D47E0E /* AppDelegate.swift */,
 				DC1044C219B2FA6B007A86E6 /* Images.xcassets */,
 				DC1044B119B2FA6B007A86E6 /* Supporting Files */,
 				7A9D59BD8886AE67DA2D7CF6 /* Service */,
@@ -1383,7 +1381,6 @@
 				DCD2E8401BB7019500F98EDD /* VideoDetailUpdateOperation.swift in Sources */,
 				DCB16C141B6D371E00F8AC86 /* UIViewContollerExtensions.swift in Sources */,
 				DC99E0301B7A401D004939D2 /* ChannelListViewModel.swift in Sources */,
-				DC1044BB19B2FA6B007A86E6 /* RSAppDelegate.m in Sources */,
 				DC6596691BC6C2FA008EA167 /* SuggestionVideoListChannel.swift in Sources */,
 				DC64F4C719E5524900F860B4 /* Reachability.m in Sources */,
 				DC1196C31B510C3A0090338F /* SimpleListCollectionViewController.swift in Sources */,
@@ -1457,6 +1454,7 @@
 				7A9D50C4794BC7CDE9388DA2 /* RSVideoDetailModel.m in Sources */,
 				DCDBECEA1B6371ED004474E9 /* UIColorExtensions.swift in Sources */,
 				DC9B1C3E1B6DFC6300E16A81 /* SplitBannerViewController.swift in Sources */,
+				DCD64B851BD1198C00D47E0E /* AppDelegate.swift in Sources */,
 				DC47DAC11BB28EB800865131 /* TopItem.swift in Sources */,
 				DCEE3A871BC10CC6000484F1 /* VideoRelatedVideoCell.swift in Sources */,
 				DC51F4C31B451777009AEC11 /* VideoListViewModel.swift in Sources */,
@@ -1655,10 +1653,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -1726,6 +1721,7 @@
 				INFOPLIST_FILE = "LolTube/LolTube-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.huiping192.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
