@@ -14,8 +14,7 @@ class TwitchStreamListViewController: VideoCollectionViewController {
     
     var viewModel:TwitchStreamListViewModel!
     let imageLoadingOperationQueue = NSOperationQueue()
-    
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         

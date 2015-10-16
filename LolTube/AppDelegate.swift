@@ -57,17 +57,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        print("Background fetch started.")
-        
         EventTracker.trackBackgroundFetch()
-        
-        guard let topViewController = topViewController() else {
-            print("Background fetch failed.")
+        guard let rootViewController = window?.rootViewController else {
             completionHandler(.Failed)
             return
         }
-        
-        topViewController.fetchNewData(completionHandler)
+        rootViewController.fetchNewData(completionHandler)
     }
     
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
@@ -107,15 +102,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return navigationController
-    }
-    
-
-    private func topViewController() -> TopViewController? {
-        guard let topViewController = currentNavigationController()?.topViewController as? TopViewController else {
-            return nil
-        }
-        
-        return topViewController
     }
 
     func storeDidChanged(notification: NSNotification) {

@@ -25,7 +25,7 @@ class TopViewController: UIViewController {
     private var bannerViewController: BannerViewController!
     
     private var backgroundFetchOperation: NSOperation?
-
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
@@ -42,7 +42,7 @@ class TopViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         EventTracker.trackViewContentView(viewName:"Featured", viewType:TopViewController.self )
-       
+        
         videosCollectionView.addObserver(self, forKeyPath: "contentSize", options: .Old, context: nil)
         
         configureView()
@@ -59,7 +59,7 @@ class TopViewController: UIViewController {
             self.mainScrollView.layoutIfNeeded()
         }
     }
-
+    
     deinit{
         videosCollectionView.removeObserver(self, forKeyPath: "contentSize")
         imageLoadingOperationQueue.cancelAllOperations()
@@ -84,36 +84,6 @@ class TopViewController: UIViewController {
         }
     }
     
-    func fetchNewData(completionHandler:UIBackgroundFetchResult -> Void){
-        if let backgroundFetchOperation = backgroundFetchOperation where backgroundFetchOperation.finished == false {
-            print("background fetch completed with no data.")
-            completionHandler(.NoData)
-            return
-        }
-                
-        backgroundFetchOperation = NSBlockOperation(block: {
-            [weak self] in
-            completionHandler(.NewData)
-            self?.backgroundFetchOperation = nil
-            print("background fetch completed with new data.")
-        })
-        viewModel.update({
-            [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.configureTopView()
-            strongSelf.videosCollectionView.reloadData(){
-                if let backgroundFetchOperation = strongSelf.backgroundFetchOperation {
-                    strongSelf.imageLoadingOperationQueue.addOperation(backgroundFetchOperation)
-                }
-            }
-            }, failure: {
-                [weak self]_ in
-                self?.backgroundFetchOperation = nil
-                completionHandler(.Failed)
-                print("background fetch failed.")
-            })
-
-    }
     // MARK: data loading
     private func loadVideosData() {
         mainScrollView.alpha = 0.0
@@ -172,7 +142,7 @@ class TopViewController: UIViewController {
         }
         return viewModel.channelList?[section]
     }
-
+    
     private func configureView() {
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         videosCollectionView.scrollsToTop = false
@@ -211,9 +181,9 @@ private extension TopViewController {
                 success(UIImage.defaultImage)
                 return
             }
-                success(image)
+            success(image)
         case .Remote:
-                loadImage(channel.thumbnailUrl, success: success)
+            loadImage(channel.thumbnailUrl, success: success)
         }
     }
     
@@ -225,9 +195,9 @@ extension TopViewController: UICollectionViewDataSource {
         if let channel = viewModel.channelList?[section],videoList = viewModel.videoDictionary?[channel.id] {
             videoCount = videoList.count
         }
-    
+        
         return min(preferItemCount(section),videoCount)
-
+        
     }
     
     private func preferItemCount(section:Int) -> Int{
@@ -285,7 +255,7 @@ extension TopViewController: UICollectionViewDataSource {
                 headerView.tag = indexPath.section
                 headerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "headerViewTapped:"))
             }
-
+            
             return headerView
         case UICollectionElementKindSectionFooter:
             let footerView = collectionView.dequeueReusableSupplementaryView(kind, indexPath: indexPath, type: TopVideoCollectionFooterView.self)
@@ -314,7 +284,7 @@ extension TopViewController: UICollectionViewDataSource {
 extension TopViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {        
         guard let topItem = topItem(indexPath) else { return }
-topItem.selectedAction(sourceViewController: self)
+        topItem.selectedAction(sourceViewController: self)
     }
     
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath){
@@ -403,4 +373,33 @@ topItem.selectedAction(sourceViewController: self)
 
 extension TopViewController: UIGestureRecognizerDelegate {
     
+}
+
+extension TopViewController {
+    override func fetchNewData(completionHandler: (UIBackgroundFetchResult) -> Void) {
+        if let backgroundFetchOperation = backgroundFetchOperation where backgroundFetchOperation.finished == false {
+            completionHandler(.NoData)
+            return
+        }
+        
+        backgroundFetchOperation = NSBlockOperation(block: {
+            [weak self] in
+            completionHandler(.NewData)
+            self?.backgroundFetchOperation = nil
+            })
+        viewModel.update({
+            [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.configureTopView()
+            strongSelf.videosCollectionView.reloadData(){
+                if let backgroundFetchOperation = strongSelf.backgroundFetchOperation {
+                    strongSelf.imageLoadingOperationQueue.addOperation(backgroundFetchOperation)
+                }
+            }
+            }, failure: {
+                [weak self]_ in
+                self?.backgroundFetchOperation = nil
+                completionHandler(.Failed)
+            })
+    }
 }

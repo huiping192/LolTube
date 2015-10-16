@@ -168,6 +168,9 @@
 		DCD316AC1AD84EB700978606 /* TwoChannel.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5D1DA9E665D3274CBB65 /* TwoChannel.json */; };
 		DCD64B831BD1077400D47E0E /* TopViewDataLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD64B821BD1077400D47E0E /* TopViewDataLoadOperation.swift */; settings = {ASSET_TAGS = (); }; };
 		DCD64B851BD1198C00D47E0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD64B841BD1198C00D47E0E /* AppDelegate.swift */; settings = {ASSET_TAGS = (); }; };
+		DCD64B871BD138AC00D47E0E /* BackgroundFetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD64B861BD138AC00D47E0E /* BackgroundFetchable.swift */; settings = {ASSET_TAGS = (); }; };
+		DCD64B891BD13FF400D47E0E /* UITabBarControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD64B881BD13FF400D47E0E /* UITabBarControllerExtensions.swift */; settings = {ASSET_TAGS = (); }; };
+		DCD64B8B1BD1408100D47E0E /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD64B8A1BD1408100D47E0E /* UINavigationController.swift */; settings = {ASSET_TAGS = (); }; };
 		DCD7B41A1B7374B3004A4A04 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7B4191B7374B3004A4A04 /* UIViewExtensions.swift */; };
 		DCD7B41D1B7394C2004A4A04 /* LoadingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7B41C1B7394C2004A4A04 /* LoadingCollectionViewCell.swift */; };
 		DCDBECE81B63615C004474E9 /* UIImage+AverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDBECE71B63615C004474E9 /* UIImage+AverageColor.m */; };
@@ -416,6 +419,9 @@
 		DCD30AA41B69251000ECB105 /* ImageLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoadOperation.swift; sourceTree = "<group>"; };
 		DCD64B821BD1077400D47E0E /* TopViewDataLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewDataLoadOperation.swift; sourceTree = "<group>"; };
 		DCD64B841BD1198C00D47E0E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DCD64B861BD138AC00D47E0E /* BackgroundFetchable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundFetchable.swift; sourceTree = "<group>"; };
+		DCD64B881BD13FF400D47E0E /* UITabBarControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITabBarControllerExtensions.swift; sourceTree = "<group>"; };
+		DCD64B8A1BD1408100D47E0E /* UINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		DCD7B4191B7374B3004A4A04 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		DCD7B41C1B7394C2004A4A04 /* LoadingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCollectionViewCell.swift; sourceTree = "<group>"; };
 		DCDBECE61B63615C004474E9 /* UIImage+AverageColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AverageColor.h"; sourceTree = "<group>"; };
@@ -743,6 +749,8 @@
 				DCD7B4191B7374B3004A4A04 /* UIViewExtensions.swift */,
 				7A9D55DFBA4E542C93EBE79A /* NSDateExtensions.swift */,
 				DCEC27F81B6A749A0068B892 /* UIViewControllerExtensions.swift */,
+				DCD64B881BD13FF400D47E0E /* UITabBarControllerExtensions.swift */,
+				DCD64B8A1BD1408100D47E0E /* UINavigationController.swift */,
 			);
 			name = Extensions;
 			path = Category;
@@ -823,6 +831,7 @@
 				DCD7B41C1B7394C2004A4A04 /* LoadingCollectionViewCell.swift */,
 				DC9446C51B8623DF00871410 /* LoadingCollectionViewCell.xib */,
 				DC82E5CC1B84C32A00420A1E /* VideoCollectionViewController.swift */,
+				DCD64B861BD138AC00D47E0E /* BackgroundFetchable.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1382,6 +1391,7 @@
 				DCB16C141B6D371E00F8AC86 /* UIViewContollerExtensions.swift in Sources */,
 				DC99E0301B7A401D004939D2 /* ChannelListViewModel.swift in Sources */,
 				DC6596691BC6C2FA008EA167 /* SuggestionVideoListChannel.swift in Sources */,
+				DCD64B8B1BD1408100D47E0E /* UINavigationController.swift in Sources */,
 				DC64F4C719E5524900F860B4 /* Reachability.m in Sources */,
 				DC1196C31B510C3A0090338F /* SimpleListCollectionViewController.swift in Sources */,
 				DC47DAD11BB678DF00865131 /* TwitchStreamListViewModel.swift in Sources */,
@@ -1419,6 +1429,7 @@
 				DCD7B41D1B7394C2004A4A04 /* LoadingCollectionViewCell.swift in Sources */,
 				DC47DAC31BB2B28400865131 /* HttpService.swift in Sources */,
 				DCEE3A851BC10A8A000484F1 /* VideoRelatedVideosViewModel.swift in Sources */,
+				DCD64B871BD138AC00D47E0E /* BackgroundFetchable.swift in Sources */,
 				DCD2E8421BB703CD00F98EDD /* BannerItemListGenerationOperation.swift in Sources */,
 				7A9D56CE982FCDCD9C3B91C4 /* RoundView.swift in Sources */,
 				DC51F4BD1B451308009AEC11 /* VideoListViewController.swift in Sources */,
@@ -1474,6 +1485,7 @@
 				DCA636B11B6D05A900F8689B /* CombinedBannerViewController.swift in Sources */,
 				7A9D50935DBFA85ADFA6FBD1 /* RSVideoDetailSegmentViewModel.m in Sources */,
 				DC53D8101BA8785500103192 /* RSStreamListModel.m in Sources */,
+				DCD64B891BD13FF400D47E0E /* UITabBarControllerExtensions.swift in Sources */,
 				7A9D55D673B125147980223D /* SearchChannelCollectionViewCell.swift in Sources */,
 				7A9D5EFBCC830062D614642A /* SearchChannelListViewModel.swift in Sources */,
 				7A9D5ED4EC7D8C7DBDB04EC1 /* SearchPlaylistsViewModel.swift in Sources */,

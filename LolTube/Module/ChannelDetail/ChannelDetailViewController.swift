@@ -225,3 +225,14 @@ class ChannelDetailViewController: UIViewController {
         }
     }
 }
+
+extension ChannelDetailViewController {
+    override func fetchNewData(completionHandler: (UIBackgroundFetchResult) -> Void) {
+        guard let fetchableChildViewController = currentViewController as? BackgroundFetchable else {
+            completionHandler(.Failed)
+            return
+        }
+        
+        fetchableChildViewController.fetchNewData(completionHandler)
+    }
+}

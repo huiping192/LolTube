@@ -287,3 +287,20 @@ extension SimpleListCollectionViewController: DZNEmptyDataSetDelegate {
         return dataSourceState == .EmptyData
     }
 }
+
+
+extension SimpleListCollectionViewController {
+    override func fetchNewData(completionHandler: (UIBackgroundFetchResult) -> Void) {
+        _viewModel.update(success: {
+            [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.collectionView.reloadData(){
+                completionHandler(.NewData) 
+            }
+            }, failure: {
+                _ in
+                completionHandler(.Failed)
+            })
+        
+    }
+}

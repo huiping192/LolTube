@@ -33,4 +33,11 @@ extension UIViewController {
         loadingView.removeFromSuperview()
         self.loadingView = nil
     }
+    
+}
+
+extension UIViewController: BackgroundFetchable {
+    func fetchNewData(completionHandler: (UIBackgroundFetchResult) -> Void) {
+        completionHandler(.Failed)
+    }
 }
