@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
-#import "RSAppDelegate.h"
+#import "LolTube-Swift.h"
 
 int main(int argc, char * argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([RSAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }
