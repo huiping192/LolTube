@@ -14,6 +14,8 @@ class SuggestionVideoListLoadOperation : GroupOperation {
     private let videoService = RSVideoService.sharedInstance()
     
     private var videoList: [Video] = []
+    private var error: NSError?
+
     private let success: [Video] -> Void
     private let failure: ((NSError) -> Void)?
     
@@ -22,9 +24,11 @@ class SuggestionVideoListLoadOperation : GroupOperation {
         self.failure = failure
         
         super.init()
-
+    }
+    
+    override var subOperations: [NSOperation]? {
         guard let historyList = videoService.historyVideoIdList() else {
-            return;
+            return nil;
         }
         
         let historyTopList = historyList.prefix(5)
@@ -34,22 +38,24 @@ class SuggestionVideoListLoadOperation : GroupOperation {
                 self?.videoList += videoList
                 }, failure: {
                     [weak self] error in
-                    self?.failure?(error)
+                    self?.error = error
                 })
         }
         
-        let finishedOperation = NSBlockOperation(block: {
+        super.finishedBlock = {
             [weak self] in
             guard let strongSelf = self else { return } 
+            
+            if let error = strongSelf.error {
+                strongSelf.failure?(error)
+                return
+            }
             let videoList = Array(Set<Video>(strongSelf.videoList)).filter{
                 !historyList.contains($0.videoId)
             }
             strongSelf.success(videoList)
-        })
-        
-        operations.forEach{ finishedOperation.addDependency($0) }
-        
-        addOperations([finishedOperation] + operations)
+        }
+                
+        return operations
     }
-    
 }

@@ -106,13 +106,11 @@ class TopViewController: UIViewController {
                     strongSelf.imageLoadingOperationQueue.addOperation(backgroundFetchOperation)
                 }
             }
-            },bannerSuccess:{
-                [weak self] in
-                self?.configureTopView()
             }, failure: {
-                _ in
-                print("background fetch failed.")
+                [weak self]_ in
+                self?.backgroundFetchOperation = nil
                 completionHandler(.Failed)
+                print("background fetch failed.")
             })
 
     }
@@ -124,6 +122,7 @@ class TopViewController: UIViewController {
         let successBlock:(() -> Void) = {
             [weak self] in
             
+            self?.configureTopView()
             self?.videosCollectionView.reloadData()
             
             self?.stopLoadingAnimation()
@@ -140,23 +139,15 @@ class TopViewController: UIViewController {
             self?.mainScrollView.alpha = 1.0
         }
         
-        let bannerSuccessBlock:() -> Void = {
-            [weak self] in
-            self?.configureTopView()
-        }
-        viewModel.update(successBlock, bannerSuccess: bannerSuccessBlock, failure: failureBlock)
+        viewModel.update(successBlock, failure: failureBlock)
     }
     
     func refresh(refreshControl: UIRefreshControl) {
         let successBlock:(() -> Void) = {
             [weak self] in
+            self?.configureTopView()
             self?.videosCollectionView.reloadData()
             refreshControl.endRefreshing()
-        }
-        
-        let bannerSuccessBlock:() -> Void = {
-            [weak self] in
-            self?.configureTopView()
         }
         
         let failureBlock:((NSError) -> Void) = {
@@ -165,7 +156,7 @@ class TopViewController: UIViewController {
             refreshControl.endRefreshing()
         }
         
-        viewModel.update(successBlock, bannerSuccess: bannerSuccessBlock, failure: failureBlock)
+        viewModel.update(successBlock, failure: failureBlock)
     }
     
     private func topItem(indexPath: NSIndexPath) -> TopItem? {
