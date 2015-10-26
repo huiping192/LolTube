@@ -1,5 +1,5 @@
 import Foundation
-import Async
+import AsyncSwift
 
 class TopViewModel {
     

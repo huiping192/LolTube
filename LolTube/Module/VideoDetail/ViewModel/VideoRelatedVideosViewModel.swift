@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Async
+import AsyncSwift
 
 class VideoRelatedVideosViewModel: SimpleListCollectionViewModelProtocol {
     

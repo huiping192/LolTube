@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 import DZNEmptyDataSet
-import Async
+import AsyncSwift
 
 protocol SimpleListCollectionViewControllerDelegate:class {
     

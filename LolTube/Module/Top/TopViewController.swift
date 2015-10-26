@@ -1,6 +1,6 @@
 import Foundation
 import UIKit
-import Async
+import AsyncSwift
 
 class TopViewController: UIViewController {
     

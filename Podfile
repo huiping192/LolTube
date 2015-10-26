@@ -13,7 +13,7 @@ pod 'TSMessages', :git => 'https://github.com/KrauseFx/TSMessages.git'
 pod 'Google/Analytics', '~> 1.0.0'
 pod 'DZNEmptyDataSet'
 pod 'Cartography', :git => "git@github.com:robb/Cartography.git", :branch => "swift-2.0"
-pod 'Async', :git => "git@github.com:duemunk/Async.git", :branch => "feature/Swift_2.0"
+pod 'AsyncSwift'
 pod 'Siren'
 
 target :LolTubeTests do
