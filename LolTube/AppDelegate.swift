@@ -10,6 +10,7 @@ import Foundation
 import AVFoundation
 import Fabric
 import Crashlytics
+import Siren
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -24,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureVideoService()
         configureCloud()
         configureAnalytics()
+        configureSiren()
         
         UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
@@ -54,6 +56,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func configureVideoService() {
         let videoService = RSVideoService.sharedInstance()
         videoService.configure()
+    }
+    
+    private func configureSiren() {
+        let siren = Siren.sharedInstance
+        
+        siren.appID = "917967826"
+        siren.alertType = .Option
+
+        siren.checkVersion(.Daily)
+    }
+    
+    func applicationDidBecomeActive(application: UIApplication) {
+        Siren.sharedInstance.checkVersion(.Weekly)
     }
     
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {

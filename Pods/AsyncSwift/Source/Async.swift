@@ -33,33 +33,33 @@ import Foundation
 // MARK: - DSL for GCD queues
 
 private class GCD {
-	
-	/* dispatch_get_queue() */
-	class func mainQueue() -> dispatch_queue_t {
-		return dispatch_get_main_queue()
-		// Don't ever use dispatch_get_global_queue(qos_class_main(), 0) re https://gist.github.com/duemunk/34babc7ca8150ff81844
-	}
-	class func userInteractiveQueue() -> dispatch_queue_t {
-		return dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)
-	}
-	class func userInitiatedQueue() -> dispatch_queue_t {
-		 return dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)
-	}
-	class func utilityQueue() -> dispatch_queue_t {
-		return dispatch_get_global_queue(QOS_CLASS_UTILITY, 0)
-	}
-	class func backgroundQueue() -> dispatch_queue_t {
-		return dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
-	}
+
+    /* dispatch_get_queue() */
+    class func mainQueue() -> dispatch_queue_t {
+        return dispatch_get_main_queue()
+        // Don't ever use dispatch_get_global_queue(qos_class_main(), 0) re https://gist.github.com/duemunk/34babc7ca8150ff81844
+    }
+    class func userInteractiveQueue() -> dispatch_queue_t {
+        return dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)
+    }
+    class func userInitiatedQueue() -> dispatch_queue_t {
+        return dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)
+    }
+    class func utilityQueue() -> dispatch_queue_t {
+        return dispatch_get_global_queue(QOS_CLASS_UTILITY, 0)
+    }
+    class func backgroundQueue() -> dispatch_queue_t {
+        return dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
+    }
 }
 
 
 // MARK: - Async – Struct
 
 public struct Async {
-    
+
     private let block: dispatch_block_t
-    
+
     private init(_ block: dispatch_block_t) {
         self.block = block
     }
@@ -69,10 +69,10 @@ public struct Async {
 // MARK: - Async – Static methods
 
 extension Async {
-    
-    
+
+
     /* async */
-    
+
     public static func main(after after: Double? = nil, block: dispatch_block_t) -> Async {
         return Async.async(after, block: block, queue: GCD.mainQueue())
     }
@@ -91,20 +91,20 @@ extension Async {
     public static func customQueue(queue: dispatch_queue_t, after: Double? = nil, block: dispatch_block_t) -> Async {
         return Async.async(after, block: block, queue: queue)
     }
-    
-    
+
+
     /* Convenience */
-    
+
     private static func async(seconds: Double? = nil, block chainingBlock: dispatch_block_t, queue: dispatch_queue_t) -> Async {
         if let seconds = seconds {
             return asyncAfter(seconds, block: chainingBlock, queue: queue)
         }
         return asyncNow(chainingBlock, queue: queue)
     }
-    
-    
+
+
     /* dispatch_async() */
-    
+
     private static func asyncNow(block: dispatch_block_t, queue: dispatch_queue_t) -> Async {
         // Create a new block (Qos Class) from block to allow adding a notification to it later (see matching regular Async methods)
         // Create block with the "inherit" type
@@ -114,10 +114,10 @@ extension Async {
         // Wrap block in a struct since dispatch_block_t can't be extended
         return Async(_block)
     }
-    
-    
+
+
     /* dispatch_after() */
-    
+
     private static func asyncAfter(seconds: Double, block: dispatch_block_t, queue: dispatch_queue_t) -> Async {
         let nanoSeconds = Int64(seconds * Double(NSEC_PER_SEC))
         let time = dispatch_time(DISPATCH_TIME_NOW, nanoSeconds)
@@ -135,10 +135,10 @@ extension Async {
 // MARK: - Async – Regualar methods matching static ones
 
 extension Async {
-    
-    
+
+
     /* chain */
-    
+
     public func main(after after: Double? = nil, chainingBlock: dispatch_block_t) -> Async {
         return chain(after, block: chainingBlock, queue: GCD.mainQueue())
     }
@@ -157,17 +157,17 @@ extension Async {
     public func customQueue(queue: dispatch_queue_t, after: Double? = nil, chainingBlock: dispatch_block_t) -> Async {
         return chain(after, block: chainingBlock, queue: queue)
     }
-    
-    
+
+
     /* cancel */
-    
+
     public func cancel() {
         dispatch_block_cancel(block)
     }
-    
-    
+
+
     /* wait */
-    
+
     /// If optional parameter forSeconds is not provided, it uses DISPATCH_TIME_FOREVER
     public func wait(seconds seconds: Double = 0.0) {
         if seconds != 0.0 {
@@ -178,35 +178,35 @@ extension Async {
             dispatch_block_wait(block, DISPATCH_TIME_FOREVER)
         }
     }
-    
-    
+
+
     /* Convenience */
-    
+
     private func chain(seconds: Double? = nil, block chainingBlock: dispatch_block_t, queue: dispatch_queue_t) -> Async {
         if let seconds = seconds {
             return chainAfter(seconds, block: chainingBlock, queue: queue)
         }
         return chainNow(block: chainingBlock, queue: queue)
     }
-    
-    
+
+
     /* dispatch_async() */
-    
+
     private func chainNow(block chainingBlock: dispatch_block_t, queue: dispatch_queue_t) -> Async {
         // See Async.async() for comments
         let _chainingBlock = dispatch_block_create(DISPATCH_BLOCK_INHERIT_QOS_CLASS, chainingBlock)
         dispatch_block_notify(block, queue, _chainingBlock)
         return Async(_chainingBlock)
     }
-    
-    
+
+
     /* dispatch_after() */
-    
+
     private func chainAfter(seconds: Double, block chainingBlock: dispatch_block_t, queue: dispatch_queue_t) -> Async {
         // Create a new block (Qos Class) from block to allow adding a notification to it later (see Async)
         // Create block with the "inherit" type
         let _chainingBlock = dispatch_block_create(DISPATCH_BLOCK_INHERIT_QOS_CLASS, chainingBlock)
-        
+
         // Wrap block to be called when previous block is finished
         let chainingWrapperBlock: dispatch_block_t = {
             // Calculate time from now
@@ -228,14 +228,14 @@ extension Async {
 // MARK: - Apply
 
 public struct Apply {
-    
+
     // DSL for GCD dispatch_apply()
     //
-    // Apply runs a block multiple times, before returning. 
+    // Apply runs a block multiple times, before returning.
     // If you want run the block asynchronously from the current thread,
-    // wrap it in an Async block, 
+    // wrap it in an Async block,
     // e.g. Async.main { Apply.background(3) { ... } }
-    
+
     public static func userInteractive(iterations: Int, block: Int -> ()) {
         dispatch_apply(iterations, GCD.userInteractiveQueue(), block)
     }
@@ -259,22 +259,19 @@ public struct Apply {
 public extension qos_class_t {
 
     // Convenience description of qos_class_t
-	// Calculated property
-	var description: String {
-		get {
-			switch self {
-				case qos_class_main(): return "Main"
-				case QOS_CLASS_USER_INTERACTIVE: return "User Interactive"
-				case QOS_CLASS_USER_INITIATED: return "User Initiated"
-				case QOS_CLASS_DEFAULT: return "Default"
-				case QOS_CLASS_UTILITY: return "Utility"
-				case QOS_CLASS_BACKGROUND: return "Background"
-				case QOS_CLASS_UNSPECIFIED: return "Unspecified"
-				default: return "Unknown"
-			}
-		}
-	}
+    // Calculated property
+    var description: String {
+        get {
+            switch self {
+            case qos_class_main(): return "Main"
+            case QOS_CLASS_USER_INTERACTIVE: return "User Interactive"
+            case QOS_CLASS_USER_INITIATED: return "User Initiated"
+            case QOS_CLASS_DEFAULT: return "Default"
+            case QOS_CLASS_UTILITY: return "Utility"
+            case QOS_CLASS_BACKGROUND: return "Background"
+            case QOS_CLASS_UNSPECIFIED: return "Unspecified"
+            default: return "Unknown"
+            }
+        }
+    }
 }
-
-// Make qos_class_t equatable
-extension qos_class_t: Equatable {}

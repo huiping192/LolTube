@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DC5708F21A00DBF500DB8821"
-               BuildableName = "VideoWidget"
+               BuildableName = "VideoWidget.appex"
                BlueprintName = "VideoWidget"
                ReferencedContainer = "container:LolTube.xcodeproj">
             </BuildableReference>
@@ -96,7 +96,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DC1044A619B2FA6B007A86E6"
-            BuildableName = "LolTube"
+            BuildableName = "LolTube.app"
             BlueprintName = "LolTube"
             ReferencedContainer = "container:LolTube.xcodeproj">
          </BuildableReference>

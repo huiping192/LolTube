@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DC1044A619B2FA6B007A86E6"
-               BuildableName = "LolTube"
+               BuildableName = "LolTube.app"
                BlueprintName = "LolTube"
                ReferencedContainer = "container:LolTube.xcodeproj">
             </BuildableReference>
@@ -90,7 +90,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DC1044A619B2FA6B007A86E6"
-            BuildableName = "LolTube"
+            BuildableName = "LolTube.app"
             BlueprintName = "LolTube"
             ReferencedContainer = "container:LolTube.xcodeproj">
          </BuildableReference>

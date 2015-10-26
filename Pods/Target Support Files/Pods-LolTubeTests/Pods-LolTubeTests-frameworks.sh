@@ -53,12 +53,13 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-LolTubeTests/AFNetworking.framework'
-  install_framework 'Pods-LolTubeTests/Async.framework'
+  install_framework 'Pods-LolTubeTests/AsyncSwift.framework'
   install_framework 'Pods-LolTubeTests/Cartography.framework'
   install_framework 'Pods-LolTubeTests/DZNEmptyDataSet.framework'
   install_framework 'Pods-LolTubeTests/HexColors.framework'
   install_framework 'Pods-LolTubeTests/JSONModel.framework'
   install_framework 'Pods-LolTubeTests/SDWebImage.framework'
+  install_framework 'Pods-LolTubeTests/Siren.framework'
   install_framework 'Pods-LolTubeTests/TSMessages.framework'
   install_framework 'Pods-LolTubeTests/XCDYouTubeKit.framework'
   install_framework 'Pods-LolTubeTests/Nimble.framework'
@@ -68,12 +69,13 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-LolTubeTests/AFNetworking.framework'
-  install_framework 'Pods-LolTubeTests/Async.framework'
+  install_framework 'Pods-LolTubeTests/AsyncSwift.framework'
   install_framework 'Pods-LolTubeTests/Cartography.framework'
   install_framework 'Pods-LolTubeTests/DZNEmptyDataSet.framework'
   install_framework 'Pods-LolTubeTests/HexColors.framework'
   install_framework 'Pods-LolTubeTests/JSONModel.framework'
   install_framework 'Pods-LolTubeTests/SDWebImage.framework'
+  install_framework 'Pods-LolTubeTests/Siren.framework'
   install_framework 'Pods-LolTubeTests/TSMessages.framework'
   install_framework 'Pods-LolTubeTests/XCDYouTubeKit.framework'
   install_framework 'Pods-LolTubeTests/Nimble.framework'

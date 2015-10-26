@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DC1044C719B2FA6B007A86E6"
-               BuildableName = "LolTubeTests"
+               BuildableName = "LolTubeTests.xctest"
                BlueprintName = "LolTubeTests"
                ReferencedContainer = "container:LolTube.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DC1044C719B2FA6B007A86E6"
-               BuildableName = "LolTubeTests"
+               BuildableName = "LolTubeTests.xctest"
                BlueprintName = "LolTubeTests"
                ReferencedContainer = "container:LolTube.xcodeproj">
             </BuildableReference>

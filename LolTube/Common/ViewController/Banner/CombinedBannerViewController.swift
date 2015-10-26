@@ -1,6 +1,6 @@
 import Foundation
 import UIKit
-import Async
+import AsyncSwift
 
 class CombinedBannerViewController:UIViewController {
     @IBOutlet private var collectionView:UICollectionView!{

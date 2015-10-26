@@ -1,6 +1,6 @@
 import Foundation
 import SDWebImage
-import Async
+import AsyncSwift
 
 class ImageLoadOperation: ConcurrentOperation {
     
