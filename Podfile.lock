@@ -47,6 +47,7 @@ PODS:
   - SDWebImage (3.7.1):
     - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
+  - Siren (0.6.0)
   - TSMessages (0.9.13):
     - HexColors (~> 2.3.0)
   - XCDYouTubeKit (2.3.1)
@@ -63,6 +64,7 @@ DEPENDENCIES:
   - OHHTTPStubs (~> 3.1.5)
   - Quick
   - SDWebImage (~> 3.7.0)
+  - Siren
   - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
   - XCDYouTubeKit (~> 2.3.1)
 
@@ -104,6 +106,7 @@ SPEC CHECKSUMS:
   OHHTTPStubs: b671969016b4c6f5ee3c26080c81114ba82e0710
   Quick: 824572d3d198d51e52cf4aa722cebf7e59952a35
   SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
+  Siren: 41c7c0ed8cf10e5a7a30e5511160d584a2ae871d
   TSMessages: 6e403b790139636c15ab4f51946537095e03e79c
   XCDYouTubeKit: 80e9169b644acf4e67979142f789d9e7e9e15784
 

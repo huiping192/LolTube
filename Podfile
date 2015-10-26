@@ -14,7 +14,7 @@ pod 'Google/Analytics', '~> 1.0.0'
 pod 'DZNEmptyDataSet'
 pod 'Cartography', :git => "git@github.com:robb/Cartography.git", :branch => "swift-2.0"
 pod 'Async', :git => "git@github.com:duemunk/Async.git", :branch => "feature/Swift_2.0"
-
+pod 'Siren'
 
 target :LolTubeTests do
   pod 'OCMock', '~> 3.1.1'
