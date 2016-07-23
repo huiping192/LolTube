@@ -5,7 +5,7 @@ platform :ios, '8.0'
 inhibit_all_warnings!
 use_frameworks!
 
-pod 'AFNetworking', '~> 2.0'
+pod 'AFNetworking', '~> 3.1.0'
 pod 'JSONModel', '~> 1.0.1'
 pod 'XCDYouTubeKit', '~> 2.3.1'
 pod 'SDWebImage', '~> 3.7.0'
@@ -25,7 +25,7 @@ target :LolTubeTests do
 end
 
 target :VideoWidget, :exclusive => true do
-  pod 'AFNetworking', '~> 2.0'
+  pod 'AFNetworking', '~> 3.1.0'
   pod 'SDWebImage', '~> 3.7.0'
   pod 'JSONModel', '~> 1.0.1'
 end
