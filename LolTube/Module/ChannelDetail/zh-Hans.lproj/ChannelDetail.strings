@@ -1,9 +1,0 @@
-
-/* Class = "UISegmentedControl"; 9C9-8w-tWM.segmentTitles[0] = "Video"; ObjectID = "9C9-8w-tWM"; */
-"9C9-8w-tWM.segmentTitles[0]" = "视频";
-
-/* Class = "UISegmentedControl"; 9C9-8w-tWM.segmentTitles[1] = "Playlist"; ObjectID = "9C9-8w-tWM"; */
-"9C9-8w-tWM.segmentTitles[1]" = "播放列表";
-
-/* Class = "UISegmentedControl"; 9C9-8w-tWM.segmentTitles[2] = "About"; ObjectID = "9C9-8w-tWM"; */
-"9C9-8w-tWM.segmentTitles[2]" = "简介";

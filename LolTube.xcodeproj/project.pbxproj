@@ -343,7 +343,6 @@
 		DC47690F1A07EAAA00DC3D2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		DC4769111A07EAAF00DC3D2D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		DC4769171A07EAB300DC3D2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
-		DC4769191A07EAB500DC3D2D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		DC47DABE1BB2628200865131 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DC47DAC01BB28EB800865131 /* TopItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopItem.swift; sourceTree = "<group>"; };
 		DC47DAC21BB2B28400865131 /* HttpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
@@ -382,11 +381,9 @@
 		DC9446BB1B86239100871410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Loading.xib; sourceTree = "<group>"; };
 		DC9446BE1B86239300871410 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Loading.strings; sourceTree = "<group>"; };
 		DC9446C01B86239300871410 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Loading.strings"; sourceTree = "<group>"; };
-		DC9446C21B86239400871410 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Loading.strings"; sourceTree = "<group>"; };
 		DC9446C41B8623DF00871410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LoadingCollectionViewCell.xib; sourceTree = "<group>"; };
 		DC9446C71B8623E200871410 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LoadingCollectionViewCell.strings; sourceTree = "<group>"; };
 		DC9446C91B8623E200871410 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LoadingCollectionViewCell.strings"; sourceTree = "<group>"; };
-		DC9446CB1B8623E600871410 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LoadingCollectionViewCell.strings"; sourceTree = "<group>"; };
 		DC9467671B4C133D0043E33B /* RSPlaylistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPlaylistModel.h; sourceTree = "<group>"; };
 		DC9467681B4C133D0043E33B /* RSPlaylistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPlaylistModel.m; sourceTree = "<group>"; };
 		DC94676B1B4C17F40043E33B /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
@@ -429,7 +426,6 @@
 		DCDBECE91B6371ED004474E9 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		DCE1807F1B61537000F5055B /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
 		DCEB197E1B52532F00F255B3 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ChannelDetail.strings"; sourceTree = "<group>"; };
-		DCEB19801B52533100F255B3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ChannelDetail.strings"; sourceTree = "<group>"; };
 		DCEB19811B52533200F255B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ChannelDetail.storyboard; sourceTree = "<group>"; };
 		DCEB19831B52536C00F255B3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ChannelDetail.strings; sourceTree = "<group>"; };
 		DCEBA50C19BCAD8C007C3FC7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -442,9 +438,6 @@
 		DCEE3A821BC10A2C000484F1 /* VideoRelatedVideosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoRelatedVideosViewController.swift; sourceTree = "<group>"; };
 		DCEE3A841BC10A8A000484F1 /* VideoRelatedVideosViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoRelatedVideosViewModel.swift; sourceTree = "<group>"; };
 		DCEE3A861BC10CC6000484F1 /* VideoRelatedVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoRelatedVideoCell.swift; sourceTree = "<group>"; };
-		DCF9878219BDBB2B00E9BCBE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		DCF9878319BDBB2B00E9BCBE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		DCF9878419BDBB2B00E9BCBE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		DCF9878519BDBEFD00E9BCBE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		DCF9878619BDBEFD00E9BCBE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		DCF9878719BDBEFD00E9BCBE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -1198,7 +1191,6 @@
 				Base,
 				ja,
 				"zh-Hant",
-				"zh-Hans",
 			);
 			mainGroup = DC10449E19B2FA6B007A86E6;
 			productRefGroup = DC1044A819B2FA6B007A86E6 /* Products */;
@@ -1564,7 +1556,6 @@
 			children = (
 				DC1044B419B2FA6B007A86E6 /* en */,
 				DCEBA50C19BCAD8C007C3FC7 /* ja */,
-				DCF9878219BDBB2B00E9BCBE /* zh-Hans */,
 				DCF9878519BDBEFD00E9BCBE /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
@@ -1575,7 +1566,6 @@
 			children = (
 				DC1044D319B2FA6B007A86E6 /* en */,
 				DCEBA50D19BCAD8C007C3FC7 /* ja */,
-				DCF9878419BDBB2B00E9BCBE /* zh-Hans */,
 				DCF9878719BDBEFD00E9BCBE /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
@@ -1588,7 +1578,6 @@
 				DC47690F1A07EAAA00DC3D2D /* en */,
 				DC4769111A07EAAF00DC3D2D /* ja */,
 				DC4769171A07EAB300DC3D2D /* zh-Hant */,
-				DC4769191A07EAB500DC3D2D /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			path = ../StoryBoard;
@@ -1600,7 +1589,6 @@
 				DC9446BB1B86239100871410 /* Base */,
 				DC9446BE1B86239300871410 /* ja */,
 				DC9446C01B86239300871410 /* zh-Hant */,
-				DC9446C21B86239400871410 /* zh-Hans */,
 			);
 			name = Loading.xib;
 			path = ../Category;
@@ -1612,7 +1600,6 @@
 				DC9446C41B8623DF00871410 /* Base */,
 				DC9446C71B8623E200871410 /* ja */,
 				DC9446C91B8623E200871410 /* zh-Hant */,
-				DC9446CB1B8623E600871410 /* zh-Hans */,
 			);
 			name = LoadingCollectionViewCell.xib;
 			sourceTree = "<group>";
@@ -1621,7 +1608,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				DCEB197E1B52532F00F255B3 /* zh-Hant */,
-				DCEB19801B52533100F255B3 /* zh-Hans */,
 				DCEB19811B52533200F255B3 /* Base */,
 				DCEB19831B52536C00F255B3 /* ja */,
 			);
@@ -1633,7 +1619,6 @@
 			children = (
 				DCEBA51519BCB2AF007C3FC7 /* en */,
 				DCEBA51719BCB2B3007C3FC7 /* ja */,
-				DCF9878319BDBB2B00E9BCBE /* zh-Hans */,
 				DCF9878619BDBEFD00E9BCBE /* zh-Hant */,
 			);
 			name = Localizable.strings;
