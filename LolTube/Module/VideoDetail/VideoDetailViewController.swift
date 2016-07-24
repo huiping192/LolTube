@@ -33,7 +33,7 @@ class VideoDetailViewController:UIViewController {
     
     var currentVideoQuality:XCDYouTubeVideoQuality = .Medium360
     
-    var videoDetailSegmentViewController:RSVideoDetailSegmentViewController!
+    var videoDetailSegmentViewController: VideoDetailSegmentViewController!
     var relatedVideosViewController: VideoRelatedVideosViewController!
     
     let imageLoadingOperationQueue:NSOperationQueue =  NSOperationQueue()
@@ -95,7 +95,7 @@ class VideoDetailViewController:UIViewController {
             }
             strongSelf.imageLoadingOperationQueue.addOperation(imageOperation)
             strongSelf.shareButton?.enabled = true
-            strongSelf.videoDetailSegmentViewController.updateWithChannelId(strongSelf.viewModel.channelId ,channelTitle:strongSelf.viewModel.channelTitle)
+            strongSelf.videoDetailSegmentViewController.updateWithChannelId(strongSelf.viewModel.channelId! ,channelTitle:strongSelf.viewModel.channelTitle!)
         }
         
         let failureBlock: NSError -> Void = {
@@ -114,7 +114,7 @@ class VideoDetailViewController:UIViewController {
         
         switch segueId {
         case .videoDetailSegmentEmbed:
-            let videoDetailSegmentViewController = segue.destinationViewController(RSVideoDetailSegmentViewController.self)
+            let videoDetailSegmentViewController = segue.destinationViewController(VideoDetailSegmentViewController.self)
             videoDetailSegmentViewController.videoId = videoId
             self.videoDetailSegmentViewController = videoDetailSegmentViewController
         case .relatedVideosEmbed:
