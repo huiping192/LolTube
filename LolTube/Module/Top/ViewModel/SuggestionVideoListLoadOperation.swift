@@ -11,7 +11,7 @@ import Foundation
 
 class SuggestionVideoListLoadOperation : GroupOperation {
     
-    private let videoService = RSVideoService.sharedInstance()
+    private let videoService = VideoService.sharedInstance
     
     private var videoList: [Video] = []
     private var error: NSError?
