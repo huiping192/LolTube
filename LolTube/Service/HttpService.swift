@@ -35,7 +35,7 @@ public class HttpService: NSObject  {
     
     func request<T:RSJsonModel>(urlString: String, queryParameters: [String:AnyObject], jsonModelClass: T.Type, success: ((T) -> Void)?, failure: ((NSError) -> Void)?) {
         
-        let successBlock: ((AFHTTPRequestOperation!, AnyObject!) -> Void) = {
+        let successBlock: ((NSURLSessionTask, AnyObject?) -> Void) = {
             (_, responseObject) in
             
             do {
@@ -46,15 +46,34 @@ public class HttpService: NSObject  {
             }
         }
         
-        AFHTTPRequestOperationManager().GET(urlString, parameters: queryParameters, success: successBlock, failure: {
+        AFHTTPSessionManager().GET(urlString, parameters: queryParameters, success: successBlock, failure: {
             (_, error) in
             failure?(error)
         })
+        
     }
     
     func request<T:RSJsonModel>(urlString: String, staticParameters: [String:AnyObject], dynamicParameters: [String:[String]], jsonModelClass: T.Type, success: (([T]) -> Void)?, failure: ((NSError) -> Void)?) {
-        var operationList = [AFHTTPRequestOperation]()
         
+        let operationQueue = NSOperationQueue()
+        
+        var operationList = [RSHTTPRequestOperation]()
+        
+        var jsonModelList = [T]()
+        var error: NSError?
+        
+        let completionOperation = NSBlockOperation() {
+            dispatch_async(dispatch_get_main_queue(),{
+                if let error = error {
+                    failure?(error)
+                } else {
+                    success?(jsonModelList)
+                }
+            })
+            
+        }
+        
+                
         var parameters = staticParameters
         var dynamicParameterKeyList = Array(dynamicParameters.keys)
         for index in 0 ..< (dynamicParameters[dynamicParameterKeyList[0]]?.count ?? 0) {
@@ -63,43 +82,24 @@ public class HttpService: NSObject  {
                     parameters[key] = dynamicParameterValue
                 }
             }
-            let httpRequestOperation = AFHTTPRequestOperation(request: AFHTTPRequestSerializer().requestWithMethod("GET", URLString: urlString, parameters: parameters))
+            
+            let httpRequestOperation =  RSHTTPRequestOperation(urlString: urlString, parameters: parameters, success: { _,responseObject in
+                do {
+                    let jsonModel = try jsonModelClass.init(dictionary: responseObject as! [String:AnyObject])
+                    jsonModelList.append(jsonModel)
+                } catch let parseError  {
+                    error = parseError as NSError
+                }
+                
+                }, failure: {
+                    error = $1
+            })
+            
+            completionOperation.addDependency(httpRequestOperation)
             operationList.append(httpRequestOperation)
+            operationQueue.addOperation(httpRequestOperation)
         }
         
-        var jsonModelList = [T]()
-        var error: NSError?
-        
-        let progressBlock: ((UInt, UInt) -> Void) = {
-            (numberOfFinishedOperations, totalNumberOfOperations) in
-            
-            let operation = operationList[Int(numberOfFinishedOperations - 1)]
-            if let operationError = operation.error {
-                error = operationError
-                return
-            }
-            
-            var jsonParseError: JSONModelError?
-            let jsonModel = jsonModelClass.init(string: operation.responseString, error: &jsonParseError)
-            if let jsonParseError = jsonParseError {
-                error = jsonParseError
-            } else {
-                jsonModelList.append(jsonModel)
-            }
-        }
-        
-        let completionBlock: ([AnyObject]! -> Void) = {
-            _ in
-            
-            if let error = error {
-                failure?(error)
-            } else {
-                success?(jsonModelList)
-            }
-        }
-        
-        let operations = AFURLConnectionOperation.batchOfRequestOperations(operationList, progressBlock: progressBlock, completionBlock: completionBlock) as! [NSOperation]
-        
-        NSOperationQueue.mainQueue().addOperations(operations, waitUntilFinished: false)
+        operationQueue.addOperation(completionOperation)
     }
 }
