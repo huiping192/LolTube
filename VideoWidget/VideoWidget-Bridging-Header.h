@@ -12,3 +12,4 @@
 #import "RSPlaylistModel.h"
 #import "RSPlaylistItemsModel.h"
 #import "RSPageInfo.h"
+#import "UIImageView+Loading.h"
