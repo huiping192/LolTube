@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		25C508257CFE98CC8F6E51A0 /* Pods_LolTubeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8753EE0B5BA1B8708AE55A9D /* Pods_LolTubeTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3F600FCCC4481C2E61E0D4E1 /* Pods_VideoWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46549C88BADDA21C341296F /* Pods_VideoWidget.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		7A9D502564EF5651A21D735F /* RSTodayVideoTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5A57F12E827DA02DC5C6 /* RSTodayVideoTableViewModel.m */; };
 		7A9D5029F6AC659B11F3829F /* TopVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5286A597D87BFDE26663 /* TopVideoCell.swift */; };
-		7A9D50935DBFA85ADFA6FBD1 /* RSVideoDetailSegmentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5318CE66D417996EB3AB /* RSVideoDetailSegmentViewModel.m */; };
 		7A9D50C4794BC7CDE9388DA2 /* RSVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D522E2ABA2D7CF8D28865 /* RSVideoDetailModel.m */; };
 		7A9D50E63C6B65C8E431B763 /* TopVideoCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5F76D1C4BA7B40BC23B4 /* TopVideoCollectionHeaderView.swift */; };
 		7A9D510F707B96B6F138CF6A /* FiftyChannel.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5072C6E4D2AEE57845F1 /* FiftyChannel.json */; };
@@ -21,13 +19,11 @@
 		7A9D51ABE18A0C8736203486 /* PlaylistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5CE6D9DE255880AB0675 /* PlaylistsViewModel.swift */; };
 		7A9D51B3ACA78568076119F3 /* PlaylistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D54432D8ED591C779E11B /* PlaylistViewModel.swift */; };
 		7A9D51CFA22CA82EC960CA7B /* RSThumbnails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D550D828214C4B085A20D /* RSThumbnails.m */; };
-		7A9D51ED44B6253F72975269 /* RSVideoInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D50B5067E9C022D928E40 /* RSVideoInfoViewModel.m */; };
 		7A9D520400495FFA39742BA9 /* ChannelDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5FA53B83588D46CFFF92 /* ChannelDetailViewModel.swift */; };
 		7A9D521320B2B1B88B16EBFB /* YoutubeChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D50E5C2FBC9003C9B521E /* YoutubeChannel.swift */; };
 		7A9D5221D105A982CA7413A1 /* RSVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D522E2ABA2D7CF8D28865 /* RSVideoDetailModel.m */; };
 		7A9D533BD41BF929A8993258 /* NSDate+FormatterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D571016D3664FBDB5479B /* NSDate+FormatterSpec.swift */; };
 		7A9D54173333A8DCD115D73B /* Banner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5B874B5EA9F6FA7293D1 /* Banner.storyboard */; };
-		7A9D55A5852D9DA760734F99 /* RSVideoInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5AC68727A9BCD0BEFF02 /* RSVideoInfoViewController.m */; };
 		7A9D55AE709EF08F3CF26663 /* YoutubeServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D57086D3483D4DAB0CB21 /* YoutubeServiceSpec.swift */; };
 		7A9D55D673B125147980223D /* SearchChannelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D526C78F464CE031BDCB5 /* SearchChannelCollectionViewCell.swift */; };
 		7A9D565F9F049CDB43ACCBE9 /* TwoVideosDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5695E285A65D8216CA04 /* TwoVideosDetail.json */; };
@@ -42,8 +38,6 @@
 		7A9D585648191456B550D65B /* RSVideoInfoUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D53A9E8EF6576E1654ECE /* RSVideoInfoUtil.m */; };
 		7A9D588F5B7F3309F41F5AA4 /* LoLProChannelVideoList.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5AF46BFEA231319F7D33 /* LoLProChannelVideoList.json */; };
 		7A9D589F540AE2A8D745F7CA /* RSSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D517BF5F85FDF0B1AD516 /* RSSearchModel.m */; };
-		7A9D58A96A9F1162F3AAE864 /* RSVideoDetailSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D58F31A59D97CBEF3721B /* RSVideoDetailSegmentViewController.m */; };
-		7A9D5909AB58845520363BEE /* RSVideoDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D53594B88C1789424001F /* RSVideoDetailViewModel.m */; };
 		7A9D59A8FA8D919C39DCC359 /* StringUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D526397DA6DDCCAC2F3B6 /* StringUtilTest.swift */; };
 		7A9D59E8FFC59D16DE955870 /* RSSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D55464B861B4D6516B608 /* RSSearchTableViewCell.m */; };
 		7A9D5AA116615721C59D3D61 /* RSEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5685F04E20BBB4AB0EDE /* RSEnvironment.m */; };
@@ -58,10 +52,8 @@
 		7A9D5DC7B40B226EE331BB61 /* PlaylistsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5CD1B874DFA55EEA9B9E /* PlaylistsCollectionViewCell.swift */; };
 		7A9D5DD926C658587A69CB76 /* RSJsonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5A17C810AF687DD2F0C0 /* RSJsonModel.m */; };
 		7A9D5E047642539A74E9E1FF /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D50E2E7E043A6D87228A8 /* TopViewController.swift */; };
-		7A9D5EB52386205BCB0125A4 /* RSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D51BA505E402A59D85EB1 /* RSNavigationController.m */; };
 		7A9D5ED4EC7D8C7DBDB04EC1 /* SearchPlaylistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5957290E603F30289527 /* SearchPlaylistsViewModel.swift */; };
 		7A9D5EFBCC830062D614642A /* SearchChannelListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D58907113769320D6EDF4 /* SearchChannelListViewModel.swift */; };
-		7A9D5F14B85FDCEF4668D937 /* RSVideoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5E1CAC258986C7A0B45D /* RSVideoService.m */; };
 		7A9D5FE6121499045F3F1D14 /* RSChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5650CE10F3B152DB916C /* RSChannelModel.m */; };
 		A427772ED7FC562199DFF711 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EFD920A10A9DA1588520BF /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		DC00BD7E1BC00F23003E4D19 /* VideoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC00BD7D1BC00F23003E4D19 /* VideoDetailViewModel.swift */; };
@@ -120,7 +112,6 @@
 		DC53D80D1BA874AC00103192 /* TwitchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC53D80C1BA874AC00103192 /* TwitchService.swift */; };
 		DC53D8101BA8785500103192 /* RSStreamListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC53D80F1BA8785500103192 /* RSStreamListModel.m */; };
 		DC5708F51A00DBF500DB8821 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5708F41A00DBF500DB8821 /* NotificationCenter.framework */; };
-		DC5708FB1A00DBF500DB8821 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5708FA1A00DBF500DB8821 /* TodayViewController.m */; };
 		DC5708FD1A00DBF500DB8821 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5708FC1A00DBF500DB8821 /* MainInterface.storyboard */; };
 		DC5709001A00DBF500DB8821 /* VideoWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DC5708F31A00DBF500DB8821 /* VideoWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DC61593C1BC2EBB5004EEC54 /* SuggestionVideoListLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC61593B1BC2EBB5004EEC54 /* SuggestionVideoListLoadOperation.swift */; };
@@ -129,9 +120,17 @@
 		DC64F4C719E5524900F860B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DC64F4C519E5524900F860B4 /* Reachability.m */; };
 		DC64F4C919E5582F00F860B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC64F4C819E5582F00F860B4 /* SystemConfiguration.framework */; };
 		DC6596691BC6C2FA008EA167 /* SuggestionVideoListChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6596671BC6C2FA008EA167 /* SuggestionVideoListChannel.swift */; };
+		DC76CA801D43ECD900A9192F /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76CA7F1D43ECD900A9192F /* NavigationController.swift */; };
 		DC82E5CD1B84C32A00420A1E /* VideoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC82E5CC1B84C32A00420A1E /* VideoCollectionViewController.swift */; };
 		DC842D731B4AF2A80085FF8D /* PlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC842D721B4AF2A80085FF8D /* PlaylistsViewController.swift */; };
+		DC85F8F21D452A6200CF4C60 /* VideoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC85F8F11D452A6200CF4C60 /* VideoService.swift */; };
+		DC85F8F41D464DD800CF4C60 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC85F8F31D464DD800CF4C60 /* TodayViewController.swift */; };
+		DC85F8F61D464E6E00CF4C60 /* TodayVideoTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC85F8F51D464E6E00CF4C60 /* TodayVideoTableViewModel.swift */; };
 		DC8680AF1BAC38FF001D7706 /* TwitchStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8680AE1BAC38FF001D7706 /* TwitchStream.swift */; };
+		DC8A82A21D43EFAE0002D8BF /* VideoInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8A82A11D43EFAE0002D8BF /* VideoInfoViewModel.swift */; };
+		DC8A82A41D43F0450002D8BF /* VideoDetailSegmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8A82A31D43F0450002D8BF /* VideoDetailSegmentViewModel.swift */; };
+		DC8A82A61D43F13C0002D8BF /* VideoDetailSegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8A82A51D43F13C0002D8BF /* VideoDetailSegmentViewController.swift */; };
+		DC8A82A81D43F2570002D8BF /* VideoInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8A82A71D43F2570002D8BF /* VideoInfoViewController.swift */; };
 		DC9446BA1B86239100871410 /* Loading.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9446BC1B86239100871410 /* Loading.xib */; };
 		DC9446C31B8623DF00871410 /* LoadingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9446C51B8623DF00871410 /* LoadingCollectionViewCell.xib */; };
 		DC9467691B4C133D0043E33B /* RSPlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9467681B4C133D0043E33B /* RSPlaylistModel.m */; };
@@ -230,27 +229,20 @@
 		7A9D5072C6E4D2AEE57845F1 /* FiftyChannel.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = FiftyChannel.json; sourceTree = "<group>"; };
 		7A9D507B80947852CAAF8097 /* CircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
 		7A9D509996E34EF5012B6056 /* SearchVideoListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVideoListViewModel.swift; sourceTree = "<group>"; };
-		7A9D50B5067E9C022D928E40 /* RSVideoInfoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoInfoViewModel.m; sourceTree = "<group>"; };
 		7A9D50E2E7E043A6D87228A8 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		7A9D50E5C2FBC9003C9B521E /* YoutubeChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeChannel.swift; sourceTree = "<group>"; };
 		7A9D512944F19F5B2B5B9B90 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		7A9D517BF5F85FDF0B1AD516 /* RSSearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSearchModel.m; sourceTree = "<group>"; };
 		7A9D518C3176C323B3099C62 /* PlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
-		7A9D51BA505E402A59D85EB1 /* RSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNavigationController.m; sourceTree = "<group>"; };
 		7A9D51D455D1D7CB93CE543C /* UIImageView+Loading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Loading.m"; sourceTree = "<group>"; };
 		7A9D51E8C427ACECA654F5EA /* RSJsonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSJsonModel.h; sourceTree = "<group>"; };
 		7A9D51EEDFD6013E88FD3686 /* RSSearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSearchModel.h; sourceTree = "<group>"; };
 		7A9D522E2ABA2D7CF8D28865 /* RSVideoDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailModel.m; sourceTree = "<group>"; };
-		7A9D524F7C274F87C6746729 /* RSVideoDetailSegmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailSegmentViewController.h; sourceTree = "<group>"; };
 		7A9D526397DA6DDCCAC2F3B6 /* StringUtilTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtilTest.swift; sourceTree = "<group>"; };
 		7A9D526C78F464CE031BDCB5 /* SearchChannelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchChannelCollectionViewCell.swift; sourceTree = "<group>"; };
 		7A9D5286A597D87BFDE26663 /* TopVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopVideoCell.swift; sourceTree = "<group>"; };
 		7A9D52ABB1347E2A47C15CF4 /* BannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
-		7A9D5318CE66D417996EB3AB /* RSVideoDetailSegmentViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailSegmentViewModel.m; sourceTree = "<group>"; };
-		7A9D533C8D5AA148024886E3 /* RSVideoDetailSegmentViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailSegmentViewModel.h; sourceTree = "<group>"; };
-		7A9D53594B88C1789424001F /* RSVideoDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailViewModel.m; sourceTree = "<group>"; };
 		7A9D53A9E8EF6576E1654ECE /* RSVideoInfoUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoInfoUtil.m; sourceTree = "<group>"; };
-		7A9D54358213CF2862CAD03D /* RSVideoInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoInfoViewController.h; sourceTree = "<group>"; };
 		7A9D54432D8ED591C779E11B /* PlaylistViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistViewModel.swift; sourceTree = "<group>"; };
 		7A9D550D828214C4B085A20D /* RSThumbnails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSThumbnails.m; sourceTree = "<group>"; };
 		7A9D55386A0D6BE1C7E159AE /* RSSearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSearchTableViewCell.h; sourceTree = "<group>"; };
@@ -260,24 +252,18 @@
 		7A9D564F68D0A657D0C63838 /* RSVideoDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailModel.h; sourceTree = "<group>"; };
 		7A9D5650CE10F3B152DB916C /* RSChannelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSChannelModel.m; sourceTree = "<group>"; };
 		7A9D5685F04E20BBB4AB0EDE /* RSEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSEnvironment.m; sourceTree = "<group>"; };
-		7A9D56878B6EAD4145C3F188 /* RSVideoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoService.h; sourceTree = "<group>"; };
 		7A9D5695E285A65D8216CA04 /* TwoVideosDetail.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = TwoVideosDetail.json; sourceTree = "<group>"; };
-		7A9D56BAB9B37A868D3784A9 /* RSVideoInfoViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoInfoViewModel.h; sourceTree = "<group>"; };
 		7A9D57086D3483D4DAB0CB21 /* YoutubeServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeServiceSpec.swift; sourceTree = "<group>"; };
 		7A9D571016D3664FBDB5479B /* NSDate+FormatterSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+FormatterSpec.swift"; sourceTree = "<group>"; };
 		7A9D5743674D21807B2ACD84 /* RSVideoInfoUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoInfoUtil.h; sourceTree = "<group>"; };
 		7A9D588E065470FF7B751440 /* RSVideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoModel.m; sourceTree = "<group>"; };
 		7A9D58907113769320D6EDF4 /* SearchChannelListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchChannelListViewModel.swift; sourceTree = "<group>"; };
 		7A9D58BCA4FC17F9831757EF /* RSVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoModel.h; sourceTree = "<group>"; };
-		7A9D58F31A59D97CBEF3721B /* RSVideoDetailSegmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailSegmentViewController.m; sourceTree = "<group>"; };
-		7A9D5904CA4C863FB30FC721 /* RSTodayVideoTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTodayVideoTableViewModel.h; sourceTree = "<group>"; };
 		7A9D5957290E603F30289527 /* SearchPlaylistsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlaylistsViewModel.swift; sourceTree = "<group>"; };
 		7A9D597407BB9DD1397A6220 /* YoutubeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeService.swift; sourceTree = "<group>"; };
 		7A9D59CA519ECF7EC6BACEC3 /* TopViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewModel.swift; sourceTree = "<group>"; };
 		7A9D5A17C810AF687DD2F0C0 /* RSJsonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSJsonModel.m; sourceTree = "<group>"; };
 		7A9D5A4F7E3337B0F588D6AC /* LolChannelSearchChannelList.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = LolChannelSearchChannelList.json; sourceTree = "<group>"; };
-		7A9D5A57F12E827DA02DC5C6 /* RSTodayVideoTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTodayVideoTableViewModel.m; sourceTree = "<group>"; };
-		7A9D5AC68727A9BCD0BEFF02 /* RSVideoInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoInfoViewController.m; sourceTree = "<group>"; };
 		7A9D5AF46BFEA231319F7D33 /* LoLProChannelVideoList.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = LoLProChannelVideoList.json; sourceTree = "<group>"; };
 		7A9D5B874B5EA9F6FA7293D1 /* Banner.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Banner.storyboard; sourceTree = "<group>"; };
 		7A9D5B9AB3E6776CBA3BA769 /* FiftyVideosDetail.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = FiftyVideosDetail.json; sourceTree = "<group>"; };
@@ -287,10 +273,7 @@
 		7A9D5CED6FFAB8E9DC37BFFF /* RSThumbnails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSThumbnails.h; sourceTree = "<group>"; };
 		7A9D5D1DA9E665D3274CBB65 /* TwoChannel.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = TwoChannel.json; sourceTree = "<group>"; };
 		7A9D5D70F639F721B551180A /* IntExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
-		7A9D5E1CAC258986C7A0B45D /* RSVideoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoService.m; sourceTree = "<group>"; };
-		7A9D5EA8C5336F661DB33788 /* RSVideoDetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVideoDetailViewModel.h; sourceTree = "<group>"; };
 		7A9D5EB9DC371E29737FC931 /* RSEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSEnvironment.h; sourceTree = "<group>"; };
-		7A9D5F6AFCB86F0AF7AA7008 /* RSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNavigationController.h; sourceTree = "<group>"; };
 		7A9D5F76D1C4BA7B40BC23B4 /* TopVideoCollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopVideoCollectionHeaderView.swift; sourceTree = "<group>"; };
 		7A9D5FA53B83588D46CFFF92 /* ChannelDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelDetailViewModel.swift; sourceTree = "<group>"; };
 		7B97C0A21DC93CB7C90E8CBA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -366,8 +349,6 @@
 		DC5708F31A00DBF500DB8821 /* VideoWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = VideoWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC5708F41A00DBF500DB8821 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		DC5708F81A00DBF500DB8821 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC5708F91A00DBF500DB8821 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
-		DC5708FA1A00DBF500DB8821 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
 		DC5708FC1A00DBF500DB8821 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		DC61593B1BC2EBB5004EEC54 /* SuggestionVideoListLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionVideoListLoadOperation.swift; sourceTree = "<group>"; };
 		DC61593D1BC53685004EEC54 /* RelatedVideoListLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RelatedVideoListLoadOperation.swift; path = ../Module/Top/ViewModel/RelatedVideoListLoadOperation.swift; sourceTree = "<group>"; };
@@ -376,9 +357,17 @@
 		DC64F4C619E5524900F860B4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		DC64F4C819E5582F00F860B4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DC6596671BC6C2FA008EA167 /* SuggestionVideoListChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionVideoListChannel.swift; sourceTree = "<group>"; };
+		DC76CA7F1D43ECD900A9192F /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		DC82E5CC1B84C32A00420A1E /* VideoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewController.swift; sourceTree = "<group>"; };
 		DC842D721B4AF2A80085FF8D /* PlaylistsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsViewController.swift; sourceTree = "<group>"; };
+		DC85F8F11D452A6200CF4C60 /* VideoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoService.swift; sourceTree = "<group>"; };
+		DC85F8F31D464DD800CF4C60 /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		DC85F8F51D464E6E00CF4C60 /* TodayVideoTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayVideoTableViewModel.swift; sourceTree = "<group>"; };
 		DC8680AE1BAC38FF001D7706 /* TwitchStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitchStream.swift; sourceTree = "<group>"; };
+		DC8A82A11D43EFAE0002D8BF /* VideoInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoInfoViewModel.swift; sourceTree = "<group>"; };
+		DC8A82A31D43F0450002D8BF /* VideoDetailSegmentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailSegmentViewModel.swift; sourceTree = "<group>"; };
+		DC8A82A51D43F13C0002D8BF /* VideoDetailSegmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailSegmentViewController.swift; sourceTree = "<group>"; };
+		DC8A82A71D43F2570002D8BF /* VideoInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoInfoViewController.swift; sourceTree = "<group>"; };
 		DC9446BB1B86239100871410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Loading.xib; sourceTree = "<group>"; };
 		DC9446BE1B86239300871410 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Loading.strings; sourceTree = "<group>"; };
 		DC9446C01B86239300871410 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Loading.strings"; sourceTree = "<group>"; };
@@ -543,12 +532,10 @@
 			children = (
 				7A9D5B18FEB655D5FD0B6961 /* View */,
 				7A9D52794B528C81C3264DFB /* ViewModel */,
-				7A9D524F7C274F87C6746729 /* RSVideoDetailSegmentViewController.h */,
-				7A9D58F31A59D97CBEF3721B /* RSVideoDetailSegmentViewController.m */,
-				7A9D54358213CF2862CAD03D /* RSVideoInfoViewController.h */,
-				7A9D5AC68727A9BCD0BEFF02 /* RSVideoInfoViewController.m */,
 				DC085E9D1BA5A77D00F03893 /* VideoDetailViewController.swift */,
 				DCEE3A821BC10A2C000484F1 /* VideoRelatedVideosViewController.swift */,
+				DC8A82A51D43F13C0002D8BF /* VideoDetailSegmentViewController.swift */,
+				DC8A82A71D43F2570002D8BF /* VideoInfoViewController.swift */,
 			);
 			path = VideoDetail;
 			sourceTree = "<group>";
@@ -564,14 +551,10 @@
 		7A9D52794B528C81C3264DFB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				7A9D56BAB9B37A868D3784A9 /* RSVideoInfoViewModel.h */,
-				7A9D50B5067E9C022D928E40 /* RSVideoInfoViewModel.m */,
-				7A9D5EA8C5336F661DB33788 /* RSVideoDetailViewModel.h */,
-				7A9D53594B88C1789424001F /* RSVideoDetailViewModel.m */,
-				7A9D5318CE66D417996EB3AB /* RSVideoDetailSegmentViewModel.m */,
-				7A9D533C8D5AA148024886E3 /* RSVideoDetailSegmentViewModel.h */,
 				DC00BD7D1BC00F23003E4D19 /* VideoDetailViewModel.swift */,
 				DCEE3A841BC10A8A000484F1 /* VideoRelatedVideosViewModel.swift */,
+				DC8A82A11D43EFAE0002D8BF /* VideoInfoViewModel.swift */,
+				DC8A82A31D43F0450002D8BF /* VideoDetailSegmentViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -582,8 +565,7 @@
 				7A9D5FE26025B246663F393A /* ViewModel */,
 				7A9D56800AF4ABC775D59414 /* View */,
 				7A9D50E2E7E043A6D87228A8 /* TopViewController.swift */,
-				7A9D51BA505E402A59D85EB1 /* RSNavigationController.m */,
-				7A9D5F6AFCB86F0AF7AA7008 /* RSNavigationController.h */,
+				DC76CA7F1D43ECD900A9192F /* NavigationController.swift */,
 			);
 			path = Top;
 			sourceTree = "<group>";
@@ -794,11 +776,10 @@
 				DCD64B801BD01B5E00D47E0E /* Operation */,
 				7A9D531CBB1900445FF0B61E /* JsonModel */,
 				DCEDB9FB1B8F612700BD0A0B /* ChannelService.swift */,
-				7A9D5E1CAC258986C7A0B45D /* RSVideoService.m */,
-				7A9D56878B6EAD4145C3F188 /* RSVideoService.h */,
 				7A9D597407BB9DD1397A6220 /* YoutubeService.swift */,
 				DC53D80C1BA874AC00103192 /* TwitchService.swift */,
 				DC47DAC21BB2B28400865131 /* HttpService.swift */,
+				DC85F8F11D452A6200CF4C60 /* VideoService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1040,12 +1021,10 @@
 		DC5708F61A00DBF500DB8821 /* VideoWidget */ = {
 			isa = PBXGroup;
 			children = (
-				DC5708F91A00DBF500DB8821 /* TodayViewController.h */,
-				DC5708FA1A00DBF500DB8821 /* TodayViewController.m */,
 				DC5708FC1A00DBF500DB8821 /* MainInterface.storyboard */,
 				DC5708F71A00DBF500DB8821 /* Supporting Files */,
-				7A9D5A57F12E827DA02DC5C6 /* RSTodayVideoTableViewModel.m */,
-				7A9D5904CA4C863FB30FC721 /* RSTodayVideoTableViewModel.h */,
+				DC85F8F31D464DD800CF4C60 /* TodayViewController.swift */,
+				DC85F8F51D464E6E00CF4C60 /* TodayVideoTableViewModel.swift */,
 			);
 			path = VideoWidget;
 			sourceTree = "<group>";
@@ -1388,6 +1367,7 @@
 			files = (
 				DC1044B719B2FA6B007A86E6 /* main.m in Sources */,
 				DCD2E8401BB7019500F98EDD /* VideoDetailUpdateOperation.swift in Sources */,
+				DC8A82A81D43F2570002D8BF /* VideoInfoViewController.swift in Sources */,
 				DCB16C141B6D371E00F8AC86 /* UIViewContollerExtensions.swift in Sources */,
 				DC99E0301B7A401D004939D2 /* ChannelListViewModel.swift in Sources */,
 				DC6596691BC6C2FA008EA167 /* SuggestionVideoListChannel.swift in Sources */,
@@ -1398,7 +1378,6 @@
 				7A9D517888BCFE3270DE9EB1 /* UIImageView+Loading.m in Sources */,
 				DC82E5CD1B84C32A00420A1E /* VideoCollectionViewController.swift in Sources */,
 				DCD2E83A1BB6F52200F98EDD /* ChannelLoadOperation.swift in Sources */,
-				7A9D5F14B85FDCEF4668D937 /* RSVideoService.m in Sources */,
 				DC9467691B4C133D0043E33B /* RSPlaylistModel.m in Sources */,
 				DC1196C51B510DF90090338F /* SimpleListCollectionViewModelProtocol.swift in Sources */,
 				DC08FBD31B52699F008A499E /* SearchViewController.swift in Sources */,
@@ -1416,10 +1395,9 @@
 				DCD7B41A1B7374B3004A4A04 /* UIViewExtensions.swift in Sources */,
 				DC99E02C1B7A3DF2004939D2 /* ChannelListViewController.swift in Sources */,
 				DC01A0E21B5E84EE0003FE21 /* RoundButton.swift in Sources */,
-				7A9D55A5852D9DA760734F99 /* RSVideoInfoViewController.m in Sources */,
-				7A9D58A96A9F1162F3AAE864 /* RSVideoDetailSegmentViewController.m in Sources */,
 				DC1196BC1B503D4B0090338F /* RSPageInfo.m in Sources */,
 				DC9CC5F01B5CE76E0047DFDC /* SearchPlaylistsViewController.swift in Sources */,
+				DC8A82A21D43EFAE0002D8BF /* VideoInfoViewModel.swift in Sources */,
 				DCCD1A081B58E9AC00CB54DD /* UINavigationBarExtensions.swift in Sources */,
 				7A9D5E047642539A74E9E1FF /* TopViewController.swift in Sources */,
 				DC1873591B513C7B00121563 /* HistoryCollectionViewCell.swift in Sources */,
@@ -1427,8 +1405,10 @@
 				DC1196B81B4ED2C40090338F /* RSPlaylistItemsModel.m in Sources */,
 				7A9D5B51022DD5A6334506D9 /* TopViewModel.swift in Sources */,
 				DCD7B41D1B7394C2004A4A04 /* LoadingCollectionViewCell.swift in Sources */,
+				DC8A82A41D43F0450002D8BF /* VideoDetailSegmentViewModel.swift in Sources */,
 				DC47DAC31BB2B28400865131 /* HttpService.swift in Sources */,
 				DCEE3A851BC10A8A000484F1 /* VideoRelatedVideosViewModel.swift in Sources */,
+				DC76CA801D43ECD900A9192F /* NavigationController.swift in Sources */,
 				DCD64B871BD138AC00D47E0E /* BackgroundFetchable.swift in Sources */,
 				DCD2E8421BB703CD00F98EDD /* BannerItemListGenerationOperation.swift in Sources */,
 				7A9D56CE982FCDCD9C3B91C4 /* RoundView.swift in Sources */,
@@ -1447,18 +1427,16 @@
 				7A9D5029F6AC659B11F3829F /* TopVideoCell.swift in Sources */,
 				7A9D50E63C6B65C8E431B763 /* TopVideoCollectionHeaderView.swift in Sources */,
 				DCD2E83C1BB6F5B600F98EDD /* TwitchStreamListLoadOperation.swift in Sources */,
-				7A9D51ED44B6253F72975269 /* RSVideoInfoViewModel.m in Sources */,
-				7A9D5909AB58845520363BEE /* RSVideoDetailViewModel.m in Sources */,
 				DCEC27F91B6A749A0068B892 /* UIViewControllerExtensions.swift in Sources */,
 				DCC0B8BA1B58DEBE0081E5CA /* TopVideoCollectionFooterView.swift in Sources */,
 				DC00BD7E1BC00F23003E4D19 /* VideoDetailViewModel.swift in Sources */,
-				7A9D5EB52386205BCB0125A4 /* RSNavigationController.m in Sources */,
 				7A9D521320B2B1B88B16EBFB /* YoutubeChannel.swift in Sources */,
 				7A9D5CB34E43D853F3FC323C /* Video.swift in Sources */,
 				7A9D515B47E7C38B0C86E72F /* RSChannelModel.m in Sources */,
 				7A9D5148312C08C13B15F994 /* RSVideoModel.m in Sources */,
 				DC51F4BB1B45101B009AEC11 /* ChannelInfoViewController.swift in Sources */,
 				7A9D5B295074CA6D408AEBB3 /* RSSearchModel.m in Sources */,
+				DC8A82A61D43F13C0002D8BF /* VideoDetailSegmentViewController.swift in Sources */,
 				DC1196B11B4EC8080090338F /* PlaylistViewController.swift in Sources */,
 				DCEDB9FC1B8F612700BD0A0B /* ChannelService.swift in Sources */,
 				DC53D80D1BA874AC00103192 /* TwitchService.swift in Sources */,
@@ -1483,7 +1461,6 @@
 				7A9D59E8FFC59D16DE955870 /* RSSearchTableViewCell.m in Sources */,
 				7A9D5C16E96AE387AC29233D /* IntExtensions.swift in Sources */,
 				DCA636B11B6D05A900F8689B /* CombinedBannerViewController.swift in Sources */,
-				7A9D50935DBFA85ADFA6FBD1 /* RSVideoDetailSegmentViewModel.m in Sources */,
 				DC53D8101BA8785500103192 /* RSStreamListModel.m in Sources */,
 				DCD64B891BD13FF400D47E0E /* UITabBarControllerExtensions.swift in Sources */,
 				7A9D55D673B125147980223D /* SearchChannelCollectionViewCell.swift in Sources */,
@@ -1496,6 +1473,7 @@
 				7A9D5DC7B40B226EE331BB61 /* PlaylistsCollectionViewCell.swift in Sources */,
 				DC8680AF1BAC38FF001D7706 /* TwitchStream.swift in Sources */,
 				7A9D51ABE18A0C8736203486 /* PlaylistsViewModel.swift in Sources */,
+				DC85F8F21D452A6200CF4C60 /* VideoService.swift in Sources */,
 				7A9D51B3ACA78568076119F3 /* PlaylistViewModel.swift in Sources */,
 				7A9D576C7003CA816C38CA14 /* NSDateExtensions.swift in Sources */,
 				7A9D5C5AE614BE6CCC496130 /* EventTracker.swift in Sources */,
@@ -1522,10 +1500,10 @@
 				DC0F69201A051A740061EB95 /* UIImageView+Loading.m in Sources */,
 				DC1196BD1B503F010090338F /* RSPageInfo.m in Sources */,
 				DC0F9AB11B0F3FDC001EE2ED /* NSDateExtensions.swift in Sources */,
-				DC5708FB1A00DBF500DB8821 /* TodayViewController.m in Sources */,
-				7A9D502564EF5651A21D735F /* RSTodayVideoTableViewModel.m in Sources */,
+				DC85F8F61D464E6E00CF4C60 /* TodayVideoTableViewModel.swift in Sources */,
 				DC1C9D441AF214050079AFC4 /* YoutubeService.swift in Sources */,
 				7A9D5FE6121499045F3F1D14 /* RSChannelModel.m in Sources */,
+				DC85F8F41D464DD800CF4C60 /* TodayViewController.swift in Sources */,
 				7A9D57D2B2292D25C801CFFE /* RSVideoModel.m in Sources */,
 				DCA9550A1B988B300030DCF6 /* ChannelService.swift in Sources */,
 				7A9D589F540AE2A8D745F7CA /* RSSearchModel.m in Sources */,

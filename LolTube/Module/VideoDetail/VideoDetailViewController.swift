@@ -33,7 +33,7 @@ class VideoDetailViewController:UIViewController {
     
     var currentVideoQuality:XCDYouTubeVideoQuality = .Medium360
     
-    var videoDetailSegmentViewController:RSVideoDetailSegmentViewController!
+    var videoDetailSegmentViewController: VideoDetailSegmentViewController!
     var relatedVideosViewController: VideoRelatedVideosViewController!
     
     let imageLoadingOperationQueue:NSOperationQueue =  NSOperationQueue()
@@ -57,7 +57,7 @@ class VideoDetailViewController:UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        RSVideoService.sharedInstance().saveHistoryVideoId(videoId)
+        VideoService.sharedInstance.saveHistoryVideoId(videoId)
         
         if videoPlayerViewController == nil || videoPlayerViewController?.moviePlayer.fullscreen == false {
             playVideo()
@@ -76,7 +76,7 @@ class VideoDetailViewController:UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
         
         if let videoPlayerViewController = videoPlayerViewController {
-            RSVideoService.sharedInstance().updateLastPlaybackTimeWithVideoId(videoId,lastPlaybackTime:videoPlayerViewController.moviePlayer.currentPlaybackTime)
+            VideoService.sharedInstance.updateLastPlaybackTimeWithVideoId(videoId,lastPlaybackTime:videoPlayerViewController.moviePlayer.currentPlaybackTime)
             videoPlayerViewController.moviePlayer.stop()
         }
         
@@ -95,7 +95,7 @@ class VideoDetailViewController:UIViewController {
             }
             strongSelf.imageLoadingOperationQueue.addOperation(imageOperation)
             strongSelf.shareButton?.enabled = true
-            strongSelf.videoDetailSegmentViewController.updateWithChannelId(strongSelf.viewModel.channelId ,channelTitle:strongSelf.viewModel.channelTitle)
+            strongSelf.videoDetailSegmentViewController.updateWithChannelId(strongSelf.viewModel.channelId! ,channelTitle:strongSelf.viewModel.channelTitle!)
         }
         
         let failureBlock: NSError -> Void = {
@@ -114,7 +114,7 @@ class VideoDetailViewController:UIViewController {
         
         switch segueId {
         case .videoDetailSegmentEmbed:
-            let videoDetailSegmentViewController = segue.destinationViewController(RSVideoDetailSegmentViewController.self)
+            let videoDetailSegmentViewController = segue.destinationViewController(VideoDetailSegmentViewController.self)
             videoDetailSegmentViewController.videoId = videoId
             self.videoDetailSegmentViewController = videoDetailSegmentViewController
         case .relatedVideosEmbed:
@@ -205,7 +205,7 @@ class VideoDetailViewController:UIViewController {
     
     func moviePreloadDidFinish(moviePlayerLoadStateDidChangeNotification:AnyObject) {
         if videoPlayerViewController?.moviePlayer.loadState == .Playable {
-            RSVideoService.sharedInstance().savePlayFinishedVideoId(videoId)
+            VideoService.sharedInstance.savePlayFinishedVideoId(videoId)
             startActivity()
             
             //TODO: fun animation
@@ -218,7 +218,7 @@ class VideoDetailViewController:UIViewController {
     private func playVideo() {
         EventTracker.trackVideoDetailPlay(videoId)
         
-        let initialPlaybackTime = self.initialPlaybackTime == 0.0 ? RSVideoService.sharedInstance().lastPlaybackTimeWithVideoId(videoId) : self.initialPlaybackTime
+        let initialPlaybackTime = self.initialPlaybackTime == 0.0 ? VideoService.sharedInstance.lastPlaybackTimeWithVideoId(videoId) : self.initialPlaybackTime
         
         playVideoWithInitialPlaybackTime(initialPlaybackTime,videoQualities:[.Medium360, .Small240])
         

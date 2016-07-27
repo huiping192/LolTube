@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func configureVideoService() {
-        let videoService = RSVideoService.sharedInstance()
+        let videoService = VideoService.sharedInstance
         videoService.configure()
     }
     
@@ -136,7 +136,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let store = NSUbiquitousKeyValueStore.defaultStore()
         keys.forEach{
             if $0 == kPlayFinishedVideoIdsKey {
-                RSVideoService.sharedInstance().overrideVideoDataWithVideoDictionary(store.dictionaryForKey($0))
+                VideoService.sharedInstance.overrideVideoDataWithVideoDictionary(store.dictionaryForKey($0) as? [String : NSTimeInterval])
             } else if $0 == channelIdsKey {
                 let userDefaults = NSUserDefaults(suiteName: sharedUserDefaultsSuitName)
                 userDefaults?.setObject(store.objectForKey($0), forKey: $0)
