@@ -21,7 +21,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - AsyncSwift (1.4.2)
-  - Cartography (0.5.0)
+  - Cartography (0.7.0)
   - DZNEmptyDataSet (1.6.1)
   - Google/Analytics (1.0.7):
     - Google/Core
@@ -37,7 +37,7 @@ PODS:
   - GoogleUtilities (1.0.1):
     - GoogleSymbolUtilities (~> 1.0)
   - HexColors (2.3.0)
-  - JSONModel (1.0.1)
+  - JSONModel (1.0.2)
   - Nimble (0.4.2)
   - OCMock (3.1.1)
   - OHHTTPStubs (3.1.6):
@@ -55,7 +55,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - AsyncSwift
-  - Cartography (from `git@github.com:robb/Cartography.git`, branch `swift-2.0`)
+  - Cartography (~> 0.7)
   - DZNEmptyDataSet
   - Google/Analytics (~> 1.0.0)
   - JSONModel (~> 1.0.1)
@@ -69,16 +69,10 @@ DEPENDENCIES:
   - XCDYouTubeKit (~> 2.3.1)
 
 EXTERNAL SOURCES:
-  Cartography:
-    :branch: swift-2.0
-    :git: git@github.com:robb/Cartography.git
   TSMessages:
     :git: https://github.com/KrauseFx/TSMessages.git
 
 CHECKOUT OPTIONS:
-  Cartography:
-    :commit: 5e42e13504399764e45cfc81eafb8c27500c9743
-    :git: git@github.com:robb/Cartography.git
   TSMessages:
     :commit: f7d0e8cece3ca79852e49807812601e2d89f5719
     :git: https://github.com/KrauseFx/TSMessages.git
@@ -86,7 +80,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: 41d45d2c14219af0fa5addf3cfd433a002c13c9f
   AsyncSwift: 3316df38ee85d6b01ede507d682d92fb5511504e
-  Cartography: 314f5ed1495995760487161eeb7a8a0940d88ad3
+  Cartography: dd6044b6fe352252f68b648df5bff47841e591cc
   DZNEmptyDataSet: 3d31c27758230f03c71199f8c522bcfa99fba16c
   Google: 875f5a8ade86dd02e36586e4a54814843938c7f6
   GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
@@ -94,7 +88,7 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: a7b0feed1fe667c8d5e647177938d0ecd62d6948
   GoogleUtilities: e3475cd4d45134221d2f3f3626095a1c49b62041
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
-  JSONModel: de5799179dd476f68e0de1be3a4a40c962cc535f
+  JSONModel: 6ffcb4ffa3659c9e9a2e5d45d6c7705bab187c03
   Nimble: 49b7a7da8919f42823d37c6d68cc6d15a7009f32
   OCMock: a73f69963a8a542b0b343e2617650e4dca0cbbc2
   OHHTTPStubs: b671969016b4c6f5ee3c26080c81114ba82e0710
@@ -104,4 +98,6 @@ SPEC CHECKSUMS:
   TSMessages: 6e403b790139636c15ab4f51946537095e03e79c
   XCDYouTubeKit: 80e9169b644acf4e67979142f789d9e7e9e15784
 
-COCOAPODS: 0.38.2
+PODFILE CHECKSUM: 77c49753343ff41b209f23a4d7ca202dbb5b4501
+
+COCOAPODS: 1.1.1
