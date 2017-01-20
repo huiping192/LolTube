@@ -67,7 +67,7 @@ class CombinedBannerViewController:UIViewController {
         if let scrollToNextVideoTimer = scrollToNextVideoTimer {
             scrollToNextVideoTimer.invalidate()
         }
-        scrollToNextVideoTimer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "scrollToNextVideo", userInfo: nil, repeats: true)
+        scrollToNextVideoTimer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: #selector(CombinedBannerViewController.scrollToNextVideo), userInfo: nil, repeats: true)
     }
     
     private func stopScrollToNextVideoTimer(){

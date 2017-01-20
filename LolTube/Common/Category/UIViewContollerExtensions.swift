@@ -18,7 +18,7 @@ extension UIViewController {
         let loadingView = UIView.loadFromNibNamed(.Loading)
         view.addSubview(loadingView)
 
-        layout(loadingView){
+        constrain(loadingView){
             $0.center == $0.superview!.center
         }
         

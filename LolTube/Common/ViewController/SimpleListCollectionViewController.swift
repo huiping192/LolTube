@@ -46,7 +46,7 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
     
     override func viewDidLoad() {
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "preferredContentSizeChanged:", name: UIContentSizeCategoryDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SimpleListCollectionViewController.preferredContentSizeChanged(_:)), name: UIContentSizeCategoryDidChangeNotification, object: nil)
         
         delegate = self
         collectionView.emptyDataSetSource = self

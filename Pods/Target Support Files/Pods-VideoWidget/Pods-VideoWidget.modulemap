@@ -1,6 +1,0 @@
-framework module Pods_VideoWidget {
-  umbrella header "Pods-VideoWidget-umbrella.h"
-
-  export *
-  module * { export * }
-}

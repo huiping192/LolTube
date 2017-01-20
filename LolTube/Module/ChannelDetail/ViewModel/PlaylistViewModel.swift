@@ -37,7 +37,7 @@ class PlaylistViewModel:SimpleListCollectionViewModelProtocol {
                 guard let weakSelf = self else {
                     return
                 }
-                weakSelf.totalResults = Int(playlistItems.pageInfo.totalResults)
+                weakSelf.totalResults = Int(playlistItems.pageInfo!.totalResults)
                 weakSelf.nextPageToken = playlistItems.nextPageToken
                 weakSelf.videoList += videoList
                 success()
