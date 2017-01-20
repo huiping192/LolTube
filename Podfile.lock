@@ -38,12 +38,12 @@ PODS:
     - GoogleSymbolUtilities (~> 1.0)
   - HexColors (2.3.0)
   - JSONModel (1.0.2)
-  - Nimble (0.4.2)
+  - Nimble (4.1.0)
   - OCMock (3.1.1)
   - OHHTTPStubs (3.1.6):
     - OHHTTPStubs/Core (= 3.1.6)
   - OHHTTPStubs/Core (3.1.6)
-  - Quick (0.3.1)
+  - Quick (0.9.3)
   - SDWebImage (3.7.1):
     - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
@@ -59,10 +59,10 @@ DEPENDENCIES:
   - DZNEmptyDataSet
   - Google/Analytics (~> 1.0.0)
   - JSONModel (~> 1.0.1)
-  - Nimble
+  - Nimble (~> 4.1.0)
   - OCMock (~> 3.1.1)
   - OHHTTPStubs (~> 3.1.5)
-  - Quick
+  - Quick (~> 0.9.3)
   - SDWebImage (~> 3.7.0)
   - Siren
   - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
@@ -89,15 +89,15 @@ SPEC CHECKSUMS:
   GoogleUtilities: e3475cd4d45134221d2f3f3626095a1c49b62041
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   JSONModel: 6ffcb4ffa3659c9e9a2e5d45d6c7705bab187c03
-  Nimble: 49b7a7da8919f42823d37c6d68cc6d15a7009f32
+  Nimble: 97a0a4cae5124c117115634b2d055d8c97d0af19
   OCMock: a73f69963a8a542b0b343e2617650e4dca0cbbc2
   OHHTTPStubs: b671969016b4c6f5ee3c26080c81114ba82e0710
-  Quick: 824572d3d198d51e52cf4aa722cebf7e59952a35
+  Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
   SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
   Siren: 41c7c0ed8cf10e5a7a30e5511160d584a2ae871d
   TSMessages: 6e403b790139636c15ab4f51946537095e03e79c
   XCDYouTubeKit: 80e9169b644acf4e67979142f789d9e7e9e15784
 
-PODFILE CHECKSUM: 77c49753343ff41b209f23a4d7ca202dbb5b4501
+PODFILE CHECKSUM: a975702c2d42dce88835be2daaebc305b0544296
 
 COCOAPODS: 1.1.1
