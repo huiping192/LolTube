@@ -24,10 +24,12 @@ end
 
 
 target :LolTubeTests do
+  pod 'JSONModel', '~> 1.0.1'
+  pod 'Google/Analytics', '~> 1.0.0'
   pod 'OCMock', '~> 3.1.1'
   pod 'OHHTTPStubs', '~>3.1.5'
-  pod 'Quick'
-  pod 'Nimble'
+  pod 'Quick', '~>0.9.3'
+  pod 'Nimble', '~>4.1.0'
 end
 
 target :VideoWidget do

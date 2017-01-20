@@ -37,7 +37,6 @@
 		7A9D585648191456B550D65B /* RSVideoInfoUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D53A9E8EF6576E1654ECE /* RSVideoInfoUtil.m */; };
 		7A9D588F5B7F3309F41F5AA4 /* LoLProChannelVideoList.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A9D5AF46BFEA231319F7D33 /* LoLProChannelVideoList.json */; };
 		7A9D589F540AE2A8D745F7CA /* RSSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D517BF5F85FDF0B1AD516 /* RSSearchModel.m */; };
-		7A9D59A8FA8D919C39DCC359 /* StringUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D526397DA6DDCCAC2F3B6 /* StringUtilTest.swift */; };
 		7A9D59E8FFC59D16DE955870 /* RSSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D55464B861B4D6516B608 /* RSSearchTableViewCell.m */; };
 		7A9D5AA116615721C59D3D61 /* RSEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D5685F04E20BBB4AB0EDE /* RSEnvironment.m */; };
 		7A9D5B295074CA6D408AEBB3 /* RSSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D517BF5F85FDF0B1AD516 /* RSSearchModel.m */; };
@@ -241,7 +240,6 @@
 		7A9D51E8C427ACECA654F5EA /* RSJsonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSJsonModel.h; sourceTree = "<group>"; };
 		7A9D51EEDFD6013E88FD3686 /* RSSearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSearchModel.h; sourceTree = "<group>"; };
 		7A9D522E2ABA2D7CF8D28865 /* RSVideoDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVideoDetailModel.m; sourceTree = "<group>"; };
-		7A9D526397DA6DDCCAC2F3B6 /* StringUtilTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtilTest.swift; sourceTree = "<group>"; };
 		7A9D526C78F464CE031BDCB5 /* SearchChannelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchChannelCollectionViewCell.swift; sourceTree = "<group>"; };
 		7A9D5286A597D87BFDE26663 /* TopVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopVideoCell.swift; sourceTree = "<group>"; };
 		7A9D52ABB1347E2A47C15CF4 /* BannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
@@ -612,14 +610,6 @@
 			path = ChannelDetail;
 			sourceTree = "<group>";
 		};
-		7A9D53C0DDC793E5C0CEA66A /* Util */ = {
-			isa = PBXGroup;
-			children = (
-				7A9D526397DA6DDCCAC2F3B6 /* StringUtilTest.swift */,
-			);
-			path = Util;
-			sourceTree = "<group>";
-		};
 		7A9D540C286B4066C7A120F1 /* ChannelList */ = {
 			isa = PBXGroup;
 			children = (
@@ -848,7 +838,6 @@
 			isa = PBXGroup;
 			children = (
 				7A9D54892715F0492B88A143 /* Category */,
-				7A9D53C0DDC793E5C0CEA66A /* Util */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1506,7 +1495,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A9D533BD41BF929A8993258 /* NSDate+FormatterSpec.swift in Sources */,
-				7A9D59A8FA8D919C39DCC359 /* StringUtilTest.swift in Sources */,
 				7A9D55AE709EF08F3CF26663 /* YoutubeServiceSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

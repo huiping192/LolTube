@@ -39,7 +39,7 @@ public class HttpService: NSObject  {
             (_, responseObject) in
             
             do {
-                let jsonModel = try jsonModelClass.init(dictionary: responseObject as! [String:AnyObject])
+                let jsonModel = try jsonModelClass.init(dictionary: responseObject as? [String:AnyObject])
                 success?(jsonModel)
             } catch let error  {
                 failure?(error as NSError)
