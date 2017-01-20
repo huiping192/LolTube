@@ -28,7 +28,7 @@ class TopViewController: UIViewController {
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(TopViewController.refresh(_:)), forControlEvents: .ValueChanged)
         return refreshControl
         }()
     
@@ -250,10 +250,10 @@ extension TopViewController: UICollectionViewDataSource {
             
             if channel.selectable {
                 headerView.moreButton.tag = indexPath.section
-                headerView.moreButton.addTarget(self, action:"moreButtonTapped:", forControlEvents: .TouchUpInside)
+                headerView.moreButton.addTarget(self, action:#selector(TopViewController.moreButtonTapped(_:)), forControlEvents: .TouchUpInside)
                 
                 headerView.tag = indexPath.section
-                headerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "headerViewTapped:"))
+                headerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(TopViewController.headerViewTapped(_:))))
             }
             
             return headerView

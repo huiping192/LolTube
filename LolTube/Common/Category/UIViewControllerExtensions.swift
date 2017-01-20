@@ -13,7 +13,7 @@ extension UIViewController {
     func add(childViewController childViewController:UIViewController,containerView:UIView){
         let childView = childViewController.view
         containerView.addSubview(childView)
-        layout(childView, containerView) { childView, containerView in
+        constrain(childView, containerView) { childView, containerView in
             childView.edges == containerView.edges
         }
         addChildViewController(childViewController)

@@ -156,7 +156,7 @@ class VideoDetailViewController:UIViewController {
     
     private func configureViews() {
         let videoQualitySwitchButton =  UIBarButtonItem(title: Localization.VideoQualityMedium.localizedString , style: .Plain, target: self, action: "switchVideoQualityButtonTapped:")
-        let shareButton = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: "shareButtonTapped:")
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: #selector(VideoDetailViewController.shareButtonTapped(_:)))
         
         shareButton.enabled = false
         
@@ -166,8 +166,8 @@ class VideoDetailViewController:UIViewController {
     }
     
     private  func addNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "moviePreloadDidFinish:", name: MPMoviePlayerLoadStateDidChangeNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "moviePlayBackDidFinish:", name: MPMoviePlayerPlaybackDidFinishNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoDetailViewController.moviePreloadDidFinish(_:)), name: MPMoviePlayerLoadStateDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoDetailViewController.moviePlayBackDidFinish(_:)), name: MPMoviePlayerPlaybackDidFinishNotification, object: nil)
     }
     
     func shareButtonTapped(sender:AnyObject) {

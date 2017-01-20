@@ -18,7 +18,7 @@ public class HttpService: NSObject  {
         
         var requestCount = idListCount / idPerUnitCount
         if idListCount % idPerUnitCount != 0 {
-            requestCount++
+            requestCount += 1
         }
         for index in 0 ..< requestCount {
             let beginListIndex = index * idPerUnitCount
