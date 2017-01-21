@@ -1,6 +1,6 @@
 # LolTube - Videos for League of Legends
 
-[![Build Status](https://travis-ci.org/artsy/eigen.svg?branch=master)](https://travis-ci.org/artsy/eigen)
+[![Build Status](https://www.bitrise.io/app/ebb60694636d0779.svg?token=3cyPmH3T1CLcZh2UtwUxyw)](https://www.bitrise.io/app/ebb60694636d0779)
 
 ![](http://a5.mzstatic.com/eu/r30/Purple5/v4/7a/b1/f3/7ab1f3dc-c890-2850-1353-85ba4940cdff/screen322x572.jpeg) ![](http://a1.mzstatic.com/eu/r30/Purple3/v4/6b/d1/c1/6bd1c147-4308-a901-e5b5-e00fbddab6fe/screen322x572.jpeg)
 
@@ -14,6 +14,7 @@
 ```
 $ git clone git@github.com:huiping192/LolTube.git
 $ cd LolTube
+$ pod install
 ```
 
 2) Open the project in Xcode
