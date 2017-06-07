@@ -5,7 +5,7 @@ class BannerCell:UICollectionViewCell,Reusable {
     @IBOutlet var thunmbnailImageView:UIImageView!
     @IBOutlet var titleLabel:UILabel?
     
-    static var reuseIdentifier:String {
+    static var reuseId:String {
         return "BannerCell"
     }
 }

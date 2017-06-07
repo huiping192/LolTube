@@ -2,9 +2,9 @@ import Foundation
 
 class SearchVideoListViewController: VideoCollectionViewController,Searchable {
     
-    private var _searchText:String!{
+    fileprivate var _searchText:String!{
         didSet{
-            guard let viewModel =  viewModel where viewModel.searchText != _searchText  else {
+            guard let viewModel =  viewModel, viewModel.searchText != _searchText  else {
                 return
             }
             viewModel.searchText = _searchText
@@ -22,7 +22,7 @@ class SearchVideoListViewController: VideoCollectionViewController,Searchable {
     }
     
     var viewModel:SearchVideoListViewModel!
-    let imageLoadingOperationQueue = NSOperationQueue()
+    let imageLoadingOperationQueue = OperationQueue()
     
     override var emptyDataTitle:String{
         return NSLocalizedString("SearchVideoEmptyData", comment: "")
@@ -38,7 +38,7 @@ class SearchVideoListViewController: VideoCollectionViewController,Searchable {
         return viewModel
     }
     
-    override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
+    override func cell(_ collectionView: UICollectionView,indexPath: IndexPath) -> UICollectionViewCell{
         
         let cell = collectionView.dequeueReusableCell(indexPath, type: VideoCellectionViewCell.self)
 
@@ -62,7 +62,7 @@ class SearchVideoListViewController: VideoCollectionViewController,Searchable {
         return cell
     }
     
-    override func didSelectItemAtIndexPath(indexPath: NSIndexPath){
+    override func didSelectItemAtIndexPath(_ indexPath: IndexPath){
         let video = viewModel.videoList[indexPath.row]
         navigationController?.pushViewController(ViewControllerFactory.instantiateVideoDetailViewController(video.videoId), animated: true)
     }

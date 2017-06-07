@@ -1,13 +1,13 @@
 import Foundation
 
 class PlaylistViewModel:SimpleListCollectionViewModelProtocol {
-    private let playlistId: String
+    fileprivate let playlistId: String
 
     var videoList = [Video]()
     var nextPageToken: String?
     var totalResults:Int?
 
-    private let youtubeService = YoutubeService()
+    fileprivate let youtubeService = YoutubeService()
     
     init(playlistId: String) {
         self.playlistId = playlistId
@@ -21,7 +21,7 @@ class PlaylistViewModel:SimpleListCollectionViewModelProtocol {
         return totalResults ?? 0
     }
     
-    func update(success success: (() -> Void), failure: ((error:NSError) -> Void)) {
+    func update(success: @escaping (() -> Void), failure: @escaping ((_ error:NSError) -> Void)) {
         guard videoList.count != totalResults else {
             success()
             return
@@ -50,12 +50,12 @@ class PlaylistViewModel:SimpleListCollectionViewModelProtocol {
         youtubeService.playlistItems(playlistId,nextPageToken:nextPageToken, success: successBlock, failure: failure)
     }
     
-    private func updateVideoDetail(videoList videoList: [Video], success: (() -> Void), failure: ((error:NSError) -> Void)?) {
+    fileprivate func updateVideoDetail(videoList: [Video], success: @escaping (() -> Void), failure: ((_ error:NSError) -> Void)?) {
         let videoIdList = videoList.map { $0.videoId! }
         
         let successBlock:((RSVideoDetailModel) -> Void) = {
             (videoDetailModel: RSVideoDetailModel!) in
-            for (index, detailItem) in (videoDetailModel.items).enumerate() {
+            for (index, detailItem) in (videoDetailModel.items).enumerated() {
                 let video = videoList[index]
                 video.update(detailItem)
             }

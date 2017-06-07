@@ -9,8 +9,8 @@
 import Foundation
 
 enum ThumbnailType {
-    case Local
-    case Remote
+    case local
+    case remote
 }
 
 protocol Channel {
@@ -34,7 +34,7 @@ protocol Channel {
         get
     }
     
-    var selectedAction:((sourceViewController:UIViewController) -> Void)? {
+    var selectedAction:((_ sourceViewController:UIViewController) -> Void)? {
         get
     }
 }

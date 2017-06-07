@@ -13,7 +13,7 @@ import UIKit
 class TwitchStreamListViewController: VideoCollectionViewController {
     
     var viewModel:TwitchStreamListViewModel!
-    let imageLoadingOperationQueue = NSOperationQueue()
+    let imageLoadingOperationQueue = OperationQueue()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +30,8 @@ class TwitchStreamListViewController: VideoCollectionViewController {
         return viewModel
     }
     
-    override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
-        let cell = collectionView.dequeueReusableCell(indexPath, type: VideoCellectionViewCell.self)
+    override func cell(_ collectionView: UICollectionView,indexPath: IndexPath) -> UICollectionViewCell{
+        let cell = collectionView.dequeueReusableCell( indexPath, type: VideoCellectionViewCell.self)
         
         let stream = viewModel.streamList[indexPath.row]
         
@@ -52,9 +52,9 @@ class TwitchStreamListViewController: VideoCollectionViewController {
         return cell
     }
     
-    override func didSelectItemAtIndexPath(indexPath: NSIndexPath){
+    override func didSelectItemAtIndexPath(_ indexPath: IndexPath){
         let stream = viewModel.streamList[indexPath.row]
-        stream.selectedAction(sourceViewController: self)
+        stream.selectedAction(self)
     }
     
 }

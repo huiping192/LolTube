@@ -1,9 +1,9 @@
 import Foundation
 
 class SearchPlaylistsViewController: SimpleListCollectionViewController,Searchable {
-    private var _searchText:String!{
+    fileprivate var _searchText:String!{
         didSet{
-            guard let viewModel =  viewModel where viewModel.searchText != _searchText else {
+            guard let viewModel =  viewModel, viewModel.searchText != _searchText else {
                 return
             }
             viewModel.searchText = _searchText
@@ -23,7 +23,7 @@ class SearchPlaylistsViewController: SimpleListCollectionViewController,Searchab
     
     var viewModel:SearchPlaylistsViewModel!
     
-    let imageLoadingOperationQueue = NSOperationQueue()
+    let imageLoadingOperationQueue = OperationQueue()
     
     override var emptyDataTitle:String{
         return NSLocalizedString("SearchPlaylistEmptyData", comment: "")
@@ -39,7 +39,7 @@ class SearchPlaylistsViewController: SimpleListCollectionViewController,Searchab
         return viewModel
     }
     
-    override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
+    override func cell(_ collectionView: UICollectionView,indexPath: IndexPath) -> UICollectionViewCell{
         
         let cell = collectionView.dequeueReusableCell(indexPath, type: PlaylistsCollectionViewCell.self)
         let playlist = viewModel.playlists[indexPath.row]
@@ -59,7 +59,7 @@ class SearchPlaylistsViewController: SimpleListCollectionViewController,Searchab
         return cell
     }
     
-    override func didSelectItemAtIndexPath(indexPath: NSIndexPath){
+    override func didSelectItemAtIndexPath(_ indexPath: IndexPath){
         let playlist = viewModel.playlists[indexPath.row]
         navigationController?.pushViewController(ViewControllerFactory.instantiatePlaylistViewController(playlist.playlistId,title:playlist.title), animated: true)
     }

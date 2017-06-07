@@ -12,16 +12,16 @@ class SearchChannelListViewModel: SimpleListCollectionViewModelProtocol {
     
     var channelList = [YoutubeChannel]()
     
-    private var channelListNextPageToken: String?
-    private var channelListTotalResults:Int?
+    fileprivate var channelListNextPageToken: String?
+    fileprivate var channelListTotalResults:Int?
     
-    private let youtubeService = YoutubeService()
+    fileprivate let youtubeService = YoutubeService()
     
     init() {
         
     }
     
-    func update(success success: (() -> Void), failure: ((error:NSError) -> Void)) {
+    func update(success: @escaping (() -> Void), failure: @escaping ((_ error:NSError) -> Void)) {
         guard let searchText = searchText else {
             success()
             return
@@ -59,7 +59,7 @@ class SearchChannelListViewModel: SimpleListCollectionViewModelProtocol {
         return channelListTotalResults ?? 0
     }
     
-    private func updateChannelDetail(channelList:[YoutubeChannel],success:(([YoutubeChannel]) -> Void),failure: ((error:NSError) -> Void)? = nil){
+    fileprivate func updateChannelDetail(_ channelList:[YoutubeChannel],success:@escaping (([YoutubeChannel]) -> Void),failure: ((_ error:NSError) -> Void)? = nil){
         let channelIdList = channelList.map{ $0.channelId } 
         
         let successBlock:((RSChannelModel) -> Void) = {

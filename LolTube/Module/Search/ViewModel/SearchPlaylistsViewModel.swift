@@ -10,16 +10,16 @@ class SearchPlaylistsViewModel: SimpleListCollectionViewModelProtocol {
     }
     var playlists = [Playlist]()
     
-    private var playlistsNextPageToken: String?
-    private var playlistsTotalResults:Int?
+    fileprivate var playlistsNextPageToken: String?
+    fileprivate var playlistsTotalResults:Int?
     
-    private let youtubeService = YoutubeService()
+    fileprivate let youtubeService = YoutubeService()
     
     init() {
         
     }
     
-    func update(success success: (() -> Void), failure: ((error:NSError) -> Void)) {
+    func update(success: @escaping (() -> Void), failure: @escaping ((_ error:NSError) -> Void)) {
         guard let searchText = searchText else {
             success()
             return
@@ -58,7 +58,7 @@ class SearchPlaylistsViewModel: SimpleListCollectionViewModelProtocol {
         return playlistsTotalResults ?? 0
     }
     
-    private func updatePlaylistsDetail(playlists:[Playlist],success:(([Playlist]) -> Void),failure: ((error:NSError) -> Void)? = nil){
+    fileprivate func updatePlaylistsDetail(_ playlists:[Playlist],success:@escaping (([Playlist]) -> Void),failure: ((_ error:NSError) -> Void)? = nil){
         let playlistIdList = playlists.map{ $0.playlistId! } 
         
         let successBlock:((RSPlaylistModel) -> Void) = {

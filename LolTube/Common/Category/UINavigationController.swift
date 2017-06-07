@@ -9,9 +9,9 @@
 import Foundation
 
 extension UINavigationController {
-    override func fetchNewData(completionHandler: (UIBackgroundFetchResult) -> Void) {
+    override func fetchNewData(_ completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         guard let visibleViewController = visibleViewController else {
-            completionHandler(.Failed)
+            completionHandler(.failed)
             return
         }
         visibleViewController.fetchNewData(completionHandler)

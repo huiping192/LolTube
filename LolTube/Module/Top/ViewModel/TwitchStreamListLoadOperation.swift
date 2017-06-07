@@ -9,28 +9,28 @@
 import Foundation
 
 class TwitchStreamListLoadOperation: ConcurrentOperation {
-    private let twitchService = TwitchService()
+    fileprivate let twitchService = TwitchService()
     
-    private let success: ([TwitchStream]) -> Void
-    private let failure: ((NSError) -> Void)?
+    fileprivate let success: ([TwitchStream]) -> Void
+    fileprivate let failure: ((NSError) -> Void)?
     
-    init(success: ([TwitchStream]) -> Void, failure: ((NSError) -> Void)?){
+    init(success: @escaping ([TwitchStream]) -> Void, failure: ((NSError) -> Void)?){
         self.success = success
         self.failure = failure
     }
     
     override func start() {
-        state = .Executing
-        let successBlock:(RSStreamListModel -> Void) = {
+        state = .executing
+        let successBlock:((RSStreamListModel) -> Void) = {
             [weak self]streamListModel in
             self?.success(streamListModel.streams.map{ TwitchStream($0) })
-            self?.state = .Finished
+            self?.state = .finished
         }
         
-        let failureBlock:(NSError -> Void) = {
+        let failureBlock:((NSError) -> Void) = {
             [weak self]error in
             self?.failure?(error)
-            self?.state = .Finished
+            self?.state = .finished
         }
         
         twitchService.steamList(pageCount:4, pageNumber: 0, success: successBlock, failure: failureBlock)

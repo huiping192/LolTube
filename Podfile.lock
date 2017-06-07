@@ -20,8 +20,8 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - AsyncSwift (1.4.2)
-  - Cartography (0.7.0)
+  - AsyncSwift (2.0.0)
+  - Cartography (1.1.0)
   - DZNEmptyDataSet (1.6.1)
   - Google/Analytics (1.0.7):
     - Google/Core
@@ -47,7 +47,7 @@ PODS:
   - SDWebImage (3.7.1):
     - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
-  - Siren (0.6.0)
+  - Siren (2.0.4)
   - TSMessages (0.9.13):
     - HexColors (~> 2.3.0)
   - XCDYouTubeKit (2.3.1)
@@ -55,7 +55,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - AsyncSwift
-  - Cartography (~> 0.7)
+  - Cartography (~> 1.1.0)
   - DZNEmptyDataSet
   - Google/Analytics (~> 1.0.0)
   - JSONModel (~> 1.0.1)
@@ -64,7 +64,7 @@ DEPENDENCIES:
   - OHHTTPStubs (~> 3.1.5)
   - Quick (~> 0.9.3)
   - SDWebImage (~> 3.7.0)
-  - Siren
+  - Siren (~> 2.0.4)
   - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
   - XCDYouTubeKit (~> 2.3.1)
 
@@ -79,10 +79,10 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: 41d45d2c14219af0fa5addf3cfd433a002c13c9f
-  AsyncSwift: 3316df38ee85d6b01ede507d682d92fb5511504e
-  Cartography: dd6044b6fe352252f68b648df5bff47841e591cc
+  AsyncSwift: 6ba6ed9ecb51344458063f7c86fe447ab824e313
+  Cartography: 0538ccb4044acbbda2266335fc58cb4228794d90
   DZNEmptyDataSet: 3d31c27758230f03c71199f8c522bcfa99fba16c
-  Google: 875f5a8ade86dd02e36586e4a54814843938c7f6
+  Google: 8be107e3b4bbb6889ebf1f64cdd92cb87dc17a62
   GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
   GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
   GoogleSymbolUtilities: a7b0feed1fe667c8d5e647177938d0ecd62d6948
@@ -94,10 +94,10 @@ SPEC CHECKSUMS:
   OHHTTPStubs: b671969016b4c6f5ee3c26080c81114ba82e0710
   Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
   SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
-  Siren: 41c7c0ed8cf10e5a7a30e5511160d584a2ae871d
+  Siren: d950610045b6c9794602f0fdf924dda54fbd9528
   TSMessages: 6e403b790139636c15ab4f51946537095e03e79c
   XCDYouTubeKit: 80e9169b644acf4e67979142f789d9e7e9e15784
 
-PODFILE CHECKSUM: a975702c2d42dce88835be2daaebc305b0544296
+PODFILE CHECKSUM: f474a5dda6b7b4835975f89cefafe79f48919453
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1

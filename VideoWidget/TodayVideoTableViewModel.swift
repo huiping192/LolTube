@@ -16,53 +16,53 @@ let kSharedUserDefaultsSuitName: String = "kSharedUserDefaultsSuitName"
 class TodayVideoTableViewModel: NSObject {
     var items: [RSVideoListTableViewCellVo]?
     
-    private var channelIds:[String]
+    fileprivate var channelIds:[String]
     
-    private let service =  YoutubeService()
+    fileprivate let service =  YoutubeService()
 
     init(channelIds: [String]) {        
         self.channelIds = channelIds
     }
     
-    func updateCacheDataWithSuccess(success: (hasCacheData: Bool) -> Void) {
+    func updateCacheDataWithSuccess(_ success: (_ hasCacheData: Bool) -> Void) {
         let cacheData = self.p_videoCache()
         self.items = cacheData
-        success(hasCacheData: cacheData != nil)
+        success(cacheData != nil)
     }
     
     func p_videoCache() -> [RSVideoListTableViewCellVo]? {
-        guard let userDefaults: NSUserDefaults = NSUserDefaults(suiteName: kSharedUserDefaultsSuitName),archivedServerModules = userDefaults.dataForKey(kVideoWidgetCacheKey) else {
+        guard let userDefaults: UserDefaults = UserDefaults(suiteName: kSharedUserDefaultsSuitName),let archivedServerModules = userDefaults.data(forKey: kVideoWidgetCacheKey) else {
             return nil
         }
          
-        return NSKeyedUnarchiver.unarchiveObjectWithData(archivedServerModules) as?[RSVideoListTableViewCellVo]
+        return NSKeyedUnarchiver.unarchiveObject(with: archivedServerModules) as?[RSVideoListTableViewCellVo]
     }
     
-    func p_saveVideoCache(videoData: [RSVideoListTableViewCellVo]) {
-        guard let userDefaults: NSUserDefaults = NSUserDefaults(suiteName: kSharedUserDefaultsSuitName) else {
+    func p_saveVideoCache(_ videoData: [RSVideoListTableViewCellVo]) {
+        guard let userDefaults: UserDefaults = UserDefaults(suiteName: kSharedUserDefaultsSuitName) else {
             return
         }
-        let archivedServerModules: NSData = NSKeyedArchiver.archivedDataWithRootObject(videoData)
+        let archivedServerModules: Data = NSKeyedArchiver.archivedData(withRootObject: videoData)
         
-        userDefaults.setObject(archivedServerModules, forKey: kVideoWidgetCacheKey)
+        userDefaults.set(archivedServerModules, forKey: kVideoWidgetCacheKey)
         userDefaults.synchronize()
     }
     
-    func updateWithSuccess(success: (hasNewData: Bool) -> Void, failure: (NSError) -> Void) {
+    func updateWithSuccess(_ success: @escaping (_ hasNewData: Bool) -> Void, failure: @escaping (NSError) -> Void) {
         self.service.todayVideoList(self.channelIds, success: {(searchModelList: [RSSearchModel]) -> Void in
             let newItems: [RSVideoListTableViewCellVo] = self.p_itemsWithSearchModelList(searchModelList)
             let hasNewData: Bool = self.items?.count != newItems.count
             self.items = newItems
             self.p_saveVideoCache(newItems)
-            dispatch_async(dispatch_get_main_queue(), {() -> Void in
-                    success(hasNewData: hasNewData)
+            DispatchQueue.main.async(execute: {() -> Void in
+                    success(hasNewData)
             })
             }, failure: {(error: NSError) -> Void in
                     failure(error)
         })
     }
     
-    func p_itemsWithSearchModelList(searchModelList: [RSSearchModel]) -> [RSVideoListTableViewCellVo] {
+    func p_itemsWithSearchModelList(_ searchModelList: [RSSearchModel]) -> [RSVideoListTableViewCellVo] {
         var items = [RSVideoListTableViewCellVo]()
         for searchModel: RSSearchModel in searchModelList {
             for item: RSItem in searchModel.items {
@@ -82,14 +82,14 @@ class TodayVideoTableViewModel: NSObject {
         return self.p_sortChannelItems(items)
     }
     
-    func p_sortChannelItems(items: [RSVideoListTableViewCellVo]) -> [RSVideoListTableViewCellVo] {
-        return items.sort({item1, item2 in
+    func p_sortChannelItems(_ items: [RSVideoListTableViewCellVo]) -> [RSVideoListTableViewCellVo] {
+        return items.sorted(by: {item1, item2 in
             
-            guard let publishedAt1 = item2.publishedAt, publishedAt2 = item2.publishedAt, date1 = NSDate.date(iso8601String: publishedAt2), date2 = NSDate.date(iso8601String: publishedAt1) else {
+            guard let publishedAt1 = item2.publishedAt, let publishedAt2 = item2.publishedAt, let date1 = NSDate.date(iso8601String: publishedAt2), let date2 = NSDate.date(iso8601String: publishedAt1) else {
                 return false
             }
             
-            return date2.compare(date1) == .OrderedAscending
+            return date2.compare(date1) == .orderedAscending
         })
 
     }
@@ -104,17 +104,17 @@ class RSVideoListTableViewCellVo: NSObject, NSCoding {
     override init() {
         
     }
-    func encodeWithCoder(encoder: NSCoder) {
-        encoder.encodeObject(self.videoId, forKey: "videoId")
-        encoder.encodeObject(self.title, forKey: "title")
-        encoder.encodeObject(self.defaultThumbnailUrl, forKey: "defaultThumbnailUrl")
+    func encode(with encoder: NSCoder) {
+        encoder.encode(self.videoId, forKey: "videoId")
+        encoder.encode(self.title, forKey: "title")
+        encoder.encode(self.defaultThumbnailUrl, forKey: "defaultThumbnailUrl")
     }
     
     convenience required init?(coder decoder: NSCoder) {
         self.init()
 
-        self.videoId = decoder.decodeObjectForKey("videoId") as? String
-        self.title = decoder.decodeObjectForKey("title") as? String
-        self.defaultThumbnailUrl = decoder.decodeObjectForKey("defaultThumbnailUrl") as? String
+        self.videoId = decoder.decodeObject(forKey: "videoId") as? String
+        self.title = decoder.decodeObject(forKey: "title") as? String
+        self.defaultThumbnailUrl = decoder.decodeObject(forKey: "defaultThumbnailUrl") as? String
     }
 }

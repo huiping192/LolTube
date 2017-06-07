@@ -7,7 +7,7 @@ class PlaylistsCollectionViewCell:UICollectionViewCell,Reusable {
     @IBOutlet weak var videoCountLabel:UILabel!
     @IBOutlet weak var titleLabel:UILabel!
     
-    static var reuseIdentifier:String {
+    static var reuseId:String {
         return "playlistCell"
     }
 }

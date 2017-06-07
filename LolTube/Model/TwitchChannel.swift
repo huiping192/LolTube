@@ -15,13 +15,13 @@ struct TwitchChannel: Channel {
     let title: String? = "Twitch"
     
     let thumbnailUrl: String? = "Twitch"
-    let thumbnailType:ThumbnailType = .Local
+    let thumbnailType:ThumbnailType = .local
     
     let selectable: Bool = true
     
-    var selectedAction:((sourceViewController:UIViewController) -> Void)? {
+    var selectedAction:((_ sourceViewController:UIViewController) -> Void)? {
         return { sourceViewController in
-            sourceViewController.showViewController(ViewControllerFactory.instantiateTwitchStreamListViewController(), sender: sourceViewController)
+            sourceViewController.show(ViewControllerFactory.instantiateTwitchStreamListViewController(), sender: sourceViewController)
         }
     }
 }

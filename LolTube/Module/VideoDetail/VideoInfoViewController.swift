@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AsyncSwift
+import Async
 
 class VideoInfoViewController: UIViewController {
     
@@ -23,7 +23,7 @@ class VideoInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.preferredContentSizeChanged), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.preferredContentSizeChanged), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
         
         self.p_loadData()
     }
@@ -41,9 +41,9 @@ class VideoInfoViewController: UIViewController {
             weakSelf.titleLabel.text = weakSelf.viewModel.title
             weakSelf.postedAtLabel.text = weakSelf.viewModel.postedTime
             weakSelf.descriptionTextView.text = weakSelf.viewModel.videoDescription
-            UIView.animateWithDuration(0.25){
+            UIView.animate(withDuration: 0.25, animations: {
                 weakSelf.view.alpha = 1.0
-            }
+            })
             }, failure: {[weak self]error in
                 self?.showError(error)
                 self?.stopLoadingAnimation()
@@ -54,11 +54,11 @@ class VideoInfoViewController: UIViewController {
             }, failure: {_ in })
     }
     
-    func preferredContentSizeChanged(notification: NSNotification) {
-        self.titleLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
-        self.postedAtLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1)
-        self.rateLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1)
-        self.viewCountLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1)
-        self.descriptionTextView.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
+    func preferredContentSizeChanged(_ notification: Notification) {
+        self.titleLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
+        self.postedAtLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)
+        self.rateLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)
+        self.viewCountLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)
+        self.descriptionTextView.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.footnote)
     }
 }

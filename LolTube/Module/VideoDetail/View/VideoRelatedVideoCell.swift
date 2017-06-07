@@ -10,7 +10,7 @@ class VideoRelatedVideoCell: UICollectionViewCell,Reusable {
     @IBOutlet weak var titleLabel:UILabel!
     @IBOutlet weak var channelLabel:UILabel!
     
-    static var reuseIdentifier:String {
+    static var reuseId:String {
         return "videoCell"
     }
 }

@@ -5,7 +5,7 @@ import UIKit
 
 class LoadingCollectionViewCell: UICollectionViewCell,Reusable {
 
-    static var reuseIdentifier:String {
+    static var reuseId:String {
         return "LoadingCell"
     }
 }

@@ -6,31 +6,31 @@ class ChannelDetailViewController: UIViewController {
     var channelId:String!
     var channelTitle:String!
 
-    @IBOutlet private weak var thumbnailImageView:UIImageView!{
+    @IBOutlet fileprivate weak var thumbnailImageView:UIImageView!{
         didSet{
             thumbnailImageView.backgroundColor = UIColor(red: 239.0 / 255.0, green: 239.0 / 255.0, blue: 244.0 / 255.0, alpha: 1.0)
         }
     }
-    @IBOutlet private weak var backgroundThumbnailImageView:UIImageView!{
+    @IBOutlet fileprivate weak var backgroundThumbnailImageView:UIImageView!{
         didSet{
             backgroundThumbnailImageView.image = UIImage(named: "DefaultThumbnail")
         }
     }
-    @IBOutlet private weak var videoCountLabel:UILabel!
-    @IBOutlet private weak var viewCountLabel:UILabel!
-    @IBOutlet private weak var subscriberCountLabel:UILabel!
+    @IBOutlet fileprivate weak var videoCountLabel:UILabel!
+    @IBOutlet fileprivate weak var viewCountLabel:UILabel!
+    @IBOutlet fileprivate weak var subscriberCountLabel:UILabel!
 
-    @IBOutlet private weak var subscribeButton:UIButton!
+    @IBOutlet fileprivate weak var subscribeButton:UIButton!
 
-    @IBOutlet private weak var containView:UIView!
+    @IBOutlet fileprivate weak var containView:UIView!
     
-    private var viewModel:ChannelDetailViewModel!
-    private let imageLoadingOperationQueue = NSOperationQueue()
+    fileprivate var viewModel:ChannelDetailViewModel!
+    fileprivate let imageLoadingOperationQueue = OperationQueue()
 
-    private var videoListViewController:VideoListViewController?
-    private var playlistsViewController:PlaylistsViewController?
-    private var channelInfoViewController:ChannelInfoViewController?
-    private weak var currentViewController:UIViewController?
+    fileprivate var videoListViewController:VideoListViewController?
+    fileprivate var playlistsViewController:PlaylistsViewController?
+    fileprivate var channelInfoViewController:ChannelInfoViewController?
+    fileprivate weak var currentViewController:UIViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,25 +45,25 @@ class ChannelDetailViewController: UIViewController {
         cleanup()
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         EventTracker.trackViewContentView(viewName: "Channel Detail", viewType: ChannelDetailViewController.self, viewId: channelTitle)
         
-        navigationController?.navigationBar.configureNavigationBar(.Clear)
+        navigationController?.navigationBar.configureNavigationBar(.clear)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        navigationController?.navigationBar.configureNavigationBar(.Default)
+        navigationController?.navigationBar.configureNavigationBar(.default)
     }
     
     deinit{
         imageLoadingOperationQueue.cancelAllOperations()
     }
     
-    @IBAction func subscribeButtonTapped(button:UIButton){
+    @IBAction func subscribeButtonTapped(_ button:UIButton){
         if viewModel.isSubscribed ?? false {
             EventTracker.trackDeleteChannel(channelTitle: channelTitle, channelId: channelId)
         }else {
@@ -87,20 +87,20 @@ class ChannelDetailViewController: UIViewController {
         viewModel.subscribeChannel(success: successBlock, failure: failureBlock)
     }
     
-    private func cleanup(){
+    fileprivate func cleanup(){
         videoListViewController = nil
         playlistsViewController = nil
         channelInfoViewController = nil
     }
     
-    private func updateSubscribeButton(isSubscribed:Bool){
+    fileprivate func updateSubscribeButton(_ isSubscribed:Bool){
         let buttonTitle = isSubscribed ? NSLocalizedString("ChannelSubscribed", comment: "") : NSLocalizedString("ChannelUnsubscribe", comment: "")
         let buttonColor = isSubscribed ? UIColor(white: 1.0, alpha: 0.6) : view.tintColor
-        subscribeButton.setTitle(buttonTitle, forState: .Normal)
-        subscribeButton.setTitleColor(buttonColor, forState: .Normal)
+        subscribeButton.setTitle(buttonTitle, for: UIControlState())
+        subscribeButton.setTitleColor(buttonColor, for: UIControlState())
     }
     
-    private func loadData(){
+    fileprivate func loadData(){
         
         let successBlock:(() -> Void) = {
             [weak self] in
@@ -133,13 +133,13 @@ class ChannelDetailViewController: UIViewController {
                 weakSelf.backgroundThumbnailImageView.image = image
                 let imageAverageColor = image.averageColor()
                 
-                if UIColor.whiteColor().equal(imageAverageColor, tolerance: 0.3) {
-                    weakSelf.viewCountLabel.textColor = UIColor.darkGrayColor()
-                    weakSelf.videoCountLabel.textColor = UIColor.darkGrayColor()
-                    weakSelf.subscriberCountLabel.textColor = UIColor.darkGrayColor()
-                    weakSelf.subscribeButton.setTitleColor(UIColor.darkGrayColor(), forState: .Normal)
+                if UIColor.white.equal(imageAverageColor!, tolerance: 0.3) {
+                    weakSelf.viewCountLabel.textColor = UIColor.darkGray
+                    weakSelf.videoCountLabel.textColor = UIColor.darkGray
+                    weakSelf.subscriberCountLabel.textColor = UIColor.darkGray
+                    weakSelf.subscribeButton.setTitleColor(UIColor.darkGray, for: UIControlState())
 
-                    weakSelf.navigationController?.navigationBar.configureNavigationBar(.ClearBlack)
+                    weakSelf.navigationController?.navigationBar.configureNavigationBar(.clearBlack)
                 }
             }
             self?.imageLoadingOperationQueue.addOperation(bannerImageOperation)
@@ -152,84 +152,84 @@ class ChannelDetailViewController: UIViewController {
         viewModel.update(success: successBlock, failure: failureBlock)
     }
     
-    private func configureVideoListViewController(){
+    fileprivate func configureVideoListViewController(){
         self.videoListViewController = configureChildViewController(self.videoListViewController){
             return ViewControllerFactory.instantiateVideoListViewController(self.channelId,channelTitle:channelTitle)
         }
     }
     
-    private func configurePlaylistsViewController(){
+    fileprivate func configurePlaylistsViewController(){
         self.playlistsViewController = configureChildViewController(self.playlistsViewController){
             return ViewControllerFactory.instantiatePlaylistsViewController(self.channelId,channelTitle:channelTitle)
         }
     }
     
-    private func configureInfoViewController(){
+    fileprivate func configureInfoViewController(){
         self.channelInfoViewController = configureChildViewController(self.channelInfoViewController){
             return ViewControllerFactory.instantiateChannelInfoViewController(self.viewModel.channel?.description ?? "",channelId:self.channelId,channelTitle:channelTitle)
         }
     }
     
-    private func configureChildViewController<T:UIViewController>(childViewController:T?,@noescape initBlock:(() -> T)) -> T{
+    fileprivate func configureChildViewController<T:UIViewController>(_ childViewController:T?,initBlock: (() -> T)) -> T{
         let realChildViewController = childViewController ?? initBlock()
         swapToChildViewController(realChildViewController)
         return realChildViewController
     }
     
-    private func swapToChildViewController(childViewController:UIViewController){
+    fileprivate func swapToChildViewController(_ childViewController:UIViewController){
         if let currentViewController = currentViewController {
             removeViewController(currentViewController)
         }
         
         addConstraintsForViewController(childViewController)
         addChildViewController(childViewController)
-        childViewController.didMoveToParentViewController(self)
+        childViewController.didMove(toParentViewController: self)
         currentViewController = childViewController
     }
     
-    private func removeViewController(viewController:UIViewController?){
+    fileprivate func removeViewController(_ viewController:UIViewController?){
         guard let viewController = viewController else {
             return
         }
-        viewController.willMoveToParentViewController(nil)
+        viewController.willMove(toParentViewController: nil)
         viewController.view.removeFromSuperview()
         viewController.removeFromParentViewController()
     }
     
-    private func addConstraintsForViewController(viewController:UIViewController){
+    fileprivate func addConstraintsForViewController(_ viewController:UIViewController){
         let childView = viewController.view
-        childView.translatesAutoresizingMaskIntoConstraints = false
-        containView.addSubview(childView)
-        containView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[childView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["childView":childView] as [String:AnyObject]))
-        containView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[childView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["childView":childView] as [String:AnyObject]))
+        childView?.translatesAutoresizingMaskIntoConstraints = false
+        containView.addSubview(childView!)
+        containView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[childView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["childView":childView!] as [String:AnyObject]))
+        containView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[childView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["childView":childView!] as [String:AnyObject]))
     }
     
     enum ChannelDetailType:Int {
-        case VideoList = 0
-        case Playlists
-        case ChannelInfo
+        case videoList = 0
+        case playlists
+        case channelInfo
     }
     
-    @IBAction func segmentValueChanged(segmentedControl:UISegmentedControl) {
+    @IBAction func segmentValueChanged(_ segmentedControl:UISegmentedControl) {
         guard let detailType = ChannelDetailType(rawValue: segmentedControl.selectedSegmentIndex) else {
             return
         }
         
         switch  detailType{
-        case .VideoList:
+        case .videoList:
             configureVideoListViewController()
-        case .Playlists:
+        case .playlists:
             configurePlaylistsViewController()
-        case .ChannelInfo:
+        case .channelInfo:
             configureInfoViewController()
         }
     }
 }
 
 extension ChannelDetailViewController {
-    override func fetchNewData(completionHandler: (UIBackgroundFetchResult) -> Void) {
+    override func fetchNewData(_ completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         guard let fetchableChildViewController = currentViewController as? BackgroundFetchable else {
-            completionHandler(.Failed)
+            completionHandler(.failed)
             return
         }
         

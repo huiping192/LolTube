@@ -16,10 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    private let sharedUserDefaultsSuitName = "kSharedUserDefaultsSuitName"
-    private let channelIdsKey = "channleIds"
+    fileprivate let sharedUserDefaultsSuitName = "kSharedUserDefaultsSuitName"
+    fileprivate let channelIdsKey = "channleIds"
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         savePersetting()
         configureVideoService()
@@ -27,23 +27,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureAnalytics()
         configureSiren()
         
-        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         return true
     }
     
-    private func configureCloud() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "storeDidChanged:", name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification, object: NSUbiquitousKeyValueStore.defaultStore())
+    fileprivate func configureCloud() {
+        NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.storeDidChanged(_:)), name:NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: NSUbiquitousKeyValueStore.default())
         
-        NSUbiquitousKeyValueStore.defaultStore().synchronize()
+        NSUbiquitousKeyValueStore.default().synchronize()
     }
     
 
-    private func savePersetting() {
+    fileprivate func savePersetting() {
         window?.tintColor = UIColor(red: 1.0, green: 94.0 / 255.0, blue: 58.0 / 255.0, alpha: 1.0)
     }
 
-    private func configureAnalytics() {
+    fileprivate func configureAnalytics() {
         #if DEBUG
         print("No tracking user event in debug model")
         #else
@@ -53,45 +53,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
     }
     
-    private func configureVideoService() {
+    fileprivate func configureVideoService() {
         let videoService = VideoService.sharedInstance
         videoService.configure()
     }
     
-    private func configureSiren() {
-        let siren = Siren.sharedInstance
+    fileprivate func configureSiren() {
+        let siren = Siren.shared
         
-        siren.appID = "917967826"
-        siren.alertType = .Option
+        //siren.appID = "917967826"
+        siren.alertType = .option
 
-        siren.checkVersion(.Daily)
+        siren.checkVersion(checkType: .daily)
     }
     
-    func applicationDidBecomeActive(application: UIApplication) {
-        Siren.sharedInstance.checkVersion(.Weekly)
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        Siren.shared.checkVersion(checkType: .weekly)
     }
     
-    func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         EventTracker.trackBackgroundFetch()
         guard let rootViewController = window?.rootViewController else {
-            completionHandler(.Failed)
+            completionHandler(.failed)
             return
         }
         rootViewController.fetchNewData(completionHandler)
     }
     
-    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
         guard let videoId = url.host else {
             return false
         }
         
         let videoDetailViewController = ViewControllerFactory.instantiateVideoDetailViewController(videoId)
-        currentNavigationController()?.showViewController(videoDetailViewController, sender: self)
+        currentNavigationController()?.show(videoDetailViewController, sender: self)
         
         return true
     }
 
-    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         guard userActivity.activityType == kUserActivityTypeVideoDetail && (userActivity.userInfo?[kHandOffVersionKey] as? String) == kHandOffVersion else {
             return false
         }
@@ -104,13 +104,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let initialPlaybackTime = (userActivity.userInfo?[kUserActivityVideoDetailUserInfoKeyVideoCurrentPlayTime] as? NSNumber)?.doubleValue {
             videoDetailViewController.initialPlaybackTime = initialPlaybackTime
         }
-        currentNavigationController()?.showViewController(videoDetailViewController, sender: self)
+        currentNavigationController()?.show(videoDetailViewController, sender: self)
         
         return true
     }
 
     
-    private func currentNavigationController() -> UINavigationController? {
+    fileprivate func currentNavigationController() -> UINavigationController? {
         let rootViewController = window?.rootViewController
         guard let navigationController = ((rootViewController as? UITabBarController)?.selectedViewController as? UINavigationController) else {
             return nil
@@ -119,8 +119,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return navigationController
     }
 
-    func storeDidChanged(notification: NSNotification) {
-        guard let userInfo = notification.userInfo , reason = userInfo[NSUbiquitousKeyValueStoreChangeReasonKey] as? Int else {
+    func storeDidChanged(_ notification: Notification) {
+        guard let userInfo = notification.userInfo , let reason = userInfo[NSUbiquitousKeyValueStoreChangeReasonKey] as? Int else {
             return 
         }
         
@@ -133,13 +133,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
         
-        let store = NSUbiquitousKeyValueStore.defaultStore()
+        let store = NSUbiquitousKeyValueStore.default()
         keys.forEach{
             if $0 == kPlayFinishedVideoIdsKey {
-                VideoService.sharedInstance.overrideVideoDataWithVideoDictionary(store.dictionaryForKey($0) as? [String : NSTimeInterval])
+                VideoService.sharedInstance.overrideVideoDataWithVideoDictionary(store.dictionary(forKey: $0) as? [String : TimeInterval])
             } else if $0 == channelIdsKey {
-                let userDefaults = NSUserDefaults(suiteName: sharedUserDefaultsSuitName)
-                userDefaults?.setObject(store.objectForKey($0), forKey: $0)
+                let userDefaults = UserDefaults(suiteName: sharedUserDefaultsSuitName)
+                userDefaults?.set(store.object(forKey: $0), forKey: $0)
                 userDefaults?.synchronize()
             }
         }

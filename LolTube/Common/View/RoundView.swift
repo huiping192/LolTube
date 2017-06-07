@@ -19,7 +19,7 @@ class RoundView: UIView {
         layer.masksToBounds = true
         layer.cornerRadius = cornerRadius
         
-        layer.borderColor = mainColor.CGColor
+        layer.borderColor = mainColor.cgColor
         layer.borderWidth = borderWidth
         
         backgroundColor = mainColor

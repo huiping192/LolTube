@@ -8,7 +8,7 @@ class SearchChannelCollectionViewCell:UICollectionViewCell,Reusable {
     @IBOutlet weak var videoCountLabel:UILabel!
     @IBOutlet weak var subscriberCountLabel:UILabel!
     
-    static var reuseIdentifier:String {
+    static var reuseId:String {
         return "channelCell"
     }
 }

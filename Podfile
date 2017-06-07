@@ -9,6 +9,7 @@ def commonPods
     pod 'AFNetworking', '~> 2.0'
     pod 'JSONModel', '~> 1.0.1'
     pod 'SDWebImage', '~> 3.7.0'
+    pod 'AsyncSwift'
 end
 
 target :LolTube do
@@ -17,9 +18,8 @@ target :LolTube do
     pod 'TSMessages', :git => 'https://github.com/KrauseFx/TSMessages.git'
     pod 'Google/Analytics', '~> 1.0.0'
     pod 'DZNEmptyDataSet'
-    pod 'Cartography', '~> 0.7'
-    pod 'AsyncSwift'
-    pod 'Siren'
+    pod 'Cartography', '~> 1.1.0'
+    pod 'Siren', '~> 2.0.4'
 end
 
 
@@ -39,7 +39,7 @@ end
 post_install do |installer_representation|
   installer_representation.pods_project.targets.each do |target|
       target.build_configurations.each do |config|
-          config.build_settings['SWIFT_VERSION'] = '2.3'
+          config.build_settings['SWIFT_VERSION'] = '3.0'
       end
       
     puts "taret=#{target.name}"

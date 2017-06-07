@@ -8,23 +8,23 @@
 
 import Foundation
 
-class ChannelSortOperation: NSOperation {
+class ChannelSortOperation: Operation {
     
     var videoDictionary: [String:[Video]]?
     var channelList: [Channel]?
 
-    private let completed:([Channel] -> Void)
+    fileprivate let completed:(([Channel]) -> Void)
     
-    init(completed:([Channel] -> Void)){
+    init(completed:@escaping (([Channel]) -> Void)){
         self.completed = completed
     }
     
     override func main() {
-        guard let videoDictionary = videoDictionary,channelList = channelList else {
+        guard let videoDictionary = videoDictionary,let channelList = channelList else {
             return
         }
         
-        let sortedChannelList = channelList.sort {
+        let sortedChannelList = channelList.sorted {
             let videoList1 = videoDictionary[$0.id]
             let videoList2 = videoDictionary[$1.id]
             
@@ -36,11 +36,11 @@ class ChannelSortOperation: NSOperation {
                 return true
             }
             
-            guard let video1PublishedAt = video1.publishedAt, video2PublishedAt = video2.publishedAt,video1PublishedDate = NSDate.date(iso8601String: video1PublishedAt), video2PublishedDate = NSDate.date(iso8601String: video2PublishedAt) else {
+            guard let video1PublishedAt = video1.publishedAt, let video2PublishedAt = video2.publishedAt,let video1PublishedDate = NSDate.date(iso8601String: video1PublishedAt), let video2PublishedDate = NSDate.date(iso8601String: video2PublishedAt) else {
                 return false
             }
             
-            return video1PublishedDate.compare(video2PublishedDate) == .OrderedDescending
+            return video1PublishedDate.compare(video2PublishedDate) == .orderedDescending
         }
         
         let nonEmptyChannelList = sortedChannelList.filter{ videoDictionary[$0.id]?.count != 0}

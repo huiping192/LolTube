@@ -9,23 +9,23 @@
 import Foundation
 
 class ChannelVideoListLoadOperation : ConcurrentOperation {
-    private let youtubeService = YoutubeService()
+    fileprivate let youtubeService = YoutubeService()
     
     var channelList: [YoutubeChannel]?
     
-    private let success: ([String:[Video]]) -> Void
-    private let failure: ((NSError) -> Void)?
+    fileprivate let success: ([String:[Video]]) -> Void
+    fileprivate let failure: ((NSError) -> Void)?
     
-    init(success: ([String:[Video]]) -> Void, failure: ((NSError) -> Void)?){
+    init(success: @escaping ([String:[Video]]) -> Void, failure: ((NSError) -> Void)?){
         self.success = success
         self.failure = failure
     }
     
     override func start() {
-        state = .Executing
+        state = .executing
         
         guard let channelList = channelList else {
-            state = .Finished
+            state = .finished
             return
         }
         
@@ -35,17 +35,17 @@ class ChannelVideoListLoadOperation : ConcurrentOperation {
             guard let strongSelf = self else { return }
             var videoDictionary = [String: [Video]]()
             
-            for (index, searchModel) in searchModelList.enumerate() {
+            for (index, searchModel) in searchModelList.enumerated() {
                 videoDictionary[channelList[index].id] = searchModel.items?.map{ Video($0) }
             }
             strongSelf.success(videoDictionary)
-            strongSelf.state = .Finished
+            strongSelf.state = .finished
         }
         
-        let failureBlock:(NSError -> Void) = {
+        let failureBlock:((NSError) -> Void) = {
             [weak self]error in
             self?.failure?(error)
-            self?.state = .Finished
+            self?.state = .finished
         } 
         let channelIdList = channelList.map{ $0.channelId }
         self.youtubeService.videoList(channelIdList, searchText: nil, nextPageTokenList: nil, success: successBlock, failure: failureBlock)

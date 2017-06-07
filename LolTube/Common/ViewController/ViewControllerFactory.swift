@@ -1,7 +1,7 @@
 import Foundation
 
 struct ViewControllerFactory {
-    private enum StoryboardName:String {
+    fileprivate enum StoryboardName:String {
         case ChannelDetail = "ChannelDetail"
         case VideoList = "VideoList"
         case Search = "Search"
@@ -11,7 +11,7 @@ struct ViewControllerFactory {
         
     }
     
-    private enum ViewControllerIdentifier:String {
+    fileprivate enum ViewControllerIdentifier:String {
         case playlist = "playlist"
         case videoDetail = "videoDetail"
         case playlists = "playlists"
@@ -31,7 +31,7 @@ struct ViewControllerFactory {
         
     }
     
-    static func instantiateChannelDetailViewController(id id:String,title:String?) -> ChannelDetailViewController{
+    static func instantiateChannelDetailViewController(id:String,title:String?) -> ChannelDetailViewController{
         let channelDetailViewController = viewController(.ChannelDetail, type: ChannelDetailViewController.self)
         channelDetailViewController.channelId = id
         channelDetailViewController.channelTitle = title
@@ -39,14 +39,14 @@ struct ViewControllerFactory {
         return channelDetailViewController
     }
     
-    static func instantiateVideoListViewController(channelId:String,channelTitle:String) -> VideoListViewController{
+    static func instantiateVideoListViewController(_ channelId:String,channelTitle:String) -> VideoListViewController{
         let videoListViewController = viewController(.VideoList, type: VideoListViewController.self)
         videoListViewController.channelId = channelId
         videoListViewController.channelTitle = channelTitle
         return videoListViewController
     }
     
-    static func instantiatePlaylistsViewController(channelId:String,channelTitle:String) -> PlaylistsViewController{
+    static func instantiatePlaylistsViewController(_ channelId:String,channelTitle:String) -> PlaylistsViewController{
         let playlistsViewController = viewController(.ChannelDetail,viewControllerId:.playlists, type: PlaylistsViewController.self)
         
         playlistsViewController.channelId = channelId
@@ -55,7 +55,7 @@ struct ViewControllerFactory {
         return playlistsViewController
     }
     
-    static func instantiateChannelInfoViewController(description:String,channelId:String,channelTitle:String) -> ChannelInfoViewController{
+    static func instantiateChannelInfoViewController(_ description:String,channelId:String,channelTitle:String) -> ChannelInfoViewController{
         
         let channelInfoViewController = viewController(.ChannelDetail,viewControllerId:.channelInfo, type: ChannelInfoViewController.self)
         
@@ -66,14 +66,14 @@ struct ViewControllerFactory {
         return channelInfoViewController
     }
     
-    static func instantiateVideoDetailViewController(videoId:String) -> VideoDetailViewController{
+    static func instantiateVideoDetailViewController(_ videoId:String) -> VideoDetailViewController{
         let videoDetailViewController = viewController(.Main,viewControllerId:.videoDetail, type: VideoDetailViewController.self)
         
         videoDetailViewController.videoId = videoId
         return videoDetailViewController
     }
     
-    static func instantiatePlaylistViewController(playlistId:String,title:String?) ->  PlaylistViewController{
+    static func instantiatePlaylistViewController(_ playlistId:String,title:String?) ->  PlaylistViewController{
         let playlistViewController = viewController(.ChannelDetail,viewControllerId:.playlist, type: PlaylistViewController.self)
         
         playlistViewController.playlistId = playlistId
@@ -82,7 +82,7 @@ struct ViewControllerFactory {
         return playlistViewController
     }
     
-    static func instantiateSearchVideoListViewController(searchText:String) ->  SearchVideoListViewController{
+    static func instantiateSearchVideoListViewController(_ searchText:String) ->  SearchVideoListViewController{
         let searchVideoListViewController = viewController(.Search,viewControllerId:.SearchVideoList, type: SearchVideoListViewController.self)
         
         searchVideoListViewController.searchText = searchText
@@ -90,7 +90,7 @@ struct ViewControllerFactory {
         return searchVideoListViewController
     }
     
-    static func instantiateSearchChannelListViewController(searchText:String) ->  SearchChannelListViewController{
+    static func instantiateSearchChannelListViewController(_ searchText:String) ->  SearchChannelListViewController{
         let searchChannelListViewController = viewController(.Search,viewControllerId:.SearchChannelList, type: SearchChannelListViewController.self)
         
         searchChannelListViewController.searchText = searchText
@@ -98,7 +98,7 @@ struct ViewControllerFactory {
         return searchChannelListViewController
     }
     
-    static func instantiateSearchPlaylistsViewController(searchText:String) ->  SearchPlaylistsViewController{
+    static func instantiateSearchPlaylistsViewController(_ searchText:String) ->  SearchPlaylistsViewController{
         let searchPlaylistsViewController = viewController(.Search,viewControllerId:.SearchPlaylists, type: SearchPlaylistsViewController.self)
         
         searchPlaylistsViewController.searchText = searchText
@@ -106,7 +106,7 @@ struct ViewControllerFactory {
         return searchPlaylistsViewController
     }
     
-    static func instantiateBannerViewController(bannerItemList:[TopItem]) ->  BannerViewController{
+    static func instantiateBannerViewController(_ bannerItemList:[TopItem]) ->  BannerViewController{
         let bannerViewController = viewController(.Banner, type: BannerViewController.self)
         
         bannerViewController.bannerItemList = bannerItemList
@@ -114,7 +114,7 @@ struct ViewControllerFactory {
         return bannerViewController
     }
     
-    static func instantiateSplitBannerViewController(bannerItemList:[TopItem]) ->  SplitBannerViewController{
+    static func instantiateSplitBannerViewController(_ bannerItemList:[TopItem]) ->  SplitBannerViewController{
         let bannerViewController = viewController(.Banner,viewControllerId:.SplitBanner, type: SplitBannerViewController.self)
         
         bannerViewController.bannerItemList = bannerItemList
@@ -122,7 +122,7 @@ struct ViewControllerFactory {
         return bannerViewController
     }
     
-    static func instantiateCombinedBannerViewController(bannerItemList:[TopItem]) ->  CombinedBannerViewController{
+    static func instantiateCombinedBannerViewController(_ bannerItemList:[TopItem]) ->  CombinedBannerViewController{
         let bannerViewController = viewController(.Banner,viewControllerId:.CombinedBanner, type: CombinedBannerViewController.self)
         
         bannerViewController.bannerItemList = bannerItemList
@@ -130,7 +130,7 @@ struct ViewControllerFactory {
         return bannerViewController
     }
     
-    static func instantiateTwitchStreamViewController(steam :TwitchStream) ->  TwitchStreamViewController{
+    static func instantiateTwitchStreamViewController(_ steam :TwitchStream) ->  TwitchStreamViewController{
         let twitchStreamViewController = viewController(.Twitch,viewControllerId:.Stream, type: TwitchStreamViewController.self)
         twitchStreamViewController.stream = steam
         return twitchStreamViewController
@@ -141,9 +141,9 @@ struct ViewControllerFactory {
         return twitchStreamListViewController
     }
     
-    static private func viewController<T:UIViewController>(storyboardName:StoryboardName,viewControllerId:ViewControllerIdentifier? = nil,type:T.Type) -> T {
+    static fileprivate func viewController<T:UIViewController>(_ storyboardName:StoryboardName,viewControllerId:ViewControllerIdentifier? = nil,type:T.Type) -> T {
         if let viewControllerId = viewControllerId {
-            return UIStoryboard(name: storyboardName.rawValue, bundle: nil).instantiateViewControllerWithIdentifier(viewControllerId.rawValue) as! T
+            return UIStoryboard(name: storyboardName.rawValue, bundle: nil).instantiateViewController(withIdentifier: viewControllerId.rawValue) as! T
         }
         
         return UIStoryboard(name: storyboardName.rawValue, bundle: nil).instantiateInitialViewController() as! T

@@ -6,14 +6,14 @@ class ChannelListViewModel: SimpleListCollectionViewModelProtocol{
     
     var channelList = [YoutubeChannel]()
     
-    private let youtubeService = YoutubeService()
-    private let channelService = ChannelService()
+    fileprivate let youtubeService = YoutubeService()
+    fileprivate let channelService = ChannelService()
     
     init() {
         
     }
     
-    func update(success success: (() -> Void), failure: ((error:NSError) -> Void)) {
+    func update(success: @escaping (() -> Void), failure: @escaping ((_ error:NSError) -> Void)) {
         
         let channelIdList = channelService.channelIds()
         
@@ -28,13 +28,13 @@ class ChannelListViewModel: SimpleListCollectionViewModelProtocol{
     }
     
     
-    func refresh(success success: ((isDataChanged:Bool) -> Void), failure: ((error:NSError) -> Void)) {
+    func refresh(success: @escaping ((_ isDataChanged:Bool) -> Void), failure: @escaping ((_ error:NSError) -> Void)) {
         
         let newChannelIdList = channelService.channelIds()
         let channelIdList = channelList.map{ $0.channelId }
         
         guard newChannelIdList.count != 0 && newChannelIdList != channelIdList else {
-            success(isDataChanged: false)
+            success(false)
             return
         }
         
@@ -44,7 +44,7 @@ class ChannelListViewModel: SimpleListCollectionViewModelProtocol{
                 return
             }
             let isDataChanged =  channelIdList != weakSelf.channelList.map{ $0.channelId }
-            success(isDataChanged: isDataChanged)
+            success(isDataChanged)
             }, failure: failure)
     }
 
@@ -57,7 +57,7 @@ class ChannelListViewModel: SimpleListCollectionViewModelProtocol{
         return channelList.count
     }
     
-    func deleteChannel(channelId channelId:String){
+    func deleteChannel(channelId:String){
         channelService.deleteChannelId(channelId)
     }
     

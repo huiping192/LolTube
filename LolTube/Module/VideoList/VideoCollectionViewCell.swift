@@ -13,7 +13,7 @@ class VideoCellectionViewCell: UICollectionViewCell,Reusable {
         super.layoutSubviews()
     }
     
-    static var reuseIdentifier:String {
+    static var reuseId:String {
         return "videoCell"
     }
 }

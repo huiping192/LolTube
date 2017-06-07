@@ -11,7 +11,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell,Reusable {
     @IBOutlet weak var channelLabel:UILabel!
  
     
-    static var reuseIdentifier:String {
+    static var reuseId:String {
         return "playlistCollectionViewCell"
     }
 }

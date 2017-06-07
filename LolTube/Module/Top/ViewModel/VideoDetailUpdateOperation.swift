@@ -9,24 +9,24 @@
 import Foundation
 
 class VideoDetailUpdateOperation: ConcurrentOperation {
-    private let youtubeService = YoutubeService()
+    fileprivate let youtubeService = YoutubeService()
     
-    private let video: Video
-    private let success: () -> Void
-    private let failure: ((NSError) -> Void)?
+    fileprivate let video: Video
+    fileprivate let success: () -> Void
+    fileprivate let failure: ((NSError) -> Void)?
     
-    init(video: Video,success: () -> Void, failure: ((NSError) -> Void)?){
+    init(video: Video,success: @escaping () -> Void, failure: ((NSError) -> Void)?){
         self.video = video
         self.success = success
         self.failure = failure
     }
     
     override func start() {
-        state = .Executing
+        state = .executing
         
         guard video.duration == nil || video.viewCount == nil else {
             success()
-            state = .Finished
+            state = .finished
             return
         }
         
@@ -36,13 +36,13 @@ class VideoDetailUpdateOperation: ConcurrentOperation {
                 self?.video.update(videoDetail)
             }
             self?.success()
-            self?.state = .Finished
+            self?.state = .finished
         }
         
-        let failureBlock:(NSError -> Void) = {
+        let failureBlock:((NSError) -> Void) = {
             [weak self]error in
             self?.failure?(error)
-            self?.state = .Finished
+            self?.state = .finished
         }
         
         youtubeService.videoDetail(video.videoId, success: successBlock, failure: failureBlock)

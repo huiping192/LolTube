@@ -6,7 +6,7 @@ class PlaylistsViewController: SimpleListCollectionViewController {
     var channelId:String!
     var channelTitle:String!
     
-    let imageLoadingOperationQueue = NSOperationQueue()
+    let imageLoadingOperationQueue = OperationQueue()
     
     var viewModel:PlaylistsViewModel!
     
@@ -14,7 +14,7 @@ class PlaylistsViewController: SimpleListCollectionViewController {
         return NSLocalizedString("ChannelPlaylistsEmptyData", comment: "")
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         EventTracker.trackViewContentView(viewName: "Channel Playlist", viewType: PlaylistsViewController.self, viewId: channelTitle)
@@ -29,8 +29,8 @@ class PlaylistsViewController: SimpleListCollectionViewController {
         return viewModel
     }
     
-    override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
-        let cell = collectionView.dequeueReusableCell(indexPath, type: PlaylistsCollectionViewCell.self)
+    override func cell(_ collectionView: UICollectionView,indexPath: IndexPath) -> UICollectionViewCell{
+        let cell = collectionView.dequeueReusableCell( indexPath, type: PlaylistsCollectionViewCell.self)
         let playlist = viewModel.playlists[indexPath.row]
         
         cell.titleLabel.text = playlist.title
@@ -50,7 +50,7 @@ class PlaylistsViewController: SimpleListCollectionViewController {
         return cell
     }
     
-    override func didSelectItemAtIndexPath(indexPath: NSIndexPath){
+    override func didSelectItemAtIndexPath(_ indexPath: IndexPath){
         let playlist = viewModel.playlists[indexPath.row]
         navigationController?.pushViewController(ViewControllerFactory.instantiatePlaylistViewController(playlist.playlistId,title:playlist.title), animated: true)
     }

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AsyncSwift
+import Async
 
 class VideoInfoViewModel {
     
@@ -24,7 +24,7 @@ class VideoInfoViewModel {
         self.videoId = videoId
     }
     
-    func updateWithSuccess(success: () -> Void, failure: (NSError) -> Void) {
+    func updateWithSuccess(_ success: @escaping () -> Void, failure: @escaping (NSError) -> Void) {
         self.service.video([videoId], success: {[weak self]videoModel in
             guard let weakSelf = self else {
                 return
@@ -46,7 +46,7 @@ class VideoInfoViewModel {
         })
     }
     
-    func updateVideoDetailWithSuccess(success: () -> Void, failure: (NSError) -> Void) {
+    func updateVideoDetailWithSuccess(_ success: @escaping () -> Void, failure: @escaping (NSError) -> Void) {
         self.service.videoDetailList([self.videoId], success: {[weak self]videoDetailModel in
             guard let weakSelf = self else {
                 return
@@ -57,12 +57,15 @@ class VideoInfoViewModel {
                     return
                 }
                 let detailItem: RSVideoDetailItem = videoDetailModel.items[0]
-                let formatter: NSNumberFormatter = NSNumberFormatter()
-                formatter.numberStyle = .DecimalStyle
-                let formatted: String = formatter.stringFromNumber(Int(detailItem.statistics.viewCount)!)!
+                let formatter: NumberFormatter = NumberFormatter()
+                formatter.numberStyle = .decimal
+                
+                let a = NSNumber(integerLiteral: Int(detailItem.statistics.viewCount)!)
+
+                let formatted: String = formatter.string(from:a)!
                 weakSelf.viewCount = String(format: NSLocalizedString("VideoViewCountFormat",comment: "%@ views"), formatted)
-                let likeCount: String = formatter.stringFromNumber(Int(detailItem.statistics.likeCount)!)!
-                let dislikeCount: String = formatter.stringFromNumber(Int(detailItem.statistics.dislikeCount)!)!
+                let likeCount: String = formatter.string(from:NSNumber(integerLiteral:Int(detailItem.statistics.likeCount)!))!
+                let dislikeCount: String = formatter.string(from:NSNumber(integerLiteral:Int(detailItem.statistics.dislikeCount)!))!
                 weakSelf.rate = String(format: NSLocalizedString("VideoLikeDislikeFormat",comment: "%@ likes, %@ dislikes"), likeCount, dislikeCount)
                 
                 }.main {
@@ -73,14 +76,14 @@ class VideoInfoViewModel {
             }, failure: failure)
     }
     
-    func p_postedTimeWithPublishedAt(publishedAt: String) -> String? {
-        guard let publishedDate: NSDate = NSDate.date(iso8601String: publishedAt) else {
+    func p_postedTimeWithPublishedAt(_ publishedAt: String) -> String? {
+        guard let publishedDate: Date = NSDate.date(iso8601String: publishedAt) else {
             return nil
         }
         
-        let form: NSDateFormatter = NSDateFormatter()
+        let form: DateFormatter = DateFormatter()
         form.dateFormat = "yyyy/MM/dd HH:mm"
-        form.locale = NSLocale.currentLocale()
-        return String(format: NSLocalizedString("VideoDetailPostedAtFormatter",comment: ""), form.stringFromDate(publishedDate))
+        form.locale = Locale.current
+        return String(format: NSLocalizedString("VideoDetailPostedAtFormatter",comment: ""), form.string(from: publishedDate))
     }
 }

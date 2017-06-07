@@ -7,7 +7,7 @@ class TopVideoCell:UICollectionViewCell,Reusable {
     @IBOutlet var viewCountLabel:UILabel!
     @IBOutlet var durationLabel:UILabel!
     
-    static var reuseIdentifier:String {
+    static var reuseId:String {
         return "videoCell"
     }
 }

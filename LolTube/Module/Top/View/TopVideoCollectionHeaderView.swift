@@ -8,7 +8,7 @@ class TopVideoCollectionHeaderView:UICollectionReusableView,Reusable {
     @IBOutlet var thumbnailImageView:UIImageView!
     @IBOutlet var moreButton:UIButton!
     
-    static var reuseIdentifier:String {
+    static var reuseId:String {
         return "headerView"
     }
 

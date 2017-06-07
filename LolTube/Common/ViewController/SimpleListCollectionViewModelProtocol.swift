@@ -6,5 +6,5 @@ protocol SimpleListCollectionViewModelProtocol:class {
     
     func allNumberOfItems() -> Int
 
-    func update(success success: (() -> Void), failure: ((error:NSError) -> Void))
+    func update(success:@escaping (() -> Void), failure: @escaping ((_ error:NSError) -> Void))
 }

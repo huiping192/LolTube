@@ -6,7 +6,7 @@ class HistoryViewModel:SimpleListCollectionViewModelProtocol {
     
     var videoList = [Video]()
     
-    private let youtubeService = YoutubeService()
+    fileprivate let youtubeService = YoutubeService()
 
     func loadedNumberOfItems() -> Int {
         return videoList.count
@@ -16,10 +16,10 @@ class HistoryViewModel:SimpleListCollectionViewModelProtocol {
         return videoList.count
     }
     
-    func update(success success: (() -> Void), failure: ((error:NSError) -> Void)){
+    func update(success: @escaping (() -> Void), failure: @escaping ((_ error:NSError) -> Void)){
         let historyVideoIdList = VideoService.sharedInstance.historyVideoIdList()
 
-        guard let newVideoIdList = historyVideoIdList where newVideoIdList.count != 0 else {
+        guard let newVideoIdList = historyVideoIdList, newVideoIdList.count != 0 else {
             success()
             return
         }
@@ -34,16 +34,16 @@ class HistoryViewModel:SimpleListCollectionViewModelProtocol {
         youtubeService.video(newVideoIdList, success: successBlock, failure: failure)
     }
     
-    func refresh(success success: ((isDataChanged:Bool) -> Void), failure: ((error:NSError) -> Void)){                
+    func refresh(success: @escaping ((_ isDataChanged:Bool) -> Void), failure: @escaping ((_ error:NSError) -> Void)){                
         guard let newVideoIdList = VideoService.sharedInstance.historyVideoIdList() else {
-            success(isDataChanged: false)
+            success(false)
             return
         }
         
         let videoIdList = videoList.map{ $0.videoId! }
 
         guard newVideoIdList.count != 0 && newVideoIdList != videoIdList else {
-            success(isDataChanged: false)
+            success(false)
             return
         }
                 
@@ -53,7 +53,7 @@ class HistoryViewModel:SimpleListCollectionViewModelProtocol {
                 return
             }
             let isDataChanged =  videoIdList != weakSelf.videoList.map{ $0.videoId! }
-            success(isDataChanged: isDataChanged)
+            success(isDataChanged)
             }, failure: failure)
     }
 }

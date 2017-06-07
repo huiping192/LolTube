@@ -10,8 +10,8 @@ import Foundation
 import AFNetworking
 import JSONModel
 
-public class HttpService: NSObject  {
-    func requestMultipleIdsDynamicParamter(idList:[String]) -> [String:[String]] {
+open class HttpService: NSObject  {
+    func requestMultipleIdsDynamicParamter(_ idList:[String]) -> [String:[String]] {
         var idPerUnitList = [String]()
         let idPerUnitCount = 50
         let idListCount = idList.count
@@ -26,16 +26,16 @@ public class HttpService: NSObject  {
             if endListIndex >= idListCount {
                 endListIndex = idListCount - 1
             }
-            idPerUnitList.append(Array(idList[beginListIndex ... endListIndex]).joinWithSeparator(","))
+            idPerUnitList.append(Array(idList[beginListIndex ... endListIndex]).joined(separator: ","))
         }
         
         return ["id": idPerUnitList]
     }
 
     
-    func request<T:RSJsonModel>(urlString: String, queryParameters: [String:AnyObject], jsonModelClass: T.Type, success: ((T) -> Void)?, failure: ((NSError) -> Void)?) {
+    func request<T:RSJsonModel>(_ urlString: String, queryParameters: [String:AnyObject], jsonModelClass: T.Type, success: ((T) -> Void)?, failure: ((NSError) -> Void)?) {
         
-        let successBlock: ((AFHTTPRequestOperation!, AnyObject!) -> Void) = {
+        let successBlock: ((AFHTTPRequestOperation?, Any?) -> Void) = {
             (_, responseObject) in
             
             do {
@@ -46,13 +46,21 @@ public class HttpService: NSObject  {
             }
         }
         
-        AFHTTPRequestOperationManager().GET(urlString, parameters: queryParameters, success: successBlock, failure: {
-            (_, error) in
-            failure?(error)
+        AFHTTPRequestOperationManager().get(urlString, parameters: queryParameters, success: successBlock, failure: {
+            (_, error: Error?) in
+            failure?(error as! NSError)
         })
+        
+//        AFHTTPRequestOperationManager().get(
+//            
+//            , parameters: Any!, success: { (<#AFHTTPRequestOperation?#>, Any?) in
+//                code
+//        }) { (AFHTTPRequestOperation?, Error?) in
+//            
+//        }
     }
     
-    func request<T:RSJsonModel>(urlString: String, staticParameters: [String:AnyObject], dynamicParameters: [String:[String]], jsonModelClass: T.Type, success: (([T]) -> Void)?, failure: ((NSError) -> Void)?) {
+    func request<T:RSJsonModel>(_ urlString: String, staticParameters: [String:AnyObject], dynamicParameters: [String:[String]], jsonModelClass: T.Type, success: (([T]) -> Void)?, failure: ((NSError) -> Void)?) {
         var operationList = [AFHTTPRequestOperation]()
         
         var parameters = staticParameters
@@ -60,11 +68,11 @@ public class HttpService: NSObject  {
         for index in 0 ..< (dynamicParameters[dynamicParameterKeyList[0]]?.count ?? 0) {
             for key in dynamicParameterKeyList {
                 if let dynamicParameterValue = dynamicParameters[key]?[index] {
-                    parameters[key] = dynamicParameterValue
+                    parameters[key] = dynamicParameterValue as AnyObject?
                 }
             }
-            let httpRequestOperation = AFHTTPRequestOperation(request: AFHTTPRequestSerializer().requestWithMethod("GET", URLString: urlString, parameters: parameters))
-            operationList.append(httpRequestOperation)
+            let httpRequestOperation = AFHTTPRequestOperation(request: AFHTTPRequestSerializer().request(withMethod: "GET", urlString: urlString, parameters: parameters) as URLRequest!)
+            operationList.append(httpRequestOperation!)
         }
         
         var jsonModelList = [T]()
@@ -75,7 +83,7 @@ public class HttpService: NSObject  {
             
             let operation = operationList[Int(numberOfFinishedOperations - 1)]
             if let operationError = operation.error {
-                error = operationError
+                error = operationError as NSError?
                 return
             }
             
@@ -84,11 +92,11 @@ public class HttpService: NSObject  {
             if let jsonParseError = jsonParseError {
                 error = jsonParseError
             } else {
-                jsonModelList.append(jsonModel)
+                jsonModelList.append(jsonModel!)
             }
         }
         
-        let completionBlock: ([AnyObject]! -> Void) = {
+        let completionBlock: (([Any]?) -> Void) = {
             _ in
             
             if let error = error {
@@ -98,8 +106,8 @@ public class HttpService: NSObject  {
             }
         }
         
-        let operations = AFURLConnectionOperation.batchOfRequestOperations(operationList, progressBlock: progressBlock, completionBlock: completionBlock) as! [NSOperation]
+        let operations = AFURLConnectionOperation.batch(ofRequestOperations: operationList, progressBlock: progressBlock, completionBlock: completionBlock) as! [Operation]
         
-        NSOperationQueue.mainQueue().addOperations(operations, waitUntilFinished: false)
+        OperationQueue.main.addOperations(operations, waitUntilFinished: false)
     }
 }

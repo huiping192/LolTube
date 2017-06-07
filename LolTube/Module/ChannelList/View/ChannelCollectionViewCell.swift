@@ -6,7 +6,7 @@ class ChannelCollectionViewCell:UICollectionViewCell,Reusable {
     @IBOutlet weak var thumbnailImageView:UIImageView!
     @IBOutlet weak var titleLabel:UILabel!
     
-    static var reuseIdentifier:String {
+    static var reuseId:String {
         return "ChannelCell"
     }
 }

@@ -7,7 +7,7 @@ class PlaylistViewController: VideoCollectionViewController {
     
     var viewModel:PlaylistViewModel!
     
-    private let imageLoadingOperationQueue = NSOperationQueue()
+    fileprivate let imageLoadingOperationQueue = OperationQueue()
 
     override var emptyDataTitle:String{
         return NSLocalizedString("ChannelPlaylistEmptyData", comment: "")
@@ -19,7 +19,7 @@ class PlaylistViewController: VideoCollectionViewController {
         navigationItem.title = playlistTitle
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         EventTracker.trackViewContentView(viewName: "Playlist Detail", viewType: PlaylistViewController.self, viewId: playlistTitle)
@@ -34,8 +34,8 @@ class PlaylistViewController: VideoCollectionViewController {
         return viewModel
     }
     
-    override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
-        let cell = collectionView.dequeueReusableCell(indexPath, type: PlaylistCollectionViewCell.self)
+    override func cell(_ collectionView: UICollectionView,indexPath: IndexPath) -> UICollectionViewCell{
+        let cell = collectionView.dequeueReusableCell( indexPath, type: PlaylistCollectionViewCell.self)
         let video = viewModel.videoList[indexPath.row]
         
         cell.videoNumberLabel.text = String(indexPath.row + 1)
@@ -57,7 +57,7 @@ class PlaylistViewController: VideoCollectionViewController {
         return cell
     }
     
-    override func didSelectItemAtIndexPath(indexPath: NSIndexPath){
+    override func didSelectItemAtIndexPath(_ indexPath: IndexPath){
         let cellVo = viewModel.videoList[indexPath.row]
         navigationController?.pushViewController(ViewControllerFactory.instantiateVideoDetailViewController(cellVo.videoId), animated: true)
     }

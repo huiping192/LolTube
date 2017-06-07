@@ -12,7 +12,7 @@ class VideoRelatedVideosViewController:VideoCollectionViewController {
     
     var videoId:String!
     
-    private let imageLoadingOperationQueue = NSOperationQueue()
+    fileprivate let imageLoadingOperationQueue = OperationQueue()
     
     var viewModel:VideoRelatedVideosViewModel!
     
@@ -32,7 +32,7 @@ class VideoRelatedVideosViewController:VideoCollectionViewController {
     override var cellCount: Int {
          return 1
     }
-    override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
+    override func cell(_ collectionView: UICollectionView,indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(indexPath, type: VideoRelatedVideoCell.self)
         let video = viewModel.videoList[indexPath.row]
         
@@ -54,7 +54,7 @@ class VideoRelatedVideosViewController:VideoCollectionViewController {
         return cell
     }
     
-    override func didSelectItemAtIndexPath(indexPath: NSIndexPath){
+    override func didSelectItemAtIndexPath(_ indexPath: IndexPath){
         let video = viewModel.videoList[indexPath.row]
         navigationController?.pushViewController(ViewControllerFactory.instantiateVideoDetailViewController(video.videoId), animated: true)
     }
