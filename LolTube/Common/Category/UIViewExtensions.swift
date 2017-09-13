@@ -7,10 +7,10 @@ extension UIView {
         case Loading = "Loading"
     }
     
-    class func loadFromNibNamed(nibName: NibName, bundle : NSBundle? = nil) -> UIView {
+    class func loadFromNibNamed(_ nibName: NibName, bundle : Bundle? = nil) -> UIView {
         return UINib(
             nibName: nibName.rawValue,
             bundle: bundle
-            ).instantiateWithOwner(nil, options: nil)[0] as! UIView
+            ).instantiate(withOwner: nil, options: nil)[0] as! UIView
     }
 }

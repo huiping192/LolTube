@@ -9,19 +9,19 @@
 import Foundation
 
 class ChannelLoadOperation : ConcurrentOperation {
-    private let youtubeService = YoutubeService()
-    private let channelService = ChannelService()
+    fileprivate let youtubeService = YoutubeService()
+    fileprivate let channelService = ChannelService()
 
-    private let success: ([YoutubeChannel]) -> Void
-    private let failure: ((NSError) -> Void)?
+    fileprivate let success: ([YoutubeChannel]) -> Void
+    fileprivate let failure: ((NSError) -> Void)?
     
-    init(success: ([YoutubeChannel]) -> Void, failure: ((NSError) -> Void)?){
+    init(success: @escaping ([YoutubeChannel]) -> Void, failure: ((NSError) -> Void)?){
         self.success = success
         self.failure = failure
     }
     
     override func start() {
-        state = .Executing
+        state = .executing
         let defaultChannelIdList = channelService.channelIds()
         
         let successBlock:((RSChannelModel) -> Void) = {
@@ -29,13 +29,13 @@ class ChannelLoadOperation : ConcurrentOperation {
             
             let channelList = channelModel.items.map{YoutubeChannel($0)}
             self?.success(channelList)
-            self?.state = .Finished
+            self?.state = .finished
         }
         
-        let failureBlock:(NSError -> Void) = {
+        let failureBlock:((NSError) -> Void) = {
             [weak self]error in
             self?.failure?(error)
-            self?.state = .Finished
+            self?.state = .finished
         }
         
         youtubeService.channel(defaultChannelIdList, success: successBlock, failure: failureBlock)

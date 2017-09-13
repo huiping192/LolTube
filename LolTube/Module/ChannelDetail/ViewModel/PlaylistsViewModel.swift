@@ -5,16 +5,16 @@ class PlaylistsViewModel:SimpleListCollectionViewModelProtocol {
     let channelId:String
     
     var playlists = [Playlist]()
-    private var nextPageToken: String?
-    private var totalResults:Int?
+    fileprivate var nextPageToken: String?
+    fileprivate var totalResults:Int?
 
-    private let youtubeService = YoutubeService()
+    fileprivate let youtubeService = YoutubeService()
     
     init(channelId:String){
         self.channelId = channelId
     }
     
-    func update(success success: (() -> Void), failure: ((error:NSError) -> Void)){
+    func update(success: @escaping (() -> Void), failure: @escaping ((_ error:NSError) -> Void)){
         guard playlists.count !=  totalResults else {
             success()
             return

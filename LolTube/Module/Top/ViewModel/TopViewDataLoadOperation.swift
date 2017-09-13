@@ -16,18 +16,18 @@ class TopViewDataLoadOperation: GroupOperation {
     
     var error: NSError?
     
-    let success: (bannerItemList: [TopItem]?,channelList: [Channel]?,videoDictionary: [String:[TopItem]]?) -> Void
+    let success: (_ bannerItemList: [TopItem]?,_ channelList: [Channel]?,_ videoDictionary: [String:[TopItem]]?) -> Void
     let failure: ((NSError) -> Void)?
     
-    private weak var channelLoadOperation:NSOperation?
-    private weak var channelVideoListLoadOperation:ChannelVideoListLoadOperation?
-    private weak var twitchStreamListLoadOperation:NSOperation?
-    private weak var bannerItemListGenerationOperation:BannerItemListGenerationOperation?
-    private weak var channelSortOperation:ChannelSortOperation?
-    private weak var channelVideoListMergeOperation:ChannelVideoListMergeOperation?
-    private weak var suggestionVideoListLoadOperation:SuggestionVideoListLoadOperation?
+    fileprivate weak var channelLoadOperation:Operation?
+    fileprivate weak var channelVideoListLoadOperation:ChannelVideoListLoadOperation?
+    fileprivate weak var twitchStreamListLoadOperation:Operation?
+    fileprivate weak var bannerItemListGenerationOperation:BannerItemListGenerationOperation?
+    fileprivate weak var channelSortOperation:ChannelSortOperation?
+    fileprivate weak var channelVideoListMergeOperation:ChannelVideoListMergeOperation?
+    fileprivate weak var suggestionVideoListLoadOperation:SuggestionVideoListLoadOperation?
     
-    init(success: (bannerItemList: [TopItem]?,channelList: [Channel]?,videoDictionary: [String:[TopItem]]?) -> Void, failure: ((NSError) -> Void)?){
+    init(success: @escaping (_ bannerItemList: [TopItem]?,_ channelList: [Channel]?,_ videoDictionary: [String:[TopItem]]?) -> Void, failure: ((NSError) -> Void)?){
         self.success = success
         self.failure = failure
         
@@ -41,11 +41,11 @@ class TopViewDataLoadOperation: GroupOperation {
                 return
             }
             
-            strongSelf.success(bannerItemList: strongSelf.bannerItemList, channelList: strongSelf.channelList, videoDictionary: strongSelf.videoDictionary)
+            strongSelf.success(strongSelf.bannerItemList, strongSelf.channelList, strongSelf.videoDictionary)
         }
     }
     
-    override var subOperations:[NSOperation]? {
+    override var subOperations:[Operation]? {
         let failure: (NSError) -> Void = {
             [weak self]error in
             self?.error = error 
@@ -82,11 +82,11 @@ class TopViewDataLoadOperation: GroupOperation {
         bannerItemListGenerationOperation.addDependency(channelVideoListLoadOperation)
         self.bannerItemListGenerationOperation = bannerItemListGenerationOperation
         
-        let twitchStreamListLoadOperation = TwitchStreamListLoadOperation(success: {
-            [weak self] twitchStreamList in
-            self?.channelVideoListMergeOperation?.twtichStreamList = twitchStreamList
-            }, failure: failure)
-        self.twitchStreamListLoadOperation = twitchStreamListLoadOperation
+//        let twitchStreamListLoadOperation = TwitchStreamListLoadOperation(success: {
+//            [weak self] twitchStreamList in
+//            self?.channelVideoListMergeOperation?.twtichStreamList = twitchStreamList
+//            }, failure: failure)
+//        self.twitchStreamListLoadOperation = twitchStreamListLoadOperation
         
         let suggestionVideoListLoadOperation = SuggestionVideoListLoadOperation(success: {
             [weak self] suggestionVideoList in
@@ -101,13 +101,13 @@ class TopViewDataLoadOperation: GroupOperation {
             self?.videoDictionary = videoDictionary
         }
         
-        channelVideoListMergeOperation.addDependency(twitchStreamListLoadOperation)
+        //channelVideoListMergeOperation.addDependency(twitchStreamListLoadOperation)
         channelVideoListMergeOperation.addDependency(channelSortOperation)
         channelVideoListMergeOperation.addDependency(suggestionVideoListLoadOperation)
         
         self.channelVideoListMergeOperation = channelVideoListMergeOperation
         
-        return [channelLoadOperation,channelVideoListLoadOperation,twitchStreamListLoadOperation,bannerItemListGenerationOperation,channelSortOperation,channelVideoListMergeOperation,suggestionVideoListLoadOperation]
+        return [channelLoadOperation,channelVideoListLoadOperation,bannerItemListGenerationOperation,channelSortOperation,channelVideoListMergeOperation,suggestionVideoListLoadOperation]
     }
     
     

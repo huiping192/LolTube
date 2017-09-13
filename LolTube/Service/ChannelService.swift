@@ -6,18 +6,18 @@ class ChannelService: NSObject {
     let sharedUserDefaultsSuitName = "kSharedUserDefaultsSuitName"
     let currentAppVersion = "1.2.0"
     
-    private let cloudStore = NSUbiquitousKeyValueStore.defaultStore()
+    fileprivate let cloudStore = NSUbiquitousKeyValueStore.default()
     
-    private var userDefaults:NSUserDefaults{
-        return NSUserDefaults(suiteName: sharedUserDefaultsSuitName) ?? NSUserDefaults.standardUserDefaults()
+    fileprivate var userDefaults:UserDefaults{
+        return UserDefaults(suiteName: sharedUserDefaultsSuitName) ?? UserDefaults.standard
     }
-    private var appVersion:String?{
-        let userDefaults = NSUserDefaults(suiteName: sharedUserDefaultsSuitName) ?? NSUserDefaults.standardUserDefaults()
-        return userDefaults.stringForKey(appVersionKey)
+    fileprivate var appVersion:String?{
+        let userDefaults = UserDefaults(suiteName: sharedUserDefaultsSuitName) ?? UserDefaults.standard
+        return userDefaults.string(forKey: appVersionKey)
     }
     
     
-    private enum DefaultChannel:String {
+    fileprivate enum DefaultChannel:String {
         // english channels
         case LeagueofLegends = "UC2t5bjwHdUX4vM2g8TRDq5g"
         case LoLEsports = "UCvqRdlKsE5Q8mf8YXbdIJLw"
@@ -129,14 +129,14 @@ class ChannelService: NSObject {
     
     
     func channelIds() -> [String] {                
-        guard let channelIds = userDefaults.arrayForKey(channelIdsKey) as? [String] else {
+        guard let channelIds = userDefaults.array(forKey: channelIdsKey) as? [String] else {
             guard appVersion == currentAppVersion else {                
                 saveDefaultChannelIds()
                 saveAppVersion()
-                return userDefaults.arrayForKey(channelIdsKey) as! [String]
+                return userDefaults.array(forKey: channelIdsKey) as! [String]
             }
             
-            let cloudChannelIds = cloudStore.arrayForKey(channelIdsKey) as? [String]
+            let cloudChannelIds = cloudStore.array(forKey: channelIdsKey) as? [String]
             if let cloudChannelIds = cloudChannelIds {
                 saveChannelIds(cloudChannelIds)
             } else {
@@ -144,15 +144,15 @@ class ChannelService: NSObject {
                 saveAppVersion()
             }
             
-            return userDefaults.arrayForKey(channelIdsKey) as! [String]
+            return userDefaults.array(forKey: channelIdsKey) as! [String]
         }
             
         return channelIds
     }
         
-    private func saveDefaultChannelIds(){
+    fileprivate func saveDefaultChannelIds(){
         let channelIds:[DefaultChannel] 
-        if let language =  NSBundle.mainBundle().preferredLocalizations.first {                    
+        if let language =  Bundle.main.preferredLocalizations.first {                    
             if language.hasPrefix("zh-Hant") {
                 channelIds = DefaultChannel.chineseChannels()  
             } else {
@@ -166,38 +166,38 @@ class ChannelService: NSObject {
     }
     
     
-    private func saveAppVersion(){
-        userDefaults.setObject(currentAppVersion, forKey: appVersionKey)
+    fileprivate func saveAppVersion(){
+        userDefaults.set(currentAppVersion, forKey: appVersionKey)
         userDefaults.synchronize()
     }
     
-    func saveChannelId(channelId:String) {
-        var channelIds = (userDefaults.arrayForKey(channelIdsKey) as? [String]) ?? []
+    func saveChannelId(_ channelId:String) {
+        var channelIds = (userDefaults.array(forKey: channelIdsKey) as? [String]) ?? []
         channelIds.append(channelId)
         
         save(key: channelIdsKey, value: channelIds)
     }
     
-    func deleteChannelId(channelId:String){
-        var channelIds = (userDefaults.arrayForKey(channelIdsKey) as? [String]) ?? []
-        guard let index = channelIds.indexOf(channelId) else {
+    func deleteChannelId(_ channelId:String){
+        var channelIds = (userDefaults.array(forKey: channelIdsKey) as? [String]) ?? []
+        guard let index = channelIds.index(of: channelId) else {
             return
         }
-        channelIds.removeAtIndex(index)
+        channelIds.remove(at: index)
         save(key: channelIdsKey, value: channelIds)
     }
     
-    func saveChannelIds(channelIds:[String]){
-        var savedChannelIds = (userDefaults.arrayForKey(channelIdsKey) as? [String]) ?? []
+    func saveChannelIds(_ channelIds:[String]){
+        var savedChannelIds = (userDefaults.array(forKey: channelIdsKey) as? [String]) ?? []
         savedChannelIds = savedChannelIds + channelIds  
         save(key: channelIdsKey, value: savedChannelIds)
     }
     
-    private func save(key key:String,value:[String]){
-        userDefaults.setObject(value, forKey: channelIdsKey)
+    fileprivate func save(key:String,value:[String]){
+        userDefaults.set(value, forKey: channelIdsKey)
         userDefaults.synchronize()
         
-        cloudStore.setObject(value, forKey: channelIdsKey)
+        cloudStore.set(value, forKey: channelIdsKey)
         cloudStore.synchronize()
     }
 

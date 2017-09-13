@@ -12,24 +12,24 @@ import OCMock
 import OHHTTPStubs
 import LolTube
 
-func setMockData(fileName: String) {
-    OHHTTPStubs.stubRequestsPassingTest({
-        (request: NSURLRequest!) -> Bool in
+func setMockData(_ fileName: String) {
+    OHHTTPStubs.stubRequests(passingTest: {
+        (request: URLRequest!) -> Bool in
         return true
     }, withStubResponse: {
-        (request: NSURLRequest!) -> OHHTTPStubsResponse! in
-        let filePath = NSBundle(forClass: YoutubeServiceSpec().classForCoder).pathForResource(fileName, ofType: "json")
+        (request: URLRequest!) -> OHHTTPStubsResponse! in
+        let filePath = Bundle(forClass: YoutubeServiceSpec().classForCoder).pathForResource(fileName, ofType: "json")
         return OHHTTPStubsResponse(fileAtPath: filePath, statusCode: 200, headers: ["Content-Type": "application/json"])
     })
 }
 
 
 func mockHttpError() {
-    OHHTTPStubs.stubRequestsPassingTest({
-        (request: NSURLRequest!) -> Bool in
+    OHHTTPStubs.stubRequests(passingTest: {
+        (request: URLRequest!) -> Bool in
         return true
     }, withStubResponse: {
-        (request: NSURLRequest!) -> OHHTTPStubsResponse! in
+        (request: URLRequest!) -> OHHTTPStubsResponse! in
         return OHHTTPStubsResponse(error: NSError(domain: NSURLErrorDomain, code: -1009, userInfo: nil))
     })
 }

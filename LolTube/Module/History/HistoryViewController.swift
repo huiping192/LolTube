@@ -3,7 +3,7 @@ import Foundation
 
 class HistoryViewController:VideoCollectionViewController {
     
-    private let imageLoadingOperationQueue = NSOperationQueue()
+    fileprivate let imageLoadingOperationQueue = OperationQueue()
 
     var viewModel:HistoryViewModel!
     
@@ -11,7 +11,7 @@ class HistoryViewController:VideoCollectionViewController {
         return NSLocalizedString("HistoryEmptyData", comment: "")
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         EventTracker.trackViewContentView(viewName:"History", viewType:TopViewController.self )
@@ -24,7 +24,7 @@ class HistoryViewController:VideoCollectionViewController {
             self?.collectionView.reloadEmptyDataSet()
             self?.collectionView.performBatchUpdates({
                 [weak self] in
-                self?.collectionView.reloadSections(NSIndexSet(index: 0))
+                self?.collectionView.reloadSections(IndexSet(integer: 0))
                 }, completion: nil)
             },failure:{
                 [weak self]error in
@@ -42,8 +42,10 @@ class HistoryViewController:VideoCollectionViewController {
         return viewModel
     }
     
-    override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
+    override func cell(_ collectionView: UICollectionView,indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(indexPath, type: HistoryCollectionViewCell.self)
+        
+        
         let video = viewModel.videoList[indexPath.row]
         
         cell.titleLabel.text = video.title
@@ -64,7 +66,7 @@ class HistoryViewController:VideoCollectionViewController {
         return cell
     }
     
-    override func didSelectItemAtIndexPath(indexPath: NSIndexPath){
+    override func didSelectItemAtIndexPath(_ indexPath: IndexPath){
         let video = viewModel.videoList[indexPath.row]
         navigationController?.pushViewController(ViewControllerFactory.instantiateVideoDetailViewController(video.videoId), animated: true)
     }

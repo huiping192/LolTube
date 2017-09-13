@@ -7,15 +7,39 @@
 //
 
 import Foundation
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
 
-class BannerItemListGenerationOperation: NSOperation {
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
+
+class BannerItemListGenerationOperation: Operation {
     
     var videoDictionary: [String:[Video]]?
-    private let completed:([TopItem] -> Void)
+    fileprivate let completed:(([TopItem]) -> Void)
     
-    private let highRankVideoCount = 4
+    fileprivate let highRankVideoCount = 4
     
-    init(completed:([TopItem] -> Void)){
+    init(completed:@escaping (([TopItem]) -> Void)){
         self.completed = completed
     }
     
@@ -23,22 +47,22 @@ class BannerItemListGenerationOperation: NSOperation {
         completed(highRankVideoList())
     }
     
-    private func highRankVideoList() -> [TopItem] {
+    fileprivate func highRankVideoList() -> [TopItem] {
         guard let videoDictionary = videoDictionary else {
             return []
         }
         
-        let videoList = videoDictionary.map{ $0.1 }.reduce([], combine: (+))
+        let videoList = videoDictionary.map{ $0.1 }.reduce([], (+))
         
-        let sortedVideoList = videoList.sort {
-            guard let video1PublishedAt = $0.publishedAt, video2PublishedAt = $1.publishedAt else {
+        let sortedVideoList = videoList.sorted {
+            guard let video1PublishedAt = $0.publishedAt, let video2PublishedAt = $1.publishedAt else {
                 return false   
             }
-            guard let video1PublishedDate = NSDate.date(iso8601String: video1PublishedAt), video2PublishedDate = NSDate.date(iso8601String: video2PublishedAt) else {
+            guard let video1PublishedDate = Date.date(iso8601String: video1PublishedAt), let video2PublishedDate = Date.date(iso8601String: video2PublishedAt) else {
                 return false 
             }
             
-            return $0.viewCount > $1.viewCount || video1PublishedDate.compare(video2PublishedDate) == .OrderedDescending
+            return $0.viewCount > $1.viewCount || video1PublishedDate.compare(video2PublishedDate) == .orderedDescending
         }
         
         return Array(sortedVideoList.prefix(highRankVideoCount)).map{$0 as TopItem}

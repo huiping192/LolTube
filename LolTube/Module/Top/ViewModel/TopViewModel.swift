@@ -1,5 +1,5 @@
 import Foundation
-import AsyncSwift
+import Async
 
 class TopViewModel {
     
@@ -8,9 +8,9 @@ class TopViewModel {
     var channelList: [Channel]?
     var videoDictionary: [String:[TopItem]]?
     
-    let dataLoadOperationQueue = NSOperationQueue()
+    let dataLoadOperationQueue = OperationQueue()
     
-    func update(success: () -> Void,failure: (NSError) -> Void) {
+    func update(_ success: @escaping () -> Void,failure: @escaping (NSError) -> Void) {
         let topViewDataLoadOperation = TopViewDataLoadOperation(success: {
             [weak self]bannerItemList,channelList,videoDictionary in
             self?.channelList = channelList
@@ -26,7 +26,7 @@ class TopViewModel {
     }
     
     
-    func updateVideoDetail(video: Video, success: () -> Void) {
+    func updateVideoDetail(_ video: Video, success: @escaping () -> Void) {
         let successBlock:() -> Void = {
             Async.main{success()}
         }

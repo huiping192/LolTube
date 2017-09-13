@@ -2,55 +2,55 @@ import Foundation
 import UIKit
 
 enum NavigationBarStyle {
-    case Default
-    case Clear
-    case ClearBlack
+    case `default`
+    case clear
+    case clearBlack
 }
 
 extension UINavigationBar {
-    func configureNavigationBar(style:NavigationBarStyle){
+    func configureNavigationBar(_ style:NavigationBarStyle){
         switch style {
-        case .Default:
+        case .default:
             defalutStyle()
-        case .Clear:
+        case .clear:
             clearStyle()
-        case .ClearBlack:
+        case .clearBlack:
             clearBlackStyle()
         }
     }
     
-    private func defalutStyle(){
-        let navbarTitleTextAttributes:[String:AnyObject] = [NSForegroundColorAttributeName:UIColor.blackColor()]
+    fileprivate func defalutStyle(){
+        let navbarTitleTextAttributes:[String:AnyObject] = [NSForegroundColorAttributeName:UIColor.black]
         titleTextAttributes = navbarTitleTextAttributes
         
         shadowImage = nil
-        setBackgroundImage(nil, forBarMetrics: .Default)
-        translucent = false
-        tintColor = UIApplication.sharedApplication().keyWindow?.tintColor
-        barStyle = .Default;
+        setBackgroundImage(nil, for: .default)
+        isTranslucent = false
+        tintColor = UIApplication.shared.keyWindow?.tintColor
+        barStyle = .default;
     }
     
-    private func clearStyle(){
-        let navbarTitleTextAttributes:[String:AnyObject] = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+    fileprivate func clearStyle(){
+        let navbarTitleTextAttributes:[String:AnyObject] = [NSForegroundColorAttributeName:UIColor.white]
         titleTextAttributes = navbarTitleTextAttributes
         
-        let clearImage = UIImage(color:UIColor.clearColor())
+        let clearImage = UIImage(color:UIColor.clear)
         shadowImage = clearImage
-        setBackgroundImage(clearImage, forBarMetrics: .Default)
-        translucent = true
-        tintColor = UIColor.whiteColor()
-        barStyle = .Black;
+        setBackgroundImage(clearImage, for: .default)
+        isTranslucent = true
+        tintColor = UIColor.white
+        barStyle = .black;
     }
     
-    private func clearBlackStyle(){
-        let navbarTitleTextAttributes:[String:AnyObject] = [NSForegroundColorAttributeName:UIColor.blackColor()]
+    fileprivate func clearBlackStyle(){
+        let navbarTitleTextAttributes:[String:AnyObject] = [NSForegroundColorAttributeName:UIColor.black]
         titleTextAttributes = navbarTitleTextAttributes
         
-        let clearImage = UIImage(color:UIColor.clearColor())
+        let clearImage = UIImage(color:UIColor.clear)
         shadowImage = clearImage
-        setBackgroundImage(clearImage, forBarMetrics: .Default)
-        translucent = true
-        tintColor = UIApplication.sharedApplication().keyWindow?.tintColor
-        barStyle = .Default;
+        setBackgroundImage(clearImage, for: .default)
+        isTranslucent = true
+        tintColor = UIApplication.shared.keyWindow?.tintColor
+        barStyle = .default;
     }
 }

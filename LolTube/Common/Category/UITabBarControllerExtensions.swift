@@ -9,9 +9,9 @@
 import Foundation
 
 extension UITabBarController {
-    override func fetchNewData(completionHandler: (UIBackgroundFetchResult) -> Void) {
+    override func fetchNewData(_ completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         guard let fetchableChildViewController = selectedViewController else {
-            completionHandler(.Failed)
+            completionHandler(.failed)
             return
         }        
         fetchableChildViewController.fetchNewData(completionHandler)

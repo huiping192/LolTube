@@ -7,14 +7,14 @@
 //
 
 import Foundation
-import AsyncSwift 
+import Async
 
 class VideoDetailViewModel {
 
     let videoId:String
     var shareTitle:String?
-    var shareUrl:NSURL?{
-        return NSURL(string: "https://www.youtube.com/watch?v=\(videoId)")
+    var shareUrl:URL?{
+        return URL(string: "https://www.youtube.com/watch?v=\(videoId)")
     }
   
     var thumbnailImageUrl:String?
@@ -22,14 +22,14 @@ class VideoDetailViewModel {
     var channelId:String?
     var channelTitle:String?
     
-    private let youtubeService = YoutubeService()
+    fileprivate let youtubeService = YoutubeService()
     
     init(videoId:String){
         self.videoId = videoId
     }
     
-    func update(success success:() -> Void,failure:(NSError) -> Void){
-        let successBlock: (RSVideoModel -> Void) = {
+    func update(success:@escaping () -> Void,failure:@escaping (NSError) -> Void){
+        let successBlock: ((RSVideoModel) -> Void) = {
             [weak self]videoModel in
             guard let strongSelf = self else {
                 return
@@ -49,10 +49,10 @@ class VideoDetailViewModel {
         youtubeService.video([videoId], success: successBlock, failure: failure)
     }
     
-    func handoffUrl(videoCurrentPlayTime:NSTimeInterval?) -> NSURL? {
+    func handoffUrl(_ videoCurrentPlayTime:TimeInterval?) -> URL? {
         if let videoCurrentPlayTime = videoCurrentPlayTime {
-            return NSURL(string: "https://www.youtube.com/watch?v=\(videoId)&t=\(videoCurrentPlayTime)")
+            return URL(string: "https://www.youtube.com/watch?v=\(videoId)&t=\(videoCurrentPlayTime)")
         }
-        return NSURL(string: "https://www.youtube.com/watch?v=\(videoId)")
+        return URL(string: "https://www.youtube.com/watch?v=\(videoId)")
     }
 }

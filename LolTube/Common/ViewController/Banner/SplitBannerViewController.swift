@@ -2,32 +2,32 @@ import Foundation
 import UIKit
 
 class SplitBannerViewController: UIViewController {
-    @IBOutlet private var collectionView:UICollectionView!{
+    @IBOutlet fileprivate var collectionView:UICollectionView!{
         didSet{
             collectionView.scrollsToTop = false
         }
     }
     
-    private let imageLoadingOperationQueue = NSOperationQueue()
+    fileprivate let imageLoadingOperationQueue = OperationQueue()
     
     var bannerItemList:[TopItem]?
    
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         collectionView.reloadData()
-        collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .None, animated: false)
+        collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionViewScrollPosition(), animated: false)
     }
 }
 
 
 extension SplitBannerViewController: UICollectionViewDataSource {
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return bannerItemList?.count ?? 0
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(indexPath,type:BannerCell.self)
         guard let bannerItem = bannerItem(indexPath) else {
             return cell
@@ -46,7 +46,7 @@ extension SplitBannerViewController: UICollectionViewDataSource {
         return cell
     }
     
-    private func loadImage(imageUrlString: String?, secondImageUrlString: String?, success: (UIImage) -> Void) {
+    fileprivate func loadImage(_ imageUrlString: String?, secondImageUrlString: String?, success:  @escaping (UIImage) -> Void) {
         guard let imageUrlString = imageUrlString else {
             return
         }
@@ -55,24 +55,24 @@ extension SplitBannerViewController: UICollectionViewDataSource {
         imageLoadingOperationQueue.addOperation(imageLoadOperation)
     }
     
-    private func bannerItem(indexPath:NSIndexPath) -> TopItem? {
+    fileprivate func bannerItem(_ indexPath:IndexPath) -> TopItem? {
         return bannerItemList?[indexPath.row]
     }
 }
 
 extension SplitBannerViewController: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = collectionView.frame.height
         return CGSize(width: height * 16/9,height: height)
     }
     
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let bannerItem = bannerItem(indexPath) else {
             return
         }
-        bannerItem.selectedAction(sourceViewController: self)
+        bannerItem.selectedAction(self)
     }
     
 }

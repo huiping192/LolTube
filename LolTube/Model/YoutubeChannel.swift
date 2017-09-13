@@ -26,13 +26,13 @@ struct YoutubeChannel:Channel,Equatable {
 
     let selectable: Bool = true
 
-    var selectedAction:((sourceViewController:UIViewController) -> Void)? {
+    var selectedAction:((_ sourceViewController:UIViewController) -> Void)? {
         return { sourceViewController in
-            sourceViewController.showViewController(ViewControllerFactory.instantiateChannelDetailViewController(id:self.channelId,title:self.title), sender: sourceViewController)
+            sourceViewController.show(ViewControllerFactory.instantiateChannelDetailViewController(id:self.channelId,title:self.title), sender: sourceViewController)
         }
     }
     
-    let thumbnailType:ThumbnailType = .Remote
+    let thumbnailType:ThumbnailType = .remote
     
     init(_ channelItem:RSChannelItem){
         self.channelId = channelItem.channelId

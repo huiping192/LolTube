@@ -9,5 +9,5 @@
 import Foundation
 
 protocol BackgroundFetchable {
-     func fetchNewData(completionHandler: (UIBackgroundFetchResult) -> Void)
+     func fetchNewData(_ completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
 }

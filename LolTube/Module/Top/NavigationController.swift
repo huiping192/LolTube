@@ -11,18 +11,18 @@ import Foundation
 
 class NavigationControllerSwift: UINavigationController {
     
-    override func restoreUserActivityState(activity: NSUserActivity) {
+    override func restoreUserActivityState(_ activity: NSUserActivity) {
         super.restoreUserActivityState(activity)
 
-        guard let userInfo = activity.userInfo, handOffVersion = userInfo[kHandOffVersionKey as NSObject] as? String, videoId = userInfo[kUserActivityVideoDetailUserInfoKeyVideoId ], initialPlaybackTime = userInfo[kUserActivityVideoDetailUserInfoKeyVideoCurrentPlayTime] where activity.activityType ==  kUserActivityTypeVideoDetail && handOffVersion == kHandOffVersion else {
+        guard let userInfo = activity.userInfo, let handOffVersion = userInfo[kHandOffVersionKey as NSObject] as? String, let videoId = userInfo[kUserActivityVideoDetailUserInfoKeyVideoId ], let initialPlaybackTime = userInfo[kUserActivityVideoDetailUserInfoKeyVideoCurrentPlayTime], activity.activityType ==  kUserActivityTypeVideoDetail && handOffVersion == kHandOffVersion else {
             
             return
         }
         
-        let videoDetailViewController: VideoDetailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(kViewControllerIdVideoDetail) as! VideoDetailViewController
+        let videoDetailViewController: VideoDetailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: kViewControllerIdVideoDetail) as! VideoDetailViewController
         videoDetailViewController.videoId = videoId as! String
         
-        videoDetailViewController.initialPlaybackTime = NSTimeInterval((Int(initialPlaybackTime as! NSNumber)))
+        videoDetailViewController.initialPlaybackTime = TimeInterval((Int(initialPlaybackTime as! NSNumber)))
         self.pushViewController(videoDetailViewController, animated: true) 
 
     }

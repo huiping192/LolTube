@@ -4,18 +4,18 @@ import UIKit
 
 class ChannelListViewController: SimpleListCollectionViewController {
     var viewModel:ChannelListViewModel!
-    private let imageLoadingOperationQueue = NSOperationQueue()
+    fileprivate let imageLoadingOperationQueue = OperationQueue()
     
     override var cellHeight: CGFloat {
         switch (traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
-        case (.Regular, .Regular):
+        case (.regular, .regular):
             return 80.0
         default:
             return 60.0
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         EventTracker.trackViewContentView(viewName:"Channel", viewType:ChannelListViewController.self )
@@ -28,7 +28,7 @@ class ChannelListViewController: SimpleListCollectionViewController {
             self?.collectionView.reloadEmptyDataSet()
             self?.collectionView.performBatchUpdates({
                 [weak self] in
-                self?.collectionView.reloadSections(NSIndexSet(index: 0))
+                self?.collectionView.reloadSections(IndexSet(integer: 0))
                 }, completion: nil)
             },failure:{
                 [weak self]error in
@@ -50,7 +50,7 @@ class ChannelListViewController: SimpleListCollectionViewController {
         return viewModel
     }
     
-    override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
+    override func cell(_ collectionView: UICollectionView,indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(indexPath, type: ChannelCollectionViewCell.self)
         let video = viewModel.channelList[indexPath.row]
         
@@ -69,7 +69,7 @@ class ChannelListViewController: SimpleListCollectionViewController {
         return cell
     }
     
-    override func didSelectItemAtIndexPath(indexPath: NSIndexPath){
+    override func didSelectItemAtIndexPath(_ indexPath: IndexPath){
         let channel = viewModel.channelList[indexPath.row]
         navigationController?.pushViewController(ViewControllerFactory.instantiateChannelDetailViewController(id:channel.channelId,title:channel.title), animated: true)
     }

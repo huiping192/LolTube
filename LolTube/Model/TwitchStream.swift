@@ -33,16 +33,16 @@ class TwitchStream: TopItem {
         return RSVideoInfoUtil.convertFollowerCount(followers ?? 0)
     }
     
-    var selectedAction:(sourceViewController:UIViewController) -> Void {
+    var selectedAction:(_ sourceViewController:UIViewController) -> Void {
         return { [weak self]sourceViewController in
             guard let strongSelf = self else {
                 return 
             }
-            sourceViewController.showViewController(ViewControllerFactory.instantiateTwitchStreamViewController(strongSelf), sender: sourceViewController)
+            sourceViewController.show(ViewControllerFactory.instantiateTwitchStreamViewController(strongSelf), sender: sourceViewController)
         }
     }
     init(_ streamModel:RSStreamModel){
-        self.streamId = String(streamModel._id)
+        self.streamId = String(describing: streamModel._id)
         self.title = streamModel.channel.status
         self.displayName = streamModel.channel.display_name
         self.name = streamModel.channel.name

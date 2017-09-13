@@ -20,7 +20,7 @@ protocol TopItem {
         get
     }
 
-    var selectedAction:(sourceViewController:UIViewController) -> Void {
+    var selectedAction:(_ sourceViewController:UIViewController) -> Void {
         get
     }
 

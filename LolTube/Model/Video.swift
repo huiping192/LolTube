@@ -25,10 +25,10 @@ class Video: TopItem,Hashable {
         return RSVideoInfoUtil.convertVideoViewCount(viewCount ?? 0)
     }
     var publishedAtString: String?{
-        return RSVideoInfoUtil.convertToShortPostedTime(publishedAt)
+        return RSVideoInfoUtil.convert(toShortPostedTime: publishedAt)
     }
     var viewCountPublishedAt:String?{
-        guard let viewCount = viewCountString , publishedAtString = publishedAtString else {
+        guard let viewCount = viewCountString , let publishedAtString = publishedAtString else {
             return nil
         }
         return "\(viewCount) ・ \(publishedAtString)"
@@ -68,17 +68,17 @@ class Video: TopItem,Hashable {
 
     }
     
-    func update(videoDetailModel: RSVideoDetailItem){
+    func update(_ videoDetailModel: RSVideoDetailItem){
         duration = videoDetailModel.contentDetails.duration
         viewCount = Int(videoDetailModel.statistics.viewCount)
     }
     
-    var selectedAction:(sourceViewController:UIViewController) -> Void {
+    var selectedAction:(_ sourceViewController:UIViewController) -> Void {
         return { [weak self]sourceViewController in
             guard let strongSelf = self else {
                 return 
             }
-            sourceViewController.showViewController(ViewControllerFactory.instantiateVideoDetailViewController(strongSelf.videoId), sender: sourceViewController)
+            sourceViewController.show(ViewControllerFactory.instantiateVideoDetailViewController(strongSelf.videoId), sender: sourceViewController)
         }
     }
     

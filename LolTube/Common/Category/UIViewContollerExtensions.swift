@@ -5,7 +5,7 @@ import Cartography
 private var loadingViewKey: UInt8 = 0
 
 extension UIViewController {
-    private var loadingView: UIView? {
+    fileprivate var loadingView: UIView? {
         get {
             return objc_getAssociatedObject(self, &loadingViewKey) as? UIView
         }
@@ -37,7 +37,7 @@ extension UIViewController {
 }
 
 extension UIViewController: BackgroundFetchable {
-    func fetchNewData(completionHandler: (UIBackgroundFetchResult) -> Void) {
-        completionHandler(.Failed)
+    func fetchNewData(_ completionHandler:@escaping (UIBackgroundFetchResult) -> Void) {
+        completionHandler(.failed)
     }
 }

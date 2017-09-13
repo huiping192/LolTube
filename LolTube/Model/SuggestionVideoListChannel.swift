@@ -17,11 +17,11 @@ struct SuggestionVideoListChannel: Channel {
     }
     
     let thumbnailUrl: String? = "SuggestionVideos"
-    let thumbnailType:ThumbnailType = .Local
+    let thumbnailType:ThumbnailType = .local
     
     let selectable: Bool = false
 
-    var selectedAction:((sourceViewController:UIViewController) -> Void)? {
+    var selectedAction:((_ sourceViewController:UIViewController) -> Void)? {
         return nil
     }
 }

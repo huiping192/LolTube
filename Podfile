@@ -17,9 +17,9 @@ target :LolTube do
     pod 'TSMessages', :git => 'https://github.com/KrauseFx/TSMessages.git'
     pod 'Google/Analytics', '~> 1.0.0'
     pod 'DZNEmptyDataSet'
-    pod 'Cartography', '~> 0.7'
-    pod 'AsyncSwift'
-    pod 'Siren'
+    pod 'Cartography', '~> 1.0.0'
+    pod 'AsyncSwift', '~> 2.0.1'
+    pod 'Siren', '~> 2.0.8' 
 end
 
 
@@ -28,8 +28,8 @@ target :LolTubeTests do
   pod 'Google/Analytics', '~> 1.0.0'
   pod 'OCMock', '~> 3.1.1'
   pod 'OHHTTPStubs', '~>3.1.5'
-  pod 'Quick', '~>0.9.3'
-  pod 'Nimble', '~>4.1.0'
+  pod 'Quick', '~>1.1.0'
+  pod 'Nimble'
 end
 
 target :VideoWidget do
@@ -39,7 +39,7 @@ end
 post_install do |installer_representation|
   installer_representation.pods_project.targets.each do |target|
       target.build_configurations.each do |config|
-          config.build_settings['SWIFT_VERSION'] = '2.3'
+          config.build_settings['SWIFT_VERSION'] = '3.0'
       end
       
     puts "taret=#{target.name}"
