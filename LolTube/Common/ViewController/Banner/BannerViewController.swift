@@ -3,12 +3,12 @@ import UIKit
 
 class BannerViewController:UIViewController {
     
-    @IBOutlet private var containView:UIView!
+    @IBOutlet fileprivate var containView:UIView!
     
-    private weak var combinedBannerViewController: CombinedBannerViewController?
-    private weak var splitBannerViewController: SplitBannerViewController?
+    fileprivate weak var combinedBannerViewController: CombinedBannerViewController?
+    fileprivate weak var splitBannerViewController: SplitBannerViewController?
 
-    private var currentViewController: UIViewController?
+    fileprivate var currentViewController: UIViewController?
 
     var bannerItemList:[TopItem]!{
         didSet{
@@ -21,17 +21,17 @@ class BannerViewController:UIViewController {
     }
     
     
-    override func willTransitionToTraitCollection(newCollection: UITraitCollection, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator){
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator){
         configureViewController(newCollection, transitionCoordinator: coordinator)
     }
     
     
-    private func configureViewController(newCollection: UITraitCollection, transitionCoordinator coordinator: UIViewControllerTransitionCoordinator?) {
+    fileprivate func configureViewController(_ newCollection: UITraitCollection, transitionCoordinator coordinator: UIViewControllerTransitionCoordinator?) {
         guard bannerItemList != nil else {
             return
         }
         switch (newCollection.horizontalSizeClass, newCollection.verticalSizeClass) {
-        case (.Compact, .Regular) :
+        case (.compact, .regular) :
             combinedBannerViewController = configureChildViewController(combinedBannerViewController){
                 [unowned self] in
                 return ViewControllerFactory.instantiateCombinedBannerViewController(self.bannerItemList)
@@ -45,13 +45,13 @@ class BannerViewController:UIViewController {
 
     }
 
-    private func configureChildViewController<T:UIViewController>(childViewController:T?,initBlock:(() -> T)) -> T{
+    fileprivate func configureChildViewController<T:UIViewController>(_ childViewController:T?,initBlock:(() -> T)) -> T{
         let realChildViewController = childViewController ?? initBlock()
         swapToChildViewController(realChildViewController)
         return realChildViewController
     }
     
-    func swapToChildViewController(childViewController:UIViewController){
+    func swapToChildViewController(_ childViewController:UIViewController){
         if let currentViewController = currentViewController {
             remove(childViewController:currentViewController)
         }

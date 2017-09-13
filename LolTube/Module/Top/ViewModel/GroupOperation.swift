@@ -9,25 +9,25 @@
 import Foundation
 
 class GroupOperation: ConcurrentOperation {
-    let internalQueue = NSOperationQueue()
+    let internalQueue = OperationQueue()
     
     // override point
-    var subOperations: [NSOperation]? {
+    var subOperations: [Operation]? {
         return nil
     }
     
     var finishedBlock: (() -> Void)? 
     
-    init(operations: [NSOperation]? = nil) {
+    init(operations: [Operation]? = nil) {
         super.init()
         
-        internalQueue.suspended = true
+        internalQueue.isSuspended = true
     }
     
-    private func addOperations(){
-        let finishingOperation = NSBlockOperation(block: {
+    fileprivate func addOperations(){
+        let finishingOperation = BlockOperation(block: {
             [weak self] in
-            self?.state = .Finished
+            self?.state = .finished
             self?.finishedBlock?()
             })        
         subOperations?.forEach{
@@ -46,8 +46,8 @@ class GroupOperation: ConcurrentOperation {
     override func start() {
         addOperations()
 
-        state = .Executing
-        internalQueue.suspended = false
+        state = .executing
+        internalQueue.isSuspended = false
     }
     
     

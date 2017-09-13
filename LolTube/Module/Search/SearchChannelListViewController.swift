@@ -1,9 +1,9 @@
 import Foundation
 
 class SearchChannelListViewController: SimpleListCollectionViewController,Searchable {
-    private var _searchText:String!{
+    fileprivate var _searchText:String!{
         didSet{
-            guard let viewModel =  viewModel where viewModel.searchText != _searchText else {
+            guard let viewModel =  viewModel, viewModel.searchText != _searchText else {
                 return
             }
             viewModel.searchText = _searchText
@@ -23,7 +23,7 @@ class SearchChannelListViewController: SimpleListCollectionViewController,Search
     
     var viewModel:SearchChannelListViewModel!
     
-    let imageLoadingOperationQueue = NSOperationQueue()
+    let imageLoadingOperationQueue = OperationQueue()
     
     override var cellHeight: CGFloat {
         return 85.0
@@ -43,8 +43,8 @@ class SearchChannelListViewController: SimpleListCollectionViewController,Search
         return viewModel
     }
     
-    override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
-        let cell = collectionView.dequeueReusableCell(indexPath, type: SearchChannelCollectionViewCell.self)
+    override func cell(_ collectionView: UICollectionView,indexPath: IndexPath) -> UICollectionViewCell{
+        let cell = collectionView.dequeueReusableCell( indexPath, type: SearchChannelCollectionViewCell.self)
         let channel = viewModel.channelList[indexPath.row]
         
         cell.titleLabel.text = channel.title
@@ -64,7 +64,7 @@ class SearchChannelListViewController: SimpleListCollectionViewController,Search
         
     }
     
-    override func didSelectItemAtIndexPath(indexPath: NSIndexPath){
+    override func didSelectItemAtIndexPath(_ indexPath: IndexPath){
         let channel = viewModel.channelList[indexPath.row]
         navigationController?.pushViewController(ViewControllerFactory.instantiateChannelDetailViewController(id:channel.channelId,title:channel.title), animated: true)
     }

@@ -6,13 +6,13 @@ class VideoListViewController: VideoCollectionViewController {
     var channelTitle:String!
 
     var viewModel:VideoListViewModel!
-    private let imageLoadingOperationQueue = NSOperationQueue()
+    fileprivate let imageLoadingOperationQueue = OperationQueue()
 
     override var emptyDataTitle:String{
         return NSLocalizedString("ChannelVideoEmptyData", comment: "")
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         EventTracker.trackViewContentView(viewName: "Channel Video", viewType: VideoListViewController.self, viewId: channelTitle)
@@ -27,7 +27,7 @@ class VideoListViewController: VideoCollectionViewController {
         return viewModel
     }
     
-    override func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
+    override func cell(_ collectionView: UICollectionView,indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(indexPath, type: VideoCellectionViewCell.self)
         let video = viewModel.videoList[indexPath.row]
         
@@ -48,7 +48,7 @@ class VideoListViewController: VideoCollectionViewController {
         return cell
     }
     
-    override func didSelectItemAtIndexPath(indexPath: NSIndexPath){
+    override func didSelectItemAtIndexPath(_ indexPath: IndexPath){
         let video = viewModel.videoList[indexPath.row]
         navigationController?.pushViewController(ViewControllerFactory.instantiateVideoDetailViewController(video.videoId), animated: true)
     }

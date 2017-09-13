@@ -9,16 +9,16 @@
 import Foundation
 
 
-class ChannelVideoListMergeOperation: NSOperation {
+class ChannelVideoListMergeOperation: Operation {
     
     var channelList: [Channel]?
     var videoDictionary: [String:[Video]]?
     var twtichStreamList: [TwitchStream]?
     var suggestionVideoList:[Video]?
     
-    private let completed:([Channel]?,[String:[TopItem]]?) -> Void
+    fileprivate let completed:([Channel]?,[String:[TopItem]]?) -> Void
     
-    init(completed:([Channel]?,[String:[TopItem]]?) -> Void){
+    init(completed:@escaping ([Channel]?,[String:[TopItem]]?) -> Void){
         self.completed = completed
     }
     
@@ -30,7 +30,7 @@ class ChannelVideoListMergeOperation: NSOperation {
             }
         }
         
-        guard let _ = videoDictionary ,channelList = channelList else {
+        guard let _ = videoDictionary ,let channelList = channelList else {
             completed(nil,nil)            
             return
         }
@@ -38,15 +38,15 @@ class ChannelVideoListMergeOperation: NSOperation {
         var allChannelList = channelList
         var allVideoDictionary = topItemDictionary
         
-        if let suggestionVideoList = suggestionVideoList where suggestionVideoList.count != 0 {
+        if let suggestionVideoList = suggestionVideoList, suggestionVideoList.count != 0 {
             let suggestionVideoListChannel = SuggestionVideoListChannel()
-            allChannelList.insert(suggestionVideoListChannel, atIndex: 0)
+            allChannelList.insert(suggestionVideoListChannel, at: 0)
             allVideoDictionary[suggestionVideoListChannel.id] = suggestionVideoList.map{ $0 as TopItem }
         }
         
         if let twitchStreamList = twtichStreamList {
             let twitchChannel = TwitchChannel()
-            allChannelList.insert(twitchChannel, atIndex: 0)
+            allChannelList.insert(twitchChannel, at: 0)
             allVideoDictionary[twitchChannel.id] = twitchStreamList.map{ $0 as TopItem }
         }        
         

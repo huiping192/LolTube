@@ -7,14 +7,14 @@
 //
 
 import Foundation
-import AsyncSwift
+import Async
 
 class VideoRelatedVideosViewModel: SimpleListCollectionViewModelProtocol {
     
     var videoList = [Video]()
     
-    private let videoId: String
-    private let youtubeService = YoutubeService()
+    fileprivate let videoId: String
+    fileprivate let youtubeService = YoutubeService()
     
     init(videoId:String){
         self.videoId = videoId
@@ -28,7 +28,7 @@ class VideoRelatedVideosViewModel: SimpleListCollectionViewModelProtocol {
         return videoList.count
     }
     
-    func update(success success: (() -> Void), failure: ((error:NSError) -> Void)){
+    func update(success: @escaping (() -> Void), failure: @escaping ((_ error:NSError) -> Void)){
         let successBlock:((RSSearchModel) -> Void) = {
             [weak self]videoModel in
             
@@ -44,13 +44,13 @@ class VideoRelatedVideosViewModel: SimpleListCollectionViewModelProtocol {
         youtubeService.relatedVideoList(videoId, success: successBlock, failure: failure)
     }
     
-    private func updateVideoDetail(videoList videoList: [Video], success: (() -> Void), failure: ((error:NSError) -> Void)? = nil) {
+    fileprivate func updateVideoDetail(videoList: [Video], success: @escaping (() -> Void), failure: ((_ error:NSError) -> Void)? = nil) {
         let videoIdList = videoList.map { $0.videoId! }
         
         let successBlock: ((RSVideoDetailModel) -> Void) = {
             videoDetailModel in
             
-            for (index, detailItem) in (videoDetailModel.items).enumerate() {
+            for (index, detailItem) in (videoDetailModel.items).enumerated() {
                 let video = videoList[index]
                 video.update(detailItem)
             }

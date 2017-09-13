@@ -25,7 +25,7 @@ class VideoDetailSegmentViewController: UIViewController {
     
     var viewModel: VideoDetailSegmentViewModel!
     
-    let imageLoadingOperationQueue: NSOperationQueue = NSOperationQueue()
+    let imageLoadingOperationQueue: OperationQueue = OperationQueue()
 
     
     override func viewDidLoad() {
@@ -34,7 +34,7 @@ class VideoDetailSegmentViewController: UIViewController {
         self.p_configureViews()
     }
     
-    func updateWithChannelId(channelId: String, channelTitle: String) {
+    func updateWithChannelId(_ channelId: String, channelTitle: String) {
         self.channelTitleLabel.text = channelTitle
         self.viewModel = VideoDetailSegmentViewModel(channelId: channelId)
         self.viewModel.updateWithSuccess({[weak self]() -> Void in
@@ -43,35 +43,35 @@ class VideoDetailSegmentViewController: UIViewController {
             }
             
             weakSelf.subscriberCountLabel.text = weakSelf.viewModel.subscriberCount
-            let imageOperation: NSOperation = UIImageView.asynLoadingImageWithUrlString(weakSelf.viewModel.channelThumbnailImageUrl, secondImageUrlString: nil, needBlackWhiteEffect: false, success: {(image: UIImage!) -> Void in
+            let imageOperation: Operation = UIImageView.asynLoadingImage(withUrlString: weakSelf.viewModel.channelThumbnailImageUrl, secondImageUrlString: nil, needBlackWhiteEffect: false, success: {(image: UIImage!) -> Void in
                 weakSelf.channelThumbnailImageView.image = image
             })
             weakSelf.imageLoadingOperationQueue.addOperation(imageOperation)
             let title: String = weakSelf.viewModel.isSubscribed ? NSLocalizedString("ChannelSubscribed",comment: "") : NSLocalizedString("ChannelUnsubscribe", comment: "")
-            weakSelf.channelRegisterButton.setTitle(title, forState: .Normal)
-            let buttonColor: UIColor = weakSelf.viewModel.isSubscribed ? UIColor.lightGrayColor() : weakSelf.view.tintColor
-            weakSelf.channelRegisterButton.setTitleColor(buttonColor, forState: .Normal)
+            weakSelf.channelRegisterButton.setTitle(title, for: UIControlState())
+            let buttonColor: UIColor = weakSelf.viewModel.isSubscribed ? UIColor.lightGray : weakSelf.view.tintColor
+            weakSelf.channelRegisterButton.setTitleColor(buttonColor, for: UIControlState())
             }, failure: {[weak self](error: NSError) -> Void in
                 self?.showError(error)
         })
     }
     
-    @IBAction func channelRegisterButtonTapped(button: UIButton) {
+    @IBAction func channelRegisterButtonTapped(_ button: UIButton) {
         self.viewModel.subscribeChannelWithSuccess({[weak self]() -> Void in
             guard let weakSelf = self else {
                 return
             }
             
             let title: String = weakSelf.viewModel.isSubscribed ? NSLocalizedString("ChannelSubscribed",comment: "") : NSLocalizedString("ChannelUnsubscribe",comment: "")
-            weakSelf.channelRegisterButton.setTitle(title, forState: .Normal)
-            let buttonColor: UIColor = weakSelf.viewModel.isSubscribed ? UIColor.lightGrayColor() : weakSelf.view.tintColor
-            weakSelf.channelRegisterButton.setTitleColor(buttonColor, forState: .Normal)
+            weakSelf.channelRegisterButton.setTitle(title, for: UIControlState())
+            let buttonColor: UIColor = weakSelf.viewModel.isSubscribed ? UIColor.lightGray : weakSelf.view.tintColor
+            weakSelf.channelRegisterButton.setTitleColor(buttonColor, for: UIControlState())
             }, failure: {[weak self](error: NSError) -> Void in
                 self?.showError(error)
         })
     }
     
-    @IBAction func channelViewTapped(recognizer: UIGestureRecognizer) {
+    @IBAction func channelViewTapped(_ recognizer: UIGestureRecognizer) {
         let channelDetailStoryboard: UIStoryboard = UIStoryboard(name: "ChannelDetail", bundle: nil)
         let channelDetailViewController: ChannelDetailViewController = channelDetailStoryboard.instantiateInitialViewController() as! ChannelDetailViewController
         channelDetailViewController.channelId = self.viewModel.channelId
@@ -82,23 +82,23 @@ class VideoDetailSegmentViewController: UIViewController {
     func p_configureViews() {
         self.channelThumbnailImageView.backgroundColor = UIColor(red: 239.0 / 255.0, green: 239.0 / 255.0, blue: 244.0 / 255.0, alpha: 1.0)
         
-        self.videoSegmentedControl.setTitle(NSLocalizedString("VideoDetailInfo",comment: "Info"), forSegmentAtIndex: 0)
-        self.videoSegmentedControl.setTitle(NSLocalizedString("VideoDietalSuggestions",comment: "Suggestions"), forSegmentAtIndex: 1)
+        self.videoSegmentedControl.setTitle(NSLocalizedString("VideoDetailInfo",comment: "Info"), forSegmentAt: 0)
+        self.videoSegmentedControl.setTitle(NSLocalizedString("VideoDietalSuggestions",comment: "Suggestions"), forSegmentAt: 1)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         if (segue.identifier == "infoEmbed") {
-            let infoViewController: VideoInfoViewController = segue.destinationViewController as! VideoInfoViewController
+            let infoViewController: VideoInfoViewController = segue.destination as! VideoInfoViewController
             infoViewController.videoId = self.videoId
             self.infoViewController = infoViewController
         }
     }
     
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         let currentTraitCollection: UITraitCollection = self.traitCollection
-        if currentTraitCollection.containsTraitsInCollection(UITraitCollection(horizontalSizeClass:.Regular)) {
+        if currentTraitCollection.containsTraits(in: UITraitCollection(horizontalSizeClass:.regular)) {
             if self.videoSegmentedControl.selectedSegmentIndex == 1 {
                 self.videoSegmentedControl.selectedSegmentIndex = 0
                 self.swapFromViewController(self.relatedVideosViewController, toViewController: self.infoViewController)
@@ -112,18 +112,18 @@ class VideoDetailSegmentViewController: UIViewController {
         self.relatedVideosViewController = nil
     }
     
-    @IBAction func videoDetailSegmentedControlValueChanged(segmentedControl: UISegmentedControl) {
+    @IBAction func videoDetailSegmentedControlValueChanged(_ segmentedControl: UISegmentedControl) {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             if self.infoViewController == nil {
-                self.infoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("videoInfo") as? VideoInfoViewController
+                self.infoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "videoInfo") as? VideoInfoViewController
                 self.infoViewController?.videoId = self.videoId
             }
             self.swapFromViewController(self.relatedVideosViewController, toViewController: self.infoViewController)
             
         case 1:
             if self.relatedVideosViewController == nil {
-                self.relatedVideosViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("relatedVideos") as? VideoRelatedVideosViewController
+                self.relatedVideosViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "relatedVideos") as? VideoRelatedVideosViewController
                 self.relatedVideosViewController?.videoId = self.videoId 
             }
             self.swapFromViewController(self.infoViewController, toViewController: self.relatedVideosViewController)
@@ -133,20 +133,20 @@ class VideoDetailSegmentViewController: UIViewController {
         
     }
     
-    func swapFromViewController(fromViewController: UIViewController?, toViewController: UIViewController?) {
-        guard let fromViewController = fromViewController, toViewController = toViewController else {
+    func swapFromViewController(_ fromViewController: UIViewController?, toViewController: UIViewController?) {
+        guard let fromViewController = fromViewController, let toViewController = toViewController else {
             return
         }
         
-        fromViewController.willMoveToParentViewController(nil)
+        fromViewController.willMove(toParentViewController: nil)
         self.addChildViewController(toViewController)
         fromViewController.view!.removeFromSuperview()
         self.addConstraintsForViewController(toViewController)
         fromViewController.removeFromParentViewController()
-        toViewController.didMoveToParentViewController(self)
+        toViewController.didMove(toParentViewController: self)
     }
     
-    func addConstraintsForViewController(viewController: UIViewController) {
+    func addConstraintsForViewController(_ viewController: UIViewController) {
         let containerView: UIView = self.segmentedContainerView
         let childView: UIView = viewController.view!
         childView.translatesAutoresizingMaskIntoConstraints = false
@@ -154,7 +154,7 @@ class VideoDetailSegmentViewController: UIViewController {
         
         let views = ["childView": childView]
 
-        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[childView]|", options: [], metrics: nil, views: views))
-        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[childView]|", options: [], metrics: nil, views: views))
+        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[childView]|", options: [], metrics: nil, views: views))
+        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[childView]|", options: [], metrics: nil, views: views))
     }
 }

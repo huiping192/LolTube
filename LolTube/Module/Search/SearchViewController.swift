@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-protocol Searchable {
+protocol Searchable: class {
     var searchText:String{
         get
         set
@@ -10,42 +10,42 @@ protocol Searchable {
 
 class SearchViewController: UIViewController {
     
-    @IBOutlet private weak var searchSuggestionView:UIView!
-    @IBOutlet private weak var searchContentView:UIView!
+    @IBOutlet fileprivate weak var searchSuggestionView:UIView!
+    @IBOutlet fileprivate weak var searchContentView:UIView!
     
     let searchController = UISearchController(searchResultsController: nil)
     
-    @IBOutlet private weak var searchTypeSegmentedControl:UISegmentedControl!
+    @IBOutlet fileprivate weak var searchTypeSegmentedControl:UISegmentedControl!
     
-    @IBOutlet private weak var containView:UIView!
+    @IBOutlet fileprivate weak var containView:UIView!
     
-    private var searchVideoListViewController:SearchVideoListViewController?
-    private var searchChannelListViewController:SearchChannelListViewController?
-    private var searchPlaylistsViewController:SearchPlaylistsViewController?
+    fileprivate var searchVideoListViewController:SearchVideoListViewController?
+    fileprivate var searchChannelListViewController:SearchChannelListViewController?
+    fileprivate var searchPlaylistsViewController:SearchPlaylistsViewController?
     
-    private var currentViewController:UIViewController?
+    fileprivate var currentViewController:UIViewController?
     
-    private var searchBar:UISearchBar!
+    fileprivate var searchBar:UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchTypeSegmentedControl.setTitle(NSLocalizedString("Video", comment: ""), forSegmentAtIndex: 0)
-        searchTypeSegmentedControl.setTitle(NSLocalizedString("Channel", comment: ""), forSegmentAtIndex: 1)
-        searchTypeSegmentedControl.setTitle(NSLocalizedString("Playlist", comment: ""), forSegmentAtIndex: 2)
+        searchTypeSegmentedControl.setTitle(NSLocalizedString("Video", comment: ""), forSegmentAt: 0)
+        searchTypeSegmentedControl.setTitle(NSLocalizedString("Channel", comment: ""), forSegmentAt: 1)
+        searchTypeSegmentedControl.setTitle(NSLocalizedString("Playlist", comment: ""), forSegmentAt: 2)
 
         
-        if traitCollection.horizontalSizeClass == .Regular && traitCollection.verticalSizeClass == .Regular {
+        if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
             navigationItem.title = NSLocalizedString("Search", comment: "")
             let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 260, height: 44.0))
             searchBar.delegate = self
-            searchBar.searchBarStyle = .Minimal
+            searchBar.searchBarStyle = .minimal
             navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBar)
             self.searchBar = searchBar
         } else {
             searchController.searchBar.delegate = self
             searchController.searchBar.placeholder = NSLocalizedString("Search", comment: "")
-            searchController.searchBar.searchBarStyle = .Minimal
+            searchController.searchBar.searchBarStyle = .minimal
             searchController.hidesNavigationBarDuringPresentation = false
             searchController.dimsBackgroundDuringPresentation = false
             navigationItem.titleView = searchController.searchBar
@@ -55,15 +55,15 @@ class SearchViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         EventTracker.trackViewContentView(viewName:"Search", viewType:SearchViewController.self )
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
-        coordinator.animateAlongsideTransition({
+        coordinator.animate(alongsideTransition: {
             [weak self]_ in
             self?.searchVideoListViewController?.collectionView.collectionViewLayout.invalidateLayout()
             self?.searchChannelListViewController?.collectionView.collectionViewLayout.invalidateLayout()
@@ -72,91 +72,91 @@ class SearchViewController: UIViewController {
         }, completion: nil)
     }
     
-    private enum SearchType:Int {
-        case Video = 0
-        case Channel
-        case Playlist
+    fileprivate enum SearchType:Int {
+        case video = 0
+        case channel
+        case playlist
     }
     
-    private func configureSearchVideoListViewController(searchText:String){
+    fileprivate func configureSearchVideoListViewController(_ searchText:String){
         searchVideoListViewController = configureChildViewController(searchVideoListViewController){
             return ViewControllerFactory.instantiateSearchVideoListViewController(searchText)
         }
         searchVideoListViewController?.searchText = searchText
     }
     
-    private func configureSearchChannelListViewController(searchText:String){
+    fileprivate func configureSearchChannelListViewController(_ searchText:String){
         searchChannelListViewController = configureChildViewController(searchChannelListViewController){
             return ViewControllerFactory.instantiateSearchChannelListViewController(searchText)
         }
         searchChannelListViewController?.searchText = searchText
     }
     
-    private func configureSearchPlaylistsViewController(searchText:String){
+    fileprivate func configureSearchPlaylistsViewController(_ searchText:String){
         searchPlaylistsViewController = configureChildViewController(searchPlaylistsViewController){
             return ViewControllerFactory.instantiateSearchPlaylistsViewController(searchText)
         }
         searchPlaylistsViewController?.searchText = searchText
     }
     
-    private func configureChildViewController<T:UIViewController>(childViewController:T?,@noescape initBlock:(() -> T)) -> T{
+    fileprivate func configureChildViewController<T:UIViewController>(_ childViewController:T?,initBlock: (() -> T)) -> T{
         let realChildViewController = childViewController ?? initBlock()
         swapToChildViewController(realChildViewController)
         return realChildViewController
     }
     
-    private func swapToChildViewController(childViewController:UIViewController){
+    fileprivate func swapToChildViewController(_ childViewController:UIViewController){
         if let currentViewController = currentViewController {
             removeViewController(currentViewController)
         }
         
         addConstraintsForViewController(childViewController)
         addChildViewController(childViewController)
-        childViewController.didMoveToParentViewController(self)
+        childViewController.didMove(toParentViewController: self)
         currentViewController = childViewController
     }
     
-    private func removeViewController(viewController:UIViewController?){
+    fileprivate func removeViewController(_ viewController:UIViewController?){
         guard let viewController = viewController else {
             return
         }
-        viewController.willMoveToParentViewController(nil)
+        viewController.willMove(toParentViewController: nil)
         viewController.view.removeFromSuperview()
         viewController.removeFromParentViewController()
     }
     
-    private func addConstraintsForViewController(viewController:UIViewController){
+    fileprivate func addConstraintsForViewController(_ viewController:UIViewController){
         let childView = viewController.view
-        childView.translatesAutoresizingMaskIntoConstraints = false
-        containView.addSubview(childView)
-        containView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[childView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["childView":childView] as [String:AnyObject]))
-        containView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[childView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["childView":childView] as [String:AnyObject]))
+        childView?.translatesAutoresizingMaskIntoConstraints = false
+        containView.addSubview(childView!)
+        containView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[childView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["childView":childView] as [String:AnyObject]))
+        containView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[childView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["childView":childView] as [String:AnyObject]))
     }
     
-    @IBAction func segmentedControlValueChanged(segmentedControl:UISegmentedControl) {
+    @IBAction func segmentedControlValueChanged(_ segmentedControl:UISegmentedControl) {
         searchBar.resignFirstResponder()
 
         guard let searchText = searchBar.text , let searchType = SearchType(rawValue:segmentedControl.selectedSegmentIndex) else {
             return
         }
         switch searchType {
-        case .Video:
+        case .video:
             configureSearchVideoListViewController(searchText)
-        case .Channel:
+        case .channel:
             configureSearchChannelListViewController(searchText)
-        case .Playlist:
+        case .playlist:
             configureSearchPlaylistsViewController(searchText)
         }
     }
     
-    @IBAction func suggestionWardTapped(suggestionWardButton:UIButton) {
+    @IBAction func suggestionWardTapped(_ suggestionWardButton:UIButton) {
         searchBar.resignFirstResponder()
-        let searchText = suggestionWardButton.titleForState(.Normal)
+        let searchText = suggestionWardButton.title(for: UIControlState())
         searchBar.text = searchText
         search(searchText)
     }
     
-    private func search(searchText:String?){
+    fileprivate func search(_ searchText:String?){
         guard let searchText = searchText else {
             return
         }
@@ -170,27 +170,27 @@ class SearchViewController: UIViewController {
             configureSearchVideoListViewController(searchText)
         }
         
-        let childVcs:[UIViewController?] = [searchVideoListViewController,searchChannelListViewController,searchPlaylistsViewController]
+        var childVcs:[UIViewController?] = [searchVideoListViewController,searchChannelListViewController,searchPlaylistsViewController]
         childVcs.map{$0 as? Searchable}.forEach{
-            (var searchable) -> Void in
+            (searchable) -> Void in
             searchable?.searchText = searchText
         }
     }
 }
 
 extension SearchViewController: UISearchBarDelegate{
-    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.showsCancelButton = true
         return true
     }
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
         
         search(searchBar.text)
     }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
         searchBar.text = nil

@@ -1,15 +1,15 @@
 import Foundation
 import UIKit
 import DZNEmptyDataSet
-import AsyncSwift
+import Async
 
 protocol SimpleListCollectionViewControllerDelegate:class {
     
     func collectionViewModel() -> SimpleListCollectionViewModelProtocol
     
-    func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell
+    func cell(_ collectionView: UICollectionView,indexPath: IndexPath) -> UICollectionViewCell
     
-    func didSelectItemAtIndexPath(indexPath: NSIndexPath)
+    func didSelectItemAtIndexPath(_ indexPath: IndexPath)
     
     var emptyDataTitle:String{
         get
@@ -25,20 +25,20 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
         }
     }
     
-    private weak var delegate: SimpleListCollectionViewControllerDelegate!
+    fileprivate weak var delegate: SimpleListCollectionViewControllerDelegate!
 
-    private var _viewModel: SimpleListCollectionViewModelProtocol!
+    fileprivate var _viewModel: SimpleListCollectionViewModelProtocol!
    
     enum DataSourceState {
-        case Ready
-        case Loading
-        case PartLoaded
-        case FullLoaded
-        case EmptyData
-        case LoadFailure
+        case ready
+        case loading
+        case partLoaded
+        case fullLoaded
+        case emptyData
+        case loadFailure
     }
 
-    var dataSourceState: DataSourceState = .Ready
+    var dataSourceState: DataSourceState = .ready
 
     var emptyDataTitle:String{
         return ""
@@ -46,7 +46,7 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
     
     override func viewDidLoad() {
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SimpleListCollectionViewController.preferredContentSizeChanged(_:)), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SimpleListCollectionViewController.preferredContentSizeChanged(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
         
         delegate = self
         collectionView.emptyDataSetSource = self
@@ -57,13 +57,13 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
     }
     
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         if let collectionView = collectionView {
             collectionView.collectionViewLayout.invalidateLayout()
         }
@@ -75,7 +75,7 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
     }
     
     func loadData() {
-        dataSourceState = .Loading
+        dataSourceState = .loading
         startLoadingAnimation()
         _viewModel.update(
             success: {
@@ -84,33 +84,33 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
                     return
                 }
                 if weakSelf._viewModel.loadedNumberOfItems() == 0 {
-                    weakSelf.dataSourceState = .EmptyData
+                    weakSelf.dataSourceState = .emptyData
                 } else if weakSelf._viewModel.loadedNumberOfItems() == weakSelf._viewModel.allNumberOfItems(){
-                    weakSelf.dataSourceState = .FullLoaded
+                    weakSelf.dataSourceState = .fullLoaded
                 } else {
-                    weakSelf.dataSourceState = .PartLoaded
+                    weakSelf.dataSourceState = .partLoaded
                 }
                 
                 weakSelf.collectionView.alpha = 0.0;
-                weakSelf.collectionView.setContentOffset(CGPointZero, animated: false)
+                weakSelf.collectionView.setContentOffset(CGPoint.zero, animated: false)
                 weakSelf.stopLoadingAnimation()
                 weakSelf.collectionView.reloadData()
 
                 Async.main {
-                    UIView.animateWithDuration(0.25) {
+                    UIView.animate(withDuration: 0.25) {
                         [weak self] in
                         self?.collectionView.alpha = 1.0;
                     }
                 }
             }, failure: {
                 [weak self] error in
-                self?.dataSourceState = .LoadFailure
+                self?.dataSourceState = .loadFailure
                 self?.showError(error)
                 self?.stopLoadingAnimation()
             })
     }
     
-    func preferredContentSizeChanged(notification: NSNotification) {
+    func preferredContentSizeChanged(_ notification: Notification) {
         collectionView.reloadData()
     }
     
@@ -119,25 +119,25 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
         return SimpleListCollectionViewModel()
     }
     
-    func cell(collectionView: UICollectionView,indexPath: NSIndexPath) -> UICollectionViewCell{
+    func cell(_ collectionView: UICollectionView,indexPath: IndexPath) -> UICollectionViewCell{
         return UICollectionViewCell()
     }
     
-    func didSelectItemAtIndexPath(indexPath: NSIndexPath){
+    func didSelectItemAtIndexPath(_ indexPath: IndexPath){
         
     }
 }
 
 extension SimpleListCollectionViewController: UICollectionViewDataSource {
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let itemNumber = _viewModel.loadedNumberOfItems()
-        return dataSourceState == .PartLoaded ? itemNumber + 1 : itemNumber
+        return dataSourceState == .partLoaded ? itemNumber + 1 : itemNumber
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard indexPath.row != _viewModel.loadedNumberOfItems() else {
-            return collectionView.dequeueReusableCell(indexPath, type: LoadingCollectionViewCell.self)
+            return collectionView.dequeueReusableCell( indexPath, type: LoadingCollectionViewCell.self)
         }
         
         return delegate.cell(collectionView,indexPath:indexPath)
@@ -146,7 +146,7 @@ extension SimpleListCollectionViewController: UICollectionViewDataSource {
 
 extension SimpleListCollectionViewController: UICollectionViewDelegate {
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard indexPath.row != _viewModel.loadedNumberOfItems() else {
             return
         }
@@ -154,69 +154,69 @@ extension SimpleListCollectionViewController: UICollectionViewDelegate {
         delegate.didSelectItemAtIndexPath(indexPath)
     }
     
-    func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath)
-        cell?.contentView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.contentView.backgroundColor = UIColor.groupTableViewBackground
     }
     
-    func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath)
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
         cell?.contentView.backgroundColor = nil
     }
     
-    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath){
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath){
         guard indexPath.row == _viewModel.loadedNumberOfItems() else {
             return
         }
         loadNextPageData()
     }
     
-    private func loadNextPageData(){
+    fileprivate func loadNextPageData(){
         
-        let currentVideoCount = collectionView.numberOfItemsInSection(0) - 1
-        guard dataSourceState != .Loading &&  currentVideoCount != 0 else {
+        let currentVideoCount = collectionView.numberOfItems(inSection: 0) - 1
+        guard dataSourceState != .loading &&  currentVideoCount != 0 else {
             return
         }
         
-        dataSourceState = .Loading
+        dataSourceState = .loading
         
         _viewModel.update(success: {
             [weak self] in
             guard let weakSelf = self else {
                 return
             }
-            weakSelf.dataSourceState = weakSelf._viewModel.loadedNumberOfItems() == weakSelf._viewModel.allNumberOfItems() ? .FullLoaded : .PartLoaded
+            weakSelf.dataSourceState = weakSelf._viewModel.loadedNumberOfItems() == weakSelf._viewModel.allNumberOfItems() ? .fullLoaded : .partLoaded
             
             let newVideoCount = weakSelf._viewModel.loadedNumberOfItems() - currentVideoCount
             guard newVideoCount > 0 else {                
                 return
             }
             
-            var indexPaths = [NSIndexPath]()
+            var indexPaths = [IndexPath]()
             
             for i in currentVideoCount ..< newVideoCount + currentVideoCount {
-                indexPaths.append(NSIndexPath(forRow: i, inSection: 0))
+                indexPaths.append(IndexPath(row: i, section: 0))
             }
             
-            let deleteIndexPaths = [NSIndexPath(forRow: currentVideoCount, inSection: 0)]
+            let deleteIndexPaths = [IndexPath(row: currentVideoCount, section: 0)]
             
             weakSelf.collectionView.performBatchUpdates({
                 [weak self] in
-                if self?.dataSourceState == .FullLoaded {
-                    self?.collectionView.deleteItemsAtIndexPaths(deleteIndexPaths)
+                if self?.dataSourceState == .fullLoaded {
+                    self?.collectionView.deleteItems(at: deleteIndexPaths)
                 }
                 
-                self?.collectionView.insertItemsAtIndexPaths(indexPaths)
+                self?.collectionView.insertItems(at: indexPaths)
 
                 }, completion: {
                     [weak self] _ in
-                    self?.dataSourceState = .PartLoaded
+                    self?.dataSourceState = .partLoaded
                 })
             
             },failure:{
                 [weak self]error in
                 self?.showError(error)
-                self?.dataSourceState = .LoadFailure
+                self?.dataSourceState = .loadFailure
             }
         )
     }
@@ -226,14 +226,14 @@ extension SimpleListCollectionViewController: UICollectionViewDelegateFlowLayout
     
     var cellHeight: CGFloat {
         switch (traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
-        case (.Regular, .Regular):
+        case (.regular, .regular):
             return 120.0
         default:
             return 100.0
         }
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard indexPath.row != _viewModel.loadedNumberOfItems() else {
             return CGSize(width: collectionView.frame.width, height: 60.0)
         }
@@ -245,7 +245,7 @@ extension SimpleListCollectionViewController: UICollectionViewDelegateFlowLayout
     
     var cellCount: Int {
         switch (traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
-        case (.Compact, .Regular):
+        case (.compact, .regular):
             return 1
         default:
             return 2
@@ -263,19 +263,19 @@ private class SimpleListCollectionViewModel: SimpleListCollectionViewModelProtoc
         return 0
     }
     
-    func update(success success: (() -> Void), failure: ((error:NSError) -> Void)){
+    func update(success: @escaping (() -> Void), failure: @escaping ((_ error:NSError) -> Void)){
         
     }
 }
 
 extension SimpleListCollectionViewController: DZNEmptyDataSetSource {
-    func imageForEmptyDataSet(scrollView:UIScrollView!) -> UIImage! {
+    func image(forEmptyDataSet scrollView:UIScrollView!) -> UIImage! {
         return UIImage(named: "Empty_Data")
     }
     
-    func titleForEmptyDataSet(scrollView:UIScrollView!) -> NSAttributedString! {
+    func title(forEmptyDataSet scrollView:UIScrollView!) -> NSAttributedString! {
         let text = emptyDataTitle
-        let attributes = [NSFontAttributeName:UIFont.boldSystemFontOfSize(18),NSForegroundColorAttributeName:UIColor.darkGrayColor()]
+        let attributes = [NSFontAttributeName:UIFont.boldSystemFont(ofSize: 18),NSForegroundColorAttributeName:UIColor.darkGray]
         
         return NSAttributedString(string: text, attributes: attributes)
     }
@@ -283,23 +283,23 @@ extension SimpleListCollectionViewController: DZNEmptyDataSetSource {
 
 extension SimpleListCollectionViewController: DZNEmptyDataSetDelegate {
     
-    func emptyDataSetShouldDisplay(scrollView:UIScrollView!) -> Bool{
-        return dataSourceState == .EmptyData
+    func emptyDataSetShouldDisplay(_ scrollView:UIScrollView!) -> Bool{
+        return dataSourceState == .emptyData
     }
 }
 
 
 extension SimpleListCollectionViewController {
-    override func fetchNewData(completionHandler: (UIBackgroundFetchResult) -> Void) {
+    override func fetchNewData(_ completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         _viewModel.update(success: {
             [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.collectionView.reloadData(){
-                completionHandler(.NewData) 
+                completionHandler(.newData) 
             }
             }, failure: {
                 _ in
-                completionHandler(.Failed)
+                completionHandler(.failed)
             })
         
     }

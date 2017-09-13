@@ -11,22 +11,22 @@ import Foundation
 
 class SuggestionVideoListLoadOperation : GroupOperation {
     
-    private let videoService = VideoService.sharedInstance
+    fileprivate let videoService = VideoService.sharedInstance
     
-    private var videoList: [Video] = []
-    private var error: NSError?
+    fileprivate var videoList: [Video] = []
+    fileprivate var error: NSError?
 
-    private let success: [Video] -> Void
-    private let failure: ((NSError) -> Void)?
+    fileprivate let success: ([Video]) -> Void
+    fileprivate let failure: ((NSError) -> Void)?
     
-    init(success: ([Video]) -> Void, failure: ((NSError) -> Void)?){
+    init(success: @escaping ([Video]) -> Void, failure: ((NSError) -> Void)?){
         self.success = success
         self.failure = failure
         
         super.init()
     }
     
-    override var subOperations: [NSOperation]? {
+    override var subOperations: [Operation]? {
         guard let historyList = videoService.historyVideoIdList() else {
             return nil;
         }

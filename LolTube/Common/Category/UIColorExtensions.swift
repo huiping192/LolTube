@@ -1,7 +1,7 @@
 import Foundation
 
 extension UIColor {
-    func equal(color:UIColor,tolerance:CGFloat) -> Bool {
+    func equal(_ color:UIColor,tolerance:CGFloat) -> Bool {
         var r1 = CGFloat(0)
         var g1 = CGFloat(0)
         var b1 = CGFloat(0)

@@ -11,11 +11,11 @@ import UIKit
 
 class TwitchStreamViewController: UIViewController {
     
-    @IBOutlet private weak var webView:UIWebView!{
+    @IBOutlet fileprivate weak var webView:UIWebView!{
         didSet{
             webView.allowsInlineMediaPlayback = true
             webView.mediaPlaybackRequiresUserAction = false
-            webView.scrollView.scrollEnabled = false
+            webView.scrollView.isScrollEnabled = false
             webView.scalesPageToFit = false
             webView.delegate = self
             if #available(iOS 9, *) {
@@ -24,18 +24,18 @@ class TwitchStreamViewController: UIViewController {
         }
     }
     
-    @IBOutlet private weak var chatWebView:UIWebView!
+    @IBOutlet fileprivate weak var chatWebView:UIWebView!
     
-    @IBOutlet private weak var nameLabel:UILabel!
-    @IBOutlet private weak var titleLabel:UILabel!
-    @IBOutlet private weak var viewersLabel:UILabel!
-    @IBOutlet private weak var viewCountLabel:UILabel!
-    @IBOutlet private weak var followersLabel:UILabel!
-    @IBOutlet private weak var thumbnailImageView:UIImageView!
-    @IBOutlet private weak var loadingIndicatorView:UIActivityIndicatorView!
+    @IBOutlet fileprivate weak var nameLabel:UILabel!
+    @IBOutlet fileprivate weak var titleLabel:UILabel!
+    @IBOutlet fileprivate weak var viewersLabel:UILabel!
+    @IBOutlet fileprivate weak var viewCountLabel:UILabel!
+    @IBOutlet fileprivate weak var followersLabel:UILabel!
+    @IBOutlet fileprivate weak var thumbnailImageView:UIImageView!
+    @IBOutlet fileprivate weak var loadingIndicatorView:UIActivityIndicatorView!
     
     
-    let operationQueue = NSOperationQueue()
+    let operationQueue = OperationQueue()
     
     var stream:TwitchStream!
     
@@ -57,36 +57,36 @@ class TwitchStreamViewController: UIViewController {
         operationQueue.addOperation(imageLoadingOperation)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         loadWebView(self.webView, fileName: "Twitch-iframe-player")
     }
     
-    private func loadWebView(webView:UIWebView,fileName:String){
-        let htmlTemplatePath = NSBundle.mainBundle().pathForResource(fileName, ofType: "html")
-        let htmlTemplate = try! NSString(contentsOfFile: htmlTemplatePath!, encoding: NSUTF8StringEncoding)
+    fileprivate func loadWebView(_ webView:UIWebView,fileName:String){
+        let htmlTemplatePath = Bundle.main.path(forResource: fileName, ofType: "html")
+        let htmlTemplate = try! NSString(contentsOfFile: htmlTemplatePath!, encoding: String.Encoding.utf8.rawValue)
         let playerSize = self.playerSize()
         let embedHTML = NSString(format: htmlTemplate, playerSize.width, playerSize.height ,stream.name)
         webView.loadHTMLString(embedHTML as String, baseURL: nil)
     }
 
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-        coordinator.animateAlongsideTransition(nil, completion: {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: nil, completion: {
             [weak self]_ in
             guard let strongSelf = self else {
                 return
             }
             
             let playerSize = strongSelf.playerSize()
-            strongSelf.webView.stringByEvaluatingJavaScriptFromString("document.getElementById('player').width = '\(playerSize.width)'")
-            strongSelf.webView.stringByEvaluatingJavaScriptFromString("document.getElementById('player').height = '\(playerSize.height)'")
+            strongSelf.webView.stringByEvaluatingJavaScript(from: "document.getElementById('player').width = '\(playerSize.width)'")
+            strongSelf.webView.stringByEvaluatingJavaScript(from: "document.getElementById('player').height = '\(playerSize.height)'")
             
             })
     }
     
-    private func playerSize() -> CGSize {
+    fileprivate func playerSize() -> CGSize {
         let width:CGFloat
         let height:CGFloat
         
@@ -106,14 +106,14 @@ class TwitchStreamViewController: UIViewController {
 }
 
 extension TwitchStreamViewController: UIWebViewDelegate {
-    func webViewDidStartLoad(webView: UIWebView) {
-        if !loadingIndicatorView.isAnimating() {
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        if !loadingIndicatorView.isAnimating {
             loadingIndicatorView.startAnimating()
         }
     }
     
-    func webViewDidFinishLoad(webView: UIWebView){
-        if loadingIndicatorView.isAnimating() {
+    func webViewDidFinishLoad(_ webView: UIWebView){
+        if loadingIndicatorView.isAnimating {
             loadingIndicatorView.stopAnimating()
         }
     }

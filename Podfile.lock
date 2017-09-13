@@ -20,8 +20,8 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - AsyncSwift (1.4.2)
-  - Cartography (0.7.0)
+  - AsyncSwift (2.0.1)
+  - Cartography (1.0.1)
   - DZNEmptyDataSet (1.6.1)
   - Google/Analytics (1.0.7):
     - Google/Core
@@ -43,28 +43,28 @@ PODS:
   - OHHTTPStubs (3.1.6):
     - OHHTTPStubs/Core (= 3.1.6)
   - OHHTTPStubs/Core (3.1.6)
-  - Quick (0.9.3)
+  - Quick (1.1.0)
   - SDWebImage (3.7.1):
     - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
-  - Siren (0.6.0)
+  - Siren (2.0.8)
   - TSMessages (0.9.13):
     - HexColors (~> 2.3.0)
   - XCDYouTubeKit (2.3.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
-  - AsyncSwift
-  - Cartography (~> 0.7)
+  - AsyncSwift (~> 2.0.1)
+  - Cartography (~> 1.0.0)
   - DZNEmptyDataSet
   - Google/Analytics (~> 1.0.0)
   - JSONModel (~> 1.0.1)
-  - Nimble (~> 4.1.0)
+  - Nimble
   - OCMock (~> 3.1.1)
   - OHHTTPStubs (~> 3.1.5)
-  - Quick (~> 0.9.3)
+  - Quick (~> 1.1.0)
   - SDWebImage (~> 3.7.0)
-  - Siren
+  - Siren (~> 2.0.8)
   - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
   - XCDYouTubeKit (~> 2.3.1)
 
@@ -79,10 +79,10 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: 41d45d2c14219af0fa5addf3cfd433a002c13c9f
-  AsyncSwift: 3316df38ee85d6b01ede507d682d92fb5511504e
-  Cartography: dd6044b6fe352252f68b648df5bff47841e591cc
+  AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
+  Cartography: c1460e99395b824d9d75360b0382faeb0b33dcd7
   DZNEmptyDataSet: 3d31c27758230f03c71199f8c522bcfa99fba16c
-  Google: 875f5a8ade86dd02e36586e4a54814843938c7f6
+  Google: 8be107e3b4bbb6889ebf1f64cdd92cb87dc17a62
   GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
   GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
   GoogleSymbolUtilities: a7b0feed1fe667c8d5e647177938d0ecd62d6948
@@ -92,12 +92,12 @@ SPEC CHECKSUMS:
   Nimble: 97a0a4cae5124c117115634b2d055d8c97d0af19
   OCMock: a73f69963a8a542b0b343e2617650e4dca0cbbc2
   OHHTTPStubs: b671969016b4c6f5ee3c26080c81114ba82e0710
-  Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
+  Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
-  Siren: 41c7c0ed8cf10e5a7a30e5511160d584a2ae871d
+  Siren: b7138a4979510adcdba52ec5e5048ff650df473d
   TSMessages: 6e403b790139636c15ab4f51946537095e03e79c
   XCDYouTubeKit: 80e9169b644acf4e67979142f789d9e7e9e15784
 
-PODFILE CHECKSUM: a975702c2d42dce88835be2daaebc305b0544296
+PODFILE CHECKSUM: 9f421728002c1101bb28f41a5b95c073856b3bf5
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1

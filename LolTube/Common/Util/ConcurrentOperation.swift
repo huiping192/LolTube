@@ -1,18 +1,18 @@
 import Foundation
 
-class ConcurrentOperation: NSOperation {
+class ConcurrentOperation: Operation {
     
     // MARK: - Types
     
     enum State {
-        case Ready, Executing, Finished
+        case ready, executing, finished
         func keyPath() -> String {
             switch self {
-            case Ready:
+            case .ready:
                 return "isReady"
-            case Executing:
+            case .executing:
                 return "isExecuting"
-            case Finished:
+            case .finished:
                 return "isFinished"
             }
         }
@@ -20,32 +20,32 @@ class ConcurrentOperation: NSOperation {
     
     // MARK: - Properties
     
-    var state = State.Ready {
+    var state = State.ready {
         willSet {
-            willChangeValueForKey(newValue.keyPath())
-            willChangeValueForKey(state.keyPath())
+            willChangeValue(forKey: newValue.keyPath())
+            willChangeValue(forKey: state.keyPath())
         }
         didSet {
-            didChangeValueForKey(oldValue.keyPath())
-            didChangeValueForKey(state.keyPath())
+            didChangeValue(forKey: oldValue.keyPath())
+            didChangeValue(forKey: state.keyPath())
         }
     }
     
     // MARK: - NSOperation
     
-    override var ready: Bool {
-        return super.ready && state == .Ready
+    override var isReady: Bool {
+        return super.isReady && state == .ready
     }
     
-    override var executing: Bool {
-        return state == .Executing
+    override var isExecuting: Bool {
+        return state == .executing
     }
     
-    override var finished: Bool {
-        return state == .Finished
+    override var isFinished: Bool {
+        return state == .finished
     }
     
-    override var asynchronous: Bool {
+    override var isAsynchronous: Bool {
         return true
     }
     

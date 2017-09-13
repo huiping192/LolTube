@@ -7,6 +7,30 @@
 //
 
 import Foundation
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
 
 let kPlayFinishedVideoIdsKey: String = "playFinishedVideoIds"
 
@@ -15,96 +39,96 @@ let kHistoryVideoIdsKey: String = "historyVideoIds"
 
 class VideoService {
     
-    let kDiffPlaybackTime: NSTimeInterval = 5.0
+    let kDiffPlaybackTime: TimeInterval = 5.0
     
     let kMaxItemCount: Int = 49
     
-    var videoDictionary: [String : NSTimeInterval]?
+    var videoDictionary: [String : TimeInterval]?
     var videoIdList: [String]?
     
     static let sharedInstance = VideoService()
     
     func configure() {
         
-        let userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let userDefaults: UserDefaults = UserDefaults.standard
         
-        self.videoDictionary = userDefaults.dictionaryForKey(kPlayFinishedVideoIdsKey) as? [String : NSTimeInterval] 
+        self.videoDictionary = userDefaults.dictionary(forKey: kPlayFinishedVideoIdsKey) as? [String : TimeInterval] 
         if self.videoDictionary == nil{
-            let cloudStore: NSUbiquitousKeyValueStore = NSUbiquitousKeyValueStore.defaultStore()
-            self.videoDictionary = cloudStore.dictionaryForKey( kPlayFinishedVideoIdsKey) as? [String : NSTimeInterval]
+            let cloudStore: NSUbiquitousKeyValueStore = NSUbiquitousKeyValueStore.default()
+            self.videoDictionary = cloudStore.dictionary( forKey: kPlayFinishedVideoIdsKey) as? [String : TimeInterval]
             if self.videoDictionary == nil {
-                self.videoDictionary = [String : NSTimeInterval]()
+                self.videoDictionary = [String : TimeInterval]()
             }
         }
-        self.videoIdList = userDefaults.stringArrayForKey(kHistoryVideoIdsKey)
+        self.videoIdList = userDefaults.stringArray(forKey: kHistoryVideoIdsKey)
         if self.videoIdList == nil {
             self.videoIdList = [String]()
         }
     }
     
-    func isPlayFinishedWithVideoId(videoId: String) -> Bool {
+    func isPlayFinishedWithVideoId(_ videoId: String) -> Bool {
         return videoDictionary?[videoId] != nil
     }
     
-    func saveHistoryVideoId(videoId: String) {
+    func saveHistoryVideoId(_ videoId: String) {
         
-        if let index =  self.videoIdList?.indexOf(videoId) {
-            self.videoIdList?.removeAtIndex(index)
+        if let index =  self.videoIdList?.index(of: videoId) {
+            self.videoIdList?.remove(at: index)
         }
         
         if self.videoIdList?.count >= kMaxItemCount {
-            self.videoIdList?.removeAtIndex(0)
+            self.videoIdList?.remove(at: 0)
         }
         self.videoIdList?.append(videoId)
     }
     
-    func savePlayFinishedVideoId(videoId: String) {
+    func savePlayFinishedVideoId(_ videoId: String) {
         if self.videoDictionary?[videoId] != nil {
             return
         }
         if self.videoDictionary?.count >= kMaxItemCount {
-            if let keys = videoDictionary?.keys, key = keys.first {
-                videoDictionary?.removeValueForKey(key)
+            if let keys = videoDictionary?.keys, let key = keys.first {
+                videoDictionary?.removeValue(forKey: key)
             }
         }
         self.videoDictionary?[videoId] = 0
         self.save()
     }
     
-    func updateLastPlaybackTimeWithVideoId(videoId: String, lastPlaybackTime: NSTimeInterval) {
+    func updateLastPlaybackTimeWithVideoId(_ videoId: String, lastPlaybackTime: TimeInterval) {
         self.videoDictionary?[videoId] = lastPlaybackTime
         self.save()
     }
     
-    func lastPlaybackTimeWithVideoId(videoId: String) -> NSTimeInterval {
-        guard let lastPlaybackTimeNumber: NSTimeInterval = self.videoDictionary?[videoId] else {
+    func lastPlaybackTimeWithVideoId(_ videoId: String) -> TimeInterval {
+        guard let lastPlaybackTimeNumber: TimeInterval = self.videoDictionary?[videoId] else {
             return 0
         }
         
         return lastPlaybackTimeNumber - kDiffPlaybackTime > 0 ? lastPlaybackTimeNumber - kDiffPlaybackTime : lastPlaybackTimeNumber
     }
     
-    func overrideVideoDataWithVideoDictionary(videoDictionary: [String : NSTimeInterval]?) {
+    func overrideVideoDataWithVideoDictionary(_ videoDictionary: [String : TimeInterval]?) {
         self.videoDictionary = videoDictionary
         if self.videoDictionary == nil {
-            self.videoDictionary = [String : NSTimeInterval]()
+            self.videoDictionary = [String : TimeInterval]()
         }
         self.save()
     }
     
     func save() {
-        let userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let userDefaults: UserDefaults = UserDefaults.standard
         
-        userDefaults.setObject(self.videoDictionary, forKey: kPlayFinishedVideoIdsKey)
-        userDefaults.setObject(self.videoIdList, forKey: kHistoryVideoIdsKey)
+        userDefaults.set(self.videoDictionary, forKey: kPlayFinishedVideoIdsKey)
+        userDefaults.set(self.videoIdList, forKey: kHistoryVideoIdsKey)
         userDefaults.synchronize()
         
-        let cloudStore: NSUbiquitousKeyValueStore = NSUbiquitousKeyValueStore.defaultStore()        
-        cloudStore.setObject(videoDictionary, forKey: kPlayFinishedVideoIdsKey)
+        let cloudStore: NSUbiquitousKeyValueStore = NSUbiquitousKeyValueStore.default()        
+        cloudStore.set(videoDictionary, forKey: kPlayFinishedVideoIdsKey)
         cloudStore.synchronize()
     }
     
     func historyVideoIdList() -> [String]? {
-        return self.videoIdList?.reverse()
+        return self.videoIdList?.reversed()
     }
 }

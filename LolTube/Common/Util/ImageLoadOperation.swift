@@ -1,33 +1,33 @@
 import Foundation
 import SDWebImage
-import AsyncSwift
+import Async
 
 class ImageLoadOperation: ConcurrentOperation {
     
-    private let url:String?
-    private let replaceImageUrl:String?
-    private let completed:UIImage -> Void
+    fileprivate let url:String?
+    fileprivate let replaceImageUrl:String?
+    fileprivate let completed:(UIImage) -> Void
     
-    private var webImageOperation:SDWebImageOperation?
-    private var replaceImageImageOperation:SDWebImageOperation?
+    fileprivate var webImageOperation:SDWebImageOperation?
+    fileprivate var replaceImageImageOperation:SDWebImageOperation?
     
-    private lazy var progressBlock: SDWebImageDownloaderProgressBlock = {
+    fileprivate lazy var progressBlock: SDWebImageDownloaderProgressBlock = {
         [weak self]_ in
         guard let weakSelf = self else {
             return
         }
-        if weakSelf.cancelled {
+        if weakSelf.isCancelled {
             weakSelf.webImageOperation?.cancel()
             weakSelf.replaceImageImageOperation?.cancel()
-            weakSelf.state = .Finished
+            weakSelf.state = .finished
         }
     }
     
-    private lazy var placeHolderImage:UIImage = {
+    fileprivate lazy var placeHolderImage:UIImage = {
         return UIImage.defaultImage
         }()
     
-    init(url:String?,replaceImageUrl:String? = nil,completed:(UIImage)-> Void) {
+    init(url:String?,replaceImageUrl:String? = nil,completed:@escaping (UIImage)-> Void) {
         self.url = url
         self.replaceImageUrl = replaceImageUrl
         self.completed = completed
@@ -49,8 +49,8 @@ class ImageLoadOperation: ConcurrentOperation {
         replaceImageImageOperation?.cancel()
     }
     
-    private func loadMainImageImage(){
-        state = .Executing
+    fileprivate func loadMainImageImage(){
+        state = .executing
         guard let url = self.url else {
             self.completeOperation(placeHolderImage)
             return
@@ -67,17 +67,17 @@ class ImageLoadOperation: ConcurrentOperation {
         
     }
     
-    private func completeOperation(image:UIImage){
+    fileprivate func completeOperation(_ image:UIImage){
         Async.main{
             [weak self] in
             self?.completed(image)
-            self?.state = .Finished
+            self?.state = .finished
         }
     }
     
     
     
-    private func loadReplaceImage(){
+    fileprivate func loadReplaceImage(){
         guard let replaceImageUrl = replaceImageUrl else {
             completeOperation(placeHolderImage)
             return
@@ -98,22 +98,22 @@ class ImageLoadOperation: ConcurrentOperation {
         }
     }
     
-    private func loadImage(url:String,completed:UIImage? -> Void) -> SDWebImageOperation? {
-        if cancelled {
-            state = .Finished
+    fileprivate func loadImage(_ url:String,completed:@escaping (UIImage?) -> Void) -> SDWebImageOperation? {
+        if isCancelled {
+            state = .finished
             return nil
         }
         
         let completedBlock: SDWebImageCompletionWithFinishedBlock = {
             [weak self](image , _ ,_ ,_ ,_ ) in
-            guard !(self?.cancelled ?? false) else {
-                self?.state = .Finished
+            guard !(self?.isCancelled ?? false) else {
+                self?.state = .finished
                 return
             }
             
             completed(image)
         }
         
-        return SDWebImageManager.sharedManager().downloadImageWithURL(NSURL(string:url), options: SDWebImageOptions(rawValue: 0), progress: progressBlock, completed: completedBlock)
+        return SDWebImageManager.shared().downloadImage(with: URL(string:url), options: SDWebImageOptions(rawValue: 0), progress: progressBlock, completed: completedBlock)
     }
 }

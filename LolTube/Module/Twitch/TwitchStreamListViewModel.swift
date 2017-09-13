@@ -4,21 +4,21 @@ class TwitchStreamListViewModel:SimpleListCollectionViewModelProtocol {
     
     var streamList = [TwitchStream]()
     
-    private var streamListTotalResults:Int?
+    fileprivate var streamListTotalResults:Int?
     
-    private let twitchService = TwitchService()
+    fileprivate let twitchService = TwitchService()
     
     init() {
         
     }
     
-    func update(success success: (() -> Void), failure: ((error:NSError) -> Void)) {
+    func update(success: @escaping (() -> Void), failure: @escaping ((_ error:NSError) -> Void)) {
         guard streamListTotalResults != streamList.count else {
             success()
             return
         }
         
-        let successBlock:(RSStreamListModel -> Void) = {
+        let successBlock:((RSStreamListModel) -> Void) = {
             [weak self]streamListModel in
             self?.streamListTotalResults = Int(streamListModel._total)
             self?.streamList += streamListModel.streams.map{ TwitchStream($0) }

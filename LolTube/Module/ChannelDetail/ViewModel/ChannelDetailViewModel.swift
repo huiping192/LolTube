@@ -6,15 +6,15 @@ class ChannelDetailViewModel {
     var channel: YoutubeChannel?
     
     var isSubscribed:Bool?
-    private let youtubeService = YoutubeService()
-    private let channelService = ChannelService()
+    fileprivate let youtubeService = YoutubeService()
+    fileprivate let channelService = ChannelService()
 
 
     init(channelId:String){
         self.channelId = channelId
     }
     
-    func update(success success: () -> Void, failure: (NSError) -> Void) {
+    func update(success: @escaping () -> Void, failure: @escaping (NSError) -> Void) {
         
         let successBlock:((RSChannelModel) -> Void) = {
             [weak self](channelModel) in
@@ -35,7 +35,7 @@ class ChannelDetailViewModel {
         youtubeService.channelDetail([channelId], success: successBlock, failure: failure)
     }
     
-    func subscribeChannel(success success: () -> Void, failure: (NSError) -> Void){
+    func subscribeChannel(success: () -> Void, failure: (NSError) -> Void){
         guard let isSubscribed = isSubscribed else {
             success()
             return

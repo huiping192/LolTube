@@ -36,7 +36,7 @@ class TodayViewController:UIViewController, NCWidgetProviding, UITableViewDataSo
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //load cache data
         self.tableViewModel.updateCacheDataWithSuccess({[weak self](hasCacheData: Bool) -> Void in
@@ -46,12 +46,12 @@ class TodayViewController:UIViewController, NCWidgetProviding, UITableViewDataSo
         })
     }
     
-    func widgetPerformUpdateWithCompletionHandler(completionHandler: (NCUpdateResult) -> Void) {
+    func widgetPerformUpdate(completionHandler: @escaping (NCUpdateResult) -> Void) {
         self.tableViewModel.updateWithSuccess({[weak self](hasNewData: Bool) -> Void in
             self?.p_reloadData()
-            completionHandler(hasNewData ? .NewData : .NoData)
+            completionHandler(hasNewData ? .newData : .noData)
             }, failure: {(error: NSError) -> Void in
-                completionHandler(.Failed)
+                completionHandler(.failed)
         })
     }
     
@@ -66,48 +66,48 @@ class TodayViewController:UIViewController, NCWidgetProviding, UITableViewDataSo
             return nil
         }
         let moreInformationLabel: UILabel = UILabel()
-        moreInformationLabel.frame = CGRectMake(18, 0, self.tableView.frame.size.width, kCellHeight)
-        moreInformationLabel.textColor = UIColor.whiteColor()
-        moreInformationLabel.font = UIFont.systemFontOfSize(16)
+        moreInformationLabel.frame = CGRect(x: 18, y: 0, width: self.tableView.frame.size.width, height: kCellHeight)
+        moreInformationLabel.textColor = UIColor.white
+        moreInformationLabel.font = UIFont.systemFont(ofSize: 16)
         moreInformationLabel.text = String(format: NSLocalizedString("VideoWidgetMoreVideos",comment: "Check %d more videos on LolTube"), self.tableViewModel.items?.count ?? 0 - kMaxCellNumber)
         let tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.moreInformationLabelTapped))
         moreInformationLabel.addGestureRecognizer(tapGestureRecognizer)
-        moreInformationLabel.userInteractionEnabled = true
+        moreInformationLabel.isUserInteractionEnabled = true
         return moreInformationLabel
     }
     
     func moreInformationLabelTapped() {
-        self.extensionContext?.openURL(NSURL(string: kLolTubeSchemeHost)!, completionHandler: nil)
+        self.extensionContext?.open(URL(string: kLolTubeSchemeHost)!, completionHandler: nil)
     }
     
-    func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
-        return UIEdgeInsetsZero
+    func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
+        return UIEdgeInsets.zero
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.tableViewModel.items?.count ?? 0 > kMaxCellNumber ? kMaxCellNumber : self.tableViewModel.items?.count ?? 0
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return kCellHeight
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(kCellId, forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: kCellId, for: indexPath)
         guard let  cellVo: RSVideoListTableViewCellVo = self.tableViewModel.items?[Int(indexPath.row)]  else {
             return  cell
         }
-        cell.imageView?.asynLoadingImageWithUrlString(cellVo.defaultThumbnailUrl, placeHolderImage: UIImage(named: "DefaultThumbnail")!)
+        cell.imageView?.asynLoadingImage(withUrlString: cellVo.defaultThumbnailUrl, placeHolderImage: UIImage(named: "DefaultThumbnail")!)
         cell.textLabel?.text = cellVo.title
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
         guard let cellVo = self.tableViewModel.items?[Int(indexPath.row)]  else {
             return
         }
         let urlString: String = cellVo.videoId != nil ? "\(kLolTubeSchemeHost)\(kLolTubeSchemeVideoPath)\(cellVo.videoId)" : kLolTubeSchemeHost
-        self.extensionContext?.openURL(NSURL(string: urlString)!, completionHandler: nil)
+        self.extensionContext?.open(URL(string: urlString)!, completionHandler: nil)
     }
 }

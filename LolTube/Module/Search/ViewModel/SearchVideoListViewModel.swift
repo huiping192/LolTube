@@ -12,16 +12,16 @@ class SearchVideoListViewModel:SimpleListCollectionViewModelProtocol{
     
     var videoList = [Video]()
     
-    private var videoListNextPageToken: String?
-    private var videoListTotalResults:Int?
+    fileprivate var videoListNextPageToken: String?
+    fileprivate var videoListTotalResults:Int?
     
-    private let youtubeService = YoutubeService()
+    fileprivate let youtubeService = YoutubeService()
     
     init() {
         
     }
     
-    func update(success success: (() -> Void), failure: ((error:NSError) -> Void)) {
+    func update(success: @escaping (() -> Void), failure: @escaping ((_ error:NSError) -> Void)) {
         guard let searchText = searchText else {
             success()
             return
@@ -59,13 +59,13 @@ class SearchVideoListViewModel:SimpleListCollectionViewModelProtocol{
         return videoListTotalResults ?? 0
     }
     
-    private func updateVideoDetail(videoList videoList: [Video], success: (() -> Void), failure: ((error:NSError) -> Void)? = nil) {
+    fileprivate func updateVideoDetail(videoList: [Video], success: @escaping (() -> Void), failure: ((_ error:NSError) -> Void)? = nil) {
         let videoIdList = videoList.map { $0.videoId! } 
         
         let successBlock: ((RSVideoDetailModel) -> Void) = {
             videoDetailModel in
             
-            for (index, detailItem) in (videoDetailModel.items).enumerate() {
+            for (index, detailItem) in (videoDetailModel.items).enumerated() {
                 let video = videoList[index]
                 video.update(detailItem)
             }

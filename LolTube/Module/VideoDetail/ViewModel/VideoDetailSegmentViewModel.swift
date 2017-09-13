@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AsyncSwift
+import Async
 
 class VideoDetailSegmentViewModel {
     
@@ -23,7 +23,7 @@ class VideoDetailSegmentViewModel {
         self.channelId = channelId
     }
     
-    func updateWithSuccess(success: () -> Void, failure: (NSError) -> Void) {
+    func updateWithSuccess(_ success: @escaping () -> Void, failure: @escaping (NSError) -> Void) {
         self.youtubeService.channelDetail([self.channelId], success: {[weak self]channelModel in
             guard let weakSelf = self else {
                 return
@@ -37,9 +37,11 @@ class VideoDetailSegmentViewModel {
             }
             let channelItem: RSChannelItem = channelModel.items[0]
             weakSelf.channelThumbnailImageUrl = channelItem.snippet.thumbnails.medium.url
-            let numberFormatter: NSNumberFormatter = NSNumberFormatter()
-            numberFormatter.numberStyle = .DecimalStyle
-            let subscriberCount: String = numberFormatter.stringFromNumber(Int(channelItem.statistics.subscriberCount)!)!
+            let numberFormatter: NumberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .decimal
+            
+            let a = Int(channelItem.statistics.subscriberCount)! as NSNumber
+            let subscriberCount: String = numberFormatter.string(from: a)!
             weakSelf.subscriberCount = String(format: NSLocalizedString("ChannelSubscriberCountFormat",comment: ""), subscriberCount)
             weakSelf.isSubscribed = weakSelf.channelService.channelIds().contains(weakSelf.channelId) ?? false
             Async.main {
@@ -50,7 +52,7 @@ class VideoDetailSegmentViewModel {
         })
     }
     
-    func subscribeChannelWithSuccess(success: () -> Void, failure: (NSError) -> Void) {
+    func subscribeChannelWithSuccess(_ success: () -> Void, failure: (NSError) -> Void) {
         if self.isSubscribed {
             self.channelService.deleteChannelId(self.channelId)
             self.isSubscribed = false
