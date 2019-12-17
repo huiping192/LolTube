@@ -63,7 +63,7 @@ open class HttpService: NSObject  {
                     parameters[key] = dynamicParameterValue as AnyObject
                 }
             }
-            let httpRequestOperation = AFHTTPRequestOperation(request: AFHTTPRequestSerializer().request(withMethod: "GET", urlString: urlString, parameters: parameters) as URLRequest!)
+            let httpRequestOperation = AFHTTPRequestOperation(request: AFHTTPRequestSerializer().request(withMethod: "GET", urlString: urlString, parameters: parameters) as URLRequest?)
             operationList.append(httpRequestOperation!)
         }
         

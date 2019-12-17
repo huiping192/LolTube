@@ -20,8 +20,7 @@ extension UINavigationBar {
     }
     
     fileprivate func defalutStyle(){
-        let navbarTitleTextAttributes:[String:AnyObject] = [NSForegroundColorAttributeName:UIColor.black]
-        titleTextAttributes = navbarTitleTextAttributes
+        titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
         
         shadowImage = nil
         setBackgroundImage(nil, for: .default)
@@ -31,8 +30,7 @@ extension UINavigationBar {
     }
     
     fileprivate func clearStyle(){
-        let navbarTitleTextAttributes:[String:AnyObject] = [NSForegroundColorAttributeName:UIColor.white]
-        titleTextAttributes = navbarTitleTextAttributes
+        titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         
         let clearImage = UIImage(color:UIColor.clear)
         shadowImage = clearImage
@@ -43,8 +41,7 @@ extension UINavigationBar {
     }
     
     fileprivate func clearBlackStyle(){
-        let navbarTitleTextAttributes:[String:AnyObject] = [NSForegroundColorAttributeName:UIColor.black]
-        titleTextAttributes = navbarTitleTextAttributes
+        titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
         
         let clearImage = UIImage(color:UIColor.clear)
         shadowImage = clearImage

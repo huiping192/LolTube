@@ -12,7 +12,7 @@ class ImageLoadOperation: ConcurrentOperation {
     fileprivate var replaceImageImageOperation:SDWebImageOperation?
     
     fileprivate lazy var progressBlock: SDWebImageDownloaderProgressBlock = {
-        [weak self]_ in
+        [weak self]_,_  in
         guard let weakSelf = self else {
             return
         }

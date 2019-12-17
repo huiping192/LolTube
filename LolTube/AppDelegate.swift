@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     fileprivate let sharedUserDefaultsSuitName = "kSharedUserDefaultsSuitName"
     fileprivate let channelIdsKey = "channleIds"
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    internal func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         savePersetting()
         configureVideoService()
@@ -27,15 +27,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureAnalytics()
         configureSiren()
         
-        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
-        try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+        try! AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
         return true
     }
     
     fileprivate func configureCloud() {
-        NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.storeDidChanged(_:)), name:NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: NSUbiquitousKeyValueStore.default())
+        NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.storeDidChanged(_:)), name:NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: NSUbiquitousKeyValueStore.default)
         
-        NSUbiquitousKeyValueStore.default().synchronize()
+        NSUbiquitousKeyValueStore.default.synchronize()
     }
     
 
@@ -59,13 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     fileprivate func configureSiren() {
-        let siren = Siren.shared
-        siren.alertType = .option
-        siren.checkVersion(checkType: .daily)
-    }
-    
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        Siren.shared.checkVersion(checkType: .weekly)
+        Siren.shared.wail()
     }
     
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -88,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+    private func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         guard userActivity.activityType == kUserActivityTypeVideoDetail && (userActivity.userInfo?[kHandOffVersionKey] as? String) == kHandOffVersion else {
             return false
         }
@@ -116,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return navigationController
     }
 
-    func storeDidChanged(_ notification: Notification) {
+    @objc func storeDidChanged(_ notification: Notification) {
         guard let userInfo = notification.userInfo , let reason = userInfo[NSUbiquitousKeyValueStoreChangeReasonKey] as? Int else {
             return 
         }
@@ -130,7 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
         
-        let store = NSUbiquitousKeyValueStore.default()
+        let store = NSUbiquitousKeyValueStore.default
         keys.forEach{
             if $0 == kPlayFinishedVideoIdsKey {
                 VideoService.sharedInstance.overrideVideoDataWithVideoDictionary(store.dictionary(forKey: $0) as? [String : TimeInterval])

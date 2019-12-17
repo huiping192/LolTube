@@ -54,7 +54,7 @@ class VideoService {
         
         self.videoDictionary = userDefaults.dictionary(forKey: kPlayFinishedVideoIdsKey) as? [String : TimeInterval] 
         if self.videoDictionary == nil{
-            let cloudStore: NSUbiquitousKeyValueStore = NSUbiquitousKeyValueStore.default()
+            let cloudStore: NSUbiquitousKeyValueStore = NSUbiquitousKeyValueStore.default
             self.videoDictionary = cloudStore.dictionary( forKey: kPlayFinishedVideoIdsKey) as? [String : TimeInterval]
             if self.videoDictionary == nil {
                 self.videoDictionary = [String : TimeInterval]()
@@ -72,7 +72,7 @@ class VideoService {
     
     func saveHistoryVideoId(_ videoId: String) {
         
-        if let index =  self.videoIdList?.index(of: videoId) {
+        if let index =  self.videoIdList?.firstIndex(of: videoId) {
             self.videoIdList?.remove(at: index)
         }
         
@@ -123,7 +123,7 @@ class VideoService {
         userDefaults.set(self.videoIdList, forKey: kHistoryVideoIdsKey)
         userDefaults.synchronize()
         
-        let cloudStore: NSUbiquitousKeyValueStore = NSUbiquitousKeyValueStore.default()        
+        let cloudStore: NSUbiquitousKeyValueStore = NSUbiquitousKeyValueStore.default        
         cloudStore.set(videoDictionary, forKey: kPlayFinishedVideoIdsKey)
         cloudStore.synchronize()
     }

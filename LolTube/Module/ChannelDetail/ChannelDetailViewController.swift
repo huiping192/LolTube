@@ -96,8 +96,8 @@ class ChannelDetailViewController: UIViewController {
     fileprivate func updateSubscribeButton(_ isSubscribed:Bool){
         let buttonTitle = isSubscribed ? NSLocalizedString("ChannelSubscribed", comment: "") : NSLocalizedString("ChannelUnsubscribe", comment: "")
         let buttonColor = isSubscribed ? UIColor(white: 1.0, alpha: 0.6) : view.tintColor
-        subscribeButton.setTitle(buttonTitle, for: UIControlState())
-        subscribeButton.setTitleColor(buttonColor, for: UIControlState())
+        subscribeButton.setTitle(buttonTitle, for: UIControl.State())
+        subscribeButton.setTitleColor(buttonColor, for: UIControl.State())
     }
     
     fileprivate func loadData(){
@@ -137,7 +137,7 @@ class ChannelDetailViewController: UIViewController {
                     weakSelf.viewCountLabel.textColor = UIColor.darkGray
                     weakSelf.videoCountLabel.textColor = UIColor.darkGray
                     weakSelf.subscriberCountLabel.textColor = UIColor.darkGray
-                    weakSelf.subscribeButton.setTitleColor(UIColor.darkGray, for: UIControlState())
+                    weakSelf.subscribeButton.setTitleColor(UIColor.darkGray, for: UIControl.State())
 
                     weakSelf.navigationController?.navigationBar.configureNavigationBar(.clearBlack)
                 }
@@ -182,8 +182,8 @@ class ChannelDetailViewController: UIViewController {
         }
         
         addConstraintsForViewController(childViewController)
-        addChildViewController(childViewController)
-        childViewController.didMove(toParentViewController: self)
+        addChild(childViewController)
+        childViewController.didMove(toParent: self)
         currentViewController = childViewController
     }
     
@@ -191,17 +191,17 @@ class ChannelDetailViewController: UIViewController {
         guard let viewController = viewController else {
             return
         }
-        viewController.willMove(toParentViewController: nil)
+        viewController.willMove(toParent: nil)
         viewController.view.removeFromSuperview()
-        viewController.removeFromParentViewController()
+        viewController.removeFromParent()
     }
     
     fileprivate func addConstraintsForViewController(_ viewController:UIViewController){
         let childView = viewController.view
         childView?.translatesAutoresizingMaskIntoConstraints = false
         containView.addSubview(childView!)
-        containView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[childView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["childView":childView] as [String:AnyObject]))
-        containView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[childView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["childView":childView] as [String:AnyObject]))
+        containView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[childView]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["childView":childView] as [String:AnyObject]))
+        containView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[childView]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["childView":childView] as [String:AnyObject]))
     }
     
     enum ChannelDetailType:Int {

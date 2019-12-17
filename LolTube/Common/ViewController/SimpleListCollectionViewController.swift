@@ -46,7 +46,7 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
     
     override func viewDidLoad() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(SimpleListCollectionViewController.preferredContentSizeChanged(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SimpleListCollectionViewController.preferredContentSizeChanged(_:)), name: UIContentSizeCategory.didChangeNotification, object: nil)
         
         delegate = self
         collectionView.emptyDataSetSource = self
@@ -110,7 +110,7 @@ class SimpleListCollectionViewController: UIViewController,SimpleListCollectionV
             })
     }
     
-    func preferredContentSizeChanged(_ notification: Notification) {
+    @objc func preferredContentSizeChanged(_ notification: Notification) {
         collectionView.reloadData()
     }
     
@@ -224,7 +224,7 @@ extension SimpleListCollectionViewController: UICollectionViewDelegate {
 
 extension SimpleListCollectionViewController: UICollectionViewDelegateFlowLayout {
     
-    var cellHeight: CGFloat {
+    @objc var cellHeight: CGFloat {
         switch (traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
         case (.regular, .regular):
             return 120.0
@@ -243,7 +243,7 @@ extension SimpleListCollectionViewController: UICollectionViewDelegateFlowLayout
         return CGSize(width: cellWidth, height: cellHeight)
     }
     
-    var cellCount: Int {
+    @objc var cellCount: Int {
         switch (traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
         case (.compact, .regular):
             return 1
@@ -275,7 +275,7 @@ extension SimpleListCollectionViewController: DZNEmptyDataSetSource {
     
     func title(forEmptyDataSet scrollView:UIScrollView!) -> NSAttributedString! {
         let text = emptyDataTitle
-        let attributes = [NSFontAttributeName:UIFont.boldSystemFont(ofSize: 18),NSForegroundColorAttributeName:UIColor.darkGray]
+        let attributes = [NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 18),NSAttributedString.Key.foregroundColor:UIColor.darkGray]
         
         return NSAttributedString(string: text, attributes: attributes)
     }
