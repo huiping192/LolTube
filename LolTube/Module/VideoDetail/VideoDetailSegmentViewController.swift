@@ -48,9 +48,9 @@ class VideoDetailSegmentViewController: UIViewController {
             })
             weakSelf.imageLoadingOperationQueue.addOperation(imageOperation)
             let title: String = weakSelf.viewModel.isSubscribed ? NSLocalizedString("ChannelSubscribed",comment: "") : NSLocalizedString("ChannelUnsubscribe", comment: "")
-            weakSelf.channelRegisterButton.setTitle(title, for: UIControlState())
+            weakSelf.channelRegisterButton.setTitle(title, for: UIControl.State())
             let buttonColor: UIColor = weakSelf.viewModel.isSubscribed ? UIColor.lightGray : weakSelf.view.tintColor
-            weakSelf.channelRegisterButton.setTitleColor(buttonColor, for: UIControlState())
+            weakSelf.channelRegisterButton.setTitleColor(buttonColor, for: UIControl.State())
             }, failure: {[weak self](error: NSError) -> Void in
                 self?.showError(error)
         })
@@ -63,9 +63,9 @@ class VideoDetailSegmentViewController: UIViewController {
             }
             
             let title: String = weakSelf.viewModel.isSubscribed ? NSLocalizedString("ChannelSubscribed",comment: "") : NSLocalizedString("ChannelUnsubscribe",comment: "")
-            weakSelf.channelRegisterButton.setTitle(title, for: UIControlState())
+            weakSelf.channelRegisterButton.setTitle(title, for: UIControl.State())
             let buttonColor: UIColor = weakSelf.viewModel.isSubscribed ? UIColor.lightGray : weakSelf.view.tintColor
-            weakSelf.channelRegisterButton.setTitleColor(buttonColor, for: UIControlState())
+            weakSelf.channelRegisterButton.setTitleColor(buttonColor, for: UIControl.State())
             }, failure: {[weak self](error: NSError) -> Void in
                 self?.showError(error)
         })
@@ -138,12 +138,12 @@ class VideoDetailSegmentViewController: UIViewController {
             return
         }
         
-        fromViewController.willMove(toParentViewController: nil)
-        self.addChildViewController(toViewController)
+        fromViewController.willMove(toParent: nil)
+        self.addChild(toViewController)
         fromViewController.view!.removeFromSuperview()
         self.addConstraintsForViewController(toViewController)
-        fromViewController.removeFromParentViewController()
-        toViewController.didMove(toParentViewController: self)
+        fromViewController.removeFromParent()
+        toViewController.didMove(toParent: self)
     }
     
     func addConstraintsForViewController(_ viewController: UIViewController) {

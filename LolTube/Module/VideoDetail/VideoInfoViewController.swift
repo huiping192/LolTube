@@ -23,7 +23,7 @@ class VideoInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.preferredContentSizeChanged), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.preferredContentSizeChanged), name: UIContentSizeCategory.didChangeNotification, object: nil)
         
         self.p_loadData()
     }
@@ -54,11 +54,11 @@ class VideoInfoViewController: UIViewController {
             }, failure: {_ in })
     }
     
-    func preferredContentSizeChanged(_ notification: Notification) {
-        self.titleLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
-        self.postedAtLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)
-        self.rateLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)
-        self.viewCountLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)
-        self.descriptionTextView.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.footnote)
+    @objc func preferredContentSizeChanged(_ notification: Notification) {
+        self.titleLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.subheadline)
+        self.postedAtLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.caption1)
+        self.rateLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.caption1)
+        self.viewCountLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.caption1)
+        self.descriptionTextView.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.footnote)
     }
 }

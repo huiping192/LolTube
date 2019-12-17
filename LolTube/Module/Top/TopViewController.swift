@@ -125,7 +125,7 @@ class TopViewController: UIViewController {
         viewModel.update(successBlock, failure: failureBlock)
     }
     
-    func refresh(_ refreshControl: UIRefreshControl) {
+    @objc func refresh(_ refreshControl: UIRefreshControl) {
         let successBlock:(() -> Void) = {
             [weak self] in
             self?.configureTopView()
@@ -243,7 +243,7 @@ extension TopViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
-        case UICollectionElementKindSectionHeader:
+        case UICollectionView.elementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(kind, indexPath: indexPath, type: TopVideoCollectionHeaderView.self)
             
             guard let channel = channel(indexPath.section) else {
@@ -270,7 +270,7 @@ extension TopViewController: UICollectionViewDataSource {
             }
             
             return headerView
-        case UICollectionElementKindSectionFooter:
+        case UICollectionView.elementKindSectionFooter:
             let footerView = collectionView.dequeueReusableSupplementaryView( kind, indexPath: indexPath, type: TopVideoCollectionFooterView.self)
             
             footerView.isHidden = indexPath.section == collectionView.numberOfSections - 1
@@ -281,13 +281,13 @@ extension TopViewController: UICollectionViewDataSource {
         }
     }
     
-    func headerViewTapped(_ gestureRecognizer: UITapGestureRecognizer){  
+    @objc func headerViewTapped(_ gestureRecognizer: UITapGestureRecognizer){  
         guard let view = gestureRecognizer.view , let channel = channel(view.tag) else { return }
         
         channel.selectedAction?(self)
     }
     
-    func moreButtonTapped(_ button: UIButton){
+    @objc func moreButtonTapped(_ button: UIButton){
         guard let channel = channel(button.tag) else { return }
         
         channel.selectedAction?(self)

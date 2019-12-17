@@ -111,8 +111,8 @@ class SearchViewController: UIViewController {
         }
         
         addConstraintsForViewController(childViewController)
-        addChildViewController(childViewController)
-        childViewController.didMove(toParentViewController: self)
+        addChild(childViewController)
+        childViewController.didMove(toParent: self)
         currentViewController = childViewController
     }
     
@@ -120,17 +120,17 @@ class SearchViewController: UIViewController {
         guard let viewController = viewController else {
             return
         }
-        viewController.willMove(toParentViewController: nil)
+        viewController.willMove(toParent: nil)
         viewController.view.removeFromSuperview()
-        viewController.removeFromParentViewController()
+        viewController.removeFromParent()
     }
     
     fileprivate func addConstraintsForViewController(_ viewController:UIViewController){
         let childView = viewController.view
         childView?.translatesAutoresizingMaskIntoConstraints = false
         containView.addSubview(childView!)
-        containView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[childView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["childView":childView] as [String:AnyObject]))
-        containView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[childView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["childView":childView] as [String:AnyObject]))
+        containView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[childView]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["childView":childView] as [String:AnyObject]))
+        containView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[childView]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["childView":childView] as [String:AnyObject]))
     }
     
     @IBAction func segmentedControlValueChanged(_ segmentedControl:UISegmentedControl) {
@@ -151,7 +151,7 @@ class SearchViewController: UIViewController {
     
     @IBAction func suggestionWardTapped(_ suggestionWardButton:UIButton) {
         searchBar.resignFirstResponder()
-        let searchText = suggestionWardButton.title(for: UIControlState())
+        let searchText = suggestionWardButton.title(for: UIControl.State())
         searchBar.text = searchText
         search(searchText)
     }
@@ -170,7 +170,7 @@ class SearchViewController: UIViewController {
             configureSearchVideoListViewController(searchText)
         }
         
-        var childVcs:[UIViewController?] = [searchVideoListViewController,searchChannelListViewController,searchPlaylistsViewController]
+        let childVcs:[UIViewController?] = [searchVideoListViewController,searchChannelListViewController,searchPlaylistsViewController]
         childVcs.map{$0 as? Searchable}.forEach{
             (searchable) -> Void in
             searchable?.searchText = searchText

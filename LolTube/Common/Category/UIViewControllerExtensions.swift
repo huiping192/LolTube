@@ -16,13 +16,13 @@ extension UIViewController {
         constrain(childView!, containerView) { childView, containerView in
             childView.edges == containerView.edges
         }
-        addChildViewController(childViewController)
-        childViewController.didMove(toParentViewController: self)
+        addChild(childViewController)
+        childViewController.didMove(toParent: self)
     }
     
     func remove(childViewController:UIViewController){
-        childViewController.willMove(toParentViewController: self)
+        childViewController.willMove(toParent: self)
         childViewController.view.removeFromSuperview()
-        childViewController.removeFromParentViewController()
+        childViewController.removeFromParent()
     }
 }

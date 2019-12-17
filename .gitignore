@@ -1,5 +1,6 @@
 # Xcode
 .DS_Store
+LolTube.xcworkspace/xcshareddata/
 project.xcworkspace/
 xcuserdata/
 */build/*

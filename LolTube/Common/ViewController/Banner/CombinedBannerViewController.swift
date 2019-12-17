@@ -71,7 +71,7 @@ class CombinedBannerViewController:UIViewController {
         }
     }
 
-    func scrollToNextVideo(){
+    @objc func scrollToNextVideo(){
         guard let videoCount = realVideoList?.count else {
             return
         }

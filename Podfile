@@ -17,9 +17,9 @@ target :LolTube do
     pod 'TSMessages', :git => 'https://github.com/KrauseFx/TSMessages.git'
     pod 'Google/Analytics', '~> 1.0.0'
     pod 'DZNEmptyDataSet'
-    pod 'Cartography', '~> 1.0.0'
-    pod 'AsyncSwift', '~> 2.0.1'
-    pod 'Siren', '~> 2.0.8' 
+    pod 'Cartography', '4.0.0'
+    pod 'AsyncSwift', :git => 'https://github.com/duemunk/Async'
+    pod 'Siren', '5.2.3'
 end
 
 
@@ -39,7 +39,7 @@ end
 post_install do |installer_representation|
   installer_representation.pods_project.targets.each do |target|
       target.build_configurations.each do |config|
-          config.build_settings['SWIFT_VERSION'] = '3.0'
+          config.build_settings['SWIFT_VERSION'] = '5.0'
       end
       
     puts "taret=#{target.name}"

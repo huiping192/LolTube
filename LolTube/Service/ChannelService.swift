@@ -6,7 +6,7 @@ class ChannelService: NSObject {
     let sharedUserDefaultsSuitName = "kSharedUserDefaultsSuitName"
     let currentAppVersion = "1.2.0"
     
-    fileprivate let cloudStore = NSUbiquitousKeyValueStore.default()
+    fileprivate let cloudStore = NSUbiquitousKeyValueStore.default
     
     fileprivate var userDefaults:UserDefaults{
         return UserDefaults(suiteName: sharedUserDefaultsSuitName) ?? UserDefaults.standard

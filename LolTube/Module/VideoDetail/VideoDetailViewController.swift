@@ -170,7 +170,7 @@ class VideoDetailViewController:UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(VideoDetailViewController.moviePlayBackDidFinish(_:)), name: NSNotification.Name.MPMoviePlayerPlaybackDidFinish, object: nil)
     }
     
-    func shareButtonTapped(_ sender:AnyObject) {
+    @objc func shareButtonTapped(_ sender:AnyObject) {
         var items:[AnyObject] = []
         
         if let shareTitle = viewModel.shareTitle {
@@ -199,11 +199,11 @@ class VideoDetailViewController:UIViewController {
         self.present(activityController, animated: true, completion: nil)
     }
     
-    func moviePlayBackDidFinish(_ moviePlayerPlaybackDidFinishNotification:AnyObject){
+    @objc func moviePlayBackDidFinish(_ moviePlayerPlaybackDidFinishNotification:AnyObject){
         videoPlayerViewController?.moviePlayer.currentPlaybackTime = 3.0
     }
     
-    func moviePreloadDidFinish(_ moviePlayerLoadStateDidChangeNotification:AnyObject) {
+    @objc func moviePreloadDidFinish(_ moviePlayerLoadStateDidChangeNotification:AnyObject) {
         if videoPlayerViewController?.moviePlayer.loadState == .playable {
             VideoService.sharedInstance.savePlayFinishedVideoId(videoId)
             startActivity()
@@ -274,8 +274,8 @@ class VideoDetailViewController:UIViewController {
             return
         }
         let childTraitCollection = UITraitCollection(horizontalSizeClass: size.width <= compactPadWidth ? .compact : .regular)
-        setOverrideTraitCollection(childTraitCollection, forChildViewController: relatedVideosViewController)
-        setOverrideTraitCollection(childTraitCollection, forChildViewController: videoDetailSegmentViewController)
+        setOverrideTraitCollection(childTraitCollection, forChild: relatedVideosViewController)
+        setOverrideTraitCollection(childTraitCollection, forChild: videoDetailSegmentViewController)
         
         if let transitionCoordinator = transitionCoordinator {
             transitionCoordinator.animate(alongsideTransition: {

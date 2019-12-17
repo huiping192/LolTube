@@ -16,7 +16,7 @@ class SplitBannerViewController: UIViewController {
         super.viewDidAppear(animated)
         
         collectionView.reloadData()
-        collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionViewScrollPosition(), animated: false)
+        collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionView.ScrollPosition(), animated: false)
     }
 }
 

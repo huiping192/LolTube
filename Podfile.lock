@@ -20,8 +20,8 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - AsyncSwift (2.0.1)
-  - Cartography (1.0.1)
+  - AsyncSwift (2.0.5)
+  - Cartography (4.0.0)
   - DZNEmptyDataSet (1.6.1)
   - Google/Analytics (1.0.7):
     - Google/Core
@@ -47,15 +47,15 @@ PODS:
   - SDWebImage (3.7.1):
     - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
-  - Siren (2.0.8)
+  - Siren (5.2.3)
   - TSMessages (0.9.13):
     - HexColors (~> 2.3.0)
   - XCDYouTubeKit (2.3.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
-  - AsyncSwift (~> 2.0.1)
-  - Cartography (~> 1.0.0)
+  - AsyncSwift (from `https://github.com/duemunk/Async`)
+  - Cartography (= 4.0.0)
   - DZNEmptyDataSet
   - Google/Analytics (~> 1.0.0)
   - JSONModel (~> 1.0.1)
@@ -64,23 +64,48 @@ DEPENDENCIES:
   - OHHTTPStubs (~> 3.1.5)
   - Quick (~> 1.1.0)
   - SDWebImage (~> 3.7.0)
-  - Siren (~> 2.0.8)
+  - Siren (= 5.2.3)
   - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
   - XCDYouTubeKit (~> 2.3.1)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - Cartography
+    - DZNEmptyDataSet
+    - Google
+    - GoogleAnalytics
+    - GoogleNetworkingUtilities
+    - GoogleSymbolUtilities
+    - GoogleUtilities
+    - HexColors
+    - JSONModel
+    - Nimble
+    - OCMock
+    - OHHTTPStubs
+    - Quick
+    - SDWebImage
+    - Siren
+    - XCDYouTubeKit
+
 EXTERNAL SOURCES:
+  AsyncSwift:
+    :git: https://github.com/duemunk/Async
   TSMessages:
     :git: https://github.com/KrauseFx/TSMessages.git
 
 CHECKOUT OPTIONS:
+  AsyncSwift:
+    :commit: e9aca419724cd362a00ddd74667de06f06ebafc3
+    :git: https://github.com/duemunk/Async
   TSMessages:
     :commit: f7d0e8cece3ca79852e49807812601e2d89f5719
     :git: https://github.com/KrauseFx/TSMessages.git
 
 SPEC CHECKSUMS:
   AFNetworking: 41d45d2c14219af0fa5addf3cfd433a002c13c9f
-  AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
-  Cartography: c1460e99395b824d9d75360b0382faeb0b33dcd7
+  AsyncSwift: 4b2c1917fd64d996ea021f40f8760451cecfb045
+  Cartography: c5626d29056b20f1e95c017326ee4df57cc39ad8
   DZNEmptyDataSet: 3d31c27758230f03c71199f8c522bcfa99fba16c
   Google: 8be107e3b4bbb6889ebf1f64cdd92cb87dc17a62
   GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
@@ -94,10 +119,10 @@ SPEC CHECKSUMS:
   OHHTTPStubs: b671969016b4c6f5ee3c26080c81114ba82e0710
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
-  Siren: b7138a4979510adcdba52ec5e5048ff650df473d
+  Siren: 996f37869eae1f343f8c11f17d90c9c8da90bd4c
   TSMessages: 6e403b790139636c15ab4f51946537095e03e79c
   XCDYouTubeKit: 80e9169b644acf4e67979142f789d9e7e9e15784
 
-PODFILE CHECKSUM: 9f421728002c1101bb28f41a5b95c073856b3bf5
+PODFILE CHECKSUM: 7046c564f99f5e87cd71a4ddde7609bacb642e59
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.8.4

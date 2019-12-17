@@ -37,7 +37,7 @@ extension UIViewController {
 }
 
 extension UIViewController: BackgroundFetchable {
-    func fetchNewData(_ completionHandler:@escaping (UIBackgroundFetchResult) -> Void) {
+    @objc func fetchNewData(_ completionHandler:@escaping (UIBackgroundFetchResult) -> Void) {
         completionHandler(.failed)
     }
 }

@@ -76,7 +76,7 @@ class TodayViewController:UIViewController, NCWidgetProviding, UITableViewDataSo
         return moreInformationLabel
     }
     
-    func moreInformationLabelTapped() {
+    @objc func moreInformationLabelTapped() {
         self.extensionContext?.open(URL(string: kLolTubeSchemeHost)!, completionHandler: nil)
     }
     
