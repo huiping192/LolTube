@@ -27,9 +27,9 @@ class GroupOperation: ConcurrentOperation {
     fileprivate func addOperations(){
         let finishingOperation = BlockOperation(block: {
             [weak self] in
-            self?.state = .finished
             self?.finishedBlock?()
-            })        
+            self?.state = .finished
+            })
         subOperations?.forEach{
             internalQueue.addOperation($0)
             finishingOperation.addDependency($0)

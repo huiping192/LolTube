@@ -9,6 +9,7 @@ def commonPods
     pod 'Alamofire', '4.9.1'
     pod 'JSONModel', '~> 1.0.1'
     pod 'SDWebImage', '~> 3.7.0'
+    pod 'RxSwift', '5.0'
 end
 
 target :LolTube do
@@ -22,7 +23,6 @@ target :LolTube do
     pod 'Siren', '5.2.3'
     
     
-    pod 'RxSwift', '5.0'
     pod 'RxGesture', '3.0.0'
     pod 'NSObject+Rx', '5.0.0'
     pod 'RxSwiftExt', '5.0.0'

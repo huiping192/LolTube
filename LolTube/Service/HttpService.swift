@@ -9,6 +9,7 @@
 import Foundation
 import JSONModel
 import Alamofire
+import RxSwift
 
 open class HttpService: NSObject  {
     func requestMultipleIdsDynamicParamter(_ idList:[String]) -> [String:[String]] {
@@ -34,30 +35,92 @@ open class HttpService: NSObject  {
 
     
     func request<T:RSJsonModel>(_ urlString: String, queryParameters: [String:AnyObject], jsonModelClass: T.Type, success: ((T) -> Void)?, failure: ((NSError) -> Void)?) {
+        let dataRequest = Alamofire.request(urlString, method: .get, parameters: queryParameters)
         
-//        let successBlock: ((AFHTTPRequestOperation?, Any?) -> Void) = {
-//            (_, responseObject) in
-//
-//            do {
-//                let jsonModel = try jsonModelClass.init(dictionary: responseObject as? [String:AnyObject])
-//                success?(jsonModel)
-//            } catch let error  {
-//                failure?(error as NSError)
-//            }
-//        }
-//
-//        AFHTTPRequestOperationManager().get(urlString, parameters: queryParameters, success: successBlock, failure: {
-//            _, error in
-//            failure?(error as! NSError)
+        dataRequest.response { response in
+            if let error = response.error {
+                failure?(error as NSError)
+                return
+            }
+            
+            do {
+                let jsonModel = try jsonModelClass.init(data: response.data)
+                success?(jsonModel)
+            } catch let error  {
+                failure?(error as NSError)
+            }
+        }
+        
+        dataRequest.resume()
+    }
+    
+    func request<T:RSJsonModel>(_ urlString: String, staticParameters: [String:AnyObject], dynamicParameters: [String:[String]], jsonModelClass: T.Type, success: (([T]) -> Void)?, failure: ((NSError) -> Void)?) {
+        
+        var requestList = [DataRequest]()
+        
+        
+        var taskList = [Observable<Void>]()
+        
+        let dynamicParameterKeyList = Array(dynamicParameters.keys)
+        
+        let count = dynamicParameters[dynamicParameterKeyList[0]]?.count ?? 0
+        var dataList = [T](repeating: T(), count: count)
+
+        for index in 0 ..< count {
+            var parameters = staticParameters
+
+            for key in dynamicParameterKeyList {
+                if let dynamicParameterValue = dynamicParameters[key]?[index] {
+                    parameters[key] = dynamicParameterValue as AnyObject
+                }
+            }
+            
+            
+            let task  = Observable<Void>.create { observer -> Disposable in
+                let dataRequest = Alamofire.request(urlString, method: .get, parameters: parameters)
+                dataRequest.response { response in
+                    if let error = response.error {
+                        observer.onError(error)
+                        return
+                    }
+                    
+                    do {
+                        let jsonModel = try jsonModelClass.init(data: response.data)
+                        dataList[index] = jsonModel
+                        observer.onNext(Void())
+                        observer.onCompleted()
+                    } catch let error  {
+                        observer.onError(error)
+                    }
+                }
+                
+                dataRequest.resume()
+                
+                requestList.append(dataRequest)
+                
+                return Disposables.create()
+            }
+            
+            taskList.append(task)
+        }
+        
+        
+        _ = Observable.from(taskList).merge().subscribe(
+            onError: { error in
+                failure?(error as NSError)
+        },onCompleted: {
+            success?(dataList)
+            })
+            
+            
+//            .subscribe(onError: { error in
+//            failure(error)
+//        }, onCompleted: { _ in
+//            success?(dataList)
 //        })
         
         
         
-        
-        
-    }
-    
-    func request<T:RSJsonModel>(_ urlString: String, staticParameters: [String:AnyObject], dynamicParameters: [String:[String]], jsonModelClass: T.Type, success: (([T]) -> Void)?, failure: ((NSError) -> Void)?) {
 //        var operationList = [AFHTTPRequestOperation]()
 //
 //        var parameters = staticParameters
