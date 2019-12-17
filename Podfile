@@ -6,7 +6,7 @@ inhibit_all_warnings!
 use_frameworks!
 
 def commonPods
-    pod 'AFNetworking', '~> 2.0'
+    pod 'AFNetworking', '3.2.1'
     pod 'JSONModel', '~> 1.0.1'
     pod 'SDWebImage', '~> 3.7.0'
 end
