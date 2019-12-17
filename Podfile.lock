@@ -1,19 +1,5 @@
 PODS:
-  - AFNetworking (3.2.1):
-    - AFNetworking/NSURLSession (= 3.2.1)
-    - AFNetworking/Reachability (= 3.2.1)
-    - AFNetworking/Security (= 3.2.1)
-    - AFNetworking/Serialization (= 3.2.1)
-    - AFNetworking/UIKit (= 3.2.1)
-  - AFNetworking/NSURLSession (3.2.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.2.1)
-  - AFNetworking/Security (3.2.1)
-  - AFNetworking/Serialization (3.2.1)
-  - AFNetworking/UIKit (3.2.1):
-    - AFNetworking/NSURLSession
+  - Alamofire (4.9.1)
   - AsyncSwift (2.0.5)
   - Cartography (4.0.0)
   - DZNEmptyDataSet (1.6.1)
@@ -33,11 +19,30 @@ PODS:
   - HexColors (2.3.0)
   - JSONModel (1.0.2)
   - Nimble (4.1.0)
+  - "NSObject+Rx (5.0.0)":
+    - RxSwift (~> 5.0)
   - OCMock (3.1.1)
   - OHHTTPStubs (3.1.6):
     - OHHTTPStubs/Core (= 3.1.6)
   - OHHTTPStubs/Core (3.1.6)
   - Quick (1.1.0)
+  - RxCocoa (5.0.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxGesture (3.0.0):
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxRelay (5.0.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.0)
+  - RxSwiftExt (5.0.0):
+    - RxSwiftExt/Core (= 5.0.0)
+    - RxSwiftExt/RxCocoa (= 5.0.0)
+  - RxSwiftExt/Core (5.0.0):
+    - RxSwift (~> 5.0)
+  - RxSwiftExt/RxCocoa (5.0.0):
+    - RxCocoa (~> 5.0)
+    - RxSwiftExt/Core
   - SDWebImage (3.7.1):
     - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
@@ -47,16 +52,20 @@ PODS:
   - XCDYouTubeKit (2.3.1)
 
 DEPENDENCIES:
-  - AFNetworking (= 3.2.1)
+  - Alamofire (= 4.9.1)
   - AsyncSwift (from `https://github.com/duemunk/Async`)
   - Cartography (= 4.0.0)
   - DZNEmptyDataSet
   - Google/Analytics (~> 1.0.0)
   - JSONModel (~> 1.0.1)
   - Nimble
+  - "NSObject+Rx (= 5.0.0)"
   - OCMock (~> 3.1.1)
   - OHHTTPStubs (~> 3.1.5)
   - Quick (~> 1.1.0)
+  - RxGesture (= 3.0.0)
+  - RxSwift (= 5.0)
+  - RxSwiftExt (= 5.0.0)
   - SDWebImage (~> 3.7.0)
   - Siren (= 5.2.3)
   - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
@@ -64,7 +73,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - AFNetworking
+    - Alamofire
     - Cartography
     - DZNEmptyDataSet
     - Google
@@ -75,9 +84,15 @@ SPEC REPOS:
     - HexColors
     - JSONModel
     - Nimble
+    - "NSObject+Rx"
     - OCMock
     - OHHTTPStubs
     - Quick
+    - RxCocoa
+    - RxGesture
+    - RxRelay
+    - RxSwift
+    - RxSwiftExt
     - SDWebImage
     - Siren
     - XCDYouTubeKit
@@ -97,7 +112,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/KrauseFx/TSMessages.git
 
 SPEC CHECKSUMS:
-  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AsyncSwift: 4b2c1917fd64d996ea021f40f8760451cecfb045
   Cartography: c5626d29056b20f1e95c017326ee4df57cc39ad8
   DZNEmptyDataSet: 3d31c27758230f03c71199f8c522bcfa99fba16c
@@ -109,14 +124,20 @@ SPEC CHECKSUMS:
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   JSONModel: 6ffcb4ffa3659c9e9a2e5d45d6c7705bab187c03
   Nimble: 97a0a4cae5124c117115634b2d055d8c97d0af19
+  "NSObject+Rx": 6151a97d171f7187c4183746acc42d9451952a7b
   OCMock: a73f69963a8a542b0b343e2617650e4dca0cbbc2
   OHHTTPStubs: b671969016b4c6f5ee3c26080c81114ba82e0710
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
+  RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
+  RxGesture: 0cd8e37ff9a266e1c31f46bcaed6de1c536bc81e
+  RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
+  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
+  RxSwiftExt: 4564187392cc53823ef241fa4a11647861567026
   SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
   Siren: 996f37869eae1f343f8c11f17d90c9c8da90bd4c
   TSMessages: 6e403b790139636c15ab4f51946537095e03e79c
   XCDYouTubeKit: 80e9169b644acf4e67979142f789d9e7e9e15784
 
-PODFILE CHECKSUM: 7fd82fa45e95ed48df17035eb518a5f916451672
+PODFILE CHECKSUM: 7347665f1a8dad7e5bac09942773ef574506e7f3
 
 COCOAPODS: 1.8.4

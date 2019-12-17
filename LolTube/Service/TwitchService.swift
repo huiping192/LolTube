@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import AFNetworking
 import JSONModel
 
 class TwitchService: HttpService {

@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import AFNetworking
 import JSONModel
+import Alamofire
 
 open class HttpService: NSObject  {
     func requestMultipleIdsDynamicParamter(_ idList:[String]) -> [String:[String]] {
@@ -35,71 +35,76 @@ open class HttpService: NSObject  {
     
     func request<T:RSJsonModel>(_ urlString: String, queryParameters: [String:AnyObject], jsonModelClass: T.Type, success: ((T) -> Void)?, failure: ((NSError) -> Void)?) {
         
-        let successBlock: ((AFHTTPRequestOperation?, Any?) -> Void) = {
-            (_, responseObject) in
-            
-            do {
-                let jsonModel = try jsonModelClass.init(dictionary: responseObject as? [String:AnyObject])
-                success?(jsonModel)
-            } catch let error  {
-                failure?(error as NSError)
-            }
-        }
+//        let successBlock: ((AFHTTPRequestOperation?, Any?) -> Void) = {
+//            (_, responseObject) in
+//
+//            do {
+//                let jsonModel = try jsonModelClass.init(dictionary: responseObject as? [String:AnyObject])
+//                success?(jsonModel)
+//            } catch let error  {
+//                failure?(error as NSError)
+//            }
+//        }
+//
+//        AFHTTPRequestOperationManager().get(urlString, parameters: queryParameters, success: successBlock, failure: {
+//            _, error in
+//            failure?(error as! NSError)
+//        })
         
-        AFHTTPRequestOperationManager().get(urlString, parameters: queryParameters, success: successBlock, failure: {
-            _, error in
-            failure?(error as! NSError)
-        })
+        
+        
+        
+        
     }
     
     func request<T:RSJsonModel>(_ urlString: String, staticParameters: [String:AnyObject], dynamicParameters: [String:[String]], jsonModelClass: T.Type, success: (([T]) -> Void)?, failure: ((NSError) -> Void)?) {
-        var operationList = [AFHTTPRequestOperation]()
-        
-        var parameters = staticParameters
-        var dynamicParameterKeyList = Array(dynamicParameters.keys)
-        for index in 0 ..< (dynamicParameters[dynamicParameterKeyList[0]]?.count ?? 0) {
-            for key in dynamicParameterKeyList {
-                if let dynamicParameterValue = dynamicParameters[key]?[index] {
-                    parameters[key] = dynamicParameterValue as AnyObject
-                }
-            }
-            let httpRequestOperation = AFHTTPRequestOperation(request: AFHTTPRequestSerializer().request(withMethod: "GET", urlString: urlString, parameters: parameters) as URLRequest?)
-            operationList.append(httpRequestOperation!)
-        }
-        
-        var jsonModelList = [T]()
-        var error: NSError?
-        
-        let progressBlock: ((UInt, UInt) -> Void) = {
-            (numberOfFinishedOperations, totalNumberOfOperations) in
-            
-            let operation = operationList[Int(numberOfFinishedOperations - 1)]
-            if let operationError = operation.error {
-                error = operationError as NSError
-                return
-            }
-            
-            var jsonParseError: JSONModelError?
-            let jsonModel = jsonModelClass.init(string: operation.responseString, error: &jsonParseError)
-            if let jsonParseError = jsonParseError {
-                error = jsonParseError
-            } else {
-                jsonModelList.append(jsonModel!)
-            }
-        }
-        
-        let completionBlock: (([Any]?) -> Void) = {
-            _ in
-            
-            if let error = error {
-                failure?(error)
-            } else {
-                success?(jsonModelList)
-            }
-        }
-        
-        let operations = AFURLConnectionOperation.batch(ofRequestOperations: operationList, progressBlock: progressBlock, completionBlock: completionBlock) as! [Operation]
-        
-        OperationQueue.main.addOperations(operations, waitUntilFinished: false)
+//        var operationList = [AFHTTPRequestOperation]()
+//
+//        var parameters = staticParameters
+//        var dynamicParameterKeyList = Array(dynamicParameters.keys)
+//        for index in 0 ..< (dynamicParameters[dynamicParameterKeyList[0]]?.count ?? 0) {
+//            for key in dynamicParameterKeyList {
+//                if let dynamicParameterValue = dynamicParameters[key]?[index] {
+//                    parameters[key] = dynamicParameterValue as AnyObject
+//                }
+//            }
+//            let httpRequestOperation = AFHTTPRequestOperation(request: AFHTTPRequestSerializer().request(withMethod: "GET", urlString: urlString, parameters: parameters) as URLRequest?)
+//            operationList.append(httpRequestOperation!)
+//        }
+//
+//        var jsonModelList = [T]()
+//        var error: NSError?
+//
+//        let progressBlock: ((UInt, UInt) -> Void) = {
+//            (numberOfFinishedOperations, totalNumberOfOperations) in
+//
+//            let operation = operationList[Int(numberOfFinishedOperations - 1)]
+//            if let operationError = operation.error {
+//                error = operationError as NSError
+//                return
+//            }
+//
+//            var jsonParseError: JSONModelError?
+//            let jsonModel = jsonModelClass.init(string: operation.responseString, error: &jsonParseError)
+//            if let jsonParseError = jsonParseError {
+//                error = jsonParseError
+//            } else {
+//                jsonModelList.append(jsonModel!)
+//            }
+//        }
+//
+//        let completionBlock: (([Any]?) -> Void) = {
+//            _ in
+//
+//            if let error = error {
+//                failure?(error)
+//            } else {
+//                success?(jsonModelList)
+//            }
+//        }
+//
+//        let operations = AFURLConnectionOperation.batch(ofRequestOperations: operationList, progressBlock: progressBlock, completionBlock: completionBlock) as! [Operation]
+//
+//        OperationQueue.main.addOperations(operations, waitUntilFinished: false)
     }
 }
