@@ -3,7 +3,6 @@
 //
 
 #import "RSSearchModel.h"
-#import "AFNetworking/AFNetworking.h"
 #import "RSVideoModel.h"
 #import "RSChannelModel.h"
 #import "RSVideoDetailModel.h"
